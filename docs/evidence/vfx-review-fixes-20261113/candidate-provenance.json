@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "2b08e66c37bc16e32e77cf0fbeae91604233af04",
+  "sourceRoot": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-vfx-art-fixed-8hhg07b8",
+  "captureScript": null,
+  "captureScriptSha256": null,
+  "gameplayScriptsDisabled": true,
+  "candidateOverlays": {
+    "src/client/HeroVFX.luau": "f443a8a027eca0ef29ef03a4dda91a8ceaf8d4938586bf98d95ebe3579be756b",
+    "src/client/EnemyPatternEffects.luau": "97a0eb1281e5a68e94b292a32aad447c8a6edfced006858e8c024e6f4c0860a0",
+    "src/client/AdvancedSkillVisual.luau": "b9f4160dafb62bf9149d2c88dfc33c1c96223e26d70aa7b0cd6bcfc14886b14f",
+    "tests/vfx-review-followup-native.luau": "3c77f47c2701908a2f8ebad49858a65f0a7f7910c5cdfa729b3115667504d148"
+  },
+  "probeSha256": "c23cb1fc1c7225791a013f89da2870d8f9c9f243b15b38f8b1c881edb7acf6a8",
+  "placeSha256": "0fb0440bb0601779db97dadd629832a855d69e46a78684c90140736f4916dd25"
+}

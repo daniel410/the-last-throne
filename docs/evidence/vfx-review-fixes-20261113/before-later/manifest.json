@@ -1,0 +1,620 @@
+[
+  {
+    "index": 2,
+    "id": "knight.common.whirlwind",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "name": "WHIRLWIND",
+    "diagnostics": {
+      "beams": 46,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.9479339718818665,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.9687603712081909,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.9305785894393921,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 33
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "1a6dc66523ccbd2520121ef92fed1cb9f3cd9bfcf31acb9ac1e6fcb088d5807c"
+  },
+  {
+    "index": 7,
+    "id": "knight.steel_knight.twin_cyclone",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "name": "TWIN CYCLONE",
+    "diagnostics": {
+      "beams": 46,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://126195196879627",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 128",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 82
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "a74253307de6fa186515953b1beb1dfa392ad508037a20f2e58a588d32256eee"
+  },
+  {
+    "index": 13,
+    "id": "knight.steel_knight.blade_storm",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "name": "BLADE STORM",
+    "diagnostics": {
+      "beams": 60,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://126195196879627",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 128",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 82
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "614a8c52a00c21d90e9027c1b1be70e056b835e048798183c0b7f73abb179da4"
+  },
+  {
+    "index": 61,
+    "id": "dwarf.gunner.siege_barrage",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "name": "SIEGE BARRAGE",
+    "diagnostics": {
+      "beams": 15,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://97702256550503",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 128",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.8261582255363464,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.89569491147995,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.7682109475135803,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 33
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "a8a684f6231c25dbfa434d10f3e85020bfe52200951f6a23a092036cc92c3a49"
+  },
+  {
+    "index": 65,
+    "id": "elf.common.aimed",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "name": "AIMED SHOT",
+    "diagnostics": {
+      "beams": 6,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.948049783706665,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.968829870223999,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.9307330250740051,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 3
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "071009d4cb874b9355018782141bd34ea388ea139294b8ae10dbf5688db74020"
+  },
+  {
+    "index": 68,
+    "id": "elf.marksman.weakpoint_shot",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "name": "WEAKPOINT SHOT",
+    "diagnostics": {
+      "beams": 4,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://70394998889278",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 256",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 8
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "614162712a2cb860dc3d19da340ee5904c14eadfc7318c4c3b9deed425566ef9"
+  },
+  {
+    "index": 71,
+    "id": "elf.marksman.heavy_draw",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "name": "HEAVY DRAW",
+    "diagnostics": {
+      "beams": 6,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://70394998889278",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 256",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.8809564113616943,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.9285738468170166,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.8412752151489258,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 8
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "c9f92366c2ef1f1013066545d41e4a852d95333992ea85fd25739d32d8eb4d5c"
+  },
+  {
+    "index": 80,
+    "id": "elf.marksman.grand_volley",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "name": "GRAND VOLLEY",
+    "diagnostics": {
+      "beams": 51,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://70394998889278",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 256",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": false,
+          "transparency": 1,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 28
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "34587bd680d8ba42eb6f8db05df7ba9e98e1e9ae38a5551409da11fe8423d62d"
+  },
+  {
+    "index": 93,
+    "id": "elf.magic_archer.spirit_arrowfall",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "name": "SPIRIT ARROWFALL",
+    "diagnostics": {
+      "beams": 33,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://94125424154534",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 128",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.8263011574745178,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.8957806825637817,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.768401563167572,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 62
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "985fb10a9cb891d6a4c62c2c8eebeb9ca01edcbeeb28c024d9e6795250222ca2"
+  },
+  {
+    "index": 102,
+    "id": "mage.pyro.cinder_ring",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "name": "CINDER RING",
+    "diagnostics": {
+      "beams": 60,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://125880857986566",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 128",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.9477189183235168,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.968631386756897,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.9302919507026672,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 130
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "80251eb2f84b516e08b90237a124f20ad5bf8c38445983bdb64bc7758ebe75c2"
+  },
+  {
+    "index": 105,
+    "id": "mage.pyro.ember_step",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "name": "EMBER STEP",
+    "diagnostics": {
+      "beams": 60,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://125880857986566",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 128",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.9476544857025146,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.9685927033424377,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.9302060008049011,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 130
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "6984cbc55af15a51eac71919ef98b929bdf781f7bdb9bb9209458db56ebad1c2"
+  },
+  {
+    "index": 107,
+    "id": "mage.pyro.searing_ward",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "name": "SEARING WARD",
+    "diagnostics": {
+      "beams": 45,
+      "images": [
+        {
+          "visible": true,
+          "image": "rbxassetid://125880857986566",
+          "name": "Frame",
+          "loaded": true,
+          "transparency": 0.11999999731779099,
+          "rect": "128, 128",
+          "size": "128, 128"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "transparency": 0.8812361359596252,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "transparency": 0.9287416934967041,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "visible": true,
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "transparency": 0.8416481614112854,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 154
+    },
+    "height": 240,
+    "sampleAge": 0.23,
+    "sha256": "4f171bc9cf2d4e88188c531922250f07ea2334b9d63abf3b4045dc9d1c0a0a74"
+  }
+]

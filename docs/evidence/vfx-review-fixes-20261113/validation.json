@@ -1,0 +1,219 @@
+{
+  "version": "0.105.6",
+  "sourceCommit": "02760cdd0e2987d31cb760b9310b40ae77b3d6f1",
+  "buildSha256": "ffd20930e3dcf8b806b9d70bc7191de2f0b0ae85c445fbf747dedece0fb56fb7",
+  "matchingModules": [
+    {
+      "path": "src/client/HeroVFX.luau",
+      "sha256": "f443a8a027eca0ef29ef03a4dda91a8ceaf8d4938586bf98d95ebe3579be756b"
+    },
+    {
+      "path": "src/client/HeroVFXSurfaces.luau",
+      "sha256": "5287a8eb273c7dcefcac5b0da310e36894d9d41cc926c479cad921c345db38f0"
+    },
+    {
+      "path": "src/client/SkillVFXProfiles.luau",
+      "sha256": "901c36a098a9f6ab3d6683f4477ebf602b374567f6c2066a07bd70ef44682c70"
+    },
+    {
+      "path": "src/client/AdvancedSkillVisual.luau",
+      "sha256": "b9f4160dafb62bf9149d2c88dfc33c1c96223e26d70aa7b0cd6bcfc14886b14f"
+    },
+    {
+      "path": "src/client/EnemyPatternEffects.luau",
+      "sha256": "97a0eb1281e5a68e94b292a32aad447c8a6edfced006858e8c024e6f4c0860a0"
+    },
+    {
+      "path": "src/client/GameSettings.luau",
+      "sha256": "1a2b6c92ac26f6d63507d80c7afa4351d96657b111cdbd729b539c1b8dc9e012"
+    },
+    {
+      "path": "src/client/EnemySpellVFX.luau",
+      "sha256": "d1f0570ec774b9e5cd2d12e5ca841a346f6a87759f37123b943dd468b752ffd8"
+    },
+    {
+      "path": "src/client/EnemySpellArt.luau",
+      "sha256": "14880e11545b17c98a23fdb0f60ce730b4bc07e4cb1eb191f4ff68bbf09a4797"
+    },
+    {
+      "path": "src/client/PixelFX.luau",
+      "sha256": "2de48d6e4908c487aa8a08e256aa85872f7b68b8a4dbf59f1a8634f648bf0cce"
+    },
+    {
+      "path": "src/client/CuratedVFX.luau",
+      "sha256": "a5e05643b01a7d4ac2f125258d2c4241187b9e09b34a614d50a15d7eff32316b"
+    },
+    {
+      "path": "src/client/K0HitEffects.luau",
+      "sha256": "af4bf51b18c29f1fc29fcbd9ffc68a6d1de87095b39a5be2bca88fffc051c582"
+    },
+    {
+      "path": "src/client/SelenePresentation.luau",
+      "sha256": "ee70d204748a27393164e9434438705a4e584f130a7cce24297c410b7506ee43"
+    },
+    {
+      "path": "src/client/WindLanceVisual.luau",
+      "sha256": "3b0be19e0e46d53ffd81f939b7925c193c4c7b26cb20c0520f24b15afef21db3"
+    },
+    {
+      "path": "src/shared/EnemyPatterns.luau",
+      "sha256": "a6eb166aa36221be66c99ee7b9288576dabc420287cadc0098531977761eda98"
+    },
+    {
+      "path": "src/shared/CombatVFXPalette.luau",
+      "sha256": "c0278e987dd330895eccdc7783c18f1dd36b3c65b587b64cc426bde57161bb5f"
+    },
+    {
+      "path": "src/shared/SkillPresentation.luau",
+      "sha256": "4a7e2e2832331abddc466d1896d4a62db1ecb0ce58b58b77878b8a0490f4f861"
+    },
+    {
+      "path": "src/server/Combat/EnemyPatternRuntime.luau",
+      "sha256": "d6e96ce8b024eb0b54b115bc0295f27fe7e7d7a9bd58b8eef9f87d8b54b0e95a"
+    }
+  ],
+  "nativeSuites": 18,
+  "nativeChecks": 96769,
+  "nativeResults": [
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 562
+    },
+    {
+      "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 2253
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 15916
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 127
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 78
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 190
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 84
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 222
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 58
+    },
+    {
+      "assets": {
+        "rbxassetid://8196169974": true,
+        "rbxassetid://9937082969": true,
+        "rbxassetid://9997556038": true,
+        "rbxassetid://8030734851": true,
+        "rbxassetid://125374985892345": true
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 182
+    },
+    {
+      "assets": 20,
+      "failures": [],
+      "checks": 1690,
+      "status": "PASS",
+      "kind": "PIXELFX_NATIVE",
+      "basic": 4,
+      "skills": 128
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 7483
+    },
+    {
+      "failures": [],
+      "kind": "WIND_LANCE_VISUAL_NATIVE",
+      "pass": true,
+      "checks": 130
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 297
+    },
+    {
+      "coverage": "Native decoration, budgets and Lua update cost; not GPU or device acceptance",
+      "checks": 57,
+      "luaUpdateP95ms": 0.525458250194788,
+      "luaUpdateP50ms": 0.5050833569839597,
+      "pass": true,
+      "failures": []
+    },
+    {
+      "coverage": "Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance",
+      "checks": 102,
+      "samples": [
+        {
+          "speed": 1.350000023841858,
+          "class": "knight",
+          "sound": "rbxasset://sounds/action_jump_land.mp3"
+        },
+        {
+          "speed": 0.9025945663452148,
+          "class": "dwarf",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.8820803761482239,
+          "class": "mage",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.9048526287078857,
+          "class": "elf",
+          "sound": "rbxassetid://9118598279"
+        }
+      ],
+      "kind": "K0_HIT_EFFECTS_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "attacks": 146,
+      "projectiles": 40,
+      "kinds": 50,
+      "checks": 66030
+    },
+    {
+      "attacks": 146,
+      "checks": 1308,
+      "failures": [],
+      "pass": true,
+      "dashes": 11
+    }
+  ],
+  "verifiedCaptureFrames": 51,
+  "publishedClient": "not-run",
+  "realDevice": "not-run",
+  "userArtAcceptance": "pending"
+}

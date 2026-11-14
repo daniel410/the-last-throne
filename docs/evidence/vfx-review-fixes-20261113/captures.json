@@ -1,0 +1,73 @@
+{
+  "before-first": {
+    "sourceCommit": "2b08e66c37bc16e32e77cf0fbeae91604233af04",
+    "frames": 12,
+    "logSha256": "52fbafaf08065b934ebd877799501871316bdedbb09b5a52484fc423308893c8",
+    "sampleAge": 0.1,
+    "captureMode": "isolated-frozen-production-composite",
+    "script": "capture-first.luau",
+    "scriptSha256": "8bab47df7fcaa0e09225aab94d03bf90ded4196a3ebb43e99815f0aca90b0058",
+    "productionSourceIdentity": "baseline committed source"
+  },
+  "before-later": {
+    "sourceCommit": "2b08e66c37bc16e32e77cf0fbeae91604233af04",
+    "frames": 12,
+    "logSha256": "14ad33891715e2788d9007d08fe4de1972c66156f1f1609b13e079b87810186e",
+    "sampleAge": 0.23,
+    "captureMode": "isolated-frozen-production-composite",
+    "script": "capture-later.luau",
+    "scriptSha256": "a1db33cfed870e8ebd8520b4e6b582fa6e3718f46c5e0f4c934ed23d1450d7bd",
+    "productionSourceIdentity": "baseline committed source"
+  },
+  "after-first": {
+    "sourceCommit": "02760cdd0e2987d31cb760b9310b40ae77b3d6f1",
+    "frames": 12,
+    "logSha256": "64393700f1d96ddc6f468dbd976a2297ecfd20fec35eee5d66605628f4d11217",
+    "sampleAge": 0.1,
+    "captureMode": "isolated-frozen-production-composite",
+    "script": "capture-first.luau",
+    "scriptSha256": "8bab47df7fcaa0e09225aab94d03bf90ded4196a3ebb43e99815f0aca90b0058",
+    "productionSourceIdentity": "candidate overlays match final commit"
+  },
+  "after-later": {
+    "sourceCommit": "02760cdd0e2987d31cb760b9310b40ae77b3d6f1",
+    "frames": 12,
+    "logSha256": "1315ef42b1fd3ab829fe43f30aa62c8dea23bbd05e8d699c5466dd8953bfca6a",
+    "sampleAge": 0.23,
+    "captureMode": "isolated-frozen-production-composite",
+    "script": "capture-later.luau",
+    "scriptSha256": "a1db33cfed870e8ebd8520b4e6b582fa6e3718f46c5e0f4c934ed23d1450d7bd",
+    "productionSourceIdentity": "candidate overlays match final commit"
+  },
+  "rejected-build-capture": {
+    "sourceCommit": "02760cdd0e2987d31cb760b9310b40ae77b3d6f1",
+    "frames": 3,
+    "sampleAge": 0.1,
+    "mode": "full-build-viewport",
+    "logSha256": "e42ee07566b194404290cef9c74aa4976820ca02dfd57c8b42aeea3c98a80346",
+    "pulses": {
+      "dwarf.gunner.siege_barrage": 4,
+      "elf.marksman.grand_volley": 3,
+      "elf.magic_archer.spirit_arrowfall": 3
+    },
+    "script": "capture-last.luau",
+    "scriptSha256": "19c62e8ee9ed1de107adae34d1b4a4e800fc8b91fddbbefbfae0d3a159c8d4aa",
+    "productionSourceIdentity": "pinned build",
+    "status": "rejected",
+    "reason": "Only gray floor visible; actor/effect presentation not verified"
+  },
+  "ultimate-last": {
+    "sourceCommit": "02760cdd0e2987d31cb760b9310b40ae77b3d6f1",
+    "frames": 3,
+    "sampleAge": 0.1,
+    "mode": "pinned-source-isolated-fixture-last-pulse",
+    "logSha256": "b3a90b7962ac24d22212c29753bf4534929f2fe31b12388ad248cddb1c533380",
+    "script": "capture-last.luau",
+    "scriptSha256": "19c62e8ee9ed1de107adae34d1b4a4e800fc8b91fddbbefbfae0d3a159c8d4aa",
+    "pulses": {
+      "dwarf.gunner.siege_barrage": 4,
+      "elf.marksman.grand_volley": 3,
+      "elf.magic_archer.spirit_arrowfall": 3
+    }
+  }
+}
