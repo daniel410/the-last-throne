@@ -30,9 +30,13 @@ for id,z in pairs(C.zones)do
     check(hit and math.abs(hit.Position.Y-at.Y)<.75,'grounded '..id..m.Name)
     if m:GetAttribute('RegionalConceptRole')=='Signature'then
      signatures+=1
-     check(m.Name==profile.kind,'distinct concept silhouette '..id)
+     check(m.Name==profile.kind,'matching concept model '..id)
+     local approach=m:GetAttribute('ApproachPosition');local delta=approach-m:GetPivot().Position
+     check(Vector3.new(delta.X,0,delta.Z).Unit:Dot(m:GetPivot().ZVector)>.99,'entry faces actual approach '..id)
+     check(m:GetScale()>=(id:find('%-S')and .68 or 1),'landmark never miniaturized '..id)
+     check(m:GetAttribute('BlenderPrimitiveCount')==#Templates[m.Name],'pinned Blender part census '..id)
      check(m:GetAttribute('BlenderSource')=='regional-architecture-blender-v1','actual Blender source '..id)
-     check(#m:GetChildren()==#assert(Templates[m.Name]),'exact primitive census '..id)
+     check(#m:GetChildren()==#assert(Templates[m.Name])+(m:GetAttribute('RuntimeDetailParts')or 0),'exact primitive census '..id)
     end
    end
   end

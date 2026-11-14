@@ -40,7 +40,7 @@ Kit.palette={
  Deepwood={rock=C(94,112,91),trim=C(166,175,139),ground=C(95,126,70),leaf=C(97,137,65),wood=C(88,69,43),accent=C(237,187,87)},
  FrozenVale={rock=C(72,100,128),trim=C(172,210,229),ground=C(222,236,242),leaf=C(57,99,103),wood=C(77,74,78),accent=C(255,189,94)},
  EmberCaldera={rock=C(62,55,65),trim=C(116,99,102),ground=C(78,66,70),leaf=C(96,69,70),wood=C(61,56,64),accent=C(246,129,54)},
- Gloamwood={rock=C(64,77,99),trim=C(142,155,177),ground=C(48,62,77),leaf=C(29,48,62),wood=C(48,45,55),accent=C(158,116,196)},
+ Gloamwood={rock=C(64,77,99),trim=C(142,155,177),ground=C(73,91,87),leaf=C(29,48,62),wood=C(48,45,55),accent=C(158,116,196)},
  HauntedGraveyard={rock=C(76,81,99),trim=C(155,160,174),ground=C(89,105,98),leaf=C(69,79,83),wood=C(66,63,75),accent=C(157,223,202)},
 }
 function Kit.part(parent,name,size,cf,color,material,shape)

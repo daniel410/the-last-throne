@@ -59,6 +59,7 @@ function W.create(epic,world)
  if epic==1 then require(script.Parent.DeepwoodConceptArt).finish(world)end
  require(script.Parent.EpicWorldArt).connectOverland(world)
  require(script.Parent.RegionalConceptArt).finish(world)
+ require(script.Parent.CampaignSurfaceFinish).apply(world)
  world.loadedEpics[epic]=true
  world.folder:SetAttribute('Epic'..epic..'Ready',true)
  return world

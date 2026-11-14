@@ -7,7 +7,7 @@ local Collision=require(script.Parent.CampaignSceneryCollision)
 local Profiles=require(script.Parent.RegionalConceptProfiles)
 local V=Vector3.new
 local C=Color3.fromRGB
-local D={version=1}
+local D={version=2}
 local palettes={
  [2]={stone=C(102,116,135),light=C(153,168,186),moss=C(43,62,79),wood=C(58,54,65),path=C(89,103,122),trim=C(146,132,169)},
  [3]={stone=C(149,174,193),light=C(218,233,239),moss=C(132,166,184),wood=C(105,80,64),path=C(160,183,197),trim=C(91,143,178)},
@@ -60,6 +60,22 @@ function D.build(site,id,c,size,safe,ground,world)
  group:SetAttribute('ConceptVersion',D.version);group:SetAttribute('ConceptTitle',profile.title)
  group:SetAttribute('ConceptSource','2026-11-13-regional-epic-stories-v1')
  local placed={};local rejected=0;local reasons={}
+ local approaches={world.spawns[id].Position}
+ for _,chapter in ipairs(Content.chapters)do if chapter.zone==id then
+  for _,goal in ipairs(chapter.goals)do
+   local p=V(table.unpack(goal.position))
+   if math.abs(p.X-c.X)<size[1]/2 and math.abs(p.Z-c.Z)<size[2]/2 then approaches[#approaches+1]=p end
+  end
+ end end
+ local function face(p)
+  local nearest,distance
+  for _,a in ipairs(approaches)do
+   local d=V(a.X-p.X,0,a.Z-p.Z).Magnitude
+   if not distance or d<distance then nearest,distance=a,d end
+  end
+  -- Blender entries face local +Z, not the camera's -Z convention.
+  return CFrame.new(p)*CFrame.Angles(0,math.atan2(nearest.X-p.X,nearest.Z-p.Z),0),nearest
+ end
  local lanes={};local Nav=require(Shared.CampaignNavigationRoute)
  -- Incident navigation bends through an entrance mouth. Reserve those actual
  -- walking segments, not only a straight chord between story anchors.
@@ -100,7 +116,7 @@ function D.build(site,id,c,size,safe,ground,world)
   end
   for _,other in ipairs(placed)do if V(p.X-other.p.X,0,p.Z-other.p.Z).Magnitude<r+other.r+18 then return reject('Neighbor')end end
   local q,ok=ground(p);if not ok or math.abs(q.Y-c.Y)>10 then return reject('Ground')end
-  for _,d in ipairs({V(r,0,0),V(-r,0,0),V(0,0,r),V(0,0,-r)})do
+  for _,d in ipairs({V(r,0,0),V(-r,0,0),V(0,0,r),V(0,0,-r),V(r*.7,0,r*.7),V(-r*.7,0,r*.7),V(r*.7,0,-r*.7),V(-r*.7,0,-r*.7)})do
    local sample,valid=ground(p+d);if not valid or math.abs(sample.Y-q.Y)>.65 then return reject('Slope')end
   end
   if #workspace:GetPartBoundsInBox(CFrame.new(q+V(0,9,0)),V(r*2+6,16,r*2+6),overlap)>0 then return reject('Occupied')end
@@ -110,7 +126,10 @@ function D.build(site,id,c,size,safe,ground,world)
   local m=role=='Signature'and require(script.Parent.RegionalArchitecture).build(kind)or assembly(role,colors,profile.epic)
   -- Side pockets and the convoy clearing have tighter existing encounter
   -- envelopes. Their landmarks use the same kit at a village-scale footprint.
-  if role=='Signature'and id:find('%-S')then m:ScaleTo(.68)end
+  if role=='Signature'then
+   local scale=id:find('%-S')and .85 or (id=='FV-07'or id=='EC-02'or id=='EC-07'or id=='HG-06')and 1.65 or 1.3
+   m:ScaleTo(scale)
+  end
   local cf,ext=m:GetBoundingBox()
   local r=V(ext.X,0,ext.Z).Magnitude/2+2;local result
   -- Authored uneven shoulders frame the actual objectives. Always reject a
@@ -128,18 +147,20 @@ function D.build(site,id,c,size,safe,ground,world)
   for _,q in ipairs(candidates)do
     local p=eligible(q,r)
     if p then
-     m:PivotTo(CFrame.new(p)*CFrame.Angles(0,math.atan2(c.X-p.X,c.Z-p.Z),0));m.Parent=group
+     local cf,approach=face(p);m:PivotTo(cf);m.Parent=group
+     m:SetAttribute('ApproachPosition',approach)
      m:SetAttribute('GroundPosition',p);m:SetAttribute('ConceptZone',id);m:SetAttribute('PlacementRadius',r)
      Collision.apply(m);table.insert(placed,{p=p,r=r});result=m;break
     end
   end
   if not result then
    -- Try a smaller roadside form rather than reducing combat/route reserves.
-   m:ScaleTo(.65);local _,small=m:GetBoundingBox();r=V(small.X,0,small.Z).Magnitude/2+2
+   m:ScaleTo(role=='Signature'and(id:find('%-S')and .68 or 1)or .65);local _,small=m:GetBoundingBox();r=V(small.X,0,small.Z).Magnitude/2+2
    for _,q in ipairs(candidates)do
     local p=eligible(q,r)
     if p then
-     m:PivotTo(CFrame.new(p)*CFrame.Angles(0,math.atan2(c.X-p.X,c.Z-p.Z),0));m.Parent=group
+     local cf,approach=face(p);m:PivotTo(cf);m.Parent=group
+     m:SetAttribute('ApproachPosition',approach)
      m:SetAttribute('GroundPosition',p);m:SetAttribute('ConceptZone',id);m:SetAttribute('PlacementRadius',r)
      Collision.apply(m);placed[#placed+1]={p=p,r=r};result=m;break
     end
@@ -157,15 +178,15 @@ function D.build(site,id,c,size,safe,ground,world)
  local coverCount=0
  for i=1,32 do
   local a=i*2.399;local p=c+V(math.cos(a)*size[1]*(.23+(i%3)*.07),0,math.sin(a)*size[2]*(.23+(i%4)*.045))
-  local q=eligible(p,9)
+  local q=eligible(p,14)
   if q then
    for j=1,3 do
-    local rock=K.part(dressing,'RegionalVergeStone',V(4+j,1+j*.6,4),CFrame.new(q+V((j-2)*4,.5+j*.2,0))*CFrame.Angles(0,j+i,.12),colors.stone:Lerp(colors.moss,.25),Enum.Material.Slate,'Wedge')
+    local rock=K.part(dressing,'RegionalVergeStone',V(8+j,3+j*2,9),CFrame.new(q+V((j-2)*4,(3+j*2)/2-.2,0))*CFrame.Angles(0,j+i,.12),colors.stone:Lerp(colors.moss,.25),Enum.Material.Slate,'Wedge')
     rock:SetAttribute('EpicDetailSolid',true);rock:SetAttribute('TLTSceneryDistance',300)
-    local leaf=K.part(dressing,'RegionalVergeDetail',V(6,.3,3),CFrame.new(q+V((j-2)*4,2.6,j*2))*CFrame.Angles(.2,j+i,0),colors.moss,(profile.epic==3 and Enum.Material.Glacier or profile.epic==4 and Enum.Material.Basalt or Enum.Material.Grass),'Wedge')
+    local leaf=K.part(dressing,'RegionalVergeDetail',V(6,.3,3),CFrame.new(q+V((j-2)*4,3+j*2,j*2))*CFrame.Angles(.2,j+i,0),colors.moss,(profile.epic==3 and Enum.Material.Glacier or profile.epic==4 and Enum.Material.Basalt or Enum.Material.Grass),'Wedge')
     leaf:SetAttribute('TLTSceneryDistance',230)
    end
-   coverCount+=1;table.insert(placed,{p=q,r=9})
+   coverCount+=1;table.insert(placed,{p=q,r=14})
   end
  end
  Collision.apply(dressing)
@@ -185,13 +206,13 @@ function D.paths(site,ground,world)
   if p:IsA('BasePart')and p.Name=='WornCurvedRoute'then
    p.Color=colors.path;p.Material=profile.epic==3 and Enum.Material.Snow or profile.epic==4 and Enum.Material.Basalt or Enum.Material.Cobblestone
    count+=1
-   if count%8==0 and #group:GetChildren()<56 then
+   if count%16==0 and #group:GetChildren()<56 then
     for _,side in ipairs({-1,1})do
      local q=p.CFrame:PointToWorldSpace(V(side*math.min(5,p.Size.X*.25),0,0))
      local at,valid=ground(q)
      local hit=valid and workspace:Raycast(at+V(0,2,0),V(0,-5,0),floor)
      if hit and math.abs(hit.Position.Y-at.Y)<.3 and math.abs(at.Y-p.Position.Y)<.4 then
-      local stone=K.part(group,'RegionalPathInlay',V(3,.04,2.5),CFrame.new(at+V(0,.07,0))*p.CFrame.Rotation,colors.light,Enum.Material.Slate)
+      local stone=K.part(group,'RegionalPathInlay',V(1.8,.04,1.5),CFrame.new(at+V(0,.07,0))*p.CFrame.Rotation,colors.light,Enum.Material.Slate)
       stone.CastShadow=false;stone:SetAttribute('TLTSceneryDistance',280)
      end
     end
