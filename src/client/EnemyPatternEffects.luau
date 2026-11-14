@@ -9,6 +9,7 @@ local Text=require(RS.Shared.EnemyPatternText)
 local Audio=require(RS.Shared.CombatAudioCatalog)
 local BossImpact=require(script.Parent.BossHeroImpact)
 local Spell=require(script.Parent.EnemySpellVFX)
+local Settings=require(script.Parent.GameSettings)
 local Effects={}
 local colors={physical=Color3.fromRGB(255,217,150),arcane=Color3.fromRGB(182,115,255),frost=Color3.fromRGB(121,226,255),fire=Color3.fromRGB(255,133,56),web=Color3.fromRGB(223,218,255),venom=Color3.fromRGB(151,230,90),soul=Color3.fromRGB(109,238,197),shadow=Color3.fromRGB(201,128,255)}
 local definitions={};for _,profile in pairs(Patterns.profiles)do for _,d in ipairs(profile.attacks)do definitions[d.id]=d end end
@@ -204,7 +205,7 @@ ground=function(v)
  local hit=workspace:Raycast(v+Vector3.new(0,2,0),Vector3.new(0,-96,0),floorParams)
  return hit and hit.Normal.Y>.4 and hit.Position+Vector3.new(0,.12,0)or nil
 end
-local function draw(a,model,now)
+local function draw(a,model,now,rangesEnabled)
  local d=a.d;local age=now-a.at
  if age<d.windup and d.element~='physical' and permitted(a.origin)then
   local socket=model:FindFirstChild('EnemyCastSocket',true)
@@ -216,8 +217,14 @@ local function draw(a,model,now)
    end
   end
  elseif a.charge then Spell.destroy(a.charge);a.charge=nil end
- local warning=age<d.windup+(d.pulses-1)*d.interval+.22
- if not warning or not permitted(a.origin)then if a.folder then a.folder:Destroy();a.folder=nil end;return end
+ -- EnemyPatternRuntime checks dash collisions for the full .45-second move.
+ -- Only the range outline follows the preference; charge/spell art stays visible.
+ local active=d.motion=='dash'and .45 or (d.pulses-1)*d.interval+.22
+ local warning=age<=d.windup+active
+ if not warning or not rangesEnabled or not permitted(a.origin)then
+  if a.folder then a.folder:Destroy();a.folder=nil;a.lines=nil end
+  return
+ end
  if a.lines and #a.lines>0 and a.folder then
   for _,p in ipairs(a.lines)do if p.Parent then p.Transparency=.08+(.18*(1-math.clamp(age/d.windup,0,1)))end end;return
  end
@@ -288,12 +295,16 @@ function Effects.start()
  task.spawn(function()RS:WaitForChild('Remotes'):WaitForChild('EnemyPatternEvent').OnClientEvent:Connect(Effects.receive)end)
  Run.RenderStepped:Connect(function()Effects.render(workspace:GetServerTimeNow())end)
 end
-function Effects.render(now)
+function Effects.render(now,viewer)
+  viewer=viewer or Players.LocalPlayer
+  local rangesEnabled=not viewer or Settings.enabled(viewer,'attacks')
   Spell.step(now)
   for model,a in pairs(attacks)do
    local h=model:FindFirstChildOfClass('Humanoid')
    if not model:IsDescendantOf(workspace)or not h or h.Health<=0 or model:GetAttribute('K0AttackSeq')~=a.sequence or not model:GetAttribute('K0PatternId')then destroyAttack(model)
-   elseif now-(a.drawAt or 0)>.05 then a.drawAt=now;draw(a,model,now)end
+   elseif now-(a.drawAt or 0)>.05 or a.rangesEnabled~=rangesEnabled then
+    a.drawAt=now;a.rangesEnabled=rangesEnabled;draw(a,model,now,rangesEnabled)
+   end
   end
   for i=#projectiles,1,-1 do local p=projectiles[i];local age=now-p.at
    local h=p.model:FindFirstChildOfClass('Humanoid')
