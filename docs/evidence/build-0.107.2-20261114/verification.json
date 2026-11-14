@@ -1,0 +1,14 @@
+{
+  "version": "0.107.2",
+  "sourceCommit": "cdfbe9e456427a8f22718e91385997a11d287f0a",
+  "sha256": "d9c6cf377c2d3e6d75c785a77f08d6a9f56712a091284102098f45b42f0a41ac",
+  "bytes": 19147142,
+  "xmlParse": "passed",
+  "runtimeSourceComparison": {
+    "baseline": "0.107.1",
+    "matchingScripts": 484,
+    "result": "identical"
+  },
+  "published": false,
+  "studioRunThisBuild": false
+}
