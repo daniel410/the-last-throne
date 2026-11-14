@@ -12,7 +12,7 @@ function P.missions(hero,players)
    local reward=D.completion(c,mode)
    modes[mode]={allowed=ok,reason=why,level=D.requiredLevel(c,mode),previous=m.previous,
     storyMain=D.requiredMain(c),firstClear=not(hero and hero.deepwood and hero.deepwood.clears[c.id]),
-    storyDiamonds=Economy.storyDiamondIds[c.id]and Economy.storyDiamonds or 0,firstXP=c.reward.xp,firstGold=c.reward.coins,firstOre=c.reward.ore or 0,firstGems=c.reward.gems or 0,repeatXP=reward.xp,repeatGold=reward.gold,
+    storyDiamonds=Economy.storyDiamondIds[c.id]and Economy.storyDiamondsByMode[mode] or 0,firstXP=c.reward.xp,firstGold=c.reward.coins,firstOre=c.reward.ore or 0,firstGems=c.reward.gems or 0,repeatXP=reward.xp,repeatGold=reward.gold,
     xpCapped=hero and hero.level>=80 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players),
     hp=m.hp,damage=m.damage,bossHP=m.bossHP,bossDamage=m.bossDamage}
   end

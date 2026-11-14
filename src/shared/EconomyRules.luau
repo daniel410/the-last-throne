@@ -40,8 +40,9 @@ local function claim(p,heroId,id,mode)
   or(mode~='Easy'and not Catalog.storyDiamondModes[mode])then return false end
  local stories=p.wallet.heroClaims[heroId]
  if stories and stories[id]and stories[id][mode]then return false end
- if p.wallet.diamonds+Catalog.storyDiamonds>1e12 then return false end
- mark(p.wallet,heroId,id,mode);p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
+ local amount=Catalog.storyDiamondsByMode[mode]
+ if p.wallet.diamonds+amount>1e12 then return false end
+ mark(p.wallet,heroId,id,mode);p.wallet.diamonds=p.wallet.diamonds+amount
  return true
 end
 local function completed(hero,id,mode)

@@ -31,7 +31,7 @@ for _,heroId in ipairs({'knight','mage'})do
   end)
   check(p.wallet.diamonds==(heroId=='knight'and i*3 or 105+i*3),'actual first clear once per hero '..heroId..' '..c.id)
   check(p.wallet.heroClaims[heroId][c.id].Easy and R.validate(p,C),'durable receipt and valid wallet '..c.id)
-  check(Log.reward(c):find('3 Diamonds per difficulty, once per hero',1,true),'quest reward describes Diamonds '..c.id)
+  check(Log.reward(c):find('Diamonds: Easy 3 / Hard 5 / Insane 7 / Hell 10, once per hero per difficulty',1,true),'quest reward describes Diamonds '..c.id)
  end
 end
 local complete=R.copy(p)

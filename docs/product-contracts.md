@@ -4,6 +4,8 @@
 
 ## 최근 승인
 
+- 난이도 보상은 Easy/Hard/Insane/Hell 순으로 최초 Diamonds 3/5/7/10, Gold·XP 모드 배율 모두1/1.5/2/3이다. 영웅·본편·난이도별1회 지급과 기존 수령 영수증을 보존한다. 새 원정 규칙15, 기존1~14 Gold/XP 보존. [보상 사양](production/difficulty-rewards-and-entry-plan-2026-11-02.md)·[검증](evidence/difficulty-reward-rates-20261113/README.md).
+
 - 에픽 마지막 스토리 완료 뒤 다음 에픽으로 강제 순간이동하지 않는다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard를 인접 배치하고 선행 완료 후 열린 길로 왕복 보행한다. [결정·검증](evidence/epic-overland-20261113/README.md).
 
 - 원소 VFX는 불·물·바람·번개·얼음·땅의 형상/움직임이 각각 분명해야 하며, 성속성은 금빛으로 표현한다. [속성별 미술 기준](production/element-vfx.md).

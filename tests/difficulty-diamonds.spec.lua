@@ -20,6 +20,8 @@ local function events(c,journal,run)
 end
 local p=assert(R.addHero(R.new(956),'hero','knight',C));p.heroes.hero.level=80;p.heroes.hero.progression=G.new(80)
 local snapshots={};local paid=0
+local amounts={Easy=3,Hard=5,Insane=7,Hell=10}
+local totals={Easy=105,Hard=280,Insane=525,Hell=875}
 for _,mode in ipairs(D.order)do
  local run='full-'..mode
  p=assert(A.begin(p,'hero','DW-01',mode,run,p.revision,R,C))
@@ -29,15 +31,15 @@ for _,mode in ipairs(D.order)do
    p=assert(A.event(p,'hero',c.id,goal,choice,step,R,C,run))
    check(same(assert(A.event(p,'hero',c.id,goal,choice,step,R,C,run)),p),'saved event retry '..mode..' '..c.id)
   end)
-  paid=paid+3
-  check(p.wallet.diamonds==before+3 and p.wallet.diamonds==paid,'first difficulty clear pays three '..mode..' '..c.id)
+  paid=paid+amounts[mode]
+  check(p.wallet.diamonds==before+amounts[mode] and p.wallet.diamonds==paid,'first difficulty clear pays configured amount '..mode..' '..c.id)
   check(mode=='Easy'and p.wallet.heroClaims.hero[c.id].Easy or mode~='Easy'and p.wallet.heroClaims.hero[c.id][mode],'mode receipt '..c.id)
   check(R.validate(p,C),'account validates '..mode..' '..c.id)
  end
  snapshots[mode]=R.copy(p)
- check(p.wallet.diamonds==105*(_),'35 main stories pay 105 per mode '..mode)
+ check(p.wallet.diamonds==totals[mode],'35 main stories pay cumulative mode total '..mode)
 end
-check(p.wallet.diamonds==420,'all four campaign routes pay 420')
+check(p.wallet.diamonds==875,'all four campaign routes pay 875')
 -- Another run, same mode, no new Diamonds. Other reward streams stay live.
 for _,mode in ipairs(D.order)do
  local run='repeat-'..mode;p=assert(A.begin(p,'hero','DW-01',mode,run,p.revision,R,C))
@@ -45,7 +47,7 @@ for _,mode in ipairs(D.order)do
  events(Content.byId['DW-01'],function()return A.projection(p.heroes.hero)end,function(goal,choice,step)
   p=assert(A.event(p,'hero','DW-01',goal,choice,step,R,C,run))
  end)
- check(p.wallet.diamonds==420 and p.wallet.gold>gold,'same-mode replay pays Gold but no Diamonds '..mode)
+ check(p.wallet.diamonds==875 and p.wallet.gold>gold,'same-mode replay pays Gold but no Diamonds '..mode)
 end
 -- All other playable heroes earn every story/mode independently.
 for index,class in ipairs({'mage','elf','dwarf'})do
@@ -57,13 +59,13 @@ for index,class in ipairs({'mage','elf','dwarf'})do
    events(c,function()return A.projection(p.heroes[class])end,function(goal,choice,step)
     p=assert(A.event(p,class,c.id,goal,choice,step,R,C,run))
    end)
-   check(p.wallet.diamonds==before+3,'other hero earns its own mode award '..class..' '..mode..' '..c.id)
+   check(p.wallet.diamonds==before+amounts[mode],'other hero earns its own mode award '..class..' '..mode..' '..c.id)
    check(not E.claimDifficulty(p,c.id,mode,class),'same hero receipt cannot mint twice')
   end
  end
- check(p.wallet.diamonds==420*(index+1),'420 Diamonds per playable hero '..class)
+ check(p.wallet.diamonds==875*(index+1),'875 Diamonds per playable hero '..class)
 end
-check(p.wallet.diamonds==1680 and R.validate(p,C),'four heroes independently earn 1680 account Diamonds')
+check(p.wallet.diamonds==3500 and R.validate(p,C),'four heroes independently earn 3500 account Diamonds')
 -- Old account-only receipts contain no hero attribution. Preserve exactly one
 -- paid share per story/mode, then pay the other three completed heroes once.
 local accountOnly=R.copy(p);accountOnly.wallet.heroClaims=nil;accountOnly.wallet.diamonds=5
@@ -73,7 +75,7 @@ for _,c in ipairs(Content.mainChapters)do
  accountOnly.wallet.difficultyClaims[c.id]={Hard=true,Insane=true,Hell=true}
 end
 local catchup=R.upgrade(R.copy(accountOnly),C)
-check(catchup.wallet.diamonds==1265,'legacy paid share preserved; three missing hero shares recover 1260')
+check(catchup.wallet.diamonds==2630,'legacy paid share preserved; three missing hero shares recover 2625')
 check(same(catchup.heroes,accountOnly.heroes)and catchup.wallet.gold==accountOnly.wallet.gold,'hero migration preserves growth/Gold')
 check(same(R.upgrade(R.copy(catchup),C),catchup),'hero catch-up and revision idempotent')
 catchup.wallet.diamonds=0;check(same(R.upgrade(R.copy(catchup),C),catchup),'spent per-hero rewards never refill')
@@ -87,13 +89,13 @@ local old=R.copy(snapshots.Hard);old.wallet.diamonds=2;old.wallet.difficultyClai
 for _,c in ipairs(Content.mainChapters)do old.wallet.claims[c.id]=true end
 check(R.validate(old,C),'legacy no mode ledger accepted')
 local migrated=R.upgrade(R.copy(old),C)
-check(migrated.wallet.diamonds==107,'historic 35 Hard clears restore 105; spent Easy remains two')
+check(migrated.wallet.diamonds==177,'historic 35 Hard clears restore 175; spent Easy remains two')
 check(same(migrated.heroes,old.heroes)and same(migrated.items,old.items)and migrated.wallet.gold==old.wallet.gold,'migration preserves growth, journal, gear and Gold')
 check(not migrated.wallet.heroClaims.hero['DW-01'].Insane,'Hard clear does not imply Insane')
 check(same(R.upgrade(R.copy(migrated),C),migrated),'migration and revision idempotent')
 migrated.wallet.diamonds=0;check(same(R.upgrade(R.copy(migrated),C),migrated),'spent mode rewards never refill')
 local duplicate=R.copy(old);duplicate.heroes.other=R.copy(duplicate.heroes.hero)
-E.upgrade(duplicate);check(duplicate.wallet.diamonds==317,'two heroes receive separate missing Easy and Hard rewards')
+E.upgrade(duplicate);check(duplicate.wallet.diamonds==457,'two heroes receive separate missing Easy and Hard rewards')
 local easy=R.copy(snapshots.Easy);easy.wallet.diamonds=0
 check(not E.upgrade(easy)and not easy.wallet.heroClaims.hero['DW-01'].Hard,'Easy-only account has no higher-mode reward')
 -- Legacy two-Diamond receipts are not topped up.
@@ -108,7 +110,7 @@ for _,bad in ipairs({false,{['XX-01']={Hard=true}},{['DW-01']={Easy=true}},{['DW
 end
 local cap=R.copy(old);cap.wallet.diamonds=1e12
 E.upgrade(cap);check(cap.wallet.diamonds==1e12 and not cap.wallet.heroClaims.hero['DW-01'].Hard,'cap does not burn new receipt')
-cap.wallet.diamonds=0;check(E.upgrade(cap)and cap.wallet.diamonds==105,'cap recovery after spending')
+cap.wallet.diamonds=0;check(E.upgrade(cap)and cap.wallet.diamonds==175,'cap recovery after spending')
 -- AccountStore commits receipt and balance even when acknowledgement is lost.
 local saved=R.copy(old);local lose=true
 local adapter={UpdateAsync=function(_,_,fn)
@@ -117,9 +119,9 @@ local adapter={UpdateAsync=function(_,_,fn)
 end}
 local store=Store.new(adapter,R,C,function()return 100 end,function()end,'difficulty-diamonds')
 local result,why=store:open(956)
-check(not result and why=='SaveUnknown'and saved.wallet.diamonds==107,'lost response migration pays once')
-lose=false;result=assert(store:open(956));check(result.wallet.diamonds==107,'retry recovers committed mode receipt')
-check(store:close(956),'close lease');check(assert(store:open(956)).wallet.diamonds==107,'reconnect no duplicate mode award')
+check(not result and why=='SaveUnknown'and saved.wallet.diamonds==177,'lost response migration pays once')
+lose=false;result=assert(store:open(956));check(result.wallet.diamonds==177,'retry recovers committed mode receipt')
+check(store:close(956),'close lease');check(assert(store:open(956)).wallet.diamonds==177,'reconnect no duplicate mode award')
 -- The last field event and its Diamond receipt commit in the same account write.
 local pending=R.copy(snapshots.Easy)
 pending=assert(A.begin(pending,'hero','DW-01','Hard','lost-hard',pending.revision,R,C))
@@ -142,12 +144,12 @@ assert(eventStore:open(956));drop=true
 local last=actions[#actions]
 local function complete(v)return A.event(v,'hero','DW-01',last.goal,last.choice,last.step,R,C,'lost-hard')end
 local no,errorCode=eventStore:transact(956,complete)
-check(not no and errorCode=='SaveUnknown'and durable.wallet.diamonds==108,'final Hard event commits exactly three on lost response')
+check(not no and errorCode=='SaveUnknown'and durable.wallet.diamonds==110,'final Hard event commits exactly five on lost response')
 drop=false;local recovered=assert(eventStore:transact(956,complete))
-check(recovered.wallet.diamonds==108 and recovered.wallet.heroClaims.hero['DW-01'].Hard,'same field event recovers committed Diamonds')
+check(recovered.wallet.diamonds==110 and recovered.wallet.heroClaims.hero['DW-01'].Hard,'same field event recovers committed Diamonds')
 check(eventStore:close(956),'close after recovered Hard event')
-check(assert(eventStore:open(956)).wallet.diamonds==108,'reconnect preserves live Hard entitlement')
+check(assert(eventStore:open(956)).wallet.diamonds==110,'reconnect preserves live Hard entitlement')
 for _,mission in ipairs(View.missions(p.heroes.hero))do for _,mode in ipairs(D.order)do
- check(mission.modes[mode].storyDiamonds==(Content.byId[mission.id].side and 0 or 3),'mode reward preview '..mission.id..' '..mode)
+ check(mission.modes[mode].storyDiamonds==(Content.byId[mission.id].side and 0 or amounts[mode]),'mode reward preview '..mission.id..' '..mode)
 end end
 print('Difficulty Diamonds: '..checks..' checks passed')

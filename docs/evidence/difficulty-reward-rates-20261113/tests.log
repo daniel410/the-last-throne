@@ -1,0 +1,47 @@
+$ lua tests/difficulty-reward-rates.spec.lua
+Difficulty reward rates: 2162 checks passed
+exit=0
+$ lua tests/hard-unlock.spec.lua
+Hard unlock rewards: 56 checks passed
+exit=0
+$ lua tests/difficulty-level-free.spec.lua
+Difficulty level-free admission: 639 checks passed
+exit=0
+$ lua tests/expedition-presentation.spec.lua
+Expedition presentation: 24 checks passed
+exit=0
+$ lua tests/expedition-departure.spec.lua
+Expedition departure: 42 checks passed
+exit=0
+$ lua tests/difficulty-balance.spec.lua
+lua: tests/difficulty-balance.spec.lua:4: new completion and material schedule reaches real reducer
+stack traceback:
+	[C]: in global 'assert'
+	tests/difficulty-balance.spec.lua:4: in local 'check'
+	tests/difficulty-balance.spec.lua:78: in main chunk
+	[C]: in ?
+exit=1
+$ lua tests/difficulty-diamonds.spec.lua
+Difficulty Diamonds: 3180 checks passed
+exit=0
+$ lua tests/all-epic-diamonds.spec.lua
+All epic Diamonds: 1099 checks passed
+exit=0
+$ lua tests/gold-diamond-tuning.spec.lua
+lua: tests/gold-diamond-tuning.spec.lua:7: expanded runs retain all previous economy rules
+stack traceback:
+	[C]: in global 'assert'
+	tests/gold-diamond-tuning.spec.lua:7: in local 'check'
+	tests/gold-diamond-tuning.spec.lua:8: in main chunk
+	[C]: in ?
+exit=1
+
+Updated current-contract expectations:
+$ lua tests/difficulty-balance.spec.lua
+Difficulty balance: 2665 checks passed
+exit=0
+
+Updated current-contract expectations:
+$ lua tests/gold-diamond-tuning.spec.lua
+Gold/Diamond tuning: 1892 checks passed
+exit=0
