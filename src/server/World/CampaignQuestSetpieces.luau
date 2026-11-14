@@ -6,7 +6,7 @@ local Bounds=require(Shared.CampaignBounds)
 local Route=require(Shared.CampaignIncidentRoute)
 local Kit=require(script.Parent.EpicEnvironmentKit)
 local Props=require(script.Parent.StoryProps)
-local M={version=1};local V=Vector3.new
+local M={version=2};local V=Vector3.new
 local function position(t)return V(table.unpack(t))end
 local function goal(chapter,id)
  for _,g in ipairs(Content.byId[chapter].goals)do if g.id==id then return g end end
@@ -31,7 +31,10 @@ local function saved(m,chapter,id,first,last,requires)
  end
 end
 local function light(parent,at)
- local flame=part(parent,'BeaconFlame',V(2,2.5,2),at,Color3.fromRGB(255,192,96),Enum.Material.Neon)
+ local flame=Kit.part(parent,'BeaconFlame',V(2.8,2.8,2.8),at,Color3.fromRGB(255,171,66),Enum.Material.Neon,'Ball')
+ for i=-1,1 do
+  Kit.part(parent,'BeaconFlameTongue',V(1.1,2.4+(.5*(i%2)),1.2),CFrame.new(at+V(i*.7,1.6,0))*CFrame.Angles(0,i*.8,i*.15),Color3.fromRGB(255,216,133),Enum.Material.Neon,'Wedge')
+ end
  local glow=Instance.new('PointLight');glow.Name='BeaconGlow';glow.Color=flame.Color
  glow.Range=22;glow.Brightness=1.5;glow.Shadows=false;glow.Parent=flame
 end
@@ -43,12 +46,13 @@ local function trail(parent,from,to,wheels)
    local forward=delta.Unit;local side=V(-forward.Z,0,forward.X)
    local n=math.max(1,math.ceil(delta.Magnitude/7))
    for j=0,n-1 do
-    local at=a:Lerp(b,(j+.5)/n)
+    local at=a:Lerp(b,(j+.5+.14*math.sin(j*2.3))/n)
     for _,offset in ipairs(wheels and {-2.2,2.2}or {j%2==0 and -.65 or .65})do
-     local q=at+side*offset;local y=Bounds.surface(q.X,q.Z)
+     local q=at+side*(offset+.12*math.sin(j*1.7));local y=Bounds.surface(q.X,q.Z)
      if y then
       q=V(q.X,y+.08,q.Z)
-      part(parent,wheels and 'LoadedWheelRut'or 'TravelerFootprint',wheels and V(.5,.08,4)or V(.65,.08,1.3),CFrame.lookAt(q,q+forward),Color3.fromRGB(68,57,43),Enum.Material.Ground)
+      local cf=CFrame.lookAt(q,q+forward)*CFrame.Angles(0,.04*math.sin(j*2.1),0)
+      part(parent,wheels and 'LoadedWheelRut'or 'TravelerFootprint',wheels and V(.3+.07*(j%3),.08,5.4+.6*(j%3))or V(.65,.08,1.3),cf,Color3.fromRGB(79,68,49),Enum.Material.Ground)
      end
     end
    end
@@ -97,7 +101,14 @@ local function frozen(root,world)
   -- Reuse the existing authored brazier rather than leave two competing props.
   local brazier=world.folder.AdventureActivities:FindFirstChild(chapter..'_'..id..'_Art')
   assert(brazier,'Missing authored village beacon '..id)
-  local cf=CFrame.lookAt(at,V(target.X,at.Y,target.Z))
+  -- Tall, open signal legs distinguish village beacons from waist-high road
+  -- lamps while leaving the original ground-level interaction within reach.
+  local stand=model(scene,i==1 and 'WesternSignalStand'or 'EasternSignalStand')
+  for _,x in ipairs({-2.4,2.4})do for _,z in ipairs({-1.4,1.4})do
+   part(stand,'SignalTowerLeg',V(.45,4,.45),at+V(x,2,z),Color3.fromRGB(94,102,117),Enum.Material.Metal)
+  end end
+  part(stand,'SignalTowerPlatform',V(6,.3,4),at+V(0,4,0),Color3.fromRGB(117,141,158),Enum.Material.Slate)
+  local cf=CFrame.lookAt(at+V(0,4,0),V(target.X,at.Y+4,target.Z))
   brazier:ScaleTo(2);brazier:PivotTo(cf)
   tips[i]=cf:PointToWorldSpace(V(0,3.6*2,0))
   local burning=model(scene,i==1 and 'WesternBeaconLit'or 'EasternBeaconLit')
@@ -140,6 +151,7 @@ local function ember(root,world)
  Kit.beam(scene,'HoistCable',base+V(0,2,0),base+V(0,24,0),.2,brass,Enum.Material.Metal)
  local socket=control+V(5,2,0)
  part(scene,'EmptyGearSpindle',V(.5,.5,2),socket,steel,Enum.Material.Metal)
+ Kit.beam(scene,'FreightDriveShaft',socket+V(0,0,-1),base+V(-6,2,0),.4,steel,Enum.Material.Metal)
  local installed=model(scene,'InstalledRecoveredGear')
  Props.build(installed,'LiftGear',socket-V(0,2.8,0),{theme='EmberCaldera',scale=2})
  installed.WorldPivot=CFrame.new(socket)
