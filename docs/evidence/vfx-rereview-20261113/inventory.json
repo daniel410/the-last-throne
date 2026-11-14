@@ -1,0 +1,4535 @@
+{
+  "reviewSourceCommit": "a040bf82",
+  "version": "0.105.4",
+  "validationLevel": "static_catalog_and_existing_capture_integrity",
+  "engineRun": false,
+  "publishedClientRun": false,
+  "deviceRun": false,
+  "counts": {
+    "heroSkills": 128,
+    "enemySpecies": 50,
+    "enemyAttacks": 146,
+    "commonEffectGroups": 55
+  },
+  "dashWarningMismatchAttackIds": [
+    "MagmaWorm.2",
+    "Gloambat.2",
+    "Zombie.2",
+    "Ghoul.2",
+    "Hellhound.2",
+    "Warlord.3",
+    "GoblinKing.3",
+    "EnragedWarlord.3",
+    "KingIceBear.3",
+    "MagmaImp.3",
+    "VenomcoilKing.2"
+  ],
+  "dashBoundarySample": {
+    "secondsAfterWindup": 0.3,
+    "warning": false,
+    "serverDashCollisionBranch": true
+  },
+  "sourceComparison": {
+    "src/client/HeroVFX.luau": {
+      "sha256": "912754dbef9894916f39b988c0ad1fc4aa018f19fbf27a12d599f5fec7b97c18",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/HeroVFXSurfaces.luau": {
+      "sha256": "5287a8eb273c7dcefcac5b0da310e36894d9d41cc926c479cad921c345db38f0",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/SkillVFXProfiles.luau": {
+      "sha256": "901c36a098a9f6ab3d6683f4477ebf602b374567f6c2066a07bd70ef44682c70",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/AdvancedSkillVisual.luau": {
+      "sha256": "84a0b60bf3c0e6f8ba7b1d263abf1f7a361c10295caa105bf57ca5d60ee1e797",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/EnemySpellVFX.luau": {
+      "sha256": "d1f0570ec774b9e5cd2d12e5ca841a346f6a87759f37123b943dd468b752ffd8",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/EnemySpellArt.luau": {
+      "sha256": "14880e11545b17c98a23fdb0f60ce730b4bc07e4cb1eb191f4ff68bbf09a4797",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/EnemyPatternEffects.luau": {
+      "sha256": "5a75ec93aea51975709b49cdd0cdf179b99cbef1f66a287621dc2a53294a7e37",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/K0Telegraphs.luau": {
+      "sha256": "31cf20a9b4a6acc79db490dd12fa08baed15b6d66cbbae75fe041206a872198c",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/K0HitEffects.luau": {
+      "sha256": "af4bf51b18c29f1fc29fcbd9ffc68a6d1de87095b39a5be2bca88fffc051c582",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/K0MageFocus.luau": {
+      "sha256": "9f2241317c9a802177dd76634f5504e510ccb54cf0cc7137bc749effa63b85a4",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/PixelFX.luau": {
+      "sha256": "2de48d6e4908c487aa8a08e256aa85872f7b68b8a4dbf59f1a8634f648bf0cce",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/CuratedVFX.luau": {
+      "sha256": "a5e05643b01a7d4ac2f125258d2c4241187b9e09b34a614d50a15d7eff32316b",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/SelenePresentation.luau": {
+      "sha256": "ee70d204748a27393164e9434438705a4e584f130a7cce24297c410b7506ee43",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/DeepwoodNavigation.luau": {
+      "sha256": "041e66ba7e66a12a086eebdc3e9640405247e72847c3118d85073c904ce120c8",
+      "sameAsArtBuildSource": true
+    },
+    "src/client/WindLanceVisual.luau": {
+      "sha256": "3b0be19e0e46d53ffd81f939b7925c193c4c7b26cb20c0520f24b15afef21db3",
+      "sameAsArtBuildSource": true
+    }
+  },
+  "hero": [
+    {
+      "id": "knight.common.bash",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.common.bash.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.common.whirlwind",
+      "classId": "knight",
+      "shape": "spin",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.common.whirlwind.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.common.provoke",
+      "classId": "knight",
+      "shape": "warcry",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.common.provoke.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.counter_slash",
+      "classId": "knight",
+      "shape": "counter",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.counter_slash.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.steel_sweep",
+      "classId": "knight",
+      "shape": "crescent",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/knight.steel_knight.steel_sweep.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.challenging_strike",
+      "classId": "knight",
+      "shape": "slash",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.challenging_strike.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.twin_cyclone",
+      "classId": "knight",
+      "shape": "spin",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.twin_cyclone.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.shield_breaker",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.shield_breaker.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.guardian_counter",
+      "classId": "knight",
+      "shape": "counter",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.guardian_counter.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.rallying_slash",
+      "classId": "knight",
+      "shape": "areslash",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.rallying_slash.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.breaker_charge",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.breaker_charge.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.vanguard_strike",
+      "classId": "knight",
+      "shape": "thrust",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.vanguard_strike.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.blade_storm",
+      "classId": "knight",
+      "shape": "spin",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.blade_storm.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.sweeping_break",
+      "classId": "knight",
+      "shape": "crescent",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.sweeping_break.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.warcry_assault",
+      "classId": "knight",
+      "shape": "warcry",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/knight.steel_knight.warcry_assault.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.steel_knight.unyielding_front",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/knight.steel_knight.unyielding_front.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.oathblade",
+      "classId": "knight",
+      "shape": "slash",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oathblade.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.radiant_sweep",
+      "classId": "knight",
+      "shape": "crescent",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/knight.paladin.radiant_sweep.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.oath_challenge",
+      "classId": "knight",
+      "shape": "warcry",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/knight.paladin.oath_challenge.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.dawn_burst",
+      "classId": "knight",
+      "shape": "holy",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.dawn_burst.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.oathbreaker_strike",
+      "classId": "knight",
+      "shape": "cleave",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oathbreaker_strike.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.shield_verdict",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.shield_verdict.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.guardian_slash",
+      "classId": "knight",
+      "shape": "crescent",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.guardian_slash.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.radiant_charge",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.radiant_charge.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.valiant_advance",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.valiant_advance.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.dawn_spiral",
+      "classId": "knight",
+      "shape": "holy",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.dawn_spiral.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.sunward_cross",
+      "classId": "knight",
+      "shape": "cross",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.sunward_cross.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.oathbound_assault",
+      "classId": "knight",
+      "shape": "slash",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oathbound_assault.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight.paladin.oath_of_dawn",
+      "classId": "knight",
+      "shape": "holy",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/knight.paladin.oath_of_dawn.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight_driving_thrust",
+      "classId": "knight",
+      "shape": "thrust",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight_driving_thrust.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight_crescent_cut",
+      "classId": "knight",
+      "shape": "crescent",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/knight_crescent_cut.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "knight_guarded_strike",
+      "classId": "knight",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/knight_guarded_strike.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.common.overhead",
+      "classId": "dwarf",
+      "shape": "cleave",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.common.overhead.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.common.throw",
+      "classId": "dwarf",
+      "shape": "axe",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.common.throw.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.common.ground",
+      "classId": "dwarf",
+      "shape": "earth",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.common.ground.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.armor_splitter",
+      "classId": "dwarf",
+      "shape": "cleave",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.armor_splitter.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.returning_echo",
+      "classId": "dwarf",
+      "shape": "axe",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.returning_echo.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_sweep",
+      "classId": "dwarf",
+      "shape": "earth",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.mountain_sweep.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.crag_cleave",
+      "classId": "dwarf",
+      "shape": "cleave",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.crag_cleave.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.breaker_throw",
+      "classId": "dwarf",
+      "shape": "axe",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.breaker_throw.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.stonebound_leap",
+      "classId": "dwarf",
+      "shape": "earth",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.stonebound_leap.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.iron_shoulder",
+      "classId": "dwarf",
+      "shape": "guard",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.iron_shoulder.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.crosscut_axe",
+      "classId": "dwarf",
+      "shape": "axe",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.crosscut_axe.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_strike",
+      "classId": "dwarf",
+      "shape": "earth",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.mountain_strike.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.shatter_blow",
+      "classId": "dwarf",
+      "shape": "earth",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.shatter_blow.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.twin_axe_path",
+      "classId": "dwarf",
+      "shape": "axe",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.twin_axe_path.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.tremor_guard",
+      "classId": "dwarf",
+      "shape": "earth",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.tremor_guard.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_collapse",
+      "classId": "dwarf",
+      "shape": "earth",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/dwarf.iron_axe.mountain_collapse.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.gunner_shot",
+      "classId": "dwarf",
+      "shape": "bullet",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.gunner_shot.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.bomb_toss",
+      "classId": "dwarf",
+      "shape": "blast",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.bomb_toss.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.shell_burst",
+      "classId": "dwarf",
+      "shape": "mortar",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.shell_burst.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.quickfire",
+      "classId": "dwarf",
+      "shape": "bullet",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.quickfire.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.shrapnel_toss",
+      "classId": "dwarf",
+      "shape": "blast",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.shrapnel_toss.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.blast_step",
+      "classId": "dwarf",
+      "shape": "blast",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.blast_step.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.scatter_shot",
+      "classId": "dwarf",
+      "shape": "fan",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.scatter_shot.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.skipping_charge",
+      "classId": "dwarf",
+      "shape": "blast",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.skipping_charge.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.field_mortar",
+      "classId": "dwarf",
+      "shape": "mortar",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.field_mortar.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.piercing_round",
+      "classId": "dwarf",
+      "shape": "bullet",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.piercing_round.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.rolling_charge",
+      "classId": "dwarf",
+      "shape": "blast",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.rolling_charge.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.siege_pattern",
+      "classId": "dwarf",
+      "shape": "mortar",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.siege_pattern.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf.gunner.siege_barrage",
+      "classId": "dwarf",
+      "shape": "mortar",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/dwarf.gunner.siege_barrage.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf_hooking_chop",
+      "classId": "dwarf",
+      "shape": "cleave",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf_hooking_chop.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf_low_sweep",
+      "classId": "dwarf",
+      "shape": "low",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf_low_sweep.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "dwarf_braced_throw",
+      "classId": "dwarf",
+      "shape": "axe",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/dwarf_braced_throw.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.common.aimed",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.common.aimed.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.common.rapid",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.common.rapid.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.common.multi",
+      "classId": "elf",
+      "shape": "fan",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.common.multi.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.weakpoint_shot",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.weakpoint_shot.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.moving_volley",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.moving_volley.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.piercing_line",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.piercing_line.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.heavy_draw",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.heavy_draw.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.precision_volley",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.precision_volley.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.fan_break",
+      "classId": "elf",
+      "shape": "fan",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.fan_break.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.hunter_s_focus",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.hunter_s_focus.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.retreating_fire",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.retreating_fire.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.piercing_volley",
+      "classId": "elf",
+      "shape": "fan",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.piercing_volley.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.mark_breaker",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.mark_breaker.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.crossfire",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.crossfire.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.arrow_rain",
+      "classId": "elf",
+      "shape": "rain",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.arrow_rain.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.marksman.grand_volley",
+      "classId": "elf",
+      "shape": "fan",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.marksman.grand_volley.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.elemental_arrow",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.elemental_arrow.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.spark_volley",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.spark_volley.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.vine_trap",
+      "classId": "elf",
+      "shape": "vine",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.vine_trap.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.bloom_shot",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.bloom_shot.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.storm_arrow",
+      "classId": "elf",
+      "shape": "lightning",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.storm_arrow.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.rooting_fan",
+      "classId": "elf",
+      "shape": "vine",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.rooting_fan.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.warden_arrow",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.warden_arrow.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.gliding_shot",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.gliding_shot.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.spirit_rain",
+      "classId": "elf",
+      "shape": "rain",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.spirit_rain.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.elemental_pierce",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.elemental_pierce.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.echo_arrows",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.echo_arrows.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.vine_burst",
+      "classId": "elf",
+      "shape": "vine",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.vine_burst.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf.magic_archer.spirit_arrowfall",
+      "classId": "elf",
+      "shape": "rain",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.spirit_arrowfall.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf_retreating_shot",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf_retreating_shot.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf_pinning_shot",
+      "classId": "elf",
+      "shape": "arrow",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf_pinning_shot.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "elf_arrow_screen",
+      "classId": "elf",
+      "shape": "rain",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/elf_arrow_screen.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.common.mana_bolt",
+      "classId": "mage",
+      "shape": "arcane",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.common.mana_bolt.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.common.water_ball",
+      "classId": "mage",
+      "shape": "water",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.common.water_ball.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.common.gravity",
+      "classId": "mage",
+      "shape": "gravity",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.common.gravity.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.ember_lance",
+      "classId": "mage",
+      "shape": "fire",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.ember_lance.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.steam_burst",
+      "classId": "mage",
+      "shape": "steam",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.steam_burst.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.cinder_ring",
+      "classId": "mage",
+      "shape": "fire",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.cinder_ring.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.flame_dart",
+      "classId": "mage",
+      "shape": "fire",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.flame_dart.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.earth_rise",
+      "classId": "mage",
+      "shape": "earth",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.earth_rise.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.ember_step",
+      "classId": "mage",
+      "shape": "fire",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.ember_step.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.stone_lance",
+      "classId": "mage",
+      "shape": "stone",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.stone_lance.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.searing_ward",
+      "classId": "mage",
+      "shape": "fire",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.searing_ward.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.lava_eruption",
+      "classId": "mage",
+      "shape": "lava",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.lava_eruption.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.magma_spear",
+      "classId": "mage",
+      "shape": "fire",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.magma_spear.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.molten_line",
+      "classId": "mage",
+      "shape": "fire",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.molten_line.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.ashfall",
+      "classId": "mage",
+      "shape": "ash",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.ashfall.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.pyro.caldera_s_judgment",
+      "classId": "mage",
+      "shape": "lava",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/mage.pyro.caldera_s_judgment.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.frost_lance",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.frost_lance.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.ice_shard",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.ice_shard.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.frost_ring",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.frost_ring.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.shatter_dart",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.shatter_dart.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.chain_lightning",
+      "classId": "mage",
+      "shape": "lightning",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.chain_lightning.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.frost_step",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.frost_step.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.thunder_spear",
+      "classId": "mage",
+      "shape": "lightning",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.thunder_spear.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.ice_ward",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.ice_ward.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.froststorm",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.froststorm.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.glacial_spike",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.glacial_spike.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.lightning_line",
+      "classId": "mage",
+      "shape": "lightning",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.lightning_line.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.hailfall",
+      "classId": "mage",
+      "shape": "hail",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.hailfall.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage.cryo.eternal_tempest",
+      "classId": "mage",
+      "shape": "frost",
+      "ultimate": true,
+      "reviewCapture": "docs/evidence/vfx-art-improvements-20261113/hero-final/mage.cryo.eternal_tempest.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage_wind_lance",
+      "classId": "mage",
+      "shape": "wind",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage_wind_lance.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage_tidal_ring",
+      "classId": "mage",
+      "shape": "water",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage_tidal_ring.png",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "mage_arcane_ward",
+      "classId": "mage",
+      "shape": "ward",
+      "ultimate": false,
+      "reviewCapture": "docs/evidence/vfx-art-review-20261113/hero/mage_arcane_ward.png",
+      "acceptance": "not_run_current_gameplay"
+    }
+  ],
+  "enemy": [
+    {
+      "id": "AncientGlacierKing.1",
+      "kind": "AncientGlacierKing",
+      "shape": "projectile",
+      "motif": "glacier",
+      "evidenceAttackId": "AncientGlacierKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "AncientGlacierKing.2",
+      "kind": "AncientGlacierKing",
+      "shape": "projectile",
+      "motif": "glacier",
+      "evidenceAttackId": "AncientGlacierKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "AncientGlacierKing.3",
+      "kind": "AncientGlacierKing",
+      "shape": "trail",
+      "motif": "glacier",
+      "evidenceAttackId": "AncientGlacierKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "AncientGlacierKing.4",
+      "kind": "AncientGlacierKing",
+      "shape": "line",
+      "motif": "glacier",
+      "evidenceAttackId": "AncientGlacierKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "AncientHollowbark.1",
+      "kind": "AncientHollowbark",
+      "shape": "cone",
+      "motif": "root",
+      "evidenceAttackId": "AncientHollowbark.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "AncientHollowbark.2",
+      "kind": "AncientHollowbark",
+      "shape": "line",
+      "motif": "root",
+      "evidenceAttackId": "AncientHollowbark.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "AncientHollowbark.3",
+      "kind": "AncientHollowbark",
+      "shape": "cone",
+      "motif": "root",
+      "evidenceAttackId": "AncientHollowbark.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "AncientHollowbark.4",
+      "kind": "AncientHollowbark",
+      "shape": "ring",
+      "motif": "root",
+      "evidenceAttackId": "AncientHollowbark.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Barkstalker.1",
+      "kind": "Barkstalker",
+      "shape": "cone",
+      "motif": "root",
+      "evidenceAttackId": "Barkstalker.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Barkstalker.2",
+      "kind": "Barkstalker",
+      "shape": "line",
+      "motif": "root",
+      "evidenceAttackId": "Barkstalker.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "CalderaTitan.1",
+      "kind": "CalderaTitan",
+      "shape": "projectile",
+      "motif": "meteor",
+      "evidenceAttackId": "CalderaTitan.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "CalderaTitan.2",
+      "kind": "CalderaTitan",
+      "shape": "trail",
+      "motif": "meteor",
+      "evidenceAttackId": "CalderaTitan.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "CalderaTitan.3",
+      "kind": "CalderaTitan",
+      "shape": "circle",
+      "motif": "meteor",
+      "evidenceAttackId": "CalderaTitan.3",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "CalderaTitan.4",
+      "kind": "CalderaTitan",
+      "shape": "line",
+      "motif": "meteor",
+      "evidenceAttackId": "CalderaTitan.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "DeathKnight.1",
+      "kind": "DeathKnight",
+      "shape": "line",
+      "motif": "scythe",
+      "evidenceAttackId": "DeathKnight.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "DeathKnight.2",
+      "kind": "DeathKnight",
+      "shape": "cone",
+      "motif": "scythe",
+      "evidenceAttackId": "DeathKnight.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "DreadCommander.1",
+      "kind": "DreadCommander",
+      "shape": "projectile",
+      "motif": "banner",
+      "evidenceAttackId": "DreadCommander.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "DreadCommander.2",
+      "kind": "DreadCommander",
+      "shape": "cone",
+      "motif": "banner",
+      "evidenceAttackId": "DreadCommander.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "DreadCommander.3",
+      "kind": "DreadCommander",
+      "shape": "line",
+      "motif": "banner",
+      "evidenceAttackId": "DreadCommander.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "DreadCommander.4",
+      "kind": "DreadCommander",
+      "shape": "cone",
+      "motif": "banner",
+      "evidenceAttackId": "DreadCommander.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "EnragedWarlord.1",
+      "kind": "EnragedWarlord",
+      "shape": "cone",
+      "motif": "cleaver",
+      "evidenceAttackId": "EnragedWarlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "EnragedWarlord.2",
+      "kind": "EnragedWarlord",
+      "shape": "cone",
+      "motif": "cleaver",
+      "evidenceAttackId": "EnragedWarlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "EnragedWarlord.3",
+      "kind": "EnragedWarlord",
+      "shape": "line",
+      "motif": "cleaver",
+      "evidenceAttackId": "EnragedWarlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "EnragedWarlord.4",
+      "kind": "EnragedWarlord",
+      "shape": "circle",
+      "motif": "cleaver",
+      "evidenceAttackId": "EnragedWarlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Ghoul.1",
+      "kind": "Ghoul",
+      "shape": "cone",
+      "motif": "claw",
+      "evidenceAttackId": "Ghoul.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Ghoul.2",
+      "kind": "Ghoul",
+      "shape": "line",
+      "motif": "claw",
+      "evidenceAttackId": "Ghoul.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Gloambat.1",
+      "kind": "Gloambat",
+      "shape": "cone",
+      "motif": "wing",
+      "evidenceAttackId": "Gloambat.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Gloambat.2",
+      "kind": "Gloambat",
+      "shape": "line",
+      "motif": "wing",
+      "evidenceAttackId": "Gloambat.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Goblin.1",
+      "kind": "Goblin",
+      "shape": "line",
+      "motif": "knife",
+      "evidenceAttackId": "Goblin.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Goblin.2",
+      "kind": "Goblin",
+      "shape": "cone",
+      "motif": "knife",
+      "evidenceAttackId": "Goblin.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "GoblinKing.1",
+      "kind": "GoblinKing",
+      "shape": "cone",
+      "motif": "knife",
+      "evidenceAttackId": "GoblinKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "GoblinKing.2",
+      "kind": "GoblinKing",
+      "shape": "projectile",
+      "motif": "knife",
+      "evidenceAttackId": "GoblinKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "GoblinKing.3",
+      "kind": "GoblinKing",
+      "shape": "line",
+      "motif": "knife",
+      "evidenceAttackId": "GoblinKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "GoblinKing.4",
+      "kind": "GoblinKing",
+      "shape": "trail",
+      "motif": "bomb",
+      "evidenceAttackId": "GoblinKing.4",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Golem.1",
+      "kind": "Golem",
+      "shape": "cone",
+      "motif": "rock",
+      "evidenceAttackId": "Golem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Golem.2",
+      "kind": "Golem",
+      "shape": "ring",
+      "motif": "rock",
+      "evidenceAttackId": "Golem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Hellhound.1",
+      "kind": "Hellhound",
+      "shape": "cone",
+      "motif": "ember",
+      "evidenceAttackId": "Hellhound.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Hellhound.2",
+      "kind": "Hellhound",
+      "shape": "line",
+      "motif": "ember",
+      "evidenceAttackId": "Hellhound.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "HollowbarkSovereign.1",
+      "kind": "HollowbarkSovereign",
+      "shape": "cone",
+      "motif": "root",
+      "evidenceAttackId": "HollowbarkSovereign.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "HollowbarkSovereign.2",
+      "kind": "HollowbarkSovereign",
+      "shape": "line",
+      "motif": "root",
+      "evidenceAttackId": "HollowbarkSovereign.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "HollowbarkSovereign.3",
+      "kind": "HollowbarkSovereign",
+      "shape": "cone",
+      "motif": "root",
+      "evidenceAttackId": "HollowbarkSovereign.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "HollowbarkSovereign.4",
+      "kind": "HollowbarkSovereign",
+      "shape": "ring",
+      "motif": "root",
+      "evidenceAttackId": "HollowbarkSovereign.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceBear.1",
+      "kind": "IceBear",
+      "shape": "cone",
+      "motif": "snow",
+      "evidenceAttackId": "IceBear.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceBear.2",
+      "kind": "IceBear",
+      "shape": "cone",
+      "motif": "snow",
+      "evidenceAttackId": "IceBear.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceElf.1",
+      "kind": "IceElf",
+      "shape": "projectile",
+      "motif": "icespear",
+      "evidenceAttackId": "IceElf.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceElf.2",
+      "kind": "IceElf",
+      "shape": "projectile",
+      "motif": "icespear",
+      "evidenceAttackId": "IceElf.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceGolem.1",
+      "kind": "IceGolem",
+      "shape": "cone",
+      "motif": "crystal",
+      "evidenceAttackId": "IceGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceGolem.2",
+      "kind": "IceGolem",
+      "shape": "line",
+      "motif": "crystal",
+      "evidenceAttackId": "IceGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceTroll.1",
+      "kind": "IceTroll",
+      "shape": "cone",
+      "motif": "iceboulder",
+      "evidenceAttackId": "IceTroll.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceTroll.2",
+      "kind": "IceTroll",
+      "shape": "projectile",
+      "motif": "iceboulder",
+      "evidenceAttackId": "IceTroll.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceTrollKing.1",
+      "kind": "IceTrollKing",
+      "shape": "projectile",
+      "motif": "iceboulder",
+      "evidenceAttackId": "IceTrollKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceTrollKing.2",
+      "kind": "IceTrollKing",
+      "shape": "cone",
+      "motif": "iceboulder",
+      "evidenceAttackId": "IceTrollKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceTrollKing.3",
+      "kind": "IceTrollKing",
+      "shape": "projectile",
+      "motif": "iceboulder",
+      "evidenceAttackId": "IceTrollKing.3",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceTrollKing.4",
+      "kind": "IceTrollKing",
+      "shape": "line",
+      "motif": "iceboulder",
+      "evidenceAttackId": "IceTrollKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceWolf.1",
+      "kind": "IceWolf",
+      "shape": "cone",
+      "motif": "frostfang",
+      "evidenceAttackId": "IceWolf.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "IceWolf.2",
+      "kind": "IceWolf",
+      "shape": "cone",
+      "motif": "frostfang",
+      "evidenceAttackId": "IceWolf.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Imp.1",
+      "kind": "Imp",
+      "shape": "projectile",
+      "motif": "ember",
+      "evidenceAttackId": "Imp.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Imp.2",
+      "kind": "Imp",
+      "shape": "projectile",
+      "motif": "ember",
+      "evidenceAttackId": "Imp.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "InfernoOverlord.1",
+      "kind": "InfernoOverlord",
+      "shape": "projectile",
+      "motif": "inferno",
+      "evidenceAttackId": "InfernoOverlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "InfernoOverlord.2",
+      "kind": "InfernoOverlord",
+      "shape": "cone",
+      "motif": "inferno",
+      "evidenceAttackId": "InfernoOverlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "InfernoOverlord.3",
+      "kind": "InfernoOverlord",
+      "shape": "trail",
+      "motif": "inferno",
+      "evidenceAttackId": "InfernoOverlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "InfernoOverlord.4",
+      "kind": "InfernoOverlord",
+      "shape": "ring",
+      "motif": "inferno",
+      "evidenceAttackId": "InfernoOverlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceBear.1",
+      "kind": "KingIceBear",
+      "shape": "projectile",
+      "motif": "snow",
+      "evidenceAttackId": "KingIceBear.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceBear.2",
+      "kind": "KingIceBear",
+      "shape": "cone",
+      "motif": "snow",
+      "evidenceAttackId": "KingIceBear.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceBear.3",
+      "kind": "KingIceBear",
+      "shape": "line",
+      "motif": "snow",
+      "evidenceAttackId": "KingIceBear.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceBear.4",
+      "kind": "KingIceBear",
+      "shape": "ring",
+      "motif": "snow",
+      "evidenceAttackId": "KingIceBear.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceGolem.1",
+      "kind": "KingIceGolem",
+      "shape": "projectile",
+      "motif": "crystal",
+      "evidenceAttackId": "KingIceGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceGolem.2",
+      "kind": "KingIceGolem",
+      "shape": "line",
+      "motif": "crystal",
+      "evidenceAttackId": "KingIceGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceGolem.3",
+      "kind": "KingIceGolem",
+      "shape": "trail",
+      "motif": "crystal",
+      "evidenceAttackId": "KingIceGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingIceGolem.4",
+      "kind": "KingIceGolem",
+      "shape": "ring",
+      "motif": "crystal",
+      "evidenceAttackId": "KingIceGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingOgre.1",
+      "kind": "KingOgre",
+      "shape": "cone",
+      "motif": "rock",
+      "evidenceAttackId": "KingOgre.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingOgre.2",
+      "kind": "KingOgre",
+      "shape": "cone",
+      "motif": "rock",
+      "evidenceAttackId": "KingOgre.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingOgre.3",
+      "kind": "KingOgre",
+      "shape": "projectile",
+      "motif": "rock",
+      "evidenceAttackId": "KingOgre.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingOgre.4",
+      "kind": "KingOgre",
+      "shape": "ring",
+      "motif": "rock",
+      "evidenceAttackId": "KingOgre.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingShaman.1",
+      "kind": "KingShaman",
+      "shape": "projectile",
+      "motif": "totem",
+      "evidenceAttackId": "KingShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingShaman.2",
+      "kind": "KingShaman",
+      "shape": "projectile",
+      "motif": "totem",
+      "evidenceAttackId": "KingShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingShaman.3",
+      "kind": "KingShaman",
+      "shape": "trail",
+      "motif": "totem",
+      "evidenceAttackId": "KingShaman.3",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingShaman.4",
+      "kind": "KingShaman",
+      "shape": "ring",
+      "motif": "totem",
+      "evidenceAttackId": "KingShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingVolcanoShaman.1",
+      "kind": "KingVolcanoShaman",
+      "shape": "projectile",
+      "motif": "volcano",
+      "evidenceAttackId": "KingVolcanoShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingVolcanoShaman.2",
+      "kind": "KingVolcanoShaman",
+      "shape": "projectile",
+      "motif": "volcano",
+      "evidenceAttackId": "KingVolcanoShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingVolcanoShaman.3",
+      "kind": "KingVolcanoShaman",
+      "shape": "trail",
+      "motif": "volcano",
+      "evidenceAttackId": "KingVolcanoShaman.3",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "KingVolcanoShaman.4",
+      "kind": "KingVolcanoShaman",
+      "shape": "ring",
+      "motif": "volcano",
+      "evidenceAttackId": "KingVolcanoShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "LavaSlime.1",
+      "kind": "LavaSlime",
+      "shape": "circle",
+      "motif": "lava",
+      "evidenceAttackId": "LavaSlime.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "LavaSlime.2",
+      "kind": "LavaSlime",
+      "shape": "trail",
+      "motif": "lava",
+      "evidenceAttackId": "LavaSlime.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Lich.1",
+      "kind": "Lich",
+      "shape": "projectile",
+      "motif": "soul",
+      "evidenceAttackId": "Lich.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Lich.2",
+      "kind": "Lich",
+      "shape": "projectile",
+      "motif": "soul",
+      "evidenceAttackId": "Lich.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Lich.3",
+      "kind": "Lich",
+      "shape": "trail",
+      "motif": "soul",
+      "evidenceAttackId": "Lich.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Lich.4",
+      "kind": "Lich",
+      "shape": "line",
+      "motif": "soul",
+      "evidenceAttackId": "Lich.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "LichSovereign.1",
+      "kind": "LichSovereign",
+      "shape": "projectile",
+      "motif": "seal",
+      "evidenceAttackId": "LichSovereign.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "LichSovereign.2",
+      "kind": "LichSovereign",
+      "shape": "projectile",
+      "motif": "seal",
+      "evidenceAttackId": "LichSovereign.2",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "LichSovereign.3",
+      "kind": "LichSovereign",
+      "shape": "trail",
+      "motif": "seal",
+      "evidenceAttackId": "LichSovereign.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "LichSovereign.4",
+      "kind": "LichSovereign",
+      "shape": "ring",
+      "motif": "seal",
+      "evidenceAttackId": "LichSovereign.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaGolem.1",
+      "kind": "MagmaGolem",
+      "shape": "projectile",
+      "motif": "magma",
+      "evidenceAttackId": "MagmaGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaGolem.2",
+      "kind": "MagmaGolem",
+      "shape": "cone",
+      "motif": "magma",
+      "evidenceAttackId": "MagmaGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaGolem.3",
+      "kind": "MagmaGolem",
+      "shape": "line",
+      "motif": "magma",
+      "evidenceAttackId": "MagmaGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaGolem.4",
+      "kind": "MagmaGolem",
+      "shape": "cone",
+      "motif": "magma",
+      "evidenceAttackId": "MagmaGolem.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaImp.1",
+      "kind": "MagmaImp",
+      "shape": "projectile",
+      "motif": "ember",
+      "evidenceAttackId": "MagmaImp.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaImp.2",
+      "kind": "MagmaImp",
+      "shape": "projectile",
+      "motif": "ember",
+      "evidenceAttackId": "MagmaImp.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaImp.3",
+      "kind": "MagmaImp",
+      "shape": "line",
+      "motif": "ember",
+      "evidenceAttackId": "MagmaImp.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaImp.4",
+      "kind": "MagmaImp",
+      "shape": "trail",
+      "motif": "ember",
+      "evidenceAttackId": "MagmaImp.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaWorm.1",
+      "kind": "MagmaWorm",
+      "shape": "cone",
+      "motif": "lava",
+      "evidenceAttackId": "MagmaWorm.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "MagmaWorm.2",
+      "kind": "MagmaWorm",
+      "shape": "line",
+      "motif": "lava",
+      "evidenceAttackId": "MagmaWorm.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Mummy.1",
+      "kind": "Mummy",
+      "shape": "projectile",
+      "motif": "sand",
+      "evidenceAttackId": "Mummy.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Mummy.2",
+      "kind": "Mummy",
+      "shape": "ring",
+      "motif": "sand",
+      "evidenceAttackId": "Mummy.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Ogre.1",
+      "kind": "Ogre",
+      "shape": "cone",
+      "motif": "rock",
+      "evidenceAttackId": "Ogre.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Ogre.2",
+      "kind": "Ogre",
+      "shape": "line",
+      "motif": "rock",
+      "evidenceAttackId": "Ogre.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Orc.1",
+      "kind": "Orc",
+      "shape": "cone",
+      "motif": "cleaver",
+      "evidenceAttackId": "Orc.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Orc.2",
+      "kind": "Orc",
+      "shape": "line",
+      "motif": "cleaver",
+      "evidenceAttackId": "Orc.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "QueenIceElf.1",
+      "kind": "QueenIceElf",
+      "shape": "projectile",
+      "motif": "prism",
+      "evidenceAttackId": "QueenIceElf.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "QueenIceElf.2",
+      "kind": "QueenIceElf",
+      "shape": "projectile",
+      "motif": "prism",
+      "evidenceAttackId": "QueenIceElf.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "QueenIceElf.3",
+      "kind": "QueenIceElf",
+      "shape": "line",
+      "motif": "prism",
+      "evidenceAttackId": "QueenIceElf.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "QueenIceElf.4",
+      "kind": "QueenIceElf",
+      "shape": "trail",
+      "motif": "icespear",
+      "evidenceAttackId": "QueenIceElf.4",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Shaman.1",
+      "kind": "Shaman",
+      "shape": "projectile",
+      "motif": "hex",
+      "evidenceAttackId": "Shaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Shaman.2",
+      "kind": "Shaman",
+      "shape": "circle",
+      "motif": "hex",
+      "evidenceAttackId": "Shaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Silkweaver.1",
+      "kind": "Silkweaver",
+      "shape": "projectile",
+      "motif": "web",
+      "evidenceAttackId": "Silkweaver.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Silkweaver.2",
+      "kind": "Silkweaver",
+      "shape": "line",
+      "motif": "web",
+      "evidenceAttackId": "Silkweaver.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Skeleton.1",
+      "kind": "Skeleton",
+      "shape": "cone",
+      "motif": "bone",
+      "evidenceAttackId": "Skeleton.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Skeleton.2",
+      "kind": "Skeleton",
+      "shape": "projectile",
+      "motif": "bone",
+      "evidenceAttackId": "Skeleton.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "SkeletonKnight.1",
+      "kind": "SkeletonKnight",
+      "shape": "cone",
+      "motif": "cleaver",
+      "evidenceAttackId": "SkeletonKnight.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "SkeletonKnight.2",
+      "kind": "SkeletonKnight",
+      "shape": "line",
+      "motif": "cleaver",
+      "evidenceAttackId": "SkeletonKnight.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Slime.1",
+      "kind": "Slime",
+      "shape": "circle",
+      "motif": "gel",
+      "evidenceAttackId": "Slime.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Slime.2",
+      "kind": "Slime",
+      "shape": "cone",
+      "motif": "gel",
+      "evidenceAttackId": "Slime.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VenomcoilCentipede.1",
+      "kind": "VenomcoilCentipede",
+      "shape": "line",
+      "motif": "venom",
+      "evidenceAttackId": "VenomcoilCentipede.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VenomcoilCentipede.2",
+      "kind": "VenomcoilCentipede",
+      "shape": "cone",
+      "motif": "venom",
+      "evidenceAttackId": "VenomcoilCentipede.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VenomcoilKing.1",
+      "kind": "VenomcoilKing",
+      "shape": "projectile",
+      "motif": "venom",
+      "evidenceAttackId": "VenomcoilKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VenomcoilKing.2",
+      "kind": "VenomcoilKing",
+      "shape": "line",
+      "motif": "venom",
+      "evidenceAttackId": "VenomcoilKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VenomcoilKing.3",
+      "kind": "VenomcoilKing",
+      "shape": "cone",
+      "motif": "venom",
+      "evidenceAttackId": "VenomcoilKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VenomcoilKing.4",
+      "kind": "VenomcoilKing",
+      "shape": "trail",
+      "motif": "venom",
+      "evidenceAttackId": "VenomcoilKing.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Veyr.1",
+      "kind": "Veyr",
+      "shape": "projectile",
+      "motif": "rift",
+      "evidenceAttackId": "Veyr.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Veyr.2",
+      "kind": "Veyr",
+      "shape": "line",
+      "motif": "rift",
+      "evidenceAttackId": "Veyr.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Veyr.3",
+      "kind": "Veyr",
+      "shape": "ring",
+      "motif": "rift",
+      "evidenceAttackId": "Veyr.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Veyr.4",
+      "kind": "Veyr",
+      "shape": "projectile",
+      "motif": "rift",
+      "evidenceAttackId": "Veyr.4",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VolcanoShaman.1",
+      "kind": "VolcanoShaman",
+      "shape": "projectile",
+      "motif": "cinder",
+      "evidenceAttackId": "VolcanoShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "VolcanoShaman.2",
+      "kind": "VolcanoShaman",
+      "shape": "circle",
+      "motif": "cinder",
+      "evidenceAttackId": "VolcanoShaman.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Warlord.1",
+      "kind": "Warlord",
+      "shape": "cone",
+      "motif": "banner",
+      "evidenceAttackId": "Warlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Warlord.2",
+      "kind": "Warlord",
+      "shape": "cone",
+      "motif": "banner",
+      "evidenceAttackId": "Warlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Warlord.3",
+      "kind": "Warlord",
+      "shape": "line",
+      "motif": "banner",
+      "evidenceAttackId": "Warlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Warlord.4",
+      "kind": "Warlord",
+      "shape": "line",
+      "motif": "banner",
+      "evidenceAttackId": "Warlord.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Webling.1",
+      "kind": "Webling",
+      "shape": "projectile",
+      "motif": "web",
+      "evidenceAttackId": "Webling.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Webling.2",
+      "kind": "Webling",
+      "shape": "circle",
+      "motif": "web",
+      "evidenceAttackId": "Webling.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "WidowQueen.1",
+      "kind": "WidowQueen",
+      "shape": "projectile",
+      "motif": "brood",
+      "evidenceAttackId": "WidowQueen.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "WidowQueen.2",
+      "kind": "WidowQueen",
+      "shape": "projectile",
+      "motif": "web",
+      "evidenceAttackId": "WidowQueen.2",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "WidowQueen.3",
+      "kind": "WidowQueen",
+      "shape": "line",
+      "motif": "web",
+      "evidenceAttackId": "WidowQueen.3",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "WidowQueen.4",
+      "kind": "WidowQueen",
+      "shape": "trail",
+      "motif": "brood",
+      "evidenceAttackId": "WidowQueen.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Zombie.1",
+      "kind": "Zombie",
+      "shape": "cone",
+      "motif": "dust",
+      "evidenceAttackId": "Zombie.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "Zombie.2",
+      "kind": "Zombie",
+      "shape": "line",
+      "motif": "dust",
+      "evidenceAttackId": "Zombie.1",
+      "currentDefinitionPresent": true,
+      "acceptance": "not_run_current_gameplay"
+    }
+  ],
+  "common": [
+    {
+      "id": "common.hit.basic.knight",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.basic.dwarf",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.basic.elf",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.basic.mage",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.mage.pyro.ember_lance",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.mage.common.water_ball",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.mage.cryo.frost_lance",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.mage.cryo.lightning_line",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.mage.pyro.stone_lance",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.mage.common.gravity",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.dwarf.common.overhead",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.dwarf.iron_axe.armor_splitter",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.focus.arcane",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.focus.water",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.focus.wind",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.focus.fire",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.focus.frost",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.focus.earth",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.focus.lightning",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.support.pixel.Heal",
+      "sourceFiles": [
+        "src/client/PixelFX.luau",
+        "src/client/CuratedVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.support.pixel.Protect",
+      "sourceFiles": [
+        "src/client/PixelFX.luau",
+        "src/client/CuratedVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.support.pixel.Cleanse",
+      "sourceFiles": [
+        "src/client/PixelFX.luau",
+        "src/client/CuratedVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.level_up",
+      "sourceFiles": [
+        "src/server/Combat/HeroLevelUpEffect.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.weapon_trail.knight",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.weapon_trail.dwarf",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.weapon_trail.mage",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.projectile.arrow",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.projectile.axe",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.projectile.arcane",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.support.selene.Heal",
+      "sourceFiles": [
+        "src/client/SelenePresentation.luau",
+        "src/client/SeleneSkinMotion.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.support.selene.Protect",
+      "sourceFiles": [
+        "src/client/SelenePresentation.luau",
+        "src/client/SeleneSkinMotion.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.support.selene.Cleanse",
+      "sourceFiles": [
+        "src/client/SelenePresentation.luau",
+        "src/client/SeleneSkinMotion.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.player_hit.screen",
+      "sourceFiles": [
+        "src/client/K0PlayerHitFeedback.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.player_hit.pose",
+      "sourceFiles": [
+        "src/client/K0PlayerHitFeedback.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit_stop",
+      "sourceFiles": [
+        "src/client/K0HitStop.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.death_camera",
+      "sourceFiles": [
+        "src/client/HeroDeathCamera.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.action.block",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.action.dodge",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau",
+        "src/client/K0SideDiveMotion.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.action.sprint",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.action.death",
+      "sourceFiles": [
+        "src/client/HeroDeathCamera.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.homecoming",
+      "sourceFiles": [
+        "src/client/DawnspireHomecoming.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.navigation",
+      "sourceFiles": [
+        "src/client/DeepwoodNavigation.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.quest_guide",
+      "sourceFiles": [
+        "src/client/LobbySideQuestGuide.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.story_state",
+      "sourceFiles": [
+        "src/client/LateEpicPresentation.luau",
+        "src/client/EmberCalderaPresentation.luau",
+        "src/client/CampaignExpansionPresentation.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.lights",
+      "sourceFiles": [
+        "src/server/World/LobbyWorld.luau",
+        "src/server/World/LobbyArchitecture.luau",
+        "src/server/World/DeepwoodWorld.luau",
+        "src/server/World/FrozenValeWorld.luau",
+        "src/server/World/EmberCalderaWorld.luau",
+        "src/server/World/EpicArchitecture.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.forge",
+      "sourceFiles": [
+        "src/server/World/WeaponMerchant.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.decorative_budget",
+      "sourceFiles": [
+        "src/client/WorldPresentationBudget.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.atmosphere.Lobby",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.atmosphere.Deepwood",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.atmosphere.FrozenVale",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.atmosphere.EmberCaldera",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.atmosphere.Gloamwood",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.atmosphere.HauntedGraveyard",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "world.atmosphere.FrozenValeRestored",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    },
+    {
+      "id": "common.hit.elf.magic_archer.storm_arrow",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "coverage": "existing_inventory_and_source_delta_review",
+      "acceptance": "not_run_current_gameplay"
+    }
+  ],
+  "verifiedExistingCaptures": {
+    "docs/evidence/vfx-art-review-20261113/hero": [
+      {
+        "id": "knight.common.bash",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.common.bash.png",
+        "sha256": "4a342062352a838dc6d2a41566f8db7e6239e5e522c62be9712d12048ce53555"
+      },
+      {
+        "id": "knight.common.whirlwind",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.common.whirlwind.png",
+        "sha256": "8eea74b89aa5cb58d4f447334300151fbd15a198df29e62f85379aeec0701f13"
+      },
+      {
+        "id": "knight.common.provoke",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.common.provoke.png",
+        "sha256": "45644c533aa18f3ad4d8a94d29af03b67115e752f9f1a6846f0c5e8e90205dc7"
+      },
+      {
+        "id": "knight.steel_knight.counter_slash",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.counter_slash.png",
+        "sha256": "3704232f208a2db45d2010b42e328034ee05854fe6717d8f86b90f1e1b57e3c2"
+      },
+      {
+        "id": "knight.steel_knight.steel_sweep",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.steel_sweep.png",
+        "sha256": "9648615d6c320e49357835b696f2649f439415bb2bb24ba67b49380f7cf818ef"
+      },
+      {
+        "id": "knight.steel_knight.challenging_strike",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.challenging_strike.png",
+        "sha256": "6a75464941ede4792e5364e12bc1aabbad8596cd5489071ba8909533cf12649d"
+      },
+      {
+        "id": "knight.steel_knight.twin_cyclone",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.twin_cyclone.png",
+        "sha256": "179138a901269364a6e8d55820278e4854353d8ed4525bccc324ee5919f1fe54"
+      },
+      {
+        "id": "knight.steel_knight.shield_breaker",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.shield_breaker.png",
+        "sha256": "e3a1173a0314abfb62ec4edfd540c80b9760822956311ea4238e36d582f6694c"
+      },
+      {
+        "id": "knight.steel_knight.guardian_counter",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.guardian_counter.png",
+        "sha256": "38a5c670113ebde39563435bfeea035b83e3267b5afa9eb4f7a33504a80a3a57"
+      },
+      {
+        "id": "knight.steel_knight.rallying_slash",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.rallying_slash.png",
+        "sha256": "3e5f8913354daf2bd2c58ac6d44866001d142e7d7e57e60dd96a153f873f27c6"
+      },
+      {
+        "id": "knight.steel_knight.breaker_charge",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.breaker_charge.png",
+        "sha256": "6e7892d34adbb3af9f21652ba395ff6df9a74bb57ab733f480bcaff7ffb329ba"
+      },
+      {
+        "id": "knight.steel_knight.vanguard_strike",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.vanguard_strike.png",
+        "sha256": "2038ab76197c3896bbd4b4834935d5ab84b81e5f1709a5fa80a662788b1d31d0"
+      },
+      {
+        "id": "knight.steel_knight.blade_storm",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.blade_storm.png",
+        "sha256": "4b4d3107a6d6d3769663cc7988292d2b17107268cca913f2beafb2d21dd00094"
+      },
+      {
+        "id": "knight.steel_knight.sweeping_break",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.sweeping_break.png",
+        "sha256": "6dfeb7b86470c8d2df6fdb19273492d239cd6c39ecb6d8b7e647c25c23d48c99"
+      },
+      {
+        "id": "knight.steel_knight.warcry_assault",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.warcry_assault.png",
+        "sha256": "ed81a6d88597072e219d90cabc16b588c460f90a5626356651a62c1af0494629"
+      },
+      {
+        "id": "knight.steel_knight.unyielding_front",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.steel_knight.unyielding_front.png",
+        "sha256": "2dda691bc20686bc640e246ba792a3d92295948ea463517a1b4e5d092b66f0e1"
+      },
+      {
+        "id": "knight.paladin.oathblade",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oathblade.png",
+        "sha256": "9459e4700e55a46610dbc74103d3117fd25c509877248069823afaf56955d2be"
+      },
+      {
+        "id": "knight.paladin.radiant_sweep",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.radiant_sweep.png",
+        "sha256": "36344c61fe24be87818682acd2c0b834664d42913d687a1e56d05f7a704593c8"
+      },
+      {
+        "id": "knight.paladin.oath_challenge",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oath_challenge.png",
+        "sha256": "e9a4e05cef3e1808aba6973e62d7d2e23245ebfb55fb66da2b0f21869f738d7c"
+      },
+      {
+        "id": "knight.paladin.dawn_burst",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.dawn_burst.png",
+        "sha256": "6bb491aa8ca8b43a40d6c83c4b3f86e4e167a3a49a2a20df9344827a5d3071d2"
+      },
+      {
+        "id": "knight.paladin.oathbreaker_strike",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oathbreaker_strike.png",
+        "sha256": "6c395b4c82568bc2695f9999e3de3960ae9324a65c75e1566454a902711cc6ab"
+      },
+      {
+        "id": "knight.paladin.shield_verdict",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.shield_verdict.png",
+        "sha256": "9e0efe53323d29bc95a0dc8be43fe52dc0fd32f27c1d5f60642581f198263b92"
+      },
+      {
+        "id": "knight.paladin.guardian_slash",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.guardian_slash.png",
+        "sha256": "24eacf2547f2f6b0d4871cc086a22c0eae46c2ed712e4ad4897a737a062865f6"
+      },
+      {
+        "id": "knight.paladin.radiant_charge",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.radiant_charge.png",
+        "sha256": "c9dc07d7e0bfc3862282642dca3973d0de9a92eb398812681c2c367a0dfaeba0"
+      },
+      {
+        "id": "knight.paladin.valiant_advance",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.valiant_advance.png",
+        "sha256": "bc97996a420d28354e8fc87d7c74a78eb2c2aa3e3d4cbfe80b37f66990ada2a5"
+      },
+      {
+        "id": "knight.paladin.dawn_spiral",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.dawn_spiral.png",
+        "sha256": "525bf44ca1d2eeaaffe5e3af6d008c2c37e9a3b0cc83b24560bdf16476aeb274"
+      },
+      {
+        "id": "knight.paladin.sunward_cross",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.sunward_cross.png",
+        "sha256": "4648bb568cf5091ec4c7b7ffea34f1d9b9869e2cad881ab332175bbd1aaac195"
+      },
+      {
+        "id": "knight.paladin.oathbound_assault",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oathbound_assault.png",
+        "sha256": "555db09761fbf00f1287bee100c39dea8b6da62f9326979180568a5ff9eca605"
+      },
+      {
+        "id": "knight.paladin.oath_of_dawn",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight.paladin.oath_of_dawn.png",
+        "sha256": "f67a5c16342a079edb1f13ba4328673e953fe7c4533ea695baa0442ebf0d9cbc"
+      },
+      {
+        "id": "knight_driving_thrust",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight_driving_thrust.png",
+        "sha256": "4a22209d1eee6d065dc391bbcd62d222bb3426cbedd4243cf3f7ab4bd4c3e841"
+      },
+      {
+        "id": "knight_crescent_cut",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight_crescent_cut.png",
+        "sha256": "3dd1fc828ddf2d9aacd6789f779e73d9a5e639f11e2b4b357e358f333328690e"
+      },
+      {
+        "id": "knight_guarded_strike",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/knight_guarded_strike.png",
+        "sha256": "6067ce7ad26871130bddc88bd5c14d6df29825d0730857a53c5f32a27c335cea"
+      },
+      {
+        "id": "dwarf.common.overhead",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.common.overhead.png",
+        "sha256": "d3433329cbcdc7685b150482755d19e1a0d368eb0787a240f8b88039ac2d538b"
+      },
+      {
+        "id": "dwarf.common.throw",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.common.throw.png",
+        "sha256": "447521bfbc52afd06a80d4d21fb6f85d88c70de8ec8aa605fdc7e1bb65f3478a"
+      },
+      {
+        "id": "dwarf.common.ground",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.common.ground.png",
+        "sha256": "8f4868826ae722eae8c0b52795f8b55a7d0f29ed95589ab78899080fc0b0fde2"
+      },
+      {
+        "id": "dwarf.iron_axe.armor_splitter",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.armor_splitter.png",
+        "sha256": "499da0cee68f662b9f347f4dc876dae7215a80cdc925051fbefe5ee607d9d4f1"
+      },
+      {
+        "id": "dwarf.iron_axe.returning_echo",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.returning_echo.png",
+        "sha256": "28b10fcd608e3f5c0eb192f56f9ecf6c5eed86871530aad29f442a67dfe0199b"
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_sweep",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.mountain_sweep.png",
+        "sha256": "4779167f4192dbcfe018b50e5089b0a2fc0fa9880263ecd031d6ea147912d88d"
+      },
+      {
+        "id": "dwarf.iron_axe.crag_cleave",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.crag_cleave.png",
+        "sha256": "d7611dc608811e15b4454e86ffc2800c4119a0c2f224921d86312b7e29c3b8d2"
+      },
+      {
+        "id": "dwarf.iron_axe.breaker_throw",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.breaker_throw.png",
+        "sha256": "bf2aa5dd07c2ccc0a153ec4d87992428502ac97bf3347e923fb0ad6600f31954"
+      },
+      {
+        "id": "dwarf.iron_axe.stonebound_leap",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.stonebound_leap.png",
+        "sha256": "9e06e24b1c9b9112b50d52166fab89b3b0269d9ba5b5e21e877adc7a5ac85130"
+      },
+      {
+        "id": "dwarf.iron_axe.iron_shoulder",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.iron_shoulder.png",
+        "sha256": "f228ce5f5d25647874238613b346e0f657a0718fabfb2119077b7ca464be9ec0"
+      },
+      {
+        "id": "dwarf.iron_axe.crosscut_axe",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.crosscut_axe.png",
+        "sha256": "3897c05a328e34e8a70bf9e32341abee2cbdcd479ad6fb42ed0a10628e0b0dd6"
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_strike",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.mountain_strike.png",
+        "sha256": "4f71dd1eb1f9dd7ee4ee317e3707ad66eb679a7134fe6aea4929aba5b946b732"
+      },
+      {
+        "id": "dwarf.iron_axe.shatter_blow",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.shatter_blow.png",
+        "sha256": "1667c42dfe3c659a27317e035e0b7bc3b9612fe37d34e3018b1b94ba4f6d6631"
+      },
+      {
+        "id": "dwarf.iron_axe.twin_axe_path",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.twin_axe_path.png",
+        "sha256": "9cbdded5c93206fe1224d1ab1c27cc97d41b69bedb5b398bc35cd195eafccd00"
+      },
+      {
+        "id": "dwarf.iron_axe.tremor_guard",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.tremor_guard.png",
+        "sha256": "b7103233998a7c4675960e945e14ce2d28be3eae7d3a98e66346d8e3c45a8d5f"
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_collapse",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.iron_axe.mountain_collapse.png",
+        "sha256": "1bf8e8c229a648fca6cef49d09ea8a139170fe15ef1a6ff25f892f86235e6304"
+      },
+      {
+        "id": "dwarf.gunner.gunner_shot",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.gunner_shot.png",
+        "sha256": "02f0abcf14c190e1ab86037c1a4bed44735e4e787f33d6b6c9a01969b2d5e619"
+      },
+      {
+        "id": "dwarf.gunner.bomb_toss",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.bomb_toss.png",
+        "sha256": "e03dd84a74e011b7816d2f2a0f277a8d89395ca217c8090cea242b729da19df2"
+      },
+      {
+        "id": "dwarf.gunner.shell_burst",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.shell_burst.png",
+        "sha256": "6b043d543512cfd0cb7f4cae3bcf98954d2e5fdf745294ab7e808f2cab326555"
+      },
+      {
+        "id": "dwarf.gunner.quickfire",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.quickfire.png",
+        "sha256": "c017cd59ff65b6748f1041e5ba49b5149f0f3181bc6f884d728093a62673b7ed"
+      },
+      {
+        "id": "dwarf.gunner.shrapnel_toss",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.shrapnel_toss.png",
+        "sha256": "9f59357528e9060817665cacbbc3fe1b79263f6f3c4f2a05acb6e78adc3bdb4f"
+      },
+      {
+        "id": "dwarf.gunner.blast_step",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.blast_step.png",
+        "sha256": "a6c33a2069bc4790894ee8fb51dc41604c1e0e5d09284401742b8ded98279bdf"
+      },
+      {
+        "id": "dwarf.gunner.scatter_shot",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.scatter_shot.png",
+        "sha256": "812d4c4eae2c3cdcbfff687188d1b71e3a4fffb62e957efeef742e852e90a01d"
+      },
+      {
+        "id": "dwarf.gunner.skipping_charge",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.skipping_charge.png",
+        "sha256": "2829801fdb57c1937461ae279765e86d2a720a53434d3ff48fc7745cb93e5800"
+      },
+      {
+        "id": "dwarf.gunner.field_mortar",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.field_mortar.png",
+        "sha256": "acc8354025610d767e1330399b9c83d30e9bff2556347674e4421da34b665678"
+      },
+      {
+        "id": "dwarf.gunner.piercing_round",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.piercing_round.png",
+        "sha256": "2ed8c877ab20424eff16bdc1c80223b80bf35b1120342dfa0844efdcb8b421a7"
+      },
+      {
+        "id": "dwarf.gunner.rolling_charge",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.rolling_charge.png",
+        "sha256": "ba8ee24da3e77e4ca3a79ebb259dab9750a152b06cd16f0abcddca307b3e4700"
+      },
+      {
+        "id": "dwarf.gunner.siege_pattern",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.siege_pattern.png",
+        "sha256": "d15e7590df4f3dd5b6224037c932041424c1243725a41d8c7be6473d49a1e678"
+      },
+      {
+        "id": "dwarf.gunner.siege_barrage",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf.gunner.siege_barrage.png",
+        "sha256": "dfdab3c83ee3867f15932139e738bed8d9532f3025e53f9a20e49bcc1bd2f53e"
+      },
+      {
+        "id": "dwarf_hooking_chop",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf_hooking_chop.png",
+        "sha256": "bdd1af8efd6e0dd04373c633295abdbe399e6134a8623bd21f4127304220f50b"
+      },
+      {
+        "id": "dwarf_low_sweep",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf_low_sweep.png",
+        "sha256": "8a8408f18ac4149e777b06a7ed83d1b6b9d173722d34afc5a38379857fc82c35"
+      },
+      {
+        "id": "dwarf_braced_throw",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/dwarf_braced_throw.png",
+        "sha256": "dae820babf82e7062d49f618ae01c8ad3c7dfa4c48d8acee62986f10fe64e974"
+      },
+      {
+        "id": "elf.common.aimed",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.common.aimed.png",
+        "sha256": "4c63d0fdce6ef90515e5b2e6da9f80b6c195e628035c0114fab48a47649036bf"
+      },
+      {
+        "id": "elf.common.rapid",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.common.rapid.png",
+        "sha256": "7fded042353fdc3964438c0f075aa1f6c160f86a4e3a29f0c23b12eba71f7811"
+      },
+      {
+        "id": "elf.common.multi",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.common.multi.png",
+        "sha256": "eaa0a6f6020e67b587516a72c03a74fd726c8dcc068db305832074405ef86a72"
+      },
+      {
+        "id": "elf.marksman.weakpoint_shot",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.weakpoint_shot.png",
+        "sha256": "cc235626915305f57dd8d9c396faefde0313f7c3bd8f70a62cdd591bee92aaf7"
+      },
+      {
+        "id": "elf.marksman.moving_volley",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.moving_volley.png",
+        "sha256": "6badb3099fc8cb8b785a9a88b5dbd6a18c9a5d5fdd2d1091cf9cc5d276c3f625"
+      },
+      {
+        "id": "elf.marksman.piercing_line",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.piercing_line.png",
+        "sha256": "db75900e1c85ca9c8305ff5b9dad18b218e5bfa4549150acfeb844999fbf0e2c"
+      },
+      {
+        "id": "elf.marksman.heavy_draw",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.heavy_draw.png",
+        "sha256": "fb5b2070469ea5d8a207c4702d3c142fd10366ed835550ee9f1df89ec44bf441"
+      },
+      {
+        "id": "elf.marksman.precision_volley",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.precision_volley.png",
+        "sha256": "e2e42881f12ea9ff78f5efc8291eb966dba68de870a7b7901aff4ea5b25863f4"
+      },
+      {
+        "id": "elf.marksman.fan_break",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.fan_break.png",
+        "sha256": "72fb268cab39d21c691d51589470ded223864c907bc081eb02f4459f4af0670e"
+      },
+      {
+        "id": "elf.marksman.hunter_s_focus",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.hunter_s_focus.png",
+        "sha256": "dd6a772d7ea3289c518968792d1e20fc932f8d7301ec6dd36855f1d0d182b74e"
+      },
+      {
+        "id": "elf.marksman.retreating_fire",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.retreating_fire.png",
+        "sha256": "8360076a1b9e44787bea31134b83de4eaf9eda8a9d539553291f2601c72c180d"
+      },
+      {
+        "id": "elf.marksman.piercing_volley",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.piercing_volley.png",
+        "sha256": "e81b370949c63b82b4d88b8cd2f43e3ced511fd7c54426252c4873a877f23eb0"
+      },
+      {
+        "id": "elf.marksman.mark_breaker",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.mark_breaker.png",
+        "sha256": "567fbf34b0a150468af0d366ffd03d0f09ac78902f2c7845b3882f9617e414d6"
+      },
+      {
+        "id": "elf.marksman.crossfire",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.crossfire.png",
+        "sha256": "c35e723d8dca2998948245ecf5448b7f801910095b888f301a74ce15bdf77cbe"
+      },
+      {
+        "id": "elf.marksman.arrow_rain",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.arrow_rain.png",
+        "sha256": "a465f639ceec9bbf4d12d8db87ce115c06c3ad423946aad9aaccb7bca7572ba5"
+      },
+      {
+        "id": "elf.marksman.grand_volley",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.marksman.grand_volley.png",
+        "sha256": "c5f95fee54dee3e26d7e785b1350d064e7a96b2b8a12f7f3acbdcc754b5e5472"
+      },
+      {
+        "id": "elf.magic_archer.elemental_arrow",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.elemental_arrow.png",
+        "sha256": "cfeed88e243040517cdfe3869dd5f9ed0c9954252d07e8bd45133bcad94cf256"
+      },
+      {
+        "id": "elf.magic_archer.spark_volley",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.spark_volley.png",
+        "sha256": "783c4fe30f28f6266870063bb45738adff28caf169a6258ff5254aec9e31a99f"
+      },
+      {
+        "id": "elf.magic_archer.vine_trap",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.vine_trap.png",
+        "sha256": "fd1cc3b75e4d85e4b54c9ed7d320506ba7aa144944e1dddc7e3bfcb70860b81c"
+      },
+      {
+        "id": "elf.magic_archer.bloom_shot",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.bloom_shot.png",
+        "sha256": "3572dc9836d30c8a32debe10e18f9e6048ee6c35192d9ee1aef8f7be08c09251"
+      },
+      {
+        "id": "elf.magic_archer.storm_arrow",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.storm_arrow.png",
+        "sha256": "4cb13de8abcf9c463ed77e6e9e6dd27fbf106c9b47a6fe098a1bd793f42f201b"
+      },
+      {
+        "id": "elf.magic_archer.rooting_fan",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.rooting_fan.png",
+        "sha256": "cb64142db9e37179bd8d61621f816fe224959d12c0a9dfc8f714bc319652b9d8"
+      },
+      {
+        "id": "elf.magic_archer.warden_arrow",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.warden_arrow.png",
+        "sha256": "6d23e1f662fec2d63d42e9caaba804ead89f844f8cea7fd2c10434a89ecd6a55"
+      },
+      {
+        "id": "elf.magic_archer.gliding_shot",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.gliding_shot.png",
+        "sha256": "64ce1ed893daa492ce3f50d95fe50e0f4828bf0dae2f689bac2c1654b91eacb9"
+      },
+      {
+        "id": "elf.magic_archer.spirit_rain",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.spirit_rain.png",
+        "sha256": "f4ee3a84f1cf9a65f5cba2c927f780ed3e44aa82caf856ca9a1915f5dec1404f"
+      },
+      {
+        "id": "elf.magic_archer.elemental_pierce",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.elemental_pierce.png",
+        "sha256": "5ede9c2fc55323dab5cd166d1420c3fdc342c855633195ff89fd44587a171584"
+      },
+      {
+        "id": "elf.magic_archer.echo_arrows",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.echo_arrows.png",
+        "sha256": "17f5fdc602f9aa1d3f5ed323f9906ab17f822c87b27ac2400cb532603e4d82f6"
+      },
+      {
+        "id": "elf.magic_archer.vine_burst",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.vine_burst.png",
+        "sha256": "f220a8993ec89f7ef521be34221fe48d4f3f02e6e4ad2f2d0b71f9c6a87c317f"
+      },
+      {
+        "id": "elf.magic_archer.spirit_arrowfall",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf.magic_archer.spirit_arrowfall.png",
+        "sha256": "094d8889cb5dbd13d80aa1d8148aca259c0e5d36f9714940e10f3cd2fefc85cf"
+      },
+      {
+        "id": "elf_retreating_shot",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf_retreating_shot.png",
+        "sha256": "e1e22036e6fa15845776d96e6161e816d86919a8fed37ed68486e75362e83135"
+      },
+      {
+        "id": "elf_pinning_shot",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf_pinning_shot.png",
+        "sha256": "505c4bb3df9ce0f97140df2f6a923e2d3c7b910984b0512627e7137821047638"
+      },
+      {
+        "id": "elf_arrow_screen",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/elf_arrow_screen.png",
+        "sha256": "e4a3af209fc3af5efdbeb68d3d6bef3165fcdbc09020c586e540b8b9b4ea5f78"
+      },
+      {
+        "id": "mage.common.mana_bolt",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.common.mana_bolt.png",
+        "sha256": "ca5f8ab98af1818bad7e0b60c5cff435a04abf0700deab17c061e3c70fefc20e"
+      },
+      {
+        "id": "mage.common.water_ball",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.common.water_ball.png",
+        "sha256": "bfac22e7234c116228565b0ed9ebfe6552dfe36007096a80bceceae6f82de4ec"
+      },
+      {
+        "id": "mage.common.gravity",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.common.gravity.png",
+        "sha256": "2e4bd3d5f05dbf3cc93bfd27994d936a7f699aa5275959afeb978e787e0983de"
+      },
+      {
+        "id": "mage.pyro.ember_lance",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.ember_lance.png",
+        "sha256": "1b0d0353b3bc166e656d30a38f8066cae522b54a5fa8ca0444591592cf9f9d58"
+      },
+      {
+        "id": "mage.pyro.steam_burst",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.steam_burst.png",
+        "sha256": "e29496b127d413b6a39916fff46678a26cee0dc314218229a74ec5880a55586c"
+      },
+      {
+        "id": "mage.pyro.cinder_ring",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.cinder_ring.png",
+        "sha256": "788c599bf79e9182c2d5304db7ff05def2b89c54584bc86560c74325cb9bfffe"
+      },
+      {
+        "id": "mage.pyro.flame_dart",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.flame_dart.png",
+        "sha256": "986856a24635aa33f537f1431c716dbd1a6ba937f6bedeaa5b87e8cfbdb2036f"
+      },
+      {
+        "id": "mage.pyro.earth_rise",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.earth_rise.png",
+        "sha256": "fc7ae8e950d0c7327c98aec8bdb59e1c042e340e3b1553d2e3bc9f49bbc68c6d"
+      },
+      {
+        "id": "mage.pyro.ember_step",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.ember_step.png",
+        "sha256": "e38c6a8c9d62017495b346ffe4f4fd1eb3b90b68a01de885c642c860d4832dce"
+      },
+      {
+        "id": "mage.pyro.stone_lance",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.stone_lance.png",
+        "sha256": "a197c265d495b897b72ea371ccd0df8c9618c34bedb3b3e8e94cbd14a5457b5b"
+      },
+      {
+        "id": "mage.pyro.searing_ward",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.searing_ward.png",
+        "sha256": "9012ed82c5d446e96a5696e02dc2bf66ac57f7ceb8ce4d86ff030a9446833ecb"
+      },
+      {
+        "id": "mage.pyro.lava_eruption",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.lava_eruption.png",
+        "sha256": "e7d6152e03583cd99fb93fb3e653a51c7373a3a760b4837d7d12c4e9b274a4c6"
+      },
+      {
+        "id": "mage.pyro.magma_spear",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.magma_spear.png",
+        "sha256": "d06f8dbbf3745e86047c461aef29db3a262c48c7769fbf14c0b4944f09704844"
+      },
+      {
+        "id": "mage.pyro.molten_line",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.molten_line.png",
+        "sha256": "64fa25eb728ccddd42551f4993e77efbe40192f1b82108a801a1ac20812dfe1d"
+      },
+      {
+        "id": "mage.pyro.ashfall",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.ashfall.png",
+        "sha256": "de75ddb203e10923a43b5f05b3d15808c408920236ae7bebdd1016b2ce720510"
+      },
+      {
+        "id": "mage.pyro.caldera_s_judgment",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.pyro.caldera_s_judgment.png",
+        "sha256": "4ff3dc331bc83112f000e437699d7421c6738d608e307bf37f59687220476783"
+      },
+      {
+        "id": "mage.cryo.frost_lance",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.frost_lance.png",
+        "sha256": "104ecd76dbc5237ab1db8002bfeb9666572f2f9a5a1d824dd550562ee23ed14d"
+      },
+      {
+        "id": "mage.cryo.ice_shard",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.ice_shard.png",
+        "sha256": "397257aad71e210ec70dcdfbd36e057ed90e29d1a5bb57d37dc1a397469a3f93"
+      },
+      {
+        "id": "mage.cryo.frost_ring",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.frost_ring.png",
+        "sha256": "c8386b2aefe480a29b8013dabbb92d6beafc6121ef670480606785c2ef71917d"
+      },
+      {
+        "id": "mage.cryo.shatter_dart",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.shatter_dart.png",
+        "sha256": "f65d1866cae2109d7efc8322223a6451e963a003c912816ac6ca24835dcb9196"
+      },
+      {
+        "id": "mage.cryo.chain_lightning",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.chain_lightning.png",
+        "sha256": "1f47ba2d8f257498a6ccc4fdc0c9dd89de940cc46c19579ce6a0bd309d5c4a82"
+      },
+      {
+        "id": "mage.cryo.frost_step",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.frost_step.png",
+        "sha256": "7c5a899ce745ee0494ad36e111ac3fb50a6e741be26cc7242e3e939f88faf261"
+      },
+      {
+        "id": "mage.cryo.thunder_spear",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.thunder_spear.png",
+        "sha256": "c7e9c8703e1054f2166f7838143271932e1a1223905a2fb14797e606fa2a3afd"
+      },
+      {
+        "id": "mage.cryo.ice_ward",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.ice_ward.png",
+        "sha256": "7c5ea8627eda2895db6e8d0b0c77b55b630b78b52b3850af33bc4c1f8006e6ea"
+      },
+      {
+        "id": "mage.cryo.froststorm",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.froststorm.png",
+        "sha256": "8988438ea5d131fcc0e692d932822fe39f5aa7ed4538ec1f56a2f4a97dc222e5"
+      },
+      {
+        "id": "mage.cryo.glacial_spike",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.glacial_spike.png",
+        "sha256": "a1f790a93b83b62ce675fdfd4563f00e4e8b73ba457c28003abf741d73611596"
+      },
+      {
+        "id": "mage.cryo.lightning_line",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.lightning_line.png",
+        "sha256": "7d64fd74bec27aff4c9a9f4f21260b1dcf056443ac8b19c639e1bacc8cefc2fd"
+      },
+      {
+        "id": "mage.cryo.hailfall",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.hailfall.png",
+        "sha256": "d2563ae325f5a08eb7ef86273571894192d770a352852591c42e9d62d53ebeab"
+      },
+      {
+        "id": "mage.cryo.eternal_tempest",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage.cryo.eternal_tempest.png",
+        "sha256": "6546b5b13a7e8f197093ace6a162ed92197daa3c252ce439d345730e97df13d1"
+      },
+      {
+        "id": "mage_wind_lance",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage_wind_lance.png",
+        "sha256": "b25d43ebe1995aef9c2091ade5d455b686eeab3c0f22ad2fc117f85918a4b220"
+      },
+      {
+        "id": "mage_tidal_ring",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage_tidal_ring.png",
+        "sha256": "889f48ab12e72af5929d2dd5fc3138e6abcd4df1e26dd6ebd50641d6fca65a37"
+      },
+      {
+        "id": "mage_arcane_ward",
+        "file": "docs/evidence/vfx-art-review-20261113/hero/mage_arcane_ward.png",
+        "sha256": "4fa8ceb09bb98fb59ebe99730e97ff0d189608d6125ee3ba21779c96730b3feb"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/hero": [
+      {
+        "id": "knight.steel_knight.steel_sweep",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/knight.steel_knight.steel_sweep.png",
+        "sha256": "33fb61667ea1a56d8daba55906dbb07518eac1670ce15373bb6d3dd9328344a7"
+      },
+      {
+        "id": "knight.steel_knight.warcry_assault",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/knight.steel_knight.warcry_assault.png",
+        "sha256": "016dd2ee9171e6fc2c81c2c0927b5410df9fcf49fe0750eb4475b3426e3bdc5b"
+      },
+      {
+        "id": "knight.steel_knight.unyielding_front",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/knight.steel_knight.unyielding_front.png",
+        "sha256": "2273f9ebac9be04439d80e4775fb0bfd04e5ab1f1ce3813db6aa8c63e77a8f80"
+      },
+      {
+        "id": "knight.paladin.radiant_sweep",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/knight.paladin.radiant_sweep.png",
+        "sha256": "a31364a44e6c1edde072ed7192422b0b5187b893a4fc35f4f5c3aa5e12f369cb"
+      },
+      {
+        "id": "knight.paladin.oath_challenge",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/knight.paladin.oath_challenge.png",
+        "sha256": "8bcd113205269a714e8e04edde4c1a14defed3fb4caa19e48866f894a5cda843"
+      },
+      {
+        "id": "knight.paladin.oath_of_dawn",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/knight.paladin.oath_of_dawn.png",
+        "sha256": "502536bda665af81e216574a72647e3b9ff481947e4666cdb981c32f8e05260b"
+      },
+      {
+        "id": "knight_crescent_cut",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/knight_crescent_cut.png",
+        "sha256": "c899d8fb1169c14dea3df38872778f179d5bfba4b8f1ad4ccc22dd02c82468ed"
+      },
+      {
+        "id": "dwarf.common.overhead",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.common.overhead.png",
+        "sha256": "ba60e0d20257d7bbcfc14e801a4e2fcf268e307ac84d198d9e9756c5b7a77f27"
+      },
+      {
+        "id": "dwarf.iron_axe.armor_splitter",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.armor_splitter.png",
+        "sha256": "08843ddadee3d12eb597e80343dfa13aa58b735930c95a78f4a506d79f6f6787"
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_sweep",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.mountain_sweep.png",
+        "sha256": "f4a90c7d679457bc64b72f707ea7bf91609a682870418a505e231ba10dee617b"
+      },
+      {
+        "id": "dwarf.iron_axe.crag_cleave",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.crag_cleave.png",
+        "sha256": "475d1d24da191579363037294b966576f7e5739047c0ec788d83cd1247d20209"
+      },
+      {
+        "id": "dwarf.iron_axe.stonebound_leap",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.stonebound_leap.png",
+        "sha256": "81aeff4f0662f4f5d6c77d620d703ee96844e47a2c1b4795e90f0c7ab2b29aa9"
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_strike",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.mountain_strike.png",
+        "sha256": "de4fc21925a09281ac4ba9dfe53114c1004e8d89a6436c39eb1460f6471a31cf"
+      },
+      {
+        "id": "dwarf.iron_axe.shatter_blow",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.shatter_blow.png",
+        "sha256": "3b110ceb25da4ed4b49f84f3b6fffefead70ef6432d819d0ea9aa46a4630bfed"
+      },
+      {
+        "id": "dwarf.iron_axe.tremor_guard",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.tremor_guard.png",
+        "sha256": "bf453622bd8b6ce6a6f7a5bc01748faf5f5e14c3b2aae83de25e537ad787e32d"
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_collapse",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.iron_axe.mountain_collapse.png",
+        "sha256": "58003cae2eadaa7d81f704b99e3c64f3abd2084302e3945429b7e8bba333522b"
+      },
+      {
+        "id": "dwarf.gunner.shell_burst",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.shell_burst.png",
+        "sha256": "459f637e004f8013ce662c52ca1cb912f5628e23601ac12049c9680690371fd7"
+      },
+      {
+        "id": "dwarf.gunner.scatter_shot",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.scatter_shot.png",
+        "sha256": "f3265564f02bfcbf974f2774bea33bb179fcd100074bd111c8df4c842003aed1"
+      },
+      {
+        "id": "dwarf.gunner.field_mortar",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.field_mortar.png",
+        "sha256": "9152b36aaa10c075017740add7a96b9f426b12e6298aa4ed02c78b61ce1e4cd0"
+      },
+      {
+        "id": "dwarf.gunner.siege_pattern",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.siege_pattern.png",
+        "sha256": "cdbfe35b42bf7647bfecd0060544eb7f86644ade3bdbfa69cd67ec0cce6b5ccd"
+      },
+      {
+        "id": "dwarf.gunner.siege_barrage",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf.gunner.siege_barrage.png",
+        "sha256": "63685ae7aeaab6d74ceaaa788853de8729e42021dc8df12550c42ba8507b894e"
+      },
+      {
+        "id": "dwarf_hooking_chop",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf_hooking_chop.png",
+        "sha256": "7154626e99575b0f938657ff64ecbd377d5882754363c104cd39d8d6d5512350"
+      },
+      {
+        "id": "dwarf_low_sweep",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/dwarf_low_sweep.png",
+        "sha256": "1665b7dc0bb024e1a100b8bc92bba715d1d19f069c6a3850b94d517ff303abd2"
+      },
+      {
+        "id": "elf.marksman.grand_volley",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/elf.marksman.grand_volley.png",
+        "sha256": "852dec2ef4cefce7d0d0c7b44d4967e372910dd1e86e19e0b72ddb90942bbd28"
+      },
+      {
+        "id": "elf.magic_archer.vine_trap",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/elf.magic_archer.vine_trap.png",
+        "sha256": "15b037f886a61b83f37f5c954a4d8be0b807c6a8c226fb6bf26a4de144cb2b28"
+      },
+      {
+        "id": "elf.magic_archer.rooting_fan",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/elf.magic_archer.rooting_fan.png",
+        "sha256": "631a5687ebe58df5760cb6be451c05e1b56af04c1ce1a0bc22b57e6a53f5c2f6"
+      },
+      {
+        "id": "elf.magic_archer.vine_burst",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/elf.magic_archer.vine_burst.png",
+        "sha256": "dd506dcf38af507d62d815c157c8aa3aa7d263d57deffc72207bfa227c3c1fa4"
+      },
+      {
+        "id": "elf.magic_archer.spirit_arrowfall",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/elf.magic_archer.spirit_arrowfall.png",
+        "sha256": "3c168730f16fdde242378cb82c040bd6ff91ecaf091dd96e72f383266fac9e75"
+      },
+      {
+        "id": "mage.pyro.steam_burst",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.steam_burst.png",
+        "sha256": "48b472dde7aa16c5027071477f0e54571936274224ae786f7f3dcaaff66d264f"
+      },
+      {
+        "id": "mage.pyro.cinder_ring",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.cinder_ring.png",
+        "sha256": "4f3f33d103a1aac20dcd3787577d3e3c43eb0b97218c82aab708c00830a848db"
+      },
+      {
+        "id": "mage.pyro.ember_step",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.ember_step.png",
+        "sha256": "3de3e018005de48bf8836c78bfd7388e21c424dfd2fe9700f4a7be510cf3f0d4"
+      },
+      {
+        "id": "mage.pyro.searing_ward",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.searing_ward.png",
+        "sha256": "a7d41b5763d834c5954d1ef4163e77d1ec423aadc06445d1a72767e942822dda"
+      },
+      {
+        "id": "mage.pyro.lava_eruption",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.lava_eruption.png",
+        "sha256": "0822a7e0937916299c4e1895063fb024870a17c8c7dc692e9cc06f529668fe2b"
+      },
+      {
+        "id": "mage.pyro.caldera_s_judgment",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/mage.pyro.caldera_s_judgment.png",
+        "sha256": "d169cc7b26fffc48d3d508367ba8051fa683843a2700b459693402bbd0b0d273"
+      },
+      {
+        "id": "mage.cryo.eternal_tempest",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero/mage.cryo.eternal_tempest.png",
+        "sha256": "41dda6d9c7c61601ed9c8a9c79580a48808d05146c729a5d72084ad4e9cf6423"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/hero-final": [
+      {
+        "id": "knight.steel_knight.unyielding_front",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/knight.steel_knight.unyielding_front.png",
+        "sha256": "bb4cea9c8b76e51118a21cdbb4508a7f89f19dad2cadfe4ecea6af9ec3793a41"
+      },
+      {
+        "id": "knight.paladin.oath_of_dawn",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/knight.paladin.oath_of_dawn.png",
+        "sha256": "a379ea6a60a4df7f03b35fa9576a4053de1343b9099ac0a075757af2e7ea4f2c"
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_collapse",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/dwarf.iron_axe.mountain_collapse.png",
+        "sha256": "bf61b3eee910d29a504ad4ca7643bd4b85182b28c614aca48aa26b931e8d540a"
+      },
+      {
+        "id": "dwarf.gunner.siege_barrage",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/dwarf.gunner.siege_barrage.png",
+        "sha256": "52383240e502b2f3899bd073d5d1808352451d9e6113093c05811b3ad592f015"
+      },
+      {
+        "id": "elf.marksman.grand_volley",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.marksman.grand_volley.png",
+        "sha256": "9d06a856c572b031102cf979dcfdb8c35b32c74b469f1f1b9ecaca7fb1893806"
+      },
+      {
+        "id": "elf.magic_archer.vine_trap",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.vine_trap.png",
+        "sha256": "a210529f1d51add8e89d91a85dba995598e4be566f8d852fd0e2b96be2f9eb63"
+      },
+      {
+        "id": "elf.magic_archer.rooting_fan",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.rooting_fan.png",
+        "sha256": "d4391a6cd0720e30eb8c29dc0e3966b486468028beb3527970366127142bf9ba"
+      },
+      {
+        "id": "elf.magic_archer.vine_burst",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.vine_burst.png",
+        "sha256": "62171fc28295fb83c1d9225c6afaf5fd0d7fdb29df3f09d541bc3cf1e0aa231e"
+      },
+      {
+        "id": "elf.magic_archer.spirit_arrowfall",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/elf.magic_archer.spirit_arrowfall.png",
+        "sha256": "5a1841f788ef53bc854bef8a50c725473f1f4028e1f716cec953adeb90239cbb"
+      },
+      {
+        "id": "mage.pyro.caldera_s_judgment",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/mage.pyro.caldera_s_judgment.png",
+        "sha256": "b7a71f0c5ef2c6c98c7751321363f4ba0798f508eba50be851d40fe4dc6a0645"
+      },
+      {
+        "id": "mage.cryo.eternal_tempest",
+        "file": "docs/evidence/vfx-art-improvements-20261113/hero-final/mage.cryo.eternal_tempest.png",
+        "sha256": "1991a11b2efa542b00f5a25ddd82fe6864d4b990e91fadce69f75bff9c43c1b0"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/enemy": [
+      {
+        "id": "AncientGlacierKing.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/001-AncientGlacierKing.png",
+        "sha256": "1924a6570cf41792751d6adca10959a7683bdbed266308058b4ae5e01bbe54c6"
+      },
+      {
+        "id": "AncientHollowbark.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/002-AncientHollowbark.png",
+        "sha256": "79d858d1bb7d02d0d88bcabeca035c9fdec1544f68c3402be25bddab9c43f564"
+      },
+      {
+        "id": "Barkstalker.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/003-Barkstalker.png",
+        "sha256": "ce832f4e107bc308c6482bb2dc0b1262096f20d2d2173abd02273f272e2602fb"
+      },
+      {
+        "id": "CalderaTitan.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/004-CalderaTitan.png",
+        "sha256": "61c2bc65e5c5e92b51a793ce0153861efa391aff082ca2a9589a9888d0381baa"
+      },
+      {
+        "id": "CalderaTitan.3",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/005-CalderaTitan.png",
+        "sha256": "0b381dabb071437e96974a38fb8bde834ceb0ca0b7dd0597f30a81d6037899ea"
+      },
+      {
+        "id": "DeathKnight.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/006-DeathKnight.png",
+        "sha256": "fe737034b9fa055a21a609b127b70db2162b7488172e30ce203469f4a87ad13b"
+      },
+      {
+        "id": "DreadCommander.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/007-DreadCommander.png",
+        "sha256": "c379d5d5f233e16ba389551ae24f36731f8dade1869a92f2a9a4b153337aba63"
+      },
+      {
+        "id": "EnragedWarlord.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/008-EnragedWarlord.png",
+        "sha256": "96196efc02057447ee940a916799fe25414ef9ac5ba261793d4d2578d3efaea1"
+      },
+      {
+        "id": "Ghoul.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/009-Ghoul.png",
+        "sha256": "0e5d291b644b9e2c780fec13166d51f872facd5039feafa035f7b82a57aa33aa"
+      },
+      {
+        "id": "Gloambat.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/010-Gloambat.png",
+        "sha256": "a23d17fcc6436b1d96d52250ad733063209f501c883010db2897510a35053576"
+      },
+      {
+        "id": "Goblin.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/011-Goblin.png",
+        "sha256": "e83bbfee47c6f24189c3d7702bb1f22072bd2eaec124e694af81eef1b1dbfa35"
+      },
+      {
+        "id": "GoblinKing.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/012-GoblinKing.png",
+        "sha256": "4c9eb0c66b4f0a7e67ab25a9988c962a92bbf9e8c1aee6365612c455832d19cb"
+      },
+      {
+        "id": "GoblinKing.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/013-GoblinKing.png",
+        "sha256": "6cb95052da580b03ecf9add62314e0072d11dcdd565940d42cf7d1586fac2558"
+      },
+      {
+        "id": "Golem.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/014-Golem.png",
+        "sha256": "e80a98a8397beb3bc08fc9e8804de6c764fc589573c92a634ffe66390cf23be0"
+      },
+      {
+        "id": "Hellhound.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/015-Hellhound.png",
+        "sha256": "beed4dd14addde408428aef23468bbbcff9604f101231e6ff319a40e5c647b78"
+      },
+      {
+        "id": "HollowbarkSovereign.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/016-HollowbarkSovereign.png",
+        "sha256": "7a7947731c91bbe7265527694fe101a1e1b77710478bf2a1bf9421cf5ae5b5d2"
+      },
+      {
+        "id": "IceBear.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/017-IceBear.png",
+        "sha256": "6196235ed5827a067e98ffba91e613fba0369a4897543135824758a9e94aab50"
+      },
+      {
+        "id": "IceElf.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/018-IceElf.png",
+        "sha256": "fd53109b46d70ed5a73c35498ac36a2fd657374e0461d68371d0dd76a1993914"
+      },
+      {
+        "id": "IceGolem.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/019-IceGolem.png",
+        "sha256": "6d744e02c4dd03cf0e67171c7558b3d160fe7d371ff5f8a79c51ee5b79d8f312"
+      },
+      {
+        "id": "IceTroll.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/020-IceTroll.png",
+        "sha256": "402f9f1e7bcd10642a959581b670b9375a8f3c80f48c4fe9e580386142fee90b"
+      },
+      {
+        "id": "IceTrollKing.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/021-IceTrollKing.png",
+        "sha256": "d4eb44cd83b3540b9a2d907573349f730509be5c5f4c890c4c6731aeb4223bbb"
+      },
+      {
+        "id": "IceTrollKing.3",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/022-IceTrollKing.png",
+        "sha256": "f22dac8afd2bbbc76414692f4887ffa7435cc25ad22de986aebd029263064ed9"
+      },
+      {
+        "id": "IceWolf.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/023-IceWolf.png",
+        "sha256": "8787fdca6c7ee4c67a460561fdecf81c2d8fcb8223bc6b7a24389dd6132b4941"
+      },
+      {
+        "id": "Imp.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/024-Imp.png",
+        "sha256": "78ee44a870aaae11d25e9f58c64e51d4d5f7ae82cfb9f1903c6bf91aee081ee2"
+      },
+      {
+        "id": "InfernoOverlord.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/025-InfernoOverlord.png",
+        "sha256": "8d4f3440e69d1bf8fdc89ff56a5c16d4c8cafd45f2ef14b77df634b46a42336b"
+      },
+      {
+        "id": "KingIceBear.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/026-KingIceBear.png",
+        "sha256": "c15cdac1dac5a5da0c060d423e033df750f4654fd2fdf059c41abf3024637574"
+      },
+      {
+        "id": "KingIceGolem.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/027-KingIceGolem.png",
+        "sha256": "198892aa6fcd05c4171d2f0366c5e55b9abe1a7fd2d7651d7931f0fd06145c3d"
+      },
+      {
+        "id": "KingOgre.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/028-KingOgre.png",
+        "sha256": "c51337fca38564f17b867247bf0158d6329bcb625212f0c7ed21569da586f83a"
+      },
+      {
+        "id": "KingShaman.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/029-KingShaman.png",
+        "sha256": "3309d8ffae666a5e1a8925060a5545c88b7361d7ced22c7176a04a9a0210abe3"
+      },
+      {
+        "id": "KingShaman.3",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/030-KingShaman.png",
+        "sha256": "1dface8491baa5bc3679c7194fa63a2a78a85a2cd48480b7c61b212ea4d479e5"
+      },
+      {
+        "id": "KingVolcanoShaman.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/031-KingVolcanoShaman.png",
+        "sha256": "bccc5c7bce52ccc3db2501e83b591a79b04f68624c75b68ee0d90d4ad5578063"
+      },
+      {
+        "id": "KingVolcanoShaman.3",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/032-KingVolcanoShaman.png",
+        "sha256": "26963b4240f58d0434f2ffdcf492379fccbc0950d77870b532b176a90379c0fb"
+      },
+      {
+        "id": "LavaSlime.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/033-LavaSlime.png",
+        "sha256": "ef5a4645b9e756a0900b26c8eded2b747640cded57ffa002b768baf3cedde761"
+      },
+      {
+        "id": "Lich.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/034-Lich.png",
+        "sha256": "b76fe793194535747952f10b4ecdbd1c5049dea8622d1fc2d08bc54e507a2c34"
+      },
+      {
+        "id": "LichSovereign.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/035-LichSovereign.png",
+        "sha256": "e97c50f4d21966b5f4791c5b00a03c49c3e36ca003bf9bfe6d46abfe075848c8"
+      },
+      {
+        "id": "LichSovereign.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/036-LichSovereign.png",
+        "sha256": "2444ccfedcf0cf371a6cecbe4210fd27c46cbb0d3a26a27ac120418c087bcb98"
+      },
+      {
+        "id": "MagmaGolem.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/037-MagmaGolem.png",
+        "sha256": "0293a82fba6f7119335392745d2c56b891211583232d2ca409aefc3ce96b6db8"
+      },
+      {
+        "id": "MagmaImp.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/038-MagmaImp.png",
+        "sha256": "45233f70ab9c754b6e168c1613ae64cb90ea313f51216dceedd80458e57130b4"
+      },
+      {
+        "id": "MagmaWorm.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/039-MagmaWorm.png",
+        "sha256": "f636d5511a15c388e72f51d8a7efbc223f15111c9cd8afcb0e4305523a58f11b"
+      },
+      {
+        "id": "Mummy.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/040-Mummy.png",
+        "sha256": "d394a33cdf5f958bbde5259a80ab470bec6472f317b315cda595f9f4c5c0d30e"
+      },
+      {
+        "id": "Ogre.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/041-Ogre.png",
+        "sha256": "3cca75664f2f75098b56a2a97cb85334c234af9d7bc9e6dd0c9cb9c3378ae998"
+      },
+      {
+        "id": "Orc.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/042-Orc.png",
+        "sha256": "2ee9fcbc405e1488433e7aef56f04ec66b9f39c46b06521dac50df2ec7a5cce8"
+      },
+      {
+        "id": "QueenIceElf.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/043-QueenIceElf.png",
+        "sha256": "023272d9b69f33914d8a50218d54af1ee1f611228d5d44dfa3e2f76b2bfe26b0"
+      },
+      {
+        "id": "QueenIceElf.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/044-QueenIceElf.png",
+        "sha256": "98883d8fe239a1068784756a8ab10fa9db9cc8fdf1e294f45a86a871b7e7b39f"
+      },
+      {
+        "id": "Shaman.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/045-Shaman.png",
+        "sha256": "3ee56f65a211e9dda5c595592a1a9cd285ce059233757051979620cef70497e0"
+      },
+      {
+        "id": "Silkweaver.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/046-Silkweaver.png",
+        "sha256": "9d5c640dfd0ca9879c10d620e77f453baaeb008d9ee26c08cd4a6480348e25d3"
+      },
+      {
+        "id": "Skeleton.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/047-Skeleton.png",
+        "sha256": "85babe824f888d183f538ce5e59bfe11568329861c4546abfbbe2dad7783069a"
+      },
+      {
+        "id": "SkeletonKnight.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/048-SkeletonKnight.png",
+        "sha256": "a45bb84acd465283590b9ac6bc02b31980770d6b633161110b53adc6de646506"
+      },
+      {
+        "id": "Slime.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/049-Slime.png",
+        "sha256": "2d0629375551aab8732ed3f35c0c08e0d1f8ce9db68d382157e6122f70f4e1bf"
+      },
+      {
+        "id": "VenomcoilCentipede.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/050-VenomcoilCentipede.png",
+        "sha256": "40fe5905df74bf152a8358eda08bab34651077e7d84fe1068daf051c5b4f3e2e"
+      },
+      {
+        "id": "VenomcoilKing.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/051-VenomcoilKing.png",
+        "sha256": "c736cf632ed652d903d0ee2356ec76c096ee1ad0600d15c6b5d1e49025d6a93e"
+      },
+      {
+        "id": "Veyr.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/052-Veyr.png",
+        "sha256": "59887e75097be7bfcf40b2098e503ea43b80ddb6c3b7158b4c32d32e2475a164"
+      },
+      {
+        "id": "Veyr.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/053-Veyr.png",
+        "sha256": "93abcdb0fa86ddabc56321ba4fda3c4fe5f2cc774666579cb37bb970572966a4"
+      },
+      {
+        "id": "VolcanoShaman.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/054-VolcanoShaman.png",
+        "sha256": "770d336106b69b454ae7e14b9734d0a3d229e109397d7d9151e6771e3743aebc"
+      },
+      {
+        "id": "Warlord.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/055-Warlord.png",
+        "sha256": "0f77891d88027cbaed39a9b36c5c4438e83e8415ad2cb9df0e52329c4b161249"
+      },
+      {
+        "id": "Webling.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/056-Webling.png",
+        "sha256": "0fa27e82fae493dac4097eef6837836baa59ee2f81eccbd05bd7a026461dad57"
+      },
+      {
+        "id": "WidowQueen.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/057-WidowQueen.png",
+        "sha256": "a867bb642435d64c4bbde4992f60c651b51cdf1bb4bd7667e04baf561936a136"
+      },
+      {
+        "id": "WidowQueen.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/058-WidowQueen.png",
+        "sha256": "93d547f6d3e75871a20edd10039a3140b613bbffc2145b2d6c4890aee7978e07"
+      },
+      {
+        "id": "WidowQueen.3",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/059-WidowQueen.png",
+        "sha256": "e1330eafebabf432c8dacb7d5aae842f02c3b6a6de024704367434c652ef7968"
+      },
+      {
+        "id": "Zombie.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy/060-Zombie.png",
+        "sha256": "705a7e1b3f865713b6de510f4cc8b39326e3e8095dcc5baab93068dea8a7fd80"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/enemy-rings": [
+      {
+        "id": "AncientHollowbark.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/001-AncientHollowbark.png",
+        "sha256": "e562d7a6adc05c99a72549e363a787f371705d38a26cecb085de2b238ebb2c55"
+      },
+      {
+        "id": "Golem.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/002-Golem.png",
+        "sha256": "de8839a701c6dffa843d57d432334aeb04cb8d006907ac5373d4a8e0c8bbdff5"
+      },
+      {
+        "id": "HollowbarkSovereign.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/003-HollowbarkSovereign.png",
+        "sha256": "54a57476ecc94a189cabd8ad1ab59bf2cfb8ccfac091be94b69050bc49854828"
+      },
+      {
+        "id": "InfernoOverlord.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/004-InfernoOverlord.png",
+        "sha256": "418bff0bb4442ad8a966eeb057ee300b2dc15d13ac7ae172d6f59a6de4b42694"
+      },
+      {
+        "id": "KingIceBear.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/005-KingIceBear.png",
+        "sha256": "3e014275fa913a58316accb94ca0e198b34cece3dd8838b02a2554444d38c479"
+      },
+      {
+        "id": "KingIceGolem.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/006-KingIceGolem.png",
+        "sha256": "19e1c3a83f79c6c4e4ccabf64543b61a0054a3cfb69d5957342b302805ac909a"
+      },
+      {
+        "id": "KingOgre.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/007-KingOgre.png",
+        "sha256": "289e43363bce88e6eeffd18ceedd917998d99993a04a4ba13ad5a2b0d764d8f4"
+      },
+      {
+        "id": "KingShaman.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/008-KingShaman.png",
+        "sha256": "45934607244729ae7ecd81594b0398f438cfc2ecf5782341f7ec270345cfaade"
+      },
+      {
+        "id": "KingVolcanoShaman.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/009-KingVolcanoShaman.png",
+        "sha256": "4af6ed06621db0604eab1048ed4b9e9bc8929b9f1f4b3179713f83fa67aff86d"
+      },
+      {
+        "id": "LichSovereign.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/010-LichSovereign.png",
+        "sha256": "3d82c0d05835ee9216c97ffc4da0b3795dc6a1718394441ddfbfa71332de70b5"
+      },
+      {
+        "id": "Mummy.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/011-Mummy.png",
+        "sha256": "a5e4cc5c8382c0bdb18ccecf87a4f868d3769c11f552c142f1be0dbc10974278"
+      },
+      {
+        "id": "Veyr.3",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-rings/012-Veyr.png",
+        "sha256": "2d81ed7c2868738fd81298085793af7accd268b77159f7c04885986c4b31fb41"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/enemy-impacts": [
+      {
+        "id": "AncientGlacierKing.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/001-AncientGlacierKing.png",
+        "sha256": "f7af4db9df16c748cb4763e4f83c20250456c16b5324ea1eb31032a725f18428"
+      },
+      {
+        "id": "AncientGlacierKing.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/002-AncientGlacierKing.png",
+        "sha256": "9d25482e9b436ee1a8fc69614ee564789fbc65587056488d3f8f7cd38a7bc864"
+      },
+      {
+        "id": "AncientHollowbark.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/003-AncientHollowbark.png",
+        "sha256": "0bc187c02daf376e3b4c5213aa2f68444cfc7689666075e6495e5484c77a759d"
+      },
+      {
+        "id": "CalderaTitan.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/004-CalderaTitan.png",
+        "sha256": "b94be3fdd9dc834dca27c9bd9a86384946ed298c82ce4c20134fe7cead1b3ca4"
+      },
+      {
+        "id": "CalderaTitan.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/005-CalderaTitan.png",
+        "sha256": "711630f7d6e513184763558841a47112f823dcebf516796463ef98a239f9d275"
+      },
+      {
+        "id": "DeathKnight.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/006-DeathKnight.png",
+        "sha256": "b5d83a45e81a02fe44d13bea8d564e9954f7f3b9bb732066aa9032ec7dfcf87b"
+      },
+      {
+        "id": "DreadCommander.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/007-DreadCommander.png",
+        "sha256": "578572676b0d1fabcf05d6f07e49bb62b85bd69cd34ddeb950a8e3fd11486499"
+      },
+      {
+        "id": "EnragedWarlord.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/008-EnragedWarlord.png",
+        "sha256": "7e8b6ae2d6407d43571581cda2904936ba2bc0495fd14b0993bb490723758b4d"
+      },
+      {
+        "id": "GoblinKing.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/009-GoblinKing.png",
+        "sha256": "5adbbd356d08b0585d8cf2759335ec3dd9f7b30ffaa50d2ab1c008d40d0e14b3"
+      },
+      {
+        "id": "KingShaman.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/010-KingShaman.png",
+        "sha256": "ab0134c665878d3129f77726b4e30160216534ae35348a71378ddac577a8583a"
+      },
+      {
+        "id": "KingShaman.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/011-KingShaman.png",
+        "sha256": "51a08ecfbf09d819706bca76bad83aa77750cee4d2ae4ea036c09ca443fbbf7b"
+      },
+      {
+        "id": "Lich.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/012-Lich.png",
+        "sha256": "319bb2a47c90314a07a7aa3bd32e755297758a1443cee4bbbae33279ea03139a"
+      },
+      {
+        "id": "Lich.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/013-Lich.png",
+        "sha256": "22cc850986fafaacb35ea4b52a2fc22179afdcfbf4d6c5b2ea2d7b275cc1cc7c"
+      },
+      {
+        "id": "Mummy.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/014-Mummy.png",
+        "sha256": "9ebdd08c2ff286ccb6b99db3f1579fb4ae18719a720ccd40606c80dd18accf84"
+      },
+      {
+        "id": "Silkweaver.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/015-Silkweaver.png",
+        "sha256": "5a1e7ebfd1ddf785d5cb8b70cef16f88cf381677f7d35b851783de278f912d22"
+      },
+      {
+        "id": "Slime.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/016-Slime.png",
+        "sha256": "98fceb0e14301395b2929acd6f6d0d910e38cc2738307b360a3ecb9f749f6577"
+      },
+      {
+        "id": "VenomcoilCentipede.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/017-VenomcoilCentipede.png",
+        "sha256": "57ac968922c0c3aa33810bddece89766a18b545175f2f5a993feefa4537f5b23"
+      },
+      {
+        "id": "VenomcoilKing.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/018-VenomcoilKing.png",
+        "sha256": "dc54d7aa4c72e48b794e2498643b95f901d86f4285787fdb2d53fb24249c4515"
+      },
+      {
+        "id": "Warlord.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/019-Warlord.png",
+        "sha256": "648929a097b7fbbc37d20493f8903c3832572a6c687d33cfed8ebf6f62ac217c"
+      },
+      {
+        "id": "Warlord.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/enemy-impacts/020-Warlord.png",
+        "sha256": "2ae9f5a333a236489fcdf4f0df55b2198b0120f7291b717d0173aab1a4ddd1af"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/common": [
+      {
+        "id": "basic_knight",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/001-Basic_Knight_Hit.png",
+        "sha256": "b545c17ec78dc2530ac7d58c97f5d56de4ed260af920bb61d11db30711c8665c"
+      },
+      {
+        "id": "basic_dwarf",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/002-Basic_Dwarf_Hit.png",
+        "sha256": "0bbb508d3b4c7c505cde0aca5bd1c7bfcd7f9253cc4e7d9cfcf2350d634345e3"
+      },
+      {
+        "id": "basic_elf",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/003-Basic_Elf_Hit.png",
+        "sha256": "ab5247aae7927bb649876d8a3769d7f9ae537d4e666e9de08cde2e7ebb8c6191"
+      },
+      {
+        "id": "basic_mage",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/004-Basic_Mage_Hit.png",
+        "sha256": "1ffad41e8137ab46dea7d3cab3ca25bdb7b9d41084008e9340616e1beaedbb5a"
+      },
+      {
+        "id": "mage.pyro.ember_lance",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/005-Fire_Hit_Composite.png",
+        "sha256": "f48ef10ced316b0e42459a715149751086b553b5b7e9d0bc67e4f4ae9ac83ac8"
+      },
+      {
+        "id": "mage.common.water_ball",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/006-Water_Hit_Composite.png",
+        "sha256": "3c8a2488c5c47f2da0838d0842b21fc1f551153551a8df1f1329a7bf3be3bdd0"
+      },
+      {
+        "id": "mage.cryo.frost_lance",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/007-Frost_Hit_Composite.png",
+        "sha256": "72efa92d8ba2d47826082cbbb3a9b88fd9299965828df3faa7609bb246ac0450"
+      },
+      {
+        "id": "mage.cryo.lightning_line",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/008-Lightning_Hit_Composite.png",
+        "sha256": "f64711000e9f4b805b337095b8fc20846e98a4c74c5fe75040aa9064ef515917"
+      },
+      {
+        "id": "mage.pyro.stone_lance",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/009-Earth_Hit_Composite.png",
+        "sha256": "4f0372c1a41f13ea1c6f8119c4b8e8514d481163275b9bdce494c28f488d6cbb"
+      },
+      {
+        "id": "mage.common.gravity",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/010-Gravity_Hit_Composite.png",
+        "sha256": "a37ec0a9ff41966d9b2817246bd874b5859ac6eb1e9136dfeeefe16b0138f12a"
+      },
+      {
+        "id": "dwarf.common.overhead",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/011-Dwarf_Overhead_Contact.png",
+        "sha256": "567bd340eab7f13a5cc467f49d7c06efc5b10236402c1277d2a2880888d318e5"
+      },
+      {
+        "id": "dwarf.iron_axe.armor_splitter",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/012-Dwarf_Armor_Splitter_Contact.png",
+        "sha256": "73df76d211f8bb07899ae2057c86316fdd00d72ef2aafbf9fb701c8c39083825"
+      },
+      {
+        "id": "focus_arcane",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/013-Arcane_Staff_Focus.png",
+        "sha256": "04ff497e0dc9f0f9248a8ffa02faa3306a88e4fedc5c153a8f3de49b9a301f3e"
+      },
+      {
+        "id": "focus_water",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/014-Water_Staff_Focus.png",
+        "sha256": "1d24005ab9db5abb2b96f13686f57f062e1972d2e5932cdb08f42fa96a7354fe"
+      },
+      {
+        "id": "focus_wind",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/015-Wind_Staff_Focus.png",
+        "sha256": "763595458e9e1dbae612846f2494c7fbf0aa444e46d4dbfa89d4a61aae4b642c"
+      },
+      {
+        "id": "focus_fire",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/016-Fire_Staff_Focus.png",
+        "sha256": "a13637f4734895d56a9b11f12dc95aed26fa716ca9056a585500f26c61522554"
+      },
+      {
+        "id": "focus_frost",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/017-Frost_Staff_Focus.png",
+        "sha256": "ae0fb5909b3a7b13a39cc6cb779fa17ad136f25949633cede56b1dd62f1fb548"
+      },
+      {
+        "id": "focus_earth",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/018-Earth_Staff_Focus.png",
+        "sha256": "a5e18a26c1ca122cdf4892d66a62002f1d7049597b05b3418ca42db3e08e1364"
+      },
+      {
+        "id": "focus_lightning",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/019-Lightning_Staff_Focus.png",
+        "sha256": "f90c04d65592e8e008cbfbc9dd98c9838023552dd28b88bb57224086a2426a8d"
+      },
+      {
+        "id": "support_Heal",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/020-Heal_Pixel_Accent.png",
+        "sha256": "87066c3ece3fb8f92cace99b1719ad6b944587e0f0331a5a343812d26ec282a7"
+      },
+      {
+        "id": "support_Protect",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/021-Protect_Pixel_Accent.png",
+        "sha256": "beadb2bc3e36603bdd8da9e11cf4bf1bd75e33229c21cf48052e1d9777bdb4e2"
+      },
+      {
+        "id": "support_Cleanse",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/022-Cleanse_Pixel_Accent.png",
+        "sha256": "09855e06fe8b0383e630a1ab713f1c09f3c7c1ca56c4a181df0aa334ef123b1e"
+      },
+      {
+        "id": "hero_level_up",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/023-Hero_Level_Up.png",
+        "sha256": "e4311b19ed1da3665bba906aa7edc2e61e8c508efeaa5d2244f03771a687356b"
+      },
+      {
+        "id": "trail_knight",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/024-Knight_Native_Trail.png",
+        "sha256": "cd8f9ace89ccbf092082862518cdc53be7e48388a2156ff7799eb6de4e4c05be"
+      },
+      {
+        "id": "trail_dwarf",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/025-Dwarf_Native_Trail.png",
+        "sha256": "a3663c8ca151d82b93ebadf73030be1e28f688bf94cc1789c0472da9587796ce"
+      },
+      {
+        "id": "trail_mage",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/026-Mage_Native_Trail.png",
+        "sha256": "bdbeaabbc91efcc8b46ad41921531635a34b436a41e1d2e168c49f6fb47e9d35"
+      },
+      {
+        "id": "trail_elf",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/027-Elf_Native_Arrow_Trail.png",
+        "sha256": "3bd9e41c23d9d86913cd0054010b7eb55f63ebd297ed60c5bf9d5559eb24dbbd"
+      },
+      {
+        "id": "selene_Heal",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/028-Selene_Full_Heal.png",
+        "sha256": "3056a744e24001ba6d7d702cbd722371228156b509fa8732b1cf3ba30989d7dc"
+      },
+      {
+        "id": "selene_Protect",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/029-Selene_Full_Protect.png",
+        "sha256": "14ac66e95811ed766d8219ca64b4337bd73fb57c620c47bade2cc467d27c3892"
+      },
+      {
+        "id": "selene_Cleanse",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/030-Selene_Full_Cleanse.png",
+        "sha256": "fe422680bebb03cd7b64bb36c1678b25dee3873b85af7b76a4b7678cb35179d7"
+      },
+      {
+        "id": "elf.magic_archer.storm_arrow",
+        "file": "docs/evidence/vfx-art-improvements-20261113/common/031-Elf_Storm_Arrow_Hit_Composite.png",
+        "sha256": "d937ce9e8229ba2758f0f43fe0c2b2fb23e310315ca30a449c5525d9780ffacc"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/warnings-final": [
+      {
+        "id": "KingShaman.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/001-KingShaman.1.png",
+        "sha256": "fa8cf60707637b9512a712d07e511d0d3feee55f39c8d3e084c97f7e32f771f7"
+      },
+      {
+        "id": "Veyr.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/002-Veyr.4.png",
+        "sha256": "259727b97d74ab158b6e907e328ee25a3f0e320863dfbbcf55edbb8bd565ee5c"
+      },
+      {
+        "id": "Goblin.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/003-Goblin.1.png",
+        "sha256": "2e26b0def331e2b90d663afcfe21404ca876a31c84a9821d2a8e80fbca5f3de2"
+      },
+      {
+        "id": "Ghoul.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/004-Ghoul.2.png",
+        "sha256": "f48c410ecbbd2c741e0c105d493c816eaa96cf94247734c9bacec97da1a9e40d"
+      },
+      {
+        "id": "Orc.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/005-Orc.1.png",
+        "sha256": "7d5a0ed88125f5c5115ea1046bbd2f507ad9b6af944543204b22639e293c04ee"
+      },
+      {
+        "id": "IceWolf.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/006-IceWolf.2.png",
+        "sha256": "9b865c315ca21aba0252b6bbbf712c12714c898a07ace5ffa813dedcfb253c09"
+      },
+      {
+        "id": "Slime.1",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/007-Slime.1.png",
+        "sha256": "ae178e4a8a10929a3bfae66575d15851b8ace59fc6671f1296872d479689fe41"
+      },
+      {
+        "id": "Shaman.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/008-Shaman.2.png",
+        "sha256": "1b077982f36dda834ae82c79d002016d6b7331d67c3568e3762796fed1c6aa2a"
+      },
+      {
+        "id": "Veyr.3",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/009-Veyr.3.png",
+        "sha256": "cdf220bbeecb31f426441a704bbbe47aaa77c47e63f427d80417058fdbffbec1"
+      },
+      {
+        "id": "KingShaman.4",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/010-KingShaman.4.png",
+        "sha256": "483d6e3d5f372243f60394fcb4377ee0d8ea206efae601c325582a0b9bedc15d"
+      },
+      {
+        "id": "CalderaTitan.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/011-CalderaTitan.2.png",
+        "sha256": "f6998e373113f8517a4524c4507f699fac0cc1c557e9ecfc7969c8696fc31de4"
+      },
+      {
+        "id": "LavaSlime.2",
+        "file": "docs/evidence/vfx-art-improvements-20261113/warnings-final/012-LavaSlime.2.png",
+        "sha256": "7e525292f4086a840c924479e1abbf66c9ad7ec99b302e035f569724aad66956"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/support-final": [
+      {
+        "id": "support_Heal",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-final/020-Heal_Pixel_Accent.png",
+        "sha256": "f89cecee33c7ae6339cdcfa2df6d69c18d3a708504917b2bd90a669304ecb743"
+      },
+      {
+        "id": "support_Protect",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-final/021-Protect_Pixel_Accent.png",
+        "sha256": "bc63ff1c7af5954e747f42b51217900374e0d31c76442626aec00f7f73be4a4c"
+      },
+      {
+        "id": "support_Cleanse",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-final/022-Cleanse_Pixel_Accent.png",
+        "sha256": "94017d6d1a89fac53b1ea348d7f8d3d95e47c401385a4b1f1ce5ef3db6eef235"
+      },
+      {
+        "id": "selene_Heal",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-final/028-Selene_Full_Heal.png",
+        "sha256": "3cd71b1a3438459cb83e3e61ff9f8531061c791aa0f113feaf79968e9ee0c037"
+      }
+    ],
+    "docs/evidence/vfx-art-improvements-20261113/support-context-final": [
+      {
+        "id": "support_context.Deepwood.Heal",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-context-final/001-Deepwood_Light_Heal.png",
+        "sha256": "71ae8bc6044956ab13364245d61141d14f1c56021bcb1b61284d1aa1e5e9a19c"
+      },
+      {
+        "id": "support_context.Deepwood.Protect",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-context-final/002-Deepwood_Light_Protect.png",
+        "sha256": "13d13a269ca502e7f5b0fc5c4cb5384f4eefb78c83569583cae4827fe2f1d3f6"
+      },
+      {
+        "id": "support_context.Deepwood.Cleanse",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-context-final/003-Deepwood_Light_Cleanse.png",
+        "sha256": "5abd7c554be9f614b8bdfae44ea14ff1aa115ded828aa204ce0987cbf0672731"
+      },
+      {
+        "id": "support_context.HauntedGraveyard.Heal",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-context-final/004-HauntedGraveyard_Light_Heal.png",
+        "sha256": "2fc2b88fed9fbdf5d2e82b0b04f377a93e9462941cf48a7f7c3495ca2312fcfc"
+      },
+      {
+        "id": "support_context.HauntedGraveyard.Protect",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-context-final/005-HauntedGraveyard_Light_Protect.png",
+        "sha256": "e03a9773914c6a0da091983fbf806e097ebd83fa8dda6cd584df93b362a8c51b"
+      },
+      {
+        "id": "support_context.HauntedGraveyard.Cleanse",
+        "file": "docs/evidence/vfx-art-improvements-20261113/support-context-final/006-HauntedGraveyard_Light_Cleanse.png",
+        "sha256": "d2bac24b7367b36e8640e9cfe441a54707ab6232ab9b2e5aefb7a3ae98dc2427"
+      }
+    ]
+  }
+}
