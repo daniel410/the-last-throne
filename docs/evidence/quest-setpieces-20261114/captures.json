@@ -1,0 +1,49 @@
+{
+  "version": "0.107.1",
+  "sourceCommit": "61c08ec25c384132e199a48d62bbd2fc2b49868c",
+  "mode": "Studio Edit / no player / confirmed journal projection / ClockTime 13 / Brightness 2",
+  "captures": [
+    {
+      "file": "DW-01-fixed.jpg",
+      "sha256": "29f23b3b38a10344852f43c4defd4f240d23e8f309eaa590460efa0d3458b8c5",
+      "camera": [
+        -1450,
+        42,
+        -405
+      ],
+      "lookAt": [
+        -1538,
+        12,
+        -412
+      ]
+    },
+    {
+      "file": "FV-03-fixed.jpg",
+      "sha256": "7fe478c7ce766e68fb42bedb56a268c9352a11fa734372fa0c1a9ec7bc44cfc3",
+      "camera": [
+        185,
+        113,
+        -8750
+      ],
+      "lookAt": [
+        152,
+        102,
+        -8788
+      ]
+    },
+    {
+      "file": "EC-01-fixed.jpg",
+      "sha256": "b9eeaf966833c9193dc71bdfc3c7ee0b927f55fb8b5c0fa02295813249f10dcd",
+      "camera": [
+        -830,
+        151,
+        -11690
+      ],
+      "lookAt": [
+        -859,
+        135,
+        -11737
+      ]
+    }
+  ]
+}

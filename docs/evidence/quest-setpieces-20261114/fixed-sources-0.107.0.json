@@ -1,0 +1,10 @@
+{
+  "version": "0.107.0",
+  "matchedSources": [
+    "src/server/World/CampaignQuestSetpieces.luau",
+    "src/server/World/CampaignWorld.luau",
+    "src/client/CampaignExpansionPresentation.luau",
+    "src/shared/CampaignSceneState.luau"
+  ],
+  "buildSHA256": "0489e654986d1d1cd0ee947a762bc72579a3793f24cd120823949b4bc4d17f54"
+}

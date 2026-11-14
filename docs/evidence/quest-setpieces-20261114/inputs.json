@@ -1,0 +1,7 @@
+{
+  "src/server/World/CampaignQuestSetpieces.luau": "56a2dc570ad37646b4ebe7dd3849e931baf0db7b89860996a8c084312a71a04f",
+  "src/server/World/CampaignWorld.luau": "a8b77192dbdad8a6bb15f63df81e37e97507281a5ace041031225cd4bd3de1cb",
+  "src/client/CampaignExpansionPresentation.luau": "217d0b5a296e2b3660b64764c283fa1b80377980e102cb11ba11a7f7434301b7",
+  "src/shared/CampaignSceneState.luau": "01a0a2f1831943f84b9acf152d081f16c61a63def2e461a58eb62ccff672e566",
+  "tests/quest-setpieces-native.luau": "3caca96319f10baf2dba8884eb4f8ae617f7a3e1e48bc04c767a78a8bb0c2d14"
+}
