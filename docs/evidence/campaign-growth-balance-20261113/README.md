@@ -4,6 +4,7 @@
 
 - [growth.csv](growth.csv): 같은 영웅의 Easy→Hard→Insane→Hell5회, 에픽별 퀘스트/처치/누적XP와 완료 레벨. Easy10/17/23/27/30, 이후60/80/90/95/97/98/99.
 - [easy-combat.csv](easy-combat.csv): 새 Easy 솔로 본편의 체력·피해·인구·실제 무리 최대치.
+- [0.106.1 고정 빌드](build.json)·[입력 일치 검사](fixed-build-check.json): 소스 `4f44f4e63d20e4c423af6dfc4d889b96194a3e61`, 생성 파일 `builds/0.106.1/TheLastThrone-0.106.1.rbxlx`. 변경된22개 소스 모두 빌드 내부와 일치,19,128,218바이트, SHA-256 `5a956b35c8c12973ca0443dd7dcea9c4e852ca3d354b1b22aa2403b08a796d22`. Roblox 게시·릴리스 태그 없음.
 - [Studio Luau 결과](studio-luau.json): 실제 Studio의 격리된 Luau 검사. 소스65개 컴파일, 성장330,657검사·레벨/포인트3,710·원정 화면24·기존 보상2,162검사, 실제 서버 `applyBalance`의 Model 속성7,694조건 통과. live 계정/DataStore·Place 소스 변경 없음.
 - `tests/campaign-growth-v16.spec.lua`:1~4인 개인 XP 보존, 원본 처치ID/Gold 보존, 새/구 경로·재접속 위치, 실제 InventoryRules/AdventureRules로8캠페인 진행, 회차 기록·응답 재시도·상한99·포인트392/98·로드 보존·잘못된 저장 거부.
 

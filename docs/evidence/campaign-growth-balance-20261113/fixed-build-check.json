@@ -1,0 +1,98 @@
+{
+  "version": "0.106.1",
+  "sourceCommit": "4f44f4e63d20e4c423af6dfc4d889b96194a3e61",
+  "path": "builds/0.106.1/TheLastThrone-0.106.1.rbxlx",
+  "sha256": "5a956b35c8c12973ca0443dd7dcea9c4e852ca3d354b1b22aa2403b08a796d22",
+  "bytes": 19128218,
+  "matchedChangedSources": [
+    {
+      "path": "src/server/Inventory/InventoryRules.luau",
+      "sha256": "4d14e28b3fd9a73caad1ad0cef3fd76089f99cddc0b3a942f37bb3ccafb32a73"
+    },
+    {
+      "path": "src/server/Story/DeepwoodService.luau",
+      "sha256": "ae8b3de7fb090a0c97a86aa25354f4d4587e9f9f639964e1abae0f01b6ebe1fa"
+    },
+    {
+      "path": "src/server/World/CampaignCombatRouteWorld.luau",
+      "sha256": "c9ebc0f1069468b034768bd70d149c9ad31773bf5a8d140333d0e38df798f5c4"
+    },
+    {
+      "path": "src/server/World/CampaignRouteClearance.luau",
+      "sha256": "052e32d4f773b37af7bd143538f45eb31ad2511653c035270c3a67e27c02d3ae"
+    },
+    {
+      "path": "src/server/World/CampaignSceneryPlacement.luau",
+      "sha256": "5b261bbe3e492104bc8e3e741dcb9ec4fd260f6e9579cde2a36d138b476e7750"
+    },
+    {
+      "path": "src/server/World/DeepwoodPlaces.luau",
+      "sha256": "eef5903d27580943af9a81b6761e1efdc435f406c3f16d4e71dd1b0b4e0a5666"
+    },
+    {
+      "path": "src/server/World/EpicWorldArt.luau",
+      "sha256": "918acda5724a1212ec9251e4a4fa2f3854bdc8171fe83c2f38336276f8b54ca3"
+    },
+    {
+      "path": "src/server/World/RegionalConceptArt.luau",
+      "sha256": "cc512b3c7b465361e57069ccd9041bca68054e44045ded5ae9bdbc6cf80d6d4c"
+    },
+    {
+      "path": "src/shared/AdventureRules.luau",
+      "sha256": "8ea48e62f954bb387ed39c1d4085b2badd8413a8c27aafd6cb19d23212def7aa"
+    },
+    {
+      "path": "src/shared/CampaignCombatRoutes.luau",
+      "sha256": "f7fe404b1209f1b4755e0bbd265ce57226a37861fb9d9fc1d6da433b83f85c49"
+    },
+    {
+      "path": "src/shared/CampaignOverland.luau",
+      "sha256": "383da34ee6b12fac1ea8e5350ce035392ddb367603269da61d72ac769d7e498b"
+    },
+    {
+      "path": "src/shared/DeepwoodEncounterBalance.luau",
+      "sha256": "377cb73e9592dd54475b7c2b0be3180f365483d310b1d91fe8990ae8a38bf3e9"
+    },
+    {
+      "path": "src/shared/Difficulty.luau",
+      "sha256": "3f6fc6ab08fc7205aba1a4e9c07d172de62503d88443e8f55941d9f98d3d8a5e"
+    },
+    {
+      "path": "src/shared/EncounterPopulation.luau",
+      "sha256": "ca30635dca981f9df1bc4e1d72c971f032e26c79ab65968ee4b48b3158ab2951"
+    },
+    {
+      "path": "src/shared/EncounterSummary.luau",
+      "sha256": "b878e10f82b98f8dee4539302aa82a440d2d5f25e2f99dade0361e91cbeb8d74"
+    },
+    {
+      "path": "src/shared/ExpeditionPresentation.luau",
+      "sha256": "8f9b22d045f9a387705dfa206dfac1935935c4d918126e8eeccc053ad9284851"
+    },
+    {
+      "path": "src/shared/ExpeditionText.luau",
+      "sha256": "450378f5e461c2639fd9eac0e206e86cbc3190ecc87c6ea3d579a7ecaa127bcc"
+    },
+    {
+      "path": "src/shared/HeroProgression.luau",
+      "sha256": "95644f9f1bd5ab75ed2ca42813a01ccf27d426f8242dfff8e89f707a95ffb1ca"
+    },
+    {
+      "path": "src/shared/HeroVitals.luau",
+      "sha256": "01e6e51bf3469b145e10e6bd1bb39a523138fa6e7f3abe284a74cb0fc7cd2061"
+    },
+    {
+      "path": "src/shared/LobbySideQuests.luau",
+      "sha256": "11928c683d2e2b8e9ab57830e69f2066a9aba11d54e4f044348e0e328cfaf88d"
+    },
+    {
+      "path": "src/shared/EasyCampaignTuning.luau",
+      "sha256": "6c94d6c1767e077a7d10adc2d95d3044c1e7377a5d98eb6169f26f9ccd440d34"
+    },
+    {
+      "path": "src/shared/CampaignGrowthBudget.luau",
+      "sha256": "5a537163c64781cc7850a1da29754749a56a74c6ac9eeaa804aa055fb0f3c673"
+    }
+  ],
+  "robloxPublished": false
+}
