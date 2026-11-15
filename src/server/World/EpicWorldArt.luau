@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=22}
+local Art={version=23}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -136,6 +136,7 @@ local copy=Env.asset(parent,hero and 'ForestLandmark'or 'ForestTree',p,h)
    else piece.Color=C(124,162,98)end
   end
  end end
+ return copy
 end
 local function vegetation(parent,c,size,pal,theme,safe,rng,id)
  local m=model(parent,'LayeredVegetation')
@@ -152,11 +153,14 @@ local function vegetation(parent,c,size,pal,theme,safe,rng,id)
     if safe(p,18)and (i+band)%5~=0 then
      local h=theme=='Gloamwood' and rng:NextNumber(42,70)or rng:NextNumber(27,48)
      if theme=='EmberCaldera'then K.rock(m,p+V(0,8,0),V(14,h,18),pal.rock,i+band)
-     else tree(m,p,h,pal,theme,false)end
+     elseif id~='GW-01'then tree(m,p,h,pal,theme,false)end
     end
    end
    task.wait()
   end
+ end
+ if id=='GW-01'then
+  require(script.Parent.GloamwoodVergeVegetation).build(m,c,size,safe,ground,function(at,h)return tree(m,at,h,pal,theme,false)end)
  end
  -- BankVegetation is a material-fused scene, not an individual bush. Repeating
  -- it on one pivot left disconnected foliage over roads and cut terrain.
