@@ -1,15 +1,19 @@
 {
   "Zombie": {
-    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/zombie/textured-review.glb",
-    "sha256": "ea40b559798903bb002cc368cfb5d4881c354a9c63043833024b8d419763442c"
+    "tdPath": "assets/models/zombie-ghoul-refresh-20261115/runtime-r3/zombie/mesh-only.glb",
+    "sha256": "84eedcd53eda90514ad8b22eed3f01371e4149599ac30a9fb9613c16c446a6c7",
+    "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+    "runtimeSha256": "f9b388b08b5654593dd71ed19a47d46b0c364a3fd72305a54fee403fdad4b31f"
   },
   "Skeleton": {
     "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/skeleton/textured-review.glb",
     "sha256": "8535e8e8b0daf61aa76ed52956a34ee35fb4795b92ab97edb823aa9f2c235b79"
   },
   "Ghoul": {
-    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ghoul/textured-review.glb",
-    "sha256": "0dcd8da44aedff12d46c6c553f7433e0108e0c07b7960358e727dbc8e14dc8d3"
+    "tdPath": "assets/models/zombie-ghoul-refresh-20261115/runtime-r3/ghoul/mesh-only.glb",
+    "sha256": "dbda51cdf856bfd097b30052a7e15357fb7ac3ecef5f20491bd6d3ea56e84d2e",
+    "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+    "runtimeSha256": "f9b388b08b5654593dd71ed19a47d46b0c364a3fd72305a54fee403fdad4b31f"
   },
   "Mummy": {
     "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/mummy/textured-review.glb",

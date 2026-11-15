@@ -3,49 +3,54 @@
   "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
   "sourcePath": "assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
   "sourceSha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
-  "runtimeSha256": "acf141586d952c8c5705fe4f06537666f58087709a6f31a5f86388640e9b26fe",
+  "runtimeSha256": "58700b6a8ccb618c0a2dff6fe01e5d7d773a90a6135281705fbf69c1fd7a6e73",
   "permission": "2026-11-03 explicit user request to reuse existing TD 3D models. Published RPG asset access remains to be tested.",
   "models": {
     "Zombie": {
       "template": "zombie",
       "parts": [
-        "LegL",
-        "LegR",
         "ArmL",
         "ArmR",
+        "LegL",
+        "LegR",
         "Body"
       ],
-      "geometrySha256": "bcf22eab61591af33fa7d57ff64856ce0773466b8540439a5b4e1901eee5bd24",
-      "triangles": 4634,
+      "geometrySha256": "8736aeabd3bce86462c1bab755ee50d956c979cb8c642cfb5a91c6b1376fe205",
+      "triangles": 3840,
       "targetHeight": 4.6,
       "pivots": {
-        "LegL": [
-          -0.23068680891001814,
-          0.22000000000000003,
-          -0.1551550101131127
-        ],
-        "LegR": [
-          0.23068680891001814,
-          0.22000000000000003,
-          0.049049706836392704
-        ],
         "ArmL": [
-          -0.4148318631494019,
-          0.7800000000000001,
-          0.09821511619765202
+          -0.3338464428302985,
+          0.7400000000000001,
+          0.19307325995119157
         ],
         "ArmR": [
-          0.46878622258280356,
-          0.7800000000000001,
-          -0.04943090558726672
+          0.3843590836083438,
+          0.7400000000000001,
+          -0.12021678118748973
+        ],
+        "LegL": [
+          -0.20106615898560076,
+          0.26000000000000006,
+          -0.01974377898877845
+        ],
+        "LegR": [
+          0.2025146063437912,
+          0.26,
+          0.01143866687277044
         ],
         "Body": [
-          0.10728451154186341,
-          0.9999999999999999,
-          0.036887242135598436
+          -0.006885737041625234,
+          1,
+          0.11358948783185338
         ]
       },
-      "role": "existing TD undead model"
+      "role": "TD 2026-11-15 refreshed undead model",
+      "sourcePath": "assets/models/zombie-ghoul-refresh-20261115/runtime-v2.rbxmx",
+      "sourceSha256": "f9b388b08b5654593dd71ed19a47d46b0c364a3fd72305a54fee403fdad4b31f",
+      "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+      "permission": "2026-11-15 user requested TD Zombie/Ghoul reuse; published RPG access not yet tested.",
+      "geometryPath": "assets/shared/td-haunted-graveyard/refresh-20261115/zombie/geometry.json"
     },
     "Skeleton": {
       "template": "skeleton",
@@ -91,19 +96,48 @@
     "Ghoul": {
       "template": "ghoul",
       "parts": [
+        "ArmL",
+        "ArmR",
+        "LegL",
+        "LegR",
         "Body"
       ],
-      "geometrySha256": "f5c4804b5b841a2b93e2a4fc3a108de61116168627c43bf31e23788e2a51b7ae",
-      "triangles": 2889,
+      "geometrySha256": "bf1ff8c9028fc6516b38c29867df290d1552e2c7d7c692663b66ec5ddc27ac7f",
+      "triangles": 3464,
       "targetHeight": 4.55,
       "pivots": {
+        "ArmL": [
+          -0.5385401011370714,
+          0.554984347391124,
+          0.2713409099960153
+        ],
+        "ArmR": [
+          0.6016257521307851,
+          0.5800000000000001,
+          0.2810744565197063
+        ],
+        "LegL": [
+          -0.22800983779476036,
+          0.20000000000000007,
+          0.08219096657565667
+        ],
+        "LegR": [
+          0.22800983779476036,
+          0.20000000000000004,
+          0.05069779406799854
+        ],
         "Body": [
-          0.12101382862280424,
-          1.0,
-          -0.06811604806492869
+          0.09592982279913026,
+          1,
+          0.046142760237196656
         ]
       },
-      "role": "existing TD undead model"
+      "role": "TD 2026-11-15 refreshed undead model",
+      "sourcePath": "assets/models/zombie-ghoul-refresh-20261115/runtime-v2.rbxmx",
+      "sourceSha256": "f9b388b08b5654593dd71ed19a47d46b0c364a3fd72305a54fee403fdad4b31f",
+      "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+      "permission": "2026-11-15 user requested TD Zombie/Ghoul reuse; published RPG access not yet tested.",
+      "geometryPath": "assets/shared/td-haunted-graveyard/refresh-20261115/ghoul/geometry.json"
     },
     "Mummy": {
       "template": "mummy",
@@ -337,5 +371,15 @@
       },
       "role": "Veyr uses existing TD Dread Commander model"
     }
+  },
+  "refresh": {
+    "date": "2026-11-15",
+    "kinds": [
+      "Zombie",
+      "Ghoul"
+    ],
+    "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+    "sourceSha256": "f9b388b08b5654593dd71ed19a47d46b0c364a3fd72305a54fee403fdad4b31f",
+    "tool": "tools/refresh-haunted-td-models.py"
   }
 }

@@ -1,0 +1,298 @@
+{
+  "kind": "ghoul",
+  "normalization": {
+    "sourceHeight": 0.6772460043430328,
+    "sourceFeetOrigin": [
+      -0.04443350434303284,
+      -0.3381350040435791,
+      -0.04614250361919403
+    ],
+    "sourceTriangles": 2110
+  },
+  "parts": [
+    {
+      "name": "ArmL",
+      "anchor": "ArmL",
+      "size": [
+        0.21708020227414304,
+        0.5189354039661448,
+        0.3426818199920307
+      ],
+      "localCF": [
+        -0.5385401011370714,
+        0.2955166454080516,
+        0.2713409099960153,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.5385401011370714,
+        0.554984347391124,
+        0.2713409099960153
+      ],
+      "triangles": 300,
+      "sourceSurfaceTriangles": 231,
+      "jointCapTriangles": 69
+    },
+    {
+      "name": "ArmR",
+      "anchor": "ArmR",
+      "size": [
+        0.34325150426157025,
+        0.5709367266671388,
+        0.3621489130394126
+      ],
+      "localCF": [
+        0.6016257521307851,
+        0.2945316366664307,
+        0.2810744565197063,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.6016257521307851,
+        0.5800000000000001,
+        0.2810744565197063
+      ],
+      "triangles": 365,
+      "sourceSurfaceTriangles": 308,
+      "jointCapTriangles": 57
+    },
+    {
+      "name": "LegL",
+      "anchor": "LegL",
+      "size": [
+        0.4560196755895207,
+        0.19855737866510778,
+        0.7382841857977289
+      ],
+      "localCF": [
+        -0.22800983779476036,
+        0.10072131066744618,
+        0.08219096657565667,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.22800983779476036,
+        0.20000000000000007,
+        0.08219096657565667
+      ],
+      "triangles": 404,
+      "sourceSurfaceTriangles": 292,
+      "jointCapTriangles": 112
+    },
+    {
+      "name": "LegR",
+      "anchor": "LegR",
+      "size": [
+        0.4560196755895207,
+        0.20000000000000004,
+        0.5743596286550732
+      ],
+      "localCF": [
+        0.22800983779476036,
+        0.10000000000000002,
+        0.05069779406799854,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.22800983779476036,
+        0.20000000000000004,
+        0.05069779406799854
+      ],
+      "triangles": 381,
+      "sourceSurfaceTriangles": 281,
+      "jointCapTriangles": 100
+    },
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        1.1556521813399856,
+        0.8,
+        0.7599144187544734
+      ],
+      "localCF": [
+        0.09592982279913026,
+        0.6,
+        0.046142760237196656,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.09592982279913026,
+        1,
+        0.046142760237196656
+      ],
+      "triangles": 2014,
+      "sourceSurfaceTriangles": 1648,
+      "jointCapTriangles": 366
+    }
+  ],
+  "triangles": 3464,
+  "maxSourceTriangleAreaError": 7.806255641895632e-18,
+  "cutDiagnostics": [
+    {
+      "cut": "ArmL0",
+      "loops": 2,
+      "capTrianglesEachSide": 66,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0.43,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL3",
+      "loops": 1,
+      "capTrianglesEachSide": 9,
+      "planeNormal": [
+        0,
+        0,
+        1
+      ],
+      "planeOffset": 0.1,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR0",
+      "loops": 3,
+      "capTrianglesEachSide": 50,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.43,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR2",
+      "loops": 1,
+      "capTrianglesEachSide": 19,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.58,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR3",
+      "loops": 3,
+      "capTrianglesEachSide": 30,
+      "planeNormal": [
+        0,
+        0,
+        1
+      ],
+      "planeOffset": 0.1,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "hips",
+      "loops": 10,
+      "capTrianglesEachSide": 99,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.2,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "legs",
+      "loops": 1,
+      "capTrianglesEachSide": 5,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    }
+  ],
+  "partitionProfile": {
+    "arm_x": 0.43,
+    "arm_low": 0,
+    "arm_top": 0.58,
+    "hip": 0.2
+  },
+  "colorManagement": {
+    "viewTransform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "display": "sRGB",
+    "colorMap": "sRGB"
+  },
+  "key": "ghoul",
+  "sourceFile": "assets/models/zombie-ghoul-refresh-20261115/source/ghoul.glb",
+  "sourceSha256": "ec9cd4821307f76be0395884dea369f449a31e8ddf0e369eaf16699772edeb97",
+  "meshOnlySha256": "dbda51cdf856bfd097b30052a7e15357fb7ac3ecef5f20491bd6d3ea56e84d2e",
+  "texturedReviewSha256": "6be31480f009fbda5462f5d2e7473f2be581b44da17baca6f09e6b01917a7247",
+  "colorMapSha256": "eb330435e3191d09f20004c5a8095a863e3c02eba5329d106f2c5e91af0089af"
+}
