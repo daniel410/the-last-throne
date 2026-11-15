@@ -1,6 +1,6 @@
 -- Local story evidence, not a new navigation route or progression state.
 local K=require(script.Parent.EpicEnvironmentKit)
-local M={version=1}
+local M={version=2}
 local V=Vector3.new
 function M.build(parent,chapter,ground)
  local old=parent:FindFirstChild('ScoutsTrailEvidence');if old then old:Destroy()end
@@ -27,7 +27,7 @@ function M.build(parent,chapter,ground)
    local hit,valid=ground(p+side*x*width/2+direction*z*length/2)
    if not valid or math.abs(hit.Y-at.Y)>.025 then return end
   end end
-  local part=K.part(root,name,V(width,.025,length),CFrame.lookAt(at+V(0,.025,0),at+V(0,.025,0)+direction),color,Enum.Material.Ground)
+  local part=K.part(root,name,V(width,.025,length),CFrame.lookAt(at+V(0,.025,0),at+V(0,.025,0)+direction),color,Enum.Material.Ground,'Ball')
   part.Transparency=.16;part.CastShadow=false
   part:SetAttribute('TLTSceneryDistance',150);count+=1
  end
@@ -40,7 +40,11 @@ function M.build(parent,chapter,ground)
  end
  local across=V(-scout.Z,0,scout.X)
  for i=1,10 do
-  mark('ScoutFootprint',origin+scout*(5+i*1.6)+across*(i%2==0 and .65 or -.65),.65,1.25,scout,mud:Lerp(K.palette.Gloamwood.trim,.18))
+  local p=origin+scout*(5+i*1.6)+across*(i%2==0 and .65 or -.65)
+  local color=mud:Lerp(K.palette.Gloamwood.trim,.18)
+  -- Rounded sole and smaller heel leave a readable instep gap.
+  mark('ScoutSole',p+scout*.24,.65,.72,scout,color)
+  mark('ScoutHeel',p-scout*.43,.46,.36,scout,color)
  end
  root:SetAttribute('MarkCount',count);root.Parent=parent
  return root
