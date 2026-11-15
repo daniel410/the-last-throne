@@ -4,6 +4,16 @@ local Players = game:GetService('Players')
 local Teleport = game:GetService('TeleportService')
 local First = game:GetService('ReplicatedFirst')
 local Run = game:GetService('RunService')
+-- Start Riftstorm before StarterPlayerScripts; its controller adopts this same Sound.
+local musicPolicy=require(script.Parent:WaitForChild('DeepwoodMusicPolicy'))
+pcall(function()
+ local service=game:GetService('SoundService')
+ local sound=service:FindFirstChild('TLTBackgroundMusic')
+ if not sound then sound=Instance.new('Sound');sound.Name='TLTBackgroundMusic';sound.Parent=service end
+ if not sound:IsA('Sound') then return end
+ sound.SoundId='rbxassetid://'..musicPolicy.normalId;sound.Looped=true;sound.Volume=musicPolicy.volume
+ if not sound.IsPlaying then sound:Play() end
+end)
 local player = Players.LocalPlayer
 local role = require(script.Parent:WaitForChild('PlaceRole')).resolve(
  game.PlaceId, Run:IsStudio(), workspace:GetAttribute('TLTStudioRole'))

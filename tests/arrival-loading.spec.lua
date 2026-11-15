@@ -68,16 +68,19 @@ local function run(role, incoming, failStream, demandStream, slowGates)
   removed=true
  end
  local teleport = {GetArrivingTeleportGui=function() return incoming and gui or nil end}
- local services={Players={LocalPlayer=player},TeleportService=teleport,ReplicatedFirst=first,RunService=runService}
+ local sound={IsPlaying=false,IsA=function(_,kind)return kind=='Sound'end}
+ function sound:Play()self.IsPlaying=true end
+ local services={SoundService={FindFirstChild=function()return sound end},Players={LocalPlayer=player},TeleportService=teleport,ReplicatedFirst=first,RunService=runService}
  local env=setmetatable({
   game={PlaceId=role=='Battle' and config.battlePlaceId or config.lobbyPlaceId,GetService=function(_,name) return services[name] end},workspace=world,
   script={Parent={WaitForChild=function(_,name) return name end}},
-  require=function(name) if name=='PlaceRole' then return Role end;return {create=function() created=created+1;return gui end} end,
+  require=function(name) if name=='DeepwoodMusicPolicy'then return dofile('src/shared/DeepwoodMusicPolicy.luau')end;if name=='PlaceRole' then return Role end;return {create=function() created=created+1;return gui end} end,
   Enum={CameraType={Custom='Custom'},RaycastFilterType={Exclude='Exclude'}},
   RaycastParams={new=function()return {}end},Vector3={new=function()return pos(0)end},
   task={spawn=function(fn)deferred[#deferred+1]=fn end},
  },{__index=_G})
  assert(loadfile('src/loading/ArrivalLoading.client.luau','t',env))()
+ check(sound.IsPlaying and sound.Looped and sound.SoundId=='rbxassetid://73105938035554' and sound.Volume==.2,'Riftstorm starts during arrival and ordinary lobby')
  if role=='Lobby' and not incoming then
   check(not removed and created==0,'ordinary lobby retains its normal startup')
  else
