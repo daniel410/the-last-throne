@@ -1,6 +1,7 @@
 -- Shared combat vocabulary. The server resolves these definitions before publishing a cast.
 -- This module never changes damage, rewards, ownership, or the stable attack IDs.
-local P={version=1}
+local Mechanics=game and require(script.Parent.EnemyEncounterMechanics)or dofile('src/shared/EnemyEncounterMechanics.luau')
+local P={version=2}
 local rows={
  -- kind = role, weapon, preferred range, retreat range, strafe weight, approach angle
  Slime={'pouncer','gel',3.5,0,.12,0},
@@ -107,7 +108,7 @@ function P.resolve(kind,base,difficulty,healthRatio)
  local profile=P.get(kind);if not profile then return copy(base)end
  local d=copy(base);local mode=P.mode(difficulty);local weapon=weaponShapes[profile.weapon]
  d.weapon=profile.weapon;d.combatProfileVersion=P.version
- d.phase=(profile.boss and healthRatio and healthRatio<=.5)and 2 or 1
+ d.phase=Mechanics.phase(kind,healthRatio)
  d.name=names[d.id]or d.name
  -- A shield and a mandible connect at body reach; neither emits a distant lane.
  if d.id=='SkeletonKnight.2'or d.id=='VenomcoilCentipede.1'then
@@ -151,19 +152,21 @@ function P.resolve(kind,base,difficulty,healthRatio)
  -- Easy keeps a longer response/opening. Later modes preserve those hard floors.
  if mode.tier==1 then d.windup=d.windup+.12;d.recovery=d.recovery+.1 end
  d.windup=math.max(1,d.windup);d.recovery=math.max(.8,d.recovery)
- d.cooldown=math.max(2,d.cooldown*mode.cooldown*(d.phase==2 and .94 or 1))
- if d.phase==2 and d.shape=='projectile'and d.fan>1 then d.spread=math.min(58,d.spread+6)end
+ d.cooldown=math.max(2,d.cooldown*mode.cooldown)
+ Mechanics.apply(kind,d,mode.tier,healthRatio)
  d.pulses=math.min(3,d.pulses);d.fan=math.min(3,d.fan)
  d.active=(d.pulses-1)*d.interval+(d.shape=='projectile'and d.range/d.speed or d.motion=='dash'and .45 or .22)
  return d
 end
 function P.pulseGeometry(definition,pulse)
  local d=copy(definition)
- if d.spellStyle=='expandingRing'and d.pulses>1 then
+ if not d.pulseShapes and d.spellStyle=='expandingRing'and d.pulses>1 then
   local progress=math.max(0,math.min(1,(pulse-1)/(d.pulses-1)))
   d.radius=definition.radius*(.55+.45*progress)
   d.innerRadius=math.max(1,d.radius-2.5)
  end
- return d
+ return Mechanics.pulseGeometry(d,pulse)
 end
+function P.phase(kind,health)return Mechanics.phase(kind,health)end
+function P.signature(kind)return Mechanics.get(kind)end
 return P

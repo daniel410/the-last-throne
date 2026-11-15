@@ -1,0 +1,80 @@
+[
+  {
+    "suite": "enemy-patterns",
+    "exit": 0,
+    "stdout": "enemy-patterns: 3717 checks PASS;50 kinds/23 bosses, geometry, version8/9 stats/rewards\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-combat-profiles",
+    "exit": 0,
+    "stdout": "enemy-combat-profiles: 59598 checks PASS; 50 species/23 bosses, weapon spacing, four modes, finite elemental pulses\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-combat-tactics",
+    "exit": 0,
+    "stdout": "enemy-combat-tactics: 7212 checks PASS\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-encounter-mechanics",
+    "exit": 0,
+    "stdout": "enemy-encounter-mechanics: 23283 checks PASS; 23 authored three-phase bosses, 27 signatures, solo gaps, real punish windows\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-pack-rules",
+    "exit": 0,
+    "stdout": "enemy-pack-rules: 1366 checks PASS; finite pressure/support bounds and side-specific punish windows\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-affliction-rules",
+    "exit": 0,
+    "stdout": "enemy-affliction-rules: 10013 checks PASS\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-afflictions",
+    "exit": 0,
+    "stdout": "enemy-afflictions: 283 checks PASS; source/target lifetime, defenses, raw budget, finite non-stacking effects and bounded ticks\n",
+    "stderr": ""
+  },
+  {
+    "suite": "difficulty-balance",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "lua: tests/difficulty-balance.spec.lua:4: v1 completion and materials remain pinned\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/difficulty-balance.spec.lua:4: in local 'check'\n\ttests/difficulty-balance.spec.lua:74: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "suite": "party-story",
+    "exit": 0,
+    "stdout": "Party story and final boss: 3693 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "suite": "boss-pressure-boost",
+    "exit": 0,
+    "stdout": "Boss pressure boost: 392158 checks passed; 23 boss kinds\n",
+    "stderr": ""
+  },
+  {
+    "suite": "deepwood-bosses",
+    "exit": 0,
+    "stdout": "Deepwood bosses: 96 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "suite": "monster-damage-tuning",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "lua: tests/monster-damage-tuning.spec.lua:6: old journals remain supported, unknown versions rejected\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/monster-damage-tuning.spec.lua:6: in local 'check'\n\ttests/monster-damage-tuning.spec.lua:38: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "suite": "boss-combat-tuning",
+    "exit": 0,
+    "stdout": "Boss combat tuning: 392158 checks passed; 23 boss kinds\n",
+    "stderr": ""
+  }
+]

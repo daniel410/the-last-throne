@@ -1,18 +1,12 @@
 -- Server-only finite attacks. No tasks, client hit claims, or live projectiles survive cancellation.
 local Geometry=require(game:GetService('ReplicatedStorage').Shared.EnemyAttackGeometry)
-local Profiles=require(game:GetService('ReplicatedStorage').Shared.EnemyCombatProfiles)
+local Frame=require(game:GetService('ReplicatedStorage').Shared.EnemyAttackFrame)
 local HttpService=game:GetService('HttpService')
 local R={}
 local function flat(v)return Vector3.new(v.X,0,v.Z)end
-function R.center(attack,pulse)
- local d=attack.pattern
- if d.shape=='circle'then return attack.aim end
- if d.shape=='trail'then
-  local right=Vector3.new(-attack.direction.Z,0,attack.direction.X)
-  return attack.aim+right*((pulse-(d.pulses+1)/2)*d.radius*2.5)
- end
- return attack.origin
-end
+function R.frame(attack,pulse)return Frame.resolve(attack,pulse)end
+function R.center(attack,pulse)local _,center=R.frame(attack,pulse);return center end
+
 function R.cancel(enemy,emit)
  local a=enemy.attack
  if a and a.pattern then emit({kind='cancel',model=enemy.model,sequence=enemy.attackSeq});enemy.model:SetAttribute('K0PatternId',nil);enemy.model:SetAttribute('K0PatternDefinition',nil);enemy.model:SetAttribute('K0PatternCastOrigin',nil)end
@@ -41,7 +35,7 @@ function R.begin(enemy,target,pattern,current,emit)
 end
 function R.step(enemy,current,targets,ctx)
  local a=enemy.attack;local d=a.pattern;local elapsed=current-a.started
- local function hit(target,pulse,origin,impact)
+ local function hit(target,pulse,origin,impact,direction)
   if enemy.attack~=a or not ctx.valid(enemy,target) then return end
   a.pulseHits=a.pulseHits or {};a.pulseHits[pulse]=a.pulseHits[pulse] or {}
   if a.pulseHits[pulse][target.character] then return end
@@ -51,35 +45,33 @@ function R.step(enemy,current,targets,ctx)
   local definition=table.clone(a.definition)
   local budget=math.max(0,math.floor(a.definition.damage))
   definition.damage=math.floor(budget*pulse/d.pulses)-math.floor(budget*(pulse-1)/d.pulses)
-  local sample={definition=definition,direction=a.direction,origin=origin,hits={},geometryChecked=true,pattern=d,
+  local sample={definition=definition,direction=direction or a.direction,origin=origin,hits={},geometryChecked=true,pattern=d,
    impact=impact,pulse=pulse,sequence=enemy.attackSeq,extraRecovery=0}
   ctx.hit(enemy,target,sample,current)
   a.extraRecovery=math.max(a.extraRecovery or 0,sample.extraRecovery or 0)
  end
  -- Delayed frames may advance an existing projectile but never replay an old contact pulse.
  while a.fired<d.pulses and elapsed>=d.windup+a.fired*d.interval do
+  if enemy.attack~=a then return end
   local pulse=a.fired+1;a.fired=pulse
   local due=d.windup+(pulse-1)*d.interval
   if elapsed-due<=.22 then
    a.sampledActive=true
-   local center=R.center(a,pulse)
-   local geometry=Profiles.pulseGeometry(d,pulse)
-   if d.shape=='projectile'then
-    for i=1,d.fan do
-     local yaw=math.rad(d.fan==1 and 0 or (i-(d.fan+1)/2)*d.spread/(d.fan-1))
-     local dir=CFrame.Angles(0,yaw,0):VectorToWorldSpace(a.direction)
-     local origin=a.castOrigin
-     local towards=a.aim+Vector3.new(0,1,0)-origin
-     if towards.Magnitude>.01 then dir=CFrame.Angles(0,yaw,0):VectorToWorldSpace(towards.Unit)end
-     table.insert(a.projectiles,{position=origin,direction=dir,distance=0,pulse=pulse,shot=i,at=current})
+   local geometry,center,pulseDirection=R.frame(a,pulse)
+   if geometry.shape=='projectile'then
+    for i=1,geometry.fan do
+     local yaw=math.rad(geometry.fan==1 and 0 or (i-(geometry.fan+1)/2)*geometry.spread/(geometry.fan-1))
+     local dir=CFrame.Angles(0,yaw,0):VectorToWorldSpace(pulseDirection)
+     local origin=center
+     table.insert(a.projectiles,{position=origin,direction=dir,distance=0,pulse=pulse,shot=i,at=current,geometry=geometry})
      ctx.emit({kind='projectile',model=enemy.model,sequence=enemy.attackSeq,id=d.id,origin=origin,direction=dir,at=workspace:GetServerTimeNow(),pulse=pulse,shot=i})
     end
    elseif d.motion~='dash'then
-    ctx.emit({kind='pulse',model=enemy.model,sequence=enemy.attackSeq,id=d.id,position=center,at=workspace:GetServerTimeNow(),pulse=pulse})
-    local right=Vector3.new(-a.direction.Z,0,a.direction.X)
+    ctx.emit({kind='pulse',model=enemy.model,sequence=enemy.attackSeq,id=d.id,position=center,direction=pulseDirection,at=workspace:GetServerTimeNow(),pulse=pulse})
+    local right=Vector3.new(-pulseDirection.Z,0,pulseDirection.X)
     for _,target in ipairs(targets)do
      local delta=target.root.Position-center
-     if Geometry.contains(geometry.shape,delta:Dot(right),delta:Dot(a.direction),delta.Y,geometry.range,geometry.width,geometry.radius,geometry.innerRadius,geometry.angle)then hit(target,pulse,center,target.root.Position)end
+     if Geometry.contains(geometry.shape,delta:Dot(right),delta:Dot(pulseDirection),delta.Y,geometry.range,geometry.width,geometry.radius,geometry.innerRadius,geometry.angle)then hit(target,pulse,center,target.root.Position,pulseDirection)end
     end
    end
   end
@@ -112,7 +104,7 @@ function R.step(enemy,current,targets,ctx)
   end
  end
  for i=#a.projectiles,1,-1 do
-  local p=a.projectiles[i];local step=math.min(d.range-p.distance,d.speed*math.max(0,current-p.at));p.at=current
+  local p=a.projectiles[i];local g=p.geometry or d;local step=math.min(g.range-p.distance,g.speed*math.max(0,current-p.at));p.at=current
   local last=p.position+p.direction*step;local wall=ctx.raycast(p.position,last,enemy)
   if wall then last=wall.Position end
   local closest,closestT=nil,math.huge
@@ -124,7 +116,7 @@ function R.step(enemy,current,targets,ctx)
   local remove=wall~=nil
   if closest then hit(closest,p.pulse,p.position,closest.root.Position);remove=true end
   p.distance+=step;p.position=last
-  if p.distance>=d.range then remove=true end
+  if p.distance>=g.range then remove=true end
   if remove then
    ctx.emit({kind='projectileEnd',model=enemy.model,sequence=enemy.attackSeq,id=d.id,pulse=p.pulse,shot=p.shot,position=closest and closest.root.Position+Vector3.yAxis or last})
    table.remove(a.projectiles,i)

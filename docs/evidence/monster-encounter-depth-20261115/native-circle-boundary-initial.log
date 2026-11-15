@@ -1,0 +1,10 @@
+ENEMY_PATTERN_NATIVE {"checks":218936,"scope":"isolated engine modules; no accounts/normal gameplay/device acceptance","modelParts":16,"actions":146,"kinds":50}
+ENEMY_COMBAT_NATIVE 3685 checks PASS; 584 resolved casts
+ENEMY_COMBAT_PRESENTATION_NATIVE {"attacks":584,"checks":15904}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:3032: heart-cycle circle is centered on the boss, not the locked target
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:3032
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

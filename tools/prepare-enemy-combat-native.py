@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--asset-root', type=Path, default=root)
 args = parser.parse_args()
 asset_root = args.asset_root.resolve()
-out = Path('/tmp/tlt-enemy-combat-20261115')
+out = Path('/tmp/tlt-enemy-encounter-depth')
 out.mkdir(exist_ok=True)
 
 def modules(folder):
@@ -32,12 +32,12 @@ project = {'name': 'EnemyCombatQA', 'tree': {'$className': 'DataModel',
 project['tree']['ServerStorage'] = {'GloamwoodMeshyModels': {'$path': str(asset_root / 'assets/models/venomcoil-king-v2/runtime.rbxm')}}
 (out / 'qa.project.json').write_text(json.dumps(project, indent=2) + '\n')
 subprocess.run(['rojo', 'build', str(out / 'qa.project.json'), '-o', str(out / 'qa.rbxlx')], check=True)
-tests = ['tests/enemy-combat-native.luau', 'tests/enemy-combat-presentation-native.luau', 'tests/enemy-combat-movement-cases.luau']
+tests = ['tests/enemy-combat-native.luau', 'tests/enemy-combat-presentation-native.luau', 'tests/enemy-combat-movement-cases.luau','tests/enemy-pulse-geometry-native.luau','tests/enemy-mechanic-effects-native.luau','tests/enemy-encounter-depth-cases.luau','tests/enemy-encounter-runtime-native.luau','tests/enemy-direction-motion-native.luau']
 for tool in ['assemble-enemy-pattern-test.py', 'assemble-enemy-pattern-service-test.py']:
     subprocess.run(['python3', str(root / 'tools' / tool)], cwd=root, check=True)
 parts = [Path('/tmp/tlt-enemy-patterns-native.luau').read_text(),
          (root / tests[0]).read_text(), (root / tests[1]).read_text(),
-         Path('/tmp/tlt-enemy-pattern-service-native.luau').read_text()]
+         (root / tests[3]).read_text(),(root / tests[4]).read_text(),Path('/tmp/tlt-enemy-pattern-service-native.luau').read_text(),(root / tests[6]).read_text(),(root / tests[7]).read_text()]
 (out / 'all-native.luau').write_text('\n'.join('do\n' + code + '\nend' for code in parts) + "\nprint('ENEMY_COMBAT_ALL_PASS')\n")
 paths = list((root / 'src').rglob('*.luau')) + [root / name for name in tests]
 asset = asset_root / 'assets/models/venomcoil-king-v2/runtime.rbxm'

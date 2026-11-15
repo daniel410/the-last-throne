@@ -1,0 +1,18 @@
+{
+  "baselineCommit": "e96a70e712e044d0161406ae0cc29746adab29a1",
+  "baselineResults": [
+    {
+      "suite": "difficulty-balance",
+      "exit": 1,
+      "stderr": "lua: tests/difficulty-balance.spec.lua:4: v1 completion and materials remain pinned\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/difficulty-balance.spec.lua:4: in local 'check'\n\ttests/difficulty-balance.spec.lua:74: in main chunk\n\t[C]: in ?\n",
+      "stdout": ""
+    },
+    {
+      "suite": "monster-damage-tuning",
+      "exit": 1,
+      "stderr": "lua: tests/monster-damage-tuning.spec.lua:6: old journals remain supported, unknown versions rejected\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/monster-damage-tuning.spec.lua:6: in local 'check'\n\ttests/monster-damage-tuning.spec.lua:38: in main chunk\n\t[C]: in ?\n",
+      "stdout": ""
+    }
+  ],
+  "scope": "Unchanged baseline reproduces the same two pre-existing assertions; no expectation changed by this task"
+}

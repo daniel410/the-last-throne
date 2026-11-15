@@ -28,6 +28,8 @@ local Patterns=require(ReplicatedStorage.Shared.EnemyPatterns)
 local CombatProfiles=require(ReplicatedStorage.Shared.EnemyCombatProfiles)
 local CombatTactics=require(ReplicatedStorage.Shared.EnemyCombatTactics)
 local PatternRuntime=require(script.Parent.EnemyPatternRuntime)
+local Pack=require(script.Parent.EnemyPackRuntime)
+local Afflictions=require(script.Parent.EnemyAfflictions)
 local patternRemote
 local storyTargetValidator=function()return false end
 local function patternEmit(message)if patternRemote then patternRemote:FireAllClients(message)end end
@@ -112,25 +114,22 @@ end
 
 
 local function movementRate(state)
- return state.derived and state.derived.moveRate or 1
+ return (state.derived and state.derived.moveRate or 1)*Afflictions.movementMultiplier(state,now())
 end
 
-local function setPlayerState(state, name)
-	if state.mode == name then
-		return
-	end
-	state.mode = name
-	state.character:SetAttribute("K0State", name)
-	local speed = state.sprinting and Config.SprintSpeed or Config.WalkSpeed
-	if name ~= "Idle" then state.sprinting = false; state.character:SetAttribute("K0Sprinting", false) end
-	if name == "Attack" then
-		speed = state.attack and state.attack.definition.braced and 0 or Config.AttackSpeed
-	elseif name == "Block" then
-		speed = Config.GuardSpeed
-	elseif name == "Dodge" or name == "Stunned" or name == "Dead" then
-		speed = 0
-	end
-	state.humanoid.WalkSpeed = speed * movementRate(state)
+local function refreshWalkSpeed(state)
+ local name=state.mode
+ local speed=state.sprinting and Config.SprintSpeed or Config.WalkSpeed
+ if name=='Attack'then speed=state.attack and state.attack.definition.braced and 0 or Config.AttackSpeed
+ elseif name=='Block'then speed=Config.GuardSpeed
+ elseif name=='Dodge'or name=='Stunned'or name=='Dead'then speed=0 end
+ state.humanoid.WalkSpeed=speed*movementRate(state)
+end
+local function setPlayerState(state,name)
+ if state.mode==name then return end
+ state.mode=name;state.character:SetAttribute('K0State',name)
+ if name~='Idle'then state.sprinting=false;state.character:SetAttribute('K0Sprinting',false)end
+ refreshWalkSpeed(state)
 end
 
 local function releaseDodgeOwnership(state)
@@ -209,6 +208,7 @@ local function alive(state)
 end
 
 local function markDead(state)
+ Afflictions.clearTarget(state,now())
 	if playerStates[state.player] ~= state or state.mode == "Dead" then
 		return
 	end
@@ -232,6 +232,11 @@ local function enemyAlive(enemy)
 	return enemy.model.Parent == enemyFolder and enemy.humanoid.Health > 0 and enemy.root.Parent ~= nil
 end
 
+local function packContext()
+ return {enemies=enemyStates,alive=enemyAlive,emit=patternEmit,
+  visible=function(source,target)return unobstructed(source.root.Position,target.root.Position,source.model,target.model)end}
+end
+
 local function setEnemyState(enemy, value)
 	if enemy.mode ~= value then
 		enemy.mode = value
@@ -245,7 +250,10 @@ local function stopEnemy(enemy)
 	end
 end
 
-local function resetEnemyAttack(enemy)
+local function resetEnemyAttack(enemy,completed)
+ if not completed then
+  Afflictions.cancelSource(enemy,now());Pack.cancel(enemy,now(),packContext())
+ end
  PatternRuntime.cancel(enemy,patternEmit)
  enemy.model:SetAttribute('K0EnemyGuardUntil',nil)
 	enemy.attack = nil
@@ -702,7 +710,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	if not attack.geometryChecked and not Rules.withinCone(delta.Magnitude, math.abs(target.Y - origin.Y), dot, attack.definition.range, Config.AttackHeight, attack.definition.angle) then
 		return
 	end
-	if not unobstructed(origin, target, enemy.model, playerState.character) then
+	if not attack.afflictionTick and not unobstructed(origin, target, enemy.model, playerState.character) then
 		return
 	end
 	attack.hits[playerState.character] = true
@@ -717,6 +725,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 		updateFeedback(playerState, "Dodged")
 		return
 	elseif result == "PerfectBlock" then
+  if attack.afflictionTick then playerImpact(enemy,playerState,attack,'PerfectBlock',0,0);return end
 		playerState.counter = { bonus = 0.50, expires = current + Config.Guard.counterDuration }
 		if current >= enemy.lastPerfectResponse + 0.6 then
 			enemy.lastPerfectResponse = current
@@ -729,7 +738,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 		playerImpact(enemy,playerState,attack,"PerfectBlock",0,0)
 		updateFeedback(playerState, "PerfectBlock")
 		return
-	elseif result == "Blocked" then
+	elseif result == "Blocked" and not attack.afflictionTick then
 		if not playerState.counter or playerState.counter.bonus < 0.25 or playerState.counter.expires <= current then
 			playerState.counter = { bonus = 0.25, expires = current + Config.Guard.counterDuration }
 		else
@@ -740,7 +749,8 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	if playerState.guardedUntil and current<playerState.guardedUntil then multiplier=multiplier*(1-playerState.guardReduction) end
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
 	if enemy.attackDownUntil and current<enemy.attackDownUntil then multiplier=multiplier*enemy.attackDownMultiplier end
-	local damage = math.max(1, math.floor(attack.definition.damage * multiplier * Effects.incomingMultiplier(playerState.equipment and playerState.equipment.specialEffects) + 0.5))
+	local direct,reservation=Afflictions.split(attack,attack.definition.damage,playerState,current)
+ local damage = math.max(1, math.floor(direct * multiplier * Effects.incomingMultiplier(playerState.equipment and playerState.equipment.specialEffects) + 0.5))
 	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0) - (playerState.derived and playerState.derived.armor or 0))
 	local shieldAbsorbed=0
 	if playerState.branchShield and playerState.branchShield.expires>current then
@@ -754,7 +764,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	local applied = math.max(0, healthBefore - math.max(0, playerState.humanoid.Health))
  playerImpact(enemy,playerState,attack,result=="Blocked" and "Blocked" or applied>0 and "Hit" or shieldAbsorbed>0 and "Absorbed" or "Prevented",applied,shieldAbsorbed)
 	if applied > 0 then
-  if result ~= "Blocked" and playerState.humanoid.Health > 0 then
+  if not attack.afflictionTick and result ~= "Blocked" and playerState.humanoid.Health > 0 then
    playerState.queued, playerState.counter = nil, nil
    clearAction(playerState)
    resetCombo(playerState)
@@ -769,6 +779,8 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 		playerState.character:SetAttribute("K0HurtMaxHealth", playerState.humanoid.MaxHealth)
 		playerState.character:SetAttribute("K0HurtAt", workspace:GetServerTimeNow())
 	end
+ Afflictions.afterHit(enemy,playerState,attack,current,reservation,{applied=applied,
+  result=result=='Blocked'and 'Blocked'or applied>0 and 'Hit'or 'Prevented',absorbed=shieldAbsorbed})
 	playerState.lastEquipmentCombat = current
 	if playerState.humanoid.Health <= 0 then
 		markDead(playerState)
@@ -806,6 +818,7 @@ local function damageEnemy(state, enemy, attack, current)
   and facingDot(enemy.root.Position,enemy.root.CFrame.LookVector,state.root.Position)>.5
  local multiplier = (guarded and .7 or 1)*(enemy.mode == "Exposed" and 1.15 or 1)
 		* Rules.defenseBreakMultiplier(current, enemy.defenseBreakUntil, Config.Skills.knight[3].defenseBreakDamageMultiplier)
+  * Pack.weaknessMultiplier(enemy,state.root.Position,current)*Afflictions.outgoingMultiplier(state,current)
 	if enemy.marks and enemy.marks[state] and current < enemy.marks[state] then multiplier *= 1.2 end
 	local d=attack.definition
 	local ownedMark=enemy.branchMarks and enemy.branchMarks[state.heroId]
@@ -835,6 +848,7 @@ local function damageEnemy(state, enemy, attack, current)
 	-- must not be sampled by the same swing or projectile that made it.
 	enemy.lethalHitSet = enemy.kind == "Slime" and not enemy.splitGroup and damage >= healthBefore and attack.hits or nil
 	if storyDamageHandler and enemy.model:GetAttribute("DeepwoodEncounter") then damage=storyDamageHandler(enemy.model,damage) end
+	damage=Pack.absorb(enemy,damage,current,packContext())
 	enemy.humanoid:TakeDamage(damage)
 	if enemy.humanoid.Health > 0 then enemy.lethalHitSet = nil end
 	local applied = math.max(0, healthBefore - math.max(0, enemy.humanoid.Health))
@@ -849,7 +863,14 @@ local function damageEnemy(state, enemy, attack, current)
 				classId = state.baseClassId, skillId = skillId})
 	end
 	if enemy.humanoid.Health > 0 then
-  if applied > 0 then interruptEnemyOnHit(enemy, attack, current) end
+  if applied > 0 then
+   if Pack.interrupt(enemy,current,packContext(),attack.resolvedSampleAt or current)then
+    Afflictions.cancelSource(enemy,current)
+    enemy.pathToken+=1;enemy.pathPending=false;enemy.hitReactUntil=current+.4
+    enemy.model:SetAttribute('K0EnemyHitUntil',workspace:GetServerTimeNow()+.4)
+    enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,'Staggered')
+   else interruptEnemyOnHit(enemy,attack,current)end
+  end
 		if applied>0 and d.advanced then
    applyProvokeDebuffs(enemy,d,current)
 			if d.mark then enemy.branchMarks=enemy.branchMarks or {};enemy.branchMarks[state.heroId]={kind=d.mark,expires=current+8};enemy.model:SetAttribute("K0BranchMark",d.mark) end
@@ -1227,7 +1248,7 @@ local function processCombatSamples(current, requiredState)
 		local attack = enemy.attack
 		if enemyAlive(enemy) and attack and attack.pattern then
    needsTargets=true;table.insert(pending,{enemy=enemy,attack=attack,pattern=true,at=current,order=1,id=enemy.id})
-  elseif enemyAlive(enemy) and attack
+  elseif enemyAlive(enemy) and attack and not attack.support
 			and Rules.shouldSampleHitWindow(current - attack.started, attack.definition, attack.sampledActive) then
 			needsTargets = true
 			table.insert(pending, { enemy = enemy, attack = attack,
@@ -1340,6 +1361,11 @@ local function processCombatSamples(current, requiredState)
 			end
 		end
 	end
+ Afflictions.step(current,{hit=applyPlayerHit,valid=function(e,state)
+  return enemyStates[e.model]==e and enemyAlive(e)and alive(state)
+   and storyTargetValidator(e.model,state.player,state.heroId)
+   and (validPlayers[state]==true or checkMovement(state,current))
+ end})
 	return validPlayers
 end
 
@@ -1408,6 +1434,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 	if state.mana and current >= state.manaRegenAt and state.mode ~= "Dead" then
 		setMana(state, state.mana + (state.maxMana or Config.MaxMana) * Config.ManaRegenFraction * (state.baseClassId=="mage" and Config.MageManaRegenMultiplier or state.baseClassId=="elf" and Config.ElfManaRegenMultiplier or 1) * math.min(dt, 0.25))
 	end
+	refreshWalkSpeed(state)
 	return consumedAction
 end
 
@@ -1423,6 +1450,14 @@ local function closestTarget(enemy, current)
 	end
 	local closest, closestDistance
  local function allowed(state)return not enemy.patternProfile or storyTargetValidator(enemy.model,state.player,state.heroId)end
+ local function trackedTarget(candidate,distance)
+  local tracked=enemy.target
+  if enemy.patternProfile and candidate and tracked and tracked~=candidate and alive(tracked)and allowed(tracked)then
+   local delta=horizontal(tracked.root.Position-enemy.root.Position).Magnitude
+   if delta<=distance*1.25+1 and horizontal(tracked.root.Position-enemy.spawnPosition).Magnitude<=enemy.config.leashRange then return tracked,delta end
+  end
+  return candidate,distance
+ end
 	if enemy.attackers then
 		for attacker, expires in pairs(enemy.attackers) do
 			if current >= expires or not alive(attacker) or not allowed(attacker) then
@@ -1434,7 +1469,7 @@ local function closestTarget(enemy, current)
 		end
 		-- A validated hit is recognized even outside passive detection range.
 		-- stepEnemy separately keeps the enemy inside its own spawn leash.
-		if closest then return closest, closestDistance end
+		if closest then return trackedTarget(closest,closestDistance)end
 	end
 	for _, playerState in pairs(playerStates) do
 		if alive(playerState) and allowed(playerState) then
@@ -1447,7 +1482,7 @@ local function closestTarget(enemy, current)
 			end
 		end
 	end
-	return closest, closestDistance
+	return trackedTarget(closest,closestDistance)
 end
 
 local function moveEnemy(enemy, destination, current, forcePath)
@@ -1544,6 +1579,8 @@ end
 
 local function beginEnemyAttack(enemy, target, current, preparedPattern)
  if enemy.patternProfile then
+  if not Pack.canAttack(enemy,target,current,enemyStates)then return end
+  enemy.target=target
   local distance=horizontal(target.root.Position-enemy.root.Position).Magnitude
   local definition=preparedPattern or chooseEnemyPattern(enemy,target,current)
   if not definition then return end
@@ -1563,6 +1600,8 @@ local function beginEnemyAttack(enemy, target, current, preparedPattern)
   -- Preserve the published boss tempo modifier, with an explicit minimum opening.
   local tempo=enemy.model:GetAttribute('StoryAttackSpeed')or 1
   selected.recovery=math.max(definition.heavy and 1.1 or .8,(definition.windup+definition.active+definition.recovery)/tempo-definition.windup-definition.active)
+  if enemy.packRally and current<enemy.packRally.expires then selected.cooldown=selected.cooldown*.85 end
+  selected.recovery=math.max(selected.recovery,selected.weaknessDuration or 0)
   Patterns.commit(enemy.patternHistory,selected,current)
   PatternRuntime.begin(enemy,target,selected,current,patternEmit)
   enemy.model:SetAttribute('K0EnemyGuardUntil',selected.guard and workspace:GetServerTimeNow()+selected.windup or nil)
@@ -1619,6 +1658,9 @@ local function resetEnemy(enemy, restoreHealth)
  enemy.model:SetAttribute("K0EnemyHitUntil", nil)
 	enemy.pattern = 0
  enemy.patternHistory={}
+ Pack.clearBuff(enemy,'Ward');Pack.clearBuff(enemy,'Rally')
+ enemy.mechanicWeakness=nil;enemy.model:SetAttribute('K0ExposedUntil',nil);enemy.model:SetAttribute('K0ExposedSide',nil)
+ enemy.supportReady=nil;enemy.lastSupportCount=nil
  enemy.repositionUntil=nil;enemy.repositionReady=nil
  enemy.tacticalGoal=nil;enemy.tacticalIntent=nil
  enemy.humanoid.AutoRotate=true
@@ -1641,10 +1683,11 @@ local function stepEnemy(enemy, current, dt)
   enemy.attackDownUntil,enemy.attackDownMultiplier=nil,nil
   enemy.model:SetAttribute('K0AttackDownUntil',nil);enemy.model:SetAttribute('K0AttackDownMultiplier',nil)
  end
- if (enemy.model:GetAttribute('StoryPauseUntil') or 0)>workspace:GetServerTimeNow() then enemy.knockback=nil;if enemy.attack then resetEnemyAttack(enemy)end;stopEnemy(enemy);return end
+ if (enemy.model:GetAttribute('StoryPauseUntil')or 0)>workspace:GetServerTimeNow()or enemy.model:GetAttribute('StoryPacified')then enemy.knockback=nil;resetEnemyAttack(enemy);stopEnemy(enemy);return end
 	if not enemyAlive(enemy) then
 		return
 	end
+ Pack.step(enemy,current,packContext())
  if EnemyKnockback.step(enemy, current) then return end
 	if enemy.gravityUntil and current >= enemy.gravityUntil then
 		enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
@@ -1679,6 +1722,11 @@ local function stepEnemy(enemy, current, dt)
 		enemy.posture = math.min(enemy.config.posture, enemy.posture + enemy.config.posture * Config.Enemy.PostureRegenFraction * math.min(dt, 0.25))
 		enemy.model:SetAttribute("K0Posture", math.floor(enemy.posture * 10 + 0.5) / 10)
 	end
+ if enemy.supportCast then
+  local phase=Pack.stepSupport(enemy,current,packContext())
+  stopEnemy(enemy);setEnemyState(enemy,phase=='Done'and 'Idle'or phase)
+  return
+ end
 	if enemy.attack then
 		local attack = enemy.attack
 		local elapsed = current - attack.started
@@ -1701,10 +1749,13 @@ local function stepEnemy(enemy, current, dt)
 		elseif phase == "Active" then
 			setEnemyState(enemy, "Active")
 		elseif elapsed < definition.windup + definition.active + definition.recovery + attack.extraRecovery then
+   if attack.pattern and definition.weaknessDuration and not attack.weaknessStarted then
+    attack.weaknessStarted=true;Pack.expose(enemy,current,definition.weaknessDuration,definition.weaknessSide,attack.direction,patternEmit)
+   end
 			setEnemyState(enemy, "Recovery")
 			enemy.model:SetAttribute("K0Telegraph", "None")
 		else
-			resetEnemyAttack(enemy)
+			resetEnemyAttack(enemy,true)
 			enemy.reconsiderAt = current + (enemy.kind == "Ogre" and Config.Enemy.OgreReconsider or 0)
 			setEnemyState(enemy, "Idle")
 		end
@@ -1713,6 +1764,9 @@ local function stepEnemy(enemy, current, dt)
 	local target, distance = closestTarget(enemy, current)
 	if not target or horizontal(enemy.root.Position - enemy.spawnPosition).Magnitude > enemy.config.leashRange then
 		enemy.target = nil
+  if not enemy.returning then
+   enemy.returning=true;Afflictions.cancelSource(enemy,current);Pack.cancel(enemy,current,packContext())
+  end
   enemy.humanoid.AutoRotate=true
 		if horizontal(enemy.root.Position - enemy.spawnPosition).Magnitude > 2 then
 			setEnemyState(enemy, "Chase")
@@ -1729,7 +1783,12 @@ local function stepEnemy(enemy, current, dt)
 		return
 	end
 	enemy.target = target
+ enemy.returning=false
  if enemy.patternProfile then
+  if current>=enemy.reconsiderAt and Pack.trySupport(enemy,current,packContext())then
+   enemy.pathToken+=1;enemy.pathPending=false;enemy.humanoid.AutoRotate=false
+   stopEnemy(enemy);setEnemyState(enemy,'Windup');return
+  end
   local canSee=unobstructed(enemy.root.Position,target.root.Position,enemy.model,target.character)
   local selected=chooseEnemyPattern(enemy,target,current)
   local profile=CombatProfiles.get(enemy.kind)
@@ -1902,9 +1961,10 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	}
 	enemy.patternProfile=model:GetAttribute("DeepwoodEncounter") and Patterns.enabled(model:GetAttribute("StoryRulesVersion")) and Patterns.get(kind) or nil
  enemy.patternHistory={}
+ model:SetAttribute('K0EnemyId',savedId)
 	enemyStates[model] = enemy
  model.AncestryChanged:Connect(function()
-  if not model:IsDescendantOf(enemyFolder) then enemyStates[model]=nil;enemy.pathToken=enemy.pathToken+1 end
+  if not model:IsDescendantOf(enemyFolder)then Afflictions.cancelSource(enemy,now());Pack.cancel(enemy,now(),packContext());enemyStates[model]=nil;enemy.pathToken=enemy.pathToken+1 end
  end)
 	local health = splitGroup and splitGroup.childHealth or config.health
 	humanoid.MaxHealth = health
@@ -1970,6 +2030,7 @@ end
 local function setupCharacter(player, character)
 	if not activePlayers[player] or player.Parent ~= Players or player.Character ~= character then return end
 	local current = playerStates[player]
+ if current and current.character~=character then Afflictions.clearTarget(current,now())end
 	if pendingCharacters[player] == character or (current and current.character == character) then return end
 	pendingCharacters[player] = character
 	task.spawn(function()
@@ -2241,6 +2302,7 @@ function CombatService.start(enemies, serverContextResolver, awardXP)
 		pendingCharacters[player] = nil
 		local state = playerStates[player]
 		if state then
+   Afflictions.clearTarget(state,now())
 			clearAction(state)
 			playerStates[player] = nil
 		end

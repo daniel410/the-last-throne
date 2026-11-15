@@ -8,9 +8,10 @@ local authored={}
 for _,profile in pairs(Patterns.profiles)do
  for _,d in ipairs(profile.attacks)do authored[d.id]=d end
 end
-function Snapshot.remember(model,sequence,d)
+function Snapshot.remember(model,sequence,d,frame)
  if model and type(d)=='table' and authored[d.id]then
-  cache[model]={sequence=sequence,id=d.id,definition=d,raw=model:GetAttribute('K0PatternDefinition')}
+  local old=cache[model]
+  cache[model]={sequence=sequence,id=d.id,definition=d,raw=model:GetAttribute('K0PatternDefinition'),frame=frame or old and old.sequence==sequence and old.id==d.id and old.frame or nil}
  end
 end
 function Snapshot.get(model,id,sequence)
@@ -23,7 +24,7 @@ function Snapshot.get(model,id,sequence)
  if type(raw)=='string'then
   local ok,d=pcall(Http.JSONDecode,Http,raw)
   if ok and type(d)=='table' and d.id==id and authored[id]then
-   cache[model]={sequence=sequence,id=id,definition=d,raw=raw};return d
+   cache[model]={sequence=sequence,id=id,definition=d,raw=raw,frame=row and row.sequence==sequence and row.id==id and row.frame or nil};return d
   end
  end
  -- An event can arrive before its replicated attribute snapshot.
@@ -33,8 +34,14 @@ end
 function Snapshot.message(message)
  local d=message.definition
  if type(d)=='table' and d.id==message.id and authored[d.id]then
-  Snapshot.remember(message.model,message.sequence,d);return d
+  local frame=message.kind=='begin'and {origin=message.origin,direction=message.direction,aim=message.aim,castOrigin=message.castOrigin}or nil
+  Snapshot.remember(message.model,message.sequence,d,frame);return d
  end
  return Snapshot.get(message.model,message.id,message.sequence)
+end
+function Snapshot.frame(model)
+ local row=cache[model]
+ if row and row.sequence==model:GetAttribute('K0AttackSeq')and row.frame then return row.frame end
+ return {origin=model:GetAttribute('K0PatternOrigin'),direction=model:GetAttribute('K0PatternDirection'),aim=model:GetAttribute('K0PatternAim'),castOrigin=model:GetAttribute('K0PatternCastOrigin')}
 end
 return Snapshot

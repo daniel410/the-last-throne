@@ -1,21 +1,28 @@
 -- Numeric tactical decisions; all movement and damage remain server-owned.
 local Profiles=game and require(script.Parent.EnemyCombatProfiles)or dofile('src/shared/EnemyCombatProfiles.luau')
+local Mechanics=game and require(script.Parent.EnemyEncounterMechanics)or dofile('src/shared/EnemyEncounterMechanics.luau')
 local T={}
 function T.choose(profile,kind,distance,history,current,difficulty,health)
  if not profile then return nil end
  history=history or {}
  local best,bestScore
  local count=history.count or 0
+ local phase=Profiles.phase(kind,health)
+ local order=Mechanics.order(kind,phase,history.last,count)
+ local role=Profiles.get(kind)
  for offset=0,#profile.attacks-1 do
-  local base=profile.attacks[(count+offset)%#profile.attacks+1]
+  local attackIndex=order and order[offset+1]or ((count+offset)%#profile.attacks+1)
+  local base=profile.attacks[attackIndex]
   local attack=Profiles.resolve(kind,base,difficulty,health)
   if distance>=attack.minRange and distance<=attack.maxRange and current>=((history.ready or {})[attack.id]or 0)then
-   local score=-offset*.1
+   -- A boss follows its current phase's actual combo. Out-of-range/cooling steps
+   -- fall back to a reachable move, preserving solo play and preventing stalls.
+   local score=-offset*(order and 3 or .1)
    if attack.id==history.last then score=score-10 end
-   local role=Profiles.get(kind)
-   if distance<(role.retreatRange or 0) and attack.shape~='projectile'then score=score+2 end
-   if distance>8 and attack.shape=='projectile'then score=score+1 end
-   if profile.boss and health<=.5 and attack.heavy then score=score+.35 end
+   if not order then
+    if distance<(role.retreatRange or 0)and attack.shape~='projectile'then score=score+2 end
+    if distance>8 and attack.shape=='projectile'then score=score+1 end
+   end
    if not bestScore or score>bestScore then best,bestScore=attack,score end
   end
  end

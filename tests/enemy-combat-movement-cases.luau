@@ -106,7 +106,7 @@
   local second=api.chooseEnemyPattern(e,target,0)
   equal(first.phase,1,'healthy boss opens in its first phase')
   equal(second.phase,2,'actual server boss health selects second phase')
-  equal(second.cooldown<first.cooldown,true,'second phase changes cadence without resetting health')
+  equal(second.phaseName~=first.phaseName,true,'second phase changes attack combinations without resetting health')
  end)
 
  case('service-consumed-waypoints-hold-position',function()

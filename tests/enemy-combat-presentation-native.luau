@@ -68,7 +68,7 @@ check(lateral>4,'side-shot lanes have visible full width')
 Effects.receive({kind='cancel',model=model,sequence=seq+1})
 local ring=Profiles.resolve('KingIceGolem',Patterns.get('KingIceGolem').attacks[4],'Hell',1)
 local ringWarning=warning(ring,seq+2,now)
-Effects.render(now+ring.windup+.02)
+Effects.render(now+ring.windup+.23)
 check(not ringWarning.Parent,'next expanding ring replaces old boundary before next pulse')
 Effects.receive({kind='cancel',model=model,sequence=seq+2})
 -- A staff socket offset and a close diagonal target must produce the same
@@ -86,23 +86,25 @@ check(committedWarning~=nil and begin.castOrigin==attack.castOrigin,'server cast
 check(model:GetAttribute('K0PatternCastOrigin')==begin.castOrigin,'streaming retains the same cast origin')
 socket.Position+=Vector3.new(2,1,0)
 local context={valid=function()return false end,raycast=function()return nil end,emit=function(message)table.insert(events,message)end}
-Runtime.step(enemy,d.windup,{},context)
-local launches={}
+for pulse=1,d.pulses do Runtime.step(enemy,d.windup+(pulse-1)*d.interval,{},context)end
+local launches={};local launchCount=0
 for _,message in ipairs(events)do if message.kind=='projectile'then
- launches[message.shot]=message
+ launches[message.pulse..':'..message.shot]=message;launchCount+=1
  check(message.origin==begin.castOrigin,'post-tell socket motion cannot move a launch')
 end end
-check(#launches==d.fan,'server releases every warned fan lane')
+check(launchCount==d.pulses*d.fan,'server releases every warned fan lane and follow-up')
 local laneEdges={}
 for _,edge in ipairs(committedWarning:GetChildren())do if edge:IsA('BasePart')then
- local shot=edge:GetAttribute('WarningLane');local launch=launches[shot]
+ local shot=edge:GetAttribute('WarningPulse')..':'..edge:GetAttribute('WarningLane');local launch=launches[shot]
  check(launch~=nil,'each warning edge identifies its actual shot')
  laneEdges[shot]=(laneEdges[shot]or 0)+1
  local finish=launch.origin+launch.direction*d.range
  local distance=Geometry.segmentDistance(edge.Position.X,0,edge.Position.Z,launch.origin.X,0,launch.origin.Z,finish.X,0,finish.Z)
  check(distance>=1.37 and distance<=1.42,'warning includes the true swept projectile width and end caps')
 end end
-for shot=1,d.fan do check((laneEdges[shot]or 0)>=22,'each projectile lane has side edges and round end caps')end
+for pulse=1,d.pulses do for shot=1,d.fan do
+ check((laneEdges[pulse..':'..shot]or 0)>=22,'each projectile lane has side edges and round end caps')
+end end
 Runtime.cancel(enemy,Effects.receive);enemy.attack=nil
 -- Dash contact is clipped to the warned rectangle; there is no extra capsule
 -- reach behind its start, beyond its end or outside its visible width.
