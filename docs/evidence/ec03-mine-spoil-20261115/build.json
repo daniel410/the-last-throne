@@ -1,0 +1,26 @@
+{
+  "version": "0.110.25",
+  "sourceCommit": "6585afb808fb67d52e2f1b03fcfdca96a4faef4d",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-6585afb8-3jygguhq",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-6585afb8-3jygguhq/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/tlt-ec03-mine-verge-20261115/builds/0.110.25/TheLastThrone-0.110.25.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.110.25.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.110.25/TheLastThrone-0.110.25.rbxlx",
+      "sha256": "623d5443d61938cfd0b9a35da4ab41bf69108b1bcb0bc62819c7179d05a7e9c6",
+      "bytes": 19762588
+    }
+  ]
+}

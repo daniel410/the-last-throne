@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "version": "0.110.24",
+    "sourceCommit": "b5412366fcc7211456e74b2245b8c71431ab05da",
+    "sha256": "00f706c0fe62fa711e8775911a1e469d22fe022b778fb455d595632074c114c4"
+  },
+  "candidate": {
+    "version": "0.110.28",
+    "sourceCommit": "bc2ba150600a22c248924c01608a0ff88f153b01"
+  },
+  "mode": "fresh local Studio Edit / default day lighting / epic4 complete world / FOV70",
+  "wide": {
+    "camera": [
+      565,
+      340,
+      -12230
+    ],
+    "focus": [
+      217,
+      150,
+      -12655
+    ],
+    "before": "before.jpg",
+    "after": "after.jpg"
+  },
+  "near": {
+    "camera": [
+      550,
+      205,
+      -12375
+    ],
+    "focus": [
+      465,
+      145,
+      -12509
+    ],
+    "before": "before-near.jpg",
+    "after": "after-near.jpg"
+  }
+}

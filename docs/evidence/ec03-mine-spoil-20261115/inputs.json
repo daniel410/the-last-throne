@@ -1,0 +1,6 @@
+{
+  "src/server/World/EpicWorldArt.luau": "1ee80032917b30a022fc4b8f9a94e45934f903bc4316d2c30d1b6967780ec4c7",
+  "src/server/World/CalderaMineSpoil.luau": "f82b389efab589902e52be81644ac063e62f600115b818c01df4dd0c93891f90",
+  "tests/caldera-mine-spoil-native.luau": "f7ba1a3ea3d20394d2622cf8f3e2b1772d5ec8ae7b63bb81b0e7c0e5ead6957e",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6"
+}
