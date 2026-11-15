@@ -1,0 +1,12 @@
+MODE_ALL_SOURCE_COMPILE true
+Completed mode campaign: Easy
+Completed mode campaign: Hard
+Completed mode campaign: Insane
+Completed mode campaign: Hell
+Campaign mode progress: 4621 checks passed
+MODE_PROFILE_BYTES 115144
+CAMPAIGN_MODE_MIGRATION 88 checks passed
+Campaign mode legacy replay: 3723 checks passed
+COMBAT_ROUTE_RUNTIME {"checks":823,"kind":"COMBAT_ROUTE_RUNTIME"}
+MODE_CONSUMER_REGRESSION {"modes":4,"kind":"MODE_CONSUMER_REGRESSION","pass":true,"checks":64}
+CAMPAIGN_MODE_NATIVE_PASS true
