@@ -1,4 +1,4 @@
-"""TLT-063/065 난이도별 스토리 접근로 회귀. 소스를 주입하지 않는다."""
+"""TLT-063 Caldera 연결부의 단차·양방향 보행 회귀. 소스를 주입하지 않는다."""
 from pathlib import Path
 import argparse
 import hashlib
@@ -29,7 +29,7 @@ path='tests/ec-landing-walk-native.luau'
 inputs.append(path)
 code += 'assert(loadstring('+json.dumps(Path(path).read_text())+'))()\n'
 if a.review:
-    code += "_G.RegionalConceptWorld=qaWorld;require(game.StarterPlayer.StarterPlayerScripts.Client.DeepwoodAtmosphere).update('FrozenVale');print('ROUTE_BLOCKERS_REVIEW_READY');for i=1,600 do if _G.TLTReviewDone then break end task.wait(1)end\n"
+    code += "_G.RegionalConceptWorld=qaWorld;require(game.StarterPlayer.StarterPlayerScripts.Client.DeepwoodAtmosphere).update('EmberCaldera');print('ROUTE_BLOCKERS_REVIEW_READY');for i=1,600 do if _G.TLTReviewDone then break end task.wait(1)end\n"
 out = Path('/tmp/tlt-ec-landing-native.luau')
 out.write_text(code)
 out.with_suffix('.inputs.json').write_text(json.dumps({path: hashlib.sha256(Path(path).read_bytes()).hexdigest() for path in inputs}, indent=2) + '\n')

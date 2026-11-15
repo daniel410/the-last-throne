@@ -1,0 +1,312 @@
+{
+  "build": "0.108.1",
+  "source": "dbbf9ccc9d1a2c80e7d18df8e48fc82724b0d208",
+  "navigation": [
+    {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [
+        {
+          "chapter": "FV-Q1",
+          "to": [
+            -362.85000000000014,
+            84,
+            -8317.9
+          ],
+          "label": "FV-Q1:report",
+          "epic": 3,
+          "from": [
+            -867.8388061523438,
+            81,
+            -8180.42041015625
+          ]
+        },
+        {
+          "chapter": "EC-Q1",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q1:report",
+          "epic": 4,
+          "from": [
+            -1021.1762084960938,
+            127,
+            -12006.5341796875
+          ]
+        },
+        {
+          "chapter": "EC-Q2",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q2:report",
+          "epic": 4,
+          "from": [
+            -783.3861083984375,
+            143,
+            -12732.84375
+          ]
+        },
+        {
+          "chapter": "EC-Q3",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q3:report",
+          "epic": 4,
+          "from": [
+            1465.877197265625,
+            151,
+            -13439.2890625
+          ]
+        },
+        {
+          "chapter": "EC-Q4",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q4:report",
+          "epic": 4,
+          "from": [
+            -1977.529296875,
+            185,
+            -14555.1005859375
+          ]
+        }
+      ],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8093,
+          "samples": 8396,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    },
+    {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [
+        {
+          "chapter": "FV-Q1",
+          "to": [
+            -362.85000000000014,
+            84,
+            -8317.9
+          ],
+          "label": "FV-Q1:report",
+          "epic": 3,
+          "from": [
+            -867.8388061523438,
+            81,
+            -8180.42041015625
+          ]
+        },
+        {
+          "chapter": "EC-Q1",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q1:report",
+          "epic": 4,
+          "from": [
+            -1021.1762084960938,
+            127,
+            -12006.5341796875
+          ]
+        },
+        {
+          "chapter": "EC-Q2",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q2:report",
+          "epic": 4,
+          "from": [
+            -783.3861083984375,
+            143,
+            -12732.84375
+          ]
+        },
+        {
+          "chapter": "EC-Q3",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q3:report",
+          "epic": 4,
+          "from": [
+            1465.877197265625,
+            151,
+            -13439.2890625
+          ]
+        },
+        {
+          "chapter": "EC-Q4",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q4:report",
+          "epic": 4,
+          "from": [
+            -1977.529296875,
+            185,
+            -14555.1005859375
+          ]
+        }
+      ],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8223,
+          "samples": 8526,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    }
+  ],
+  "walks": {
+    "EC-05_EC-06_back": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-05_EC-06_back",
+      "distance": 4.887859344482422,
+      "position": "193.33892822265625, 159.19241333007812, -13618.4609375",
+      "elapsed": 24.132218291750178
+    },
+    "EC-05_EC-06_forward": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-05_EC-06_forward",
+      "distance": 5.562561511993408,
+      "position": "-398.51318359375, 167.1923828125, -14091.9169921875",
+      "elapsed": 24.11606270831544
+    },
+    "EC-04_EC-05_forward": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-04_EC-05_forward",
+      "distance": 5.362971305847168,
+      "position": "201.33200073242188, 159.1923828125, -13612.04296875",
+      "elapsed": 24.24927012505941
+    },
+    "EC-04_EC-05_back": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-04_EC-05_back",
+      "distance": 6.713796615600586,
+      "position": "791.9154663085938, 151.1923828125, -13139.6044921875",
+      "elapsed": 24.11438774992712
+    }
+  }
+}
