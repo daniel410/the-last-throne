@@ -5,17 +5,18 @@ local T=require(script.Parent.TDInventoryTheme)
 local C={}
 function C.create(panel,scroll,notice,refresh)
  local player=Players.LocalPlayer
- local prices,loading={},false
+ local prices,icons,loading={},{},false
  local opening
  local studio=game:GetService('RunService'):IsStudio()
  local function changed()if panel.Visible then refresh()end end
  local function load()
   if loading then return end
-  loading=true;prices={}
+  loading=true;prices={};icons={}
   task.spawn(function()
    for _,pack in ipairs(Products.packs)do
     if pack.productId>0 then
      local ok,info=pcall(function()return Market:GetProductInfoAsync(pack.productId,Enum.InfoType.Product)end)
+     if ok and type(info)=='table'and type(info.IconImageAssetId)=='number'and info.IconImageAssetId>0 then icons[pack.id]=info.IconImageAssetId end
      if ok and type(info)=='table'and info.IsForSale==true and type(info.PriceInRobux)=='number'and info.PriceInRobux>0 then prices[pack.id]=info.PriceInRobux end
     end
    end
@@ -32,7 +33,10 @@ function C.create(panel,scroll,notice,refresh)
  local function render(wallet,saving)
   for index,pack in ipairs(Products.packs)do
    local card=T.frame(scroll,'Robux_'..pack.id,UDim2.new(),UDim2.new(1,-8,0,184));card.LayoutOrder=-10+index
-   T.icon(card,'diamonds',UDim2.fromOffset(12,12),UDim2.fromOffset(62,66))
+   local icon=T.icon(card,'diamonds',UDim2.fromOffset(12,12),UDim2.fromOffset(62,66))
+   if icons[pack.id]then
+    icon.Image='rbxassetid://'..icons[pack.id];icon.ImageRectOffset=Vector2.zero;icon.ImageRectSize=Vector2.zero
+   end
    T.label(card,'Name',pack.name,UDim2.fromOffset(82,8),UDim2.new(1,-94,0,64),16,T.color.gold)
    T.label(card,'Details','Adds '..pack.diamonds..' Diamonds to your saved RPG wallet.\nFor The Last Throne only.',UDim2.fromOffset(14,80),UDim2.new(1,-28,1,-140),12)
    local price=prices[pack.id]

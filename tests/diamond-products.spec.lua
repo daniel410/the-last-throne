@@ -10,6 +10,12 @@ for index,pack in ipairs(Products.packs)do fake.packs[index]={productId=8000+ind
 function fake.find(id)for _,p in ipairs(fake.packs)do if p.productId==id then return p end end end
 check(Products.universeId==10773575153 and #Products.packs==3,'RPG-only catalog')
 check(not Products.find(3728491648)and not Products.find(0),'TD product and zero cannot grant')
+for index,id in ipairs({3731586526,3731586668,3731586908})do
+ local pack=assert(Products.find(id))
+ check(pack==Products.packs[index],'user-created RPG ProductId maps to correct pack')
+ local n=assert(Receipts.grant(R.new(12),{PlayerId=12,ProductId=id,PurchaseId='real-sku-'..index},R))
+ check(n.wallet.diamonds==({100,500,1200})[index],'configured RPG product grants exact amount')
+end
 for i,amount in ipairs({100,500,1200})do
  local p=R.new(12);p.wallet.diamonds=7;p.wallet.gold=19
  local receipt={PlayerId=12,ProductId=8000+i,PurchaseId='purchase-'..i}

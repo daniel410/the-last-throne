@@ -10,7 +10,7 @@
 
 - 에픽 지도 연결: 실제 도보 경계의 왕복 연결선·다음 지도 버튼·선행 잠금 상태를 소스 추가했다. 후보 Studio 검증, 미게시. [검증/후속 수용](../evidence/epic-map-connections-20261114/README.md).
 
-- 다이아몬드 Robux 상품: TD 구성의 세 묶음·ROBUX 탭·RPG 영구 영수증 지급을 소스 추가했다. 실제 상품ID는 MCP `developer-product:write` 권한 대기로 비활성이다. [소스/Studio Edit 검증·남은 연결/실구매 수용](../evidence/diamond-robux-products-20261114/README.md).
+- 다이아몬드 Robux 상품: TD 구성의 세 묶음·ROBUX 탭·RPG 영구 영수증 지급을 소스 추가했다. 사용자 생성 상품ID 세 개와 상품별 아이콘·실시간 가격 조회를 소스 연결했다. [소스/이전 Studio Edit 검증·남은 게시/실구매 수용](../evidence/diamond-robux-products-20261114/README.md).
 
 - 동작·착용·VFX 수명: 엘프 잔여 화살/얼굴 앞 시위 접점, Traveler·Tempered·Sentinel 후드 턱 겹침, Axe Throw 도착 후 궤적 재생을 수정했다. 전 영웅128기술·몬스터50종146공격에서 늦은 준비/발사 재생도 검사했다. [수정·엔진 검증·미게시/남은 수용](../evidence/visual-lifecycle-fit-20261113/README.md).
 - 몬스터 공격: 0.104.15에서 기존35모티프·50조합에 원소별 재질/곡선 흐름·입자/국소광·표면 충돌/방사 파편을 보강했다. [실제 연속 재생·조사·고정 빌드 검증/미게시](../evidence/monster-spell-art-20261112/README.md). 기존 [종별 공격 연결](../evidence/monster-spell-vfx-20261112/README.md)과 [보스 피격·연속 준비/회수](../evidence/boss-impact-motion-20261112/README.md)를 유지하며 최종 미술/기기 수용은 별도다.
