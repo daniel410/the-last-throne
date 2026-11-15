@@ -24,6 +24,10 @@ local function member(p,token)
  local h=o.heroSession.getActiveHero(p);local ctx=o.heroSession.getInventoryContext(p)
  if not h or not ctx or not ctx.atHub or p:GetAttribute('K0SessionPhase')~='Lobby' then return nil end
  local s=o.inventory.storyState(p,h.heroId);local g=o.inventory.growth(p,h.heroId)
+ -- Keep the existing party change fence stable; eligibility uses the selected
+ -- mode journal in Difficulty.allowed, not this historic roster checksum.
+ local stored=o.inventory.expeditionHero and o.inventory.expeditionHero(p)
+ if stored then s=stored.deepwood end
  return {userId=p.UserId,name=p.DisplayName,heroId=h.heroId,classId=h.classId,main=s and s.main or 0,level=g and g.level or 1,token=token,arrived=true}
 end
 local function offer(p)
@@ -58,8 +62,10 @@ local function publish(p,errorCode,open,requestId)
  local hero=o.inventory.expeditionHero(p);local missions=Presentation.missions(hero,clean and clean.target or 1)
  local activeHero=o.heroSession.getActiveHero(p)
  local expedition=activeHero and o.inventory.expedition(p,activeHero.heroId)
+ local difficultySelections={}
+ for _,mode in ipairs(Difficulty.order)do difficultySelections[mode]=require(RS.Shared.AdventureRules).selection(hero,mode)end
  remote:FireClient(p,{role=role,studio=studio,configured=C.battlePlaceId>0,capacity=role=='Lobby' and C.lobbyCapacity or C.battleCapacity,
-  requestId=requestId,busy=busy[p]==true,hero=hero and {classId=hero.baseClassId,level=hero.level},selection=choice,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt,rulesVersion=rejoinRun and rejoinRun.rulesVersion} or nil})
+  requestId=requestId,busy=busy[p]==true,hero=hero and {classId=hero.baseClassId,level=hero.level},selection=choice,difficultySelections=difficultySelections,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt,rulesVersion=rejoinRun and rejoinRun.rulesVersion} or nil})
 end
 function Service.openMenu(p)
  if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end

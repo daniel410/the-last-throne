@@ -117,10 +117,13 @@ function V.create(parent,send)
   portrait.Visible=s.hero~=nil;portrait.Image=s.hero and 'rbxassetid://'..(portraits[s.hero.classId]or portraits.knight)or ''
   local party=s.party;local canConfigure=s.role=='Lobby'and not s.travelling and not s.busy and(not party or party.hostId==player.UserId and party.status=='forming')
   for i,mode in ipairs(D.order)do
-   local info=mission and mission.modes[mode];local locked=not info or not info.allowed
+   local checkpoint=s.difficultySelections and s.difficultySelections[mode]
+   local modeMission=mission
+   if checkpoint then for _,row in ipairs(s.missions or {})do if row.id==checkpoint.missionId then modeMission=row;break end end end
+   local info=modeMission and modeMission.modes[mode];local locked=not info or not info.allowed
    local required=info and info.level or D.entryLevels[mode]
    local caption=mode..(required>0 and ' · Lv'..required or '')..(locked and '\n'..Text.Locked or '')
-   local b=button(modeHost,'Mode'..mode,caption,{action='Configure',missionId=selected.missionId,difficultyId=mode},UDim2.new((i-1)/4,3,0,0),UDim2.new(.25,-6,1,0),false,canConfigure)
+   local b=button(modeHost,'Mode'..mode,caption,{action='Configure',missionId=checkpoint and checkpoint.missionId or selected.missionId,difficultyId=mode},UDim2.new((i-1)/4,3,0,0),UDim2.new(.25,-6,1,0),false,canConfigure)
    b.Caption.TextSize=13;mark(b,mode==selected.difficultyId,locked)
   end
   for i,item in ipairs({{'Details',Text.MissionTab},{'Missions',Text.MissionsTab},{'Party',Text.PartyTab}})do
@@ -142,7 +145,7 @@ function V.create(parent,send)
    for _,m in ipairs(s.missions or {})do
     if m.region~=region then region=m.region;line('Region'..m.id,region or '',28,T.color.gold)end
     local a=m.modes[selected.difficultyId]
-    local b=action('Mission'..m.id,m.title..(a and not a.allowed and ' · '..Text.Locked or ''),{action='Configure',missionId=m.id,difficultyId=selected.difficultyId},canConfigure)
+    local b=action('Mission'..m.id,m.title..(a and a.completed and ' · '..Text.Completed or a and not a.allowed and ' · '..Text.Locked or ''),{action='Configure',missionId=m.id,difficultyId=selected.difficultyId},canConfigure)
     mark(b,m.id==selected.missionId,not a or not a.allowed)
    end
   elseif tab=='Party'then

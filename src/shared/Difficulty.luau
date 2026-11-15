@@ -3,6 +3,7 @@ local BossTuning=game and require(script.Parent.BossCombatTuning)or dofile('src/
 local Content=game and require(script.Parent.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local Easy=game and require(script.Parent.EasyCampaignTuning)or dofile('src/shared/EasyCampaignTuning.luau')
 local CampaignGrowth=game and require(script.Parent.CampaignGrowthBudget)or dofile('src/shared/CampaignGrowthBudget.luau')
+local ModeProgress=game and require(script.Parent.CampaignModeProgress)or dofile('src/shared/CampaignModeProgress.luau')
 -- Balance/rule generation is pinned by the run and persisted hero journal.
 local D={version=17,order={'Easy','Hard','Insane','Hell'},legacyModes={
  Easy={level=1,hp=1,damage=1,bossHP=1,bossDamage=1,xp=1,gold=1,ore=6,cores=0,cache=1},
@@ -122,9 +123,8 @@ end
 function D.allowed(hero,id,mode)
  local c,m=Content.byId[id],D.modes[mode]
  if not hero or not c or not m then return false,'InvalidMission' end
- if mode~='Easy' and not D.combat(c)then return false,'CombatMissionOnly' end
  if hero.level<D.requiredLevel(c,mode)then return false,'DifficultyLevel' end
- local s=hero.deepwood or {main=0,clears={}}
+ local s=ModeProgress.journal(hero,mode)
  if not Content.accessible(s,D.requiredMain(c),D.requiredMain(c,true))then return false,'StoryLocked'end
  if m.previous then
   local clears=hero.expeditions and hero.expeditions.clears or {}

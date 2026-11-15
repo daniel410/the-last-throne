@@ -3,6 +3,7 @@ local function load(name)return game and require(script.Parent[name])or dofile('
 local D,Content,Summary=load('Difficulty'),load('CampaignContent'),load('EncounterSummary')
 local Economy=load('EconomyCatalog')
 local GrowthBudget=load('CampaignGrowthBudget')
+local ModeProgress=load('CampaignModeProgress')
 local P={}
 function P.missions(hero,players)
  local list={}
@@ -14,7 +15,7 @@ function P.missions(hero,players)
    local reward=D.completion(c,mode,D.version,cycle)
    local firstXP=GrowthBudget.questXP(c.id,mode,D.version,cycle)or c.reward.xp
    modes[mode]={allowed=ok,reason=why,level=D.requiredLevel(c,mode),previous=m.previous,
-    storyMain=D.requiredMain(c),firstClear=not(hero and hero.deepwood and hero.deepwood.clears[c.id]),
+    storyMain=D.requiredMain(c),firstClear=not ModeProgress.claimed(hero,c.id,mode),completed=ModeProgress.journal(hero,mode).clears[c.id]==true,
     storyDiamonds=Economy.storyDiamondIds[c.id]and Economy.storyDiamondsByMode[mode] or 0,firstXP=firstXP,firstGold=c.reward.coins,firstOre=c.reward.ore or 0,firstGems=c.reward.gems or 0,repeatXP=reward.xp,repeatGold=reward.gold,
     xpCapped=hero and hero.level>=99 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players,D.version,cycle),campaignCycle=cycle,
     hp=m.hp,damage=m.damage,bossHP=m.bossHP,bossDamage=m.bossDamage}
@@ -33,7 +34,7 @@ function P.party(party,resolve)
   n=n+1;local hero=resolve(m);local ok,why=false,'GatherParty'
   if m.arrived and hero then ok,why=D.allowed(hero,party.missionId,party.difficultyId)end
   local required=Content.byId[party.missionId];local mode=D.modes[party.difficultyId]
-  local row={userId=m.userId,name=m.name,classId=m.classId,level=hero and hero.level or m.level,main=m.main,ready=m.ready,arrived=m.arrived,
+  local row={userId=m.userId,name=m.name,classId=m.classId,level=hero and hero.level or m.level,main=hero and ModeProgress.journal(hero,party.difficultyId).main or m.main,ready=m.ready,arrived=m.arrived,
    eligible=ok,reason=why,requiredLevel=required and mode and D.requiredLevel(required,party.difficultyId)or 1,
    previous=D.modes[party.difficultyId]and D.modes[party.difficultyId].previous,storyMain=required and D.requiredMain(required)or 0}
   -- Ready refers to this exact roster snapshot, not a different selected hero.

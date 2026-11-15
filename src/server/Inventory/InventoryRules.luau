@@ -14,6 +14,7 @@ local GrowthBudget=game and require(game:GetService('ReplicatedStorage').Shared.
 local Grants=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
 local SideQuests=game and require(game:GetService('ReplicatedStorage').Shared.LobbySideQuests)or dofile('src/shared/LobbySideQuests.luau')
 local Rules = {}
+local ModeProgress=game and require(game:GetService('ReplicatedStorage').Shared.CampaignModeProgress)or dofile('src/shared/CampaignModeProgress.luau')
 local Vitals=game and require(game:GetService('ReplicatedStorage').Shared.HeroVitals)or dofile('src/shared/HeroVitals.luau')
 function Rules.copy(value)
 	if type(value) ~= "table" then return value end
@@ -128,6 +129,7 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	nextProfile.starterSuppliesClaimed = true
 	nextProfile.lastSelectedHeroId = heroId
 	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", classId=="mage" and "mana_potion" or "health_potion_medium"}}
+ Adventure.upgradeHero(nextProfile.heroes[heroId])
 	if classId == "knight" then insertItem(nextProfile, heroId .. "-starter-2", "knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}, catalog, "starter:" .. heroId) end
 	grantStarterSupplies(nextProfile, heroId, catalog)
 	nextProfile.revision = nextProfile.revision + 1
@@ -338,9 +340,11 @@ function Rules.apply(profile, command, context, catalog)
 end
 -- Clear receipt and award are committed together. Reopening a historic account
 -- catches up missing awards without modifying journal checksums or reissuing them.
-local function grantCompletion(profile,heroId,chapterId,catalog,xpOverride)
+local function grantCompletion(profile,heroId,chapterId,catalog,xpOverride,mode,journalOverride)
  local award=CompletionRewards.awards[chapterId];local h=profile.heroes[heroId]
- if not award or not(h.deepwood and h.deepwood.clears[chapterId])or(h.completionRewardClaims or {})[chapterId]then return false end
+ local journal=journalOverride or h.deepwood
+ local claims=mode and h.expeditions.modeRewardClaims[mode]or h.completionRewardClaims or {}
+ if not award or not(journal and journal.clears[chapterId])or claims[chapterId]then return false end
  if profile.wallet.gold+award.coins>1e12 then return false end
  local g=h.progression or Growth.new(h.level)
  g.xp=g.xp+(xpOverride or award.xp)
@@ -348,10 +352,13 @@ local function grantCompletion(profile,heroId,chapterId,catalog,xpOverride)
  if g.level==Growth.maxLevel then g.xp=0 end
  g.revision=g.revision+1;h.progression=g;h.level=g.level
  profile.wallet.gold=profile.wallet.gold+award.coins
- local prefix='quest-award-v1-'..heroId..'-'..chapterId
+ local prefix='quest-award-v1-'..heroId..'-'..(mode and mode..'-'or '')..chapterId
  Grants.grant(profile,Rules,catalog,heroId,'iron_ore',award.ore or 0,prefix..'-ore')
  Grants.grant(profile,Rules,catalog,heroId,'enhancement_gem',award.gems or 0,prefix..'-gem')
- h.completionRewardClaims=h.completionRewardClaims or {};h.completionRewardClaims[chapterId]=CompletionRewards.version
+ if mode then
+  claims[chapterId]=true
+  h.completionRewardClaims=h.completionRewardClaims or {};h.completionRewardClaims[chapterId]=CompletionRewards.version
+ else h.completionRewardClaims=h.completionRewardClaims or {};h.completionRewardClaims[chapterId]=CompletionRewards.version end
  return true
 end
 -- Legacy account migration preserves ownership except explicitly deleted items.
@@ -414,6 +421,7 @@ function Rules.upgrade(profile,catalog)
  for heroId in pairs(profile.heroes)do table.insert(heroIds,heroId)end;table.sort(heroIds)
  for _,heroId in ipairs(heroIds)do
   for _,id in ipairs(ids)do if grantCompletion(profile,heroId,id,catalog)then changed=true end end
+  if Adventure.upgradeHero(profile.heroes[heroId],profile.wallet.heroClaims and profile.wallet.heroClaims[heroId])then changed=true end
  end
 	if changed then profile.revision=profile.revision+1 end
 	return profile
@@ -473,21 +481,28 @@ function Rules.progress(profile,command,context,catalog)
 	return nextProfile
 end
 -- Journal, first-clear receipt, Coins and quest XP commit in one account write.
-function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,difficultyId,balanceVersion,growthCycle)
+function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,difficultyId,balanceVersion,growthCycle,journalOverride,modeOnly)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
- local journal,reason,reward=Story.apply(hero.deepwood or Story.new(),chapterId,goalId,choice,stepId)
+ local mode=difficultyId or 'Easy'
+ local journal,reason,reward=Story.apply(journalOverride or ModeProgress.journal(hero,mode),chapterId,goalId,choice,stepId)
  if not journal then return nil,reason end
  if reward.repeated then return Rules.copy(profile),nil,true end
- local n=Rules.copy(profile);local h=n.heroes[heroId];h.deepwood=journal
+ local n=Rules.copy(profile);local h=n.heroes[heroId]
+ Adventure.upgradeHero(h)
+ if journalOverride and not modeOnly then
+  h.expeditions.active.journal=journal
+  h.expeditions.active.completed=journal.clears[h.expeditions.active.missionId]==true
+ end
+ h.deepwood=ModeProgress.merge(h.deepwood,journal)
  -- Migrate historic earnings before assigning the new journal, then credit only this event.
  local migrated=Rules.copy(profile);Economy.upgrade(migrated);n.wallet=migrated.wallet
  local added=reward.chapter and CompletionRewards.awards[reward.chapter]
  local xpOverride=reward.chapter and GrowthBudget.questXP(reward.chapter,difficultyId or 'Easy',balanceVersion,growthCycle)
  if added then
-  if not grantCompletion(n,heroId,reward.chapter,catalog,xpOverride)then return nil,'BalanceLimit'end
+  if not grantCompletion(n,heroId,reward.chapter,catalog,xpOverride,mode,journal)then return nil,'BalanceLimit'end
   reward={xp=0,coins=0,chapter=reward.chapter}
  end
- Economy.story(n,reward,heroId,difficultyId)
+ Economy.story(n,reward,heroId,mode)
  local g=h.progression or Growth.new(h.level)
  if not added and xpOverride~=nil then reward.xp=xpOverride end
  g.xp=g.xp+reward.xp
@@ -496,8 +511,9 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,diffi
  g.revision=g.revision+1
  h.progression=g;h.level=g.level;n.revision=n.revision+1
  local function grant(id,quantity,suffix)
-  local instanceId=heroId..'-'..chapterId..'-'..suffix
-  if not n.items[instanceId] then insertItem(n,instanceId,id,quantity,{kind='pending'},catalog,'story:'..heroId..':'..chapterId..':'..suffix) end
+  local scope=mode and mode..'-'or ''
+  local instanceId=heroId..'-'..scope..chapterId..'-'..suffix
+  if not n.items[instanceId] then insertItem(n,instanceId,id,quantity,{kind='pending'},catalog,'story:'..heroId..':'..scope..chapterId..':'..suffix) end
  end
  if reward.chapter=='DW-01' or reward.chapter=='DW-05' then grant(h.baseClassId..'_weapon_fine',1,'equipment')
  elseif reward.chapter=='EC-01' then grant('traveler_coat',1,'equipment')
@@ -510,15 +526,29 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,diffi
  elseif reward.chapter=='DW-04' or reward.chapter=='DW-06' then grant('iron_ore',5,'materials') end
  if chapterId=='DW-05' and goalId=='warlord' then grant('warlord_seal',1,'bossseal') end
  if chapterId=='DW-07' and goalId=='king_shaman' then grant('king_shaman_seal',1,'bossseal') end
+ if reward.chapter then
+  Adventure.upgradeHero(h)
+  local claimMode=difficultyId or 'Easy'
+  h.expeditions.modeRewardClaims[claimMode]=h.expeditions.modeRewardClaims[claimMode]or {}
+  h.expeditions.modeRewardClaims[claimMode][reward.chapter]=true
+  h.expeditions.clears[reward.chapter]=h.expeditions.clears[reward.chapter]or {}
+  h.expeditions.clears[reward.chapter][claimMode]=true
+ end
+ if h.expeditions and h.expeditions.modeJournals then
+  local claimMode=difficultyId or 'Easy'
+  h.expeditions.modeJournals[claimMode]=ModeProgress.merge(h.expeditions.modeJournals[claimMode],journal)
+ end
  if not Rules.validate(n,catalog) then return nil,'Incompatible' end
  return n
 end
 function Rules.acceptQuest(profile,heroId,chapterId,discovery)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
- local journal,reason,repeated=Story.accept(hero.deepwood or Story.new(),chapterId,discovery)
+ local active=hero.expeditions and hero.expeditions.active;local mode=active and active.difficultyId or 'Easy'
+ local journal,reason,repeated=Story.accept(ModeProgress.journal(hero,mode),chapterId,discovery)
  if not journal then return nil,reason end
  if repeated then return Rules.copy(profile),nil,true end
- local n=Rules.copy(profile);n.heroes[heroId].deepwood=journal;n.revision=n.revision+1
+ local n=Rules.copy(profile);local h=n.heroes[heroId];Adventure.upgradeHero(h)
+ h.expeditions.modeJournals[mode]=journal;h.deepwood=ModeProgress.merge(h.deepwood,journal);n.revision=n.revision+1
  return n
 end
 function Rules.explore(profile,heroId,zone,x,z)
