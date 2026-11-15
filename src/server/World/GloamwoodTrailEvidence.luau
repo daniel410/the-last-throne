@@ -27,7 +27,9 @@ function M.build(parent,chapter,ground)
    local hit,valid=ground(p+side*x*width/2+direction*z*length/2)
    if not valid or math.abs(hit.Y-at.Y)>.025 then return end
   end end
-  local part=K.part(root,name,V(width,.025,length),CFrame.lookAt(at+V(0,.025,0),at+V(0,.025,0)+direction),color,Enum.Material.Ground,'Ball')
+  local part=K.part(root,name,V(width,.025,length),CFrame.lookAt(at+V(0,.025,0),at+V(0,.025,0)+direction),color,Enum.Material.Ground)
+  -- PartType.Ball does not render this extreme flattening reliably.
+  local mesh=Instance.new('SpecialMesh');mesh.MeshType=Enum.MeshType.Sphere;mesh.Parent=part
   part.Transparency=.16;part.CastShadow=false
   part:SetAttribute('TLTSceneryDistance',150);count+=1
  end

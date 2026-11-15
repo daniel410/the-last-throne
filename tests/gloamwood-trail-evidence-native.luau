@@ -18,7 +18,7 @@ local function validate(r)
  check(r:GetAttribute('MarkCount')==34,'all local story marks must render')
  for _,p in r:GetChildren()do
   check(p:IsA('BasePart')and p.Anchored,'anchored primitive')
-  check(p.Shape==Enum.PartType.Ball,'rounded impression silhouette')
+  check(p:FindFirstChildOfClass('SpecialMesh')~=nil and p:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere,'rounded impression silhouette')
   check(not p.CanCollide and not p.CanQuery and not p.CanTouch,'no physics/query/touch changes')
   local floor,ok=ground(p.Position)
   check(ok and math.abs(p.Position.Y-floor.Y-.025)<.002,'visible on final wing floor')
