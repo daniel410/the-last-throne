@@ -3,7 +3,11 @@
 local Run=game:GetService('RunService')
 local Workspace=game:GetService('Workspace')
 local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
-local Camera={min=6,max=32,lobbyMax=32,minPitch=0,maxPitch=math.rad(72),radius=.6}
+local Camera={min=6,lobbyMin=24,max=32,lobbyMax=32,minPitch=0,maxPitch=math.rad(72),radius=.6}
+function Camera.minimum(phase)
+ -- Keep the hero above the HomeDock PLAY button at the closest lobby zoom.
+ return phase=='Lobby' and Camera.lobbyMin or Camera.min
+end
 function Camera.maximum(phase)
  return phase=='Tutorial' and Camera.max or Camera.lobbyMax
 end
@@ -43,7 +47,8 @@ end
 function Camera.start()
  local p=game:GetService('Players').LocalPlayer
  local function apply()
-  if p.CameraMinZoomDistance~=Camera.min then p.CameraMinZoomDistance=Camera.min end
+  local minimum=Camera.minimum(p:GetAttribute('K0SessionPhase'))
+  if p.CameraMinZoomDistance~=minimum then p.CameraMinZoomDistance=minimum end
   local maximum=Camera.maximum(p:GetAttribute('K0SessionPhase'))
   if p.CameraMaxZoomDistance~=maximum then p.CameraMaxZoomDistance=maximum end
  end
