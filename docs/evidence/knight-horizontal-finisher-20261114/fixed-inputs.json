@@ -1,0 +1,18 @@
+{
+  "src/client/K0MeleeMotion.luau": "9e1abff0881d9be315bf107e8e5d36e68da16311ede20b83d197f0b7e0e1df87",
+  "src/client/K0KnightReferenceCombo.luau": "f161bf1f15e10c66da15b16f75c13f361872316df1dd9b7eab8a38ecc621b3d6",
+  "src/client/K0KnightReferenceDowncut.luau": "09f46487275e521c5787578a1e9bb43030f8d2f753f939f8a959c4c54a95cece",
+  "src/client/K0KnightReferenceRisingCut.luau": "c332d512f8eaf1fdb2ebf5343b9b4b61f5fe0ab742ee361bbf2c80dd613c3c3c",
+  "src/client/K0KnightReferenceSweep.luau": "ed97e5df6b995bd2df8edd7e6219dddda6e3823eb2e2a3be13d5b61fdd04a200",
+  "tests/knight-reference-combo-native.luau": "89a59d2bd6d88a852c5e6495674ad2751891d52e4abbb4a63538c1ce914810e1",
+  "tests/k0-melee-curves-native.luau": "d49da3a1f08cff3adc4b6157d231c041d1e88adb49686716482e030481eeb6ec",
+  "tests/dwarf-basic-tempo-native.luau": "e01eb7039fd8b801f671d94b3256b1ab430d0f84bf252ca3d87893911837f9af",
+  "tests/dwarf-recovery-native.luau": "3b76daa13d4f9021bb8f63975a06af3dbbdb5f1e9e6eed5bd8ca59d7fac86e33",
+  "tests/mixamo-knight-native.luau": "0e030079a6192f6624230c93439b47287316e57a9b2f61b33599351220dc9766",
+  "src/shared/K0Config.luau": "babc1cb51128b78b188104973ff21f19d5ba238c09be411305980d61336fa22d",
+  "src/server/Combat/CombatService.luau": "135d9c862b2b8a7bc1c39eb24a47ef380628d0b700a8bf02f8f7b390b9014116",
+  "assets/animations/knight-reference-combo-v1/sweep-poses.json": "c24e8e22ac0d803fe1a27cc1cafdb1e140799231508991f8f96b4fc6310ea54f",
+  "tools/author-knight-reference-combo.py": "34c663c79d06496fa287a687af41e24d1e0d93b91bcc015bcb5582087572dd86",
+  "tools/solve-knight-sweep-native.luau": "c2d6a802d6d6167f9cac36d72394cd32fdde712caa7f765e64730d56b83b3bf2",
+  "tools/prepare-knight-reference-combo-native.py": "ded34cac9459dcaa53a6af23ca0e3404e83512405c73faa29a359304408ec757"
+}
