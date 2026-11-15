@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "a64c1c7704f5d9f8b867c2561521b24c56a87f07",
+  "sourceRoot": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-vfx-art-fixed-w4oudbnm",
+  "captureScript": "/Users/daniel/Workspace/project/roblox/the-last-throne/tools/capture-arcade-vfx-review.luau",
+  "captureScriptSha256": "47cc7ef72937acf57b43dc76bc70812c8e53bc7fabb8040cb9dd0a0d96fc00eb",
+  "gameplayScriptsDisabled": true,
+  "candidateOverlays": {
+    "src/client/HeroVFX.luau": "a31c0895701d5fcefc0032bb36babf4b12e721516b5ebe740af0b8b7633f9e7f",
+    "src/client/K0HitEffects.luau": "54f7c593ab1f8ee7233732a7f9e0e0384d9a75d06209bb7417ba0e91c51efc63",
+    "tests/arcade-impact-vfx-native.luau": "a7b23f11e4fbb002df8eb07f839b3b975845178ff04a11196069c155b521488b"
+  },
+  "probeSha256": "2269440bb232754fcf3b8aee050b79203c89f43cc21d64480d29a0f450cd3fd3",
+  "placeSha256": "66c7042c7fb2d87411d293ef86ef7b25ea027d3e45946740ae0f34310c445bd1"
+}

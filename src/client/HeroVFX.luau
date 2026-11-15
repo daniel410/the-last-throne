@@ -577,12 +577,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   Surfaces.ribbon(r,"BladeSurface",function(t)
    local a=math.rad(-sweep/2+sweep*t)
    return surfaceOrigin+(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*.8
-  end,Vector3.yAxis,1.6,.38,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
+  end,Vector3.yAxis,1.05,.44,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
+  Surfaces.ribbon(r,"BladeCuttingEdge",function(t)
+   local a=math.rad(-sweep/2+sweep*t)
+   return surfaceOrigin+Vector3.yAxis*.025+(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*.84
+  end,Vector3.yAxis,.18,.12,r.hot,4,Enum.Material.Neon)
   Surfaces.animate(r,start,surfaceOrigin,Vector3.yAxis,.6,false,r.life)
+  for i=start+1,#r.faces do r.faces[i].motion.duration=math.min(r.life,.22)end
  elseif shape=="cleave"then
   local start=#r.faces
   Surfaces.ribbon(r,"CleaveSurface",function(t)local a=t*math.pi*.8;return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8 end,right,1.2,.36,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
-  Surfaces.animate(r,start,first,right,.65,false,r.life)
+  Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)local a=t*math.pi*.8;return first+flat*(math.sin(a)*math.min(radius,5)+.04)+Vector3.yAxis*math.cos(a)*2.8 end,right,.2,.12,r.hot,4,Enum.Material.Neon)
+  Surfaces.animate(r,start,first,right,.65,false,math.min(r.life,.22))
  elseif shape=="cross"then
   for side=-1,1,2 do
    local a=first+flat*.5+right*side*1.6+Vector3.yAxis*1.2
@@ -795,6 +801,41 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  end
  FX.step(r.at);return r.model
 end
+-- A crisp, camera-facing contact silhouette reads at the gameplay camera.
+-- Geometry stays in world depth and uses the existing surface budget/lifetime.
+local function impactStar(r,at,dir,size,classId)
+ local camera=workspace.CurrentCamera
+ local normal=camera and camera.CFrame.Position-at or -dir
+ if normal.Magnitude<.01 then normal=-dir end
+ normal=normal.Unit
+ local right=camera and camera.CFrame.RightVector or Vector3.xAxis
+ local up=normal:Cross(right)
+ if up.Magnitude<.01 then up=Vector3.yAxis end
+ up=up.Unit;right=up:Cross(normal).Unit
+ local projected=dir-normal*dir:Dot(normal)
+ if projected.Magnitude>.15 then right=projected.Unit;up=normal:Cross(right).Unit end
+ local pierce=classId=='elf'or r.key=='gun'
+ local spokes=Input.TouchEnabled and 4 or 6
+ local start=#r.faces
+ local function point(index)
+  local angle=index*math.pi/spokes+.18
+  local outer=index%2==0
+  local radius=outer and (index%4==0 and 1 or .76)or .26
+  return at+(right*math.cos(angle)*(pierce and 1.25 or 1)+up*math.sin(angle)*(pierce and .55 or 1))*radius*size
+ end
+ for i=0,spokes*2-1 do
+  Surfaces.triangle(r,'ArcadeImpactStar',at,point(i),point(i+1),r.color,.12)
+ end
+ -- A small bright diamond preserves a sharp centre without a large glow ball.
+ local center=at+normal*.025
+ Surfaces.triangle(r,'ArcadeImpactCore',center+up*size*.42,center-right*size*.18,center-up*size*.42,r.hot,.04)
+ Surfaces.triangle(r,'ArcadeImpactCore',center+up*size*.42,center-up*size*.42,center+right*size*.18,r.hot,.04)
+ for i=start+1,#r.faces do
+  r.faces[i].fadeDuration=.13
+  r.faces[i].motion={pivot=at,axis=normal,turn=0,expand=true,duration=.13}
+ end
+ r.model:SetAttribute('ContactStyle',pierce and 'ArcadePierce'or classId=='dwarf'and'ArcadeChop'or'ArcadeCut')
+end
 function FX.contact(at,classId,id,direction,scale)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
  local r=make(at,at,.3,row.key,id);if not r then return end
@@ -805,6 +846,7 @@ function FX.contact(at,classId,id,direction,scale)
  if profile then size*=math.clamp(profile.width/.18,.65,1.6)end
  local physical=row.key=='steel'or row.key=='axe'or row.key=='arrow'or row.key=='gun'or row.key=='shield'
  if physical then
+  impactStar(r,at,dir,size,classId)
   if classId=='knight'then
    for side=-1,1,2 do line(r,'PhysicalCutContact',function(u)local shift=dir*u*.35;return at+shift-cf.RightVector*side*.75*size-cf.UpVector*.25*size,at+shift+cf.RightVector*side*.5*size+cf.UpVector*.35*size end,.08,r.color)end
   elseif classId=='dwarf'and(row.key=='steel'or row.key=='axe')then
@@ -838,7 +880,9 @@ function FX.contact(at,classId,id,direction,scale)
   Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)
   Surfaces.animate(r,start,at,dir,.35,true,.23)
  end
- flourish(r,at,1.5*size,row.key,false)
+ -- Physical hits use the sharp star as their focal point. Repeating the
+ -- soft elemental halo here washed out the silhouette during rapid combos.
+ if not physical then flourish(r,at,1.5*size,row.key,false)end
  FX.step(r.at);return r.model
 end
 return FX

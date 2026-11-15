@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "a64c1c7704f5d9f8b867c2561521b24c56a87f07",
+  "sourceRoot": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-vfx-art-fixed-wukmcjev",
+  "captureScript": null,
+  "captureScriptSha256": null,
+  "gameplayScriptsDisabled": true,
+  "candidateOverlays": {
+    "src/client/HeroVFX.luau": "a31c0895701d5fcefc0032bb36babf4b12e721516b5ebe740af0b8b7633f9e7f",
+    "src/client/K0HitEffects.luau": "54f7c593ab1f8ee7233732a7f9e0e0384d9a75d06209bb7417ba0e91c51efc63",
+    "tests/arcade-impact-vfx-native.luau": "a7b23f11e4fbb002df8eb07f839b3b975845178ff04a11196069c155b521488b"
+  },
+  "probeSha256": "728eb83bc2165181ae76dd4228f41e73d231ee73f3b950ee9b93443e9853b2d3",
+  "placeSha256": "43d878fe73b786b24db4250c6f3a0792a7347592c17564008505777d880afd7a"
+}

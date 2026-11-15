@@ -1,0 +1,62 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "height": 270,
+    "time": 0.045,
+    "name": "Knight Contact",
+    "width": 480,
+    "file": "comparison-1.png",
+    "sha256": "508307808cff7a85e468a5845557cece8a78056a66f95e160024bc2c6a65086c"
+  },
+  {
+    "clockTime": 0,
+    "index": 2,
+    "height": 270,
+    "time": 0.045,
+    "name": "Dwarf Contact",
+    "width": 480,
+    "file": "comparison-2.png",
+    "sha256": "86ede66cec982962edd7e1be49071e3e8c6587c342ae6f817a64c082d5ac25b0"
+  },
+  {
+    "clockTime": 12,
+    "index": 3,
+    "height": 270,
+    "time": 0.045,
+    "name": "Arrow Contact",
+    "width": 480,
+    "file": "comparison-3.png",
+    "sha256": "0c6cd5b7b4ecc56f8bc9ff2e55f4a84d255b2ab5eb17a3d5f41b2d19c7690fc8"
+  },
+  {
+    "clockTime": 0,
+    "index": 4,
+    "height": 270,
+    "time": 0.09,
+    "name": "Crescent Cut",
+    "width": 480,
+    "file": "comparison-4.png",
+    "sha256": "bc7ff37a242d1593b9e8decea99734778f98532fd9b1a2f53cd12ecf67f87c67"
+  },
+  {
+    "clockTime": 12,
+    "index": 5,
+    "height": 270,
+    "time": 0.09,
+    "name": "Heavy Cleave",
+    "width": 480,
+    "file": "comparison-5.png",
+    "sha256": "739499233b5b912c93934d5d3f85ba94b2f337aeb73de3dccd271677e6ca0955"
+  },
+  {
+    "clockTime": 0,
+    "index": 6,
+    "height": 270,
+    "time": 0.16,
+    "name": "Knight Recovery",
+    "width": 480,
+    "file": "comparison-6.png",
+    "sha256": "bd2123cb1c1ab5e8d6f3ff183d76c3b2ddc91b67a859de83d841f6be0aaa8cb2"
+  }
+]

@@ -111,7 +111,8 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
 	HitReaction.record(model, flat)
 	PixelFX.hit(position, classId, skillId, scale)
-	HeroVFX.contact(position, classId, skillId, flat, scale)
+	local contact = HeroVFX.contact(position, classId, skillId, flat, scale)
+	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
 	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)
 	TweenService:Create(flash, TweenInfo.new(0.09, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 		{ Size = Vector3.one * .8 * scale * impactScale, Transparency = 1 }):Play()
@@ -123,7 +124,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		highlight.DepthMode, highlight.Parent = Enum.HighlightDepthMode.Occluded, holder
 		TweenService:Create(highlight, TweenInfo.new(0.12), { FillTransparency = 1, OutlineTransparency = 1 }):Play()
 	end
-	for index = 1, 2 do
+	for index = 1, sharpContact and 0 or 2 do
 		local ray = part(holder, "K0ContactRay", position, Vector3.new(.08, 1.5, .08) * scale, profile.secondary)
 		ray.Size=Vector3.new(.045,skill and skill.shape=='chop'and 1.2 or .8,.045)*scale;ray.Transparency=.35
 		ray.Shape = Enum.PartType.Block
@@ -171,7 +172,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	end
 	local slime = enemyKind == "Slime"
 	local particleColor = slime and Color3.fromRGB(130, 224, 155) or profile.color
-	if not slime and (classId == "knight" or classId == "elf") then
+	if not sharpContact and not slime and (classId == "knight" or classId == "elf") then
 		local flat = typeof(direction) == "Vector3" and finite(direction.X) and finite(direction.Z)
 			and Vector3.new(direction.X, 0, direction.Z) or Vector3.new(0, 0, -1)
 		if flat.Magnitude < 0.001 then flat = Vector3.new(0, 0, -1) end
@@ -188,6 +189,15 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		if not slime and classId ~= "mage" then
 			particle.Shape = Enum.PartType.Block
 			if classId == "elf" then particle.Size = Vector3.new(0.06, 0.22, 0.06) * scale end
+		end
+		if sharpContact and not slime then
+			-- Carry the confirmed attack direction past the contact, with a
+			-- small fan instead of an unrelated omnidirectional sparkle cloud.
+			local right = Vector3.new(-flat.Z, 0, flat.X)
+			offset = (flat * (.7 + index * .3) + right * ((index - 2) * .45) + Vector3.yAxis * (.25 + index * .18)) * scale
+			particle.Shape = Enum.PartType.Block
+			particle.Size = Vector3.new(.055, .055, .45) * scale
+			particle.CFrame = CFrame.lookAt(position, position + offset)
 		end
 		TweenService:Create(particle, TweenInfo.new(0.26, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 			{ Position = position + offset, Size = particle.Size * 0.5, Transparency = 1 }):Play()
