@@ -23,6 +23,12 @@ local function validate(r)
   local floor,ok=ground(p.Position)
   check(ok and math.abs(p.Position.Y-floor.Y-.025)<.002,'visible on final wing floor')
   check(math.abs(p.Size.Y-.025)<.00001 and not p.CastShadow,'flat non-occluding mark')
+  if p.Name=='LoadedWheelRut'then
+   check(p.Material==Enum.Material.Ground,'loaded rut retains dark soil')
+  else
+   check(p.Material==Enum.Material.Sand,'scout exposes dry soil')
+   check(p.Color.R>p.Color.B and p.Color.R>.65,'warm pale soil under blue night mood')
+  end
  end
 end
 validate(root)

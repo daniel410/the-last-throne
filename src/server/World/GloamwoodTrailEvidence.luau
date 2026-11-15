@@ -1,6 +1,6 @@
 -- Local story evidence, not a new navigation route or progression state.
 local K=require(script.Parent.EpicEnvironmentKit)
-local M={version=2}
+local M={version=3}
 local V=Vector3.new
 function M.build(parent,chapter,ground)
  local old=parent:FindFirstChild('ScoutsTrailEvidence');if old then old:Destroy()end
@@ -19,7 +19,7 @@ function M.build(parent,chapter,ground)
  root:SetAttribute('StoryZone','GW-01');root:SetAttribute('StoryGoal','exp_1')
  root:SetAttribute('EvidenceVersion',M.version);root:SetAttribute('SourceKind','NewNativePrimitives')
  local count=0
- local function mark(name,p,width,length,direction,color)
+ local function mark(name,p,width,length,direction,color,material)
   local side=V(-direction.Z,0,direction.X)
   local at,ok=ground(p);if not ok then return end
   -- Probe all corners: never bridge a seam, step, void or slope with a flat mark.
@@ -27,7 +27,7 @@ function M.build(parent,chapter,ground)
    local hit,valid=ground(p+side*x*width/2+direction*z*length/2)
    if not valid or math.abs(hit.Y-at.Y)>.025 then return end
   end end
-  local part=K.part(root,name,V(width,.025,length),CFrame.lookAt(at+V(0,.025,0),at+V(0,.025,0)+direction),color,Enum.Material.Ground)
+  local part=K.part(root,name,V(width,.025,length),CFrame.lookAt(at+V(0,.025,0),at+V(0,.025,0)+direction),color,material or Enum.Material.Ground)
   -- PartType.Ball does not render this extreme flattening reliably.
   local mesh=Instance.new('SpecialMesh');mesh.MeshType=Enum.MeshType.Sphere;mesh.Parent=part
   part.Transparency=.16;part.CastShadow=false
@@ -43,10 +43,12 @@ function M.build(parent,chapter,ground)
  local across=V(-scout.Z,0,scout.X)
  for i=1,10 do
   local p=origin+scout*(5+i*1.6)+across*(i%2==0 and .65 or -.65)
-  local color=mud:Lerp(K.palette.Gloamwood.trim,.18)
+  -- Light compressed soil separates the scouts from the dark loaded ruts.
+  -- Sand stays legible under the authored night mood without local lights.
+  local color=Color3.fromRGB(181,165,131)
   -- Rounded sole and smaller heel leave a readable instep gap.
-  mark('ScoutSole',p+scout*.24,.65,.72,scout,color)
-  mark('ScoutHeel',p-scout*.43,.46,.36,scout,color)
+  mark('ScoutSole',p+scout*.24,.65,.72,scout,color,Enum.Material.Sand)
+  mark('ScoutHeel',p-scout*.43,.46,.36,scout,color,Enum.Material.Sand)
  end
  root:SetAttribute('MarkCount',count);root.Parent=parent
  return root
