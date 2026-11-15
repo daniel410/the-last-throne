@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "89edc83de72c057f9bcf5b4ae7a00fdd9794e785",
+  "version": "0.110.0",
+  "modules": {
+    "src/client/EnemyMechanicEffects.luau": "40ad8b28e2c5a4faeb590b65ec78e2b8fc671a078435a1932334b6d868f570c2",
+    "src/client/EnemyPatternDefinition.luau": "7a215369e6d1f27ec675de5c4d011592d8a4049114fa2be6299e1b085cc389a6",
+    "src/client/EnemyPatternEffects.luau": "1a1740e723db305eee37f9c64141eb4ac96edb311ac4d5ef07c878915bc75e42",
+    "src/client/EnemyPatternPose.luau": "a520f6739cd6418c3f903e76dcf8b777435fb33153d4c0765018e1556c3b2e37",
+    "src/server/Combat/CombatService.luau": "6353cefc55d4e9dc0700cccedffb75d1f593554233f29c8f5b3441f1a1829eb8",
+    "src/server/Combat/EnemyAfflictions.luau": "78d71f2e9967974ef3425a0fe89b961c43bf5884779450b29f2149b9e4d8c842",
+    "src/server/Combat/EnemyPackRuntime.luau": "08976c1bc8895957f52fbb3aba3d754990f25ec9128934ff8883841833ace2f6",
+    "src/server/Combat/EnemyPatternRuntime.luau": "7d90958c04711bd86fc8193cd1ced16ecd4570449f0c9642b4671cf3d7358b73",
+    "src/shared/EnemyAfflictionRules.luau": "f1defc6774fed82b210efb35c3ea340f60a070a3945c686075fa71e2cb5b0da1",
+    "src/shared/EnemyAttackFrame.luau": "c4bbb24e1591b4ba033f63be5ff87890a377a90ff09adee87325c48f301d1e9f",
+    "src/shared/EnemyCombatProfiles.luau": "81bd7381404221df9509420919f013cc186f66e364e79737dac361447f95fa9b",
+    "src/shared/EnemyCombatTactics.luau": "a61395654cf82c79699055a260837d8a8f0d18ad8b16ddc22a27f848aa2ea57f",
+    "src/shared/EnemyEncounterMechanics.luau": "5527746061ee0b022711e7ca899e1df2dd791eee0f98f132f10b8c7e327caba2",
+    "src/shared/EnemyPackRules.luau": "42437e6b355b03dad20705c7c03f9d02bc9fad5a1479fa69a3c549797bdb8aef"
+  }
+}

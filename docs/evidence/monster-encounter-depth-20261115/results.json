@@ -304,5 +304,12 @@
   "pureSuitesPassed": 11,
   "baselineFailures": 2,
   "published": false,
-  "releaseTag": null
+  "releaseTag": null,
+  "version": "0.110.0",
+  "sourceCommit": "89edc83de72c057f9bcf5b4ae7a00fdd9794e785",
+  "fixedNativeChecks": 608590,
+  "fixedNativeExitCode": 0,
+  "sourceEqualityModules": 14,
+  "artifact": "builds/0.110.0/TheLastThrone-0.110.0.rbxlx",
+  "artifactSha256": "5ed4000ddd5fcd7fb92d8bdbdcaac5bbfabf7e92594ab338890dcbf725fd9c7f"
 }
