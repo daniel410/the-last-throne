@@ -1,0 +1,11 @@
+{
+  "changedTemplates": [
+    "zombie",
+    "ghoul"
+  ],
+  "otherTemplatesPreserved": true,
+  "exactTDModels": true,
+  "runtimeSha256": "58700b6a8ccb618c0a2dff6fe01e5d7d773a90a6135281705fbf69c1fd7a6e73",
+  "publishedClient": "NOT RUN",
+  "devices": "NOT RUN"
+}

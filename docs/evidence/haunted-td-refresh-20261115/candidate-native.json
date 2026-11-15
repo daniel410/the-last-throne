@@ -1,0 +1,18 @@
+{
+  "checks": 68353,
+  "failures": [],
+  "species": {
+    "Ghoul": {
+      "maxStoppedFootLift": 2.384185791015625e-07,
+      "stanceSlipHeightFraction": 0.01953125,
+      "source": "ghoul"
+    },
+    "Zombie": {
+      "maxStoppedFootLift": 2.384185791015625e-07,
+      "stanceSlipHeightFraction": 0.010614809782608696,
+      "source": "zombie"
+    }
+  },
+  "pass": true,
+  "kind": "HAUNTED_MONSTER_MOTION_NATIVE"
+}
