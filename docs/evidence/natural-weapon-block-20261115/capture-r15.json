@@ -1,4 +1,6 @@
 {
+  "sourceCommit": "3f8dda3856d0651262a893ea4c17a2c8171ee2aa",
+  "buildVersion": "0.110.17",
   "native": {
     "baseline": "eda125e7b447502422a5b552df8d666fa2e280dc",
     "snapshots": [
@@ -8,20 +10,20 @@
         "evaluatedParts": 48,
         "source": "td:ElfBow",
         "class": "elf",
-        "freeHandDistance": 0.00017890328308567405,
+        "freeHandDistance": 0.0002324248489458114,
         "grip": [
           -1.111983299255371,
           1.632171630859375,
           -1.7281341552734375,
-          0.7817379832267761,
-          0.5173311233520508,
-          -0.3482162058353424,
-          -0.5251060724258423,
-          0.24487921595573425,
-          -0.8150447010993958,
-          -0.3363770842552185,
-          0.8200017213821411,
-          0.46308502554893494
+          -1.5751754744997015e-07,
+          1.0000003576278687,
+          1.5769103356433334e-08,
+          -0.976133406162262,
+          3.942052728689305e-08,
+          0.21717265248298645,
+          0.21717244386672974,
+          -1.624926113663605e-07,
+          0.9761334657669067
         ]
       },
       {
@@ -30,7 +32,7 @@
         "evaluatedParts": 48,
         "source": "td:ElfBow",
         "class": "elf",
-        "freeHandDistance": 3.413301601540297e-05,
+        "freeHandDistance": 0.00020480489183682948,
         "grip": [
           -1.111983299255371,
           1.632171630859375,
@@ -118,20 +120,20 @@
         "evaluatedParts": 32,
         "source": "td:v2:Embercleaver:inward3",
         "class": "dwarf",
-        "freeHandDistance": 0.00018234760500490665,
+        "freeHandDistance": 0.00016279262490570545,
         "grip": [
           1.0573127269744873,
           1.5931396484375,
           -1.8685226440429688,
-          0.7333266735076904,
-          -0.4218645393848419,
-          0.533162534236908,
-          0.6707586646080017,
-          0.57692950963974,
-          -0.4660851061344147,
-          -0.1109723225235939,
-          0.699415922164917,
-          0.706046998500824
+          1.9277912599591218e-07,
+          -1,
+          5.690415250114711e-08,
+          0.9683093428611755,
+          1.609761710597013e-07,
+          -0.24975410103797913,
+          0.24975411593914032,
+          6.424991028097793e-08,
+          0.9683092832565308
         ]
       },
       {
@@ -140,7 +142,7 @@
         "evaluatedParts": 32,
         "source": "td:v2:Embercleaver:inward3",
         "class": "dwarf",
-        "freeHandDistance": 2.4271678924560547,
+        "freeHandDistance": 0.5280374884605408,
         "grip": [
           0.5999964475631714,
           1.150054931640625,
@@ -162,7 +164,7 @@
         "evaluatedParts": 32,
         "source": "td:v2:Embercleaver:inward3",
         "class": "dwarf",
-        "freeHandDistance": 2.4271678924560547,
+        "freeHandDistance": 0.5280084609985352,
         "grip": [
           0.5999964475631714,
           1.150054931640625,
@@ -184,20 +186,20 @@
         "evaluatedParts": 47,
         "source": "authored:WoodenStaff",
         "class": "mage",
-        "freeHandDistance": 0.00020852031593676656,
+        "freeHandDistance": 9.991758270189166e-05,
         "grip": [
           1.0573127269744873,
           1.5931396484375,
           -1.8685226440429688,
-          0.8579925894737244,
-          -0.5077846646308899,
-          -0.07748142629861832,
-          0.08339610695838928,
-          0.2865462899208069,
-          -0.9544299244880676,
-          0.5068469047546387,
-          0.8124321699142456,
-          0.28820186853408813
+          0.8579936623573303,
+          -0.5077829360961914,
+          -0.07748168706893921,
+          0.08339585363864899,
+          0.2865474224090576,
+          -0.954429566860199,
+          0.506845235824585,
+          0.8124327659606934,
+          0.2882028818130493
         ]
       },
       {
@@ -206,20 +208,20 @@
         "evaluatedParts": 47,
         "source": "authored:WoodenStaff",
         "class": "mage",
-        "freeHandDistance": 5.497451638802886e-05,
+        "freeHandDistance": 0.00017852637392934412,
         "grip": [
           1.0573127269744873,
           1.5931396484375,
           -1.8685226440429688,
-          0.857992947101593,
-          -0.5077841281890869,
-          -0.07748213410377502,
-          0.08339493721723557,
-          0.286545991897583,
-          -0.954430103302002,
-          0.5068466067314148,
-          0.8124326467514038,
-          0.2882010340690613
+          -1.1649698308247025e-06,
+          -1,
+          1.7252258999178594e-07,
+          0.2464529275894165,
+          -4.825972723665473e-07,
+          -0.9691547751426697,
+          0.9691547751426697,
+          -1.0194964943366358e-06,
+          0.24645289778709412
         ]
       },
       {
@@ -228,7 +230,7 @@
         "evaluatedParts": 47,
         "source": "authored:WoodenStaff",
         "class": "mage",
-        "freeHandDistance": 0.5279374122619629,
+        "freeHandDistance": 2.334345817565918,
         "grip": [
           0.5999964475631714,
           1.150054931640625,
@@ -250,7 +252,7 @@
         "evaluatedParts": 47,
         "source": "authored:WoodenStaff",
         "class": "mage",
-        "freeHandDistance": 0.527968168258667,
+        "freeHandDistance": 2.334345817565918,
         "grip": [
           0.5999964475631714,
           1.150054931640625,
@@ -343,12 +345,12 @@
       },
       "scope": "Frozen native production Block FK, not live input/timing or visual acceptance",
       "width": 1280,
-      "height": 873,
-      "sourceHeight": 1816,
+      "height": 930,
+      "sourceHeight": 1934,
       "sourceWidth": 2660,
       "baselineOnly": false,
       "path": "elf-before-after.png",
-      "sha256": "a011303eee748d1478df7e3c7579ffdf77ddc64e4149f16efede7a25d9926460"
+      "sha256": "388bd3517ac88daf3eb1b46aa9977f2ba5414ead58b22644672e662dba88cf14"
     },
     {
       "baseline": "eda125e7b447502422a5b552df8d666fa2e280dc",
@@ -382,7 +384,7 @@
       "sourceWidth": 2660,
       "baselineOnly": false,
       "path": "dwarf-before-after.png",
-      "sha256": "8aff87e134370c0e0d00234d9bf6926b3f054c6242cfae0d677d43b6aabf4682"
+      "sha256": "084f7794057d4fe75c0d57ff6a924528c1f4088dafaa5acc95a4ae44dffdf6f2"
     },
     {
       "baseline": "eda125e7b447502422a5b552df8d666fa2e280dc",
@@ -416,7 +418,7 @@
       "sourceWidth": 2660,
       "baselineOnly": false,
       "path": "mage-before-after.png",
-      "sha256": "0ed123897fe29e776d7897bbaebf8c70cfc7688b4f8033973378ac825342fa3d"
+      "sha256": "9e87d15512be0c7c6cd52e24d9a24c2b9a2afd0920283d1421ee2facb739b62f"
     }
   ],
   "result": {
@@ -427,12 +429,12 @@
     "baselineCommit": "eda125e7b447502422a5b552df8d666fa2e280dc",
     "baselineVisualSha256": "0413b64249e38f83db96a25d4c5f9e188e6dc0fcd28a842598b518c9fa46b327",
     "baselineOnly": false,
-    "fixed": false,
+    "fixed": true,
     "rig": "R15",
     "inputs": {
-      "src/client/K0SwordVisual.luau": "93a07e28df042a64069f7487e1e348d34c72e03899b88428b7316c91e584cef9",
+      "src/client/K0SwordVisual.luau": "26fe209c6a4fff47d8a4224be785013ec362acc7bf7ed9c6e5569ebdeda97e7a",
       "src/client/K0BlockMotion.luau": "bb8501bd241ed6a78716aecdbe4b0e36f64756bda2c5a4e6ab725326b0bdd9c6",
-      "tools/capture-natural-block.luau": "ec49cc27a0aa71560988eb16265801dc6e21764a379762f594d4172d6bbfb5d3"
+      "tools/capture-natural-block.luau": "caba7bb9930f329da93d0bea4ac150ec46a95e47c16bf03bf5c21d67dbf9df71"
     }
   }
 }
