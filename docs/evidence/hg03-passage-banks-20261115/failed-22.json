@@ -1,0 +1,7 @@
+{
+  "source": "55e146e221a8aafdadaaf041d326d23399362114",
+  "version": "0.110.22",
+  "failure": "earth cap remains SkylineWest1",
+  "reason": "Ground sphere was completely enclosed by Slate sphere",
+  "acceptance": false
+}

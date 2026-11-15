@@ -1,0 +1,176 @@
+{
+  "status": {
+    "ok": true,
+    "error": "nil"
+  },
+  "navigation": {
+    "worldPoints": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    },
+    "points": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    }
+  },
+  "landforms": {
+    "plots": 4,
+    "checks": 377,
+    "graves": 12,
+    "skyline": 2,
+    "shoulders": 3,
+    "banks": {
+      "Shoulder1": {
+        "height": 17.250701904296875,
+        "materials": {
+          "Rock": 15
+        },
+        "center": [
+          82.94999694824219,
+          180,
+          -16501.400390625
+        ]
+      },
+      "SkylineWest1": {
+        "height": 53.096923828125,
+        "materials": {
+          "Slate": 26,
+          "Rock": 114
+        },
+        "center": [
+          -156.85000610351562,
+          180,
+          -16534.400390625
+        ]
+      },
+      "SkylineEast4": {
+        "height": 62.97412109375,
+        "materials": {
+          "Slate": 33,
+          "Rock": 129
+        },
+        "center": [
+          723.1500244140625,
+          180,
+          -16084.400390625
+        ]
+      },
+      "Shoulder3": {
+        "height": 16.75732421875,
+        "materials": {
+          "Rock": 15
+        },
+        "center": [
+          283.1499938964844,
+          180,
+          -16525.400390625
+        ]
+      },
+      "Shoulder2": {
+        "height": 17.096481323242188,
+        "materials": {
+          "Rock": 15
+        },
+        "center": [
+          483.3499755859375,
+          180,
+          -16117.400390625
+        ]
+      }
+    }
+  },
+  "plots": {
+    "graves": 12,
+    "parts": 112,
+    "plots": [
+      {
+        "band": 1,
+        "size": [
+          41.00000762939453,
+          13.872314453125,
+          32.5
+        ],
+        "position": [
+          125.9786376953125,
+          188.06382751464844,
+          -16502.365234375
+        ]
+      },
+      {
+        "band": 2,
+        "size": [
+          41,
+          13.6688232421875,
+          30.5
+        ],
+        "position": [
+          519.7786865234375,
+          188.11526489257812,
+          -16404.39453125
+        ]
+      },
+      {
+        "band": 3,
+        "size": [
+          41,
+          13.858968734741211,
+          32.5
+        ],
+        "position": [
+          136.9375762939453,
+          188.77125549316406,
+          -16117.251953125
+        ]
+      },
+      {
+        "band": 4,
+        "size": [
+          41,
+          13.407796859741211,
+          30.5
+        ],
+        "position": [
+          428.8813781738281,
+          188.200927734375,
+          -16131.365234375
+        ]
+      }
+    ]
+  }
+}

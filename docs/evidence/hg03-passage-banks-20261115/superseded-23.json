@@ -1,0 +1,11 @@
+{
+  "source": "8264688a6cf1ef09a005d71a0130ab182b2aefd3",
+  "version": "0.110.23",
+  "terrainChecks": 377,
+  "routes": {
+    "pointsSamples": 4749,
+    "worldPointsSamples": 5192,
+    "failures": 0
+  },
+  "supersededReason": "Ground brown cap conflicts with established gray green HG rock palette; final uses existing Rock material"
+}
