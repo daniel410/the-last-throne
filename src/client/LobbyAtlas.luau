@@ -76,7 +76,8 @@ function M.create(parent)
   scene.Size=UDim2.fromOffset(width,width/atlas.aspect);scene.Position=UDim2.fromOffset(math.max(0,(w-width)/2),math.max(0,(h-width/atlas.aspect)/2));area.CanvasSize=UDim2.fromOffset(math.max(w,width),math.max(h,width/atlas.aspect))
   atlas.update({journal=journal()},nil,nil)
  end
- local function render()
+ local render
+ render=function()
   for _,v in ipairs(scene:GetChildren())do v:Destroy()end
   atlas=nil;selected=nil;area.CanvasPosition=Vector2.zero
   local spec=epics[epic];local j=journal();local ids={};local count,opened=0,0
@@ -90,7 +91,9 @@ function M.create(parent)
   end
   for id in pairs(Content.zones)do if id:sub(1,3)==spec[2]then ids[id]=true;count+=1;if Access.allowed(j,id)then opened+=1 end end end
   summary.Text=string.format('%s · %d / %d REGIONS OPEN',spec[1]:upper(),opened,count)
-  atlas=Canvas.create(scene,ids,false,describe);layout()
+  atlas=Canvas.create(scene,ids,false,describe,function(index,destination)
+   epic=index;zoom=1;render();atlas.select(destination)
+  end);layout()
   local first=spec[2]..'01';atlas.select(first)
  end
  for i,spec in ipairs(epics)do

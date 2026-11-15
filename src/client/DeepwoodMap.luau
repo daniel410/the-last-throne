@@ -23,7 +23,7 @@ function Map.start(button)
  local area=Instance.new('ScrollingFrame');area.Name='Atlas';area.Position=UDim2.fromOffset(18,96);area.Size=UDim2.new(1,-36,1,-232)
  area.BackgroundColor3=Color3.fromRGB(16,33,34);area.BorderSizePixel=0;area.ClipsDescendants=true;area.ScrollBarThickness=4;area.ScrollBarImageColor3=Theme.color.gold;area.Parent=panel
  local scene=Instance.new('Frame');scene.Name='Cartography';scene.BackgroundTransparency=1;scene.BorderSizePixel=0;scene.Parent=area
- local selected,travelTarget,updateTravel,layout
+ local selected,travelTarget,updateTravel,layout,selectEpic
  local detail=Theme.label(panel,'RegionDetail',Text.Map.Ready,UDim2.new(0,24,1,-130),UDim2.new(1,-48,0,34),12,Theme.color.gold)
  local function describe(id)
   selected=id;local z=Content.zones[id];local journal=State.current and State.current.journal
@@ -36,7 +36,9 @@ function Map.start(button)
   if updateTravel then updateTravel();if layout then layout()end end
  end
  local epic=1
- local atlas=Canvas.create(scene,Scope.ids(epic),false,describe)
+ local atlas
+ local function followEpic(index,destination)selectEpic(index);atlas.select(destination)end
+ atlas=Canvas.create(scene,Scope.ids(epic),false,describe,followEpic)
  local controller
  local epicTabs=Instance.new('ScrollingFrame');epicTabs.Name='EpicCategories';epicTabs.BackgroundTransparency=1;epicTabs.BorderSizePixel=0;epicTabs.ScrollBarThickness=3;epicTabs.ScrollingDirection=Enum.ScrollingDirection.X;epicTabs.CanvasSize=UDim2.fromOffset(#Content.epics*174,0);epicTabs.Parent=panel
  local epicButtons={}
@@ -100,7 +102,7 @@ function Map.start(button)
   travel.Position=UDim2.new((small or short)and 0 or .55,(small or short)and 18 or 0,1,short and -98 or small and -184 or -136)
   travel.Size=UDim2.new((small or short)and 1 or .45,(small or short)and -36 or -24,0,44)
   legend.Visible=not short
-  legend.Position=UDim2.new(0,24,1,small and -144 or -94);hint.Position=UDim2.new(0,24,1,small and -126 or -73)
+  legend.Position=UDim2.new(0,24,1,small and -144 or -94);hint.Position=UDim2.new(0,24,1,small and -126 or -73);hint.Size=UDim2.new(1,-48,0,small and 18 or 20);hint.TextSize=small and 9 or 10
   local stacked=small and not short
   navigation.Position=UDim2.new(0,18,1,stacked and -108 or -52);navigation.Size=UDim2.new(1,stacked and -36 or -266,0,40)
   for index,control in ipairs({minus,plus,fit,you}) do
@@ -175,7 +177,17 @@ function Map.start(button)
   local completed,total=Scope.progress(journal,epic)
   progress.Text=string.format(Text.Map.EpicProgress,completed,total,math.floor(discovered/math.max(1,count)))
   subtitle.Text=string.format(Text.Map.EpicSubtitle,epic,Content.epics[epic].region:upper())
+  local nextEpic=Content.epics[epic+1]
   journeyHint.Text=Text.Map.EpicJourneyHint
+  if nextEpic then
+   local lastChapter=Content.mainChapters[last]
+   if Access.allowed(journal,Content.mainChapters[last+1].id)then
+    hint.Text=string.format(Text.Map.OverlandHint,Content.zones[lastChapter.zone].name,nextEpic.region)
+   else
+    hint.Text=string.format(Text.Map.OverlandLocked,lastChapter.title)
+   end
+  else hint.Text=Text.Map.Hint end
+  hint.TextWrapped=true
   for i,item in ipairs(chapters) do
    item.button.Visible=i>=first and i<=last
    if item.button.Visible then item.button.Position=UDim2.fromOffset(10,70+(i-first)*66);item.name.Text=string.format('%02d  %s',i-first+1,Content.zones[Content.mainChapters[i].id].name) end
@@ -187,11 +199,11 @@ function Map.start(button)
   end
   for i,b in ipairs(epicButtons) do b.Caption.Text=(i==epic and '> ' or '')..Content.epics[i].region:upper();b:SetAttribute('Selected',i==epic) end
  end
- local function selectEpic(index)
+ selectEpic=function(index)
   if not Content.epics[index] then return end
   categoriesOpen=false
   epic=index;selected=nil;scene:ClearAllChildren()
-  atlas=Canvas.create(scene,Scope.ids(epic),false,describe)
+  atlas=Canvas.create(scene,Scope.ids(epic),false,describe,followEpic)
   if controller then controller.atlas=atlas end
   journey.CanvasPosition=Vector2.zero
   atlas.update(State.current,nil,nil);refreshEpic();fitMap()

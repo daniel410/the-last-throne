@@ -10,12 +10,21 @@ local Survey=require(Shared.CampaignCartography)
 local Bounds=require(Shared.CampaignBounds)
 local Areas=require(Shared.CampaignAreas)
 local Canvas={}
-function Canvas.create(parent,zoneId,compact,onSelect)
+function Canvas.create(parent,zoneId,compact,onSelect,onEpic)
  local minX,minZ,maxX,maxZ=math.huge,math.huge,-math.huge,-math.huge
  local ids={};for id in pairs(Content.zones) do if not zoneId or id==zoneId or type(zoneId)=='table' and zoneId[id] then table.insert(ids,id) end end;table.sort(ids)
  for _,id in ipairs(ids) do local z=Content.zones[id]
   local a,b,c,d=Areas.extent(z)
   minX=math.min(minX,a);maxX=math.max(maxX,c);minZ=math.min(minZ,b);maxZ=math.max(maxZ,d)
+ end
+ local connections={}
+ if not compact and type(zoneId)=='table' and ids[1]then
+  connections=require(Shared.CampaignMapScope).connections(Content.zones[ids[1]].epic)
+  for _,link in ipairs(connections)do
+   local p=link.finish
+   minX=math.min(minX,p[1]-180);maxX=math.max(maxX,p[1]+180)
+   minZ=math.min(minZ,p[3]-100);maxZ=math.max(maxZ,p[3]+100)
+  end
  end
  if compact then
   local size=math.max(maxX-minX,maxZ-minZ);local cx,cz=(minX+maxX)/2,(minZ+maxZ)/2
@@ -60,6 +69,22 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   line('ConnectingTrail',first,second,Color3.fromRGB(86,106,83),7,2,nil,nil,80)
   line('Road',first,second,Theme.color.gold,2.5,4,edge)
  end end end
+ local exits={}
+ for _,link in ipairs(connections)do
+  local a,b=link.start,link.finish
+  local first,last=point(a[1],a[3]),point(b[1],b[3])
+  line('OverlandShoulder',first,last,Color3.fromRGB(8,19,22),10,2,nil,nil,96)
+  line('OverlandRoad',first,last,Theme.color.gold,4,4,link.edge)
+  local destination=Content.epics[link.epic].region
+  local direction=b[3]<a[3]and '↑'or '↓'
+  local button=Theme.button(parent,'OverlandTo'..link.epic,string.format(Text.OverlandDestination,direction,destination:upper()),UDim2.fromScale(last.X,last.Y),UDim2.fromOffset(210,44))
+  button.AnchorPoint=Vector2.new(.5,.5);button.ZIndex=15;button.Caption.TextSize=11
+  local status=label('OverlandStatus','',last,UDim2.fromOffset(250,30),10,Theme.color.gold,15)
+  status.Position+=UDim2.fromOffset(0,b[3]<a[3]and 36 or -36)
+  status.TextWrapped=true
+  button.Activated:Connect(function()if onEpic then onEpic(link.epic,link.destination)end end)
+  table.insert(exits,{link=link,button=button,status=status})
+ end
  local function selectRegion(id)
   for key,row in pairs(rows) do row.outline.Transparency=key==id and .05 or .7 end
   if onSelect then onSelect(id) end
@@ -132,6 +157,14 @@ function Canvas.create(parent,zoneId,compact,onSelect)
     row.checkpoint.Visible=Progress.hasCell(cells,cz*12+cx+1)
     row.name:SetAttribute('ExploredPercent',math.floor(count/144*100));row.name:SetAttribute('Accessible',allowed==true)
    end
+   for _,exit in ipairs(exits)do
+    local link=exit.link
+    local allowed=Access.allowed(journal,link.edge[2])
+    local chapter=Content.byId[link.edge[1]]
+    exit.status.Text=allowed and string.format(Text.OverlandOpen,Content.zones[link.origin].name)or string.format(Text.OverlandLocked,chapter.title)
+    exit.status.TextColor3=allowed and Theme.color.green or Theme.color.muted
+    exit.button:SetAttribute('Accessible',allowed==true)
+   end
    for _,r in ipairs(roads) do
     if r.edge then r.part.BackgroundColor3=Access.allowed(journal,r.edge[1]) and Access.allowed(journal,r.edge[2]) and Theme.color.gold or Color3.fromRGB(100,115,112)
     elseif r.zone then r.part.Visible=Access.allowed(journal,r.zone)==true end
@@ -139,6 +172,10 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   end
   if parent.AbsoluteSize~=lastSize then
    lastSize=parent.AbsoluteSize
+   for _,exit in ipairs(exits)do
+    exit.button.Size=UDim2.fromOffset(math.min(210,math.max(44,lastSize.X-8)),44)
+    exit.status.Size=UDim2.fromOffset(math.min(250,math.max(44,lastSize.X-8)),30)
+   end
    for _,r in ipairs(roads) do
     local delta=Vector2.new((r.b.X-r.a.X)*lastSize.X,(r.b.Y-r.a.Y)*lastSize.Y)
     local thickness=r.worldWidth and math.max(r.thickness,r.worldWidth/width*lastSize.X) or r.thickness
@@ -153,6 +190,6 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   end
   if target then located(objective,target) else objective.Visible=false end
  end
- return {party=party,pin=pin,youLabel=youLabel,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
+ return {exits=exits,party=party,pin=pin,youLabel=youLabel,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
 end
 return Canvas

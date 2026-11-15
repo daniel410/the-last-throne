@@ -1,0 +1,8 @@
+{
+  "src/client/DeepwoodMap.luau": "0c3db9c2ee93fb12368432dd298a8884a2f8013262661d0501a94562c7a7bfdb",
+  "src/client/DeepwoodMapCanvas.luau": "2ef2ee8a75b48e39f97e0112ba2c21949f1ee3ff513924115722b7c6baf91e94",
+  "src/client/LobbyAtlas.luau": "01cc63688db37a50e882be8f4de1a9d61707385f28a5ba07f6d24f6503644114",
+  "src/shared/CampaignMapScope.luau": "5413d99219409cab9ae525b3a01fc90d4d1448bbc9b6669b3c945fbf1235c57f",
+  "src/shared/K0Text.luau": "59eff65793c520731318c621a4a290a57341a486b6e3da6f063e37c89dc4f3d7",
+  "tests/epic-map-connections-native.luau": "5acae4e12b16a8d1930e26c47e52dfec98688288a4688ecd550972cc25cb7156"
+}
