@@ -1,0 +1,242 @@
+{
+  "version": "0.109.0",
+  "sourceCommit": "ab9e2d4b5c640079e166bc83673f018d9d304d44",
+  "environment": "Unpublished Studio Play, session-only account",
+  "method": "Normal client requests create Knight, configure and depart; QA invokes trusted InventoryService.storyEvent for quest completion without real combat/walking. Actual client mouse clicks ModeInsane, ModeEasy and Solo verify mode buttons and resume.",
+  "easyComplete": {
+    "phase": "Tutorial",
+    "admission": {
+      "mode": "Easy",
+      "mission": "DW-01",
+      "runId": "81772fac1cc2400c9af3eb391216c228"
+    },
+    "journals": {
+      "Hard": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Insane": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Hell": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Easy": {
+        "main": 1,
+        "firstQuestComplete": true
+      }
+    },
+    "totalXP": 1898,
+    "gold": 10150,
+    "diamonds": 5003,
+    "fineWeapons": 1,
+    "objective": {
+      "mission": "DW-02",
+      "main": 1,
+      "firstClear": true,
+      "flags": {
+        "DW-01:supplies": true,
+        "DW-01:exp_1": true,
+        "DW-01:trail_exit": true,
+        "DW-01:trail_guards": true,
+        "DW-01:tracks": true,
+        "DW-01:exp_2": true,
+        "DW-01:supply_guards": true
+      }
+    }
+  },
+  "hardStart": {
+    "phase": "Tutorial",
+    "admission": {
+      "mode": "Hard",
+      "mission": "DW-01",
+      "runId": "ff3e5dd44051487ebe16261f4be061e0"
+    },
+    "journals": {
+      "Hard": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Insane": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Hell": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Easy": {
+        "main": 1,
+        "firstQuestComplete": true
+      }
+    },
+    "totalXP": 1898,
+    "gold": 10150,
+    "diamonds": 5003,
+    "fineWeapons": 1,
+    "objective": {
+      "mission": "DW-01",
+      "main": 0,
+      "firstClear": true,
+      "flags": []
+    }
+  },
+  "hardClient": {
+    "firstClear": true,
+    "mode": "Hard",
+    "main": 0,
+    "waypoint": [
+      -1595,
+      0,
+      -823
+    ]
+  },
+  "hardComplete": {
+    "phase": "Tutorial",
+    "admission": {
+      "mode": "Hard",
+      "mission": "DW-01",
+      "runId": "ff3e5dd44051487ebe16261f4be061e0"
+    },
+    "journals": {
+      "Hard": {
+        "main": 1,
+        "firstQuestComplete": true
+      },
+      "Insane": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Hell": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Easy": {
+        "main": 1,
+        "firstQuestComplete": true
+      }
+    },
+    "totalXP": 2184,
+    "gold": 10300,
+    "diamonds": 5008,
+    "fineWeapons": 2,
+    "objective": {
+      "mission": "DW-02",
+      "main": 1,
+      "firstClear": true,
+      "flags": {
+        "DW-01:supplies": true,
+        "DW-01:exp_1": true,
+        "DW-01:trail_exit": true,
+        "DW-01:trail_guards": true,
+        "DW-01:tracks": true,
+        "DW-01:exp_2": true,
+        "DW-01:supply_guards": true
+      }
+    }
+  },
+  "menuAfterClicks": {
+    "difficultySelections": {
+      "Hard": {
+        "missionId": "DW-02",
+        "difficultyId": "Hard"
+      },
+      "Insane": {
+        "missionId": "DW-01",
+        "difficultyId": "Insane"
+      },
+      "Hell": {
+        "missionId": "DW-01",
+        "difficultyId": "Hell"
+      },
+      "Easy": {
+        "missionId": "DW-02",
+        "difficultyId": "Easy"
+      }
+    },
+    "selection": {
+      "missionId": "DW-01",
+      "difficultyId": "Insane"
+    },
+    "modes": {
+      "Hard": {
+        "completed": true,
+        "allowed": true,
+        "firstClear": false
+      },
+      "Insane": {
+        "completed": false,
+        "allowed": true,
+        "firstClear": true
+      },
+      "Hell": {
+        "completed": false,
+        "allowed": false,
+        "firstClear": true
+      },
+      "Easy": {
+        "completed": true,
+        "allowed": true,
+        "firstClear": false
+      }
+    }
+  },
+  "resumeSelection": {
+    "buttons": [
+      "Players.Robloxianb1b5e7p5p.PlayerGui.LobbyServices.Expedition.Footer.Solo"
+    ],
+    "selection": {
+      "missionId": "DW-02",
+      "difficultyId": "Easy"
+    }
+  },
+  "easyResume": {
+    "phase": "Tutorial",
+    "admission": {
+      "mode": "Easy",
+      "mission": "DW-02",
+      "runId": "3a5c6c55f7d5457181fff2979ee33ce3"
+    },
+    "journals": {
+      "Hard": {
+        "main": 1,
+        "firstQuestComplete": true
+      },
+      "Insane": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Hell": {
+        "main": 0,
+        "firstQuestComplete": false
+      },
+      "Easy": {
+        "main": 1,
+        "firstQuestComplete": true
+      }
+    },
+    "totalXP": 2184,
+    "gold": 10300,
+    "diamonds": 5008,
+    "fineWeapons": 2,
+    "objective": {
+      "mission": "DW-02",
+      "main": 1,
+      "firstClear": true,
+      "flags": {
+        "DW-01:supplies": true,
+        "DW-01:exp_1": true,
+        "DW-01:trail_exit": true,
+        "DW-01:trail_guards": true,
+        "DW-01:exp_2": true,
+        "DW-01:tracks": true,
+        "DW-01:supply_guards": true
+      }
+    }
+  },
+  "published": false,
+  "physicalDeviceTested": false,
+  "userAccepted": false
+}

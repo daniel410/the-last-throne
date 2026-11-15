@@ -1,0 +1,16 @@
+{
+  "version": "0.109.0",
+  "sourceCommit": "ab9e2d4b5c640079e166bc83673f018d9d304d44",
+  "method": "Studio MCP execute_luau on the exact built .rbxlx, Edit DataModel, PlaceId 0, no players; source pins and all-source compile before tests",
+  "output": [
+    "MODE_ALL_SOURCE_COMPILE true",
+    "Completed mode campaign: Easy",
+    "Completed mode campaign: Hard",
+    "Completed mode campaign: Insane",
+    "Completed mode campaign: Hell",
+    "Campaign mode progress: 4621 checks passed",
+    "MODE_PROFILE_BYTES 115162",
+    "COMBAT_ROUTE_RUNTIME {\"checks\":823,\"kind\":\"COMBAT_ROUTE_RUNTIME\"}",
+    "CAMPAIGN_MODE_NATIVE_PASS true"
+  ]
+}

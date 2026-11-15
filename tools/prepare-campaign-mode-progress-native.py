@@ -36,6 +36,7 @@ suite = suite.replace("local function load(n)return dofile('src/shared/'..n..'.l
 suite = suite.replace("dofile('src/server/Inventory/InventoryRules.luau')", 'require(game.ServerScriptService.Server.Inventory.InventoryRules)')
 suite = suite.replace("dofile('src/server/Inventory/AccountStore.luau')", 'require(game.ServerScriptService.Server.Inventory.AccountStore)')
 suite = suite.replace(';io.stdout:flush()', '')
+suite = suite.replace('p=finish(p,c,run);expectedGold=', 'p=finish(p,c,run);task.wait();expectedGold=')
 code += 'do\n' + suite + "\nprint('MODE_PROFILE_BYTES '..#game.HttpService:JSONEncode(p))\nend\n"
 code += 'local routeResult=(function()\n' + Path('tests/campaign-combat-route-runtime-native.luau').read_text() + '\nend)()\n'
 code += "print('CAMPAIGN_MODE_NATIVE_PASS true')\n"
