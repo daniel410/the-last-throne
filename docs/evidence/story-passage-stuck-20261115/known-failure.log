@@ -1,0 +1,8 @@
+story-respawn.spec.lua — 변경 전 72eace5d 및 변경 후 f35debee 동일 실패
+lua: [string "return function(options,state,Content,Replica..."]:4: bad argument #1 to 'for iterator' (table expected, got nil)
+stack traceback:
+    [C]: in for iterator 'for iterator'
+    [string "return function(options,state,Content,Replica..."]:4: in field 'destination'
+    [string "return function(heroSession,world,story) loca..."]:3: in local 'resolve'
+    tests/story-respawn.spec.lua:41: in main chunk
+    [C]: in ?

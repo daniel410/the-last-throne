@@ -1,0 +1,404 @@
+{
+  "version": "0.110.29",
+  "sourceCommit": "f35debee34132e59faf350cc35725f642f41321c",
+  "published": false,
+  "sourceByteMatch": true,
+  "surfaces": {
+    "edges": 43,
+    "samples": 43173,
+    "maxError": 0.0003433210097796291,
+    "retiredTrails": 39,
+    "holes": []
+  },
+  "recoveryChecks": 8,
+  "navigation": [
+    {
+      "variant": "points",
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8093,
+          "samples": 8396,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "blockers": 0,
+      "floors": 0,
+      "corrections": 0,
+      "routeFailures": 0,
+      "lowSteps": 0
+    },
+    {
+      "variant": "worldPoints",
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8223,
+          "samples": 8526,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "blockers": 0,
+      "floors": 0,
+      "corrections": 0,
+      "routeFailures": 0,
+      "lowSteps": 0
+    }
+  ],
+  "walks": [
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 6,
+      "corrections": 0,
+      "id": "DW-01_DW-02_-40_false",
+      "elapsed": 1.683075666660443,
+      "position": "-1093.7301025390625, 9.272421836853027, -1073.12744140625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 0,
+      "corrections": 0,
+      "id": "DW-01_DW-02_-40_true",
+      "elapsed": 1.6841789584141225,
+      "position": "-1128.2698974609375, 3.2724218368530273, -1058.0474853515625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 6,
+      "corrections": 0,
+      "id": "DW-01_DW-02_40_false",
+      "elapsed": 1.6852830833522603,
+      "position": "-1093.732666015625, 9.272421836853027, -985.8342895507812"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 0,
+      "corrections": 0,
+      "id": "DW-01_DW-02_40_true",
+      "elapsed": 1.6863304582657292,
+      "position": "-1128.267333984375, 3.2724223136901855, -970.75732421875"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 18,
+      "corrections": 0,
+      "id": "DW-02_DW-03_-40_false",
+      "elapsed": 6.215715916710906,
+      "position": "-544.9558715820312, 21.272417068481445, -1454.5384521484375"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 6,
+      "corrections": 0,
+      "id": "DW-02_DW-03_-40_true",
+      "elapsed": 6.216995458351448,
+      "position": "-653.9889526367188, 9.272421836853027, -1357.511962890625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 18,
+      "corrections": 0,
+      "id": "DW-02_DW-03_40_false",
+      "elapsed": 3.051155541674234,
+      "position": "-524.6071166992188, 21.272308349609375, -1365.5582275390625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 6,
+      "corrections": 0,
+      "id": "DW-02_DW-03_40_true",
+      "elapsed": 3.0525525000412017,
+      "position": "-576.0050048828125, 9.272378921508789, -1319.81884765625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 30,
+      "corrections": 0,
+      "id": "DW-03_DW-04_-40_false",
+      "elapsed": 1.8331268333131447,
+      "position": "224.94992065429688, 33.27204513549805, -1831.0220947265625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 18,
+      "corrections": 0,
+      "id": "DW-03_DW-04_-40_true",
+      "elapsed": 1.8345295833423734,
+      "position": "187.05007934570312, 21.19234275817871, -1825.0260009765625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 30,
+      "corrections": 0,
+      "id": "DW-03_DW-04_40_false",
+      "elapsed": 1.835501249996014,
+      "position": "224.94992065429688, 33.27204513549805, -1750.028076171875"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 18,
+      "corrections": 0,
+      "id": "DW-03_DW-04_40_true",
+      "elapsed": 1.8363892916822806,
+      "position": "187.05007934570312, 21.19234275817871, -1744.031982421875"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 58,
+      "corrections": 0,
+      "id": "GW-01_GW-02_-40_false",
+      "elapsed": 3.849153708317317,
+      "position": "-608.4954223632812, 61.19212341308594, -4397.71044921875"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 54,
+      "corrections": 0,
+      "id": "GW-01_GW-02_-40_true",
+      "elapsed": 2.949904374894686,
+      "position": "-649.98291015625, 57.192413330078125, -4360.6845703125"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 58,
+      "corrections": 0,
+      "id": "GW-01_GW-02_40_false",
+      "elapsed": 2.3828537500230595,
+      "position": "-490.04852294921875, 61.19241714477539, -4398.05859375"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 54,
+      "corrections": 0,
+      "id": "GW-01_GW-02_40_true",
+      "elapsed": 2.2989669166272506,
+      "position": "-529.7853393554688, 57.192405700683594, -4361.958984375"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 92,
+      "corrections": 0,
+      "id": "FV-02_FV-03_-40_false",
+      "elapsed": 3.682119333301671,
+      "position": "6.760115146636963, 95.19239807128906, -8655.3486328125"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 84,
+      "corrections": 0,
+      "id": "FV-02_FV-03_-40_true",
+      "elapsed": 3.683333083288744,
+      "position": "-65.69171905517578, 87.19239807128906, -8608.771484375"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 92,
+      "corrections": 0,
+      "id": "FV-02_FV-03_40_false",
+      "elapsed": 2.0828544582473114,
+      "position": "6.996633529663086, 95.19241333007812, -8560.392578125"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 84,
+      "corrections": 0,
+      "id": "FV-02_FV-03_40_true",
+      "elapsed": 2.0840236666845158,
+      "position": "-32.69664001464844, 87.19241333007812, -8534.8759765625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 156,
+      "corrections": 0,
+      "id": "EC-04_EC-05_-40_false",
+      "elapsed": 2.5328310416080058,
+      "position": "410.258544921875, 159.19239807128906, -13393.693359375"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 148,
+      "corrections": 0,
+      "id": "EC-04_EC-05_-40_true",
+      "elapsed": 2.534102875040844,
+      "position": "455.97894287109375, 151.19239807128906, -13357.107421875"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 156,
+      "corrections": 0,
+      "id": "EC-04_EC-05_40_false",
+      "elapsed": 2.535098750027828,
+      "position": "538.318603515625, 159.19239807128906, -13393.693359375"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 148,
+      "corrections": 0,
+      "id": "EC-04_EC-05_40_true",
+      "elapsed": 2.5359525417443365,
+      "position": "584.0439453125, 151.19239807128906, -13357.107421875"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 180,
+      "corrections": 0,
+      "id": "HG-02_HG-03_-40_false",
+      "elapsed": 2.0848668749677017,
+      "position": "1.0425323247909546, 183.1923828125, -16126.3798828125"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 176,
+      "corrections": 0,
+      "id": "HG-02_HG-03_-40_true",
+      "elapsed": 2.085760416695848,
+      "position": "-34.742523193359375, 179.1923828125, -16096.556640625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 180,
+      "corrections": 0,
+      "id": "HG-02_HG-03_40_false",
+      "elapsed": 2.0866580833680928,
+      "position": "1.0417275428771973, 183.1923828125, -16022.2431640625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "floor": 176,
+      "corrections": 0,
+      "id": "HG-02_HG-03_40_true",
+      "elapsed": 2.087485291645862,
+      "position": "-34.74173355102539, 179.1923828125, -15992.4208984375"
+    }
+  ],
+  "legacyBoundary": {
+    "zones": {
+      "ForestEdge_DW-06": true,
+      "ForestEdge_DW-S2": true,
+      "ForestEdge_DW-01": true,
+      "ForestEdge_DW-03": true,
+      "ForestEdge_DW-02": true,
+      "ForestEdge_DW-S3": true,
+      "ForestEdge_DW-05": true,
+      "ForestEdge_DW-S1": true,
+      "ForestEdge_DW-07": true,
+      "ForestEdge_DW-04": true
+    },
+    "boundaries": 749,
+    "checks": 756
+  },
+  "overlandServiceChecks": 112,
+  "pass": true
+}
