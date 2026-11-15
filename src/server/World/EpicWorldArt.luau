@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=21}
+local Art={version=22}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -477,6 +477,7 @@ function Art.create(world,scope)
    require(script.Parent.RegionalConceptArt).build(p.site,p.id,p.c,p.z.size,p.safe,ground,world)
    require(script.Parent.RegionalConceptArt).paths(p.site,ground,world)
   end
+  if p.id=='GW-01'then require(script.Parent.GloamwoodTrailEvidence).build(p.site,Content.byId[p.id],ground)end
   if p.theme=='Deepwood'then
    require(script.Parent.CampaignSceneryCollision).apply(p.site)
    DeepwoodConcept.build(p.site,p.id,p.c,p.z.size,p.safe,ground,world)
