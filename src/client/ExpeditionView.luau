@@ -135,6 +135,9 @@ function V.create(parent,send)
   elseif s.role=='Battle'then
    line('Battle',Text.Battle,72);info=Text.Battle
   elseif tab=='Missions'then
+   local help=line('MissionsHelp',Text.MissionsHelp,0)
+   help.AutomaticSize=Enum.AutomaticSize.Y
+   help.TextYAlignment=Enum.TextYAlignment.Top
    local region
    for _,m in ipairs(s.missions or {})do
     if m.region~=region then region=m.region;line('Region'..m.id,region or '',28,T.color.gold)end

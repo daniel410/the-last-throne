@@ -5,6 +5,7 @@ return {
  Applying='Applying your selection. Please wait...',Refreshing='Checking the server. Please wait...',Saving='Saving your heroes and preparing the expedition...',
  Travelling='Your heroes are saved. Travelling to the battle server...',Battle='Use the map menu to return to the lobby. Rejoin within 15 minutes after a disconnect.',
  MissionTab='DETAILS',MissionsTab='MISSIONS',PartyTab='PARTY',Locked='LOCKED',Selected='Selected',
+ MissionsHelp='Choose a story quest to play. Completed quests stay in this list for optional replay; you do not need to complete them again. Replays earn repeat rewards. First quest rewards are granted only once per hero.',
  Level='Reach Lv%d.',Previous='Clear %s on %s first.',Story='Complete main story %d first.',
  GatherParty='Gather in the leader\'s lobby and select the party hero.',WaitingReady='Waiting for Ready.',Eligible='Ready to enter.',
  SelectHero='Select a hero in the lobby to enter.',Leader='Only the leader can change the mission and difficulty.',
