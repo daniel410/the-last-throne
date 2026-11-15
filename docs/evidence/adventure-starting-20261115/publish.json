@@ -1,0 +1,41 @@
+{
+  "version": "0.110.21",
+  "sourceCommit": "f23603720561dba80f33e1e94d96a3998fe49ac4",
+  "artifact": "builds/0.110.21/TheLastThrone-0.110.21.rbxlx",
+  "sha256": "4fd1425708e94a5b5ed1f5378ca9d59317f8a39150fbc32293c1b32b1a94435e",
+  "bytes": 19756576,
+  "published": true,
+  "diskHashUnchanged": true,
+  "universeId": 10773575153,
+  "method": "Roblox Studio Publish As; Creator Dashboard Show published only verification",
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 99,
+      "previousPublishedVersion": 98,
+      "localPublishedTime": "2026-11-15 13:36 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 27,
+      "previousPublishedVersion": 26,
+      "localPublishedTime": "2026-11-15 13:37 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history"
+    }
+  ],
+  "audience": "Private (unchanged)",
+  "assetPermissions": "Grant Permissions and Publish for destination TLT Experience",
+  "releaseTag": "v0.110.21",
+  "unverified": [
+    "게시 클라이언트의 솔로/2~4인 출발 안내→Teleport 연결",
+    "실계정 저장/재접속·실기기·사용자 수용",
+    "복구 리허설"
+  ],
+  "preservedStudioSessions": [
+    "builds/0.110.14/TheLastThrone-0.110.14-unsaved-session-20261115-1335.rbxl",
+    "builds/0.110.17/TheLastThrone-0.110.17-unsaved-session-20261115-1335.rbxl"
+  ]
+}
