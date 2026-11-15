@@ -1,6 +1,7 @@
 -- Local accents follow the original mesh's Blender-authored tip socket.
 -- They never add hitboxes, replicated parts, damage or impact claims.
 local Sockets=require(game:GetService('ReplicatedStorage').Shared.EnemyRigSockets)
+local Snapshot=require(script.Parent.EnemyPatternDefinition)
 local FrozenRigs=table.clone(require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs))
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do FrozenRigs[kind]=spec end
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.HauntedGraveyardRigs))do FrozenRigs[kind]=spec end
@@ -32,7 +33,7 @@ function Weapon.bind(model,caster)
  end
  local root=model:FindFirstChild('HumanoidRootPart');local torso=model:FindFirstChild('Torso')
  local shoulder=torso and torso:FindFirstChild(model:GetAttribute('TdWeaponShoulder') or 'Left Shoulder')
- return {folder=folder,part=part,a=a,b=b,trail=trail,shards=shards,position=part.Position,clock=nil,
+ return {folder=folder,model=model,part=part,a=a,b=b,trail=trail,shards=shards,position=part.Position,clock=nil,
   root=root,rootJoint=root and root:FindFirstChild('RootJoint'),shoulder=not caster and shoulder or nil,caster=caster,
   socketInArm=shoulder and shoulder.Part1.CFrame:ToObjectSpace(part.CFrame)*a.CFrame}
 end
@@ -44,10 +45,24 @@ function Weapon.step(s,phase,active,heavy,clock,current,distance,discontinuity)
   s.b.CFrame=s.b.Parent.CFrame:ToObjectSpace(cf*CFrame.new(c.base))
  end
  local jumped=discontinuity or (s.part.Position-s.position).Magnitude>math.max(3,s.part.Size.Magnitude);s.position=s.part.Position
- if jumped or s.clock~=clock then s.trail:Clear();s.clock=clock end
+ if jumped or s.clock~=clock then
+  s.trail:Clear();s.clock=clock;s.attack=nil
+  if type(clock)=='string'then
+   local values=string.split(clock,'|')
+   local start,windup=tonumber(values[2]),tonumber(values[3])
+   if start and windup then s.attack={start=start,windup=windup}end
+  end
+ end
  -- Short trails only during the actual downswing/follow-through. No idle glow.
- s.trail.Lifetime=heavy and .12 or .09
- s.trail.Enabled=active and not jumped and distance<110 and phase>=.55 and phase<=.73
+ local d=Snapshot.get(s.model)
+ local contact=active and phase>=.62 and phase<=.78
+ if d and s.attack then
+  local elapsed=current-s.attack.start-s.attack.windup
+  local pulse=math.floor(math.max(0,elapsed)/d.interval)
+  contact=elapsed>=0 and pulse<d.pulses and elapsed-pulse*d.interval<.16
+ end
+ s.trail.Lifetime=d and d.motionStyle=='thrust'and .055 or heavy and .12 or .09
+ s.trail.Enabled=active and contact and not jumped and distance<110 and (not d or d.motion~='cast')
  if not active then s.trail:Clear()end
  local charge=active and distance<110 and phase>.18 and phase<.64 and math.sin(math.clamp((phase-.18)/.46,0,1)*math.pi) or 0
  local focus=s.a.WorldCFrame

@@ -1,5 +1,7 @@
 -- Server-only finite attacks. No tasks, client hit claims, or live projectiles survive cancellation.
 local Geometry=require(game:GetService('ReplicatedStorage').Shared.EnemyAttackGeometry)
+local Profiles=require(game:GetService('ReplicatedStorage').Shared.EnemyCombatProfiles)
+local HttpService=game:GetService('HttpService')
 local R={}
 local function flat(v)return Vector3.new(v.X,0,v.Z)end
 function R.center(attack,pulse)
@@ -13,7 +15,7 @@ function R.center(attack,pulse)
 end
 function R.cancel(enemy,emit)
  local a=enemy.attack
- if a and a.pattern then emit({kind='cancel',model=enemy.model,sequence=enemy.attackSeq});enemy.model:SetAttribute('K0PatternId',nil)end
+ if a and a.pattern then emit({kind='cancel',model=enemy.model,sequence=enemy.attackSeq});enemy.model:SetAttribute('K0PatternId',nil);enemy.model:SetAttribute('K0PatternDefinition',nil);enemy.model:SetAttribute('K0PatternCastOrigin',nil)end
 end
 function R.begin(enemy,target,pattern,current,emit)
  local direction=flat(target.root.Position-enemy.root.Position)
@@ -23,6 +25,7 @@ function R.begin(enemy,target,pattern,current,emit)
  a.definition.damage=enemy.config.attacks[1].damage
  enemy.attack=a;enemy.attackSeq+=1
  enemy.model:SetAttribute('K0AttackSeq',enemy.attackSeq)
+ enemy.model:SetAttribute('K0PatternDefinition',HttpService:JSONEncode(pattern))
  enemy.model:SetAttribute('K0PatternId',pattern.id)
  enemy.model:SetAttribute('K0PatternMotion',pattern.motion)
  enemy.model:SetAttribute('K0PatternElement',pattern.element)
@@ -30,19 +33,24 @@ function R.begin(enemy,target,pattern,current,emit)
  enemy.model:SetAttribute('K0Telegraph','Pattern')
  enemy.model:SetAttribute('K0EnemyAttackClock',string.format('%d|%.6f|%.6f|%.6f|%.6f|%d',enemy.attackSeq,workspace:GetServerTimeNow(),pattern.windup,pattern.active,pattern.recovery,pattern.heavy and 1 or 0))
  enemy.root.CFrame=CFrame.lookAt(enemy.root.Position,enemy.root.Position+direction)
- emit({kind='begin',model=enemy.model,sequence=enemy.attackSeq,id=pattern.id,origin=a.origin,direction=direction,aim=a.aim,at=workspace:GetServerTimeNow()})
+ local socket=enemy.model:FindFirstChild('EnemyCastSocket',true)
+ a.castOrigin=socket and socket.WorldPosition or a.origin+Vector3.yAxis+direction*1.2
+ enemy.model:SetAttribute('K0PatternCastOrigin',a.castOrigin)
+ emit({kind='begin',model=enemy.model,sequence=enemy.attackSeq,id=pattern.id,origin=a.origin,direction=direction,aim=a.aim,castOrigin=a.castOrigin,definition=table.clone(pattern),at=workspace:GetServerTimeNow()})
  return a
 end
 function R.step(enemy,current,targets,ctx)
  local a=enemy.attack;local d=a.pattern;local elapsed=current-a.started
  local function hit(target,pulse,origin,impact)
-  if not ctx.valid(enemy,target) then return end
+  if enemy.attack~=a or not ctx.valid(enemy,target) then return end
   a.pulseHits=a.pulseHits or {};a.pulseHits[pulse]=a.pulseHits[pulse] or {}
   if a.pulseHits[pulse][target.character] then return end
   local wall=ctx.raycast(origin,impact,enemy,target)
   if wall then return end
   a.pulseHits[pulse][target.character]=true
-  local definition=table.clone(a.definition);definition.damage=math.max(1,math.floor(a.definition.damage/d.pulses+.5))
+  local definition=table.clone(a.definition)
+  local budget=math.max(0,math.floor(a.definition.damage))
+  definition.damage=math.floor(budget*pulse/d.pulses)-math.floor(budget*(pulse-1)/d.pulses)
   local sample={definition=definition,direction=a.direction,origin=origin,hits={},geometryChecked=true,pattern=d,
    impact=impact,pulse=pulse,sequence=enemy.attackSeq,extraRecovery=0}
   ctx.hit(enemy,target,sample,current)
@@ -55,12 +63,12 @@ function R.step(enemy,current,targets,ctx)
   if elapsed-due<=.22 then
    a.sampledActive=true
    local center=R.center(a,pulse)
+   local geometry=Profiles.pulseGeometry(d,pulse)
    if d.shape=='projectile'then
     for i=1,d.fan do
      local yaw=math.rad(d.fan==1 and 0 or (i-(d.fan+1)/2)*d.spread/(d.fan-1))
      local dir=CFrame.Angles(0,yaw,0):VectorToWorldSpace(a.direction)
-     local socket=enemy.model:FindFirstChild('EnemyCastSocket',true)
-     local origin=socket and socket.WorldPosition or a.origin+Vector3.new(0,1,0)+dir*1.2
+     local origin=a.castOrigin
      local towards=a.aim+Vector3.new(0,1,0)-origin
      if towards.Magnitude>.01 then dir=CFrame.Angles(0,yaw,0):VectorToWorldSpace(towards.Unit)end
      table.insert(a.projectiles,{position=origin,direction=dir,distance=0,pulse=pulse,shot=i,at=current})
@@ -71,23 +79,35 @@ function R.step(enemy,current,targets,ctx)
     local right=Vector3.new(-a.direction.Z,0,a.direction.X)
     for _,target in ipairs(targets)do
      local delta=target.root.Position-center
-     if Geometry.contains(d.shape,delta:Dot(right),delta:Dot(a.direction),delta.Y,d.range,d.width,d.radius,d.innerRadius,d.angle)then hit(target,pulse,center,target.root.Position)end
+     if Geometry.contains(geometry.shape,delta:Dot(right),delta:Dot(a.direction),delta.Y,geometry.range,geometry.width,geometry.radius,geometry.innerRadius,geometry.angle)then hit(target,pulse,center,target.root.Position)end
     end
    end
   end
  end
- if d.motion=='dash' and elapsed>=d.windup and elapsed<=d.windup+.45 then
+ if enemy.attack~=a then return end
+ if d.motion=='dash' and current-a.lastStep>.22 and elapsed>=d.windup then a.dashStopped=true end
+ if d.motion=='dash' and not a.dashStopped and elapsed>=d.windup and elapsed<=d.windup+.45 then
   local desired=a.origin+a.direction*d.dashDistance*math.clamp((elapsed-d.windup)/.45,0,1)
   local from=enemy.root.Position
   local wall=ctx.raycast(from,desired,enemy)
-  if wall then desired=wall.Position-a.direction*2 end
+  if wall then desired=from;a.dashStopped=true end
+  local safe=true
+  local travel=desired-from
+  for sample=1,math.max(1,math.ceil(travel.Magnitude/2))do
+   local point=from+travel*(sample/math.max(1,math.ceil(travel.Magnitude/2)))
+   local support=ctx.floor(point,enemy)
+   if not support or (support.Normal and support.Normal.Y<.55)or math.abs(support.Position.Y-(a.origin.Y-enemy.root.Size.Y*1.5))>=5 then safe=false;break end
+  end
+  if not safe then a.dashStopped=true end
   local floor=ctx.floor(desired,enemy)
-  if floor and math.abs(floor.Position.Y-(a.origin.Y-enemy.root.Size.Y*1.5))<5 and (flat(desired-enemy.spawnPosition)).Magnitude<enemy.config.leashRange then
+  if safe and floor and math.abs(floor.Position.Y-(a.origin.Y-enemy.root.Size.Y*1.5))<5 and (flat(desired-enemy.spawnPosition)).Magnitude<enemy.config.leashRange then
    local to=Vector3.new(desired.X,from.Y,desired.Z)
    enemy.root.CFrame=CFrame.lookAt(to,to+a.direction)
    for _,target in ipairs(targets)do
     local p=target.root.Position
-    if Geometry.segmentDistance(p.X,p.Y,p.Z,from.X,from.Y,from.Z,to.X,to.Y,to.Z)<=d.width+1 then hit(target,1,from,p)end
+    local offset=p-a.origin;local right=Vector3.new(-a.direction.Z,0,a.direction.X)
+    if Geometry.contains('line',offset:Dot(right),offset:Dot(a.direction),offset.Y,d.dashDistance,d.width,d.radius,d.innerRadius,d.angle)
+     and Geometry.segmentDistance(p.X,p.Y,p.Z,from.X,from.Y,from.Z,to.X,to.Y,to.Z)<=d.width then hit(target,1,from,p)end
    end
   end
  end

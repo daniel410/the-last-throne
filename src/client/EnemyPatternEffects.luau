@@ -5,6 +5,8 @@ local Tween=game:GetService('TweenService')
 local Debris=game:GetService('Debris')
 local Players=game:GetService('Players')
 local Patterns=require(RS.Shared.EnemyPatterns)
+local CombatProfiles=require(RS.Shared.EnemyCombatProfiles)
+local Snapshot=require(script.Parent.EnemyPatternDefinition)
 local Text=require(RS.Shared.EnemyPatternText)
 local Audio=require(RS.Shared.CombatAudioCatalog)
 local BossImpact=require(script.Parent.BossHeroImpact)
@@ -12,7 +14,6 @@ local Spell=require(script.Parent.EnemySpellVFX)
 local Settings=require(script.Parent.GameSettings)
 local Effects={}
 local colors={physical=Color3.fromRGB(255,217,150),arcane=Color3.fromRGB(182,115,255),frost=Color3.fromRGB(121,226,255),fire=Color3.fromRGB(255,133,56),web=Color3.fromRGB(223,218,255),venom=Color3.fromRGB(151,230,90),soul=Color3.fromRGB(109,238,197),shadow=Color3.fromRGB(201,128,255)}
-local definitions={};for _,profile in pairs(Patterns.profiles)do for _,d in ipairs(profile.attacks)do definitions[d.id]=d end end
 local ground
 local visualEvents=setmetatable({},{__mode='k'})
 local function acceptVisual(m)
@@ -76,20 +77,20 @@ local function destroyAttack(model)
  for i=#projectiles,1,-1 do if projectiles[i].model==model then Spell.destroy(projectiles[i].visual);table.remove(projectiles,i)end end
 end
 local function begin(message)
- local d=definitions[message.id];if not d or not message.model then return end
+ local d=Snapshot.message(message);if not d or not message.model then return end
  if message.model:GetAttribute('K0AttackSeq')~=message.sequence then return end
  local row=visualEvents[message.model]
  if row and row.sequence==message.sequence and (row.cancelled or row.released)then return end
  local old=attacks[message.model];if old and old.sequence==message.sequence then return end
  destroyAttack(message.model)
- attacks[message.model]={d=d,sequence=message.sequence,origin=message.origin,direction=message.direction,aim=message.aim,at=message.at}
+ attacks[message.model]={d=d,sequence=message.sequence,origin=message.origin,direction=message.direction,aim=message.aim,castOrigin=message.castOrigin or message.model:GetAttribute('K0PatternCastOrigin'),at=message.at}
 end
 function Effects.observe(model,current)
  local id=model:GetAttribute('K0PatternId');if not id then return end
  local sequence=model:GetAttribute('K0AttackSeq');local old=attacks[model];if old and old.sequence==sequence then return end
  local clock=model:GetAttribute('K0EnemyAttackClock');local at=type(clock)=='string' and tonumber(string.split(clock,'|')[2])
  local origin,dir,aim=model:GetAttribute('K0PatternOrigin'),model:GetAttribute('K0PatternDirection'),model:GetAttribute('K0PatternAim')
- if at and current-at<12 and typeof(origin)=='Vector3' and typeof(dir)=='Vector3' and typeof(aim)=='Vector3' then begin({model=model,id=id,sequence=sequence,origin=origin,direction=dir,aim=aim,at=at})end
+ if at and current-at<12 and typeof(origin)=='Vector3' and typeof(dir)=='Vector3' and typeof(aim)=='Vector3' then begin({model=model,id=id,sequence=sequence,origin=origin,direction=dir,aim=aim,castOrigin=model:GetAttribute('K0PatternCastOrigin'),at=at})end
 end
 function Effects.receive(m)
  if type(m)~='table'then return end
@@ -122,7 +123,7 @@ function Effects.receive(m)
   local boss=profile and profile.boss
   burst(pos,m.element,result=='PerfectBlock' and 1.4 or boss and 1.55 or 1,result)
   if boss and result=='Hit' and m.damage>0 then BossImpact.play(m.target,m.element,color)end
-  local d=definitions[m.id]or (attacks[m.model]and attacks[m.model].d)
+  local d=Snapshot.message(m)or (attacks[m.model]and attacks[m.model].d)
   if d and d.shape~='projectile' and result=='Hit' and m.damage>0 then Spell.impact(d,pos,workspace:GetServerTimeNow(),m.model,m.sequence,m.source and m.source-pos)end
   sound(pos,m.element,result)
   if result~='Hit' then label(m.target,Text[result]or Text.Hit,color)end
@@ -145,16 +146,16 @@ function Effects.receive(m)
    end
   end
  elseif m.kind=='pulse'then
-  local d=definitions[m.id]
+  local d=Snapshot.message(m)
   if d and m.model and m.model.Parent and permitted(m.position)and workspace:GetServerTimeNow()-m.at<=.5 and acceptVisual(m)then
    local floor=ground(m.position)
    if floor then
     local direction=m.model:GetAttribute('K0PatternDirection')or Vector3.new(0,0,-1)
-    Spell.pulse(d,floor,direction,workspace:GetServerTimeNow(),m.model,m.sequence)
+    Spell.pulse(CombatProfiles.pulseGeometry(d,m.pulse or 1),floor,direction,workspace:GetServerTimeNow(),m.model,m.sequence)
    end
   end
  elseif m.kind=='projectile'then
-  local d=definitions[m.id];if not m.model or not d or not permitted(m.origin)then return end
+  local d=Snapshot.message(m);if not m.model or not d or not permitted(m.origin)then return end
   if workspace:GetServerTimeNow()-m.at>.5 or workspace:GetServerTimeNow()<m.at-.1 then return end
   if not acceptVisual(m)then return end
   if #projectiles>=48 then Spell.destroy(projectiles[1].visual);table.remove(projectiles,1)end
@@ -225,35 +226,69 @@ local function draw(a,model,now,rangesEnabled)
   if a.folder then a.folder:Destroy();a.folder=nil;a.lines=nil end
   return
  end
+ local upcoming=age<d.windup and 1 or math.clamp(math.floor((age-d.windup)/d.interval)+2,1,d.pulses)
+ local warningKey=(d.spellStyle=='expandingRing'or d.shape=='trail')and upcoming or 0
+ if a.warningKey~=warningKey then
+  if a.folder then a.folder:Destroy();a.folder=nil;a.lines=nil end
+  a.warningKey=warningKey
+ end
+ local geometry=CombatProfiles.pulseGeometry(d,upcoming)
  if a.lines and #a.lines>0 and a.folder then
   for _,p in ipairs(a.lines)do if p.Parent then p.Transparency=.08+(.18*(1-math.clamp(age/d.windup,0,1)))end end;return
  end
  if not a.folder then a.lines=nil;a.folder=Instance.new('Folder');a.folder.Name='EnemyPatternWarning';a.folder.Parent=workspace end
- local vertices={};local outerCount;local right=Vector3.new(-a.direction.Z,0,a.direction.X)
+ local vertices={};local outerCount;local lane;local right=Vector3.new(-a.direction.Z,0,a.direction.X)
  local function line(x,y)
   -- Short edges follow slopes; missing floors and cliffs leave a gap instead of an airborne beam.
   local steps=math.max(1,math.ceil((y-x).Magnitude/3));local previous=ground(x)
   for i=1,steps do
    local nextPoint=ground(x:Lerp(y,i/steps))
-   if previous and nextPoint and math.abs(previous.Y-nextPoint.Y)<=1.5 then table.insert(vertices,{previous,nextPoint})end
+   if previous and nextPoint and math.abs(previous.Y-nextPoint.Y)<=1.5 then table.insert(vertices,{previous,nextPoint,lane=lane})end
    previous=nextPoint
   end
  end
  local function circle(center,r)
   for i=1,20 do local x,y=(i-1)*math.pi/10,i*math.pi/10;line(center+Vector3.new(math.cos(x)*r,0,math.sin(x)*r),center+Vector3.new(math.cos(y)*r,0,math.sin(y)*r))end
  end
- if d.shape=='circle'then circle(a.aim,d.radius)
- elseif d.shape=='trail'then for pulse=1,d.pulses do circle(a.aim+right*((pulse-(d.pulses+1)/2)*d.radius*2.5),d.radius)end
- elseif d.shape=='ring'then circle(a.origin,d.radius);outerCount=#vertices;circle(a.origin,d.innerRadius)
+ if d.shape=='circle'then circle(a.aim,geometry.radius)
+ elseif d.shape=='trail'then for pulse=upcoming,d.pulses do circle(a.aim+right*((pulse-(d.pulses+1)/2)*d.radius*2.5),d.radius)end
+ elseif d.shape=='ring'then circle(a.origin,geometry.radius);outerCount=#vertices;circle(a.origin,geometry.innerRadius)
  elseif d.shape=='cone'then
   local prev=a.origin
   for i=0,16 do local angle=math.rad(-d.angle/2+i*d.angle/16);local v=a.origin+(a.direction*math.cos(angle)+right*math.sin(angle))*d.range;line(prev,v);prev=v end;line(prev,a.origin)
  else
   local width=d.shape=='projectile' and 1.4 or d.width;local length=d.motion=='dash' and d.dashDistance or d.range
-  local left,rt=a.origin-right*width,a.origin+right*width;local far=a.direction*length
-  line(left,rt);line(rt,rt+far);line(rt+far,left+far);line(left+far,left)
-  if d.shape=='projectile' and d.fan>1 then
-   for i=1,d.fan do local yaw=math.rad((i-(d.fan+1)/2)*d.spread/(d.fan-1));line(a.origin,a.origin+CFrame.Angles(0,yaw,0):VectorToWorldSpace(a.direction)*length)end
+  local lanes=d.shape=='projectile'and d.fan or 1
+  for i=1,lanes do
+   lane=d.shape=='projectile'and i or nil
+   local yaw=math.rad(lanes==1 and 0 or (i-(lanes+1)/2)*d.spread/(lanes-1))
+   local origin=a.origin;local direction=CFrame.Angles(0,yaw,0):VectorToWorldSpace(a.direction)
+   if d.shape=='projectile'then
+    -- The cast origin is locked by the server, including the weapon's lateral
+    -- offset. Local animated sockets must never steer a telegraph.
+    origin=a.castOrigin or a.origin+Vector3.yAxis+a.direction*1.2
+    local towards=a.aim+Vector3.yAxis-origin
+    if towards.Magnitude>.01 then direction=CFrame.Angles(0,yaw,0):VectorToWorldSpace(towards.Unit)end
+   end
+   local horizontal=Vector3.new(direction.X,0,direction.Z)
+   local forward=horizontal.Magnitude>.001 and horizontal.Unit or a.direction
+   local laneRight=Vector3.new(-forward.Z,0,forward.X)
+   local left,rt=origin-laneRight*width,origin+laneRight*width;local far=horizontal*length
+   if d.shape=='projectile'then
+    local ending=origin+far
+    line(left,ending-laneRight*width)
+    for segment=1,10 do
+     local first=(segment-1)*math.pi/10;local last=segment*math.pi/10
+     line(ending+(-laneRight*math.cos(first)+forward*math.sin(first))*width,ending+(-laneRight*math.cos(last)+forward*math.sin(last))*width)
+    end
+    line(ending+laneRight*width,rt)
+    for segment=1,10 do
+     local first=(segment-1)*math.pi/10;local last=segment*math.pi/10
+     line(origin+(laneRight*math.cos(first)-forward*math.sin(first))*width,origin+(laneRight*math.cos(last)-forward*math.sin(last))*width)
+    end
+   else
+    line(left,rt);line(rt,rt+far);line(rt+far,left+far);line(left+far,left)
+   end
   end
  end
  local color=d.blockable and Color3.fromRGB(255,190,52)or Color3.fromRGB(255,73,58)
@@ -262,6 +297,7 @@ local function draw(a,model,now,rangesEnabled)
   local p=a.lines[i];if not p or not p.Parent then p=part(a.folder,'WarningEdge',v[1],Vector3.one*.1,color);a.lines[i]=p end
   p.Color=color;p.Size=Vector3.new(.13,.08,math.max(.01,(v[2]-v[1]).Magnitude));p.CFrame=CFrame.lookAt((v[1]+v[2])*.5,v[2]);p.Transparency=.08+(.18*(1-math.clamp(age/d.windup,0,1)))
   p:SetAttribute('WarningBlockable',d.blockable)
+  p:SetAttribute('WarningLane',v.lane)
 
  end
  -- Pixel-sized paired slashes survive foreshortening on long and cone edges.

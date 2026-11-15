@@ -102,7 +102,7 @@ function Motion.step(s,dt,current)
   local humanoid=s.model:FindFirstChildOfClass('Humanoid')
   if not humanoid or humanoid.Health<=0 or s.model:GetAttribute('K0EnemyState')=='Dead'then WeaponMotion.hide(s.weaponFX);return end
   local phase,active,heavy,clock,jumped=CasterMotion.step(s.caster,s,dt,current,Motion.attackPhase)
-  s.caster.bones.Root.Transform=s.caster.pose.Root*HitReaction.sample(s.model,current)*(s.caster.attack and PatternPose.accent(s.model,current,s.caster.attack)or CFrame.identity)
+  s.caster.bones.Root.Transform=s.caster.pose.Root*(s.caster.locomotion or CFrame.identity)*HitReaction.sample(s.model,current)*(s.caster.active and PatternPose.accent(s.model,current,s.caster.attack)or CFrame.identity)
   WeaponMotion.step(s.weaponFX,phase,active,heavy,clock,current,s.viewDistance or 0,jumped)
   return
  end
@@ -113,7 +113,11 @@ function Motion.step(s,dt,current)
   or (s.model:GetAttribute('K0EnemyHitUntil') or 0)>current
  local moving=not stunned and state=='Chase' and distance<math.max(3,s.height*1.5)
  local speed=dt>0 and distance/dt or 0
- if moving then s.phase=(s.phase+distance/(s.height*s.profile.stride))%1 end
+ local travel=s.root.CFrame:VectorToObjectSpace(delta)
+ local side=distance>.001 and clamp(travel.X/distance,-1,1)or 0
+ local backwards=distance>.001 and travel.Z/distance>.35
+ if moving then s.phase=(s.phase+distance/(s.height*s.profile.stride)*(backwards and -1 or 1))%1 end
+ s.side=(s.side or 0)+(side-(s.side or 0))*(1-math.exp(-dt*10))
  local targetMove=moving and clamp(speed/2,0,1) or 0;s.move=s.move+(targetMove-s.move)*(1-math.exp(-dt*14))
  local target=Motion.sample(s.kind,'Idle',(current/s.profile.breathSeconds+s.seed)%1)
  if s.move>.001 then target=mix(target,Motion.sample(s.kind,'Walk',s.phase),s.move)end
@@ -142,7 +146,7 @@ function Motion.step(s,dt,current)
  else s.pose=mix(s.pose,target,1-math.exp(-dt*16))end
  local p=s.pose;local b=p.body;local look=s.root.CFrame.LookVector
  local cross=s.look:Cross(look).Y;s.look=look;s.turn=s.turn+(clamp(cross/math.max(dt,.001),-2,2)-s.turn)*(1-math.exp(-dt*9))
- local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,-s.turn*.025*s.move)
+ local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,(-s.turn*.025-s.side*.045)*s.move)
  rootFrame=rootFrame*HitReaction.sample(s.model,current)
  if attackActive then rootFrame=rootFrame*PatternPose.accent(s.model,current,s.attack)end
  local bodyInRoot=s.joint.C0*rootFrame*s.joint.C1:Inverse()
@@ -158,8 +162,15 @@ function Motion.step(s,dt,current)
  s.joint.Transform=rootFrame
  for ch,motor in pairs(s.joints)do
   local angles=p[ch]
+  if moving and not attackActive and not s.profile.quadruped and (ch=='rightLeg'or ch=='leftLeg')then
+   -- Sidesteps transfer the gait to the lateral hip axis while the body faces
+   -- the target. Retreats run the authored foot cycle backwards.
+   angles={angles[1]*(1-math.abs(s.side)*.65),angles[2],angles[3]+angles[1]*s.side*.5}
+  end
   if ch=='weapon' and s.model:GetAttribute('TdWeaponSwingReversed') then angles={-angles[1],angles[2],-angles[3]} end
-  local transform=frame(angles);local leg=s.legs[ch]
+  local transform=frame(angles)
+  if attackActive then transform=transform*PatternPose.joint(s.model,ch,attackPhase)end
+  local leg=s.legs[ch]
   if leg then
    local cf=bodyInRoot*motor.C0*transform*motor.C1:Inverse()
    local swing=(ch=='rightLeg' or s.profile.quadruped and ch=='weapon') and math.max(0,math.sin(s.phase*math.pi*2)) or math.max(0,-math.sin(s.phase*math.pi*2))

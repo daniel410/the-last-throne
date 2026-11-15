@@ -3,8 +3,8 @@ from pathlib import Path
 import json,re
 modules={
 'EnemyPatterns':'src/shared/EnemyPatterns.luau','EnemyAttackGeometry':'src/shared/EnemyAttackGeometry.luau','EnemyPatternText':'src/shared/EnemyPatternText.luau',
-'EnemyPatternRuntime':'src/server/Combat/EnemyPatternRuntime.luau','EnemyModelDetails':'src/server/World/EnemyModelDetails.luau','GloamwoodAppearance':'src/server/World/GloamwoodAppearance.luau',
-'K0PlayerHitFeedback':'src/client/K0PlayerHitFeedback.luau','EnemyPatternPose':'src/client/EnemyPatternPose.luau','CombatAudioCatalog':'src/shared/CombatAudioCatalog.luau','BossHeroImpact':'src/client/BossHeroImpact.luau','EnemySpellProfiles':'src/shared/EnemySpellProfiles.luau','PixelFXAssets':'src/shared/PixelFXAssets.luau','PixelFX':'src/client/PixelFX.luau','EnemySpellArt':'src/client/EnemySpellArt.luau','EnemySpellVFX':'src/client/EnemySpellVFX.luau','EnemyPatternEffects':'src/client/EnemyPatternEffects.luau'}
+'EnemyCombatProfiles':'src/shared/EnemyCombatProfiles.luau','EnemyPatternDefinition':'src/client/EnemyPatternDefinition.luau','EnemyPatternRuntime':'src/server/Combat/EnemyPatternRuntime.luau','EnemyModelDetails':'src/server/World/EnemyModelDetails.luau','GloamwoodAppearance':'src/server/World/GloamwoodAppearance.luau',
+'K0PlayerHitFeedback':'src/client/K0PlayerHitFeedback.luau','EnemyPatternPose':'src/client/EnemyPatternPose.luau','CombatAudioCatalog':'src/shared/CombatAudioCatalog.luau','BossHeroImpact':'src/client/BossHeroImpact.luau','EnemySpellProfiles':'src/shared/EnemySpellProfiles.luau','PixelFXAssets':'src/shared/PixelFXAssets.luau','PixelFX':'src/client/PixelFX.luau','EnemySpellArt':'src/client/EnemySpellArt.luau','EnemySpellVFX':'src/client/EnemySpellVFX.luau','GameSettings':'src/client/GameSettings.luau','EnemyPatternEffects':'src/client/EnemyPatternEffects.luau'}
 parts=['local deps={}'];sources={}
 # Catalog source uses FXCatalog only in get(), which these tests do not call.
 parts.append('deps.PixelFXCatalog={}')

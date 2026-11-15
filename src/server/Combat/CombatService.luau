@@ -25,6 +25,8 @@ local EnemyHealthBar = require(script.Parent.Parent.World.EnemyHealthBar)
 local Text = require(ReplicatedStorage.Shared.K0Text)
 
 local Patterns=require(ReplicatedStorage.Shared.EnemyPatterns)
+local CombatProfiles=require(ReplicatedStorage.Shared.EnemyCombatProfiles)
+local CombatTactics=require(ReplicatedStorage.Shared.EnemyCombatTactics)
 local PatternRuntime=require(script.Parent.EnemyPatternRuntime)
 local patternRemote
 local storyTargetValidator=function()return false end
@@ -1448,13 +1450,13 @@ local function closestTarget(enemy, current)
 	return closest, closestDistance
 end
 
-local function moveEnemy(enemy, destination, current)
+local function moveEnemy(enemy, destination, current, forcePath)
 	if current < enemy.nextMoveAt then
 		return
 	end
 	enemy.nextMoveAt = current + Config.Enemy.MovementInterval
 	local origin = enemy.root.Position
-	local pathBlocked = not unobstructed(origin, destination, enemy.model, enemy.target and enemy.target.character or enemy.model)
+	local pathBlocked = forcePath or not unobstructed(origin, destination, enemy.model, enemy.target and enemy.target.character or enemy.model)
 	if pathBlocked and current >= enemy.nextPathAt and not enemy.pathPending then
 		enemy.nextPathAt = current + Config.Enemy.PathInterval
 		enemy.pathPending = true
@@ -1480,6 +1482,7 @@ local function moveEnemy(enemy, destination, current)
 	elseif not pathBlocked then
 		enemy.waypoints = nil
 	end
+	if pathBlocked and not enemy.waypoints then stopEnemy(enemy);return end
 	if pathBlocked and enemy.waypoints then
 		while enemy.waypoints[enemy.waypointIndex] and horizontal(enemy.waypoints[enemy.waypointIndex].Position - origin).Magnitude < 2 do
 			enemy.waypointIndex = enemy.waypointIndex + 1
@@ -1487,15 +1490,62 @@ local function moveEnemy(enemy, destination, current)
 		local waypoint = enemy.waypoints[enemy.waypointIndex]
 		if waypoint then
 			destination = waypoint.Position
+		else
+   stopEnemy(enemy);return
 		end
 	end
 	enemy.humanoid:MoveTo(destination)
 end
 
-local function beginEnemyAttack(enemy, target, current)
+local function chooseEnemyPattern(enemy,target,current)
+ return CombatTactics.choose(enemy.patternProfile,enemy.kind,horizontal(target.root.Position-enemy.root.Position).Magnitude,
+  enemy.patternHistory,current,enemy.model:GetAttribute('StoryDifficulty')or 'Easy',enemy.humanoid.Health/enemy.humanoid.MaxHealth)
+end
+
+local function tacticalDestination(enemy,target,distance,current,allowRetreat)
+ local origin=enemy.root.Position
+ local seed=enemy.model:GetAttribute('K0EnemyMotionSeed')or 0
+ local radial,tangent,intent=CombatTactics.movement(enemy.kind,distance,enemy.model:GetAttribute('StoryDifficulty')or 'Easy',seed,current)
+ if radial<0 and not allowRetreat then radial=0;tangent=math.clamp(tangent,-.35,.35);intent='Hold' end
+ local forward=horizontalUnit(target.root.Position-origin,enemy.root.CFrame.LookVector)
+ local right=Vector3.new(-forward.Z,0,forward.X)
+ local travel=forward*radial+right*tangent
+ -- Limited separation prevents every melee unit occupying the same attack lane.
+ local separation=Vector3.zero
+ for _,other in pairs(enemyStates)do
+  if other~=enemy and enemyAlive(other)and other.model:GetAttribute('DeepwoodEncounter')==enemy.model:GetAttribute('DeepwoodEncounter')then
+   local apart=horizontal(origin-other.root.Position)
+   if apart.Magnitude>.05 and apart.Magnitude<4 then separation+=apart.Unit*(1-apart.Magnitude/4)end
+  end
+ end
+ if separation.Magnitude>1 then separation=separation.Unit end
+ travel+=separation*.65
+ if travel.Magnitude<.1 then return origin,intent end
+ if not allowRetreat and radial==0 then
+  local back=travel:Dot(forward);if back<0 then travel-=forward*back end
+ end
+ local candidate=origin+travel/math.max(1,travel.Magnitude)*math.min(5,math.max(2,distance))
+ local params=combatRayParams(enemy.model,target.character)
+ local foot=origin.Y-enemy.root.Size.Y*1.5
+ local safe=true
+ local segments=math.max(1,math.ceil((candidate-origin).Magnitude/1.5))
+ for sample=1,segments do
+  local point=origin:Lerp(candidate,sample/segments)
+  local support=workspace:Raycast(point+Vector3.new(0,4,0),Vector3.new(0,-16,0),params)
+  if not support or support.Normal.Y<=.55 or math.abs(support.Position.Y-foot)>=5 then safe=false;break end
+ end
+ if safe
+  and horizontal(candidate-enemy.spawnPosition).Magnitude<enemy.config.leashRange-2
+  and unobstructed(origin,candidate,enemy.model,target.character)then return candidate,intent end
+ -- A blocked retreat becomes a finite stand-and-fight, never a blind step off a ledge.
+ if radial<0 or radial==0 then return origin,'Hold' end
+ return target.root.Position,'Navigate'
+end
+
+local function beginEnemyAttack(enemy, target, current, preparedPattern)
  if enemy.patternProfile then
   local distance=horizontal(target.root.Position-enemy.root.Position).Magnitude
-  local definition=Patterns.choose(enemy.kind,distance,enemy.patternHistory,current)
+  local definition=preparedPattern or chooseEnemyPattern(enemy,target,current)
   if not definition then return end
   local encounter=enemy.model:GetAttribute('DeepwoodEncounter')
   if not enemy.patternProfile.boss then
@@ -1512,10 +1562,11 @@ local function beginEnemyAttack(enemy, target, current)
   local selected=table.clone(definition)
   -- Preserve the published boss tempo modifier, with an explicit minimum opening.
   local tempo=enemy.model:GetAttribute('StoryAttackSpeed')or 1
-  selected.recovery=math.max(definition.heavy and 1.1 or .45,(definition.windup+definition.active+definition.recovery)/tempo-definition.windup-definition.active)
-  Patterns.commit(enemy.patternHistory,definition,current)
+  selected.recovery=math.max(definition.heavy and 1.1 or .8,(definition.windup+definition.active+definition.recovery)/tempo-definition.windup-definition.active)
+  Patterns.commit(enemy.patternHistory,selected,current)
   PatternRuntime.begin(enemy,target,selected,current,patternEmit)
   enemy.model:SetAttribute('K0EnemyGuardUntil',selected.guard and workspace:GetServerTimeNow()+selected.windup or nil)
+  enemy.humanoid.AutoRotate=false
   enemy.pathToken+=1;enemy.pathPending=false;stopEnemy(enemy);setEnemyState(enemy,'Windup');return
  end
 	local attackIndex = 1
@@ -1568,6 +1619,10 @@ local function resetEnemy(enemy, restoreHealth)
  enemy.model:SetAttribute("K0EnemyHitUntil", nil)
 	enemy.pattern = 0
  enemy.patternHistory={}
+ enemy.repositionUntil=nil;enemy.repositionReady=nil
+ enemy.tacticalGoal=nil;enemy.tacticalIntent=nil
+ enemy.humanoid.AutoRotate=true
+ enemy.model:SetAttribute('K0EnemyIntent',nil)
 	enemy.posture = enemy.config.posture
 	enemy.postureImmuneUntil = 0
 	enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
@@ -1658,6 +1713,7 @@ local function stepEnemy(enemy, current, dt)
 	local target, distance = closestTarget(enemy, current)
 	if not target or horizontal(enemy.root.Position - enemy.spawnPosition).Magnitude > enemy.config.leashRange then
 		enemy.target = nil
+  enemy.humanoid.AutoRotate=true
 		if horizontal(enemy.root.Position - enemy.spawnPosition).Magnitude > 2 then
 			setEnemyState(enemy, "Chase")
 			moveEnemy(enemy, enemy.spawnPosition, current)
@@ -1673,27 +1729,52 @@ local function stepEnemy(enemy, current, dt)
 		return
 	end
 	enemy.target = target
-	local maxRange = enemy.config.attacks[1].range
- if enemy.patternProfile then maxRange=Patterns.choose(enemy.kind,distance,enemy.patternHistory,current) and 32 or 0 end
-	local canSee = unobstructed(enemy.root.Position, target.root.Position, enemy.model, target.character)
-	if distance <= maxRange * 0.92 and canSee and current >= enemy.reconsiderAt
-		and (enemy.kind ~= "Goblin" or current >= lastGoblinStart + Config.Enemy.GoblinStartSpacing) then
-		beginEnemyAttack(enemy, target, current)
-	else
-		setEnemyState(enemy, "Chase")
-  local destination=target.root.Position
-  if enemy.patternProfile and distance<8 and current>=(enemy.retreatAt or 0) then
-   local first=enemy.patternProfile.attacks[1]
-   if first.shape=='projectile'then
-    local away=horizontalUnit(enemy.root.Position-target.root.Position,enemy.root.CFrame.LookVector)
-    local candidate=enemy.root.Position+away*5
-    local floor=workspace:Raycast(candidate+Vector3.new(0,4,0),Vector3.new(0,-12,0),combatRayParams(enemy.model,target.character))
-    if floor and floor.Normal.Y>.5 and horizontal(candidate-enemy.spawnPosition).Magnitude<enemy.config.leashRange
-     and unobstructed(enemy.root.Position,candidate,enemy.model,target.character)then destination=candidate;enemy.retreatAt=current+4 end
-   end
+ if enemy.patternProfile then
+  local canSee=unobstructed(enemy.root.Position,target.root.Position,enemy.model,target.character)
+  local selected=chooseEnemyPattern(enemy,target,current)
+  local profile=CombatProfiles.get(enemy.kind)
+  local crowded=distance<(profile.retreatRange or 0)
+  -- Give ranged enemies one bounded escape attempt; melee can still catch them.
+  if crowded and not enemy.repositionUntil and current>=(enemy.repositionReady or 0)then
+   enemy.repositionUntil=current+.85;enemy.repositionReady=current+5
   end
-  moveEnemy(enemy,destination,current)
-	end
+  local repositioning=enemy.repositionUntil and current<enemy.repositionUntil
+  if enemy.repositionUntil and not repositioning then
+   enemy.repositionUntil=nil;enemy.tacticalGoal=nil;enemy.nextMoveAt=math.min(enemy.nextMoveAt,current)
+   stopEnemy(enemy)
+  end
+  if selected and canSee and current>=enemy.reconsiderAt and not repositioning then
+   beginEnemyAttack(enemy,target,current,selected)
+   if enemy.attack then return end
+  end
+  local destination,intent=enemy.tacticalGoal,enemy.tacticalIntent
+  if not destination or current>=enemy.nextMoveAt then
+   destination,intent=tacticalDestination(enemy,target,distance,current,repositioning)
+   enemy.tacticalGoal,enemy.tacticalIntent=destination,intent
+  end
+  if not canSee then destination=target.root.Position;intent='Approach' end
+  enemy.model:SetAttribute('K0EnemyIntent',intent)
+  -- Face the opponent while strafing, with species-specific, bounded turning.
+  local facing=horizontalUnit(enemy.root.CFrame.LookVector,Vector3.new(0,0,-1))
+  local desired=horizontalUnit(target.root.Position-enemy.root.Position,facing)
+  local cross=facing.X*desired.Z-facing.Z*desired.X
+  local angle=math.atan2(cross,facing:Dot(desired))
+  local limit=(profile.turnRate or 3.2)*math.min(dt,.1)
+  local turn=math.clamp(angle,-limit,limit)
+  local direction=Vector3.new(facing.X*math.cos(turn)-facing.Z*math.sin(turn),0,facing.X*math.sin(turn)+facing.Z*math.cos(turn))
+  enemy.root.CFrame=CFrame.lookAt(enemy.root.Position,enemy.root.Position+direction)
+  enemy.humanoid.AutoRotate=false
+  setEnemyState(enemy,'Chase');moveEnemy(enemy,destination,current,intent=='Navigate')
+  return
+ end
+ local maxRange=enemy.config.attacks[1].range
+ local canSee=unobstructed(enemy.root.Position,target.root.Position,enemy.model,target.character)
+ if distance<=maxRange*.92 and canSee and current>=enemy.reconsiderAt
+  and (enemy.kind~='Goblin'or current>=lastGoblinStart+Config.Enemy.GoblinStartSpacing)then
+  beginEnemyAttack(enemy,target,current)
+ else
+  setEnemyState(enemy,'Chase');moveEnemy(enemy,target.root.Position,current)
+ end
 end
 
 local registerEnemy

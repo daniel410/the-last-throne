@@ -38,10 +38,15 @@ end
 function M.stepSkinned(c,s,dt,current,attackPhase)
  local model=s.model;local state=model:GetAttribute('K0EnemyState');local humanoid=model:FindFirstChildOfClass('Humanoid')
  if not humanoid or humanoid.Health<=0 or state=='Dead'then M.reset(c);return end
- local distance=(s.root.Position-c.position).Magnitude;c.position=s.root.Position;s.position=c.position
+ local delta=s.root.Position-c.position
+ local distance=Vector3.new(delta.X,0,delta.Z).Magnitude;c.position=s.root.Position;s.position=c.position
  local stunned=(model:GetAttribute('K0EnemyStunUntil')or 0)>current or (model:GetAttribute('K0EnemyHitUntil')or 0)>current
  local moving=state=='Chase' and not stunned and distance>.001 and distance<math.max(3,s.height*1.5)
- if moving then c.phase=(c.phase+distance/math.max(.5,s.height*.7))%1 end
+ local travel=s.root.CFrame:VectorToObjectSpace(delta)
+ local backwards=distance>.001 and travel.Z/distance>.35
+ local side=distance>.001 and math.clamp(travel.X/distance,-1,1)or 0
+ c.side=(c.side or 0)+(side-(c.side or 0))*(1-math.exp(-dt*10))
+ if moving then c.phase=(c.phase+distance/math.max(.5,s.height*.7)*(backwards and -1 or 1))%1 end
  local clip=moving and 'Walk'or 'Idle';local phase=moving and c.phase or (current/c.data.clips.Idle.duration+s.seed)%1
  local clock=model:GetAttribute('K0EnemyAttackClock')
  if clock~=c.clock then
@@ -70,7 +75,8 @@ function M.stepSkinned(c,s,dt,current,attackPhase)
  -- Legacy R6 bob/squash is bypassed for skinned monsters.
  local basis=c.bones.Root.CFrame.Rotation
  local accent=active and PatternPose.accent(model,current,c.attack)or CFrame.identity
- c.bones.Root.Transform=c.pose.Root*basis:Inverse()*HitReaction.sample(model,current)*accent*basis
+ local locomotion=CFrame.Angles(0,0,moving and -c.side*.035 or 0)
+ c.bones.Root.Transform=c.pose.Root*basis:Inverse()*HitReaction.sample(model,current)*locomotion*accent*basis
  c.clip=clip;c.samplePhase=phase;c.active=active==true;s.attack=c.attack
 end
 return M

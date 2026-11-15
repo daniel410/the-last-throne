@@ -30,9 +30,15 @@ end
 function Caster.step(c,s,dt,current,attackPhase)
  local model=s.model;local state=model:GetAttribute('K0EnemyState')
  local stunned=(model:GetAttribute('K0EnemyStunUntil') or 0)>current or (model:GetAttribute('K0EnemyHitUntil') or 0)>current
- local distance=(s.root.Position-c.position).Magnitude;c.position=s.root.Position
- local moving=state=='Chase' and not stunned and distance<math.max(3,c.height*1.5)
- if moving then c.phase=(c.phase+distance/(c.height*s.profile.stride))%1 end
+ local delta=s.root.Position-c.position
+ local distance=Vector3.new(delta.X,0,delta.Z).Magnitude;c.position=s.root.Position
+ local moving=state=='Chase' and not stunned and distance>.001 and distance<math.max(3,c.height*1.5)
+ local travel=s.root.CFrame:VectorToObjectSpace(delta)
+ local backwards=distance>.001 and travel.Z/distance>.35
+ local side=distance>.001 and math.clamp(travel.X/distance,-1,1)or 0
+ c.side=(c.side or 0)+(side-(c.side or 0))*(1-math.exp(-dt*10))
+ if moving then c.phase=(c.phase+distance/(c.height*s.profile.stride)*(backwards and -1 or 1))%1 end
+ c.locomotion=CFrame.Angles(0,0,moving and -c.side*.035 or 0)
  local clip=moving and 'Walk' or 'Idle';local phase=moving and c.phase or (current/s.profile.breathSeconds+s.seed)%1
  local clock=model:GetAttribute('K0EnemyAttackClock')
  if clock~=c.clock then

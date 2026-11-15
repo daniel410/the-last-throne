@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "enemy-patterns",
+    "exit": 0,
+    "stdout": "enemy-patterns: 3717 checks PASS;50 kinds/23 bosses, geometry, version8/9 stats/rewards\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-combat-profiles",
+    "exit": 0,
+    "stdout": "enemy-combat-profiles: 58954 checks PASS; 50 species/23 bosses, weapon spacing, four modes, finite elemental pulses\n",
+    "stderr": ""
+  },
+  {
+    "suite": "enemy-combat-tactics",
+    "exit": 0,
+    "stdout": "enemy-combat-tactics: 7212 checks PASS\n",
+    "stderr": ""
+  },
+  {
+    "suite": "difficulty-balance",
+    "exit": 0,
+    "stdout": "Difficulty balance: 2665 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "suite": "party-story",
+    "exit": 0,
+    "stdout": "Party story and final boss: 3693 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "suite": "boss-pressure-boost",
+    "exit": 0,
+    "stdout": "Boss pressure boost: 392158 checks passed; 23 boss kinds\n",
+    "stderr": ""
+  },
+  {
+    "suite": "deepwood-bosses",
+    "exit": 0,
+    "stdout": "Deepwood bosses: 96 checks passed\n",
+    "stderr": ""
+  }
+]
