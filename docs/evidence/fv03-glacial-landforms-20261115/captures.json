@@ -1,0 +1,38 @@
+{
+  "lighting": "DeepwoodAtmosphere.update(FrozenVale), unrestored",
+  "state": "Studio Edit; no players; no personal progress projection",
+  "beforeBuild": "0.107.9",
+  "cameras": {
+    "overview": {
+      "position": [
+        840,
+        495,
+        -8340
+      ],
+      "lookAt": [
+        277,
+        112,
+        -8782
+      ]
+    },
+    "approach": {
+      "position": [
+        380,
+        122,
+        -8580
+      ],
+      "lookAt": [
+        330,
+        106,
+        -8800
+      ]
+    }
+  },
+  "afterBuild": "0.107.10",
+  "files": {
+    "before-approach.png": "23267563ec2c00ebaedc9ed93006878b8d57c25b5c850f398a940aba78ea7f03",
+    "after-approach.png": "01e596dbf32ecc1207e0e8da5e86620ddf5f58c1846cd1ec018c57e17ec148fb",
+    "after-overview.png": "f71908927b727c6c2deee670de5188055e34df268d969054d6d3d8747ef3fefe",
+    "before-overview.png": "d4a69ff0c9f586c8c92afb8833caec1403a3009607c5a0e959f06ea70581968e"
+  }
+}

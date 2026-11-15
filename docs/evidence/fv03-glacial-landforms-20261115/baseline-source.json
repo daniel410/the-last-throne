@@ -1,0 +1,18 @@
+{
+  "CampaignContent": {
+    "matchesPrechangeCommit": true,
+    "sourceSha256": "32b2c93d34f8dc7b06f7d8114846ba99417702064e7a0c9d0d52d92a47bd6169"
+  },
+  "CampaignSceneryPlacement": {
+    "matchesPrechangeCommit": true,
+    "sourceSha256": "5b261bbe3e492104bc8e3e741dcb9ec4fd260f6e9579cde2a36d138b476e7750"
+  },
+  "CampaignWorld": {
+    "matchesPrechangeCommit": true,
+    "sourceSha256": "a8b77192dbdad8a6bb15f63df81e37e97507281a5ace041031225cd4bd3de1cb"
+  },
+  "EpicWorldArt": {
+    "matchesPrechangeCommit": true,
+    "sourceSha256": "918acda5724a1212ec9251e4a4fa2f3854bdc8171fe83c2f38336276f8b54ca3"
+  }
+}

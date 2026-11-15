@@ -1,0 +1,13 @@
+{
+  "src/server/World/FrozenRavineLandforms.luau": "6a3eec4eba626cbe296cefb990ca05cedc0d6bc1c522b1051bc160c170a5f4d1",
+  "src/server/World/EpicWorldArt.luau": "21172e5a0298bd0129d00ce433536b4b7cc82e1a1534484469d5b73d5e1668e1",
+  "tests/regional-concept-art-native.luau": "ef84cd759edf27841853dba5545732451f78d8ad21188d57f32d3c0ee899ed64",
+  "tests/campaign-story-composition-native.luau": "8b599f1d140ee201931744378efc13d8d23be98fd502b01fc102e7d1b749a008",
+  "tests/scenery-collision-native.luau": "84f63e87de3262fd7df54458b18f9e6451fdd2d1c90c4324f579be80f0179ac0",
+  "tests/campaign-combat-route-world-native.luau": "fca9e0919051f1be0e797475d525cb260aa002ed97f7bbe1741c2440172d0ad6",
+  "tests/epic-environment-native.luau": "64261fd65d9f7d28ee53aeabbc254873028c54b9099f6121409a13326941ea83",
+  "tests/story-terrain-fixes-native.luau": "82275e38e4f4129cf7975a13bdc1992f8874df1f6272b1bf648ef353a35d021b",
+  "tests/frozen-ravine-landforms-native.luau": "72e65f6a885942105ad2312af7f3e52ff8739861c73903136db72c3076247a0d",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6",
+  "tests/epic-overland-native.luau": "d181e816d5298c37f00a99892977724269e112b1bd1176b0d14f82314542f390"
+}

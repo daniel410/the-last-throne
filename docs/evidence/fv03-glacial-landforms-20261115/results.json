@@ -1,0 +1,153 @@
+{
+  "baselineBuild": "0.107.9",
+  "candidateBuild": "0.107.10",
+  "identicalExistingBlockers": [
+    {
+      "part": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_2.GW-01.LayeredVegetation.ForestTree.trunk_geom",
+      "at": "-601.0537719726562, 56.015625, -4024.49853515625",
+      "position": "-592.4668579101562, 75.84451293945312, -4033.7763671875",
+      "label": "GW-01:exp_2:step1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BlueprintTable",
+      "at": "245.28997802734375, 156, -13497.896484375",
+      "position": "253.6647186279297, 157.5, -13501.9150390625",
+      "label": "EC-05:exp_2:step1"
+    }
+  ],
+  "identicalExistingLowSteps": 6,
+  "frozenVale": {
+    "chapters": 11,
+    "lowSteps": 0,
+    "connectors": 9,
+    "steps": 5808,
+    "samples": 6177,
+    "targets": 142,
+    "floors": 0,
+    "corrections": 0,
+    "blockers": 0,
+    "routeFailures": 0
+  },
+  "newLandforms": {
+    "terrainParts": 0,
+    "ridges": {
+      "ShoulderEast7": {
+        "height": 29.028106689453125,
+        "materials": {
+          "Glacier": 5,
+          "Snow": 67
+        }
+      },
+      "ShoulderEast5": {
+        "height": 36.20050048828125,
+        "materials": {
+          "Glacier": 10,
+          "Snow": 62
+        }
+      },
+      "ShoulderEast4": {
+        "height": 27.998275756835938,
+        "materials": {
+          "Glacier": 21,
+          "Snow": 51
+        }
+      },
+      "SkylineEast5": {
+        "height": 113.705810546875,
+        "materials": {
+          "Glacier": 90,
+          "Snow": 995
+        }
+      },
+      "ShoulderWest3": {
+        "height": 23.570755004882812,
+        "materials": {
+          "Glacier": 8,
+          "Snow": 64
+        }
+      },
+      "ShoulderEast6": {
+        "height": 21.516036987304688,
+        "materials": {
+          "Glacier": 1,
+          "Snow": 71
+        }
+      }
+    },
+    "checks": 1523
+  },
+  "overland": {
+    "FV-07_EC-01_forward": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "FV-07_EC-01_forward",
+      "distance": 4.576171875,
+      "position": "-952.8499755859375, 127.19239807128906, -11640.82421875",
+      "elapsed": 27.329564416664653
+    },
+    "FV-07_EC-01_back": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "FV-07_EC-01_back",
+      "distance": 6.283203125,
+      "position": "-952.8499755859375, 127.19239807128906, -10776.43359375",
+      "elapsed": 27.19847379170824
+    },
+    "GW-07_FV-01_forward": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "GW-07_FV-01_forward",
+      "distance": 7.03125,
+      "position": "-894.8499755859375, 81.19241333007812, -7814.61865234375",
+      "elapsed": 21.332803291734308
+    },
+    "EC-07_HG-01_back": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-07_HG-01_back",
+      "distance": 4.6904296875,
+      "position": "-982.8499755859375, 175.1923828125, -14604.0908203125",
+      "elapsed": 22.13471666665282
+    },
+    "EC-07_HG-01_forward": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-07_HG-01_forward",
+      "distance": 7.4609375,
+      "position": "-982.8499755859375, 175.1923828125, -15301.939453125",
+      "elapsed": 22.13196849997621
+    },
+    "DW-07_GW-01_back": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "DW-07_GW-01_back",
+      "distance": 7.368408203125,
+      "position": "-894.8499755859375, 57.27177047729492, -3173.368408203125",
+      "elapsed": 28.665508166654035
+    },
+    "GW-07_FV-01_back": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "GW-07_FV-01_back",
+      "distance": 4.13916015625,
+      "position": "-894.8499755859375, 81.19239807128906, -7142.5390625",
+      "elapsed": 21.33806133340113
+    },
+    "DW-07_GW-01_forward": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "DW-07_GW-01_forward",
+      "distance": 5.9794921875,
+      "position": "-894.8499755859375, 57.192413330078125, -4078.42041015625",
+      "elapsed": 28.663610291667283
+    }
+  }
+}
