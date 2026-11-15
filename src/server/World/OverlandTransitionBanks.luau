@@ -14,6 +14,9 @@ function M.build(root,edge)
    -- Include voxel interpolation margin; never enter a story wing or its ramp.
    if not Bounds.region(at.X,at.Z,radius+4)then
     local center=at+V(0,spec[3],0)
+    -- Buried shoulder joins the rock to the road foundation; no floating islands.
+    local foot=at-normal*side*40-V(0,48,0)
+    workspace.Terrain:FillBlock(CFrame.lookAt(foot,foot+d),V(112,72,radius*2),Enum.Material.Rock)
     workspace.Terrain:FillBall(center,radius,Enum.Material.Rock)
     count+=1
    end
