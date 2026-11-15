@@ -22,7 +22,7 @@ function M.build(root,center,size,pal,safe,ground)
  end
  for band,offset in ipairs({{-.37,-.33},{.37,-.33},{-.37,.33},{.37,.33}})do
   local anchor=center+V(offset[1]*size[1],0,offset[2]*size[2]);local at
-  for ring=0,5 do
+  for ring=0,18 do
    for k=0,(ring==0 and 0 or 23)do
     local angle=k*math.pi/12;at=candidate(anchor+V(math.cos(angle)*ring*20,0,math.sin(angle)*ring*20))
     if at then break end
