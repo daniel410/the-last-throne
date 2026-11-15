@@ -1,0 +1,69 @@
+{
+  "vegetation": {
+    "trees": 15,
+    "groups": {
+      "1:1": true,
+      "-1:3": true,
+      "-1:1": true,
+      "1:2": true,
+      "1:3": true,
+      "-1:2": true
+    },
+    "checks": 110,
+    "heights": {
+      "42": true,
+      "47": true,
+      "54": true,
+      "59": true,
+      "68": true,
+      "73": true
+    },
+    "parts": 45
+  },
+  "navigation": {
+    "worldPoints": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    },
+    "points": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    }
+  }
+}
