@@ -1,0 +1,23 @@
+{
+  "version": "0.109.4",
+  "gameSource": "561fd152c2efed6f89d5270ed70b4cba33158a39",
+  "auditCommit": "067207876e50b03a543855fbb5a0fc38c00977ae",
+  "studioId": "4c815ac2-484e-43ba-ab55-37ce05a47dd6",
+  "checks": 9255,
+  "method": "Fresh execution of source-pinned suites on the exact built rbxlx, isolated Edit DataModel PlaceId 0 and no players",
+  "output": [
+    "MODE_REAUDIT_06720787_START",
+    "MODE_ALL_SOURCE_COMPILE true",
+    "Completed mode campaign: Easy",
+    "Completed mode campaign: Hard",
+    "Completed mode campaign: Insane",
+    "Completed mode campaign: Hell",
+    "Campaign mode progress: 4621 checks passed",
+    "MODE_PROFILE_BYTES 115144",
+    "CAMPAIGN_MODE_MIGRATION 88 checks passed",
+    "Campaign mode legacy replay: 3723 checks passed",
+    "COMBAT_ROUTE_RUNTIME {\"checks\":823,\"kind\":\"COMBAT_ROUTE_RUNTIME\"}",
+    "CAMPAIGN_MODE_NATIVE_PASS true",
+    "MODE_REAUDIT_06720787_END"
+  ]
+}

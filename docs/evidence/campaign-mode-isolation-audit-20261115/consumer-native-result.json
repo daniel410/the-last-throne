@@ -1,0 +1,26 @@
+{
+  "version": "0.109.4",
+  "gameSource": "561fd152c2efed6f89d5270ed70b4cba33158a39",
+  "studioId": "4c815ac2-484e-43ba-ab55-37ce05a47dd6",
+  "method": "Normal account reducers followed by actual LobbyQuestJournal, LobbyAtlas and hidden LobbyNavigation rendering in isolated Edit; temporary GUI and scene removed",
+  "observed": {
+    "afterHiddenNavigation": {
+      "partTransparency": 1,
+      "promptEnabled": false
+    },
+    "activeMode": "Hard",
+    "actualQuestStatus": "COMPLETED",
+    "sceneLeak": true,
+    "pass": false,
+    "hardDW01Completed": false,
+    "hardDW02Accessible": false,
+    "actualDW02Accessible": true,
+    "hardMain": 0,
+    "kind": "MODE_CONSUMER_NATIVE_REVIEW",
+    "easyMain": 1,
+    "beforeHiddenNavigation": {
+      "partTransparency": 0,
+      "promptEnabled": true
+    }
+  }
+}

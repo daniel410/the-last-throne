@@ -1,0 +1,47 @@
+VERSION=0.109.4
+COMMIT=067207876e50b03a543855fbb5a0fc38c00977ae
+SCRIPT=/tmp/throne-mode-interleaved-01094.lua
+Completed chapter 1 DW-01 in Hard > Insane > Hell > Easy
+Completed chapter 2 DW-02 in Hard > Insane > Hell > Easy
+Completed chapter 3 DW-03 in Hard > Insane > Hell > Easy
+Completed chapter 4 DW-04 in Hard > Insane > Hell > Easy
+Completed chapter 5 DW-05 in Hard > Insane > Hell > Easy
+Completed chapter 6 DW-06 in Hard > Insane > Hell > Easy
+Completed chapter 7 DW-07 in Hard > Insane > Hell > Easy
+Completed chapter 8 GW-01 in Hard > Insane > Hell > Easy
+Completed chapter 9 GW-02 in Hard > Insane > Hell > Easy
+Completed chapter 10 GW-03 in Hard > Insane > Hell > Easy
+Completed chapter 11 GW-04 in Hard > Insane > Hell > Easy
+Completed chapter 12 GW-05 in Hard > Insane > Hell > Easy
+Completed chapter 13 GW-06 in Hard > Insane > Hell > Easy
+Completed chapter 14 GW-07 in Hard > Insane > Hell > Easy
+Completed chapter 15 FV-01 in Hard > Insane > Hell > Easy
+Completed chapter 16 FV-02 in Hard > Insane > Hell > Easy
+Completed chapter 17 FV-03 in Hard > Insane > Hell > Easy
+Completed chapter 18 FV-04 in Hard > Insane > Hell > Easy
+Completed chapter 19 FV-05 in Hard > Insane > Hell > Easy
+Completed chapter 20 FV-06 in Hard > Insane > Hell > Easy
+Completed chapter 21 FV-07 in Hard > Insane > Hell > Easy
+Completed chapter 22 EC-01 in Hard > Insane > Hell > Easy
+Completed chapter 23 EC-02 in Hard > Insane > Hell > Easy
+Completed chapter 24 EC-03 in Hard > Insane > Hell > Easy
+Completed chapter 25 EC-04 in Hard > Insane > Hell > Easy
+Completed chapter 26 EC-05 in Hard > Insane > Hell > Easy
+Completed chapter 27 EC-06 in Hard > Insane > Hell > Easy
+Completed chapter 28 EC-07 in Hard > Insane > Hell > Easy
+Completed chapter 29 HG-01 in Hard > Insane > Hell > Easy
+Completed chapter 30 HG-02 in Hard > Insane > Hell > Easy
+Completed chapter 31 HG-03 in Hard > Insane > Hell > Easy
+Completed chapter 32 HG-04 in Hard > Insane > Hell > Easy
+Completed chapter 33 HG-05 in Hard > Insane > Hell > Easy
+Completed chapter 34 HG-06 in Hard > Insane > Hell > Easy
+Completed chapter 35 HG-07 in Hard > Insane > Hell > Easy
+PASS: 140 interleaved main quests, five epic reconnects, own restoration choices, gates, selections, receipts, stale requests
+checks=105808
+completed=140
+events=1812
+begins=350
+kills=140
+duplicateKills=140
+stale=698
+reconnects=5

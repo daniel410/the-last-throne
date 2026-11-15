@@ -1,0 +1,4 @@
+ACCOUNT valid=true activeMode=Hard
+QUEST actual lobby status=COMPLETED mode-specific status=IN PROGRESS
+ATLAS raw DW-02 open=true Hard DW-02 open=false
+SCENE raw supplies stage=3 Hard supplies stage=0
