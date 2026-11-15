@@ -19,6 +19,8 @@ local function profile()
 	-- Tempered is no longer starter equipment. Keep swap coverage with an explicit
 	-- owned test item rather than assuming it is still granted to every new hero.
 	p.items['fixture-tempered-sword']={instanceId='fixture-tempered-sword',definitionId='knight_weapon_fine',definitionVersion=C.version,ownerUserId=p.userId,quantity=1,version=1,binding='account',locked=false,location={kind='bag',heroId='hero-knight'},sourceGrantId='swap-fixture'}
+	-- Explicit owned Veteran fixture; new heroes no longer receive free headgear.
+	p.items['fixture-veteran-hood']={instanceId='fixture-veteran-hood',definitionId='veteran_hood',definitionVersion=C.version,ownerUserId=p.userId,quantity=1,version=1,binding='account',locked=false,location={kind='bag',heroId='hero-knight'},sourceGrantId='shop-fixture'}
 	-- Explicit legacy reward fixture; new accounts no longer get pending supplies.
 	p.items['fixture-pending-health']={instanceId='fixture-pending-health',definitionId='health_potion',definitionVersion=C.version,ownerUserId=p.userId,quantity=5,version=1,binding='account',locked=false,location={kind='pending'},sourceGrantId='legacy-fixture'}
 	valid(p)

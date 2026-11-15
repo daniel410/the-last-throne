@@ -52,7 +52,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  local p=assert(R.addHero(R.new(42),'h',class,C));local stats=R.stats(p,'h',C)
  check(R.equipped(p,'h','weapon').definitionId==class..'_weapon_traveler','starter uses Traveler '..class)
  check(R.equipped(p,'h','body').definitionId==(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'starter body follows class')
- check(R.quantity(p,'h','veteran_hood')==1,'future veteran hood preserved in bag')
+ check(R.quantity(p,'h','veteran_hood')==0,'Veteran headgear is not starter equipment')
  check(stats.power==5 and stats.dexterity==3 and stats.armor==(class=='knight'and 8 or class=='mage'and 2 or 5),'starter fixed attack and defense')
  check(stats.health==(class=='mage'and 30 or 50)and stats.mana==(class=='mage'and 30 or 0),'starter HP/MP classification')
  assert(T.grant(p,R,C,'h','amber_mana_charm',1,'mana'))
@@ -74,6 +74,8 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  local weapon=R.equipped(old,'h','weapon');weapon.definitionId=class..'_weapon_fine';weapon.enhancementLevel=9;weapon.locked=true
  local coat=R.equipped(old,'h','body');coat.definitionId='traveler_coat'
  local head=R.equipped(old,'h','head');head.location={kind='storage'}
+ -- Explicit purchased legacy headgear fixture, independent of the starter kit.
+ assert(T.grant(old,R,C,'h','veteran_hood',1,'shop-legacy-hood'))
  local hood
  for _,item in pairs(old.items)do if item.definitionId=='veteran_hood'then hood=item;item.location={kind='equipped',heroId='h',slot='head'};item.locked=true end end
  check(R.validate(old,C),'old Lv5 profile decodes before migration')

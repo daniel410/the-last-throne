@@ -17,7 +17,7 @@ for _,tier in ipairs(C.equipmentFamilies.tiers)do
  p.heroes.knight.level=10;p.heroes.knight.progression=G.new(10)
  if tier.id=='traveler'then
   check(R.equipped(p,'mage','head').definitionId==id,'new mage wears Traveler hat immediately')
-  check(R.quantity(p,'mage','veteran_hood')==1,'existing Veteran bonus contract preserved')
+  check(R.quantity(p,'mage','veteran_hood')==0,'new Mage receives no free Veteran hood')
   check(not E.offer(id),'Traveler hat is starter equipment, not a new paid SKU')
  end
  assert(T.grant(p,R,C,'mage',id,1,'hat'))

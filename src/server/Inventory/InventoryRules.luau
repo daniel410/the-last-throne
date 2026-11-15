@@ -362,7 +362,10 @@ function Rules.upgrade(profile,catalog)
 	-- Keep the catalog tombstone so AccountStore can validate old saves first.
 	for id,item in pairs(profile.items) do
 		local definition=catalog.items[item.definitionId]
-		if item.definitionId=="soft_hide" or (definition and definition.deleted) then profile.items[id]=nil;changed=true end
+		-- Retire only the free Veteran headgear; purchased/reward instances stay owned.
+		local starterVeteran = item.definitionId == "veteran_hood"
+			and type(item.sourceGrantId) == "string" and item.sourceGrantId:match("^starter:.+$")
+		if starterVeteran or item.definitionId=="soft_hide" or (definition and definition.deleted) then profile.items[id]=nil;changed=true end
 	end
  -- One account transaction preserves identity, locks and enhancement investment.
  if profile.equipmentRulesVersion==nil then

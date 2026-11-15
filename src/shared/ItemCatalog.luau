@@ -129,7 +129,7 @@ Catalog.items.iron_ore = {id = "iron_ore", name = "Iron Ore", category = "Materi
 -- Decode-only tombstone: account migration removes every existing stack.
 Catalog.items.soft_hide = {id = "soft_hide", name = "Soft Hide", category = "Materials", maxStack = 999,
 	glyph = "LH", rarity = "Common", retired = true, description = "Retired material. Removed when your account loads."}
-Catalog.kit = {"traveler_hood", "traveler_coat", "traveler_gloves", "traveler_boots", "copper_ring", "amber_charm", "veteran_hood"}
+Catalog.kit = {"traveler_hood", "traveler_coat", "traveler_gloves", "traveler_boots", "copper_ring", "amber_charm"}
 for _,id in ipairs({'warlord_seal','king_shaman_seal'}) do
  Catalog.items[id]={id=id,name=id=='warlord_seal' and 'Orc Warlord Seal' or 'King Shaman Seal',category='Materials',maxStack=99,glyph='SE',rarity='Uncommon',description='A personal trophy from the Deepwood campaign. Collect from Unclaimed at Hub.'}
 end

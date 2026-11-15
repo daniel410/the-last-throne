@@ -22,7 +22,7 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(R.equipped(p,'hero','head').definitionId,class=='mage'and 'mage_traveler_hat'or 'traveler_hood',class..' wears level1 headgear')
  eq(R.equipped(p,'hero','accessory1').definitionId,'copper_ring',class..' auto accessory1')
  eq(R.equipped(p,'hero','accessory2').definitionId,'amber_charm',class..' auto accessory2')
- eq(R.quantity(p,'hero','veteran_hood'),1,class..' level5 bonus stays in bag')
+ eq(R.quantity(p,'hero','veteran_hood'),0,class..' receives no free Veteran headgear')
  for _,item in pairs(p.items)do eq(item.definitionId==class..'_weapon',false,class..' no training weapon') end
  eq(R.count(p,'equipped'),class=='knight' and 8 or 7,class..' all eligible slots filled')
  eq(R.validate(p,C),true,class..' creation is valid')
@@ -45,5 +45,5 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(loaded.armor,stats.armor,class..' saved equipment follows current armor')
  eq(R.quantity(restored,'hero','health_potion'),3,class..' potion stock preserved')
 end
-eq(C.items.veteran_hood.stats.armor,15,'bonus Veteran hood follows new tier')
+eq(C.items.veteran_hood.stats.armor,15,'purchasable Veteran hood follows new tier')
 print('Starter gear balance: '..n..' checks passed')
