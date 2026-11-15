@@ -518,6 +518,16 @@
       "provenance": "assets/shared/td-crystal-throne/provenance.json",
       "role": "Dawnspire pink crystal throne; uniform scale2, original palette and pointed silhouettes",
       "permissions": "Existing same-owner shared-original instruction; TD read-only"
+    },
+    {
+      "key": "audio.epic-map-themes-v2",
+      "kind": "original-audio-snapshot",
+      "source_path": "../throne-defense/assets/audio/map-themes-v2",
+      "manifest": "assets/audio/td-map-themes-v2/manifest.json",
+      "date": "2026-11-15",
+      "role": "Five epic background themes; Riftstorm in lobby/loading; original boss track preserved",
+      "audit_status": "exact WAV hashes and format verified; Roblox upload IDs and TLT permissions pending",
+      "permission": "User-directed same-owner original reuse; TD unchanged"
     }
   ]
 }

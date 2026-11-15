@@ -1,0 +1,19 @@
+$ lua tests/epic-background-music.spec.lua
+epic-background-music: 718 checks PASS (synthetic IDs; no Roblox playback claim)
+
+$ lua tests/deepwood-music-policy.spec.lua
+Deepwood music policy: 13 checks passed
+
+$ lua tests/background-music-late-story.spec.lua
+background-music-late-story: 10 checks PASS
+
+$ lua tests/arrival-loading.spec.lua
+arrival-loading: 291 checks PASS
+
+$ lua tests/battle-presentation.spec.lua
+BATTLE_PRESENTATION 41 checks passed
+
+$ lua tests/campaign-biome.spec.lua
+Campaign biome/client 1100 checks passed
+
+WAV5 exact TD bytes/SHA-256/PCM PASS; project copies identical/JSON PASS; real upload IDs remain zero

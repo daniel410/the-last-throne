@@ -16,17 +16,17 @@ local function node(kind,name)
 end
 local source=assert(io.open('src/client/K0BackgroundMusic.luau')):read('*a'):gsub('elapsed%+=dt','elapsed=elapsed+dt')
 for _,timing in ipairs({'existing','late-event','late-folder','training'})do
- local rs=node('ReplicatedStorage','RS');rs.Shared={DeepwoodMusicPolicy={bossKey=function(s)return s and s.boss end}}
+ local rs=node('ReplicatedStorage','RS');rs.Shared={DeepwoodMusicPolicy={bossKey=function(s)return s and s.boss end,normalFor=function()return 73105938035554 end}}
  local folder=node('Folder','Remotes');local event=node('RemoteEvent','DeepwoodState');event.OnClientEvent=signal()
  if timing~='late-folder' then rs:add(folder)end
  if timing=='existing'then folder:add(event)end
- local player={CharacterAdded=signal(),GetAttributeChangedSignal=function()return signal()end,GetAttribute=function(_,key)return key=='TLTRoute'and'Training'or'Tutorial'end}
+ local player={OnTeleport=signal(),FindFirstChild=function()end,CharacterAdded=signal(),GetAttributeChangedSignal=function()return signal()end,GetAttribute=function(_,key)return key=='TLTRoute'and'Training'or'Tutorial'end}
  local heartbeat=signal();local selections={};local count=0
  local env=setmetatable({game={ReplicatedStorage=rs,GetService=function(_,name)
   return ({Players={LocalPlayer=player},RunService={Heartbeat=heartbeat},ReplicatedStorage=rs})[name]or{}
  end},require=function(x)return x end,task={spawn=function(fn)fn()end}},{__index=_G})
  local music=assert(load(source,'K0BackgroundMusic','t',env))()
- music.create=function()return {select=function(key)count=count+1;selections[count]=key or 'normal'end}end
+ music.create=function()return {tracks={},select=function(key)count=count+1;selections[count]=key or 'normal'end}end
  music.start();music.start();heartbeat:fire(6)
  check(count==1 and selections[1]=='normal','normal music survives without story: '..timing)
  if timing~='training'then

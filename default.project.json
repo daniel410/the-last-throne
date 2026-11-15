@@ -147,6 +147,9 @@
       }
     },
     "ReplicatedFirst": {
+      "DeepwoodMusicPolicy": {
+        "$path": "src/shared/DeepwoodMusicPolicy.luau"
+      },
       "ArrivalLoading": {
         "$path": "src/loading/ArrivalLoading.client.luau"
       },

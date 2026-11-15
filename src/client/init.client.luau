@@ -8,6 +8,8 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
+-- Lobby music starts without waiting for combat admission; BattlePresentation is idempotent.
+task.spawn(function() require(script.K0BackgroundMusic).start() end)
 require(script.EquipmentAssetLoading).start()
 require(script.CharacterAssetLoading).start(player)
 require(script.TravelLoadingScreen).start(player)
