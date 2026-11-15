@@ -1,0 +1,37 @@
+{
+  "base": "0.109.1",
+  "after": "same scene plus final FrozenSurfaceUnderlays source; candidate A/B",
+  "lighting": "FrozenVale unrestored mood; same camera/scene, no physics run between captures",
+  "cameras": {
+    "approach": {
+      "position": [
+        395,
+        126,
+        -8685
+      ],
+      "lookAt": [
+        480,
+        108,
+        -8790
+      ]
+    },
+    "overview": {
+      "position": [
+        840,
+        495,
+        -8340
+      ],
+      "lookAt": [
+        277,
+        112,
+        -8782
+      ]
+    }
+  },
+  "files": {
+    "before-approach.png": "6466adef3920ccb25a056d0a83389b91d34728a2bbda0ede9a35e57d8c8e3252",
+    "after-approach.png": "5f30cc0cbf89ee36b9df5db482df1301893af1d1a4fdbe26a77ca6024255bb32",
+    "after-overview.png": "8d0f7653b1dacf2232560b690c9e712a7788fc68bd6cb8180b4fa674d7f60e17",
+    "before-overview.png": "b90de09b70d8f32bc1b8ed65aa032836cf9ce5c5a29f3588b89c18448991d19a"
+  }
+}

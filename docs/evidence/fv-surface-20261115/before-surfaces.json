@@ -1,0 +1,44 @@
+[
+  {
+    "top": 92,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.FrozenValeFoundation.Support_FV-03",
+    "solid": true,
+    "transparency": 0,
+    "color": [
+      0.29019609093666077,
+      0.4000000059604645,
+      0.501960813999176
+    ],
+    "material": "Slate",
+    "cf": "277.149994, 42, -8781.65039, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+    "size": "552, 100, 556.5"
+  },
+  {
+    "top": 92.00000305473804,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.FV-03.SnowGround",
+    "solid": true,
+    "transparency": 0,
+    "color": [
+      0.8705882430076599,
+      0.9254902005195618,
+      0.9490196108818054
+    ],
+    "material": "Snow",
+    "cf": "277.149994, 91.8000031, -8781.65039, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+    "size": "552, 0.4000000059604645, 556.5"
+  },
+  {
+    "top": 92,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation3.JourneyGround",
+    "solid": true,
+    "transparency": 0,
+    "color": [
+      0.8705882430076599,
+      0.9254902005195618,
+      0.9490196108818054
+    ],
+    "material": "Snow",
+    "cf": "277.149994, 60, -8781.65039, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+    "size": "552, 64, 556.5"
+  }
+]
