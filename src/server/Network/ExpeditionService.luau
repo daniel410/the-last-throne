@@ -87,6 +87,7 @@ local function retryTravel(p,attempt)
  attempt.tries+=1
  if attempt.tries>3 then
   travel[p]=nil;local resumed=unlock(p)
+  p:SetAttribute('TLTAdventureStarting',false)
   if attempt.kind=='gather' and parties[p] then
    local party=parties[p];store.remove(party.id,p.UserId,party.token);store.releaseMembership(p.UserId,party.id,party.token);parties[p]=nil;advertise(party.id)
   end
@@ -210,9 +211,16 @@ local function startRun(p,party)
   for person,mine in pairs(parties) do if mine.id==party.id and person.Parent==Players then table.insert(candidates,person) end end
  end
  for _,person in ipairs(candidates) do if person~=p and (busy[person] or travel[person]) then return nil,'Busy' end end
- for _,person in ipairs(candidates) do locked[person]={previous=busy[person]};busy[person]=true end
+ for _,person in ipairs(candidates) do
+  locked[person]={previous=busy[person]};busy[person]=true
+  -- Replicate progress before the first store/save yield, including to non-hosts.
+  person:SetAttribute('TLTAdventureStarting',true)
+ end
  local runId=guid();local ok,result,reason=pcall(startRunLocked,p,party,runId)
- for person,lock in pairs(locked) do busy[person]=lock.previous end
+ for person,lock in pairs(locked) do
+  busy[person]=lock.previous
+  if not travel[person]then person:SetAttribute('TLTAdventureStarting',false)end
+ end
  if not ok then
   local moving=false;for person in pairs(locked) do if travel[person] then moving=true else unlock(person) end end
   if party then store.launchStatus(party.id,runId,moving and 'launched' or 'forming') end

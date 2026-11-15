@@ -13,6 +13,7 @@ task.spawn(function() require(script.K0BackgroundMusic).start() end)
 require(script.EquipmentAssetLoading).start()
 require(script.CharacterAssetLoading).start(player)
 require(script.TravelLoadingScreen).start(player)
+require(script.AdventureStartingNotice).start(player)
 task.spawn(function() require(script.LobbyCommerce).start() end)
 task.spawn(function() require(script.LobbyLandmarkVisuals).start() end)
 task.spawn(function() require(script.NPCDialogue).start() end)
@@ -39,6 +40,7 @@ require(script.SkillUnlockNotice).start(player)
 local battle,startingBattle
 local lobby,inventory,growthGui,settingsGui
 local heroSnapshot,heroRequestRemote,pendingRequest
+local pendingHeroDeparture=false
 local requestSequence,lastRevision=0,-1
 local function cancelBattle()
  if battle then battle.cancel()end
@@ -57,11 +59,13 @@ local function requestHero(action, argument)
 	local requestId = "ui-" .. tostring(requestSequence)
 	pendingRequest = requestId
 	lobby.setBusy(true)
+	if action=='StartTutorial' then pendingHeroDeparture=true;require(script.AdventureStartingNotice).setPending(true)end
 	heroRequestRemote:FireServer(action, requestId, argument)
 	task.delay(8, function()
 		if pendingRequest ~= requestId then return end
 		pendingRequest = nil
 		lobby.setBusy(false)
+		if pendingHeroDeparture then pendingHeroDeparture=false;require(script.AdventureStartingNotice).setPending(false)end
 		lobby.showError("Unavailable")
 	end)
 end
@@ -129,6 +133,7 @@ task.spawn(function()
 		if requestId == pendingRequest or errorCode and requestId == nil then
 			pendingRequest = nil
 			lobby.setBusy(false)
+			if pendingHeroDeparture then pendingHeroDeparture=false;require(script.AdventureStartingNotice).setPending(false)end
 		end
 		lobby.setState(value, errorCode)
 		if inventory then inventory.refresh() end

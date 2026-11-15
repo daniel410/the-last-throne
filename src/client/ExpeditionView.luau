@@ -6,6 +6,7 @@ local Text=require(RS.Shared.ExpeditionText)
 local AT=require(RS.Shared.AdventureText)
 local D=require(RS.Shared.Difficulty)
 local V={}
+local Starting=require(script.Parent.AdventureStartingNotice)
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
 local function reason(info,mission)
  if not info then return Text.SelectHero end
@@ -80,6 +81,7 @@ function V.create(parent,send)
   if pending then return end
   local id=game:GetService('HttpService'):GenerateGUID(false):gsub('%-','')
   command.requestId=id;latestRequestId=id;pending={id=id,action=command.action};draw(Text.Applying)
+  if command.action=='Solo' or command.action=='Launch' then Starting.setPending(true)end
   send(command)
   task.delay(8,function()if panel.Parent and pending and pending.id==id then draw(Text.Refreshing);recover(id)end end)
  end
@@ -217,6 +219,7 @@ function V.create(parent,send)
   if pending and s.requestId==pending.id then pending=nil end
   local position=scroll.CanvasPosition
   current=s;draw(message);scroll.CanvasPosition=position
+  Starting.setPending(s.travelling==true or pending~=nil and (pending.action=='Solo' or pending.action=='Launch'))
  end
  panel:GetPropertyChangedSignal('Visible'):Connect(function()if panel.Visible then scroll.CanvasPosition=Vector2.zero end end)
  return {panel=panel,render=render,showTab=function(value)tab=value;scroll.CanvasPosition=Vector2.zero;draw()end,isPending=function()return pending~=nil end,request=request}

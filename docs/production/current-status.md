@@ -2,6 +2,8 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
+- 로비 출발 안내: 솔로/멀티 시작 즉시 TD 공통 프레임으로 `ADVENTURE STARTING...`를 표시하고 저장·이동 준비 동안 유지한다. [출발 경계/격리 UI 검사·실제 Teleport 수용 후속](../evidence/adventure-starting-20261115/README.md).
+
 - HG 모델: TD 최신 Zombie·Ghoul을 연결하고, 0.110.13에서 종별 보행·양팔 공격·강공격 준비와 손 접지를 개선했다. [전후 포즈·고정 빌드 모션/표면/방향 검증·게시/미술 수용 후속](../evidence/undead-motion-review-20261115/README.md).
 
 - 에픽 음악: 0.110.10 단일 빌드에 TD 신규5곡의 승인된 실제ID를 에픽별 설정으로 연결했고 TLT Experience 사용권한 성공 기록을 확인했다. 실제 TLT 재생/청취는 미검증이다. [소스 회귀·실제ID/권한·청취 후속](../evidence/epic-music-20261115/README.md).

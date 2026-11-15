@@ -1,4 +1,5 @@
 return {
+ Starting='ADVENTURE STARTING...',StartingDetail='Preparing your adventure. You will travel shortly.',
  LeaderBadge='LEADER · ',Title='ADVENTURES',Solo='START SOLO ADVENTURE',Launch='START PARTY ADVENTURE',Ready='READY',Unready='NOT READY',
  SoloParty='START SOLO ADVENTURE · LEAVE PARTY FIRST',
  PartyNotice='Review each hero\'s entry conditions, gather in this lobby, then ready up.',
