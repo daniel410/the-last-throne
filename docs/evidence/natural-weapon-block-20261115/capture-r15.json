@@ -1,0 +1,438 @@
+{
+  "native": {
+    "baseline": "eda125e7b447502422a5b552df8d666fa2e280dc",
+    "snapshots": [
+      {
+        "view": "Front",
+        "version": "Before",
+        "evaluatedParts": 48,
+        "source": "td:ElfBow",
+        "class": "elf",
+        "freeHandDistance": 0.00017890328308567405,
+        "grip": [
+          -1.111983299255371,
+          1.632171630859375,
+          -1.7281341552734375,
+          0.7817379832267761,
+          0.5173311233520508,
+          -0.3482162058353424,
+          -0.5251060724258423,
+          0.24487921595573425,
+          -0.8150447010993958,
+          -0.3363770842552185,
+          0.8200017213821411,
+          0.46308502554893494
+        ]
+      },
+      {
+        "view": "Side",
+        "version": "Before",
+        "evaluatedParts": 48,
+        "source": "td:ElfBow",
+        "class": "elf",
+        "freeHandDistance": 3.413301601540297e-05,
+        "grip": [
+          -1.111983299255371,
+          1.632171630859375,
+          -1.7281341552734375,
+          -1.5751754744997015e-07,
+          1.0000003576278687,
+          1.5769103356433334e-08,
+          -0.976133406162262,
+          3.942052728689305e-08,
+          0.21717265248298645,
+          0.21717244386672974,
+          -1.624926113663605e-07,
+          0.9761334657669067
+        ]
+      },
+      {
+        "view": "Front",
+        "version": "After",
+        "evaluatedParts": 48,
+        "source": "td:ElfBow",
+        "class": "elf",
+        "freeHandDistance": 2.106846332550049,
+        "grip": [
+          -0.6000037789344788,
+          1.1500244140625,
+          -1.2499923706054688,
+          0.11914505809545517,
+          0.9928765892982483,
+          2.0322238469816511e-07,
+          -0.9928767681121826,
+          0.11914483457803726,
+          -2.285437972204818e-08,
+          1.6203060226871457e-07,
+          -9.839267534061946e-08,
+          1
+        ]
+      },
+      {
+        "view": "Side",
+        "version": "After",
+        "evaluatedParts": 48,
+        "source": "td:ElfBow",
+        "class": "elf",
+        "freeHandDistance": 2.106846332550049,
+        "grip": [
+          -0.6000037789344788,
+          1.1500244140625,
+          -1.2499923706054688,
+          0.11914505809545517,
+          0.9928765892982483,
+          2.0322238469816511e-07,
+          -0.9928767681121826,
+          0.11914483457803726,
+          -2.285437972204818e-08,
+          1.6203060226871457e-07,
+          -9.839267534061946e-08,
+          1
+        ]
+      },
+      {
+        "view": "Front",
+        "version": "Before",
+        "evaluatedParts": 32,
+        "source": "td:v2:Embercleaver:inward3",
+        "class": "dwarf",
+        "freeHandDistance": 0.00016279262490570545,
+        "grip": [
+          1.0573127269744873,
+          1.5931396484375,
+          -1.8685226440429688,
+          1.9277912599591218e-07,
+          -1,
+          5.690415250114711e-08,
+          0.9683093428611755,
+          1.609761710597013e-07,
+          -0.24975410103797913,
+          0.24975411593914032,
+          6.424991028097793e-08,
+          0.9683092832565308
+        ]
+      },
+      {
+        "view": "Side",
+        "version": "Before",
+        "evaluatedParts": 32,
+        "source": "td:v2:Embercleaver:inward3",
+        "class": "dwarf",
+        "freeHandDistance": 0.00018234760500490665,
+        "grip": [
+          1.0573127269744873,
+          1.5931396484375,
+          -1.8685226440429688,
+          0.7333266735076904,
+          -0.4218645393848419,
+          0.533162534236908,
+          0.6707586646080017,
+          0.57692950963974,
+          -0.4660851061344147,
+          -0.1109723225235939,
+          0.699415922164917,
+          0.706046998500824
+        ]
+      },
+      {
+        "view": "Front",
+        "version": "After",
+        "evaluatedParts": 32,
+        "source": "td:v2:Embercleaver:inward3",
+        "class": "dwarf",
+        "freeHandDistance": 2.4271678924560547,
+        "grip": [
+          0.5999964475631714,
+          1.150054931640625,
+          -1.25,
+          0.09950362145900726,
+          -0.9950376749038696,
+          1.0655179849550223e-08,
+          0.995037317276001,
+          0.09950357675552368,
+          1.2148126415922889e-07,
+          1.2557779882627074e-07,
+          -1.7444987676640267e-08,
+          1.0000003576278687
+        ]
+      },
+      {
+        "view": "Side",
+        "version": "After",
+        "evaluatedParts": 32,
+        "source": "td:v2:Embercleaver:inward3",
+        "class": "dwarf",
+        "freeHandDistance": 2.4271678924560547,
+        "grip": [
+          0.5999964475631714,
+          1.150054931640625,
+          -1.25,
+          0.09950362145900726,
+          -0.9950376749038696,
+          1.0655179849550223e-08,
+          0.995037317276001,
+          0.09950357675552368,
+          1.2148126415922889e-07,
+          1.2557779882627074e-07,
+          -1.7444987676640267e-08,
+          1.0000003576278687
+        ]
+      },
+      {
+        "view": "Front",
+        "version": "Before",
+        "evaluatedParts": 47,
+        "source": "authored:WoodenStaff",
+        "class": "mage",
+        "freeHandDistance": 0.00020852031593676656,
+        "grip": [
+          1.0573127269744873,
+          1.5931396484375,
+          -1.8685226440429688,
+          0.8579925894737244,
+          -0.5077846646308899,
+          -0.07748142629861832,
+          0.08339610695838928,
+          0.2865462899208069,
+          -0.9544299244880676,
+          0.5068469047546387,
+          0.8124321699142456,
+          0.28820186853408813
+        ]
+      },
+      {
+        "view": "Side",
+        "version": "Before",
+        "evaluatedParts": 47,
+        "source": "authored:WoodenStaff",
+        "class": "mage",
+        "freeHandDistance": 5.497451638802886e-05,
+        "grip": [
+          1.0573127269744873,
+          1.5931396484375,
+          -1.8685226440429688,
+          0.857992947101593,
+          -0.5077841281890869,
+          -0.07748213410377502,
+          0.08339493721723557,
+          0.286545991897583,
+          -0.954430103302002,
+          0.5068466067314148,
+          0.8124326467514038,
+          0.2882010340690613
+        ]
+      },
+      {
+        "view": "Front",
+        "version": "After",
+        "evaluatedParts": 47,
+        "source": "authored:WoodenStaff",
+        "class": "mage",
+        "freeHandDistance": 0.5279374122619629,
+        "grip": [
+          0.5999964475631714,
+          1.150054931640625,
+          -1.25,
+          0.1771528422832489,
+          -0.9841835498809814,
+          1.0676457407043927e-07,
+          0.9841834902763367,
+          0.17715290188789368,
+          1.5762845251288127e-08,
+          -8.145164542838756e-10,
+          5.5645120511371715e-08,
+          1.0000001192092896
+        ]
+      },
+      {
+        "view": "Side",
+        "version": "After",
+        "evaluatedParts": 47,
+        "source": "authored:WoodenStaff",
+        "class": "mage",
+        "freeHandDistance": 0.527968168258667,
+        "grip": [
+          0.5999964475631714,
+          1.150054931640625,
+          -1.25,
+          0.1771528422832489,
+          -0.9841835498809814,
+          1.0676457407043927e-07,
+          0.9841834902763367,
+          0.17715290188789368,
+          1.5762845251288127e-08,
+          -8.145164542838756e-10,
+          5.5645120511371715e-08,
+          1.0000001192092896
+        ]
+      }
+    ],
+    "scope": "Frozen native production Block FK, not live input/timing or visual acceptance",
+    "rig": "R15",
+    "cameras": [
+      {
+        "camera_position": [
+          0,
+          506.79998779296875,
+          -38
+        ],
+        "class": "elf",
+        "index": 1,
+        "look_at_position": [
+          0,
+          500.79998779296875,
+          0
+        ]
+      },
+      {
+        "camera_position": [
+          0,
+          506.79998779296875,
+          -22
+        ],
+        "class": "dwarf",
+        "index": 2,
+        "look_at_position": [
+          0,
+          500.79998779296875,
+          16
+        ]
+      },
+      {
+        "camera_position": [
+          0,
+          506.79998779296875,
+          -6
+        ],
+        "class": "mage",
+        "index": 3,
+        "look_at_position": [
+          0,
+          500.79998779296875,
+          32
+        ]
+      }
+    ],
+    "baselineOnly": false
+  },
+  "images": [
+    {
+      "baseline": "eda125e7b447502422a5b552df8d666fa2e280dc",
+      "index": 1,
+      "order": [
+        "Before Front",
+        "Before Side",
+        "After Front",
+        "After Side"
+      ],
+      "class": "elf",
+      "rig": "R15",
+      "camera": {
+        "camera_position": [
+          0,
+          506.79998779296875,
+          -38
+        ],
+        "class": "elf",
+        "index": 1,
+        "look_at_position": [
+          0,
+          500.79998779296875,
+          0
+        ]
+      },
+      "scope": "Frozen native production Block FK, not live input/timing or visual acceptance",
+      "width": 1280,
+      "height": 873,
+      "sourceHeight": 1816,
+      "sourceWidth": 2660,
+      "baselineOnly": false,
+      "path": "elf-before-after.png",
+      "sha256": "a011303eee748d1478df7e3c7579ffdf77ddc64e4149f16efede7a25d9926460"
+    },
+    {
+      "baseline": "eda125e7b447502422a5b552df8d666fa2e280dc",
+      "index": 2,
+      "order": [
+        "Before Front",
+        "Before Side",
+        "After Front",
+        "After Side"
+      ],
+      "class": "dwarf",
+      "rig": "R15",
+      "camera": {
+        "camera_position": [
+          0,
+          506.79998779296875,
+          -22
+        ],
+        "class": "dwarf",
+        "index": 2,
+        "look_at_position": [
+          0,
+          500.79998779296875,
+          16
+        ]
+      },
+      "scope": "Frozen native production Block FK, not live input/timing or visual acceptance",
+      "width": 1280,
+      "height": 873,
+      "sourceHeight": 1816,
+      "sourceWidth": 2660,
+      "baselineOnly": false,
+      "path": "dwarf-before-after.png",
+      "sha256": "8aff87e134370c0e0d00234d9bf6926b3f054c6242cfae0d677d43b6aabf4682"
+    },
+    {
+      "baseline": "eda125e7b447502422a5b552df8d666fa2e280dc",
+      "index": 3,
+      "order": [
+        "Before Front",
+        "Before Side",
+        "After Front",
+        "After Side"
+      ],
+      "class": "mage",
+      "rig": "R15",
+      "camera": {
+        "camera_position": [
+          0,
+          506.79998779296875,
+          -6
+        ],
+        "class": "mage",
+        "index": 3,
+        "look_at_position": [
+          0,
+          500.79998779296875,
+          32
+        ]
+      },
+      "scope": "Frozen native production Block FK, not live input/timing or visual acceptance",
+      "width": 1280,
+      "height": 873,
+      "sourceHeight": 1816,
+      "sourceWidth": 2660,
+      "baselineOnly": false,
+      "path": "mage-before-after.png",
+      "sha256": "0ed123897fe29e776d7897bbaebf8c70cfc7688b4f8033973378ac825342fa3d"
+    }
+  ],
+  "result": {
+    "cleanup": true,
+    "images": 3
+  },
+  "inputs": {
+    "baselineCommit": "eda125e7b447502422a5b552df8d666fa2e280dc",
+    "baselineVisualSha256": "0413b64249e38f83db96a25d4c5f9e188e6dc0fcd28a842598b518c9fa46b327",
+    "baselineOnly": false,
+    "fixed": false,
+    "rig": "R15",
+    "inputs": {
+      "src/client/K0SwordVisual.luau": "93a07e28df042a64069f7487e1e348d34c72e03899b88428b7316c91e584cef9",
+      "src/client/K0BlockMotion.luau": "bb8501bd241ed6a78716aecdbe4b0e36f64756bda2c5a4e6ab725326b0bdd9c6",
+      "tools/capture-natural-block.luau": "ec49cc27a0aa71560988eb16265801dc6e21764a379762f594d4172d6bbfb5d3"
+    }
+  }
+}
