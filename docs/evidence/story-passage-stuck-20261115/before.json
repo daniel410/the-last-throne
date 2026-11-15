@@ -1,0 +1,1011 @@
+{
+  "steps": [
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": -15.999988079071045,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1114.3121337890625, 0, -1064.1414794921875"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": 2.729633331298828,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1105.8505859375, 0, -1067.835693359375"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": 2.6078948974609375,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1104.158203125, 0, -1068.574462890625"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.ForestGround",
+      "rise": 9.26950740814209,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1099.081298828125, 0, -1070.791015625"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.Terrain",
+      "rise": -15.999982833862305,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1107.910400390625, 0, -1049.47802734375"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.ForestGround",
+      "rise": 16.08000087738037,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1099.4488525390625, 0, -1053.1722412109375"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.Terrain",
+      "rise": -10.080000765621662,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1120.85888671875, 0, -991.449951171875"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 9.999986410140991,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1112.3973388671875, 0, -995.14404296875"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.ForestGround",
+      "rise": 2.8492393493652344,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1098.85888671875, 0, -1001.0546875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": -10.080000765621662,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1121.226318359375, 0, -973.8311767578125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 9.99998164176941,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1105.99560546875, 0, -980.4805908203125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.ForestGround",
+      "rise": 4.695406794548035,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1099.226318359375, 0, -983.4359130859375"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 7.999995231628418,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-615.3662109375, 6, -1391.8817138671875"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": -8.017593383789062,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-575.0997314453125, 6, -1427.7139892578125"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000001430511475,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-604.7297973632812, 6, -1379.9290771484375"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.Terrain",
+      "rise": -8.634122848510742,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-564.4633178710938, 6, -1415.7613525390625"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.ForestGround",
+      "rise": 8.079999923706055,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-549.5498046875, 6, -1429.032470703125"
+    },
+    {
+      "offset": -4,
+      "part": "Workspace.Terrain",
+      "rise": -8.080000877380371,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-594.4169921875, 6, -1362.3338623046875"
+    },
+    {
+      "offset": -4,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 7.9999918937683105,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-591.4342651367188, 6, -1364.9881591796875"
+    },
+    {
+      "offset": -4,
+      "part": "Workspace.Terrain",
+      "rise": -18.93612289428711,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-551.1677856445312, 6, -1400.8204345703125"
+    },
+    {
+      "offset": -4,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.ForestGround",
+      "rise": 19.016130447387695,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-549.6763916015625, 6, -1402.1475830078125"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.ForestGround",
+      "rise": 5.156919479370117,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-548.9588623046875, 6, -1365.3048095703125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": -8.080000877380371,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-571.1322021484375, 6, -1324.155517578125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 7.999996662139893,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-562.18408203125, 6, -1332.1182861328125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.ForestGround",
+      "rise": 1.9261531829833984,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-527.8829956054688, 6, -1362.64208984375"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": -19.999929428100586,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "215.61947631835938, 18, -1829.5450439453125"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-04.ForestGround",
+      "rise": 19.697477340698242,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "221.219482421875, 18, -1830.4305419921875"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.Terrain",
+      "rise": -19.999954223632812,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "218.11834716796875, 18, -1813.7413330078125"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-04.ForestGround",
+      "rise": 20.08000373840332,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "221.8516845703125, 18, -1814.3316650390625"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.Terrain",
+      "rise": -8,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "192.01498413085938, 18, -1761.017578125"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000038146972656,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "195.74832153320312, 18, -1761.60791015625"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-04.ForestGround",
+      "rise": 2.479959487915039,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "220.01498413085938, 18, -1765.4449462890625"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": -7.999998092651367,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "192.64718627929688, 18, -1744.918701171875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000059127807617,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "198.2471923828125, 18, -1745.80419921875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-04.ForestGround",
+      "rise": 3.279937744140625,
+      "edge": [
+        "DW-03",
+        "DW-04"
+      ],
+      "at": "220.64718627929688, 18, -1749.3460693359375"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": -8,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "719.8442993164062, 30, -2236.968017578125"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000011444091797,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "727.0902099609375, 30, -2252.718017578125"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.ForestGround",
+      "rise": 5.079986572265625,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "732.7259521484375, 30, -2264.968017578125"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.Terrain",
+      "rise": -8,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "737.6002197265625, 30, -2237.28076171875"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 7.999992370605469,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "741.625732421875, 30, -2246.03076171875"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.ForestGround",
+      "rise": 3.080005645751953,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "750.4818725585938, 30, -2265.28076171875"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.Terrain",
+      "rise": -15.999996185302734,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "798.9190673828125, 30, -2255.71923828125"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.ForestGround",
+      "rise": 16.080001831054688,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "802.944580078125, 30, -2264.46923828125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": -15.99997329711914,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "813.45458984375, 30, -2249.031982421875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": 3.2588768005371094,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "815.869873046875, 30, -2254.281982421875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": 1.6774139404296875,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "816.6749877929688, 30, -2256.031982421875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.ForestGround",
+      "rise": 8.112590789794922,
+      "edge": [
+        "DW-04",
+        "DW-05"
+      ],
+      "at": "820.7005004882812, 30, -2264.781982421875"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": -8.080001831054688,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "505.1942138671875, 38, -2704.224853515625"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000057220458984,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "492.1275634765625, 38, -2709.056396484375"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyGround",
+      "rise": 4.266593933105469,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "477.1942138671875, 38, -2714.578125"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.Terrain",
+      "rise": -8.080001831054688,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "505.1432189941406, 38, -2721.30224609375"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000011444091797,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "497.6765441894531, 38, -2724.063232421875"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyGround",
+      "rise": 2.6666526794433594,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "477.1432189941406, 38, -2731.655517578125"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.Terrain",
+      "rise": -15.999942779541016,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "484.456787109375, 38, -2780.127685546875"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyGround",
+      "rise": 16,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "476.9901123046875, 38, -2782.888671875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": -15.999897003173828,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "490.0057678222656, 38, -2795.134521484375"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": 4.079559326171875,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "482.5390930175781, 38, -2797.8955078125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": 1.2640266418457031,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "480.67242431640625, 38, -2798.585693359375"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyGround",
+      "rise": 8.94510269165039,
+      "edge": [
+        "DW-05",
+        "DW-06"
+      ],
+      "at": "476.9390869140625, 38, -2799.966064453125"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.Terrain",
+      "rise": -8,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-390.90533447265625, 46, -2991.180908203125"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000003814697266,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-400.2386779785156, 46, -2993.65234375"
+    },
+    {
+      "offset": -40,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-07.ForestGround",
+      "rise": 3.279998779296875,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-418.90533447265625, 46, -2998.594970703125"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.Terrain",
+      "rise": -8,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-390.5431823730469, 46, -3007.636474609375"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation1.JourneyPass",
+      "rise": 8.000003814697266,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-396.1431884765625, 46, -3009.119384765625"
+    },
+    {
+      "offset": -24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-07.ForestGround",
+      "rise": 2.2133331298828125,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-418.5431823730469, 46, -3015.050537109375"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.Terrain",
+      "rise": -16.00000762939453,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-413.7234802246094, 46, -3063.4287109375"
+    },
+    {
+      "offset": 24,
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-07.ForestGround",
+      "rise": 16.080001831054688,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-419.323486328125, 46, -3064.911376953125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": -16.000003814697266,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-409.62799072265625, 46, -3078.895751953125"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": 2.3247413635253906,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-415.2279968261719, 46, -3080.37841796875"
+    },
+    {
+      "offset": 40,
+      "part": "Workspace.Terrain",
+      "rise": 2.7825546264648438,
+      "edge": [
+        "DW-06",
+        "DW-07"
+      ],
+      "at": "-417.09466552734375, 46, -3080.872802734375"
+    }
+  ],
+  "samples": 16723,
+  "holes": [
+    {
+      "offset": -40,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1114.3121337890625, 0, -1064.1414794921875"
+    },
+    {
+      "offset": -40,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1112.6197509765625, 0, -1064.88037109375"
+    },
+    {
+      "offset": -40,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1110.927490234375, 0, -1065.619140625"
+    },
+    {
+      "offset": -40,
+      "hit": -10.000003814697266,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1109.235107421875, 0, -1066.3580322265625"
+    },
+    {
+      "offset": -40,
+      "hit": -9.860767364501953,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1107.5428466796875, 0, -1067.0968017578125"
+    },
+    {
+      "offset": -40,
+      "hit": -7.131134033203125,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1105.8505859375, 0, -1067.835693359375"
+    },
+    {
+      "offset": -40,
+      "hit": -4.5232391357421875,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1104.158203125, 0, -1068.574462890625"
+    },
+    {
+      "offset": -40,
+      "hit": -3.855449676513672,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1102.4659423828125, 0, -1069.3133544921875"
+    },
+    {
+      "offset": -40,
+      "hit": -3.1895065307617188,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1100.773681640625, 0, -1070.0521240234375"
+    },
+    {
+      "offset": -24,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1107.910400390625, 0, -1049.47802734375"
+    },
+    {
+      "offset": -24,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1106.218017578125, 0, -1050.2169189453125"
+    },
+    {
+      "offset": -24,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1104.5257568359375, 0, -1050.9556884765625"
+    },
+    {
+      "offset": -24,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1102.8333740234375, 0, -1051.694580078125"
+    },
+    {
+      "offset": -24,
+      "hit": -10,
+      "expected": 5.8,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1101.14111328125, 0, -1052.433349609375"
+    },
+    {
+      "offset": 24,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1120.85888671875, 0, -991.449951171875"
+    },
+    {
+      "offset": 24,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1119.1666259765625, 0, -992.188720703125"
+    },
+    {
+      "offset": 24,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1117.4742431640625, 0, -992.9276123046875"
+    },
+    {
+      "offset": 24,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1115.781982421875, 0, -993.6663818359375"
+    },
+    {
+      "offset": 24,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1114.089599609375, 0, -994.4052734375"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1121.226318359375, 0, -973.8311767578125"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1119.5340576171875, 0, -974.5700073242188"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1117.841796875, 0, -975.308837890625"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1116.1494140625, 0, -976.047607421875"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1114.4571533203125, 0, -976.7864379882812"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1112.764892578125, 0, -977.5252685546875"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1111.072509765625, 0, -978.2640991210938"
+    },
+    {
+      "offset": 40,
+      "hit": -10.000003814697266,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1109.3802490234375, 0, -979.0029296875"
+    },
+    {
+      "offset": 40,
+      "hit": -10,
+      "expected": -0.2,
+      "edge": [
+        "DW-01",
+        "DW-02"
+      ],
+      "at": "-1107.6878662109375, 0, -979.7417602539062"
+    },
+    {
+      "offset": -40,
+      "hit": -2,
+      "expected": 5.8,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-633.262451171875, 6, -1375.956298828125"
+    },
+    {
+      "offset": -40,
+      "hit": -2,
+      "expected": 5.8,
+      "edge": [
+        "DW-02",
+        "DW-03"
+      ],
+      "at": "-631.7710571289062, 6, -1377.283447265625"
+    }
+  ],
+  "lips": [],
+  "note": "최초 진단 표본. holes는 첫30건, steps는 첫70건까지만 보존하며 전체 발생 건수가 아니다.",
+  "sourceCommit": "bc2ba150600a22c248924c01608a0ff88f153b01",
+  "version": "0.110.28"
+}
