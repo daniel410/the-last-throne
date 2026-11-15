@@ -36,4 +36,14 @@ TD의 최신 `Config.MAP_BGM_ASSET_IDS`, 5개 Assets API 메타데이터와 [TLT
 
 `list_roblox_studios` 결과 열린 Place가 없어 이번에 TLT Studio 음원 로드/선택을 실행하지 못했다. 다음 담당 ENG/QA는 실제 TLT Studio에서5곡 로드를 확인하고, 게시 테스트 클라이언트의 로비→로딩→5지역→보스→지역 복귀, PC/폰 청취·SFX 균형·장기 반복을 확인한다. TD에서 확인한 preload를 TLT 재생 수용으로 간주하지 않는다.
 
-현재 Studio/게시 클라이언트/실기기/사용자 청취는 미검증이다. 새 빌드·버전 증가·태그·Place 게시를 하지 않았다. 상위 티켓/G5/G7은 완료 처리하지 않는다. 복구는 본 작업의 ID 연결 커밋을 revert하면 기존곡 fallback으로 돌아간다.
+현재 Studio/게시 클라이언트/실기기/사용자 청취는 미검증이다. 0.110.10 단일 빌드를 생성했다. 태그·Place 게시는 하지 않았다. 상위 티켓/G5/G7은 완료 처리하지 않는다. 복구는 본 작업의 ID 연결 커밋을 revert하면 기존곡 fallback으로 돌아간다.
+
+## 0.110.10 단일 빌드
+
+사용자의 빌드 요청으로 VERSION을 0.110.9→0.110.10으로 올리고 입력 커밋 `6c5e20236d406156de04ec6ea0acc727ba40ecf2`를 커밋·푸시한 뒤 고정 소스로 빌드했다. 기존 미커밋 변경은 빌드에 포함하지 않았다.
+
+명령: `python3 tools/build-game.py --source 6c5e2023 --record docs/evidence/epic-music-20261115/build-0.110.10.json`.
+
+[빌드 기록](build-0.110.10.json)·[산출물 정적 검증](build-0.110.10-checks.json). Rojo 7.7.1 종료0, 단일 산출물 `builds/0.110.10/TheLastThrone-0.110.10.rbxlx` 19,685,089바이트. SHA-256 `462fffa1bf12c2aa79be8a291789951f3d21f07fb37018158d1b756e80097ed1`.
+
+XML 파싱과 스크립트512개 소스 추출 성공, ReplicatedFirst/ReplicatedStorage의 음악 정책2개 모두 신규5곡/기존 로비·보스ID 일치, 도착 로딩/지역 선택 코드 포함을 확인했다. `git archive` 단계에서 LFS 포인터가 이미 확장돼 빌드 도구의 `lfsVerified`는0이다. 별도 검증에서 고정 입력20개를 해당 커밋의 LFS OID와 직접 SHA-256 대조해 모두 통과했다. 파일 생성/포함 검증이며 Luau 컴파일·Studio 실행·실제 청취를 대신하지 않는다. 다음 담당 ENG/QA의 실제 재생 검증은 위 조건을 따른다.
