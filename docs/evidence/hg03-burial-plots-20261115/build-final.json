@@ -1,0 +1,26 @@
+{
+  "version": "0.110.19",
+  "sourceCommit": "459bfefd15760fd666e5a62c68bdf66d62763a4d",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-459bfefd-t4km2ne3",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-459bfefd-t4km2ne3/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/tlt-hg03-burial-plots-20261115/builds/0.110.19/TheLastThrone-0.110.19.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.110.19.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.110.19/TheLastThrone-0.110.19.rbxlx",
+      "sha256": "582fcd540cf6dd3007a4b0f42b7397a6157b695e0efe0d4eca6d6d8e69569473",
+      "bytes": 19744949
+    }
+  ]
+}

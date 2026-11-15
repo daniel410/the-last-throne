@@ -1,0 +1,122 @@
+{
+  "status": {
+    "ok": true,
+    "error": "nil"
+  },
+  "report": {
+    "graves": 12,
+    "parts": 112,
+    "plots": [
+      {
+        "band": 1,
+        "size": [
+          41,
+          13.698974609375,
+          32.5
+        ],
+        "position": [
+          100.11000061035156,
+          188.13136291503906,
+          -16491.650390625
+        ]
+      },
+      {
+        "band": 2,
+        "size": [
+          41,
+          13.6688232421875,
+          30.5
+        ],
+        "position": [
+          519.7786865234375,
+          188.11526489257812,
+          -16404.39453125
+        ]
+      },
+      {
+        "band": 3,
+        "size": [
+          41,
+          13.858968734741211,
+          32.5
+        ],
+        "position": [
+          136.9375762939453,
+          188.77125549316406,
+          -16117.251953125
+        ]
+      },
+      {
+        "band": 4,
+        "size": [
+          41,
+          13.407796859741211,
+          30.5
+        ],
+        "position": [
+          428.8813781738281,
+          188.200927734375,
+          -16131.365234375
+        ]
+      }
+    ]
+  },
+  "navigation": {
+    "worldPoints": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    },
+    "points": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    }
+  },
+  "baseline": {
+    "graves": 32,
+    "parts": 256
+  },
+  "adjacentBefore": {
+    "HG-02": 40,
+    "HG-04": 24
+  },
+  "adjacentAfter": {
+    "HG-02": 40,
+    "HG-04": 24
+  }
+}
