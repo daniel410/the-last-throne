@@ -48,7 +48,8 @@ local weaponPoses = {}
 local knightLoads = {}
 local elfIK = setmetatable({},{__mode="k"})
 local ElfQuiverVisual = require(script.Parent.ElfQuiverVisual)
-local blockIK = {}
+local BlockMotion = require(script.Parent.K0BlockMotion)
+local blockIK = setmetatable({}, {__mode="k"})
 local MELEE = {
 	knight = { grip = "SwordGrip", joint = "K0SwordJoint" },
 	dwarf = { grip = "WeaponGrip", joint = "PlayerWeaponJoint" },
@@ -315,62 +316,63 @@ end
 
 -- Keep the held weapon on its original hand; explicitly guide the free arm
 -- to a contact point on the weapon on both R6 and R15 rigs.
-local function updateBlockHand(character, classId, mode)
-	local state = blockIK[character]
-	local blocking = mode == "Block" and (classId == "dwarf" or classId == "elf" or classId == "mage")
-	local grip
-	if blocking then
-		for _, model in ipairs(character:GetChildren()) do
-			if model:IsA("Model") and classFor(model) == classId then grip = model:FindFirstChild("WeaponGrip"); break end
-		end
-	end
-	local side = classId == "elf" and "Right" or "Left"
-	local humanoid = character:FindFirstChildOfClass("Humanoid")
-	local isR15 = humanoid and humanoid.RigType == Enum.HumanoidRigType.R15
-	local hand = character:FindFirstChild(side .. (isR15 and "Hand" or " Arm"))
-	local shoulder = armJoint(character, side, "Shoulder")
-	if not blocking or not grip or not grip:IsA("BasePart") or not hand or not shoulder or not shoulder.Part0 then
-		if state then state.target:Destroy(); blockIK[character] = nil end
-		return nil
-	end
-	if state and (state.grip ~= grip or state.shoulder ~= shoulder or not state.target.Parent) then
-		state.target:Destroy(); blockIK[character] = nil; state = nil
-	end
-	if not state then
-		local target = Instance.new("Attachment")
-		target.Name = "K0BlockHandTarget"
-		target.Position = Vector3.new(0, classId == "elf" and 0.48 or 0.55, 0)
-		target.Parent = grip
-		state = { target = target, grip = grip, shoulder = shoulder, hand = hand, side = side, r15 = isR15, pose = nil }
-		blockIK[character] = state
-	end
-	return state
+local function clearBlockTarget(state)
+ if state and state.target then state.target:Destroy();state.target=nil end
 end
 
-local function aimBlockHand(state, basePose, dt)
-	local joint, hand = state.shoulder, state.hand
-	local jointFrame = joint.Part0.CFrame * joint.C0
-	local pivot = jointFrame.Position
-	local contact = state.r15 and hand.Position or hand.CFrame:PointToWorldSpace(Vector3.new(0, -hand.Size.Y * 0.5, 0))
-	local from, to = contact - pivot, state.target.WorldPosition - pivot
-	local pose = state.pose or basePose
-	if from.Magnitude > 0.01 and to.Magnitude > 0.01 then
-		local f, t = from.Unit, to.Unit
-		local axis = f:Cross(t)
-		local dot = math.clamp(f:Dot(t), -1, 1)
-		if axis.Magnitude > 0.0001 then
-			local rotation = CFrame.fromAxisAngle(axis.Unit, math.acos(dot) * math.clamp(dt * 12, 0, 1))
-			local basis = jointFrame.Rotation
-			pose = basis:Inverse() * rotation * basis * pose
-		end
-		-- A small radial correction handles differences in avatar proportions.
-		local radial = math.clamp(to.Magnitude - from.Magnitude, -0.45, 0.45)
-		local offset = jointFrame:VectorToObjectSpace(t * radial * math.clamp(dt * 10, 0, 1))
-		pose = CFrame.new(offset) * pose
-	end
-	state.pose = pose
-	joint.Transform = pose
-	armPoses[joint] = { pose = pose, returning = 0 }
+local function updateBlockGuard(character, classId, mode, now)
+ local state=blockIK[character]
+ local eligible=classId=="elf"or classId=="dwarf"or classId=="mage"
+ local blocking=eligible and mode=="Block"and not character:GetAttribute("TLTDeathFalling")
+  and character:GetAttribute("TLTEquippedWeapon")~=""
+ local model
+ if blocking then for _,child in character:GetChildren()do
+  if child:IsA("Model")and classFor(child)==classId and child:FindFirstChild("WeaponGrip")then model=child;break end
+ end end
+ if state and (state.classId~=classId or state.model.Parent~=character or (blocking and state.model~=model)
+  or mode=="Dead"or character:GetAttribute("TLTDeathFalling"))then
+  clearBlockTarget(state);blockIK[character]=nil;state=nil
+ end
+ if blocking and model then
+  local solved=state and state.blocking and state.solution or BlockMotion.solve(character,classId,model)
+  if solved then
+   if not state or not state.blocking then
+    clearBlockTarget(state)
+    local entry={}
+    for joint in solved.joints do entry[joint]=joint.Transform end
+    state={classId=classId,model=model,began=now,entry=entry,entryWeapon=solved.weaponJoint.Transform}
+    blockIK[character]=state
+   end
+   state.blocking=true;state.solution=solved;state.target=solved.target;state.now=now
+   return state
+  end
+ end
+ if state and state.blocking then
+  clearBlockTarget(state);state.blocking=false;state.released=now
+  state.from=state.last or state.entry;state.fromWeapon=state.lastWeapon or state.entryWeapon
+ end
+ if state and now-state.released>=.18 then blockIK[character]=nil;state=nil end
+ return state
+end
+
+local function blockBlend(age)
+ local u=math.clamp(age/.18,0,1)
+ return u*u*u*(10+u*(-15+6*u))
+end
+
+local function applyBlockArms(state, now)
+ if not state then return end
+ local weight=blockBlend(now-(state.blocking and state.began or state.released))
+ state.last={}
+ for joint,target in state.solution.joints do
+  if joint.Parent then
+   local pose
+   if state.blocking then pose=state.entry[joint]:Lerp(target,weight)
+   else pose=state.from[joint]:Lerp(joint.Transform,weight)end
+   joint.Transform=pose;state.last[joint]=pose
+   armPoses[joint]={pose=pose,returning=0}
+  end
+ end
 end
 
 -- Rapid Fire redraws between server-confirmed shots. No local timer can
@@ -418,7 +420,12 @@ function Visual.renderArms(character, dt, now)
 	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed,bowPose)
-	local blockHand = updateBlockHand(character, classId, mode)
+	local blockState = updateBlockGuard(character, classId, mode, now)
+ -- Release blends against this frame's authored action, never the previous
+ -- guard frame. This keeps exit timing independent of observer frame rate.
+ if blockState and not blockState.blocking then
+  for joint in blockState.solution.joints do armPoses[joint]=nil;joint.Transform=CFrame.identity end
+ end
 	local rolling = mode == "Dodge" and character:GetAttribute("K0DodgeKind") == "SideRoll"
 	local sideDive
 	if rolling then
@@ -442,10 +449,8 @@ function Visual.renderArms(character, dt, now)
 	elseif classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
 	elseif mode == "Block" then
-		-- Raise the held weapon to face level; the free hand braces it.
-		right = CFrame.Angles(math.rad(112), math.rad(-18), math.rad(-12))
-		left = CFrame.Angles(math.rad(112), math.rad(18), math.rad(12))
-		rightElbow = CFrame.Angles(math.rad(-25), 0, 0)
+  -- Each held weapon supplies its own two-handed guard at the end of this
+  -- frame, after the torso and ordinary animation layers have been evaluated.
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
 			if phase == "Windup" then
@@ -568,11 +573,7 @@ function Visual.renderArms(character, dt, now)
 		local basis = leftShoulder.C0.Rotation
 		left = basis:Inverse() * left * basis
 	end
-	if blockHand and blockHand.side == "Left" then
-		aimBlockHand(blockHand, left or CFrame.new(), elapsed)
-	else
-		apply(leftShoulder, left)
-	end
+	apply(leftShoulder, left)
 	-- Animate the root joint, not the physics root: every observer sees the hop
 	-- while the authoritative hit position and collision remain on the ground.
 	local lowerTorso = character:FindFirstChild("LowerTorso")
@@ -649,16 +650,19 @@ function Visual.renderArms(character, dt, now)
 		local basis = rightShoulder.C0.Rotation
 		right = basis:Inverse() * right * basis
 	end
-	if blockHand and blockHand.side == "Right" then
-		aimBlockHand(blockHand, right or CFrame.new(), elapsed)
-		apply(elbow, rightElbow)
-	elseif usesIK then
+	if usesIK then
 		if rightShoulder then armPoses[rightShoulder] = nil end
 		if elbow then armPoses[elbow] = nil end
 	else
 		apply(rightShoulder, right)
 		apply(elbow, rightElbow)
 	end
+ if blockState and blockState.blocking then
+  -- Use this frame's torso, including any accepted hit reaction.
+  local solved=BlockMotion.solve(character,classId,blockState.model)
+  if solved then blockState.solution=solved;blockState.target=solved.target end
+ end
+ applyBlockArms(blockState,now)
 end
 
 local function finite(value)
@@ -1042,6 +1046,7 @@ local function drawBow(model, phase, elapsed, skillId, pose)
 	local unequipped = model.Parent and model.Parent:GetAttribute("TLTEquippedWeapon") == ""
 	local dead=model.Parent and (model.Parent:GetAttribute("K0State")=="Dead" or model.Parent:GetAttribute("TLTDeathFalling"))
 	local nocked=pose and pose.nocked or (not pose and phase~="Active" and phase~="Recovery")
+ if model.Parent and (model.Parent:GetAttribute("K0State")=="Block"or blockIK[model.Parent])then nocked=false end
 	arrow.Transparency = (unequipped or dead or not nocked) and 1 or (arrow:GetAttribute("TLTEquipmentRestTransparency") or arrow:GetAttribute("ElfArrowRestTransparency") or 0)
 	BowGeometry.pose(model,amount,not unequipped and not dead)
 end
@@ -1099,33 +1104,17 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 			target=basis:Inverse()*heading*CFrame.Angles(math.rad(bowPose.aimPitch or 0),0,math.rad(bowPose.angles.weapon.Z))
 		end
 	end
-	if character and character:GetAttribute("K0State") == "Block" then
-		if classId == "elf" or classId == "dwarf" or classId == "mage" then
-			local root = character:FindFirstChild("HumanoidRootPart")
-			if root and joint.Part0 then
-				-- All three grips use +Y as the shaft/bow axis. Rotate around the
-				-- held-hand socket so the grip position and raised arms stay put.
-				local basis = (joint.Part0.CFrame * joint.C0).Rotation
-				local from = (basis * target).UpVector
-				local lateral = root.CFrame.RightVector * (classId == "elf" and 1 or -1)
-				lateral = Vector3.new(lateral.X, 0, lateral.Z)
-				if lateral.Magnitude > 0.001 then
-					local to = lateral.Unit
-					local axis = from:Cross(to)
-					local dot = math.clamp(from:Dot(to), -1, 1)
-					if axis.Magnitude > 0.0001 then
-						local rotation = CFrame.fromAxisAngle(axis.Unit, math.acos(dot))
-						target = basis:Inverse() * rotation * basis * target
-					elseif dot < 0 then
-						local perpendicular = from:Cross(Vector3.yAxis)
-						if perpendicular.Magnitude < 0.001 then perpendicular = from:Cross(Vector3.xAxis) end
-						target = basis:Inverse() * CFrame.fromAxisAngle(perpendicular.Unit, math.pi) * basis * target
-					end
-				end
-			end
-		end
-	end
-	local pose = motion and target or (weaponPoses[joint] or CFrame.new()):Lerp(target, math.clamp(elapsed * 22, 0, 1))
+ local blockState=character and blockIK[character]
+ if character and character:GetAttribute("K0State")=="Block" and (not blockState or blockState.now~=now)then
+  blockState=updateBlockGuard(character,classId,"Block",now)
+ end
+ local pose
+ if blockState and blockState.solution.weaponJoint==joint then
+  local weight=blockBlend(now-(blockState.blocking and blockState.began or blockState.released))
+  if blockState.blocking then pose=blockState.entryWeapon:Lerp(blockState.solution.weapon,weight)
+  else pose=blockState.fromWeapon:Lerp(target,weight)end
+  blockState.lastWeapon=pose
+ else pose=motion and target or (weaponPoses[joint]or CFrame.new()):Lerp(target,math.clamp(elapsed*22,0,1))end
 	weaponPoses[joint] = pose
 	joint.Transform = pose
 	if classId == "mage" then MageFocus.render(model,motion,not character or character:GetAttribute("TLTEquippedWeapon")=="") end
@@ -1246,7 +1235,7 @@ function Visual.start()
 		for joint in pairs(weaponPoses) do if not joint:IsDescendantOf(game) then weaponPoses[joint] = nil end end
 		for character, state in pairs(blockIK) do
 			if not character:IsDescendantOf(game) then
-				state.target:Destroy(); blockIK[character] = nil
+				clearBlockTarget(state); blockIK[character] = nil
 			end
 		end
 		for character, state in pairs(elfIK) do
