@@ -1,5 +1,5 @@
 $ lua tests/epic-background-music.spec.lua
-epic-background-music: 718 checks PASS (synthetic IDs; no Roblox playback claim)
+epic-background-music: 704 checks PASS (issued IDs; no Roblox playback claim)
 
 $ lua tests/deepwood-music-policy.spec.lua
 Deepwood music policy: 13 checks passed
@@ -13,7 +13,5 @@ arrival-loading: 291 checks PASS
 $ lua tests/battle-presentation.spec.lua
 BATTLE_PRESENTATION 41 checks passed
 
-$ lua tests/campaign-biome.spec.lua
-Campaign biome/client 1100 checks passed
-
-WAV5 exact TD bytes/SHA-256/PCM PASS; project copies identical/JSON PASS; real upload IDs remain zero
+Issued five IDs match TD Config/TLT Policy/manifest PASS; archived Approved metadata and TLT Universe grant success5/errors0 PASS; project copies identical PASS
+TLT Studio playback NOT RUN: no open Place; published/device/listening NOT RUN

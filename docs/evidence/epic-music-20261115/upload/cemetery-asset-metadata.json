@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "GET https://apis.roblox.com/assets/v1/assets/87214425116358 -> 200 OK\n\n{\"path\":\"assets/87214425116358\",\"revisionId\":\"1\",\"revisionCreateTime\":\"2026-11-15T15:30:41.416Z\",\"assetId\":\"87214425116358\",\"displayName\":\"The Lantern Keeper's Waltz\",\"description\":\"Original instrumental fantasy theme for Haunted Graveyard in Throne Defense. Synthesized instruments; no external samples or vocals.\",\"assetType\":\"Audio\",\"creationContext\":{\"creator\":{\"userId\":\"9156786071\"}},\"moderationResult\":{\"moderationState\":\"Approved\"},\"state\":\"Active\",\"isPublished\":true}"
+    }
+  ],
+  "isError": false
+}

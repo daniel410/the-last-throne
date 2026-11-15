@@ -1,7 +1,7 @@
 -- Verified TD originals; RPG playback permissions are checked separately.
 local Policy={normalId=73105938035554,bossId=120016858360297,volume=.20,fade=1.5}
--- TD map-themes-v2 originals. Zero means upload/Experience permission is pending.
-Policy.epicIds={Deepwood=0,FrozenVale=0,EmberCaldera=0,HauntedGraveyard=0,Gloamwood=0}
+-- Approved TD map-themes-v2 originals; TLT Experience use grant recorded 2026-11-15.
+Policy.epicIds={Deepwood=75927987438822,FrozenVale=125591915467925,EmberCaldera=133002206384547,HauntedGraveyard=87214425116358,Gloamwood=135245618012178}
 function Policy.normalFor(session)
  if session.loading or session.mode~='Tutorial' or session.route=='Training' or not session.alive then return Policy.normalId end
  local id=Policy.epicIds[session.region]

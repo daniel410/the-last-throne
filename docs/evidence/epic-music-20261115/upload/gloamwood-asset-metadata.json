@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "GET https://apis.roblox.com/assets/v1/assets/135245618012178 -> 200 OK\n\n{\"path\":\"assets/135245618012178\",\"revisionId\":\"1\",\"revisionCreateTime\":\"2026-11-15T15:30:44.919Z\",\"assetId\":\"135245618012178\",\"displayName\":\"Between Seven Silver Threads\",\"description\":\"Original instrumental fantasy theme for Gloamwood in Throne Defense. Synthesized instruments; no external samples or vocals.\",\"assetType\":\"Audio\",\"creationContext\":{\"creator\":{\"userId\":\"9156786071\"}},\"moderationResult\":{\"moderationState\":\"Approved\"},\"state\":\"Active\",\"isPublished\":true}"
+    }
+  ],
+  "isError": false
+}

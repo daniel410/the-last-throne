@@ -1,13 +1,13 @@
--- Real client selection/startup, with explicitly synthetic upload IDs and engine doubles.
+-- Real client selection/startup with issued upload IDs and engine doubles; no playback claim.
 local Policy=dofile('src/shared/DeepwoodMusicPolicy.luau')
 local Biome=dofile('src/shared/CampaignBiome.luau')
 local Content=dofile('src/shared/CampaignContent.luau')
 local checks=0
 local function check(v,m)checks=checks+1;assert(v,m)end
 local regions={'Deepwood','FrozenVale','EmberCaldera','HauntedGraveyard','Gloamwood'}
+local uploaded={75927987438822,125591915467925,133002206384547,87214425116358,135245618012178}
 for i,region in ipairs(regions)do
- check(Policy.epicIds[region]==0,'real upload IDs remain explicitly pending')
- Policy.epicIds[region]=910000+i -- Fixture only; never an upload or permission claim.
+ check(Policy.epicIds[region]==uploaded[i],'exact issued TD upload ID '..region)
 end
 local function signal()
  local callbacks={}
@@ -54,7 +54,7 @@ local Music=assert(load(source,'music','t',env))()
 local controller=Music.create()
 check(controller.normal==sounds.TLTBackgroundMusic and controller.normal.plays==1,'adopt arrival sound without restart')
 for i,region in ipairs(regions)do
- local id=910000+i;local expected=sounds['TLTEpicMusic_'..region]
+ local id=uploaded[i];local expected=sounds['TLTEpicMusic_'..region]
  check(controller.select(nil,id)==expected,'epic theme '..region)
  expected.TimePosition=23;local plays=expected.plays
  check(controller.select(nil,id)==expected and expected.TimePosition==23 and expected.plays==plays,'repeat observation preserves theme position')
@@ -70,9 +70,9 @@ for i,region in ipairs(regions)do
  check(controller.select(nil,id)==expected,'late audio load selects region')
 end
 check(controller.select(nil,0)==controller.normal,'missing ID fallback')
-controller.select('boss',910001)
+controller.select('boss',uploaded[1])
 local delayed=tweens[#tweens]
-controller.select(nil,910002);controller.select('boss',910002)
+controller.select(nil,uploaded[2]);controller.select('boss',uploaded[2])
 delayed.Completed:fire('Completed')
 check(controller.boss.IsPlaying,'late completed tween cannot pause selected boss')
 controller.destroy();for _,s in ipairs(controller.tracks)do check(s.destroyed,'destroy releases every track')end
@@ -103,4 +103,4 @@ end
 attrs.K0SessionPhase='Tutorial';attrs.TLTRoute='Training';beat:fire(.3)
 check(selected()=='TLTBackgroundMusic','training keeps original fallback')
 attrs.TLTRoute='Adventure';human.Health=0;beat:fire(.3);check(selected()=='TLTBackgroundMusic','dead character cannot retain epic or boss')
-print('epic-background-music: '..checks..' checks PASS (synthetic IDs; no Roblox playback claim)')
+print('epic-background-music: '..checks..' checks PASS (issued IDs; no Roblox playback claim)')

@@ -526,7 +526,7 @@
       "manifest": "assets/audio/td-map-themes-v2/manifest.json",
       "date": "2026-11-15",
       "role": "Five epic background themes; Riftstorm in lobby/loading; original boss track preserved",
-      "audit_status": "exact WAV hashes and format verified; Roblox upload IDs and TLT permissions pending",
+      "audit_status": "exact WAV hashes and format verified; five approved upload IDs and TLT use grant recorded; TLT playback pending",
       "permission": "User-directed same-owner original reuse; TD unchanged"
     }
   ]

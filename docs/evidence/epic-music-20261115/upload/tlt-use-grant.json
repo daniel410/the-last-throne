@@ -1,0 +1,20 @@
+{
+  "universeId": 10773575153,
+  "ownerUserId": 9156786071,
+  "assetIds": {
+    "forest": 75927987438822,
+    "snow": 125591915467925,
+    "volcano": 133002206384547,
+    "cemetery": 87214425116358,
+    "gloamwood": 135245618012178
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "PATCH https://apis.roblox.com/asset-permissions-api/v1/assets/permissions -> 200 OK\n\n{\"successAssetIds\":[75927987438822,125591915467925,133002206384547,87214425116358,135245618012178],\"errors\":[]}"
+      }
+    ],
+    "isError": false
+  }
+}

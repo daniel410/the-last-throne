@@ -12,7 +12,7 @@
   "boss_asset_id": 120016858360297,
   "volume": 0.2,
   "fade_seconds": 1.5,
-  "status": "SOURCE_READY_UPLOAD_PENDING",
+  "status": "IDS_CONNECTED_TLT_GRANT_RECORDED_PLAYBACK_PENDING",
   "tracks": [
     {
       "epic": "Deepwood",
@@ -22,9 +22,10 @@
       "bytes": 11546224,
       "sha256": "e8185065acd1b2bbe724e969aa433b6eb6980970eca818ee2d973da2acf75059",
       "seconds": 65.45453514739229,
-      "asset_id": 0,
-      "uploaded": false,
-      "tlt_permission_verified": false
+      "asset_id": 75927987438822,
+      "uploaded": true,
+      "tlt_permission_verified": true,
+      "moderation_state": "Approved"
     },
     {
       "epic": "FrozenVale",
@@ -34,9 +35,10 @@
       "bytes": 13026504,
       "sha256": "4d954f1e6976ebbaca96acbb2b239a1860a606fafc154bfccff408442f4f69ba",
       "seconds": 73.84614512471656,
-      "asset_id": 0,
-      "uploaded": false,
-      "tlt_permission_verified": false
+      "asset_id": 125591915467925,
+      "uploaded": true,
+      "tlt_permission_verified": true,
+      "moderation_state": "Approved"
     },
     {
       "epic": "EmberCaldera",
@@ -46,9 +48,10 @@
       "bytes": 11442208,
       "sha256": "4ad2943669c34e580707586c81adb81f696f039a3f85e70917eda6ee720e044b",
       "seconds": 64.86487528344671,
-      "asset_id": 0,
-      "uploaded": false,
-      "tlt_permission_verified": false
+      "asset_id": 133002206384547,
+      "uploaded": true,
+      "tlt_permission_verified": true,
+      "moderation_state": "Approved"
     },
     {
       "epic": "HauntedGraveyard",
@@ -58,9 +61,10 @@
       "bytes": 11289644,
       "sha256": "d62b2787948980d9e5cd17ac1606093d10c527f071bd682f4e51aa6004ad28a6",
       "seconds": 64.0,
-      "asset_id": 0,
-      "uploaded": false,
-      "tlt_permission_verified": false
+      "asset_id": 87214425116358,
+      "uploaded": true,
+      "tlt_permission_verified": true,
+      "moderation_state": "Approved"
     },
     {
       "epic": "Gloamwood",
@@ -70,9 +74,11 @@
       "bytes": 11760044,
       "sha256": "e64f099c7ae708ca10c9524203e31cd652d797aace59eed38d9c2a0b6c63347e",
       "seconds": 66.66666666666667,
-      "asset_id": 0,
-      "uploaded": false,
-      "tlt_permission_verified": false
+      "asset_id": 135245618012178,
+      "uploaded": true,
+      "tlt_permission_verified": true,
+      "moderation_state": "Approved"
     }
-  ]
+  ],
+  "upload_evidence": "docs/evidence/epic-music-20261115/upload"
 }
