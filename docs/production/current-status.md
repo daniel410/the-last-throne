@@ -2,6 +2,8 @@
 
 2026-11-14 · TLT-001/050/057/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
+- 다이아몬드 Robux 상품: TD 구성의 세 묶음·ROBUX 탭·RPG 영구 영수증 지급을 소스 추가했다. 실제 상품ID는 MCP `developer-product:write` 권한 대기로 비활성이다. [소스/Studio Edit 검증·남은 연결/실구매 수용](../evidence/diamond-robux-products-20261114/README.md).
+
 - 동작·착용·VFX 수명: 엘프 잔여 화살/얼굴 앞 시위 접점, Traveler·Tempered·Sentinel 후드 턱 겹침, Axe Throw 도착 후 궤적 재생을 수정했다. 전 영웅128기술·몬스터50종146공격에서 늦은 준비/발사 재생도 검사했다. [수정·엔진 검증·미게시/남은 수용](../evidence/visual-lifecycle-fit-20261113/README.md).
 - 몬스터 공격: 0.104.15에서 기존35모티프·50조합에 원소별 재질/곡선 흐름·입자/국소광·표면 충돌/방사 파편을 보강했다. [실제 연속 재생·조사·고정 빌드 검증/미게시](../evidence/monster-spell-art-20261112/README.md). 기존 [종별 공격 연결](../evidence/monster-spell-vfx-20261112/README.md)과 [보스 피격·연속 준비/회수](../evidence/boss-impact-motion-20261112/README.md)를 유지하며 최종 미술/기기 수용은 별도다.
 - 배틀 입장·장비: 0.104.7에 ColorMap 읽기 권한·엘프 몸통 생성 순서·훈련 음악의 스토리 Remote 무한 대기 수정을 포함했다. [최근24시간 CSV·일반 Script63검사·게시/실기기 미검증](../evidence/today-errors-20261111/README.md). 큰 나무 CollisionFidelity 권한 결함의 [5에픽 초기화34검사](../evidence/battle-world-permissions-20261111/README.md)를 유지한다.

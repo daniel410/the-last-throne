@@ -63,8 +63,13 @@ function V.create(parent,send,diamondOnly,store)
   -- Diamond Shop has no trade tabs; its categories follow the wallet directly.
   local y=if diamondOnly then (if short then 66 else 82) elseif compactStore then (if short then 88 else 87) else (if short then 114 else 132)
   categories.Position=UDim2.fromOffset(16,y)
+  if diamondOnly then
+   grid.CellSize=UDim2.new(1/(panel.AbsoluteSize.X<450 and 3 or 4),-6,0,44)
+   categories.Size=UDim2.new(1,-32,0,panel.AbsoluteSize.X<450 and 146 or 96)
+  end
   if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
   local top=y+(if panel:GetAttribute('EnhancementMode') or panel:GetAttribute('EnhancementGuideMode')then 0 elseif compactStore then 54 else 106)
+  if diamondOnly and panel.AbsoluteSize.X<450 then top+=50 end
   title.Size=UDim2.new(1,-88,0,28);title.TextSize=22;balance.TextSize=15
   if store=='blacksmith' then
    -- Two rows: trade tabs beside the title, categories beside the wallet.
@@ -122,6 +127,7 @@ function V.create(parent,send,diamondOnly,store)
  local transactionPending=false
  local categoryButtons={}
  local render
+ local productCards=diamondOnly and require(script.Parent.DiamondProductCards).create(panel,scroll,notice,function()if render then render()end end)
  local function command(action,fields)
   if pending then return end
   fields.action=action;fields.heroId=state.heroId;fields.revision=state.revision;pending=fields
@@ -177,6 +183,7 @@ function V.create(parent,send,diamondOnly,store)
   elseif mode=='Enhance'then
    Forge.render(scroll,state,send,transactionPending,notice)
   elseif mode=='Buy' then
+   if productCards and (category=='All'or category=='Robux')then productCards.render(state.ready and state.wallet or nil,transactionPending)end
    if diamondOnly and (category=='All' or category=='Gold')then
     for _,offer in ipairs(Catalog.goldOffers)do
      local title=string.format(ItemText.GoldBundle,offer.amount)
@@ -238,7 +245,7 @@ function V.create(parent,send,diamondOnly,store)
    if id=='Potions' or id=='Accessories' or id=='Etc' then category=id;render() end
    return
   end
-  if diamondOnly and id=='Gold'then category=id;render();return end
+  if diamondOnly and (id=='Gold'or id=='Robux')then category=id;render();return end
   for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
  end
  local displayedCategories=if store=='items' then {{id='Potions',label='POTIONS'},{id='Accessories',label='ACCESSORIES'},{id='Etc',label='ETC'}} else Catalog.categories
@@ -247,6 +254,7 @@ function V.create(parent,send,diamondOnly,store)
   if store=='blacksmith' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
   local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.LayoutOrder=index;b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
  if diamondOnly then
+  local robux=T.button(categories,'Category_Robux','ROBUX',UDim2.new(),UDim2.new());robux.Caption.TextSize=11;robux:SetAttribute('CategoryLabel','ROBUX');categoryButtons.Robux=robux;robux.Activated:Connect(function()selectCategory('Robux')end)
   local b=T.button(categories,'Category_Gold',ItemText.GoldCategory,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',ItemText.GoldCategory);categoryButtons.Gold=b;b.Activated:Connect(function()selectCategory('Gold')end)
  end
  help.Activated:Connect(function()mode=mode=='Guide'and 'Enhance'or 'Guide';render()end)

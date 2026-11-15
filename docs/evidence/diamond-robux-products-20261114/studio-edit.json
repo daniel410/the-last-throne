@@ -1,0 +1,23 @@
+{
+  "environment": "Studio Edit temporary modules and GUI; no purchase prompt",
+  "checks": 42,
+  "sizes": [
+    {
+      "x": 1280,
+      "y": 720,
+      "scrollHeight": 306
+    },
+    {
+      "x": 844,
+      "y": 390,
+      "scrollHeight": 178
+    },
+    {
+      "x": 390,
+      "y": 650,
+      "scrollHeight": 256
+    }
+  ],
+  "liveProductsCreated": false,
+  "blockedScope": "developer-product:write"
+}

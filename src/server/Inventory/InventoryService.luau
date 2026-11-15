@@ -683,6 +683,23 @@ function Service.shop(player,command)
  else s.shopPending=nil end
  s.busy=false;publish(player,command.requestId,e);return e,p and p.operations[command.requestId] and p.operations[command.requestId].enhancementOutcome
 end
+function Service.grantDiamondReceipt(player,receipt)
+ if sessionOnly then return 'StudioOnly'end
+ local s=accounts[player]
+ if not s or s.busy or s.closing then return 'Busy'end
+ local pending=s.diamondReceiptPending
+ if pending and (pending.PurchaseId~=receipt.PurchaseId or pending.ProductId~=receipt.ProductId or pending.PlayerId~=receipt.PlayerId)then return 'Busy'end
+ if not s.valid and not pending then return s.errorCode or 'Unavailable'end
+ s.diamondReceiptPending=Rules.copy(receipt);s.busy=true
+ local profile,reason=store:transact(player.UserId,function(current)
+  return require(script.Parent.Parent.Lobby.DiamondReceiptRules).grant(current,receipt,Rules)
+ end)
+ if profile then s.profile=profile;s.valid=true;s.errorCode=nil;s.diamondReceiptPending=nil
+ elseif reason=='SaveUnknown'or reason=='AccountBusy'then s.valid=false;s.errorCode=reason
+ else s.diamondReceiptPending=nil end
+ s.busy=false;publish(player,nil,reason)
+ return reason
+end
 -- Server-only durable run binding. No client can choose or complete a run here.
 function Service.expeditionHero(player)
  local s=accounts[player];local ctx=options.heroSession.getInventoryContext(player)

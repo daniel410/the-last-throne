@@ -16,6 +16,12 @@
 
 # 아이템·장비·리셋권 수익화 계획
 
+## RPG Diamonds Robux 상품
+
+2026-11-14 사용자 요청 · TLT-041/049/084. TD 현재 구성과 동일한100/500/1,200 Diamonds 묶음, 참고 기본가격49/199/399 Robux를 RPG 전용 Developer Products로 추가한다. 위 초기 상품 출시 초안과 구분하며 리셋권의100 RPG Diamonds 가격은 유지한다. 실제 화면 가격은 Roblox 상품 정보에서 조회하고 결제창 가격을 따른다. TD ProductId/잔액/권리는 공유하지 않는다. 지급은 RPG 계정 지갑과 영구 구매ID 영수증을 같은 계정 키에 저장한 뒤 확정한다.
+
+현재 소스에 상점/영수증 처리를 추가했으나 실제 상품 생성은 MCP 쓰기 권한 부족으로 대기 중이며 ProductId0은 판매 비활성이다. [검증·미검증·권한 차단](evidence/diamond-robux-products-20261114/README.md).
+
 > **2026-11-03 등급 설계 후속:** [아이템 등급 계획](production/item-rarity-plan-2026-11-03.md)은 기존 Common/Uncommon/Rare를 유지하고 Epic/Legendary/Unique를 확장하는 추천안이다. 무료 확정 획득·동일 세대 예산·Unique 효과·강화 연계를 정의하며 기존 상품 가격/등급/권리와 확정 판매 방향은 유지한다. 새 등급 판매 정책·수치·상품ID를 확정하거나 런타임에 반영한 것은 아니다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 사용자 요구 반영, 신규 상품/가격/수치 제안·출시 전

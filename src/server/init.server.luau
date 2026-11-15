@@ -27,6 +27,7 @@ end
 inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents,supportCampAccess=story.supportCampAccess})
 require(script.Lobby.DailyLoginService).start(inventory)
 require(script.Lobby.DeliveryService).start(inventory)
+require(script.Lobby.DiamondProductService).start(inventory)
 local function startCombat()
  if not world then
   local folder=Instance.new('Model');folder.Name='DeepwoodK0';folder.Parent=workspace

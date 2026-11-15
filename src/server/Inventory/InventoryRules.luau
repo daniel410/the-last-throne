@@ -4,6 +4,7 @@ local EquipmentSlots=game and require(game:GetService('ReplicatedStorage').Share
 local Adventure=game and require(game:GetService('ReplicatedStorage').Shared.AdventureRules)or dofile('src/shared/AdventureRules.luau')
 local Story=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 local Economy=game and require(game:GetService('ReplicatedStorage').Shared.EconomyRules) or dofile('src/shared/EconomyRules.luau')
+local DiamondReceipts=game and require(script.Parent.Parent.Lobby.DiamondReceiptRules)or dofile('src/server/Lobby/DiamondReceiptRules.luau')
 -- Pure single-account transitions; no services, clocks, random IDs or side effects.
 local Growth = game and require(game:GetService("ReplicatedStorage").Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
 local Daily=game and require(game:GetService('ReplicatedStorage').Shared.DailyLogin) or dofile('src/shared/DailyLogin.luau')
@@ -142,6 +143,7 @@ function Rules.selectHero(profile, heroId)
  return nextProfile
 end
 function Rules.validate(profile, catalog)
+	if type(profile)=='table' and not DiamondReceipts.valid(profile)then return false end
 	if type(profile)=="table" and profile.starterSuppliesClaimed~=nil and type(profile.starterSuppliesClaimed)~="boolean" then return false end
  if profile and not Pass.valid(profile) then return false end
  if profile and profile.dailyLogin~=nil and not Daily.valid(profile.dailyLogin) then return false end
