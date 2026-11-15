@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=27}
+local Art={version=28}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -538,6 +538,7 @@ function Art.connectOverland(world)
    local root=model(parent,name);root.ModelStreamingMode=Enum.ModelStreamingMode.Persistent
    local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb)
    connectGround(edge)
+   require(script.Parent.OverlandTransitionBanks).build(root,edge)
    -- Clear voxel overhangs through the full playable width, including mouths.
    local direction=(b-a).Unit;local start,finish=a-direction*28,b+direction*28
    local count=math.ceil((finish-start).Magnitude/24)
