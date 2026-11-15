@@ -1,0 +1,19 @@
+{
+  "version": "0.107.7",
+  "sourceCommit": "56e7322059853458c45dcff16686d2649a32dead",
+  "sha256": "87aae09c788c3dce08440283abdba1def42fed342e31ae942a131e1a35d69539",
+  "bytes": 19551901,
+  "xmlParse": "passed",
+  "scriptCount": 492,
+  "scriptClasses": {
+    "LocalScript": 2,
+    "ModuleScript": 488,
+    "Script": 2
+  },
+  "baselineComparison": {
+    "version": "0.107.6",
+    "fullArtifactBytesIdentical": true
+  },
+  "published": false,
+  "studioRunThisBuild": false
+}
