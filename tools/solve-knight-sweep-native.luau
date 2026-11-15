@@ -15,10 +15,17 @@ for _,rig in {Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}do
  local function frame(p)local j=joints[p];return j and frame(j.Part0)*j.C0*j.Transform*j.C1:Inverse()or p.CFrame end
  local shoulder=c:FindFirstChild(rig==Enum.HumanoidRigType.R6 and 'Right Shoulder'or'RightShoulder',true)
  local elbow=c:FindFirstChild('RightElbow',true);local wrist=c:FindFirstChild('RightWrist',true)
- local root=c.HumanoidRootPart;local base=frame(shoulder.Part0)*shoulder.C0
+ local root=c.HumanoidRootPart
+ local body=c:FindFirstChild(elbow and 'Waist' or 'RootJoint',true)
+ assert(body and body.Part1==shoulder.Part0,'Native torso parent required')
+ local bodyBase=frame(body.Part0)*body.C0
+ local torsoYaw=0
  local tip=w.tip.Position
  local function fk(x)
   local basis=shoulder.C0.Rotation
+  local bodyRotation=rot(0,torsoYaw,0)
+  if not elbow then local basis=body.C0.Rotation;bodyRotation=basis:Inverse()*bodyRotation*basis end
+  local base=bodyBase*bodyRotation*body.C1:Inverse()*shoulder.C0
   local cf=base*basis:Inverse()*rot(x[1],x[2],x[3])*basis*shoulder.C1:Inverse()
   if elbow then cf=cf*elbow.C0*rot(x[4])*elbow.C1:Inverse()*wrist.C0*rot(x[5],x[6],x[7])*wrist.C1:Inverse()end
   return cf*w.joint.C0*rot(x[8],x[9],x[10])*w.joint.C1:Inverse()
@@ -26,7 +33,8 @@ for _,rig in {Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}do
  local lo={15,-110,-110,0,-35,-35,-35,-150,-45,-45};local hi={175,110,110,110,35,35,35,-40,45,45}
  if not elbow then for i=4,7 do lo[i]=0;hi[i]=0 end end
  local rows={};local prior
- for _,angle in {65,45,25,0,-25,-45,-65}do
+ for _,angle in {80,55,30,0,-30,-55,-80}do
+  torsoYaw=-angle*.5
   local theta=math.rad(angle)
   local directionTarget=Vector3.new(math.sin(theta),0,-math.cos(theta))
   local target=root.CFrame:PointToWorldSpace(Vector3.new(.4,.8,0)+directionTarget*4.4)
@@ -52,7 +60,7 @@ for _,rig in {Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}do
    if not score or value<score then best,score=table.clone(x),value end
   end
   prior=best;local cf=fk(best);local p=root.CFrame:PointToObjectSpace(cf:PointToWorldSpace(tip));local dir=cf:VectorToWorldSpace(tip.Unit)
-  table.insert(rows,{angle=angle,parameters=best,tip={p.X,p.Y,p.Z},direction={dir.X,dir.Y,dir.Z},score=score})
+  table.insert(rows,{angle=angle,torso={0,torsoYaw,0},parameters=best,tip={p.X,p.Y,p.Z},direction={dir.X,dir.Y,dir.Z},score=score})
  end
  result[rig.Name]=rows;c:Destroy()
 end

@@ -1,0 +1,479 @@
+{
+  "native": {
+    "baseline": "6bd625ce6f69339726194e26143458c9e13ed536",
+    "snapshots": [
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.16480040550231934,
+          4.787384033203125,
+          -0.8279037475585938
+        ],
+        "version": "Before",
+        "combo": 1,
+        "phase": "Loaded",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.10079999999999999,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.30098217725753784,
+          0.65692138671875,
+          -5.014366149902344
+        ],
+        "version": "Before",
+        "combo": 1,
+        "phase": "Contact",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.22399999999999998,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          -1.3430798053741455,
+          -1.64154052734375,
+          -3.8546142578125
+        ],
+        "version": "Before",
+        "combo": 1,
+        "phase": "Follow",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.3976,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.33101892471313477,
+          4.90093994140625,
+          0.504791259765625
+        ],
+        "version": "After",
+        "combo": 1,
+        "phase": "Loaded",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.10079999999999999,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.30098217725753784,
+          0.65692138671875,
+          -5.014366149902344
+        ],
+        "version": "After",
+        "combo": 1,
+        "phase": "Contact",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.22399999999999998,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          -2.283334493637085,
+          -2.075592041015625,
+          -2.9396514892578125
+        ],
+        "version": "After",
+        "combo": 1,
+        "phase": "Follow",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.3976,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          -1.3430798053741455,
+          -1.64154052734375,
+          -3.8546142578125
+        ],
+        "version": "Before",
+        "combo": 2,
+        "phase": "Loaded",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.1134,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.30098217725753784,
+          0.65692138671875,
+          -5.014366149902344
+        ],
+        "version": "Before",
+        "combo": 2,
+        "phase": "Contact",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.252,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.16480040550231934,
+          4.787384033203125,
+          -0.8279037475585938
+        ],
+        "version": "Before",
+        "combo": 2,
+        "phase": "Follow",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.4298,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          -2.6054577827453613,
+          -2.23883056640625,
+          -2.38189697265625
+        ],
+        "version": "After",
+        "combo": 2,
+        "phase": "Loaded",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.1134,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.30098217725753784,
+          0.65692138671875,
+          -5.014366149902344
+        ],
+        "version": "After",
+        "combo": 2,
+        "phase": "Contact",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.252,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.23809850215911865,
+          4.80706787109375,
+          1.2574920654296875
+        ],
+        "version": "After",
+        "combo": 2,
+        "phase": "Follow",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.4298,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          4.39312744140625,
+          0.798797607421875,
+          -1.8779983520507812
+        ],
+        "version": "Before",
+        "combo": 3,
+        "phase": "Loaded",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.1638,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.40983712673187256,
+          0.802825927734375,
+          -4.392219543457031
+        ],
+        "version": "Before",
+        "combo": 3,
+        "phase": "Contact",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.364,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          -3.5652551651000977,
+          0.79522705078125,
+          -1.8488006591796875
+        ],
+        "version": "Before",
+        "combo": 3,
+        "phase": "Follow",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.476,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          4.735559463500977,
+          0.803375244140625,
+          -0.7679672241210938
+        ],
+        "version": "After",
+        "combo": 3,
+        "phase": "Loaded",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.1638,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          0.4036790728569031,
+          0.794097900390625,
+          -4.398933410644531
+        ],
+        "version": "After",
+        "combo": 3,
+        "phase": "Contact",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.364,
+        "swordSource": "td:v2:AzureOathblade"
+      },
+      {
+        "evaluatedParts": 34,
+        "tip": [
+          -3.9297502040863037,
+          0.795318603515625,
+          -0.7746047973632812
+        ],
+        "version": "After",
+        "combo": 3,
+        "phase": "Follow",
+        "shieldSource": "td:SwordsmanShield",
+        "age": 0.476,
+        "swordSource": "td:v2:AzureOathblade"
+      }
+    ],
+    "scope": "Frozen production native FK, not live animation or user acceptance",
+    "disabledProductionScripts": 4,
+    "cameras": [
+      {
+        "camera_position": [
+          4,
+          521.6000061035156,
+          -57
+        ],
+        "look_at_position": [
+          0,
+          501.6000061035156,
+          0
+        ],
+        "combo": 1
+      },
+      {
+        "camera_position": [
+          4,
+          521.6000061035156,
+          -43
+        ],
+        "look_at_position": [
+          0,
+          501.6000061035156,
+          14
+        ],
+        "combo": 2
+      },
+      {
+        "camera_position": [
+          4,
+          521.6000061035156,
+          -29
+        ],
+        "look_at_position": [
+          0,
+          501.6000061035156,
+          28
+        ],
+        "combo": 3
+      }
+    ],
+    "rig": "R15",
+    "look_at_position": [
+      0,
+      501.6000061035156,
+      14
+    ],
+    "armor": [
+      "traveler_helmet",
+      "traveler_gloves",
+      "traveler_boots",
+      "traveler_coat"
+    ],
+    "kind": "KNIGHT_WIDE_CAPTURE_READY",
+    "camera_position": [
+      4,
+      539.5999755859375,
+      -62
+    ]
+  },
+  "images": [
+    {
+      "baseline": "6bd625ce6f69339726194e26143458c9e13ed536",
+      "index": 1,
+      "order": [
+        "Before Loaded",
+        "Before Contact",
+        "Before Follow",
+        "After Loaded",
+        "After Contact",
+        "After Follow"
+      ],
+      "sourceWidth": 2660,
+      "width": 1280,
+      "poses": [
+        "Loaded",
+        "Contact",
+        "Follow"
+      ],
+      "camera": {
+        "camera_position": [
+          4,
+          521.6000061035156,
+          -57
+        ],
+        "look_at_position": [
+          0,
+          501.6000061035156,
+          0
+        ],
+        "combo": 1
+      },
+      "height": 873,
+      "scope": "Frozen production native FK, not live animation or user acceptance",
+      "rig": "R15",
+      "sourceHeight": 1816,
+      "path": "combo-1-before-after.png",
+      "sha256": "ae4ba9e4e5241fc1742b3e9937621abe23138011e9c6583466d404559e90da7f"
+    },
+    {
+      "baseline": "6bd625ce6f69339726194e26143458c9e13ed536",
+      "index": 2,
+      "order": [
+        "Before Loaded",
+        "Before Contact",
+        "Before Follow",
+        "After Loaded",
+        "After Contact",
+        "After Follow"
+      ],
+      "sourceWidth": 2660,
+      "width": 1280,
+      "poses": [
+        "Loaded",
+        "Contact",
+        "Follow"
+      ],
+      "camera": {
+        "camera_position": [
+          4,
+          521.6000061035156,
+          -43
+        ],
+        "look_at_position": [
+          0,
+          501.6000061035156,
+          14
+        ],
+        "combo": 2
+      },
+      "height": 873,
+      "scope": "Frozen production native FK, not live animation or user acceptance",
+      "rig": "R15",
+      "sourceHeight": 1816,
+      "path": "combo-2-before-after.png",
+      "sha256": "5e9a0fd1af890f6bcaf4cba46e016a91730a0250b25a29c12ea65770c568df0e"
+    },
+    {
+      "baseline": "6bd625ce6f69339726194e26143458c9e13ed536",
+      "index": 3,
+      "order": [
+        "Before Loaded",
+        "Before Contact",
+        "Before Follow",
+        "After Loaded",
+        "After Contact",
+        "After Follow"
+      ],
+      "sourceWidth": 2660,
+      "width": 1280,
+      "poses": [
+        "Loaded",
+        "Contact",
+        "Follow"
+      ],
+      "camera": {
+        "camera_position": [
+          4,
+          521.6000061035156,
+          -29
+        ],
+        "look_at_position": [
+          0,
+          501.6000061035156,
+          28
+        ],
+        "combo": 3
+      },
+      "height": 873,
+      "scope": "Frozen production native FK, not live animation or user acceptance",
+      "rig": "R15",
+      "sourceHeight": 1816,
+      "path": "combo-3-before-after.png",
+      "sha256": "46eb40c15497f4d50d0ec4d84fd541ac9ec9c40a73ab6628adca3a2484c77eee"
+    }
+  ],
+  "result": {
+    "cleanup": true,
+    "images": 3
+  },
+  "sourceInputs": {
+    "candidate": {
+      "src/client/K0MeleeMotion.luau": "9e1abff0881d9be315bf107e8e5d36e68da16311ede20b83d197f0b7e0e1df87",
+      "src/client/K0KnightReferenceCombo.luau": "f161bf1f15e10c66da15b16f75c13f361872316df1dd9b7eab8a38ecc621b3d6",
+      "src/client/K0KnightReferenceDowncut.luau": "5af367f4ee17f80d963cf63b73c976d071aa5f123f90949f2be6ff3cd805dcbe",
+      "src/client/K0KnightReferenceRisingCut.luau": "0783a80b01da8bfd8c863e547223b5c51a77a1f2e5a2f8eef15bf5b365492450",
+      "src/client/K0KnightReferenceSweep.luau": "8eb64c12f583e83dc1ca3b663e6b7b7eb037203fe4c4719611c4dd62b55a2266",
+      "tests/knight-reference-combo-native.luau": "89a59d2bd6d88a852c5e6495674ad2751891d52e4abbb4a63538c1ce914810e1",
+      "tests/k0-melee-curves-native.luau": "d49da3a1f08cff3adc4b6157d231c041d1e88adb49686716482e030481eeb6ec",
+      "tests/dwarf-basic-tempo-native.luau": "e01eb7039fd8b801f671d94b3256b1ab430d0f84bf252ca3d87893911837f9af",
+      "tests/dwarf-recovery-native.luau": "3b76daa13d4f9021bb8f63975a06af3dbbdb5f1e9e6eed5bd8ca59d7fac86e33",
+      "tests/mixamo-knight-native.luau": "0e030079a6192f6624230c93439b47287316e57a9b2f61b33599351220dc9766",
+      "src/shared/K0Config.luau": "babc1cb51128b78b188104973ff21f19d5ba238c09be411305980d61336fa22d",
+      "src/server/Combat/CombatService.luau": "49c1626f9dedafddadff5d5e7ed995b5016429ed82ee45bb882eedf87d7e149c",
+      "assets/animations/knight-reference-combo-v1/sweep-poses.json": "817f719589cf295ea686862d8857cd8f29802ce96120ec067034bcd6d8624a43",
+      "tools/author-knight-reference-combo.py": "59b15c945f9148be6d2dc8d9aa8a4a4266f8800b7c20cd840d50dd203b78c56d",
+      "tools/solve-knight-sweep-native.luau": "b015af133fa1c8ea64fc3a92957c25ea09a6fa3d70b098d240beed602f17884d",
+      "tools/prepare-knight-reference-combo-native.py": "ded34cac9459dcaa53a6af23ca0e3404e83512405c73faa29a359304408ec757",
+      "tests/knight-wide-combo-native.luau": "d5e9d73bca979e8d5bc9d3e86db14f0ff370e9a742841bf0c6252f1918d72159",
+      "tools/prepare-knight-wide-combo-native.py": "61654a1cc940f10bbbc501ebf55812e0fc5adfc05b637f84e6f230975cd65b07",
+      "src/client/K0SwordVisual.luau": "0413b64249e38f83db96a25d4c5f9e188e6dc0fcd28a842598b518c9fa46b327"
+    },
+    "baselineCommit": "6bd625ce6f69339726194e26143458c9e13ed536",
+    "baseline": {
+      "src/shared/K0Config.luau": "babc1cb51128b78b188104973ff21f19d5ba238c09be411305980d61336fa22d",
+      "src/client/K0KnightReferenceDowncut.luau": "09f46487275e521c5787578a1e9bb43030f8d2f753f939f8a959c4c54a95cece",
+      "src/client/K0KnightReferenceRisingCut.luau": "c332d512f8eaf1fdb2ebf5343b9b4b61f5fe0ab742ee361bbf2c80dd613c3c3c",
+      "src/client/K0KnightReferenceSweep.luau": "ed97e5df6b995bd2df8edd7e6219dddda6e3823eb2e2a3be13d5b61fdd04a200",
+      "src/client/K0KnightReferenceCombo.luau": "f161bf1f15e10c66da15b16f75c13f361872316df1dd9b7eab8a38ecc621b3d6",
+      "src/client/K0MeleeMotion.luau": "9e1abff0881d9be315bf107e8e5d36e68da16311ede20b83d197f0b7e0e1df87",
+      "src/client/K0SwordVisual.luau": "0413b64249e38f83db96a25d4c5f9e188e6dc0fcd28a842598b518c9fa46b327"
+    },
+    "measurementOnly": false
+  },
+  "captureToolSha256": "b0803d7e43e4e320c465e8be8ee6e261d4e139b3326243c4190b1a88cbce0597",
+  "limitations": [
+    "Frozen stills, not live input or timing acceptance",
+    "Traveler coat texture rbxassetid://82286199708395 failed to load; silhouettes and original sockets remain evaluable"
+  ]
+}

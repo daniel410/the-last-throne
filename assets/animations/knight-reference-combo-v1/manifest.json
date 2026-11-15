@@ -7,9 +7,9 @@
   "source": "assets/animations/mixamo-knight-v1/clips.json",
   "sourceSha256": "8276fb1ef16a10babb9f9baa585b2803aa294f59d03a6c9f8490eefa3c4676dd",
   "outputs": {
-    "src/client/K0KnightReferenceDowncut.luau": "09f46487275e521c5787578a1e9bb43030f8d2f753f939f8a959c4c54a95cece",
-    "src/client/K0KnightReferenceRisingCut.luau": "c332d512f8eaf1fdb2ebf5343b9b4b61f5fe0ab742ee361bbf2c80dd613c3c3c",
-    "src/client/K0KnightReferenceSweep.luau": "ed97e5df6b995bd2df8edd7e6219dddda6e3823eb2e2a3be13d5b61fdd04a200",
+    "src/client/K0KnightReferenceDowncut.luau": "5af367f4ee17f80d963cf63b73c976d071aa5f123f90949f2be6ff3cd805dcbe",
+    "src/client/K0KnightReferenceRisingCut.luau": "0783a80b01da8bfd8c863e547223b5c51a77a1f2e5a2f8eef15bf5b365492450",
+    "src/client/K0KnightReferenceSweep.luau": "8eb64c12f583e83dc1ca3b663e6b7b7eb037203fe4c4719611c4dd62b55a2266",
     "src/client/K0KnightReferenceCombo.luau": "f161bf1f15e10c66da15b16f75c13f361872316df1dd9b7eab8a38ecc621b3d6"
   },
   "sequences": [
@@ -19,5 +19,6 @@
   ],
   "solver": "tools/solve-knight-sweep-native.luau",
   "finisherInstruction": "Broad horizontal slash; supersedes the reference thrust",
-  "posesSha256": "c24e8e22ac0d803fe1a27cc1cafdb1e140799231508991f8f96b4fc6310ea54f"
+  "swingInstruction": "Dwarf-inspired full-body load and follow-through; 160-degree finisher",
+  "posesSha256": "817f719589cf295ea686862d8857cd8f29802ce96120ec067034bcd6d8624a43"
 }

@@ -47,6 +47,7 @@ def sweep_pose(row):
     x = row['parameters']
     p.update(right=x[:3], elbow=[x[3], 0, 0], wrist=x[4:7], weapon=x[7:10],
              left=[-15, -20, -15], leftElbow=[10, 0, 0])
+    p['torso'] = row.get('torso', p['torso'])
     return p
 
 
@@ -76,6 +77,22 @@ for combo, (w, a, r) in enumerate([(0.16, .10, .16), (.18, .10, .18), (.26, .12,
             clock = [[t, v, m] for t, v, m in zip(ts, old, slopes(ts, old))]
             times = sorted(set([duration*i/64 for i in range(65)]+ts+[w-.003, w+.003]))
             poses = []
+            # Like the dwarf, load the whole body and carry the cut past impact.
+            # Corrections vanish around contact, keeping the owned hit unchanged.
+            accent_times = [0, opening, w-.02, w+.02, late, duration]
+            accents = {
+                'torso': [[0, 0, 0], [8, -26, -4], [0, 0, 0], [0, 0, 0], [-8, 28, 4], [0, 8, 0]],
+                'right': [[0, 0, 0], [28, -8, -8], [0, 0, 0], [0, 0, 0], [-20, 8, 8], [0, 0, 0]],
+            }
+            if combo == 2:
+                accents = {
+                    'torso': [[0, 0, 0], [-8, 26, 4], [0, 0, 0], [0, 0, 0], [8, -28, -4], [0, -8, 0]],
+                    'right': [[0, 0, 0], [-20, 8, 8], [0, 0, 0], [0, 0, 0], [28, -8, -8], [0, 0, 0]],
+                }
+            accent_curves = {ch: [[[t, v[axis], m] for t, v, m in
+                zip(accent_times, values, slopes(accent_times, [v[axis] for v in values]))]
+                for axis in range(3)] for ch, values in accents.items()}
+            times = sorted(set(times+accent_times))
             for t in times:
                 p = pose(original, sample(clock, t))
                 if combo == 2:
@@ -88,10 +105,13 @@ for combo, (w, a, r) in enumerate([(0.16, .10, .16), (.18, .10, .18), (.26, .12,
                 bridge = pose(original, .416) if combo == 1 else sweep_pose(solved[rig][0])
                 for ch in channels:
                     p[ch] = [v+(b-g)*.35*smooth((t-late)/(duration-late)) for v, b, g in zip(p[ch], bridge[ch], guard[ch])]
+                for ch, axes in accent_curves.items():
+                    weight = .45 if combo == 1 else .7
+                    p[ch] = [v+sample(keys, t)*weight for v, keys in zip(p[ch], axes)]
                 poses.append(p)
         else:
             rows = solved[rig]
-            # A 130-degree horizontal arc crosses the server contact at its center.
+            # A 160-degree horizontal arc with torso rotation crosses contact.
             times = [0, opening, .18, .205, .23, w, .29, .315, .34, late, duration]
             poses = [copy.deepcopy(rest), sweep_pose(rows[0])]+[sweep_pose(row) for row in rows]+[copy.deepcopy(guard), copy.deepcopy(guard)]
         authored = curves(times, poses)
@@ -138,5 +158,6 @@ outputs[str(index.relative_to(root))] = hashlib.sha256(index.read_bytes()).hexdi
     intervalSeconds=[145, 147], source=str(source.relative_to(root)), sourceSha256=hashlib.sha256(source.read_bytes()).hexdigest(),
     outputs=outputs, sequences=['Downcut', 'Rising Cut', 'Horizontal Sweep'], solver='tools/solve-knight-sweep-native.luau',
     finisherInstruction='Broad horizontal slash; supersedes the reference thrust',
+    swingInstruction='Dwarf-inspired full-body load and follow-through; 160-degree finisher',
     posesSha256=hashlib.sha256((folder/'sweep-poses.json').read_bytes()).hexdigest()), indent=2)+'\n')
 print(index)
