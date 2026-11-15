@@ -4,6 +4,8 @@
 
 ## 최근 승인
 
+- 2026-11-14 사용자 요청: 드워프 기본 공격을 기사와 같은 서버 승인 3타 연속 공격으로 구성한다. 기존 한손 도끼와 공통 기술은 유지한다. [구현·검증·미검증](evidence/dwarf-three-hit-20261114/README.md).
+
 - 난이도 보상의 Diamonds3/5/7/10·Gold1/1.5/2/3배와 영웅별 초회 영수증을 유지한다. 본편 XP는 규칙17의 [고정 처치/퀘스트 보상과 독립된 레벨 요구량](production/campaign-growth-balance-2026-11-13.md)을 따른다. 에픽 종료 레벨은 정상 누적의 예상치이며 강제 설정/완주 XP 정산이 아니다. Hell은 반복해도 같은 XP를 지급하고, 고레벨에서는 요구XP가 증가한다.16의 감액/6회차 XP0은 대체하며 기존 진도/레벨/XP/수령·선택 임무/재료/장비를 보존한다.
 
 - 에픽 마지막 스토리 완료 뒤 다음 에픽으로 강제 순간이동하지 않는다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard를 인접 배치하고 선행 완료 후 열린 길로 왕복 보행한다. [결정·검증](evidence/epic-overland-20261113/README.md).

@@ -2,6 +2,8 @@
 
 2026-11-14 · TLT-001/050/057/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
+- 드워프 기본3연격: 내려베기→되받아베기→넓은 마무리 베기의 서버3타·R6/R15 후보 검증을 통과했다. [빌드/검증·남은 수용](../evidence/dwarf-three-hit-20261114/README.md).
+
 - 에픽 지도 연결: 실제 도보 경계의 왕복 연결선·다음 지도 버튼·선행 잠금 상태를 소스 추가했다. 후보 Studio 검증, 미게시. [검증/후속 수용](../evidence/epic-map-connections-20261114/README.md).
 
 - 다이아몬드 Robux 상품: TD 구성의 세 묶음·ROBUX 탭·RPG 영구 영수증 지급을 소스 추가했다. 실제 상품ID는 MCP `developer-product:write` 권한 대기로 비활성이다. [소스/Studio Edit 검증·남은 연결/실구매 수용](../evidence/diamond-robux-products-20261114/README.md).

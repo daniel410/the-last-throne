@@ -18,11 +18,11 @@ for _,rig in {Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}do
   local joints={};for _,j in c:GetDescendants()do if(j:IsA('Motor6D')or j:IsA('AnimationConstraint'))and j.Part0 and j.Part1 then joints[j.Part1]=j end end
   local function frame(p)local j=joints[p];return j and frame(j.Part0)*j.C0*j.Transform*j.C1:Inverse()or p.CFrame end
   local hand=weapon.joint.Part0;local idleHand=frame(hand);local idleGrip=frame(weapon.grip);local root=c.HumanoidRootPart;local origin=root.CFrame
-  local definitions={Config.BasicAttackProfiles.dwarf.attacks[1]};for _,d in Config.Skills.dwarf do table.insert(definitions,d)end
+  local definitions={};for combo,d in Config.BasicAttackProfiles.dwarf.attacks do local row=table.clone(d);row.qaCombo=combo;table.insert(definitions,row)end;for _,d in Config.Skills.dwarf do table.insert(definitions,d)end
   for _,d in definitions do for _,fps in {30,144}do for _,rate in {1,2}do
    report.actions+=1
    c:SetAttribute('K0State','Dodge');Melee.forCharacter(c,99);Advanced.forCharacter(c,99)
-   c:SetAttribute('K0State','Attack');c:SetAttribute('K0SkillId',d.id);c:SetAttribute('K0AttackStartedAt',100);c:SetAttribute('K0BasicAttackRate',rate)
+   c:SetAttribute('K0Combo',d.qaCombo or 1);c:SetAttribute('K0State','Attack');c:SetAttribute('K0SkillId',d.id);c:SetAttribute('K0AttackStartedAt',100);c:SetAttribute('K0BasicAttackRate',rate)
    local total=d.windup+d.active+d.recovery;local speed=d.id and 1 or rate
    local function render(age)
     local now=100+age/speed

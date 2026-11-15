@@ -21,7 +21,7 @@ local ok,err=xpcall(function()
  local Config=require(game.ReplicatedStorage.Shared.K0Config)
  local Growth=require(game.ReplicatedStorage.Shared.HeroProgression)
  local expected={knight={periods={.588,.644,.868},oldPeriods={.42,.46,.62},oldDamage={.75,.9,1.2},posture={12,14,24},oldHit={.16,.18,.26}},
-  dwarf={periods={.8},oldPeriods={.42},oldDamage={.75},posture={12},oldHit={.22}}}
+  dwarf={periods={.8,.68,.92},oldPeriods={.42,.42,.42},oldDamage={.75,.75,.75},posture={12,10,14},oldHit={.22,.71*.42/1.13,.71*.42/1.13}}}
  local c,root,h=rig('Hero',Vector3.new(20000,1000,20000));c:SetAttribute('K0SpawnReady',true)
  local target,tr,th=rig('Target',root.Position+Vector3.new(0,0,-3))
  local player={Parent=game.Players,Character=c,UserId=-9876}
@@ -76,6 +76,19 @@ local ok,err=xpcall(function()
     check(state.attackSeq==2 and state.attack.started>=100+duration,'Buffer waits for the new cadence')
     near(state.combo,combo%#profile.attacks+1,'Buffered combo advances correctly')
     table.insert(report.cases,{classId=classId,combo=combo,dex=dex,fps=fps,power=power,period=duration,impact=impact,damage=actualDamage,dpsDifference=difference})
+    if classId=='dwarf'and combo==1 and dex==0 and fps==30 and power==100 then
+     for _,expectedCombo in {3,1}do
+      local previous=state.attack;local d=previous.definition
+      local ending=previous.started+d.windup+d.active+d.recovery
+      api.accept(state,'Attack',nil,ending-.00001,nil);api.step(state,ending+.000001,0,true)
+      near(state.combo,expectedCombo,'Actual buffered chain runs 1-2-3-1')
+     end
+     local d=state.attack.definition;local ending=state.attack.started+d.windup+d.active+d.recovery
+     api.step(state,ending+.000001,0,true);api.step(state,ending+Config.ComboReset+.01,0,true)
+     near(state.combo,0,'Idle beyond reset window clears the combo')
+     api.accept(state,'Attack',nil,ending+Config.ComboReset+.02,nil)
+     near(state.combo,1,'Fresh input after pause restarts at the first strike')
+    end
     api.clear(state)
    end
   end end end

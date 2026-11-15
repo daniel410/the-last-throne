@@ -76,7 +76,7 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 					if i%20 == 0 then table.insert(points, {age=age, tip=vec(tip)}) end
 				end
 				local hit = sample(impact, 1/60)
-				local opening=d.windup*(classId=="dwarf" and .75 or .45)
+				local opening=d.windup*(classId=="dwarf" and combo==1 and .75 or .45)
                 local loaded = sample(opening, 1/60)
 				local finish = sample(total, 1/60)
 				local initial = sample(0, 1/60)
@@ -89,12 +89,13 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 				check(minY > -3.4, "Blade stays above floor on default rig")
 				check(maxReach < 6.5, "Compact arc stays near combat reach")
 				-- The complete overhead is retimed to the configured basic window.
-                -- Its wider arc is checked alongside exact boundary/velocity continuity below.
-                check(maxStep < (classId=="dwarf" and 1 or .7), "Continuous bounded arc")
-				if classId == "dwarf" or combo == 3 then
+                -- Broad backhand/sweep paths may cover up to1.2stud per1/120 cycle;
+                -- exact boundary/contact velocity checks still reject pose jumps.
+                check(maxStep < (classId=="dwarf" and (combo==1 and 1 or 1.2) or .7), "Continuous bounded arc")
+				if classId == "dwarf" and combo==1 or classId=="knight" and combo == 3 then
 					check(loaded.Y-hit.Y > 1, "Loaded weapon descends into contact")
 				else
-					check((hit.X-loaded.X)*(combo == 2 and 1 or -1) > 1, "Sword alternates cutting direction")
+					check(classId=="dwarf" and math.abs(hit.X-loaded.X)>.5 or classId=="knight" and (hit.X-loaded.X)*(combo == 2 and 1 or -1)>1, "Side cuts cross the front of the body")
 				end
 				for _, boundary in ipairs({opening,impact,d.windup+d.active+d.recovery*.15,total}) do
 					local before = sample(boundary-.00001, 1/30)

@@ -79,7 +79,7 @@ local function definitionFor(classId,combo,skillId)
  local profile=Config.BasicAttackProfiles[classId]
  if not Clips.clips[classId] or not profile then return nil end
  local index=math.clamp(math.floor(tonumber(combo) or 1),1,#profile.attacks)
- return profile.attacks[index],classId=="dwarf" and index==1 and DwarfMixamo.basic
+ return profile.attacks[index],classId=="dwarf" and DwarfMixamo.basics[index]
   or classId=="knight" and KnightMixamo[index] or Clips.clips[classId][index]
 end
 
@@ -115,6 +115,14 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
   local v={}
   for axis,name in ipairs({"X","Y","Z"}) do
    local value=sampleAxis(curves[channel][axis],time)
+   if channel=="torso" and axis==2 and clip.basicTurn then
+    -- Aim the owned broad axe strokes through the server's forward cone.
+    -- The correction settles with the stroke and never changes skill curves.
+    local turn=rigType==Enum.HumanoidRigType.R6 and clip.basicR6Turn or clip.basicTurn
+    local rise=math.clamp(time/clip.entryUntil,0,1)
+    local settle=math.clamp((time-authored[4])/(clip.duration-authored[4]),0,1)
+    value+=turn*rise*rise*(3-2*rise)*(1-settle*settle*(3-2*settle))
+   end
    if entry and age<opening then
     value+=(2*u3-3*u2+1)*(entry[channel][name]-rest[classId][channel][name])
      +(u3-2*u2+u)*opening*(entrySlope and entrySlope[channel][name] or 0)

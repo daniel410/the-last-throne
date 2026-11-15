@@ -324,7 +324,7 @@ return {
 
 
  for _, classId in ipairs({"knight", "dwarf"}) do
-  for combo, reach in ipairs(classId == "knight" and {5.5, 5.5, 6} or {5.5}) do
+  for combo, reach in ipairs(classId == "knight" and {5.5, 5.5, 6} or {5.5, 5.5, 5.5}) do
    for _, targeted in ipairs({false, true}) do
     case(classId.."-reach-"..combo.."-targeted-"..tostring(targeted), function()
      api.injectResolver(function() return classId end)
@@ -342,7 +342,7 @@ return {
       sample(d.windup+(d.hitDelay or 0)+.001)
       return enemy.humanoid.Health
      end
-     near(strike(reach-.05),10000-(classId=="dwarf" and 143 or ({105,126,168})[combo]),"outer reach hits with the configured basic damage")
+     near(strike(reach-.05),10000-(classId=="dwarf" and ({143,121,164})[combo] or ({105,126,168})[combo]),"outer reach hits with the configured basic damage")
      near(strike(reach+.05),10000,"outside new reach misses")
      near(strike(reach-.05,true),10000,"wall still blocks extended reach")
     end)
@@ -1313,7 +1313,7 @@ return {
 			local profile = api.Config.BasicAttackProfiles[classId]
 			equal(state.baseClassId, classId, "server injected class")
 			equal(state.character:GetAttribute("K0AttackProfileId"), profile.id, "profile replicated for visuals")
-			equal(#profile.attacks, 1, "experimental single melee attack")
+			equal(#profile.attacks, classId=="dwarf" and 3 or 1, "class basic attack sequence length")
 			state.counter = { bonus = 100, expires = 5 }
 			local beforeCount = #fixture:GetDescendants()
 			action(state, "Attack", 0)
@@ -1330,7 +1330,7 @@ return {
 			equal(state.queued and state.queued.action, "Attack", "second attack buffers")
 			action(state, "Attack", ending+.01)
 			equal(state.character:GetAttribute("K0AttackSeq"), 2, "valid buffer executes once")
-			equal(state.combo, 1, "single-hit profile loops at one")
+			equal(state.combo, classId=="dwarf" and 2 or 1, "buffer advances the class attack sequence")
 		end)
 		case(classId .. "-range-and-wall", function()
 			api.injectResolver(function() return classId end)
