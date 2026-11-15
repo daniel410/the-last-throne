@@ -1,0 +1,1 @@
+UNDEAD_INDIVIDUAL_MOTION_NATIVE {"checks":135426,"failures":[],"species":{"Ghoul":{"clips":7,"directionCases":48,"minimumSurfaceHeight":8.940696716308594e-8,"interruptionChecks":2},"Zombie":{"clips":7,"directionCases":48,"minimumSurfaceHeight":-5.960464477539063e-8,"interruptionChecks":2}},"pass":true,"kind":"UNDEAD_INDIVIDUAL_MOTION_NATIVE"}

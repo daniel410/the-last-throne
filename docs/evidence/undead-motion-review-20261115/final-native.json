@@ -1,0 +1,50 @@
+{
+  "HAUNTED_MONSTER_MOTION_NATIVE": {
+    "checks": 59911,
+    "failures": [],
+    "species": {
+      "Ghoul": {
+        "maxStoppedFootLift": 2.384185791015625e-07,
+        "stanceSlipHeightFraction": 0.00493646978021978,
+        "source": "ghoul"
+      },
+      "Zombie": {
+        "maxStoppedFootLift": 0,
+        "stanceSlipHeightFraction": 0.011463994565217392,
+        "source": "zombie"
+      }
+    },
+    "pass": true,
+    "kind": "HAUNTED_MONSTER_MOTION_NATIVE"
+  },
+  "UNDEAD_INDIVIDUAL_MOTION_NATIVE": {
+    "checks": 135426,
+    "failures": [],
+    "species": {
+      "Ghoul": {
+        "clips": 7,
+        "directionCases": 48,
+        "minimumSurfaceHeight": 8.940696716308594e-08,
+        "interruptionChecks": 2
+      },
+      "Zombie": {
+        "clips": 7,
+        "directionCases": 48,
+        "minimumSurfaceHeight": -5.960464477539063e-08,
+        "interruptionChecks": 2
+      }
+    },
+    "pass": true,
+    "kind": "UNDEAD_INDIVIDUAL_MOTION_NATIVE"
+  },
+  "ENEMY_DIRECTION_MOTION_NATIVE": {
+    "uniqueCurves": 339,
+    "casts": 1752,
+    "frameRates": [
+      30,
+      60,
+      144
+    ],
+    "checks": 357341
+  }
+}

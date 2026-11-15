@@ -1,0 +1,19 @@
+{
+  "changedMotionProfiles": [
+    "Zombie",
+    "Ghoul"
+  ],
+  "unchangedContractHashes": {
+    "assets/shared/td-haunted-graveyard/runtime.rbxmx": "58700b6a8ccb618c0a2dff6fe01e5d7d773a90a6135281705fbf69c1fd7a6e73",
+    "src/shared/EnemyPatterns.luau": "a6eb166aa36221be66c99ee7b9288576dabc420287cadc0098531977761eda98",
+    "src/shared/EnemyRigSockets.luau": "f920b2a109bdcf3236af95cf18310a6c1b50eb2455e18a81d06f68688ab1b210",
+    "src/server/Combat/CombatService.luau": "49c1626f9dedafddadff5d5e7ed995b5016429ed82ee45bb882eedf87d7e149c"
+  },
+  "render": "Blender 5.2 Standard/sRGB/None/Exposure0/Gamma1/CurvesOff; native matrices with pinned TD source GLB",
+  "engine": "isolated PlaceId0/no players, real MeshPart/Motor6D; no live profile use",
+  "buildHashAfterNativeTest": "adc22f9fe624ed59cd89b6205b7dabb294e117c5b75ad3171d18ef7f2de1ad30",
+  "publishedClient": "NOT RUN",
+  "actualControls": "NOT RUN",
+  "devices": "NOT RUN",
+  "userArtAcceptance": "NOT RUN"
+}

@@ -1,0 +1,9 @@
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://45a84a576ad52cab4163fe70de30a0c0 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://9f652390a8f570eb1c9c469037d6382b failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+HAUNTED_MONSTER_MOTION_NATIVE {"checks":59911,"failures":[],"species":{"Ghoul":{"maxStoppedFootLift":2.384185791015625e-7,"stanceSlipHeightFraction":0.00493646978021978,"source":"ghoul"},"Zombie":{"maxStoppedFootLift":0,"stanceSlipHeightFraction":0.011463994565217392,"source":"zombie"}},"pass":true,"kind":"HAUNTED_MONSTER_MOTION_NATIVE"}
+UNDEAD_INDIVIDUAL_MOTION_NATIVE {"checks":135426,"failures":[],"species":{"Ghoul":{"clips":7,"directionCases":48,"minimumSurfaceHeight":8.940696716308594e-8,"interruptionChecks":2},"Zombie":{"clips":7,"directionCases":48,"minimumSurfaceHeight":-5.960464477539063e-8,"interruptionChecks":2}},"pass":true,"kind":"UNDEAD_INDIVIDUAL_MOTION_NATIVE"}
+ENEMY_DIRECTION_MOTION_NATIVE {"uniqueCurves":339,"casts":1752,"frameRates":[30,60,144],"checks":357341}
+UNDEAD_FINAL_SUITE_PASS
