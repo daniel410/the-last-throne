@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=25}
+local Art={version=24}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -180,7 +180,7 @@ local function vegetation(parent,c,size,pal,theme,safe,rng,id)
  end
  range(m,650)
 end
-local function route(parent,a,b,width,pal,theme,paving)
+local function route(parent,a,b,width,pal,theme)
  local d=b-a;if d.Magnitude<.1 then return end
  local forward=V(d.X,0,d.Z).Unit;local normal=V(-forward.Z,0,forward.X);local prev=ground(a)
  local n=math.max(2,math.ceil(d.Magnitude/8))
@@ -199,7 +199,7 @@ local function route(parent,a,b,width,pal,theme,paving)
   -- A foot can be on flat ground while the body clips the side of a ramp.
   if #workspace:GetPartBoundsInBox(cf+V(0,3.7,0),V(width+4,5,length+4),surfaceOverlap)>0 then supported=false end
   if supported then
-   local p=K.part(parent,'WornCurvedRoute',V(width,.06,length),cf,pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),paving or (theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone))
+   local p=K.part(parent,'WornCurvedRoute',V(width,.06,length),cf,pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone)
    p.CastShadow=false
   end
   prev=q
@@ -208,18 +208,13 @@ end
 local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
  local m=model(parent,'GroundAndPaths')
  local north=c+V(0,0,-size[2]/2+12);local middle=c+V(22,0,0);local south=c+V(-20,0,size[2]/2-16)
- -- Lumi's service passage is a modest slate walk, not the ceremonial road.
- -- This is noncolliding paving only; authoritative floors and routes stay intact.
- local servicePassage=chapter and chapter.id=='HG-03'
- local roadWidth=servicePassage and 14 or 24
- local paving=servicePassage and Enum.Material.Slate or nil
- route(m,south,middle,roadWidth,pal,theme,paving);route(m,middle,north,roadWidth,pal,theme,paving)
+ route(m,south,middle,24,pal,theme);route(m,middle,north,24,pal,theme)
  if chapter then for _,g in ipairs(chapter.goals)do
   local p=vec(g.position)
   -- Return/report goals in other regions already have their own local paths.
   if math.abs(p.X-c.X)<=size[1]/2 and math.abs(p.Z-c.Z)<=size[2]/2 then
   p=ground(p);local onRoad=c+V(p.Z>c.Z and -10 or 14,0,p.Z-c.Z)
-  route(m,onRoad,p,10,pal,theme,paving)
+  route(m,onRoad,p,10,pal,theme)
   if #g.enemies>0 and theme~='Deepwood'and theme~='Gloamwood'then
    -- Worn court stonework has no emission or gameplay markings.
    for x=-2,2 do for z=-2,2 do
