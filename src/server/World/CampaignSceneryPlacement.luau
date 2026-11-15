@@ -128,7 +128,7 @@ function M.apply(world,root)
  local units={}
  for _,site in ipairs(root:GetChildren())do
   for _,group in ipairs(site:GetChildren())do
-   if group.Name=='AuthoredVista'or group.Name=='LayeredVegetation'or group.Name=='TDScenicComposition'or group.Name=='BiomeDetails'then
+   if group.Name=='AuthoredVista'or group.Name=='LayeredVegetation'or group.Name=='TDScenicComposition'or group.Name=='BiomeDetails'or group.Name=='GroundAndPaths'then
     for _,m in ipairs(group:GetChildren())do if m:IsA('Model')then
      if m.Name=='ShelteredQuarter'then
       for _,cabin in ipairs(m:GetChildren())do if cabin:IsA('Model')then table.insert(units,cabin)end end
