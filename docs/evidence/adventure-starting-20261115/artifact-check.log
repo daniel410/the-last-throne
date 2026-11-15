@@ -1,0 +1,8 @@
+Exact committed artifact bytes PASS: src/client/init.client.luau
+Exact committed artifact bytes PASS: src/client/AdventureStartingNotice.luau
+Exact committed artifact bytes PASS: src/client/ExpeditionView.luau
+Exact committed artifact bytes PASS: src/server/Network/ExpeditionService.luau
+Exact committed artifact bytes PASS: src/shared/ExpeditionText.luau
+place-role: 10 checks PASS
+arrival-loading: 291 checks PASS
+Artifact role/loading checks with complete Shared dependency extraction PASS

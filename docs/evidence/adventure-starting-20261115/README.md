@@ -24,4 +24,6 @@ QA: 게시된 Lobby/Battle 실제 클라이언트에서 솔로와2~4인 시작�
 
 ## 빌드·Git
 
-0.110.21 단일 빌드 입력을 커밋·푸시한 뒤 고정 소스로 빌드한다. 정확한 입력 커밋·산출물/해시는 `build.json`에서 확인한다. 기존 미커밋 모델/삭제 자산·첨부·미추적 증거는 작업 커밋과 빌드 입력에서 제외한다.
+0.110.21 입력 소스 `f23603720561dba80f33e1e94d96a3998fe49ac4`를 origin/main에 푸시하고 `git ls-remote`의 동일 커밋을 확인했다. `python3 tools/build-game.py --source f2360372 --record docs/evidence/adventure-starting-20261115/build.json` 성공. [입력·LFS 검사·산출물·해시](build.json). 산출물은 `builds/0.110.21/TheLastThrone-0.110.21.rbxlx`다. 기존 미커밋 모델/삭제 자산·첨부·미추적 증거는 작업 커밋과 빌드 입력에서 제외했다.
+
+기존 `tests/single-build.spec.py --artifact ...`는 프로젝트 마운트·역할10검사 후 자체 임시 추출 목록에 `DeepwoodMusicPolicy`가 없어 중단됐다. [원래 실패 로그](build-check.log). 산출물의 Shared 전체 의존성을 임시 추출해 역할10·도착 로딩291검사를 통과했고, 변경 런타임5개의 실제 산출물 바이트가 고정 커밋과 일치함을 확인했다. [산출물 보완 검사](artifact-check.log). 기존 도구의 실패를 성공으로 바꾸어 기록하지 않았다. 고정 게임 빌드의 Studio 전체 플레이·게시 수용은 미검증이다. 검증 증거는 후속 문서 커밋으로 보존한다.
