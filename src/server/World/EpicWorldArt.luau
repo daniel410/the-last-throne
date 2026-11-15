@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=24}
+local Art={version=25}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -229,13 +229,16 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
   local p=c+V(rng:NextNumber(-size[1]*.45,size[1]*.45),.08,rng:NextNumber(-size[2]*.45,size[2]*.45))
   if safe(p,6)then
    p=ground(p)
-   if theme=='HauntedGraveyard'then Architecture.grave(m,p,pal,i%4==0 and 1 or 2)
+   if theme=='HauntedGraveyard'then
+    if not(chapter and chapter.id=='HG-03')then Architecture.grave(m,p,pal,i%4==0 and 1 or 2)end
    elseif theme=='EmberCaldera'then
     K.part(m,'BasaltRubble',V(7,2,5),CFrame.new(p)*CFrame.Angles(.1,i,.1),pal.rock,Enum.Material.Basalt,'Wedge')
    else K.part(m,'WeatheredStone',V(5,1.2,4),CFrame.new(p)*CFrame.Angles(0,i,.04),pal.trim,Enum.Material.Slate,'Wedge')end
   end
  end
- if theme=='HauntedGraveyard'then
+ if chapter and chapter.id=='HG-03'then
+  require(script.Parent.HauntedBurialPlots).build(m,c,size,pal,safe,ground)
+ elseif theme=='HauntedGraveyard'then
   for _,s in ipairs({-1,1})do for i=1,9 do
    local p=c+V(s*(size[1]/2-42),0,-size[2]/2+30+i*size[2]/11)
    if safe(p,9)then Architecture.grave(m,ground(p),pal,i%3==0 and 1 or 2)end
