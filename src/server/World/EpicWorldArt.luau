@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=25}
+local Art={version=26}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -96,6 +96,11 @@ local function terrainSite(parent,c,size,pal,theme,safe,id)
  -- stratified glacial relief. Other epics retain their approved silhouettes.
  if id=='FV-03'then
   require(script.Parent.FrozenRavineLandforms).build(m,c,size,safe)
+  range(m,900)
+  return
+ end
+ if id=='HG-03'then
+  require(script.Parent.HauntedPassageLandforms).build(m,c,size,safe)
   range(m,900)
   return
  end
