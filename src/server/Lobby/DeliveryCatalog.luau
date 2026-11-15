@@ -6,7 +6,7 @@ return {
  codes={},
  mails={
   {id='welcome-v1',title='Welcome to The Last Throne',
-   body='Welcome, adventurer! Check your mailbox for news and gifts from The Last Throne team. Promotional codes can be entered in Redeem Code. Thank you for joining us!',
+   body='Welcome, adventurer! Check your mailbox for the latest news from The Last Throne team. Thank you for joining us!',
    sender='The Last Throne Team',rewards={}},
  },
 }
