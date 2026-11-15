@@ -1,0 +1,21 @@
+{
+  "reference": "https://www.youtube.com/watch?v=xUhOca48eLQ&t=145s",
+  "intervalSeconds": [
+    145,
+    147
+  ],
+  "source": "assets/animations/mixamo-knight-v1/clips.json",
+  "sourceSha256": "8276fb1ef16a10babb9f9baa585b2803aa294f59d03a6c9f8490eefa3c4676dd",
+  "outputs": {
+    "src/client/K0KnightReferenceDowncut.luau": "09f46487275e521c5787578a1e9bb43030f8d2f753f939f8a959c4c54a95cece",
+    "src/client/K0KnightReferenceRisingCut.luau": "518cbdbe94a2de1881dfcf6af2d651f70bed397f995553c8a901301929584f64",
+    "src/client/K0KnightReferenceThrust.luau": "1214ac3bc718f6ff9a2aa878387095df161def1a4f54883581c360deec037ad7",
+    "src/client/K0KnightReferenceCombo.luau": "54b4777b525e2aa2e2e94bebe569cbe6f20920befba732021c1bfb572b43ce4a"
+  },
+  "sequences": [
+    "Downcut",
+    "Rising Cut",
+    "Forward Thrust"
+  ],
+  "solver": "tools/solve-knight-thrust-native.luau"
+}

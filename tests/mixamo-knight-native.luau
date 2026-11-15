@@ -7,6 +7,11 @@ local A=require(game.ServerScriptService.Server.Cosmetics.WeaponAppearance)
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
 local report={checks=0,skills=0,maxBlenderDegrees=0,pass=false}
 local function check(v,label)report.checks+=1;assert(v,label)end
+-- Source-export parity remains independent of the newly authored basic combo.
+-- Current basic choreography is covered by knight-reference-combo-native/FK tests.
+local original=Client.K0MeleeMotion:Clone();original.Name='KnightSourceParityQA'
+original.Source=original.Source:gsub('require%(script.Parent.K0KnightReferenceCombo%)','require(script.Parent.K0KnightMixamoBasic)')
+original.Parent=Client;local SourceMotion=require(original)
 local combos={forehand=1,backhand=2,overhead=3,wide=2,power=3,brace=1}
 for key,samples in knightGolden do
  local variant=table.find({'wide','power','brace'},key)and'knight.mixamo.'..key or nil
@@ -15,7 +20,7 @@ for key,samples in knightGolden do
   local d=Config.BasicAttackProfiles.knight.attacks[combo]
   local raw=variant and require(Client.K0KnightMixamoVariants)[variant]or require(Client.K0KnightMixamoBasic)[combo]
   local age=sample.age*(d.windup+d.active+d.recovery)/raw.duration
-  local p=M.sample('knight',combo,age,nil,nil,variant,Enum.HumanoidRigType.R15)
+  local p=SourceMotion.sample('knight',combo,age,nil,nil,variant,Enum.HumanoidRigType.R15)
   for ch,expected in sample.angles do
    local e=(p.angles[ch]-Vector3.new(unpack(expected))).Magnitude
    report.maxBlenderDegrees=math.max(report.maxBlenderDegrees,e)
@@ -23,6 +28,7 @@ for key,samples in knightGolden do
   end
  end
 end
+original:Destroy()
 for _,rig in {Enum.HumanoidRigType.R15,Enum.HumanoidRigType.R6}do
  local desc=Instance.new('HumanoidDescription')
  local c=game.Players:CreateHumanoidModelFromDescriptionAsync(desc,rig);desc:Destroy()

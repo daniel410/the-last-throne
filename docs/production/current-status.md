@@ -4,6 +4,8 @@
 
 - 로비 카메라: PLAY 버튼의 영웅 가림을 줄이도록 로비 최소 줌을24 studs로 소스 수정했다. [Studio 후보·상태별 규칙 확인/새 빌드·실기기 미검증](../evidence/lobby-camera-20261114/README.md).
 
+- 기사 기본3타: 지정 영상2:25~2:27을 반영한 내려베기→올려베기→찌르기의 후보 엔진/회귀 검증을 통과했다. [빌드·검증·남은 수용](../evidence/knight-reference-combo-20261114/README.md).
+
 - 드워프 기본3연격: 내려베기→되받아베기→넓은 마무리 베기의 서버3타·R6/R15 후보 검증을 통과했다. [빌드/검증·남은 수용](../evidence/dwarf-three-hit-20261114/README.md).
 
 - 에픽 지도 연결: 실제 도보 경계의 왕복 연결선·다음 지도 버튼·선행 잠금 상태를 소스 추가했다. 후보 Studio 검증, 미게시. [검증/후속 수용](../evidence/epic-map-connections-20261114/README.md).

@@ -10,7 +10,7 @@ end
 
 local Clips = require(script.Parent.K0MeleeClips)
 local DwarfMixamo = require(script.Parent.K0DwarfMixamoClips)
-local KnightMixamo = require(script.Parent.K0KnightMixamoBasic)
+local KnightReference = require(script.Parent.K0KnightReferenceCombo)
 local KnightVariants = require(script.Parent.K0KnightMixamoVariants)
 local channels = Clips.channels
 local rest, guard = {}, {}
@@ -80,7 +80,7 @@ local function definitionFor(classId,combo,skillId)
  if not Clips.clips[classId] or not profile then return nil end
  local index=math.clamp(math.floor(tonumber(combo) or 1),1,#profile.attacks)
  return profile.attacks[index],classId=="dwarf" and DwarfMixamo.basics[index]
-  or classId=="knight" and KnightMixamo[index] or Clips.clips[classId][index]
+  or classId=="knight" and KnightReference[index] or Clips.clips[classId][index]
 end
 
 -- The exported Bezier handles have one-third interval lengths, so each
@@ -188,6 +188,11 @@ local function presentation(record, now)
  local result=record.classId=="dwarf"
   and frame({rest.dwarf,rest.dwarf},{0,.42},age-total)
   or frame({guard[record.classId],guard[record.classId],rest[record.classId]}, {0,.10,.42}, age-total)
+ if record.classId=="knight" and not record.skillId then
+  -- A stopped chain settles from its actual follow-through, never snaps to guard.
+  local finish=Motion.sample(record.classId,record.combo,total,nil,nil,nil,record.rigType)
+  result=frame({finish.angles,guard.knight,rest.knight},{0,.10,.42},age-total)
+ end
  result.cutting=false
  if record.classId=="dwarf" then
   result.axeStrikeTurn=0

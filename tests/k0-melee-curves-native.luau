@@ -92,11 +92,20 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
                 -- Broad backhand/sweep paths may cover up to1.2stud per1/120 cycle;
                 -- exact boundary/contact velocity checks still reject pose jumps.
                 check(maxStep < (classId=="dwarf" and (combo==1 and 1 or 1.2) or .7), "Continuous bounded arc")
-				if classId == "dwarf" and combo==1 or classId=="knight" and combo == 3 then
-					check(loaded.Y-hit.Y > 1, "Loaded weapon descends into contact")
-				else
-					check(classId=="dwarf" and math.abs(hit.X-loaded.X)>.5 or classId=="knight" and (hit.X-loaded.X)*(combo == 2 and 1 or -1)>1, "Side cuts cross the front of the body")
-				end
+                if classId=='knight' then
+                 if combo==1 then check(loaded.Y-hit.Y>1,'Reference first cut descends through contact')
+                 elseif combo==2 then check(hit.Y-loaded.Y>.5,'Reference second cut rises through contact')
+                 else
+                  check(loaded.Z-hit.Z>.5,'Reference finisher extends the sword toward the target')
+                  check(math.abs(hit.Y-loaded.Y)<.5 and math.abs(hit.X-loaded.X)<.5,'Thrust stays in a straight forward corridor')
+                  local _,grip=sample(impact,1/60)
+                  local direction=root.CFrame:VectorToObjectSpace(grip:VectorToWorldSpace(weapon.tip.Position.Unit))
+                  check(direction:Dot(Vector3.new(0,0,-1))>.9,'Thrust points the blade toward the target')
+                 end
+                elseif combo==1 then
+                 check(loaded.Y-hit.Y>1,'Loaded axe descends into contact')
+                else check(math.abs(hit.X-loaded.X)>.5,'Side cuts cross the front of the body')end
+
 				for _, boundary in ipairs({opening,impact,d.windup+d.active+d.recovery*.15,total}) do
 					local before = sample(boundary-.00001, 1/30)
 					local after = sample(boundary+.00001, 1/144)
