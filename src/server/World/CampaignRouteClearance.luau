@@ -4,7 +4,7 @@ local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local Bounds=require(Shared.CampaignBounds)
 local Areas=require(Shared.CampaignAreas)
-local Safety={version=2}
+local Safety={version=3}
 local V=Vector3.new
 local retired={ForestBoundary=true,OccupiedRuins=true,RavineIceWall=true,IceCitadelPillar=true,IceCitadelLintel=true,CoolantPipe=true,EmergencyCoolantPipe=true,WatchtowerPillar=true,AncientTrunk=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
 local movable={BracedMineSupport=true,TestworksHeatTower=true,TreeCollision=true,GroveTrunk=true,OccupiedRuins=true,AltarObelisk=true,FrozenRouteMonument=true,CampBoard=true,BlueprintTable=true}
@@ -37,10 +37,12 @@ function Safety.apply(world,art)
  local anchors,lanes={},{}
  local Guide=require(Shared.CampaignNavigationRoute)
  for _,c in ipairs(Content.chapters)do
+  -- Keep both Easy's added packs and the original difficulty route clear.
+  for _,variant in ipairs({'worldPoints','points'})do
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   for _,g in ipairs(c.goals)do
    table.insert(anchors,V(table.unpack(g.position)))
-   local targets={};local points=c.combatRoutes and c.combatRoutes[g.id]and (c.combatRoutes[g.id].worldPoints or c.combatRoutes[g.id].points)
+   local targets={};local points=c.combatRoutes and c.combatRoutes[g.id]and (c.combatRoutes[g.id][variant] or c.combatRoutes[g.id].points)
    if points and #points>0 then for _,p in ipairs(points)do targets[#targets+1]=p end
    else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do if step.position then targets[#targets+1]=step.position end end end
    for _,p in ipairs(targets)do
@@ -50,6 +52,7 @@ function Safety.apply(world,art)
     end
     previous=at
    end
+  end
   end
  end
  for _,s in pairs(world.spawns)do table.insert(anchors,s.Position)end
