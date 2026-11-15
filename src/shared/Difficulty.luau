@@ -5,7 +5,7 @@ local Easy=game and require(script.Parent.EasyCampaignTuning)or dofile('src/shar
 local CampaignGrowth=game and require(script.Parent.CampaignGrowthBudget)or dofile('src/shared/CampaignGrowthBudget.luau')
 local ModeProgress=game and require(script.Parent.CampaignModeProgress)or dofile('src/shared/CampaignModeProgress.luau')
 -- Balance/rule generation is pinned by the run and persisted hero journal.
-local D={version=17,order={'Easy','Hard','Insane','Hell'},legacyModes={
+local D={version=18,order={'Easy','Hard','Insane','Hell'},legacyModes={
  Easy={level=1,hp=1,damage=1,bossHP=1,bossDamage=1,xp=1,gold=1,ore=6,cores=0,cache=1},
  Hard={level=20,previous='Easy',hp=1.35,damage=1.2,bossHP=1.25,bossDamage=1.15,xp=1.15,gold=1.5,ore=8,cores=1,cache=2},
  Insane={level=40,previous='Hard',hp=1.7,damage=1.4,bossHP=1.5,bossDamage=1.3,xp=1.3,gold=2,ore=10,cores=2,cache=3},
@@ -36,6 +36,17 @@ for id,mode in pairs(D.previousGoldModes)do
  revised.gold=({Easy=1,Hard=1.5,Insane=2,Hell=3})[id]
  D.modes[id]=revised
 end
+-- Rules 18 increase outgoing damage in advanced modes only. Saved rules 15-17
+-- retain their combat contract; health, rewards and entry remain unchanged.
+D.previousAttackModes=D.modes
+D.modes={}
+local advancedDamage={Easy=1,Hard=1.25,Insane=1.35,Hell=1.5}
+for id,mode in pairs(D.previousAttackModes)do
+ local revised={};for key,value in pairs(mode)do revised[key]=value end
+ revised.damage=mode.damage*advancedDamage[id]
+ revised.bossDamage=mode.bossDamage*advancedDamage[id]
+ D.modes[id]=revised
+end
 local Economy=game and require(script.Parent.RewardEconomy)or dofile('src/shared/RewardEconomy.luau')
 local Repeat=game and require(script.Parent.AdventureRepeatRewards)or dofile('src/shared/AdventureRepeatRewards.luau')
 D.families={
@@ -46,10 +57,10 @@ D.families={
  IceTrollKing={hp=1.1,damage=1},KingIceBear={hp=1.15,damage=1},KingIceGolem={hp=1.2,damage=1},QueenIceElf={hp=.9,damage=1},AncientGlacierKing={hp=1.15,damage=1.05},
  MagmaImp={hp=.9,damage=1},MagmaGolem={hp=1.15,damage=1},InfernoOverlord={hp=1,damage=1},CalderaTitan={hp=1.2,damage=1.05},KingVolcanoShaman={hp=.9,damage=1},
 }
-function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==9 or version==10 or version==11 or version==12 or version==13 or version==14 or version==15 or version==16 or version==D.version end
+function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==9 or version==10 or version==11 or version==12 or version==13 or version==14 or version==15 or version==16 or version==17 or version==D.version end
 function D.mode(mode,version)
  if version~=nil and not D.compatible(version)then return nil end
- return (version==1 and D.legacyModes or version==2 and D.previousModes or version~=nil and version<=14 and D.previousGoldModes or D.modes)[mode]
+ return (version==1 and D.legacyModes or version==2 and D.previousModes or version~=nil and version<=14 and D.previousGoldModes or version~=nil and version<=17 and D.previousAttackModes or D.modes)[mode]
 end
 function D.enemyLevel(level,mode,version)
  local m=assert(D.mode(mode,version),'Unsupported difficulty rules')

@@ -136,3 +136,73 @@
    equal(e.repositionUntil,nil,'expired retreat is cleared before its retry window')
   end)
  end)
+
+ case('service-facing-resumes-approved-movement',function()
+  api.injectResolver(function()return 'knight'end)
+  local target=spawnPlayer();local e=storyEnemy('Goblin',18,18)
+  local human=e.humanoid;local commands={}
+  e.humanoid=setmetatable({MoveTo=function(_,point)
+   commands[#commands+1]=point;human:MoveTo(point)
+  end},{__index=function(_,key)return human[key]end,__newindex=function(_,key,value)human[key]=value end})
+  withTacticalSurface(function(platform)
+   platform(e.root.Position)
+   api.stepEnemy(e,0,1/60)
+   local approved=e.moveDestination
+   equal(approved~=nil,true,'chase resolves a safe movement point')
+   local nextDecision=e.nextMoveAt
+   for frame=1,10 do
+    local before=#commands
+    api.stepEnemy(e,frame/60,1/60)
+    equal(#commands,before+1,'each facing update resumes native MoveTo')
+    equal(commands[#commands],approved,'turning reuses the approved goal')
+    equal(e.nextMoveAt,nextDecision,'facing does not bypass navigation cadence')
+   end
+   e.root.Position=target.root.Position+Vector3.new(0,0,-4)
+   api.stepEnemy(e,.2,1/60)
+   equal(e.attack~=nil,true,'approach reaches an actual attack windup')
+   equal(e.moveDestination,nil,'attack clears cached movement')
+   local before=#commands
+   api.moveEnemy(e,approved,.21,false,true)
+   equal(#commands,before,'stopped attack cannot revive stale chase movement')
+  end)
+  e.humanoid=human
+ end)
+ case('service-facing-keeps-blocked-path-stopped',function()
+  local e=storyEnemy('Goblin',12,18)
+  local goal=e.root.Position+Vector3.new(0,0,-12)
+  api.moveEnemy(e,goal,0,false)
+  equal(e.moveDestination,goal,'unblocked move records approved goal')
+  e.nextMoveAt=0;e.nextPathAt=math.huge;e.waypoints=nil
+  api.moveEnemy(e,goal,1,true,true)
+  equal(e.moveDestination,nil,'blocked path discards previous goal')
+  api.moveEnemy(e,goal,1.01,true,true)
+  equal(e.humanoid.WalkToPoint,e.root.Position,'facing retry cannot walk through blocked cover')
+ end)
+
+ case('service-real-r15-chases-and-attacks',function()
+  api.injectResolver(function()return 'knight'end)
+  local target=spawnPlayer()
+  withTacticalSurface(function(platform)
+   platform(origin)
+   local description=Instance.new('HumanoidDescription')
+   local model=Players:CreateHumanoidModelFromDescriptionAsync(description,Enum.HumanoidRigType.R15)
+   description:Destroy()
+   model.Name='ChaseQA';model:PivotTo(CFrame.new(origin+Vector3.new(0,0,-18)))
+   model:SetAttribute('EnemyKind','Goblin');model:SetAttribute('DeepwoodEncounter','qa')
+   model:SetAttribute('StoryRulesVersion',18);model:SetAttribute('StoryDifficulty','Hard')
+   model:SetAttribute('StoryHealth',10000);model:SetAttribute('StoryDamage',120)
+   model.Parent=enemies
+   local e=api.registerEnemy(model)
+   local initial=horizontal(e.root.Position-target.root.Position).Magnitude
+   local start=os.clock();local attacked=false
+   while os.clock()-start<6 do
+    local dt=RunService.Heartbeat:Wait();local current=100+os.clock()-start
+    api.setClock(current);api.stepEnemy(e,current,dt)
+    if e.attack then attacked=true;break end
+   end
+   local final=horizontal(e.root.Position-target.root.Position).Magnitude
+   print('ENEMY_REAL_CHASE '..HttpService:JSONEncode({initial=initial,final=final,attacked=attacked,elapsed=os.clock()-start}))
+   equal(initial-final>8,true,'native R15 physically closes melee distance')
+   equal(attacked,true,'native R15 starts an attack without target teleport or forced begin')
+  end)
+ end)

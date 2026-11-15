@@ -245,6 +245,7 @@ local function setEnemyState(enemy, value)
 end
 
 local function stopEnemy(enemy)
+ enemy.moveDestination=nil
 	if enemy.root.Parent then
 		enemy.humanoid:MoveTo(enemy.root.Position)
 	end
@@ -1485,8 +1486,11 @@ local function closestTarget(enemy, current)
 	return trackedTarget(closest,closestDistance)
 end
 
-local function moveEnemy(enemy, destination, current, forcePath)
+local function moveEnemy(enemy, destination, current, forcePath, resumeAfterFacing)
 	if current < enemy.nextMoveAt then
+  -- RootPart CFrame updates cancel Humanoid MoveTo. Reissue only the last
+  -- navigation-approved point; tactical/path decisions keep their cadence.
+  if resumeAfterFacing and enemy.moveDestination then enemy.humanoid:MoveTo(enemy.moveDestination)end
 		return
 	end
 	enemy.nextMoveAt = current + Config.Enemy.MovementInterval
@@ -1529,6 +1533,7 @@ local function moveEnemy(enemy, destination, current, forcePath)
    stopEnemy(enemy);return
 		end
 	end
+	enemy.moveDestination=destination
 	enemy.humanoid:MoveTo(destination)
 end
 
@@ -1823,7 +1828,7 @@ local function stepEnemy(enemy, current, dt)
   local direction=Vector3.new(facing.X*math.cos(turn)-facing.Z*math.sin(turn),0,facing.X*math.sin(turn)+facing.Z*math.cos(turn))
   enemy.root.CFrame=CFrame.lookAt(enemy.root.Position,enemy.root.Position+direction)
   enemy.humanoid.AutoRotate=false
-  setEnemyState(enemy,'Chase');moveEnemy(enemy,destination,current,intent=='Navigate')
+  setEnemyState(enemy,'Chase');moveEnemy(enemy,destination,current,intent=='Navigate',true)
   return
  end
  local maxRange=enemy.config.attacks[1].range
