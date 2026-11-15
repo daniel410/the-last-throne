@@ -1,0 +1,7 @@
+{
+  "src/server/World/EpicWorldArt.luau": "46140fd7ad2d41d2b9c6753697624be857a220ed7a458b752b27430d0c51e908",
+  "src/server/World/GloamwoodTrailEvidence.luau": "37541ef20142ffbf5163f08118f576b289d64e617182982d467a68bbeae474e6",
+  "tests/gloamwood-trail-evidence-native.luau": "d0a540d392b0f4c89744557057ad0ddb932ad4f64e646a8b3eaea90ba5860b05",
+  "docs/evidence/gw-trail-evidence-20261115/before.png": "17e82e24cadbddd7e3c43d705b6ec840725432f72424d52d03f401e5065432e8",
+  "docs/evidence/gw-trail-evidence-20261115/after.png": "f822075a7831e6fcc2df4f269ed2bc1e575785f3de65f208c5ffa1637cf9d931"
+}
