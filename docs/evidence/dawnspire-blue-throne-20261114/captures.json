@@ -1,0 +1,14 @@
+{
+  "image": "blue-throne.png",
+  "sha256": "bb9c2072b84f974bbb088946c5aad304185b248f6d70a85c3cda8a8ddbd82c81",
+  "scope": "Isolated fixed 0.107.6 artifact, engine-generated lobby; restored hero snapshot; not a published client",
+  "lighting": {
+    "ClockTime": 10,
+    "Brightness": 2,
+    "Ambient": [
+      90,
+      90,
+      100
+    ]
+  }
+}
