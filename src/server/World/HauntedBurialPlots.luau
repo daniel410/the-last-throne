@@ -7,9 +7,9 @@ function M.build(parent,center,size,pal,safe,ground)
  local placed={};local groups=0;local graves=0
  for band,offset in ipairs({V(-.32,0,-.30),V(.32,0,-.18),V(-.30,0,.28),V(.30,0,.32)})do
   local anchor=center+V(offset.X*size[1],0,offset.Z*size[2]);local at
-  for ring=0,5 do
-   for k=0,(ring==0 and 0 or 15)do
-    local a=k*math.pi/8;local q=anchor+V(math.cos(a)*ring*28,0,math.sin(a)*ring*28)
+  for ring=0,10 do
+   for k=0,(ring==0 and 0 or 63)do
+    local a=k*math.pi/32;local q=anchor+V(math.cos(a)*ring*28,0,math.sin(a)*ring*28)
     local supported=safe(q,34) and math.abs(q.X-center.X)+34<size[1]/2 and math.abs(q.Z-center.Z)+34<size[2]/2
     for _,p in ipairs(placed)do if (p-q).Magnitude<80 then supported=false end end
     local foot,hit=ground(q);supported=supported and hit~=false
