@@ -26,5 +26,6 @@ init='-- Authored in Blender MCP; load sampled tables only when a regional kind 
 (output/'init.luau').write_text(init)
 (ROOT/'src/shared/HauntedGraveyardRigs.luau').write_text('-- Existing TD mesh identities with individually reviewed pivots and weapon/focus sockets.\nreturn '+lua(rigs)+'\n')
 manifest={'version':1,'authoring':'Blender 5.2 MCP F-curves; 201 evaluated samples per channel; user scene preserved','species':10,'runtimeKinds':11,'logicalClips':77,'actions':385,'impactPhase':.62,'uploadedNewAssets':False,'modelsSource':'assets/shared/td-haunted-graveyard/manifest.json','files':{f:hashlib.sha256((folder/f).read_bytes()).hexdigest()for f in ['authoring-keys.json','clips.json','rigs.json','source-models.json']},'modules':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()for p in output.glob('*.luau')}}
+manifest['individualRevisions']={kind:model['motionRevision']for kind,model in data['models'].items()if 'motionRevision'in model}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('11 per-model modules / 77 clips / 385 Blender F-curves exported')

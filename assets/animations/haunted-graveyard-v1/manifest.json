@@ -9,8 +9,8 @@
   "uploadedNewAssets": false,
   "modelsSource": "assets/shared/td-haunted-graveyard/manifest.json",
   "files": {
-    "authoring-keys.json": "bfd5cfad9f77b2809db009f95ea4c0080aec8943131ed2b1ba315737bfa7051e",
-    "clips.json": "2949aab01575df7cf81ace4bfee282a2ed3c815154724eaac3b57ac72b1f51d4",
+    "authoring-keys.json": "8d9f40e6fa9422485f3d987cfbffedea319210d4d4a3479b39a64c15aca703a9",
+    "clips.json": "e5ef69abd67fd13d3ba19045c9dd4b49310025e641a75d1e0eead98983199f73",
     "rigs.json": "63b766291ea459941f21e5f99a8aedbe90f48b2017539144b1f7959e5b061b93",
     "source-models.json": "e65eb9e9bf2f2dac62a7be0e2d375caf233c01bcd900a0184b3c75e99c7ff898"
   },
@@ -23,17 +23,13 @@
     "src/client/HauntedGraveyardClips/Lich.luau": "f8a3e38a8cdafc590974f8424e97b36dbe71f6fbf2d8233d49b417109c5be58a",
     "src/client/HauntedGraveyardClips/Veyr.luau": "40deca19495e33687b24536be0cd6e9e9f6b7dc3aa378289c85766ae583b818d",
     "src/client/HauntedGraveyardClips/Mummy.luau": "17a11fa8dfb733a7b80d09eb6ddb7f3d10f6d822d6b669d95d5f8b23573ac6b5",
-    "src/client/HauntedGraveyardClips/Zombie.luau": "640f856c41bc6bb4846444add9fec32034566061dd98090a7dc99db6a15d28e8",
+    "src/client/HauntedGraveyardClips/Zombie.luau": "2930f64107d4c08354252ffb79a369a12872e7761af181e43fb24d1208260742",
     "src/client/HauntedGraveyardClips/DeathKnight.luau": "02f4fbfecf9d91888517149152c7f6552bf0225c30091d4c0d7cce344d7d90c5",
-    "src/client/HauntedGraveyardClips/Ghoul.luau": "72f2a5361754a72a609a1a731f1e68b7c4b297c4776b1879ac65f32abc3a6a4b",
-    "src/client/HauntedGraveyardClips/init.luau": "5dd3f965e3870d9e569083fa326d7c38adcf83ec31fc46f11f571b5d1ce2be7b"
+    "src/client/HauntedGraveyardClips/Ghoul.luau": "507466a81b967616108ee30f48ce58e00a0862b56ff743691f28b00ae4d77e2c",
+    "src/client/HauntedGraveyardClips/init.luau": "ae96b5dee75c82bb019271b6443fd4d4d55b4cfd95252c99d8155e3c5a62e902"
   },
-  "refresh20261115": {
-    "kinds": [
-      "Zombie",
-      "Ghoul"
-    ],
-    "authoring": "Existing Blender samples adapted to refreshed TD pivots; Ghoul uses Zombie leg gait; Zombie arm axes limited to 0.1 radians. Ghoul retains rigid-arm whole-body attacks.",
-    "newBlenderEvaluation": false
+  "individualRevisions": {
+    "Zombie": "undead-individual-v2",
+    "Ghoul": "undead-individual-v2"
   }
 }

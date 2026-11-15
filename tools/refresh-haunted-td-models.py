@@ -60,6 +60,11 @@ for kind in ['Zombie', 'Ghoul']:
     provenance[kind] = {'tdPath': str((SOURCE / 'runtime-r3' / template / 'mesh-only.glb').relative_to(TD)),
                         'sha256': sha((SOURCE / 'runtime-r3' / template / 'mesh-only.glb').read_bytes()),
                         'tdCommit': td_commit, 'runtimeSha256': sha(raw)}
+    # A source resync must not replace subsequently reviewed individual motion.
+    if all(data['models'][kind].get('motionRevision') == 'undead-individual-v2' for data in [clips, keys]):
+        for data in [clips, keys]:
+            assert data['models'][kind]['pivots'] == pivots
+        continue
     # Retain server timing and the existing RPG whole-body attacks. New legs use
     # the established Zombie support gait; no new animation assets are uploaded.
     for data in [clips, keys]:
@@ -101,6 +106,7 @@ for path, data in [('clips.json', clips), ('authoring-keys.json', keys)]:
 subprocess.run(['python3', str(ROOT / 'tools/export-haunted-motion.py')], check=True)
 # Describe the derivative honestly: existing Blender samples adapted to new pivots.
 motion_manifest = json.loads((MOTION / 'manifest.json').read_text())
-motion_manifest['refresh20261115'] = {'kinds': ['Zombie', 'Ghoul'], 'authoring': 'Existing Blender samples adapted to refreshed TD pivots; Ghoul uses Zombie leg gait; Zombie arm axes limited to 0.1 radians. Ghoul retains rigid-arm whole-body attacks.', 'newBlenderEvaluation': False}
+if not motion_manifest.get('individualRevisions'):
+    motion_manifest['refresh20261115'] = {'kinds': ['Zombie', 'Ghoul'], 'authoring': 'Existing Blender samples adapted to refreshed TD pivots; Ghoul uses Zombie leg gait; Zombie arm axes limited to 0.1 radians. Ghoul retains rigid-arm whole-body attacks.', 'newBlenderEvaluation': False}
 write(MOTION / 'manifest.json', motion_manifest)
 print('Refreshed only Zombie/Ghoul; TD runtime and other HG species preserved.')
