@@ -1,0 +1,56 @@
+{
+  "baseBuild": "0.109.2",
+  "after": "same scene plus final CampaignSurfaceUnderlays candidate",
+  "cameras": [
+    {
+      "id": "GW-01",
+      "theme": "Gloamwood",
+      "eye": [
+        -724.8499755859375,
+        114,
+        -3924.39990234375
+      ],
+      "look": [
+        -894.8499755859375,
+        59,
+        -4084.39990234375
+      ]
+    },
+    {
+      "id": "EC-05",
+      "theme": "EmberCaldera",
+      "eye": [
+        367.1499938964844,
+        216,
+        -13455.400390625
+      ],
+      "look": [
+        197.14999389648438,
+        161,
+        -13615.400390625
+      ]
+    },
+    {
+      "id": "HG-03",
+      "theme": "HauntedGraveyard",
+      "eye": [
+        453.1499938964844,
+        240,
+        -16149.400390625
+      ],
+      "look": [
+        283.1499938964844,
+        185,
+        -16309.400390625
+      ]
+    }
+  ],
+  "files": {
+    "after-HG-03.png": "cf54b18a36b94efc4e119db0776d5c7972919f7e862311b1481dd9256ce67859",
+    "before-EC-05.png": "9fe5d376cacbea39f3d9a1082ca48e345c428bba0ef0af739e9f51b7939bc5ad",
+    "before-GW-01.png": "c0b094ba3c9e9ff6bd23ee3e3c2196a46ace785b24f8a81b44ecd7a7d44aeac4",
+    "after-EC-05.png": "52096d3c0921e312bdb81a479360ede0037e1129bb1e2af31947d906e245c65b",
+    "before-HG-03.png": "360aa9c66ff03d95a59be7e3ddcfff25d65b4511017ab820704a56205ecd99ab",
+    "after-GW-01.png": "6075f53bf9dc35a2939b0252743bd8bb33e928422dd17a14f07578461c1c6587"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "src/server/World/CampaignSurfaceFinish.luau": "37f6b624e4f9414044724098ce143f12abaea40ec61d8de5f2710978f5bc0239",
+  "src/server/World/FrozenSurfaceUnderlays.luau": "21fff85126400f92324f6e0d3a09f88ecbc3f42fe58c7541981d08b9607ab6d6",
+  "src/server/World/CampaignSurfaceUnderlays.luau": "de0425afb1dc7db30c132516d95916c375134d42f964bddb60768864fab88187",
+  "tests/regional-concept-art-native.luau": "ef84cd759edf27841853dba5545732451f78d8ad21188d57f32d3c0ee899ed64",
+  "tests/campaign-story-composition-native.luau": "8b599f1d140ee201931744378efc13d8d23be98fd502b01fc102e7d1b749a008",
+  "tests/scenery-collision-native.luau": "84f63e87de3262fd7df54458b18f9e6451fdd2d1c90c4324f579be80f0179ac0",
+  "tests/campaign-combat-route-world-native.luau": "fca9e0919051f1be0e797475d525cb260aa002ed97f7bbe1741c2440172d0ad6",
+  "tests/epic-environment-native.luau": "64261fd65d9f7d28ee53aeabbc254873028c54b9099f6121409a13326941ea83",
+  "tests/story-terrain-fixes-native.luau": "82275e38e4f4129cf7975a13bdc1992f8874df1f6272b1bf648ef353a35d021b",
+  "tests/frozen-ravine-landforms-native.luau": "72e65f6a885942105ad2312af7f3e52ff8739861c73903136db72c3076247a0d",
+  "tests/frozen-ravine-vegetation-native.luau": "ffa2f032ef1282f55968048c0372d2ae9dd6d1978fa45b72baf33dc6ce70b9ee",
+  "tests/frozen-surface-underlays-native.luau": "02bbd21f33655b5c149043673dfde314b271565781b7917e2b6756f2903895a7",
+  "tests/regional-surface-underlays-native.luau": "82650a5bc8b87a323c2fee9f3b163ae7c4b21279e5010b19603708f2613572a3",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6",
+  "tests/regional-underlay-walk-native.luau": "7eeb132fcf06a861cf8edd430200353113ca25d0c9cff29e2dacce6a3ee162a6"
+}

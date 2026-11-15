@@ -1,0 +1,200 @@
+[
+  {
+    "top": 54,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.LateEpicFoundation.Support_GW-01",
+    "transparency": 0,
+    "zone": "GW-01",
+    "color": [
+      0.3019607961177826,
+      0.3686274588108063,
+      0.2862745225429535
+    ],
+    "material": "Slate",
+    "position": [
+      -894.8499755859375,
+      4,
+      -4084.39990234375
+    ],
+    "size": [
+      748,
+      100,
+      562
+    ]
+  },
+  {
+    "top": 53.99999924004078,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.GW-01.Ground",
+    "transparency": 0,
+    "zone": "GW-01",
+    "color": [
+      0.2862745225429535,
+      0.35686275362968445,
+      0.34117648005485535
+    ],
+    "material": "Grass",
+    "position": [
+      -894.8499755859375,
+      53.79999923706055,
+      -4084.39990234375
+    ],
+    "size": [
+      748,
+      0.4000000059604645,
+      562
+    ]
+  },
+  {
+    "top": 54,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation2.JourneyGround",
+    "transparency": 0,
+    "zone": "GW-01",
+    "color": [
+      0.2862745225429535,
+      0.35686275362968445,
+      0.34117648005485535
+    ],
+    "material": "Grass",
+    "position": [
+      -894.8499755859375,
+      22,
+      -4084.39990234375
+    ],
+    "size": [
+      748,
+      64,
+      562
+    ]
+  },
+  {
+    "top": 156,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-05",
+    "transparency": 0,
+    "zone": "EC-05",
+    "color": [
+      0.1882352977991104,
+      0.18431372940540314,
+      0.21176470816135406
+    ],
+    "material": "Basalt",
+    "position": [
+      197.14999389648438,
+      101,
+      -13615.400390625
+    ],
+    "size": [
+      726,
+      110,
+      452
+    ]
+  },
+  {
+    "top": 156.00000305473804,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BasaltGround",
+    "transparency": 0,
+    "zone": "EC-05",
+    "color": [
+      0.30588236451148987,
+      0.25882354378700256,
+      0.27450981736183167
+    ],
+    "material": "Basalt",
+    "position": [
+      197.14999389648438,
+      155.8000030517578,
+      -13615.400390625
+    ],
+    "size": [
+      726,
+      0.4000000059604645,
+      452
+    ]
+  },
+  {
+    "top": 156,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+    "transparency": 0,
+    "zone": "EC-05",
+    "color": [
+      0.30588236451148987,
+      0.25882354378700256,
+      0.27450981736183167
+    ],
+    "material": "Basalt",
+    "position": [
+      197.14999389648438,
+      124,
+      -13615.400390625
+    ],
+    "size": [
+      726,
+      64,
+      452
+    ]
+  },
+  {
+    "top": 180,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.LateEpicFoundation.Support_HG-03",
+    "transparency": 0,
+    "zone": "HG-03",
+    "color": [
+      0.42352941632270813,
+      0.45098039507865906,
+      0.5137255191802979
+    ],
+    "material": "Slate",
+    "position": [
+      283.1499938964844,
+      130,
+      -16309.400390625
+    ],
+    "size": [
+      572,
+      100,
+      600
+    ]
+  },
+  {
+    "top": 180.00000305473804,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.HG-03.Ground",
+    "transparency": 0,
+    "zone": "HG-03",
+    "color": [
+      0.3490196168422699,
+      0.4117647111415863,
+      0.3843137323856354
+    ],
+    "material": "Slate",
+    "position": [
+      283.1499938964844,
+      179.8000030517578,
+      -16309.400390625
+    ],
+    "size": [
+      572,
+      0.4000000059604645,
+      600
+    ]
+  },
+  {
+    "top": 180,
+    "path": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation5.JourneyGround",
+    "transparency": 0,
+    "zone": "HG-03",
+    "color": [
+      0.3490196168422699,
+      0.4117647111415863,
+      0.3843137323856354
+    ],
+    "material": "Slate",
+    "position": [
+      283.1499938964844,
+      148,
+      -16309.400390625
+    ],
+    "size": [
+      572,
+      64,
+      600
+    ]
+  }
+]
