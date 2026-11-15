@@ -1,0 +1,14 @@
+[
+  {
+    "test": "campaign-mode-migration",
+    "sourceCommit": "5db7f7fca588074edf02f0995d8948c673000579",
+    "exit": 1,
+    "output": "lua: ...x/the-last-throne/tests/campaign-mode-migration.spec.lua:10: Easy canonical journal keeps accepted side quest\nstack traceback:\n\t[C]: in global 'assert'\n\t...x/the-last-throne/tests/campaign-mode-migration.spec.lua:10: in local 'check'\n\t...x/the-last-throne/tests/campaign-mode-migration.spec.lua:61: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "test": "campaign-mode-legacy-replay",
+    "sourceCommit": "5db7f7fca588074edf02f0995d8948c673000579",
+    "exit": 1,
+    "output": "lua: src/shared/CampaignModeProgress.luau:121: Invalid merged campaign journal\nstack traceback:\n\t[C]: in global 'assert'\n\tsrc/shared/CampaignModeProgress.luau:121: in field 'merge'\n\tsrc/server/Inventory/InventoryRules.luau:496: in field 'story'\n\tsrc/shared/AdventureRules.luau:218: in field 'event'\n\t...e-last-throne/tests/campaign-mode-legacy-replay.spec.lua:66: in upvalue 'apply'\n\t...e-last-throne/tests/campaign-mode-legacy-replay.spec.lua:75: in local 'fn'\n\t...e-last-throne/tests/campaign-mode-legacy-replay.spec.lua:19: in upvalue 'events'\n\t...e-last-throne/tests/campaign-mode-legacy-replay.spec.lua:74: in local 'finish'\n\t...e-last-throne/tests/campaign-mode-legacy-replay.spec.lua:117: in main chunk\n\t[C]: in ?\n"
+  }
+]

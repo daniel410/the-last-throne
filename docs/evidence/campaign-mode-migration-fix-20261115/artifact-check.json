@@ -1,0 +1,19 @@
+{
+  "version": "0.109.4",
+  "sourceCommit": "561fd152c2efed6f89d5270ed70b4cba33158a39",
+  "sourceChecks": [
+    {
+      "source": "src/shared/CampaignModeProgress.luau",
+      "matches": true
+    },
+    {
+      "source": "src/shared/AdventureRules.luau",
+      "matches": true
+    },
+    {
+      "source": "src/server/Inventory/InventoryRules.luau",
+      "matches": true
+    }
+  ],
+  "artifactScripts": 500
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "test": "inventory",
+    "exit": 0,
+    "output": "Inventory: 276 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n"
+  },
+  {
+    "test": "economy",
+    "exit": 0,
+    "output": "Economy: 38 checks passed\n"
+  },
+  {
+    "test": "difficulty-diamonds",
+    "exit": 0,
+    "output": "Difficulty Diamonds: 3180 checks passed\n"
+  },
+  {
+    "test": "all-epic-diamonds",
+    "exit": 0,
+    "output": "All epic Diamonds: 1099 checks passed\n"
+  },
+  {
+    "test": "lobby-side-quests",
+    "exit": 0,
+    "output": "LOBBY_SIDE_QUESTS 539 checks passed\n"
+  },
+  {
+    "test": "expedition-store",
+    "exit": 0,
+    "output": "Expedition store: 43 checks passed\n"
+  },
+  {
+    "test": "hard-unlock",
+    "exit": 0,
+    "output": "Hard unlock rewards: 56 checks passed\n"
+  },
+  {
+    "test": "expedition-presentation",
+    "exit": 0,
+    "output": "Expedition presentation: 24 checks passed\n"
+  },
+  {
+    "test": "story-lobby-resume",
+    "exit": 0,
+    "output": "Story lobby resume: 33 checks passed\n"
+  }
+]

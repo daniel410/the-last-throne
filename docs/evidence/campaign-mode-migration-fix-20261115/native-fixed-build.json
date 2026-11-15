@@ -1,0 +1,21 @@
+{
+  "version": "0.109.4",
+  "sourceCommit": "561fd152c2efed6f89d5270ed70b4cba33158a39",
+  "studioId": "4c815ac2-484e-43ba-ab55-37ce05a47dd6",
+  "method": "Exact built rbxlx in isolated Edit DataModel, PlaceId 0 and no players; ten source pins and full source compile before suites",
+  "checks": 9255,
+  "output": [
+    "MODE_ALL_SOURCE_COMPILE true",
+    "Completed mode campaign: Easy",
+    "Completed mode campaign: Hard",
+    "Completed mode campaign: Insane",
+    "Completed mode campaign: Hell",
+    "Campaign mode progress: 4621 checks passed",
+    "MODE_PROFILE_BYTES 115144",
+    "CAMPAIGN_MODE_MIGRATION 88 checks passed",
+    "Campaign mode legacy replay: 3723 checks passed",
+    "COMBAT_ROUTE_RUNTIME {\"checks\":823,\"kind\":\"COMBAT_ROUTE_RUNTIME\"}",
+    "CAMPAIGN_MODE_NATIVE_PASS true"
+  ],
+  "rawConsole": "ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.\nContentId: rbxassethash://9f652390a8f570eb1c9c469037d6382b failed due to: Request must have a PlaceId set.\nContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.\nContentId: rbxassethash://45a84a576ad52cab4163fe70de30a0c0 failed due to: Request must have a PlaceId set.\nContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.\nMODE_ALL_SOURCE_COMPILE true\nCompleted mode campaign: Easy\nCompleted mode campaign: Hard\nCompleted mode campaign: Insane\nCompleted mode campaign: Hell\nCampaign mode progress: 4621 checks passed\nMODE_PROFILE_BYTES 115144\nCAMPAIGN_MODE_MIGRATION 88 checks passed\nCampaign mode legacy replay: 3723 checks passed\nCOMBAT_ROUTE_RUNTIME {\"checks\":823,\"kind\":\"COMBAT_ROUTE_RUNTIME\"}\nCAMPAIGN_MODE_NATIVE_PASS true"
+}

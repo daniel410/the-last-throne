@@ -1,0 +1,12 @@
+[
+  {
+    "test": "campaign-mode-migration",
+    "exit": 0,
+    "output": "CAMPAIGN_MODE_MIGRATION 88 checks passed\n"
+  },
+  {
+    "test": "campaign-mode-legacy-replay",
+    "exit": 0,
+    "output": "Campaign mode legacy replay: 3723 checks passed\n"
+  }
+]
