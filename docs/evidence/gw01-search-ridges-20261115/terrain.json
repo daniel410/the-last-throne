@@ -1,0 +1,58 @@
+{
+  "terrainParts": 0,
+  "ridges": {
+    "ShoulderWest3": {
+      "height": 17.48944091796875,
+      "materials": {
+        "Grass": 65,
+        "Rock": 7
+      }
+    },
+    "ShoulderEast5": {
+      "height": 26.892532348632812,
+      "materials": {
+        "Grass": 50,
+        "Rock": 22
+      }
+    },
+    "SkylineWest1": {
+      "height": 73.718994140625,
+      "materials": {
+        "Grass": 1042,
+        "Rock": 41,
+        "Slate": 2
+      }
+    },
+    "SkylineEast5": {
+      "height": 46.84220886230469,
+      "materials": {
+        "Grass": 1031,
+        "Rock": 44,
+        "Slate": 10
+      }
+    },
+    "ShoulderWest2": {
+      "height": 29.781341552734375,
+      "materials": {
+        "Grass": 67,
+        "Rock": 5
+      }
+    },
+    "ShoulderEast1": {
+      "height": 21.505859375,
+      "materials": {
+        "Grass": 71,
+        "Rock": 1
+      }
+    },
+    "SkylineWest5": {
+      "height": 60.31959533691406,
+      "materials": {
+        "Grass": 1039,
+        "Rock": 42,
+        "Slate": 4
+      }
+    }
+  },
+  "checks": 3581
+}
