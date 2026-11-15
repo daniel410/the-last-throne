@@ -1,0 +1,24 @@
+{
+  "baselineBuild": "0.107.10",
+  "firstAttemptBuild": "0.107.11",
+  "sameExistingEasyBlockers": [
+    {
+      "part": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-03.GroundAndPaths.CarvedHeadstone.Headstone",
+      "at": "190.5206298828125, 183.34890747070312, -16137.8193359375",
+      "position": "191.48236083984375, 187.04891967773438, -16139.1669921875",
+      "label": "HG-03:exp_1:step1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-06.GroundAndPaths.Sarcophagus.TombLid",
+      "at": "-365.9963684082031, 193.9184112548828, -17944.43359375",
+      "position": "-372.6434631347656, 199.37786865234375, -17947.103515625",
+      "label": "HG-06:seal:confirmed"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-06.GroundAndPaths.Sarcophagus.SarcophagusChest",
+      "at": "-367.9219665527344, 194.37786865234375, -17940.927734375",
+      "position": "-372.6434631347656, 196.37786865234375, -17947.103515625",
+      "label": "HG-06:seal:confirmed"
+    }
+  ]
+}

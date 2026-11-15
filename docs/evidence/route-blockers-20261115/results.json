@@ -1,0 +1,526 @@
+{
+  "sourceCommit": "ea52a7785062f1b904cd52e0814bf6ce584b56fe",
+  "build": "0.107.12",
+  "navigation": {
+    "points": {
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 6,
+          "connectors": 9,
+          "steps": 8093,
+          "samples": 8396,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "blockers": 0,
+      "floorFailures": 0,
+      "corrections": 0,
+      "routeFailures": 0,
+      "lowSteps": [
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BasaltGround",
+          "at": "487.98211669921875, 154.69818115234375, -13387.8564453125",
+          "rise": 1.3018219023942947,
+          "label": "EC-04 -> EC-05"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-05",
+          "at": "487.98211669921875, 154.69818115234375, -13387.8564453125",
+          "rise": 1.30181884765625,
+          "label": "EC-04 -> EC-05"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+          "at": "487.98211669921875, 154.69818115234375, -13387.8564453125",
+          "rise": 1.30181884765625,
+          "label": "EC-04 -> EC-05"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-06.BasaltGround",
+          "at": "-112.01788330078125, 162.6981964111328, -13867.8564453125",
+          "rise": 1.3018066436052322,
+          "label": "EC-05 -> EC-06"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-06",
+          "at": "-112.01788330078125, 162.6981964111328, -13867.8564453125",
+          "rise": 1.3018035888671875,
+          "label": "EC-05 -> EC-06"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+          "at": "-112.01788330078125, 162.6981964111328, -13867.8564453125",
+          "rise": 1.3018035888671875,
+          "label": "EC-05 -> EC-06"
+        }
+      ]
+    },
+    "worldPoints": {
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 6,
+          "connectors": 9,
+          "steps": 8223,
+          "samples": 8526,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "blockers": 0,
+      "floorFailures": 0,
+      "corrections": 0,
+      "routeFailures": 0,
+      "lowSteps": [
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BasaltGround",
+          "at": "487.98211669921875, 154.69818115234375, -13387.8564453125",
+          "rise": 1.3018219023942947,
+          "label": "EC-04 -> EC-05"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-05",
+          "at": "487.98211669921875, 154.69818115234375, -13387.8564453125",
+          "rise": 1.30181884765625,
+          "label": "EC-04 -> EC-05"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+          "at": "487.98211669921875, 154.69818115234375, -13387.8564453125",
+          "rise": 1.30181884765625,
+          "label": "EC-04 -> EC-05"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-06.BasaltGround",
+          "at": "-112.01788330078125, 162.6981964111328, -13867.8564453125",
+          "rise": 1.3018066436052322,
+          "label": "EC-05 -> EC-06"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-06",
+          "at": "-112.01788330078125, 162.6981964111328, -13867.8564453125",
+          "rise": 1.3018035888671875,
+          "label": "EC-05 -> EC-06"
+        },
+        {
+          "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+          "at": "-112.01788330078125, 162.6981964111328, -13867.8564453125",
+          "rise": 1.3018035888671875,
+          "label": "EC-05 -> EC-06"
+        }
+      ]
+    }
+  },
+  "physicalWalks": {
+    "EC-05_points": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-05_points",
+      "distance": 4.411054611206055,
+      "position": "236.61251831054688, 159.19241333007812, -13317.1826171875",
+      "elapsed": 9.331693124957383
+    },
+    "EC-05_worldPoints": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-05_worldPoints",
+      "distance": 4.479412078857422,
+      "position": "236.5538787841797, 159.19241333007812, -13317.2177734375",
+      "elapsed": 8.669999500038102
+    },
+    "GW-01_worldPoints": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "GW-01_worldPoints",
+      "distance": 6.784029960632324,
+      "position": "-455.2340393066406, 67.19239807128906, -4084.39404296875",
+      "elapsed": 7.066489166696556
+    },
+    "GW-01_points": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "GW-01_points",
+      "distance": 6.920840263366699,
+      "position": "-455.370849609375, 67.19239807128906, -4084.393310546875",
+      "elapsed": 8.666932041640393
+    }
+  },
+  "regressions": {
+    "SCENERY_COLLISION_NATIVE": {
+      "failureCount": 0,
+      "casts": {
+        "4arches": true,
+        "3arches": true,
+        "5arches": true,
+        "3sceneWalls": true,
+        "3trunks": true,
+        "2trunks": true,
+        "1trunks": true,
+        "5rocks": true,
+        "3rocks": true,
+        "4rocks": true,
+        "1rocks": true,
+        "2rocks": true,
+        "5trunks": true,
+        "5walls": true,
+        "2arches": true,
+        "1arches": true,
+        "2walls": true,
+        "1walls": true,
+        "4walls": true,
+        "3walls": true
+      },
+      "decorations": 8806,
+      "checks": 28942,
+      "solids": 9188,
+      "failures": [],
+      "pass": true,
+      "byEpic": [
+        {
+          "trunks": 293,
+          "sceneWalls": 0,
+          "arches": 45,
+          "rocks": 56,
+          "walls": 1835
+        },
+        {
+          "trunks": 283,
+          "sceneWalls": 0,
+          "arches": 38,
+          "rocks": 27,
+          "walls": 949
+        },
+        {
+          "trunks": 204,
+          "sceneWalls": 60,
+          "arches": 46,
+          "rocks": 55,
+          "walls": 1418
+        },
+        {
+          "trunks": 0,
+          "sceneWalls": 0,
+          "arches": 50,
+          "rocks": 30,
+          "walls": 1970
+        },
+        {
+          "trunks": 276,
+          "sceneWalls": 0,
+          "arches": 38,
+          "rocks": 23,
+          "walls": 1492
+        }
+      ]
+    },
+    "STORY_TERRAIN_FIXES": {
+      "zones": 44,
+      "paths": 6504,
+      "landmarks": {
+        "GW-03": {
+          "scale": 1.2999999523162842,
+          "details": 12,
+          "parts": 54
+        },
+        "EC-S1": {
+          "scale": 0.8500000238418579,
+          "details": 0,
+          "parts": 42
+        },
+        "FV-05": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 35
+        },
+        "FV-S2": {
+          "scale": 0.8500000238418579,
+          "details": 0,
+          "parts": 49
+        },
+        "GW-07": {
+          "scale": 1.2999999523162842,
+          "details": 12,
+          "parts": 77
+        },
+        "EC-03": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 34
+        },
+        "EC-S2": {
+          "scale": 0.8500000238418579,
+          "details": 0,
+          "parts": 47
+        },
+        "GW-01": {
+          "scale": 1.2999999523162842,
+          "details": 12,
+          "parts": 82
+        },
+        "FV-02": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 48
+        },
+        "FV-S3": {
+          "scale": 0.8500000238418579,
+          "details": 0,
+          "parts": 15
+        },
+        "FV-04": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 36
+        },
+        "HG-03": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 58
+        },
+        "HG-02": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 61
+        },
+        "GW-05": {
+          "scale": 1.2999999523162842,
+          "details": 12,
+          "parts": 70
+        },
+        "FV-03": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 18
+        },
+        "FV-01": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 48
+        },
+        "HG-06": {
+          "scale": 1.649999976158142,
+          "details": 0,
+          "parts": 80
+        },
+        "HG-04": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 49
+        },
+        "FV-06": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 31
+        },
+        "EC-04": {
+          "scale": 1,
+          "details": 0,
+          "parts": 67
+        },
+        "FV-S1": {
+          "scale": 0.8500000238418579,
+          "details": 0,
+          "parts": 22
+        },
+        "EC-02": {
+          "scale": 1.649999976158142,
+          "details": 0,
+          "parts": 64
+        },
+        "EC-05": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 62
+        },
+        "GW-02": {
+          "scale": 1.2999999523162842,
+          "details": 12,
+          "parts": 81
+        },
+        "HG-05": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 22
+        },
+        "EC-S3": {
+          "scale": 0.8500000238418579,
+          "details": 0,
+          "parts": 16
+        },
+        "EC-01": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 19
+        },
+        "HG-01": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 34
+        },
+        "GW-04": {
+          "scale": 1.2999999523162842,
+          "details": 12,
+          "parts": 58
+        },
+        "GW-06": {
+          "scale": 1.2999999523162842,
+          "details": 12,
+          "parts": 77
+        },
+        "EC-06": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 17
+        },
+        "HG-07": {
+          "scale": 1.2999999523162842,
+          "details": 0,
+          "parts": 20
+        },
+        "EC-07": {
+          "scale": 1,
+          "details": 3,
+          "parts": 22
+        },
+        "FV-07": {
+          "scale": 1.649999976158142,
+          "details": 0,
+          "parts": 52
+        }
+      },
+      "checks": 23634
+    },
+    "FROZEN_RAVINE_LANDFORMS": {
+      "terrainParts": 0,
+      "ridges": {
+        "ShoulderEast7": {
+          "height": 29.028106689453125,
+          "materials": {
+            "Glacier": 5,
+            "Snow": 67
+          }
+        },
+        "ShoulderEast5": {
+          "height": 36.20050048828125,
+          "materials": {
+            "Glacier": 10,
+            "Snow": 62
+          }
+        },
+        "ShoulderEast4": {
+          "height": 27.998275756835938,
+          "materials": {
+            "Glacier": 21,
+            "Snow": 51
+          }
+        },
+        "SkylineEast5": {
+          "height": 113.705810546875,
+          "materials": {
+            "Glacier": 90,
+            "Snow": 995
+          }
+        },
+        "ShoulderWest3": {
+          "height": 23.570755004882812,
+          "materials": {
+            "Glacier": 8,
+            "Snow": 64
+          }
+        },
+        "ShoulderEast6": {
+          "height": 21.516036987304688,
+          "materials": {
+            "Glacier": 1,
+            "Snow": 71
+          }
+        }
+      },
+      "checks": 1523
+    }
+  }
+}

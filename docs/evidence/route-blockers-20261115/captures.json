@@ -1,0 +1,38 @@
+{
+  "beforeBuild": "0.107.10",
+  "afterBuild": "0.107.12",
+  "lighting": "default fresh Edit lighting; no regional mood override",
+  "state": "no players; no saved personal completion",
+  "cameras": {
+    "gw01": {
+      "position": [
+        -630,
+        92,
+        -3975
+      ],
+      "lookAt": [
+        -592,
+        70,
+        -4034
+      ]
+    },
+    "ec05": {
+      "position": [
+        224,
+        176,
+        -13465
+      ],
+      "lookAt": [
+        254,
+        157,
+        -13502
+      ]
+    }
+  },
+  "files": {
+    "after-gw01.png": "e15fd27080ef790d7d90bd9065fe4482c76e83396407ef92eb72a5eb75fb07af",
+    "before-ec05.png": "b8c1b8d949123ce17c1859b2d0c205c9d2dd90c6781c1f74f1c3e141903dd942",
+    "before-gw01.png": "07d3e0f7d141d906a1058e28654f742223415b50d3dece0ce04eb1a081a1d5f2",
+    "after-ec05.png": "3986cbc70e80a69b3e5dbaab8fa5a977294ec98f126a5c9c65104c8ec7c11222"
+  }
+}
