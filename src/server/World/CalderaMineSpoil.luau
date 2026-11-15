@@ -31,6 +31,7 @@ function M.build(root,center,size,pal,safe,ground)
   end
   if at then
    local group=Instance.new('Model');group.Name='ColdBasaltSpoil';group.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
+   group.WorldPivot=CFrame.new(at)
    group:SetAttribute('MineSpoilBand',band);group:SetAttribute('GroundPosition',at)
    group:SetAttribute('SourceKind','DerivedPinnedTD:VolcanoCliff');group.Parent=root
    -- A large fractured piece, a lower shoulder and a small toe: unequal massing.
@@ -38,6 +39,8 @@ function M.build(root,center,size,pal,safe,ground)
     local foot=ground(at+spec[1]);local rock=Env.asset(group,'VolcanoCliff',foot,spec[2])
     local cf=rock:GetBoundingBox()
     rock:PivotTo(CFrame.new(cf.Position)*CFrame.Angles(0,band*.87+i*.61,0)*CFrame.Angles(0,0,math.pi/2)*cf:ToObjectSpace(rock:GetPivot()))
+    -- Keep world-up bounds: route relocation and grounding use their bottom.
+    rock.PrimaryPart=nil;rock.WorldPivot=CFrame.new(foot)
     local bounds,extent=rock:GetBoundingBox()
     rock:PivotTo(rock:GetPivot()+V(0,foot.Y-(bounds.Y-extent.Y/2)-.25,0))
     rock:SetAttribute('MineSpoilHeight',spec[2]);rock:SetAttribute('GroundPosition',foot)
