@@ -1,0 +1,29 @@
+COMMAND lua tests/hard-unlock.spec.lua
+EXIT 0
+Hard unlock rewards: 56 checks passed
+
+COMMAND lua tests/campaign-combat-routes.spec.lua
+EXIT 0
+Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger
+
+COMMAND lua tests/story-respawn.spec.lua
+EXIT 1
+lua: [string "return function(options,state,Content,Replica..."]:4: bad argument #1 to 'for iterator' (table expected, got nil)
+stack traceback:
+	[C]: in for iterator 'for iterator'
+	[string "return function(options,state,Content,Replica..."]:4: in field 'destination'
+	[string "return function(heroSession,world,story) loca..."]:3: in local 'resolve'
+	tests/story-respawn.spec.lua:41: in main chunk
+	[C]: in ?
+
+COMMAND lua tests/story-lobby-resume.spec.lua
+EXIT 0
+Story lobby resume: 33 checks passed
+
+COMMAND lua tests/story-continuation.spec.lua
+EXIT 1
+lua: tests/story-continuation.spec.lua:52: StoryLocked
+stack traceback:
+	[C]: in global 'assert'
+	tests/story-continuation.spec.lua:52: in main chunk
+	[C]: in ?

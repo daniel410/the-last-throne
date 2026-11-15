@@ -1,0 +1,110 @@
+{
+  "version": "0.107.9",
+  "sourceCommit": "1245bd82243d9e1cc01c423c1f3ca1363dd94afd",
+  "environment": "Unpublished local Studio Play; session-only profile",
+  "method": "Normal client remotes create/select hero and depart Easy then Hard; QA server relocateForStoryGate and Humanoid.Health=0 exercise production encounter and reward callbacks.",
+  "hardReplay": {
+    "phase": "Tutorial",
+    "encounters": [],
+    "run": {
+      "id": "48149ff352594af1a749319090f1e360",
+      "mode": "Hard",
+      "kills": []
+    },
+    "position": "-1692.1912841796875, 3.1767592430114746, -737.2484130859375"
+  },
+  "clientWaypointAfterReplay": [
+    -1595,
+    0,
+    -823
+  ],
+  "stages": {
+    "first": {
+      "phase": "Tutorial",
+      "encounters": {
+        "DW-01:trail_guards": {
+          "pillars": 0,
+          "waiting": false,
+          "routeTitle": "Convoy woodland trail",
+          "wave": 1,
+          "active": true,
+          "position": [
+            -1595,
+            0,
+            -823
+          ],
+          "boss": false,
+          "route": true,
+          "remaining": 2,
+          "waves": 6
+        }
+      },
+      "run": {
+        "id": "48149ff352594af1a749319090f1e360",
+        "mode": "Hard",
+        "kills": []
+      },
+      "position": "-1594.999755859375, 3.1767592430114746, -823.0003662109375"
+    },
+    "cleared": {
+      "phase": "Tutorial",
+      "encounters": {
+        "DW-01:trail_guards": {
+          "pillars": 0,
+          "waiting": true,
+          "routeTitle": "Convoy woodland trail",
+          "wave": 1,
+          "active": false,
+          "position": [
+            -1550.75,
+            0,
+            -695.4500122070312
+          ],
+          "boss": false,
+          "route": true,
+          "remaining": 0,
+          "waves": 6
+        }
+      },
+      "run": {
+        "id": "48149ff352594af1a749319090f1e360",
+        "mode": "Hard",
+        "kills": []
+      },
+      "position": "-1594.999755859375, 3.1767592430114746, -823.0003662109375"
+    },
+    "second": {
+      "phase": "Tutorial",
+      "encounters": {
+        "DW-01:trail_guards": {
+          "pillars": 0,
+          "waiting": false,
+          "routeTitle": "Convoy woodland trail",
+          "wave": 2,
+          "active": true,
+          "position": [
+            -1550.75,
+            0,
+            -695.4500122070312
+          ],
+          "boss": false,
+          "route": true,
+          "remaining": 2,
+          "waves": 6
+        }
+      },
+      "run": {
+        "id": "48149ff352594af1a749319090f1e360",
+        "mode": "Hard",
+        "kills": {
+          "trail_guards_1": true,
+          "trail_guards_2": true
+        }
+      },
+      "position": "-1550.749755859375, 3.1767592430114746, -695.4505004882812"
+    }
+  },
+  "published": false,
+  "physicalDeviceTested": false,
+  "userAccepted": false
+}

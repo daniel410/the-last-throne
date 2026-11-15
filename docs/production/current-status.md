@@ -2,6 +2,8 @@
 
 2026-11-14 · TLT-001/050/057/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
+- 원정 네비: 0.107.9에서 같은 영웅의 새 원정에 이전 교전 좌표가 남는 진행 차단을 수정했다. [Hard 재입장·엔진/Studio 검증·미게시/남은 수용](../evidence/hard-route-stale-navigation-20261114/README.md).
+
 - Dawnspire 왕좌: TD 최신 파란 크리스탈 원본을 동기화했다. [고정 빌드·엔진 검증/게시·기기·미술 수용](../evidence/dawnspire-blue-throne-20261114/README.md).
 
 - 로비 카메라: PLAY 버튼의 영웅 가림을 줄이도록 로비 최소 줌을24 studs로 소스 수정했다. [Studio 후보·상태별 규칙 확인/새 빌드·실기기 미검증](../evidence/lobby-camera-20261114/README.md).

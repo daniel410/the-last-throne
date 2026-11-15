@@ -1,0 +1,12 @@
+[
+  {
+    "test": "story-respawn",
+    "baselineExit": 1,
+    "baselineOutput": "lua: [string \"return function(options,state,Content,Replica...\"]:4: bad argument #1 to 'for iterator' (table expected, got nil)\nstack traceback:\n\t[C]: in for iterator 'for iterator'\n\t[string \"return function(options,state,Content,Replica...\"]:4: in field 'destination'\n\t[string \"return function(heroSession,world,story) loca...\"]:3: in local 'resolve'\n\ttests/story-respawn.spec.lua:41: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "test": "story-continuation",
+    "baselineExit": 1,
+    "baselineOutput": "lua: tests/story-continuation.spec.lua:52: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/story-continuation.spec.lua:52: in main chunk\n\t[C]: in ?\n"
+  }
+]
