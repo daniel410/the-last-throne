@@ -251,7 +251,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   end
   if GrowthBudget.enabled(a.balanceVersion)then GrowthBudget.record(h,c.id,a.difficultyId,a.growthCycle)end
  end
- Modes.save(h,a)
+ Modes.save(h,a,chapterId)
  if not R.validate(p,C)then return nil,'Incompatible'end
  return p
 end
@@ -262,7 +262,7 @@ function A.accept(profile,heroId,chapterId,discovery,R,C,runId)
  if not journal then return nil,why end
  if repeated then return R.copy(profile),nil,true end
  local p=R.copy(profile);h=p.heroes[heroId];a=h.expeditions.active;a.journal=journal
- Modes.save(h,a);h.deepwood=Modes.merge(h.deepwood,journal);p.revision=p.revision+1
+ Modes.save(h,a,chapterId);h.deepwood=Modes.merge(h.deepwood,journal,chapterId);p.revision=p.revision+1
  if not R.validate(p,C)then return nil,'Incompatible'end
  return p
 end

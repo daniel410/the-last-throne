@@ -12,6 +12,15 @@ local function copyChapter(target,source,c)
  end
  if c.id=='DW-07'then target.choice=source.choice end
 end
+local function frontier(s)
+ s.main=0;while s.main<C.mainCount and s.clears[C.mainChapters[s.main+1].id]do s.main=s.main+1 end
+end
+local function hasChapter(s,c)
+ for _,field in ipairs(fields)do for key in pairs(s[field]or {})do
+  if key==c.id or key:sub(1,#c.id+1)==c.id..':'then return true end
+ end end
+ return false
+end
 local function receipt(hero,id,mode)
  local e=hero.expeditions
  local modes=e and e.clears and e.clears[id]
@@ -41,6 +50,7 @@ function M.journal(hero,mode)
  local e=hero and hero.expeditions
  if e and e.modeJournals then return P.copy(e.modeJournals[mode]or P.new())end
  local base=assert(P.upgrade(hero and hero.deepwood or P.new()))
+ if base.expansionVersion==1 then base=assert(P.enableExpansion(base))end
  local s=P.new();if base.expansionVersion==1 then s=assert(P.enableExpansion(s))end
  while s.main<C.mainCount and hero and receipt(hero,C.mainChapters[s.main+1].id,mode)do
   s=completeFromReceipt(s,C.mainChapters[s.main+1],base)
@@ -54,7 +64,7 @@ function M.journal(hero,mode)
    s.legacyMain=legacy
    for _,c in ipairs(C.mainChapters)do if c.number>s.main and c.legacyNumber<=legacy and receipt(hero,c.id,mode)then s=completeFromReceipt(s,c,base)end end
    -- Recalculate the contiguous frontier after importing historical clears.
-   s.main=0;while s.main<C.mainCount and s.clears[C.mainChapters[s.main+1].id]do s.main=s.main+1 end
+   frontier(s)
   end
  end
  for _,c in ipairs(C.chapters)do
@@ -62,18 +72,37 @@ function M.journal(hero,mode)
    s=completeFromReceipt(s,c,base)
   end
  end
- -- A server-bound active journal can preserve the current unfinished chapter.
- -- A completed chapter copied from a different mode is never imported.
+ -- The active chapter belongs to its server-bound mode. Other unscoped legacy
+ -- partial records belong to Easy, even when a different mode is being replayed.
  local a=e and e.active
- local source=a and a.difficultyId==mode and a.journal or mode=='Easy'and not a and base
+ local activeJournal=a and assert(P.upgrade(a.journal))
+ if activeJournal and activeJournal.expansionVersion==1 then activeJournal=assert(P.enableExpansion(activeJournal))end
+ local current=a and C.byId[a.missionId]
+ if current and a.completed and not current.side then
+  local nextChapter=C.mainChapters[(a.returnToCampaign and a.campaignMain or activeJournal.main)+1]
+  current=nextChapter and hasChapter(activeJournal,nextChapter)and nextChapter or nil
+ end
+ local function sourceFor(c)
+  if current and current.id==c.id then return a.difficultyId==mode and activeJournal or nil end
+  return mode=='Easy'and base or nil
+ end
+ local source=mode=='Easy'and base or a and a.difficultyId==mode and activeJournal
  local legacyResume=source and source.legacyResume and C.byId[source.legacyResume]
  if legacyResume and s.legacyMain and legacyResume.legacyNumber==s.legacyMain+1 then
-  s.legacyResume=legacyResume.id;copyChapter(s,source,legacyResume)
+  s.legacyResume=legacyResume.id
+  local partial=sourceFor(legacyResume);if partial and not partial.clears[legacyResume.id]then
+   if partial.expansionVersion==1 and s.expansionVersion~=1 then s=assert(P.enableExpansion(s))end
+   copyChapter(s,partial,legacyResume)
+  end
  end
  local nextChapter=C.mainChapters[s.main+1]
- if source and nextChapter and not source.clears[nextChapter.id]then
-  if source.expansionVersion==1 and s.expansionVersion~=1 then s=assert(P.enableExpansion(s))end
-  copyChapter(s,source,nextChapter)
+ for _,c in ipairs(C.chapters)do
+  local partial=sourceFor(c)
+  if partial and not s.clears[c.id]and not partial.clears[c.id]
+   and(c==nextChapter or c.side and C.accessible(s,c.minMain,c.legacyMinMain))then
+   if partial.expansionVersion==1 and s.expansionVersion~=1 then s=assert(P.enableExpansion(s))end
+   copyChapter(s,partial,c)
+  end
  end
  if not P.validate(s)then error('Invalid legacy mode journal: '..mode)end
  return s
@@ -100,30 +129,36 @@ function M.ensure(hero,paidClaims)
  if e.active then e.runsByMode[e.active.difficultyId]=P.copy(e.active)end
  return true
 end
-function M.merge(base,update)
+function M.merge(base,update,chapterId)
  local s=assert(P.upgrade(base or P.new()));local u=assert(P.upgrade(update))
+ assert(chapterId==nil or C.byId[chapterId],'Unknown campaign chapter')
+ local function includes(key)return not chapterId or key==chapterId or key:sub(1,#chapterId+1)==chapterId..':'end
  if s.expansionVersion==1 or u.expansionVersion==1 then
   s=assert(P.enableExpansion(s));u=assert(P.enableExpansion(u))
  end
- s.main=math.max(s.main,u.main)
  for _,field in ipairs({'flags','clears','accepted','expansionWaivers','pacingWaivers'})do
-  s[field]=s[field]or {};for key,value in pairs(u[field]or {})do s[field][key]=value end
+  s[field]=s[field]or {};for key,value in pairs(u[field]or {})do if includes(key)then s[field][key]=value end end
  end
  s.activities=s.activities or {};s.decisions=s.decisions or {};s.clues=s.clues or {}
- for key,value in pairs(u.activities or {})do s.activities[key]=math.max(s.activities[key]or 0,value)end
- for key,value in pairs(u.decisions or {})do s.decisions[key]=s.decisions[key]or value end
+ for key,value in pairs(u.activities or {})do if includes(key)then s.activities[key]=math.max(s.activities[key]or 0,value)end end
+ for key,value in pairs(u.decisions or {})do if includes(key)then s.decisions[key]=s.decisions[key]or value end end
  for key,values in pairs(u.clues or {})do
+  if includes(key)then
   s.clues[key]=s.clues[key]or {};for id,value in pairs(values)do s.clues[key][id]=value end
   local count=0;for _ in pairs(s.clues[key])do count=count+1 end;s.activities[key]=count
+  end
  end
- if s.choice==''then s.choice=u.choice end
+ if s.choice==''and(not chapterId or chapterId=='DW-07')then s.choice=u.choice end
+ frontier(s)
  s.coins=0;for id in pairs(s.clears)do local c=C.byId[id];s.coins=s.coins+(c.journalCoins or c.reward.coins)end
  assert(P.validate(s),'Invalid merged campaign journal')
  return s
 end
-function M.save(hero,active)
+function M.save(hero,active,chapterId)
  local e=hero.expeditions;local mode=active.difficultyId
- e.modeJournals[mode]=M.merge(e.modeJournals[mode],active.journal)
+ -- A replay journal contains a synthetic prefix for navigation. Admission and
+ -- mode switches save its checkpoint only; events can merge their own chapter.
+ if not active.replay or chapterId then e.modeJournals[mode]=M.merge(e.modeJournals[mode],active.journal,active.replay and chapterId or nil)end
  e.runsByMode[mode]=P.copy(active)
 end
 return M

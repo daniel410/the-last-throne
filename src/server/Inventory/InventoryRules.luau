@@ -493,7 +493,7 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,diffi
   h.expeditions.active.journal=journal
   h.expeditions.active.completed=journal.clears[h.expeditions.active.missionId]==true
  end
- h.deepwood=ModeProgress.merge(h.deepwood,journal)
+ h.deepwood=ModeProgress.merge(h.deepwood,journal,chapterId)
  -- Migrate historic earnings before assigning the new journal, then credit only this event.
  local migrated=Rules.copy(profile);Economy.upgrade(migrated);n.wallet=migrated.wallet
  local added=reward.chapter and CompletionRewards.awards[reward.chapter]
@@ -536,7 +536,7 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,diffi
  end
  if h.expeditions and h.expeditions.modeJournals then
   local claimMode=difficultyId or 'Easy'
-  h.expeditions.modeJournals[claimMode]=ModeProgress.merge(h.expeditions.modeJournals[claimMode],journal)
+  h.expeditions.modeJournals[claimMode]=ModeProgress.merge(h.expeditions.modeJournals[claimMode],journal,chapterId)
  end
  if not Rules.validate(n,catalog) then return nil,'Incompatible' end
  return n

@@ -30,14 +30,29 @@ code += """for _,root in ipairs({game.ReplicatedStorage.Shared,game.ServerScript
 end
 print('MODE_ALL_SOURCE_COMPILE true')
 """
-suite = Path('tests/campaign-mode-progress.spec.lua').read_text()
-suite = suite.replace("local function load(n)return dofile('src/shared/'..n..'.luau')end",
-                      'local function load(n)return require(game.ReplicatedStorage.Shared[n])end')
-suite = suite.replace("dofile('src/server/Inventory/InventoryRules.luau')", 'require(game.ServerScriptService.Server.Inventory.InventoryRules)')
-suite = suite.replace("dofile('src/server/Inventory/AccountStore.luau')", 'require(game.ServerScriptService.Server.Inventory.AccountStore)')
-suite = suite.replace(';io.stdout:flush()', '')
+def native_suite(path):
+    suite = Path(path).read_text()
+    for name in ('n', 'name'):
+        suite = suite.replace(
+            f"local function load({name})return dofile('src/shared/'..{name}..'.luau')end",
+            f'local function load({name})return require(game.ReplicatedStorage.Shared[{name}])end')
+    suite = suite.replace("dofile('src/server/Inventory/InventoryRules.luau')", 'require(game.ServerScriptService.Server.Inventory.InventoryRules)')
+    suite = suite.replace("dofile('src/server/Inventory/AccountStore.luau')", 'require(game.ServerScriptService.Server.Inventory.AccountStore)')
+    return suite.replace(';io.stdout:flush()', '')
+
+
+suite = native_suite('tests/campaign-mode-progress.spec.lua')
 suite = suite.replace('p=finish(p,c,run);expectedGold=', 'p=finish(p,c,run);task.wait();expectedGold=')
 code += 'do\n' + suite + "\nprint('MODE_PROFILE_BYTES '..#game.HttpService:JSONEncode(p))\nend\n"
+code += 'do\n' + native_suite('tests/campaign-mode-migration.spec.lua') + '\nend\n'
+suite = native_suite('tests/campaign-mode-legacy-replay.spec.lua')
+suite = suite.replace('for i=1,21 do local c=C.legacyMainChapters[i]',
+                      'for i=1,21 do task.wait();local c=C.legacyMainChapters[i]')
+suite = suite.replace("hard=finish(hard,c,'legacy_hard');expectedGold=",
+                      "hard=finish(hard,c,'legacy_hard');task.wait();expectedGold=")
+suite = suite.replace(' check(profile.heroes.hero.expeditions.active.journal.clears[c.id]',
+                      ' task.wait();check(profile.heroes.hero.expeditions.active.journal.clears[c.id]')
+code += 'do\n' + suite + '\nend\n'
 code += 'local routeResult=(function()\n' + Path('tests/campaign-combat-route-runtime-native.luau').read_text() + '\nend)()\n'
 code += "print('CAMPAIGN_MODE_NATIVE_PASS true')\n"
 target = Path('/tmp/tlt-campaign-mode-progress-native.luau')
