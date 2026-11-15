@@ -2,7 +2,7 @@
 local Shared=game.ReplicatedStorage.Shared
 local Biome=require(Shared.CampaignBiome)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Finish={version=2}
+local Finish={version=3}
 local V=Vector3.new
 local routes={WornCurvedRoute='secondary',JourneyWalkingTrail='main',RegionalReturnTrail='returning',ReturnLoop='returning',ExpansionWalkingLine='main'}
 local materials={Deepwood=Enum.Material.Grass,Gloamwood=Enum.Material.Grass,FrozenVale=Enum.Material.Snow,EmberCaldera=Enum.Material.Basalt,HauntedGraveyard=Enum.Material.Slate}
@@ -29,6 +29,7 @@ function Finish.apply(world)
    end
   end
  end end
+ require(script.Parent.FrozenSurfaceUnderlays).apply(world)
  world.folder:SetAttribute('CampaignFinishedPaths',painted)
 end
 return Finish
