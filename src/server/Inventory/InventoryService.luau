@@ -264,7 +264,7 @@ function Service.storyState(player,heroId)
  -- journal loses expeditionMission and sends respawns to the launch story.
  local phase=player:GetAttribute('K0SessionPhase')
  if a and (phase=='Tutorial' or phase=='Respawning' or phase=='LoadingTutorial')then return require(ReplicatedStorage.Shared.AdventureRules).projection(hero)end
- return hero and Rules.copy(hero.deepwood or require(ReplicatedStorage.Shared.DeepwoodProgress).new())
+ return hero and require(ReplicatedStorage.Shared.CampaignModeProgress).journal(hero,a and a.difficultyId or 'Easy')
 end
 -- All support Gold and entitlement changes use the same account fence as items.
 function Service.supportState(player,heroId)
@@ -323,7 +323,10 @@ function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId,runId)
  if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
  state.busy=true;state.storyPending=key
  local profile,reason=store:transact(player.UserId,function(current)
-  if goalId=='@accept' then return Rules.acceptQuest(current,heroId,chapterId,choice==true) end
+  if goalId=='@accept' then
+   if runId then return require(ReplicatedStorage.Shared.AdventureRules).accept(current,heroId,chapterId,choice==true,Rules,Catalog,runId)end
+   return Rules.acceptQuest(current,heroId,chapterId,choice==true)
+  end
   if goalId=='@selene' then return Rules.selectSelene(current,heroId,choice) end
   if runId then return require(ReplicatedStorage.Shared.AdventureRules).event(current,heroId,chapterId,goalId,choice,stepId,Rules,Catalog,runId)end
   return Rules.story(current,heroId,chapterId,goalId,choice,Catalog,stepId)

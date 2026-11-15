@@ -29,6 +29,7 @@ local saved=R.copy(p);local gold=p.wallet.gold;local xp=h.progression.xp
 local accidental=assert(A.begin(saved,'hero','DW-01','Easy','accidental',saved.revision,R,C,12))
 for _,goal in ipairs(Content.byId['DW-01'].coreGoals)do if not goal.optional then accidental=apply(accidental,Content.byId['DW-01'],goal,'accidental')end end
 check(A.projection(accidental.heroes.hero).expeditionMission=='DW-02','reproduce the reported 2/7 replay while permanent history stays at 7/7')
+accidental.heroes.hero.expeditions.active.replay=nil -- historical accidental run, before explicit replay checkpoints
 local recovery=A.selection(accidental.heroes.hero)
 check(recovery.missionId=='DW-07','existing accidental replay defaults back to permanent story 7')
 local restored=assert(A.begin(accidental,'hero',recovery.missionId,recovery.difficultyId,'recover',accidental.revision,R,C,12))
@@ -96,7 +97,7 @@ do
   chosen=cache[person]or A.selection(p.heroes.hero)
  end}
  factory('Lobby',service,cache,{},{}).beforeHeroAction(player,'StartTutorial')
- check(cache[player]==nil and chosen.missionId=='GW-01','Continue ignores cached Deepwood replay after completed Deepwood')
+ check(cache[player]==nil and chosen.missionId=='DW-01','Continue discards cached selection and restores the explicit replay checkpoint')
 end
 for _,role in ipairs({'Lobby','Battle'})do
  local cache={[player]={missionId='DW-01'}};local returned=0

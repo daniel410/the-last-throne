@@ -49,7 +49,8 @@ for _,c in ipairs(C.chapters)do if c.side then
   check(current.symbol=='?'and current.recommended.id==c.id,'ready marker and priority '..c.id)
   local cmd={action='Report',heroId='hero',questId=c.id,runId=run or 'campaign'}
   local done=assert(S.apply(ready,cmd,R,Items));check(R.validate(done,Items),'valid account '..c.id)
-  local expected=run and assert(A.event(ready,'hero',c.id,c.quest.turnIn,nil,nil,R,Items,run))or assert(R.story(ready,'hero',c.id,c.quest.turnIn,nil,Items))
+  local expected=run and assert(A.event(ready,'hero',c.id,c.quest.turnIn,nil,nil,R,Items,run))
+   or assert(R.story(ready,'hero',c.id,c.quest.turnIn,nil,Items,nil,'Easy',nil,nil,dofile('src/shared/CampaignModeProgress.luau').journal(ready.heroes.hero,'Easy'),true))
   check(equal(done,expected),'same report and rewards as field '..c.id)
   check(S.settled(snap(done),cmd),'committed snapshot settles lost report response '..c.id)
   check(not S.settled(snap(ready),cmd),'unfinished report cannot settle '..c.id)
@@ -69,6 +70,14 @@ for _,c in ipairs(C.chapters)do if c.side then
    if D.combat(c)then
     local higher=done
     for _,mode in ipairs({'Hard','Insane','Hell'})do
+     -- This report adapter fixture has already completed this difficulty's
+     -- main-story prerequisites; Easy progress alone no longer unlocks it.
+     local e=higher.heroes.hero.expeditions
+     e.modeJournals[mode]=R.copy(base.heroes.hero.expeditions.modeJournals.Easy)
+     for _,chapter in ipairs(C.mainChapters)do if chapter.number<=D.requiredMain(c)then
+      e.clears[chapter.id]=e.clears[chapter.id]or {};e.clears[chapter.id][mode]=true
+      e.modeRewardClaims[mode][chapter.id]=true
+     end end
      local highRun=run..'-'..mode
      local work=field(higher,c,highRun,mode,1)
      local highState=S.project(snap(work));check(highState.recommended.difficultyId==mode,'retain active difficulty '..mode)

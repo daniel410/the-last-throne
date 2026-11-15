@@ -2,6 +2,7 @@ local function load(name)return game and require(script.Parent[name])or dofile('
 local D,P,G,Content,F=load('Difficulty'),load('DeepwoodProgress'),load('HeroProgression'),load('CampaignContent'),load('EquipmentTransactions')
 local Economy=load('EconomyRules')
 local GrowthBudget=load('CampaignGrowthBudget')
+local Modes=load('CampaignModeProgress')
 local A={}
 -- Admission stays bound to the launch mission; every main story in the run
 -- follows the journal, including replays, higher difficulties and epic borders.
@@ -19,21 +20,50 @@ local function currentMission(a)
  return start
 end
 -- Continue prioritizes permanent first-clear progress over an older Easy replay.
-function A.selection(hero)
- local a=hero and hero.expeditions and hero.expeditions.active
+function A.selection(hero,mode)
+ local e=hero and hero.expeditions
+ local a=e and e.active
+ mode=mode or a and a.difficultyId or 'Easy'
+ if a and a.difficultyId~=mode then a=e.runsByMode and e.runsByMode[mode]end
  local current=currentMission(a)
- local frontier=Content.mainChapters[math.min(Content.mainCount,(hero and hero.deepwood and hero.deepwood.main or 0)+1)]
- -- Unfinished optional expeditions never pin Continue to an already completed epic.
- if current and current.side and frontier and hero.deepwood and hero.deepwood.main<Content.mainCount and ((frontier.epic or 1)>(current.epic or 1)or hero.deepwood.legacyMain~=nil and hero.deepwood.main<current.minMain)then
-  return {missionId=frontier.id,difficultyId='Easy'}
+ local journal=Modes.journal(hero,mode)
+ local frontier=Content.mainChapters[math.min(Content.mainCount,journal.main+1)]
+ -- An explicit replay retains its own checkpoint. Unmarked legacy accidental
+ -- replays still recover to the permanent frontier.
+ if current and current.side and(a.completed or not a.replay and journal.main<Content.mainCount and (frontier.epic or 1)>(current.epic or 1))then
+  current=nil
  end
- if a and a.difficultyId=='Easy' and current and not current.side and frontier.number>current.number then current=frontier end
- return {missionId=(current or frontier).id,difficultyId=a and a.difficultyId or 'Easy'}
+ if current and not current.side and not a.replay then current=frontier end
+ return {missionId=(current or frontier).id,difficultyId=mode}
+end
+function A.upgradeHero(hero,paidClaims)
+ local changed=Modes.ensure(hero,paidClaims);local e=hero.expeditions;local a=e.active
+ if a and not a.modeProgressVersion then
+  a.journal=Modes.journal(hero,a.difficultyId);a.returnToCampaign=nil;a.campaignMain=nil
+  a.completed=a.journal.clears[a.missionId]==true;a.firstClear=not Modes.claimed(hero,a.missionId,a.difficultyId)
+  a.completedChapters={};a.modeProgressVersion=1;changed=true
+ end
+ return changed
 end
 local function integer(n,min,max)return type(n)=='number'and n%1==0 and n>=min and n<=max end
 function A.valid(hero)
  local e=hero.expeditions;if e==nil then return true end
  if type(e)~='table'or e.version~=1 or type(e.clears)~='table'or type(e.cacheProgress)~='table'then return false end
+ if e.modeJournals~=nil then
+  if type(e.modeJournals)~='table'or type(e.modeRewardClaims)~='table'or type(e.runsByMode)~='table'then return false end
+  for _,mode in ipairs(D.order)do if type(e.modeJournals[mode])~='table'or type(e.modeRewardClaims[mode])~='table'then return false end end
+  for mode,journal in pairs(e.modeJournals)do if not D.modes[mode]or not P.validate(journal)then return false end end
+  for mode,claims in pairs(e.modeRewardClaims)do
+   if not D.modes[mode]or type(claims)~='table'then return false end
+   for id,claimed in pairs(claims)do
+    if not Content.byId[id]or claimed~=true or not(e.modeJournals[mode].clears[id]or e.clears[id]and e.clears[id][mode])then return false end
+   end
+  end
+  for mode,saved in pairs(e.runsByMode)do
+   if not D.modes[mode]or type(saved)~='table'or saved.difficultyId~=mode
+    or not A.valid({expeditions={version=1,clears={},cacheProgress={},active=saved}})then return false end
+  end
+ elseif e.modeRewardClaims~=nil or e.runsByMode~=nil then return false end
  if e.campaignProgress~=nil then
   if type(e.campaignProgress)~='table'then return false end
   for mode,progress in pairs(e.campaignProgress)do
@@ -49,6 +79,8 @@ function A.valid(hero)
  local a=e.active
  if a~=nil then
   if type(a)~='table'then return false end
+  if a.modeProgressVersion~=nil and a.modeProgressVersion~=1 then return false end
+  if a.replay~=nil and type(a.replay)~='boolean'then return false end
   if a.growthCycle~=nil and(not integer(a.growthCycle,1,1e9)or not GrowthBudget.enabled(a.balanceVersion))then return false end
   if GrowthBudget.enabled(a.balanceVersion)and a.growthCycle==nil then return false end
   if type(a)~='table'or type(a.runId)~='string'or #a.runId<1 or #a.runId>64 or not a.runId:match('^[%w_-]+$')or not Content.byId[a.missionId]or not D.modes[a.difficultyId]or a.version~=1 or (a.balanceVersion~=nil and not D.compatible(a.balanceVersion)) or type(a.completed)~='boolean'or type(a.firstClear)~='boolean'or not P.validate(a.journal)or type(a.kills)~='table'then return false end
@@ -69,7 +101,7 @@ end
 function A.projection(hero)
  local a=hero and hero.expeditions and hero.expeditions.active
  if not a then return nil end
- local view=P.copy(a.completed and a.returnToCampaign and hero.deepwood or a.journal)
+ local view=P.copy(a.modeProgressVersion and a.journal or Modes.journal(hero,a.difficultyId))
  if (a.balanceVersion or 1)>=13 and (view.expansionVersion~=1 or view.combatPacingVersion~=1) then view=assert(P.enableExpansion(view))end
  for id,cells in pairs(hero.deepwood and hero.deepwood.explored or {})do
   local zone=Content.zones[id]
@@ -80,7 +112,7 @@ function A.projection(hero)
  end
  local nextChapter=A.continuation(a)
  view.expeditionMission=nextChapter and nextChapter.id or currentMission(a).id
- view.expeditionFirstClear=not (hero.deepwood and hero.deepwood.clears[view.expeditionMission])
+ view.expeditionFirstClear=not Modes.claimed(hero,view.expeditionMission,a.difficultyId)
  view.seleneUnlocked=P.seleneUnlocked(hero.deepwood)
  view.seleneFollowing=hero.deepwood and hero.deepwood.seleneFollowing
  return view
@@ -141,19 +173,24 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  version=version or D.version;if not D.compatible(version)then return nil,'AdventureChanged'end
  local ok,why=D.allowed(hero,missionId,mode);if not ok then return nil,why end
  local p=R.copy(profile);local h=p.heroes[heroId];local c=Content.byId[missionId]
- h.expeditions=h.expeditions or {version=1,clears={},cacheProgress={}}
- local first=not (h.deepwood and h.deepwood.clears[missionId])
- local previous=currentMission(old)
- local resume=old and previous and previous.id==missionId and old.difficultyId==mode and not old.journal.clears[missionId]
- local journal=resume and P.copy(old.journal)or first and P.copy(h.deepwood or P.new())or resetJournal(h.deepwood or P.new(),c)
- if version>=13 then journal=assert(P.enableExpansion(journal));if first then h.deepwood=P.copy(journal)end end
- if c.side then journal.accepted=journal.accepted or {};journal.accepted[c.id]=true;if first then h.deepwood=P.copy(journal)end end
- h.expeditions.active={version=1,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={},completedChapters={}}
+ A.upgradeHero(h)
+ if h.expeditions.active then Modes.save(h,h.expeditions.active)end
+ local saved=h.expeditions.runsByMode[mode]
+ local previous=currentMission(saved)
+ local resume=saved and saved.modeProgressVersion==1 and previous and previous.id==missionId and not saved.journal.clears[missionId]
+ local base=Modes.journal(h,mode);local first=not Modes.claimed(h,missionId,mode)
+ local journal=resume and P.copy(saved.journal)or base.clears[missionId]and resetJournal(base,c)or base
+ if version>=13 then journal=assert(P.enableExpansion(journal))end
+ if c.side then journal.accepted=journal.accepted or {};journal.accepted[c.id]=true end
+ local kills={}
+ if resume then for id,value in pairs(saved.kills)do
+  if saved.missionId==missionId then kills[id]=value
+  elseif id:sub(1,#missionId+1)==missionId..':'then kills[id:sub(#missionId+2)]=value end
+ end end
+ h.expeditions.active={version=1,modeProgressVersion=1,replay=resume and saved.replay==true or base.clears[missionId]==true,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills=kills,completedChapters={}}
  local active=h.expeditions.active
  if GrowthBudget.enabled(version)then active.growthCycle=GrowthBudget.cycle(h,mode)end
- if not c.side and not first and h.deepwood and h.deepwood.main<c.number-1 then
-  active.returnToCampaign=true;active.campaignMain=h.deepwood.main
- end
+ Modes.save(h,active)
  p.revision=p.revision+1
  if not R.validate(p,C)then return nil,'Incompatible'end
  return p
@@ -174,14 +211,13 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   return nil,'AdventureChanged'
  end
  local c=Content.byId[chapterId];local p,why,journal,reward
- local firstClear=not (hero.deepwood and hero.deepwood.clears[chapterId])
+ local allowed,entryError=D.allowed(hero,chapterId,active.difficultyId)
+ if not allowed then return nil,entryError end
+ local firstClear=not Modes.claimed(hero,chapterId,active.difficultyId)
  if firstClear then
-  if (active.balanceVersion or 1)>=13 and (not hero.deepwood or hero.deepwood.expansionVersion~=1 or hero.deepwood.combatPacingVersion~=1)then
-   profile=R.copy(profile);profile.heroes[heroId].deepwood=assert(P.enableExpansion(hero.deepwood or P.new()))
-  end
-  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId,active.difficultyId,active.balanceVersion,active.growthCycle)
+  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId,active.difficultyId,active.balanceVersion,active.growthCycle,active.journal)
   if not p then return nil,why end
-  journal=P.copy(p.heroes[heroId].deepwood)
+  journal=P.copy(p.heroes[heroId].expeditions.active.journal)
  else
   local source=active.journal
   if (active.balanceVersion or 1)>=13 then source=assert(P.enableExpansion(source))end
@@ -191,7 +227,6 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   p=R.copy(profile);p.revision=p.revision+1
  end
  local h=p.heroes[heroId];local e=h.expeditions;local a=e.active;a.journal=journal
- if a.returnToCampaign then a.campaignMain=h.deepwood.main end
  if journal.clears[chapterId]and not active.journal.clears[chapterId]then
   if not c.side then a.completedChapters=a.completedChapters or {};a.completedChapters[chapterId]=true end
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
@@ -216,6 +251,18 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   end
   if GrowthBudget.enabled(a.balanceVersion)then GrowthBudget.record(h,c.id,a.difficultyId,a.growthCycle)end
  end
+ Modes.save(h,a)
+ if not R.validate(p,C)then return nil,'Incompatible'end
+ return p
+end
+function A.accept(profile,heroId,chapterId,discovery,R,C,runId)
+ local h=profile.heroes[heroId];local a=h and h.expeditions and h.expeditions.active
+ if not a or a.runId~=runId then return nil,'AdventureChanged'end
+ local journal,why,repeated=P.accept(a.journal,chapterId,discovery)
+ if not journal then return nil,why end
+ if repeated then return R.copy(profile),nil,true end
+ local p=R.copy(profile);h=p.heroes[heroId];a=h.expeditions.active;a.journal=journal
+ Modes.save(h,a);h.deepwood=Modes.merge(h.deepwood,journal);p.revision=p.revision+1
  if not R.validate(p,C)then return nil,'Incompatible'end
  return p
 end

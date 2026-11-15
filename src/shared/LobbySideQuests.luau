@@ -1,6 +1,7 @@
 -- Read-only projections and bounded account mutations. No client completion claims.
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local Content,P,Log,D,Text=load('CampaignContent'),load('DeepwoodProgress'),load('DeepwoodQuestLog'),load('Difficulty'),load('LobbySideQuestText')
+local Modes=load('CampaignModeProgress')
 local S={reports={['DW-Q1']='marsh_report',['DW-Q2']='food_report',['DW-Q3']='quarry_report',['DW-Q4']='battlefield_report',
  ['FV-Q1']='report',['FV-Q2']='report',['FV-Q3']='report',['FV-Q4']='report',['EC-Q1']='report',['EC-Q2']='report',['EC-Q3']='report',['EC-Q4']='report'}}
 function S.command(c)
@@ -20,19 +21,21 @@ end
 local function journal(hero,c)
  local a=hero.expeditions and hero.expeditions.active
  if a and a.missionId==c.id and not a.completed then return a.journal,a.runId,a end
- return hero.deepwood,nil
+ return Modes.journal(hero,a and a.difficultyId or 'Easy'),nil
 end
 function S.project(snapshot)
  local out={rows={},symbol='',count=0,label=Text.loading}
  local hero=snapshot and snapshot.ready and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]
- if not hero or not hero.deepwood then return out end
+ if not hero then return out end
+ local admission=hero.expeditions and hero.expeditions.active;local mode=admission and admission.difficultyId or 'Easy'
+ local progress=Modes.journal(hero,mode)
  out.heroId=snapshot.heroId;out.loaded=true;out.label=Text.empty
  local latest=0
- for _,c in ipairs(Content.mainChapters)do if hero.deepwood.clears[c.id]then latest=math.max(latest,c.epic)end end
+ for _,c in ipairs(Content.mainChapters)do if progress.clears[c.id]then latest=math.max(latest,c.epic)end end
  for _,c in ipairs(Content.chapters)do if c.side then
   local j,runId,active=journal(hero,c)
   local replay=runId~=nil
-  if j and not j.clears[c.id]and Content.accessible(hero.deepwood,c.minMain,c.legacyMinMain)and D.allowed(hero,c.id,'Easy')then
+  if j and not j.clears[c.id]and Content.accessible(progress,c.minMain,c.legacyMinMain)and D.allowed(hero,c.id,mode)then
    local status=Log.status(j,c)
    local report=P.goal(c,c.quest.turnIn)
    local canReport=S.reports[c.id]==c.quest.turnIn and report and not report.activity and not report.choice and not report.optional and status=='Ready to report'
@@ -45,9 +48,9 @@ function S.project(snapshot)
    if accepted and not canReport then local target=Log.target(j,c);if target then hint=(target.goal.title or '')..' · '..string.format(Text.next,region)end end
    local reward=Log.reward(c)
    if hero.level>=99 then reward=reward:gsub('^On quest completion: %d+ XP','On quest completion: 0 XP')end
-   if active and hero.deepwood.clears[c.id]then local payout=D.completion(c,active.difficultyId,active.balanceVersion or 1);reward=string.format(Text.repeatReward,hero.level>=99 and 0 or payout.xp,payout.gold)end
+   if active and Modes.claimed(hero,c.id,mode)then local payout=D.completion(c,active.difficultyId,active.balanceVersion or 1);reward=string.format(Text.repeatReward,hero.level>=99 and 0 or payout.xp,payout.gold)end
    local row={id=c.id,title=c.quest.title or c.title,region=region,epic=c.epic,phase=phase,runId=runId or 'campaign',
-    difficultyId=active and active.difficultyId or 'Easy',hint=hint,brief=not accepted and c.quest.discoveryOnly and ''or c.quest.brief or '',reward=reward,canReport=canReport,
+    difficultyId=mode,hint=hint,brief=not accepted and c.quest.discoveryOnly and ''or c.quest.brief or '',reward=reward,canReport=canReport,
     action=canReport and Text.report or accepted and Text.continue or c.quest.discoveryOnly and Text.clue or Text.view,
     rank=canReport and 1 or accepted and 2 or c.epic==latest and 3 or 4,
     noticeState=canReport and 2 or 1,replay=replay}
@@ -73,7 +76,10 @@ function S.settled(snapshot,command)
  if not hero then return false end
  if command.action=='Notice'then return ((hero.sideQuestNotices or {})[command.questId]or 0)>=(command.noticeState or 3)end
  local a=hero.expeditions and hero.expeditions.active
- if command.runId=='campaign'then return hero.deepwood and hero.deepwood.clears[command.questId]==true end
+ if command.runId=='campaign'then
+  local a=hero.expeditions and hero.expeditions.active
+  return Modes.journal(hero,a and a.difficultyId or 'Easy').clears[command.questId]==true
+ end
  return a~=nil and a.runId==command.runId and a.missionId==command.questId and a.completed==true
 end
 function S.apply(profile,command,R,C)
@@ -93,11 +99,12 @@ function S.apply(profile,command,R,C)
  local c=Content.byId[command.questId];local a=hero.expeditions and hero.expeditions.active
  if command.runId~='campaign'and (not a or a.runId~=command.runId or a.missionId~=c.id)then return nil,'AdventureChanged'end
  if command.runId=='campaign'and a and a.missionId==c.id and not a.completed then return nil,'AdventureChanged'end
- if command.runId~='campaign'and a.completed or command.runId=='campaign'and hero.deepwood.clears[c.id]then return R.copy(profile),nil,true end
+ local mode=a and a.difficultyId or 'Easy';local progress=Modes.journal(hero,mode)
+ if command.runId~='campaign'and a.completed or command.runId=='campaign'and progress.clears[c.id]then return R.copy(profile),nil,true end
  local state=S.project({ready=true,heroId=command.heroId,heroes=profile.heroes});local row
  for _,v in ipairs(state.rows)do if v.id==c.id then row=v;break end end
  if not row or not row.canReport or row.runId~=command.runId then return nil,'StoryLocked'end
- if command.runId=='campaign'then return R.story(profile,command.heroId,c.id,S.reports[c.id],nil,C)end
+ if command.runId=='campaign'then return R.story(profile,command.heroId,c.id,S.reports[c.id],nil,C,nil,mode,a and a.balanceVersion,a and a.growthCycle,progress,true)end
  return load('AdventureRules').event(profile,command.heroId,c.id,S.reports[c.id],nil,nil,R,C,command.runId)
 end
 return S
