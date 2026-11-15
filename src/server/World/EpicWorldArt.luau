@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=19}
+local Art={version=20}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -76,7 +76,7 @@ local function paletteKit(m,pal,theme)
   elseif theme=='Gloamwood'then p.Color=p.Color:Lerp(pal.leaf,.6)end
  end end
 end
-local function terrainSite(parent,c,size,pal,theme,safe)
+local function terrainSite(parent,c,size,pal,theme,safe,id)
  local m=model(parent,'OrganicTerrain');local terrain=workspace.Terrain;local mat=groundMaterial(theme)
  -- Raised shoulders occupy unused exploration space; encounter leashes and
  -- objective corridors remain flat. This replaces the old all-flat tile rule.
@@ -92,6 +92,13 @@ local function terrainSite(parent,c,size,pal,theme,safe)
   local p=c+V(s*(size[1]/2+74),-35,-size[2]/2+i*size[2]/5)
   terrain:FillBall(p,74,mat)
  end end
+ -- One representative story replaces the generic cliff ring with connected,
+ -- stratified glacial relief. Other epics retain their approved silhouettes.
+ if id=='FV-03'then
+  require(script.Parent.FrozenRavineLandforms).build(m,c,size,safe)
+  range(m,900)
+  return
+ end
  -- Fused TD meadow/cliff meshes span many disconnected islands. Terrain owns
  -- this envelope so carving a lower approach cannot leave an overhead mesh slab.
  for _,s in ipairs({-1,1})do for i=0,3 do
@@ -437,7 +444,7 @@ function Art.create(world,scope)
   local z=Content.zones[id];local c=vec(z.center);local theme=names[id:sub(1,2)];local pal=K.palette[theme];local index=tonumber(id:sub(4))or 2
   local site=Instance.new('Folder');site.Name=id;site:SetAttribute('Theme',theme);site:SetAttribute('Landmark',landmarkNames[id:sub(1,2)][index]);site.Parent=root
   local rng=Random.new(22000+order*139);local safe=reservation(world,id)
-  terrainSite(site,c,z.size,pal,theme,safe)
+  terrainSite(site,c,z.size,pal,theme,safe,id)
   table.insert(plans,{id=id,z=z,c=c,theme=theme,pal=pal,index=index,site=site,rng=rng,safe=safe})
   task.wait()
  end
