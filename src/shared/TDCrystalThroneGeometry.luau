@@ -33,13 +33,13 @@ local function crystal(folder: Instance, name: string, base: CFrame, width: numb
 	for index = 1, 4 do
 		local turn = CFrame.Angles(0, (index - 1) * math.pi / 2, 0)
 		local tip = ornament(folder, name .. "Tip" .. index, Vector3.new(width / 2, pointHeight, width / 2),
-			color:Lerp(Color3.fromRGB(255, 231, 250), (index % 3) * 0.19),
+			color:Lerp(Color3.fromRGB(225, 244, 255), (index % 3) * 0.19),
 			base * CFrame.new(0, bodyHeight + pointHeight / 2, 0) * turn * CFrame.new(-width / 4, 0, width / 4), Enum.Material.SmoothPlastic)
 		tip.Shape = Enum.PartType.CornerWedge
 		game:GetService("CollectionService"):AddTag(tip, "ThroneCrystal")
 	end
 	local facet = ornament(folder, name .. "Facet", Vector3.new(width * 0.15, bodyHeight * 0.88, 0.025),
-		Color3.fromRGB(255, 190, 238), base * CFrame.new(-width * 0.34, bodyHeight * 0.53, width / 2 + 0.04), Enum.Material.Neon)
+		Color3.fromRGB(158, 221, 255), base * CFrame.new(-width * 0.34, bodyHeight * 0.53, width / 2 + 0.04), Enum.Material.Neon)
 	game:GetService("CollectionService"):AddTag(facet, "ThroneCrystal")
 	return body
 end
@@ -49,8 +49,8 @@ function VisualFactoryMap.buildThrone(folder: Instance, endPos: Vector3, faceDir
 	local base = facing(endPos, faceDir)
 	local stoneDark = Color3.fromRGB(91, 80, 88)
 	local stoneMid = Color3.fromRGB(125, 110, 117)
-	local pink = Color3.fromRGB(224, 66, 160)
-	local pale = Color3.fromRGB(249, 124, 204)
+	local sapphire = Color3.fromRGB(42, 108, 218)
+	local pale = Color3.fromRGB(113, 193, 250)
 	local function place(name: string, size: Vector3, color: Color3, x: number, y: number, z: number, material: Enum.Material): Part
 		local part = ornament(folder, name, size, color, base * CFrame.new(x, y, z), material)
 		if material ~= Enum.Material.Slate and name ~= "ThroneLamp" then
@@ -71,20 +71,20 @@ function VisualFactoryMap.buildThrone(folder: Instance, endPos: Vector3, faceDir
 		place("ThroneStair" .. step, Vector3.new(4.8, 0.32, 0.95), stoneMid,
 			0, 0.84 + step * 0.4, 4.6 - step * 0.74, Enum.Material.Slate)
 	end
-	place("ThroneSeatSupport", Vector3.new(3.2, 0.75, 2.6), pink, 0, 2.55, 0.25, Enum.Material.SmoothPlastic)
+	place("ThroneSeatSupport", Vector3.new(3.2, 0.75, 2.6), sapphire, 0, 2.55, 0.25, Enum.Material.SmoothPlastic)
 	place("ThroneSeat", Vector3.new(3.65, 0.48, 3.2), pale, 0, 3.16, 0.45, Enum.Material.SmoothPlastic)
-	place("ThroneSeatTrim", Vector3.new(3.7, 0.09, 0.08), Color3.fromRGB(255, 205, 239), 0, 3.39, 2.07, Enum.Material.Neon)
+	place("ThroneSeatTrim", Vector3.new(3.7, 0.09, 0.08), Color3.fromRGB(200, 237, 255), 0, 3.39, 2.07, Enum.Material.Neon)
 	local backs = { { 0, 1.48, 8.7, 0 }, { -1.35, 1.16, 7.1, 7 }, { 1.35, 1.16, 7.1, -7 }, { -2.55, 0.9, 5.4, 13 }, { 2.55, 0.9, 5.4, -13 } }
 	for index, def in ipairs(backs) do
 		local name = "ThroneBack" .. index
 		if index == 1 then name = "ThroneCrown" end
 		crystal(folder, name, base * CFrame.new(def[1], 2.1, -1.8) * CFrame.Angles(0, math.pi / 4, math.rad(def[4])),
-			def[2], def[3], pink:Lerp(pale, index % 3 * 0.22))
+			def[2], def[3], sapphire:Lerp(pale, index % 3 * 0.22))
 	end
 	for _, side in ipairs({ -1, 1 }) do
 		local tag = "L"
 		if side > 0 then tag = "R" end
-		place("ThroneArm" .. tag, Vector3.new(0.82, 1.4, 3.25), pink, side * 2.35, 3.1, 0.45, Enum.Material.SmoothPlastic)
+		place("ThroneArm" .. tag, Vector3.new(0.82, 1.4, 3.25), sapphire, side * 2.35, 3.1, 0.45, Enum.Material.SmoothPlastic)
 		place("ThroneArmCap" .. tag, Vector3.new(1.04, 0.26, 3.5), pale, side * 2.35, 3.92, 0.45, Enum.Material.SmoothPlastic)
 	end
 	local shards = { { -4.1, 2.4, 0.73, 2.7 }, { 4.1, 2.4, 0.86, 3.15 }, { -4.15, -2.65, 0.75, 2.4 }, { 4.15, -2.65, 0.7, 2.7 } }
@@ -104,10 +104,10 @@ function VisualFactoryMap.buildThrone(folder: Instance, endPos: Vector3, faceDir
 		ornament(folder,"ThroneHangingGold",Vector3.new(1.35,0.16,0.16),Color3.fromRGB(212,162,66),base*CFrame.new(side*4.15,6.65,-1.85),Enum.Material.Metal)
 	end
 
-	local lamp = place("ThroneLamp", Vector3.new(0.5, 0.5, 0.5), pink, 0, 8.5, 0, Enum.Material.SmoothPlastic)
+	local lamp = place("ThroneLamp", Vector3.new(0.5, 0.5, 0.5), sapphire, 0, 8.5, 0, Enum.Material.SmoothPlastic)
 	lamp.Transparency = 1
 	local light = Instance.new("PointLight")
-	light.Color = pink
+	light.Color = sapphire
 	light.Range = 12
 	light.Brightness = 0.55
 	light.Parent = lamp

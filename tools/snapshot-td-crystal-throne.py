@@ -1,6 +1,9 @@
 """Freeze the actual TD combat crystal throne, retaining its original geometry and colors."""
 from pathlib import Path
-import hashlib,json
+import argparse,hashlib,json,subprocess
+p = argparse.ArgumentParser()
+p.add_argument("--date", required=True, help="Snapshot date (YYYY-MM-DD)")
+args = p.parse_args()
 root=Path(__file__).resolve().parents[1]
 td=root.parent/'throne-defense'
 p=td/'src/Server/VisualFactoryMap.lua';s=p.read_text()
@@ -28,5 +31,5 @@ end
 return G
 '''
 out=root/'src/shared/TDCrystalThroneGeometry.luau';out.write_text(header+helpers+body+footer)
-manifest={'kind':'td-combat-crystal-throne-source-snapshot','date':'2026-11-11','sourceProject':'../throne-defense','sourceFiles':[{'path':'src/Server/VisualFactoryMap.lua','sha256':hashlib.sha256(p.read_bytes()).hexdigest()}], 'extraction':'Exact ornament/facing/crystal/buildThrone functions; minimal newPart adapter','runtimeModule':'src/shared/TDCrystalThroneGeometry.luau','runtimeSha256':hashlib.sha256(out.read_bytes()).hexdigest(),'adapter':'Uniform scale2 and translation only; source pink/pale/slate colors and pointed crystal forms retained','permissions':'Existing same-owner TD/RPG shared-original instruction; TD read-only'}
+manifest={'kind':'td-combat-crystal-throne-source-snapshot','date':args.date,'sourceProject':'../throne-defense','sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=td,text=True).strip(),'sourceFileModified':bool(subprocess.check_output(['git','status','--porcelain','--','src/Server/VisualFactoryMap.lua'],cwd=td,text=True).strip()),'sourceFiles':[{'path':'src/Server/VisualFactoryMap.lua','sha256':hashlib.sha256(p.read_bytes()).hexdigest()}], 'extraction':'Exact ornament/facing/crystal/buildThrone functions; minimal newPart adapter','runtimeModule':'src/shared/TDCrystalThroneGeometry.luau','runtimeSha256':hashlib.sha256(out.read_bytes()).hexdigest(),'adapter':'Uniform scale2 and translation only; source sapphire/pale-blue/slate colors and pointed crystal forms retained','permissions':'Existing same-owner TD/RPG shared-original instruction; TD read-only'}
 d=root/'assets/shared/td-crystal-throne';d.mkdir(parents=True,exist_ok=True);(d/'provenance.json').write_text(json.dumps(manifest,indent=2)+'\n')

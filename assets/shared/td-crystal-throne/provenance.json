@@ -1,16 +1,18 @@
 {
   "kind": "td-combat-crystal-throne-source-snapshot",
-  "date": "2026-11-11",
+  "date": "2026-11-14",
   "sourceProject": "../throne-defense",
+  "sourceCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "sourceFileModified": true,
   "sourceFiles": [
     {
       "path": "src/Server/VisualFactoryMap.lua",
-      "sha256": "8c23484680f3e5e1cf8152524280e4d18bdd2fc9b17502114e976e6dbf41cd63"
+      "sha256": "c0849a2346bbbfb648e8543a66ac1fe4abaa7822b09605ba30608e0a51029421"
     }
   ],
   "extraction": "Exact ornament/facing/crystal/buildThrone functions; minimal newPart adapter",
   "runtimeModule": "src/shared/TDCrystalThroneGeometry.luau",
-  "runtimeSha256": "80754db02d52d8ba7aa97adce45889e85ca6a137b817c24cd20d100bbb3e3d0d",
-  "adapter": "Uniform scale2 and translation only; source pink/pale/slate colors and pointed crystal forms retained",
+  "runtimeSha256": "7cf8b979d0a0698af132ffc04b7a7fde357e3845e689e41f312496e6a6778f17",
+  "adapter": "Uniform scale2 and translation only; source sapphire/pale-blue/slate colors and pointed crystal forms retained",
   "permissions": "Existing same-owner TD/RPG shared-original instruction; TD read-only"
 }
