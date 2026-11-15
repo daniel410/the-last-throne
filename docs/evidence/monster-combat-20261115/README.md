@@ -25,7 +25,11 @@
 
 ## 고정 빌드·마감
 
-0.108.0 소스 커밋 후 저장소 표준 단일 빌드·원본 LFS 확인을 수행한다. 실제 소스 커밋·해시·결과는 `build.json`에 기록하고 고정 빌드 검증 결과를 추가한다. Roblox 게시·릴리스 태그는 생성하지 않는다.
+게임 **0.108.0**, 입력 소스 `8d10333a569fb78bb78b6761af21ca8995a74d70`. `python3 tools/build-game.py --source 8d10333a --record docs/evidence/monster-combat-20261115/build.json` 성공. [빌드 기록](build.json)의 단일 산출물은 `builds/0.108.0/TheLastThrone-0.108.0.rbxlx`(19,586,252 bytes), SHA-256 `9aa019e156a8dc655c3fbd3af97e26edec4f9d386f04854d4950c47fd8d90567`이다.
+
+[고정 원문 대조](fixed-source-equality.json)에서 변경 전투 모듈 12개가 소스 커밋과 완전히 같음을 확인했다. 이 빌드에 같은 통합 probe를 실행해 [고정 빌드 엔진 검사](fixed-native.log) **218,929 + 3,747 + 14,214 + 149 = 237,039 PASS**, 37개 서비스 사례·프로세스 종료0·`ENEMY_COMBAT_ALL_PASS`를 확인했다. 초기 통합의 147검사와 최종 서비스/캐시 보완 뒤 149검사를 구분한다.
+
+소스·검증 기록은 origin/main에 커밋·푸시한다. 동시 정상 푸시로 원격 참조 잠금 충돌이 한 번 발생했으나 원격이 로컬 조상인 것을 확인하고 일반 fast-forward 푸시 재시도로 성공했다. 이력을 재작성하지 않았다. 새 LFS 자산은 없고 기존 사용자 자산/미커밋 변경을 보존했다. Roblox 게시·릴리스 태그는 생성하지 않았다.
 
 ## 미검증·다음 담당
 

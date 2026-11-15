@@ -1,0 +1,33 @@
+{
+  "version": "0.108.0",
+  "sourceCommit": "8d10333a569fb78bb78b6761af21ca8995a74d70",
+  "engine": {
+    "legacy": 218929,
+    "resolvedCasts": {
+      "casts": 584,
+      "checks": 3747
+    },
+    "presentation": {
+      "casts": 584,
+      "checks": 14214
+    },
+    "service": {
+      "cases": 37,
+      "checks": 149
+    },
+    "totalChecks": 237039,
+    "exitCode": 0,
+    "marker": "ENEMY_COMBAT_ALL_PASS"
+  },
+  "pureSuiteChecks": 468495,
+  "published": false,
+  "releaseTag": null,
+  "remaining": [
+    "normal combat playthrough",
+    "real clients and network",
+    "1-4 humans with AI",
+    "mobile and gamepad",
+    "device performance",
+    "user combat and art acceptance"
+  ]
+}

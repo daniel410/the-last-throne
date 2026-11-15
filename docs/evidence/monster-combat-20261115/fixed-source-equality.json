@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "8d10333a569fb78bb78b6761af21ca8995a74d70",
+  "version": "0.108.0",
+  "modules": {
+    "src/shared/EnemyCombatProfiles.luau": "8e5fe663fe7a537a9690fa9a36652c195980866d9d8611c27c0968a5126b309c",
+    "src/shared/EnemyCombatTactics.luau": "814baa04039f02af3fb0aeab0e063f0089487d9a7ada6959cb3ea155b53bc8a6",
+    "src/server/Combat/CombatService.luau": "a5b515df5fc3c803587be5cb03ac967ea6dd39d73ef4fff32a8e38a7b93b0000",
+    "src/server/Combat/EnemyPatternRuntime.luau": "a81155ffb8c6239bfbe36cf70f4e20d9c38e6222b85df3f3f6d17e84ee4bee32",
+    "src/server/Story/DeepwoodService.luau": "0d980d483bc7019dbea638d508923e2a5f890fc55bbd0f605687726b964afaf4",
+    "src/client/EnemyPatternDefinition.luau": "21e81577f88bc609a306f66a989493bce19c583906a2d4d585f8bc2772325519",
+    "src/client/EnemyPatternEffects.luau": "4adbed215816f4109801a4c2f176368872d75fadde293a6db454eaaa702a663c",
+    "src/client/EnemyPatternPose.luau": "ddbbd94c32adb3049cb011bdd2fbde47e21b7889c8ebb96e3ef11db941d7622e",
+    "src/client/K0EnemyMotion.luau": "b36d9cfba14371000abdb5b6f70dcf7e77ad032aeec1379407a6eb804bb6e21a",
+    "src/client/K0EnemyWeaponMotion.luau": "f114c7ce959e0f063694a303628f74cd6ac7b4c0276c220525dce280fe3efd40",
+    "src/client/GloamwoodMotion.luau": "01727391e34461d1811a182f6aecbd1cc3c4f1e9c2bcbd2143680d7573a256bf",
+    "src/client/RegionalCasterMotion.luau": "86f77043fd509d75a42644c893585e0cc7989232f984269d77e82eafda28a094"
+  }
+}
