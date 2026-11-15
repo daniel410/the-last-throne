@@ -1,4 +1,4 @@
--- HG-03: weathered turf banks frame Lumi's maintenance approach.
+-- HG-03: weathered stone banks frame Lumi's maintenance approach.
 -- Additive native terrain; story access, authoritative floors and TD assets stay independent.
 local Bounds=require(game.ReplicatedStorage.Shared.CampaignBounds)
 local M={version=1};local V=Vector3.new
@@ -31,9 +31,9 @@ function M.build(parent,center,size,safe)
  local cells=M.plan(center,size,safe)
  for _,cell in ipairs(cells)do
   local p=cell.position;local r=cell.ballRadius;local h=cell.height
-  -- Spherical caps meet the deep existing envelope, with exposed slate below turf.
+  -- Spherical caps meet the deep existing envelope, with exposed slate below weathered rock.
   workspace.Terrain:FillBall(p+V(0,h-r,0),r,Enum.Material.Slate)
-  workspace.Terrain:FillBall(p+V(0,h-r+8,0),r-5,Enum.Material.Ground)
+  workspace.Terrain:FillBall(p+V(0,h-r+8,0),r-5,Enum.Material.Rock)
   local marker=Instance.new('Folder');marker.Name=cell.kind..cell.index
   marker:SetAttribute('Center',p);marker:SetAttribute('Height',h)
   marker:SetAttribute('FootprintRadius',cell.radius);marker:SetAttribute('BallRadius',r)

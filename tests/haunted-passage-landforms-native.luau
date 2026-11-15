@@ -22,7 +22,7 @@ for _,m in ipairs(banks:GetChildren())do
   end
  end end
  check(top>p.Y+m:GetAttribute('Height')-8,'retained raised silhouette '..m.Name)
- check(mats.Ground~=nil,'earth cap remains '..m.Name)
+ check(mats.Rock~=nil,'weathered rock cap remains '..m.Name)
  if kind=='Skyline'then check(mats.Slate~=nil,'exposed slate bank '..m.Name);report.skyline+=1 else report.shoulders+=1 end
  report.banks[m.Name]={height=top-p.Y,materials=mats,center={p.X,p.Y,p.Z}}
 end
