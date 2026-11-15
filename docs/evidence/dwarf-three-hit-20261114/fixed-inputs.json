@@ -1,0 +1,14 @@
+{
+  "src/shared/K0Config.luau": "babc1cb51128b78b188104973ff21f19d5ba238c09be411305980d61336fa22d",
+  "src/client/K0MeleeMotion.luau": "3d617a36406b5e8c4c3af2abdb1435b9d6bc4163b07d62e6daa262c35d7c0869",
+  "src/client/K0DwarfMixamoClips.luau": "ed90202b52d7f5b00ef09813171c6cfc8895fc553cf4994317e792be300cad83",
+  "tests/dwarf-basic-tempo-native.luau": "e01eb7039fd8b801f671d94b3256b1ab430d0f84bf252ca3d87893911837f9af",
+  "tests/k0-basic-attacks-native.luau": "0746e07e0375abd8672c5bd75007ad69874de474a93080122a694616f4ef268d",
+  "tests/k0-melee-curves-native.luau": "6962a60bca46eedb212c4d07d19d77bf49a4090ef4698b4417abac021d2eb8aa",
+  "tests/dwarf-recovery-native.luau": "3b76daa13d4f9021bb8f63975a06af3dbbdb5f1e9e6eed5bd8ca59d7fac86e33",
+  "tests/dwarf-axe-throw-native.luau": "91ff348e9facfaa1d00165aa6b0887ccc55059e88743c87d293206d673bf809c",
+  "src/server/Combat/CombatService.luau": "135d9c862b2b8a7bc1c39eb24a47ef380628d0b700a8bf02f8f7b390b9014116",
+  "src/client/K0DwarfMixamoBasic.luau": "057590cce13db01f8d9a90519dbb0342083d8d3e703bc78c38c288923a20b26c",
+  "src/client/K0DwarfMixamoSkills.luau": "71e287b3f2d49d5175752f0b2d7998191e7e96d6dda928cd7401a3a73ba4b11e",
+  "tools/prepare-dwarf-three-hit-native.py": "7130a545d640d0b1d349695065d47e74a031b5fe13fd913fb3867ad034dfca02"
+}
