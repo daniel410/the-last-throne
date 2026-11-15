@@ -1,5 +1,5 @@
-"""Author downcut/rising cut/thrust from owned curves and native solved grips.
-The only motion reference is the user's specified video at145–147 seconds.
+"""Author downcut/rising cut/horizontal sweep from owned curves and native grips.
+The third strike follows the user's latest broad horizontal slash instruction.
 """
 from pathlib import Path
 import copy
@@ -11,7 +11,7 @@ folder = root / 'assets/animations/knight-reference-combo-v1'
 source = root / 'assets/animations/mixamo-knight-v1/clips.json'
 baseline = json.loads((root / 'assets/animations/mixamo-knight-v1/baseline.json').read_text())
 owned = json.loads(source.read_text())['overhead']
-solved = json.loads((folder / 'thrust-poses.json').read_text())
+solved = json.loads((folder / 'sweep-poses.json').read_text())
 rest, guard, channels = baseline['rest'], baseline['guard'], baseline['channels']
 
 
@@ -42,10 +42,11 @@ def pose(curves, time):
     return {ch: [sample(axis, time) for axis in curves[ch]] for ch in channels}
 
 
-def thrust_pose(row):
+def sweep_pose(row):
     p = copy.deepcopy(guard)
     x = row['parameters']
-    p.update(right=x[:3], elbow=[x[3], 0, 0], wrist=x[4:7], weapon=x[7:10])
+    p.update(right=x[:3], elbow=[x[3], 0, 0], wrist=x[4:7], weapon=x[7:10],
+             left=[-15, -20, -15], leftElbow=[10, 0, 0])
     return p
 
 
@@ -64,7 +65,7 @@ clips = []
 for combo, (w, a, r) in enumerate([(0.16, .10, .16), (.18, .10, .18), (.26, .12, .24)], 1):
     duration, opening = w+a+r, w*.45
     late = w+a+r*.15
-    clip = dict(name=['Knight_Downcut', 'Knight_RisingCut', 'Knight_Thrust'][combo-1],
+    clip = dict(name=['Knight_Downcut', 'Knight_RisingCut', 'Knight_HorizontalSweep'][combo-1],
                 classId='knight', combo=combo, windup=w, active=a, recovery=r,
                 hitDelay=0, duration=duration, entryUntil=opening)
     for rig in ['R15', 'R6']:
@@ -84,24 +85,20 @@ for combo, (w, a, r) in enumerate([(0.16, .10, .16), (.18, .10, .18), (.26, .12,
                         p[ch] = [s+(v-s)*start for s, v in zip(rest[ch], p[ch])]
                         p[ch] = [v+(g-v)*finish for v, g in zip(p[ch], guard[ch])]
                 # Keep the blade near the next action instead of resetting to guard.
-                bridge = pose(original, .416) if combo == 1 else thrust_pose(solved[rig][0])
+                bridge = pose(original, .416) if combo == 1 else sweep_pose(solved[rig][0])
                 for ch in channels:
                     p[ch] = [v+(b-g)*.35*smooth((t-late)/(duration-late)) for v, b, g in zip(p[ch], bridge[ch], guard[ch])]
                 poses.append(p)
         else:
             rows = solved[rig]
-            # The rigid R6 arm has a shorter reach; contact precedes full extension.
-            contact = rows[2] if rig == 'R15' else rows[1]
-            extension = rows[3] if rig == 'R15' else rows[2]
-            times = [0, opening, .20, .23, w, .28, .34, late, duration]
-            poses = [copy.deepcopy(rest), thrust_pose(rows[0]), thrust_pose(rows[0]),
-                     thrust_pose(rows[1] if rig == 'R15' else rows[0]), thrust_pose(contact),
-                     thrust_pose(extension), thrust_pose(extension), copy.deepcopy(guard), copy.deepcopy(guard)]
+            # A 130-degree horizontal arc crosses the server contact at its center.
+            times = [0, opening, .18, .205, .23, w, .29, .315, .34, late, duration]
+            poses = [copy.deepcopy(rest), sweep_pose(rows[0])]+[sweep_pose(row) for row in rows]+[copy.deepcopy(guard), copy.deepcopy(guard)]
         authored = curves(times, poses)
         if combo == 3:
             # Keep angular velocity locally linear through the server contact.
-            # The solved chamber/extension keys otherwise change acceleration
-            # sharply at the impact knot on the rigid R6 arm.
+            # The solved arc keys otherwise change acceleration sharply at the
+            # impact knot, especially on the rigid R6 arm.
             dense = sorted(set([duration*i/64 for i in range(65)]+times+
                                [w+x for x in [-.024, -.012, -.006, 0, .006, .012, .024]]))
             refined = []
@@ -126,7 +123,7 @@ def lua(x):
     return json.dumps(x)
 
 
-names = ['K0KnightReferenceDowncut', 'K0KnightReferenceRisingCut', 'K0KnightReferenceThrust']
+names = ['K0KnightReferenceDowncut', 'K0KnightReferenceRisingCut', 'K0KnightReferenceSweep']
 outputs = {}
 for name, clip in zip(names, clips):
     out = root / 'src/client' / (name+'.luau')
@@ -139,5 +136,7 @@ index.write_text('-- Basic attacks only; skill variants keep their original clip
 outputs[str(index.relative_to(root))] = hashlib.sha256(index.read_bytes()).hexdigest()
 (folder/'manifest.json').write_text(json.dumps(dict(reference='https://www.youtube.com/watch?v=xUhOca48eLQ&t=145s',
     intervalSeconds=[145, 147], source=str(source.relative_to(root)), sourceSha256=hashlib.sha256(source.read_bytes()).hexdigest(),
-    outputs=outputs, sequences=['Downcut', 'Rising Cut', 'Forward Thrust'], solver='tools/solve-knight-thrust-native.luau'), indent=2)+'\n')
+    outputs=outputs, sequences=['Downcut', 'Rising Cut', 'Horizontal Sweep'], solver='tools/solve-knight-sweep-native.luau',
+    finisherInstruction='Broad horizontal slash; supersedes the reference thrust',
+    posesSha256=hashlib.sha256((folder/'sweep-poses.json').read_bytes()).hexdigest()), indent=2)+'\n')
 print(index)

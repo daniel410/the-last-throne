@@ -58,7 +58,7 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 							low,high=math.max(low,math.min(a,b)),math.min(high,math.max(a,b))
 						end
 					end
-					check(low>high, "Sword cutting segment clears held shield")
+					check(low>high, "Sword cutting segment clears held shield "..rig.Name.."/"..classId.."/"..tostring(character:GetAttribute("K0Combo")).." age="..age)
 				end
 				return tip, grip
 			end
@@ -96,11 +96,17 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
                  if combo==1 then check(loaded.Y-hit.Y>1,'Reference first cut descends through contact')
                  elseif combo==2 then check(hit.Y-loaded.Y>.5,'Reference second cut rises through contact')
                  else
-                  check(loaded.Z-hit.Z>.5,'Reference finisher extends the sword toward the target')
-                  check(math.abs(hit.Y-loaded.Y)<.5 and math.abs(hit.X-loaded.X)<.5,'Thrust stays in a straight forward corridor')
-                  local _,grip=sample(impact,1/60)
-                  local direction=root.CFrame:VectorToObjectSpace(grip:VectorToWorldSpace(weapon.tip.Position.Unit))
-                  check(direction:Dot(Vector3.new(0,0,-1))>.9,'Thrust points the blade toward the target')
+                  local left=sample(impact+.112,1/60)
+                  check(loaded.X-hit.X>3 and hit.X-left.X>3,'Finisher sweeps broadly from right to left')
+                  check(math.abs(hit.Y-loaded.Y)<.5 and math.abs(left.Y-hit.Y)<.5,'Broad sweep stays horizontal')
+                  local previousX=math.huge;local lowY,highY=math.huge,-math.huge
+                  for i=0,32 do
+                   local tip=sample(opening+(impact+.112-opening)*i/32,1/60)
+                   check(tip.X<previousX+.03,'Sweep keeps moving across the body')
+                   previousX=tip.X;lowY=math.min(lowY,tip.Y);highY=math.max(highY,tip.Y)
+                  end
+                  check(highY-lowY<.6,'Whole cutting arc stays at chest height')
+
                  end
                 elseif combo==1 then
                  check(loaded.Y-hit.Y>1,'Loaded axe descends into contact')

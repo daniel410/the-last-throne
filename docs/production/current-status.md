@@ -6,7 +6,7 @@
 
 - 로비 카메라: PLAY 버튼의 영웅 가림을 줄이도록 로비 최소 줌을24 studs로 소스 수정했다. [Studio 후보·상태별 규칙 확인/새 빌드·실기기 미검증](../evidence/lobby-camera-20261114/README.md).
 
-- 기사 기본3타: 지정 영상2:25~2:27을 반영한 내려베기→올려베기→찌르기의 후보 엔진/회귀 검증을 통과했다. [빌드·검증·남은 수용](../evidence/knight-reference-combo-20261114/README.md).
+- 기사 기본3타: 최신 요청에 따라 내려베기→올려베기→크게 가로베기로 수정했다. [빌드·검증·남은 수용](../evidence/knight-horizontal-finisher-20261114/README.md).
 
 - 드워프 기본3연격: 내려베기→되받아베기→넓은 마무리 베기의 서버3타·R6/R15 후보 검증을 통과했다. [빌드/검증·남은 수용](../evidence/dwarf-three-hit-20261114/README.md).
 

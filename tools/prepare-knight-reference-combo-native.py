@@ -41,6 +41,6 @@ for path in suites:
 code += "print('KNIGHT_REFERENCE_ALL_PASS')\n"
 out = Path('/tmp/tlt-knight-reference-combo-native.luau')
 out.write_text(code)
-inputs = paths+suites+['src/shared/K0Config.luau', 'src/server/Combat/CombatService.luau', 'assets/animations/knight-reference-combo-v1/thrust-poses.json', 'tools/author-knight-reference-combo.py', 'tools/prepare-knight-reference-combo-native.py']
+inputs = paths+suites+['src/shared/K0Config.luau', 'src/server/Combat/CombatService.luau', 'assets/animations/knight-reference-combo-v1/sweep-poses.json', 'tools/author-knight-reference-combo.py', 'tools/solve-knight-sweep-native.luau', 'tools/prepare-knight-reference-combo-native.py']
 out.with_suffix('.inputs.json').write_text(json.dumps({p: hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in inputs}, indent=2)+'\n')
 print(out)
