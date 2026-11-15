@@ -1,0 +1,73 @@
+{
+  "routes": {
+    "2": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4980,
+      "samples": 5196,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "3": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 5808,
+      "samples": 6177,
+      "targets": 142,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "4": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 8093,
+      "samples": 8396,
+      "targets": 144,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "5": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4560,
+      "samples": 4749,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    }
+  },
+  "walk": [
+    {
+      "jumps": 0,
+      "arrived": true,
+      "seconds": 11.068041874910705,
+      "position": "-940.8499755859375, 127.19241333007812, -11367.1845703125"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "seconds": 11.069137041573413,
+      "position": "-964.8499755859375, 127.19241333007812, -11014.4970703125"
+    }
+  ],
+  "width": {
+    "raised": 0,
+    "blocked": 0,
+    "missing": 0,
+    "samples": 2093,
+    "banks": 4
+  }
+}
