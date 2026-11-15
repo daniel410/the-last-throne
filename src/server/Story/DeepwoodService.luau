@@ -42,8 +42,11 @@ end
 -- but cannot declare a kill or complete an objective from this data.
 function Service.encounterState(player,heroId)
  local result={}
+ local run=options.inventory.expedition(player,heroId)
  for key,e in pairs(encounters) do
-  if e.participants[player]==heroId then
+  -- A replay keeps the same hero while the old encounter awaits cleanup.
+  -- Its waypoint must not replace the current run's first clearing.
+  if e.participants[player]==heroId and e.runId==(run and run.runId or nil) then
    local ctx,root=context(player)
    result[e.chapter.id..':'..e.goal.id]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0,
     route=e.routePoints~=nil,waiting=e.waiting==true,routeTitle=e.routeTitle,

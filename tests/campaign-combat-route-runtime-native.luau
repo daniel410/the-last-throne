@@ -105,5 +105,25 @@ service=create();service.interact(players[1],c.id,g.id);service.stepEncounters()
 local savedPack=living();check(#savedPack==#batches[1],'saved rule13 keeps identical initial population')
 for _,m in ipairs(savedPack)do m:FindFirstChildOfClass('Humanoid').Health=0;service.defeated(m)end
 check(#living()==0 and projection().waiting,'saved rule13 also leaves cleared ground instead of respawning')
+-- Replaying with the same hero must not inherit the previous run's waypoint.
+-- The old encounter deliberately remains alive during its cleanup grace period.
+local stale=projection()
+check(stale.wave==1 and stale.waiting,'previous run is waiting at its second clearing')
+for i=1,4 do
+ runs[players[i]].runId='replacement-route';runs[players[i]].kills={}
+ runs[players[i]].balanceVersion=17;runs[players[i]].difficultyId='Hard'
+end
+check(projection()==nil,'new run hides the old run encounter before its first approach')
+local replacement={journal=journals[players[1]],expedition=runs[players[1]],routePartySize=4,
+ encounters=service.encounterState(players[1],'1')}
+local firstPoint=R.entry(c,g,runs[players[1]],4)
+local freshGuidance=journal.guidance(replacement,{chapter=c,goal=g})
+check((freshGuidance.position-Vector3.new(table.unpack(firstPoint))).Magnitude<.01,'replay navigation points to the new run first clearing')
+players[1].Character.PrimaryPart.Position=Vector3.new(table.unpack(firstPoint))
+service.interact(players[1],c.id,g.id);service.stepEncounters()
+check(projection().wave==1 and not projection().waiting,'current run projection wins while old encounter still exists')
+check(#living()==#batches[1],'approaching replay guidance spawns exactly the new first pack')
+runs[players[1]]=nil
+check(projection()==nil,'missing admission cannot project a previous admitted encounter')
 parent:Destroy()
 print('COMBAT_ROUTE_RUNTIME '..game.HttpService:JSONEncode(report));return report
