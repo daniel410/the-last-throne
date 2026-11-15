@@ -4,12 +4,44 @@ local Env=require(script.Parent.DeepwoodEnvironment)
 local Areas=require(game.ReplicatedStorage.Shared.CampaignAreas)
 local Content=require(game.ReplicatedStorage.Shared.CampaignContent)
 local M={version=1};local V=Vector3.new
-function M.build(root,center,size,pal,safe,ground)
+function M.build(root,center,size,pal,safe,ground,world)
  local used={};local count=0
+ local lines={};local packs={};local Route=require(game.ReplicatedStorage.Shared.CampaignNavigationRoute)
+ -- Reserve both original and Easy approaches before choosing a clustered footprint.
+ for _,chapter in ipairs(Content.chapters)do if chapter.zone=='EC-03'then
+  for _,variant in ipairs({'points','worldPoints'})do
+   local previous=world.spawns['EC-03'].Position
+   for _,goal in ipairs(chapter.goals)do
+    local targets={};local route=chapter.combatRoutes and chapter.combatRoutes[goal.id]
+    local points=route and (route[variant]or route.points)
+    if points and #points>0 then
+     for _,p in ipairs(points)do targets[#targets+1]=p;packs[#packs+1]=V(table.unpack(p))end
+    else
+     for _,step in ipairs(goal.activity and goal.activity.steps or {{position=goal.position}})do
+      if step.position then targets[#targets+1]=step.position end
+     end
+    end
+    for _,p in ipairs(targets)do
+     local path=Route.route({previous.X,previous.Y,previous.Z},p)
+     for i=2,#path do lines[#lines+1]={V(table.unpack(path[i-1])),V(table.unpack(path[i]))}end
+     previous=V(table.unpack(p))
+    end
+   end
+  end
+ end end
+ local function routeFree(p,r)
+  for _,q in ipairs(packs)do if (p-q).Magnitude<r+44 then return false end end
+  for _,line in ipairs(lines)do
+   local d=V(line[2].X-line[1].X,0,line[2].Z-line[1].Z);local o=V(p.X-line[1].X,0,p.Z-line[1].Z)
+   local t=math.clamp(o:Dot(d)/math.max(.001,d:Dot(d)),0,1)
+   if (o-d*t).Magnitude<r+24 then return false end
+  end
+  return true
+ end
  local function candidate(p)
   local radius=32
   if math.abs(p.X-center.X)+radius>size[1]/2 or math.abs(p.Z-center.Z)+radius>size[2]/2 then return end
-  if not safe(p,radius)then return end
+  if not safe(p,radius)or not routeFree(p,radius)then return end
   for _,area in ipairs(Content.zones['EC-03'].expansionAreas or {})do
    if Areas.contains(area,p.X,p.Z,radius+8)or Areas.contains(area.connector,p.X,p.Z,radius+8)then return end
   end

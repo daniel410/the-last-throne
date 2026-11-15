@@ -148,7 +148,7 @@ local copy=Env.asset(parent,hero and 'ForestLandmark'or 'ForestTree',p,h)
  end end
  return copy
 end
-local function vegetation(parent,c,size,pal,theme,safe,rng,id)
+local function vegetation(parent,c,size,pal,theme,safe,rng,id,world)
  local m=model(parent,'LayeredVegetation')
  if id=='FV-03'then
   require(script.Parent.FrozenRavineVegetation).build(m,c,size,safe,ground)
@@ -171,7 +171,7 @@ local function vegetation(parent,c,size,pal,theme,safe,rng,id)
   end
  end
  if id=='EC-03'then
-  require(script.Parent.CalderaMineSpoil).build(m,c,size,pal,safe,ground)
+  require(script.Parent.CalderaMineSpoil).build(m,c,size,pal,safe,ground,world)
  end
  if id=='GW-01'then
   require(script.Parent.GloamwoodVergeVegetation).build(m,c,size,safe,ground,function(at,h)return tree(m,at,h,pal,theme,false)end)
@@ -489,7 +489,7 @@ function Art.create(world,scope)
  terrainRay.FilterDescendantsInstances=floors
  terrainRay.RespectCanCollide=true
  for _,p in ipairs(plans)do
-  vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,p.id)
+  vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,p.id,world)
   floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])
   vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id,p.safe)
   Detail.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground)
