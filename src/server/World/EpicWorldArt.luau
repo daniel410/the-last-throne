@@ -477,7 +477,14 @@ function Art.create(world,scope)
    require(script.Parent.RegionalConceptArt).build(p.site,p.id,p.c,p.z.size,p.safe,ground,world)
    require(script.Parent.RegionalConceptArt).paths(p.site,ground,world)
   end
-  if p.id=='GW-01'then require(script.Parent.GloamwoodTrailEvidence).build(p.site,Content.byId[p.id],ground)end
+  if p.id=='GW-01'then
+   local traceRay=RaycastParams.new();traceRay.FilterType=Enum.RaycastFilterType.Include
+   traceRay.FilterDescendantsInstances={workspace.Terrain,world.terrain};traceRay.RespectCanCollide=true
+   require(script.Parent.GloamwoodTrailEvidence).build(p.site,Content.byId[p.id],function(at)
+    local hit=workspace:Raycast(at+V(0,180,0),V(0,-480,0),traceRay)
+    return hit and hit.Position or at,hit~=nil
+   end)
+  end
   if p.theme=='Deepwood'then
    require(script.Parent.CampaignSceneryCollision).apply(p.site)
    DeepwoodConcept.build(p.site,p.id,p.c,p.z.size,p.safe,ground,world)
