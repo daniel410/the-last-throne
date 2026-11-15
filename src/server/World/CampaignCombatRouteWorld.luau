@@ -4,7 +4,7 @@
 local Shared=game.ReplicatedStorage.Shared
 local C=require(Shared.CampaignContent)
 local K=require(script.Parent.EpicEnvironmentKit)
-local W={version=4};local V=Vector3.new
+local W={version=5};local V=Vector3.new
 local themes={DW='Deepwood',GW='Gloamwood',FV='FrozenVale',EC='EmberCaldera',HG='HauntedGraveyard'}
 local function vec(p)return V(table.unpack(p))end
 function W.create(world,scope)
@@ -26,19 +26,7 @@ function W.create(world,scope)
   if delta.Magnitude>1 then
    local theme=themes[edge[1]:sub(1,2)];local pal=K.palette[theme]
    local material=theme=='FrozenVale'and Enum.Material.Snow or theme=='EmberCaldera'and Enum.Material.Basalt or theme=='HauntedGraveyard'and Enum.Material.Slate or Enum.Material.Grass
-   local function span(first,last)
-    local cf=CFrame.lookAt((first+last)/2,last)
-    local floor=K.part(foundation,'JourneyPass',V(Bounds.trailHalfWidth*2,2,(last-first).Magnitude+2),cf*CFrame.new(0,-1,0),pal.ground,material)
-    floor.CanCollide=true;floor.CanQuery=true;floor:SetAttribute('FromZone',edge[1]);floor:SetAttribute('ToZone',edge[2])
-   end
-   local flat=V(delta.X,0,delta.Z)
-   if scope.epic==4 and math.abs(delta.Y)>.01 and flat.Magnitude>10 then
-    -- A slanted mouth crosses the rectangular floor at different distances
-    -- on either side of the hero. Level the approaches before that crossing.
-    local pad=math.min(10,flat.Magnitude*.2);local direction=flat.Unit
-    local first=a+direction*pad;local last=b-direction*pad
-    span(a,first);span(first,last);span(last,b)
-   else span(a,b)end
+   require(script.Parent.CampaignPassageFloor).create(foundation,C.zones[edge[1]],C.zones[edge[2]],pal.ground,material,edge)
   end
  end
  if scope.epic==1 then
@@ -50,7 +38,7 @@ function W.create(world,scope)
   end end
  end
  for _,p in ipairs(world.terrain:GetDescendants())do
-  if (p.Parent==world.terrain or p.Name:match('^CalderaTrail_'))and p:IsA('BasePart')and(p.Name:match('^ConnectedPath_')or p.Name:match('^SnowTrail_')or p.Name:match('^CalderaTrail_')or p.Name:match('^LateTrail_'))then
+  if p:IsA('BasePart')and(p.Name:match('^ConnectedPath_')or p.Name:match('^SnowTrail_')or p.Name:match('^CalderaTrail_')or p.Name:match('^LateTrail_'))then
    p.CanCollide=false;p.CanQuery=false;p.CanTouch=false;p.Transparency=1;p.CastShadow=false;p:SetAttribute('LegacyPassRetired',true)
   end
  end

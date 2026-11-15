@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=28}
+local Art={version=29}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -410,14 +410,17 @@ local function carve(world,Content,Access)
   if root then local y=Bounds.surface(root.Position.X,root.Position.Z);if y then clear(V(root.Position.X,y,root.Position.Z),26)end end
  end end
  for _,edge in ipairs(Access.edges)do
-  local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb);local flat=V(b.X-a.X,0,b.Z-a.Z);local n=math.max(1,math.ceil(flat.Magnitude/30))
-  if flat.Magnitude>1 then
-   clear(a,52);clear(b,52)
-   for i=0,n do
-   local p=a:Lerp(b,i/n)
-   terrain:FillBlock(CFrame.lookAt(p+V(0,192,0),p+V(0,192,0)+flat),V(100,400,flat.Magnitude/n+16),Enum.Material.Air)
-   if i%12==0 then task.wait()end
+  -- A perpendicular slab only clears the center-line mouths. Their diagonal
+  -- corners extend beyond those ends and used to retain voxel overhangs.
+  local passage=require(Shared.CampaignPassage).create(Content.zones[edge[1]],Content.zones[edge[2]])
+  local low,high=V(math.huge,math.huge,math.huge),V(-math.huge,-math.huge,-math.huge)
+  for _,triangle in ipairs(passage.triangles)do for _,p in ipairs(triangle)do
+   low=V(math.min(low.X,p[1]),math.min(low.Y,p[2]),math.min(low.Z,p[3]))
+   high=V(math.max(high.X,p[1]),math.max(high.Y,p[2]),math.max(high.Z,p[3]))
   end end
+  local center=V((low.X+high.X)/2,low.Y+192,(low.Z+high.Z)/2)
+  terrain:FillBlock(CFrame.new(center),V(high.X-low.X+16,400,high.Z-low.Z+16),Enum.Material.Air)
+  task.wait()
  end
 end
 local function connectGround(edge)

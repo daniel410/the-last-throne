@@ -3,6 +3,9 @@
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local Access=game and require(game:GetService('ReplicatedStorage').Shared.CampaignAccess) or dofile('src/shared/CampaignAccess.luau')
 local Areas=game and require(game:GetService('ReplicatedStorage').Shared.CampaignAreas)or dofile('src/shared/CampaignAreas.luau')
+local Passage=game and require(game:GetService('ReplicatedStorage').Shared.CampaignPassage)or dofile('src/shared/CampaignPassage.luau')
+local passages={}
+for i,edge in ipairs(Access.edges)do passages[i]=Passage.create(Content.zones[edge[1]],Content.zones[edge[2]])end
 local Bounds={trailHalfWidth=48,backgroundHeight=-12}
 local function finite(v) return type(v)=='number' and v==v and math.abs(v)<1e7 end
 function Bounds.ends(edge)
@@ -39,7 +42,7 @@ function Bounds.connection(x,z,margin)
   local dx,dz=b[1]-a[1],b[3]-a[3]
   local t=math.max(0,math.min(1,((x-a[1])*dx+(z-a[3])*dz)/(dx*dx+dz*dz)))
   if (x-a[1]-t*dx)^2+(z-a[3]-t*dz)^2<=(Bounds.trailHalfWidth+(margin or 0))^2 then
-   local y=Bounds.trailHeight(edge,t)-.2
+   local y=Passage.height(passages[i],x,z)or Bounds.trailHeight(edge,t)-.2
    if not height or y>height then height,index=y,i end
   end
  end
