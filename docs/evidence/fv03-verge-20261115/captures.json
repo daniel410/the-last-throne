@@ -1,0 +1,37 @@
+{
+  "beforeBuild": "0.108.1",
+  "afterBuild": "0.109.1",
+  "state": "fresh Studio Edit; no players; FrozenVale unrestored mood",
+  "cameras": {
+    "approach": {
+      "position": [
+        395,
+        126,
+        -8685
+      ],
+      "lookAt": [
+        480,
+        108,
+        -8790
+      ]
+    },
+    "overview": {
+      "position": [
+        840,
+        495,
+        -8340
+      ],
+      "lookAt": [
+        277,
+        112,
+        -8782
+      ]
+    }
+  },
+  "files": {
+    "before-approach.png": "84f263e1ad26c98fc63101e8821cb2060ba44ad51041f259e646cd892b586832",
+    "after-approach.png": "408b6ee426bb9a7914e9d70407543b9db3c169c01bd54e5f125d328c58d30d92",
+    "after-overview.png": "6a7993b2ba030f628c87f2b0a4f244df6425ef1e6249f08d0080d514706569b1",
+    "before-overview.png": "6c45d4e0fd69a01cda4798c746472d4b565a52ddbcfc65cc9d0a52b4b0de18e5"
+  }
+}

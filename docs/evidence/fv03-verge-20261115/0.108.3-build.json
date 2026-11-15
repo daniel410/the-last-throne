@@ -1,0 +1,26 @@
+{
+  "version": "0.108.3",
+  "sourceCommit": "c992ded146abb26a7c1094c69f26f54a87014ce8",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-c992ded1-m641z0zw",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-c992ded1-m641z0zw/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/tlt-fv03-snow-verge-20261115/builds/0.108.3/TheLastThrone-0.108.3.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.108.3.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.108.3/TheLastThrone-0.108.3.rbxlx",
+      "sha256": "40aee8b542939fadae2ce435fd12560e52cae5e3f94958b0e0bd4990662f1516",
+      "bytes": 19590069
+    }
+  ]
+}

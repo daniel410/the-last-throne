@@ -1,0 +1,368 @@
+{
+  "FROZEN_RAVINE_VERGE": {
+    "trees": 12,
+    "groups": {
+      "1:1": true,
+      "-1:3": true,
+      "-1:1": true,
+      "1:2": true,
+      "1:3": true
+    },
+    "checks": 255,
+    "heights": {
+      "39": true,
+      "50": true,
+      "31": true,
+      "46": true,
+      "27": true,
+      "35": true
+    },
+    "parts": 36
+  },
+  "EPIC_MAP_NAVIGATION": [
+    {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [
+        {
+          "chapter": "FV-Q1",
+          "to": [
+            -362.85000000000014,
+            84,
+            -8317.9
+          ],
+          "label": "FV-Q1:report",
+          "epic": 3,
+          "from": [
+            -867.8388061523438,
+            81,
+            -8180.42041015625
+          ]
+        },
+        {
+          "chapter": "EC-Q1",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q1:report",
+          "epic": 4,
+          "from": [
+            -1021.1762084960938,
+            127,
+            -12006.5341796875
+          ]
+        },
+        {
+          "chapter": "EC-Q2",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q2:report",
+          "epic": 4,
+          "from": [
+            -783.3861083984375,
+            143,
+            -12732.84375
+          ]
+        },
+        {
+          "chapter": "EC-Q3",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q3:report",
+          "epic": 4,
+          "from": [
+            1465.877197265625,
+            151,
+            -13439.2890625
+          ]
+        },
+        {
+          "chapter": "EC-Q4",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q4:report",
+          "epic": 4,
+          "from": [
+            -1977.529296875,
+            185,
+            -14555.1005859375
+          ]
+        }
+      ],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8093,
+          "samples": 8396,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    },
+    {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [
+        {
+          "chapter": "FV-Q1",
+          "to": [
+            -362.85000000000014,
+            84,
+            -8317.9
+          ],
+          "label": "FV-Q1:report",
+          "epic": 3,
+          "from": [
+            -867.8388061523438,
+            81,
+            -8180.42041015625
+          ]
+        },
+        {
+          "chapter": "EC-Q1",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q1:report",
+          "epic": 4,
+          "from": [
+            -1021.1762084960938,
+            127,
+            -12006.5341796875
+          ]
+        },
+        {
+          "chapter": "EC-Q2",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q2:report",
+          "epic": 4,
+          "from": [
+            -783.3861083984375,
+            143,
+            -12732.84375
+          ]
+        },
+        {
+          "chapter": "EC-Q3",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q3:report",
+          "epic": 4,
+          "from": [
+            1465.877197265625,
+            151,
+            -13439.2890625
+          ]
+        },
+        {
+          "chapter": "EC-Q4",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q4:report",
+          "epic": 4,
+          "from": [
+            -1977.529296875,
+            185,
+            -14555.1005859375
+          ]
+        }
+      ],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8223,
+          "samples": 8526,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    }
+  ],
+  "ROUTE_BLOCKER_WALK_RESULT": {
+    "EC-05_points": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-05_points",
+      "distance": 4.983635425567627,
+      "position": "236.1265106201172, 159.19241333007812, -13317.4853515625",
+      "elapsed": 9.315809749998152
+    },
+    "EC-05_worldPoints": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "EC-05_worldPoints",
+      "distance": 4.344119548797607,
+      "position": "236.6694793701172, 159.19241333007812, -13317.1474609375",
+      "elapsed": 8.672677499940619
+    },
+    "GW-01_worldPoints": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "GW-01_worldPoints",
+      "distance": 6.929018497467041,
+      "position": "-455.3790283203125, 67.19239807128906, -4084.39404296875",
+      "elapsed": 7.066126208286732
+    },
+    "GW-01_points": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "GW-01_points",
+      "distance": 6.785372257232666,
+      "position": "-455.2353820800781, 67.19239807128906, -4084.39404296875",
+      "elapsed": 8.671115125063807
+    }
+  },
+  "FV03_VERGE_WALK_RESULT": {
+    "FV03_2": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "FV03_2",
+      "distance": 7.881433486938477,
+      "position": "158.8251190185547, 95.19241333007812, -8792.0908203125",
+      "elapsed": 6.926685166661628
+    },
+    "FV03_1": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "FV03_1",
+      "distance": 7.882480621337891,
+      "position": "305.4736328125, 95.19241333007812, -8883.7099609375",
+      "elapsed": 6.911980125005357
+    },
+    "FV03_3": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "FV03_3",
+      "distance": 4.238218307495117,
+      "position": "151.61331176757812, 95.19241333007812, -8783.6962890625",
+      "elapsed": 4.045721541624516
+    },
+    "FV03_4": {
+      "jumps": 0,
+      "arrived": true,
+      "corrections": 0,
+      "id": "FV03_4",
+      "distance": 6.5146708488464355,
+      "position": "308.076416015625, 95.19241333007812, -8882.81640625",
+      "elapsed": 10.40858112508431
+    }
+  }
+}
