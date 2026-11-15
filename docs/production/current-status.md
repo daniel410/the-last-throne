@@ -1,6 +1,6 @@
 # 현재 개발 상태
 
-2026-11-13 · TLT-001/050/057/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
+2026-11-14 · TLT-001/050/057/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
 - 동작·착용·VFX 수명: 엘프 잔여 화살/얼굴 앞 시위 접점, Traveler·Tempered·Sentinel 후드 턱 겹침, Axe Throw 도착 후 궤적 재생을 수정했다. 전 영웅128기술·몬스터50종146공격에서 늦은 준비/발사 재생도 검사했다. [수정·엔진 검증·미게시/남은 수용](../evidence/visual-lifecycle-fit-20261113/README.md).
 - 몬스터 공격: 0.104.15에서 기존35모티프·50조합에 원소별 재질/곡선 흐름·입자/국소광·표면 충돌/방사 파편을 보강했다. [실제 연속 재생·조사·고정 빌드 검증/미게시](../evidence/monster-spell-art-20261112/README.md). 기존 [종별 공격 연결](../evidence/monster-spell-vfx-20261112/README.md)과 [보스 피격·연속 준비/회수](../evidence/boss-impact-motion-20261112/README.md)를 유지하며 최종 미술/기기 수용은 별도다.
@@ -20,7 +20,7 @@
 - 본편: Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. 35본편·12선택, 반복 웨이브를 경로 교전으로 분산. 0.104.3에서 GW/HG·EC-05의 길목 전투13개와 기존 부분 저장 호환을 보강하고 전투 HUD 초기화를 연출 시작과 분리했다. [검증/미게시·남은 수용](../evidence/story-combat-pacing-20261111/README.md).
 - 마법사 모자:사용자 지정 최대 MP +10/+20/+30/+60으로 변경했다. 지력안을 대체하고 기존 서버 MP 집계/강화/메뉴 표시를 사용한다. [소스 회귀·엔진 미검증](../evidence/mage-hat-mp-20261111/README.md). PNG·신규 Traveler 지급은 기존0.101.0 기준이며 최대MP 변경의 전용 엔진·게시·실기기 수용은 후속이다.
 - 최근 장비: Tempered/Veteran/Sentinel 부위별 재지정과 선택형 특수 효과. [수치 검증](../evidence/equipment-values-20261110/README.md), [효과 계약](equipment-special-effects-2026-11-10.md). 기존 장비 효과 자동 배정 없음.
-- 최근 게시: **0.104.1**, 로비 버전95·배틀 버전22. 최신128스킬 VFX·장비 착용/상위 난이도 레벨 제한 제거 포함, 기존 Private 유지. 읽기 전용 중복 Studio 창 종료는 미완료. [게시·검증·미검증 범위](../evidence/release-0.104.1-20261111/README.md).
+- 최근 게시: **0.107.3**, 로비 버전98·배틀 버전26. 커밋된 최신 소스로 단일 빌드 후 두 Place 게시를 확인했으며 기존 Private를 유지했다. [빌드·무결성·게시 기록·남은 수용](../evidence/release-0.107.3-20261114/README.md).
 - 남은 수용: 게시 클라이언트/실계정 저장·재접속, 각 Experience 실제 이동, 1~4인+AI, 모바일/실기기 성능·전투 밸런스·사용자 미술 수용. 상세 범위는 해당 증거와 [QA 계획](qa-and-release-plan.md)을 따른다.
 
 다음 작업은 진행 차단·유실·조작/가독성 결함을 우선해 [백로그](../../backlog.md)에서 선택한다. 문서 정리로 구현 티켓을 완료 처리하지 않는다.
