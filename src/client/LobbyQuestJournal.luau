@@ -2,6 +2,7 @@
 local RS=game:GetService('ReplicatedStorage')
 local Content=require(RS.Shared.CampaignContent)
 local Progress=require(RS.Shared.DeepwoodProgress)
+local Modes=require(RS.Shared.CampaignModeProgress)
 local Log=require(RS.Shared.DeepwoodQuestLog)
 local Text=require(RS.Shared.LobbyQuestText)
 local T=require(script.Parent.TDInventoryTheme)
@@ -41,10 +42,12 @@ function Journal.create(panel)
   for _,child in ipairs(list:GetChildren())do if child:IsA('GuiObject')then child:Destroy()end end
   for i,b in ipairs(buttons)do b.Caption.Text=(i==epic and '> 'or '')..epics[i][1]:upper()..(epics[i][2]and ''or '\n'..Text.Future)end
   local spec=epics[epic];if not spec[2]then summary.Text=Text.Future;list.CanvasPosition=Vector2.zero;return end
-  local h=hero();local journal=h and (h.deepwood or Progress.new())or nil
+  local h=hero();local active=h and h.expeditions and h.expeditions.active
+  local mode=active and active.difficultyId or 'Easy'
+  local journal=h and Modes.journal(h,mode)or nil
   local chapters={};for _,c in ipairs(Content.chapters)do if c.id:sub(1,3)==spec[2]then table.insert(chapters,c)end end
   table.sort(chapters,function(a,b)if a.side~=b.side then return not a.side end;if not a.side then return a.number<b.number end;return a.id<b.id end)
-  summary.Text=h and (spec[1]:upper()..' · '..#chapters..' QUESTS')or Text.SelectHero
+  summary.Text=h and (mode:upper()..' · '..spec[1]:upper()..' · '..#chapters..' QUESTS')or Text.SelectHero
   if journal then
    local region=Guide.regions[epic]
    local nextChapter=Log.main(journal)

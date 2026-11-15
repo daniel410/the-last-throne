@@ -6,6 +6,7 @@ p = argparse.ArgumentParser()
 p.add_argument('--preview', action='store_true')
 args = p.parse_args()
 paths = [
+    'src/client/LobbyQuestJournal.luau', 'src/client/LobbyAtlas.luau', 'src/client/DawnspireHomecoming.luau',
     'src/shared/CampaignModeProgress.luau', 'src/shared/AdventureRules.luau',
     'src/shared/Difficulty.luau', 'src/shared/ExpeditionPresentation.luau',
     'src/shared/ExpeditionText.luau', 'src/shared/LobbySideQuests.luau',
@@ -54,6 +55,7 @@ suite = suite.replace(' check(profile.heroes.hero.expeditions.active.journal.cle
                       ' task.wait();check(profile.heroes.hero.expeditions.active.journal.clears[c.id]')
 code += 'do\n' + suite + '\nend\n'
 code += 'local routeResult=(function()\n' + Path('tests/campaign-combat-route-runtime-native.luau').read_text() + '\nend)()\n'
+code += 'local consumerResult=(function()\n' + Path('tests/campaign-mode-consumers-native.luau').read_text() + '\nend)()\n'
 code += "print('CAMPAIGN_MODE_NATIVE_PASS true')\n"
 target = Path('/tmp/tlt-campaign-mode-progress-native.luau')
 target.write_text(code)

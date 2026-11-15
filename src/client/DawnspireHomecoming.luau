@@ -48,7 +48,11 @@ end
 function M.update(snapshot)
  latestSnapshot=snapshot
  local hero=snapshot and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]
- require(script.Parent.CampaignExpansionPresentation).update({journal=hero and hero.deepwood})
+ -- Shared homecoming scenery is lobby-only. Field scenes are driven exclusively
+ -- by DeepwoodJournal's current run projection, including replay checkpoints.
+ if snapshot and snapshot.atHub==true and workspace:GetAttribute('TLTServerRole')~='Battle'then
+  require(script.Parent.CampaignExpansionPresentation).update({journal=hero and hero.deepwood})
+ end
  if not watching then
   watching=true
   -- A snapshot may arrive before the atomic throne streams in or after it leaves.

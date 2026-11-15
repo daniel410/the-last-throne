@@ -3,6 +3,7 @@ local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local Access=require(Shared.CampaignAccess)
 local Progress=require(Shared.DeepwoodProgress)
+local Modes=require(Shared.CampaignModeProgress)
 local T=require(script.Parent.TDInventoryTheme)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Survey=require(Shared.CampaignCartography)
@@ -23,7 +24,16 @@ function M.create(parent)
  local epic,zoom,overview=1,1,false
  local resizeChrome
  local function hero()return snapshot and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]end
- local function journal()local h=hero();return h and (h.deepwood or Progress.new())or {main=-1,explored={}}end
+ local function journal()
+  local h=hero();if not h then return {main=-1,explored={}}end
+  local a=h.expeditions and h.expeditions.active
+  local j=Modes.journal(h,a and a.difficultyId or 'Easy')
+  -- Discovery remains hero-wide; it grants no access to another mode's regions.
+  for id,cells in pairs(h.deepwood and h.deepwood.explored or {})do
+   if Access.allowed(j,id)then j.explored[id]=Progress.copy(cells)end
+  end
+  return j
+ end
  local function describe(id)
   selected=id;local z=Content.zones[id];local j=journal()
   local status
@@ -90,7 +100,8 @@ function M.create(parent)
    summary.Text='LOCKED · COMING SOON';detail.Text=spec[1]..' is a future expedition. Its story map is not available yet.';return
   end
   for id in pairs(Content.zones)do if id:sub(1,3)==spec[2]then ids[id]=true;count+=1;if Access.allowed(j,id)then opened+=1 end end end
-  summary.Text=string.format('%s · %d / %d REGIONS OPEN',spec[1]:upper(),opened,count)
+  local h=hero();local a=h and h.expeditions and h.expeditions.active
+  summary.Text=string.format('%s · %s · %d / %d REGIONS OPEN',(a and a.difficultyId or 'Easy'):upper(),spec[1]:upper(),opened,count)
   atlas=Canvas.create(scene,ids,false,describe,function(index,destination)
    epic=index;zoom=1;render();atlas.select(destination)
   end);layout()
