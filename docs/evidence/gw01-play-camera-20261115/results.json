@@ -1,0 +1,110 @@
+{
+  "clockTime": 0,
+  "zoom": {
+    "input": "mouse scrollDown x6",
+    "distance": 31.999502182006836,
+    "type": "Custom"
+  },
+  "zoomMinimum": {
+    "input": "mouse scrollUp x12",
+    "distance": 6.000082015991211,
+    "type": "Custom"
+  },
+  "heading": [
+    "GLOAMWOOD",
+    "ONE BRAVE STEP"
+  ],
+  "scope": "Core pass covers local seeded admission, physical approach, heading, scripted orbit limits. Additional F/R assertions pass. No published-client or mouse-orbit acceptance.",
+  "done": true,
+  "pass": true,
+  "interaction": {
+    "input": "F held 800ms",
+    "pass": true,
+    "labels": [
+      "Evidence 1 / 3 \u00b7 Any order \u00b7 Match the marks beneath the branches"
+    ]
+  },
+  "views": [
+    {
+      "type": "Custom",
+      "yaw": 0,
+      "distance": 12.5,
+      "visibleFootprints": 1,
+      "position": [
+        -1333.9493408203125,
+        67.43511962890625,
+        -4075.54833984375
+      ]
+    },
+    {
+      "type": "Custom",
+      "yaw": 90,
+      "distance": 12.5,
+      "visibleFootprints": 20,
+      "position": [
+        -1325.1104736328125,
+        67.43511962890625,
+        -4084.38720703125
+      ]
+    },
+    {
+      "type": "Custom",
+      "yaw": 180,
+      "distance": 12.5,
+      "visibleFootprints": 20,
+      "position": [
+        -1333.9493408203125,
+        67.43511962890625,
+        -4093.22607421875
+      ]
+    },
+    {
+      "type": "Custom",
+      "yaw": 270,
+      "distance": 12.5,
+      "visibleFootprints": 2,
+      "position": [
+        -1342.7882080078125,
+        67.43511962890625,
+        -4084.38720703125
+      ]
+    }
+  ],
+  "characterClass": "knight",
+  "mouseOrbit": {
+    "type": "Custom",
+    "input": "RMB drag 240px right and 20px down",
+    "distance": 32.000003814697266,
+    "status": "Not Verified: synthetic drag produced no orbit delta",
+    "angle": 0
+  },
+  "dodge": {
+    "before": 0,
+    "after": 1,
+    "position": "-1326.9498291015625, 57.096317291259766, -4084.369140625",
+    "input": "R key",
+    "health": 1485,
+    "pass": true,
+    "state": "Idle"
+  },
+  "characterLevel": 80,
+  "kind": "GW01_PLAY_CAMERA",
+  "profile": "Studio session",
+  "walk": {
+    "jumps": 0,
+    "arrived": true,
+    "to": [
+      -1333.8291015625,
+      57.096317291259766,
+      -4084.386962890625
+    ],
+    "from": [
+      -1029.9998779296875,
+      57.093379974365234,
+      -3977.831298828125
+    ],
+    "discontinuities": 0,
+    "samples": 153,
+    "elapsed": 20.43442004173994
+  }
+}

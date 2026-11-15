@@ -1,0 +1,7 @@
+{
+  "src/client/K0Hud.luau": "f2de3653eae54418b29c535f76207af67cfb7cd898cfb61084bcee95b221ef5e",
+  "src/client/StoryHeading.luau": "eef220e1e2b1a9f5817f0a325fd4e5cf32ded76ef6e558f6d7014677994298e4",
+  "tests/story-heading-native.luau": "5d3c6d2ca41589a30dac657090346625185aa28aab7cbd289e9bfa2b21967b5b",
+  "tests/gw01-play-camera.client.luau": "f265650e8617b439b0fc0153b99d698bc403962c97973958a4b435a6cc82c72b",
+  "tools/prepare-gw01-play-fixture.py": "74eda660d922f0649b0dfbfdf29d4c3bc2f73e8c58245b454d89effd5e88054c"
+}

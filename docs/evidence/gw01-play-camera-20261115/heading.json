@@ -1,0 +1,25 @@
+{
+  "regions": {
+    "Haunted Graveyard": [
+      "HAUNTED GRAVEYARD",
+      "TOGETHER WE BRING BACK THE LIGHT"
+    ],
+    "Ember Caldera": [
+      "EMBER CALDERA",
+      "THE GREAT FURNACE"
+    ],
+    "Deepwood": [
+      "DEEPWOOD",
+      "THE BLACK ROOTS"
+    ],
+    "Frozen Vale": [
+      "FROZEN VALE",
+      "BEYOND THE BLIZZARD"
+    ],
+    "Gloamwood": [
+      "GLOAMWOOD",
+      "ONE BRAVE STEP"
+    ]
+  },
+  "checks": 12
+}

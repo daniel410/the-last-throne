@@ -1,0 +1,30 @@
+{
+  "interaction": {
+    "input": "F held 800ms",
+    "labels": [
+      "Evidence 1 / 3 \u00b7 Any order \u00b7 Match the marks beneath the branches"
+    ]
+  },
+  "version": "0.110.8",
+  "phase": "Tutorial",
+  "profile": "Studio session",
+  "walk": {
+    "arrived": true,
+    "to": [
+      -1334.475341796875,
+      57.096317291259766,
+      -4084.388671875
+    ],
+    "started": 85.98695462499745,
+    "elapsed": 20.381187041755766,
+    "samples": 153,
+    "jumps": 0,
+    "from": [
+      -1034.0352783203125,
+      57.096317291259766,
+      -3972.266845703125
+    ],
+    "discontinuities": 0,
+    "done": true
+  }
+}

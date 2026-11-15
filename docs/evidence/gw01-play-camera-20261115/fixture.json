@@ -1,0 +1,9 @@
+{
+  "artifact": "/Users/daniel/Workspace/project/roblox/tlt-gw01-camera-20261115/builds/0.110.8/TheLastThrone-0.110.8.rbxlx",
+  "artifactSHA256": "e5eb491f95b820d2a494d3957231a2ac0a6f8acb41709957104048c276e62fff",
+  "fixture": "/tmp/tlt-gw01-play-camera.rbxlx",
+  "fixtureSHA256": "1ca006832f0657891a0572b4121f19e2e282e4d33809faf487dcc44e4f043575",
+  "onlyModifiedSource": "Server.Inventory.InventoryService",
+  "purpose": "Studio session hero seed; Easy GW-01 exp_1 pending; no production source changes",
+  "seed": "\n if sessionOnly and game.PlaceId==0 and profile then\n  profile,errorCode=store:transact(player.UserId,function(current)\n   local p=assert(Rules.addHero(current,'qa-gw-knight','knight',Catalog))\n   local h=p.heroes['qa-gw-knight'];h.level=80;h.progression=Growth.new(80)\n   local C=require(ReplicatedStorage.Shared.CampaignContent)\n   local P=require(ReplicatedStorage.Shared.DeepwoodProgress)\n   local s=P.new()\n   for _,c in ipairs(C.mainChapters)do if c.epic==1 then\n    s.main=c.number;s.clears[c.id]=true;s.coins+=(c.journalCoins or c.reward.coins)\n    for _,g in ipairs(c.goals)do if not g.expansion and not g.pacing then s.flags[c.id..':'..g.id]=true end end\n   end end\n   s.choice='shared';assert(P.validate(s),'prefix valid')\n   s=assert(P.enableExpansion(s))\n   for _,id in ipairs({'maeve','trail'})do s=assert(P.apply(s,'GW-01',id))end\n   h.deepwood=s;h.expeditions={version=1,clears={},cacheProgress={}}\n   require(ReplicatedStorage.Shared.AdventureRules).upgradeHero(h)\n   assert(Rules.validate(p,Catalog),'QA profile valid')\n   return p\n  end)\n end\n"
+}
