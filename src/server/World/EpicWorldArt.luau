@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=26}
+local Art={version=27}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -162,12 +162,16 @@ local function vegetation(parent,c,size,pal,theme,safe,rng,id)
     local p=c+V(side*(size[1]/2-38+band*31+rng:NextNumber(-12,12)),0,-size[2]/2+(i-.5)*size[2]/count+rng:NextNumber(-12,12))
     if safe(p,18)and (i+band)%5~=0 then
      local h=theme=='Gloamwood' and rng:NextNumber(42,70)or rng:NextNumber(27,48)
-     if theme=='EmberCaldera'then K.rock(m,p+V(0,8,0),V(14,h,18),pal.rock,i+band)
+     if theme=='EmberCaldera'then
+      if id~='EC-03'then K.rock(m,p+V(0,8,0),V(14,h,18),pal.rock,i+band)end
      elseif id~='GW-01'then tree(m,p,h,pal,theme,false)end
     end
    end
    task.wait()
   end
+ end
+ if id=='EC-03'then
+  require(script.Parent.CalderaMineSpoil).build(m,c,size,pal,safe,ground)
  end
  if id=='GW-01'then
   require(script.Parent.GloamwoodVergeVegetation).build(m,c,size,safe,ground,function(at,h)return tree(m,at,h,pal,theme,false)end)
