@@ -7,7 +7,7 @@ check(c.number==13 and c.epic==2,'GW-06 remains the sixth Gloamwood story')
 check(goal.enemies[1].kind=='Silkweaver' and goal.enemies[1].count==2,'existing guard kinds and count preserved')
 check(goal.enemies[2].kind=='HollowbarkSovereign' and goal.enemies[2].level==16,'new boss is projected to Gloamwood Lv16')
 check(B.isBoss('HollowbarkSovereign') and E.get('HollowbarkSovereign').boss,'server boss classification')
-local rig,visual=S.forStory('HollowbarkSovereign',true);check(rig==1 and visual==1,'canonical 14stud visual not scaled again')
+local rig,visual=S.forStory('HollowbarkSovereign',true);check(rig==1 and math.abs(14*visual-12)<1e-9,'TLT visual is 12stud; gameplay rig scale preserved')
 for party=1,4 do
  local oldGoal={id=goal.id,enemies={goal.enemies[1]}}
  local old={};for _,wave in ipairs(B.encounterWaves(c,oldGoal,party))do for _,u in ipairs(wave)do old[u.killIndex]=u end end

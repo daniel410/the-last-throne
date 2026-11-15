@@ -2,7 +2,7 @@
 -- Keep combat rigs modest for the regional monsters; the Training Field's
 -- Orc and Ogre use their exact rig and visual scales as the reference.
 local sizes = {
- HollowbarkSovereign = {1, 1}, -- TD canonical 14stud visual; avoid the default boss multiplier.
+ HollowbarkSovereign = {1, 12 / 14}, -- TLT 12stud visual from the TD 14stud template.
  Orc = {1.65, 1.5},
  Ogre = {2.475, 2.475 / 1.45},
  KingOgre = {1.8, 1.3},
