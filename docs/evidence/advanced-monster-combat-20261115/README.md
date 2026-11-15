@@ -22,3 +22,9 @@
 현재 열린0.110.10 Play는 읽기 전용 확인만 했으며 몬스터가 없는 상태였다. 그 세션을 변경하거나 재시작하지 않았다. 실제 새 빌드의 게시 클라이언트·다인·모바일·사용자 재미 수용은 미검증이다. QA/사용자는 새 빌드에서 새 원정/재입장 후 근접/원거리 몬스터 접근·공격, 대표 보스 및 Hard/Insane/Hell 합산 피해·물약 소모를 확인한다. 전체 G1/G7 티켓을 완료 처리하지 않는다.
 
 복구는 해당 코드 커밋의 revert 후 새 버전 빌드로 수행한다. 저장 규칙1~17과 성장/소유 데이터는 보존되어 있고 기존 원정에 규칙18을 강제로 덮지 않았다.
+
+## 고정 빌드
+
+`0.110.11` · 입력 소스 `640ba93bb93cbdc56f77d2a116b53c855fd096c4` · [LFS/산출물 SHA-256 빌드 기록](build.json). `python3 tools/build-game.py --source 640ba93b --record docs/evidence/advanced-monster-combat-20261115/build.json`이 성공했다. 산출물은 `builds/0.110.11/TheLastThrone-0.110.11.rbxlx`다.
+
+같은 고정 빌드를 `run-in-roblox --place builds/0.110.11/TheLastThrone-0.110.11.rbxlx --script /tmp/tlt-advanced-fixed-native.luau`로 열어 시작 스크립트를 비활성화한 격리 엔진 시험을 수행했다. 두 변경 모듈의 원문이 입력 커밋과 같은지 먼저 검사했고 `ADVANCED_FIXED_SOURCE_EQUAL true`, 종료0·`ENEMY_COMBAT_ALL_PASS`를 확인했다. [고정 빌드 엔진 로그](fixed-native.log). 실제 R15 추적은18→5.2973 studs, 1.570초에 공격 시작을 다시 확인했다. Roblox 게시·릴리스 태그는 만들지 않았다.
