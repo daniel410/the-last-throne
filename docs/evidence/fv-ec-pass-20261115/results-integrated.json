@@ -1,0 +1,123 @@
+{
+  "routes": {
+    "2": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4980,
+      "samples": 5196,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "3": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 5808,
+      "samples": 6177,
+      "targets": 142,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "4": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 8093,
+      "samples": 8396,
+      "targets": 144,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "5": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4560,
+      "samples": 4749,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    }
+  },
+  "walk": [
+    {
+      "jumps": 0,
+      "arrived": true,
+      "seconds": 11.01565862505231,
+      "position": "-940.8499755859375, 127.19241333007812, -11365.5791015625"
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "seconds": 11.016803916660137,
+      "position": "-964.8499755859375, 127.19241333007812, -11016.1240234375"
+    }
+  ],
+  "easyRoutes": {
+    "2": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 5275,
+      "samples": 5491,
+      "targets": 117,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "3": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 5849,
+      "samples": 6218,
+      "targets": 143,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "4": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 8223,
+      "samples": 8526,
+      "targets": 150,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "5": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 5003,
+      "samples": 5192,
+      "targets": 119,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    }
+  },
+  "width": {
+    "raised": 0,
+    "blocked": 0,
+    "missing": 0,
+    "samples": 2093,
+    "banks": 4
+  }
+}
