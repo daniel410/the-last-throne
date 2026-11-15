@@ -1,8 +1,8 @@
-# 일곱 역할 에이전트 운영
+# 에이전트 역할 운영
 
-2026-10-28 · 한국어 개발 문서 / 영어 게임 · [총괄 계획](plan.md) · [작업 목록](backlog.md)
+한국어 개발 문서 / 영어 게임 · [총괄 계획](plan.md) · [작업 목록](backlog.md)
 
-이 문서는 사용자가 요청한 일곱 에이전트의 역할·분업·작업 호출 기준이다. 기존 여섯 역할에 2026-10-29 사용자 요청으로 리서치를 추가했으며, 아래 지침은 이후 세션에서도 재사용한다. 문서를 저장했다는 사실이 상시 실행되는 작업이나 외부 서비스 배포를 뜻하지는 않는다.
+이 문서는 프로젝트 에이전트의 역할·분업·작업 호출 기준이다. 맵 전문 역할은 지형과 소품 개선을 첫 목표로 삼고, 각 에픽의 줄거리·스토리·특성을 실제 공간에 반영한다. 역할 지침은 이후 세션에서도 재사용하며, 저장 자체가 상시 실행을 뜻하지는 않는다.
 
 ## 1. 조직과 책임
 
@@ -13,6 +13,9 @@
 | 기획 / `game_planner` | [game-planner.md](agents/roles/game-planner.md) | 에픽/스토리·전직·스탯·스킬·장비·경제·동료, [시스템 제작 계획](docs/production/game-systems-plan.md) | 디자인·엔지니어·QA |
 | 디자인 / `game_designer` | [game-designer.md](agents/roles/game-designer.md) | 맵·미술 방향·UI/UX·입력·가독성, [디자인 제작 계획](docs/production/design-and-world-plan.md) | 기획·3D·QA |
 | 3D 모델링 / `modeling_artist` | [modeling-artist.md](agents/roles/modeling-artist.md) | 공유 자산 감사·리그·무기·모션·지역 모듈·LOD, [자산 제작 계획](docs/production/asset-production-plan.md) | 디자인·엔지니어·QA |
+| 맵 구현 / `map_builder` | [map-builder.md](agents/roles/map-builder.md) | 지형·동선·소품 배치와 충돌·스토리 상태 통합, 플레이 가능한 맵 | 환경 아트·환경 3D·엔지니어·QA |
+| 환경 아트 / `environment_artist` | [environment-artist.md](agents/roles/environment-artist.md) | 에픽별 환경 서사·지형 조형·색/재질·랜드마크·소품 구성 | 기획·디자인·맵 구현·환경 3D |
+| 환경 3D 모델링 / `environment_modeler` | [environment-modeler.md](agents/roles/environment-modeler.md) | 서사 기반 지형 모듈·소품·건축물의 원본/파생·내보내기·충돌/LOD | 환경 아트·범용 3D·맵 구현·QA |
 | 소프트웨어 엔지니어 / `software_engineer` | [software-engineer.md](agents/roles/software-engineer.md) | 서버 전투·콘텐츠 데이터·저장·인벤토리·결제·포탈·성능, [기술 제작 계획](docs/production/engineering-plan.md) | 모든 역할 |
 | QA / `qa` | [qa.md](agents/roles/qa.md) | 독립 수용·회귀·장애/복구·영어 전수·기기/사용성, [QA/출시 계획](docs/production/qa-and-release-plan.md) | 모든 역할 |
 
@@ -39,7 +42,23 @@ agents/roles/software-engineer.md와 skills/the-last-throne-production/SKILL.md�
 TLT-005의 기사 K0 입력/상태 구현 범위를 진행하고 QA 에이전트가 수용 조건을 검증하게 해 줘.
 ```
 
-실행 환경이 동시에 네 에이전트만 허용하면 총괄을 포함해 최대 네 개를 운영하고, 끝난 역할의 자리에 다음 역할을 투입한다. 역할 일곱 개와 동시 실행 일곱 개는 다르다. 필요한 역할만 호출해 문맥·비용·충돌을 줄인다.
+실행 환경이 동시에 네 에이전트만 허용하면 총괄을 포함해 최대 네 개를 운영하고, 끝난 역할의 자리에 다음 역할을 투입한다. 역할 수와 동시 실행 수는 다르다. 필요한 역할만 호출해 문맥·비용·충돌을 줄인다.
+
+### 맵 제작 호출과 공통 수용 기준
+
+맵을 새로 구현하거나 개선할 때 `map_builder`, `environment_artist`, `environment_modeler`를 담당 역할로 포함한다. 디자인은 전체 미술 방향과 UX, 범용 3D는 캐릭터·장비·리그를 담당하고, 맵 전문 역할은 지형·소품·건축 환경의 제작과 통합을 맡는다. 같은 파일은 한 명만 편집하고, 병렬 작업은 자산 원본·아트 명세·맵 통합처럼 경로를 분리한다.
+
+1. [현재 줄거리](docs/production/campaign-context-review-2026-11-10.md), [전투 동선](docs/production/campaign-combat-routes-2026-11-10.md), 관련 런타임 콘텐츠와 최신 제품 계약에서 대상 에픽/스토리만 읽는다. 실제 원고와 문서가 다르면 차이를 먼저 기록한다.
+2. 첫 목표는 지형·소품 개선이다. 스토리별로 `epicId / storyId / 원천 경로·항목 / 사건·감정·지역 특성 / 지형·소품의 표현과 위치 / 전후 상태 / 플레이 목적 / 검증 장면`을 연결한 제작표를 만든다. 단순 장식 증량보다 사건의 흔적·다음 목표·지역 정체성이 읽히는 개선을 우선한다. 새 줄거리·미공개 인물·진행 조건을 임의 추가하지 않는다.
+3. 환경 아트가 지형 실루엣·재질·식생·랜드마크·생활/전투 흔적을 정의하고, 환경 3D가 공유 원본 재사용/파생부터 검토해 모듈·소품을 제작한다. 맵 구현이 실제 지형과 배치·충돌·상태를 통합한다. 에픽 사이의 자연스러운 도보 연결을 보존한다.
+4. 대표 스토리 한 구간을 먼저 개선해 동일 카메라·조명·스토리 상태의 전후 비교를 남기고 확대한다. 기획은 서사 정합성, 디자인은 미술/가독성, QA는 이동·회피·전투·카메라·상호작용·안전 SP·재접속/스트리밍과 성능을 검토한다. 수치 예산은 대상 기기에서 측정하고 근거 없이 확정하지 않는다.
+5. 산출물은 제작표·실제 소스/모델·재현 절차·비교 화면·측정 결과로 인계한다. 문서/렌더, Studio, 게시 클라이언트, 실기기, 사용자 수용을 구분한다. 공유 원본·Blender Standard·서버 권위·LFS·마감은 제품 계약과 제작 스킬을 따른다. 미검증 항목을 맵 품질 통과로 쓰지 않는다.
+
+```text
+대상 에픽/스토리와 작업ID를 지정해 맵 구현·환경 아트·환경 3D 역할을 호출해 줘.
+agent.md의 맵 제작 공통 수용 기준에 따라 지형과 소품을 먼저 개선하고,
+각 스토리의 사건·지역 특성이 배치에 반영된 근거와 전후 플레이 증거를 남겨 줘.
+```
 
 ## 3. 핸드오프 계약
 
