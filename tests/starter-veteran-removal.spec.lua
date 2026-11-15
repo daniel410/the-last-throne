@@ -32,7 +32,6 @@ for _,offer in ipairs({'veteran_hood','veteran_hood_diamond'})do
  p=assert(R.shop(p,{store=offer:find('diamond') and 'diamonds' or 'blacksmith',action='Buy',requestId=offer,heroId='mage',revision=p.revision,offerId=offer},{atLobby=true},C))
 end
 local expected=R.copy(p.items)
-for i=1,4 do expected['old-free-'..i..'-1']=nil end
 check(R.validate(p,C),'legacy profile validates before migration')
 local db=R.copy(p);local fail=true
 local adapter={UpdateAsync=function(_,_,fn)
@@ -44,9 +43,9 @@ end}
 local store=Store.new(adapter,R,C,function()return 100 end,function()end,'headgear-session')
 local opened,why=store:open(42)
 check(not opened and why=='SaveUnknown','uncertain save never opens a blank profile')
-check(same(db.items,expected),'removes all free locations/locks/enhancements and preserves every other item')
+check(same(db.items,expected),'preserves old free headgear in every location with locks and enhancements')
 check(same(db.wallet,p.wallet)and same(db.operations,p.operations),'wallet and purchase receipts survive')
-check(R.validate(db,C),'removed equipped headgear leaves a valid empty slot')
+check(R.validate(db,C),'existing equipped headgear remains valid')
 local busy=Store.new(adapter,R,C,function()return 100 end,function()end,'other-session')
 fail=false
 local rejected,reason=busy:open(42)
@@ -55,5 +54,5 @@ opened=assert(store:open(42))
 check(same(R.upgrade(R.copy(opened),C),opened),'migration is idempotent after response loss')
 assert(store:close(42));opened=assert(store:open(42))
 check(same(opened.items,expected),'reconnect never reissues free Veteran headgear')
-check(R.quantity(opened,'mage','veteran_hood')==3,'quest and both currency purchases stay owned')
+check(R.quantity(opened,'mage','veteran_hood')==4,'old transferred starter, quest and both currency purchases stay owned')
 print('Starter Veteran removal: '..checks..' checks passed')

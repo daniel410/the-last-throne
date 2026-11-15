@@ -26,7 +26,7 @@
 - 마법사 모자4계열의 기본 옵션은 최대 MP다. 사용자 지정 Traveler +10, Tempered +20, Veteran +30, Sentinel +60을 적용하며 강화3%/단계를 따른다. 지력·마법 공격력·방어력은 추가하지 않고 현재 MP를 회복하지 않는다. [검증](evidence/mage-hat-mp-20261111/README.md).
 - 기본 옵션1개와 별도로 선택형 `specialEffects`를 허용한다. 서버 정의 기반 피해 증감·스킬 지정·합산 상한·영어 표시를 사용하며 기존 장비에 자동 배정하지 않는다. [계약](production/equipment-special-effects-2026-11-10.md).
 - 전직은 Lv20/40/60/80·자기 클래스와 선택 계열의 순차 진행만 요구하며 모험/전투 중 선택 가능하다. 거점·처치 수·시험을 요구하지 않는다. 소유권/로드/저장/중복 검사는 유지한다.
-- 새 영웅은 기본 무기와 Traveler 방어구/장신구 즉시 착용. 트레이닝 무기 신규 지급/상자 선택은 중단한다. 2026-11-14 사용자 지시로 Veteran 투구의 기본 지급을 모든 클래스에서 중단하고 기존 `starter:` 출처의 Veteran Hood도 계정 로드 시 제거한다. 구매·보상 등 다른 출처의 장비는 보존한다. [검증·미검증](evidence/starter-veteran-removal-20261114/README.md).
+- 새 영웅은 기본 무기와 Traveler 방어구/장신구 즉시 착용. 트레이닝 무기 신규 지급/상자 선택은 중단한다. 2026-11-14 사용자 지시로 Veteran 투구의 기본 지급을 모든 클래스에서 중단하고 기존 `starter:` 출처의 Veteran Hood를 포함한 모든 보유품은 보존한다. [검증·미검증](evidence/starter-veteran-removal-20261114/README.md).
 - Selene는 해금 및 지원권 보유 시 로비부터 무료 동행하고 메인 모험 지원 시작 시1스토리권 소비. 캠프 재초대·모험 내 자동 유료 갱신 없음. 영입·최초 무료 체험·중복 소비 방지 유지.
 - 인간 정원4명, AI는1/2/3/4인에 최대2/2/1/1이며 Selene 포함. 4인+AI1의 실기기/밸런스 수용은 후속.
 - Blender 비교: Standard / sRGB / Look None / Exposure0 / Gamma1 / Curves Off. 새 장면·가져오기·렌더 직전 재확인. 색 텍스처 sRGB, 데이터 Non-Color, 재질은 scene-linear 입력. AgX나 임의 채도 보상으로 색 일치를 판정하지 않는다. Roblox 조명 검증은 별도.
