@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=20}
+local Art={version=21}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -137,8 +137,12 @@ local copy=Env.asset(parent,hero and 'ForestLandmark'or 'ForestTree',p,h)
   end
  end end
 end
-local function vegetation(parent,c,size,pal,theme,safe,rng)
+local function vegetation(parent,c,size,pal,theme,safe,rng,id)
  local m=model(parent,'LayeredVegetation')
+ if id=='FV-03'then
+  require(script.Parent.FrozenRavineVegetation).build(m,c,size,safe,ground)
+  range(m,650);return
+ end
  -- Two broken depth bands frame a lower foreground and an open landmark sightline.
  local count=theme=='FrozenVale' and 7 or theme=='HauntedGraveyard' and 6 or theme=='EmberCaldera' and 6 or theme=='Gloamwood'and 14 or 12
  for _,side in ipairs({-1,1})do
@@ -464,7 +468,7 @@ function Art.create(world,scope)
  terrainRay.FilterDescendantsInstances=floors
  terrainRay.RespectCanCollide=true
  for _,p in ipairs(plans)do
-  vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng)
+  vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,p.id)
   floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])
   vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id,p.safe)
   Detail.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground)
