@@ -1,0 +1,7 @@
+{
+  "src/server/World/GloamwoodTrailEvidence.luau": "599a907798b1f228c705acc8630a25535fb0824b968ad0cdd66dc584d4f3f03e",
+  "tests/gloamwood-trail-evidence-native.luau": "6cc4c8fa9c37a9070ba4e3e4973ab87cbc499219a422c3af1cfd2c3616040e25",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6",
+  "src/client/DeepwoodAtmosphere.luau": "9b205af182f0da8299627bc3e5e6bf2f8b80cc6c1b594f6449164cd67be0ba21",
+  "src/client/AdventureCamera.luau": "0369229360994b3eb41e68291b8ad7c3912465e286592ce86b44780c17c83c7d"
+}
