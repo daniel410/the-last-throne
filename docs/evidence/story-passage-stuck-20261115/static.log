@@ -1,2 +1,6 @@
 EPIC_MAP_NAVIGATION 106051 checks PASS; 488 active targets; 26388 moving samples
 Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger
+Checkpoint travel: 1927 checks passed
+python3 -m py_compile tools/prepare-story-passage-native.py: PASS
+git diff --check: PASS
+story-respawn.spec.lua: 기존 실패. 변경 전 72eace5d 작업 트리에서도 destination의 nil 순회 오류로 실패(실패 기록은 README 참조).

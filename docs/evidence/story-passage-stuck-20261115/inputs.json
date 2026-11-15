@@ -1,0 +1,13 @@
+{
+  "src/shared/CampaignPassage.luau": "01ba55a88c24ce7080904b4372a6cf3f6cac6110898c12b3f8b9d21855e8db48",
+  "src/shared/CampaignBounds.luau": "b926ad01c50fad5d74e483b71e4551be094d8a01bea2a701136a8362beb686af",
+  "src/server/World/CampaignPassageFloor.luau": "a5b14693a3ea65528830959782ab676b72c30b14b6d597db81bb5c102c716aa8",
+  "src/server/World/CampaignCombatRouteWorld.luau": "1945e4460a8ac91d4c3b06642762294492d8fdc20c9e15d6901dd13d0fbddce3",
+  "src/server/World/EpicWorldArt.luau": "bcd9b3932d5f3577336aa5278e0c5c049aafcb47e4ebf49504e53e2051cc5190",
+  "src/server/Story/DeepwoodRegionAccess.luau": "4593be78f6b70a960b63958683cd4a8488ac2183fb54537b813edbd604ed41eb",
+  "tests/story-passage-native.luau": "9ad686ea2870a5c58a6a350a96d0b657583a4c0b9ad59c1cb2d97b9de8304df2",
+  "tests/deepwood-boundary-stuck-native.luau": "82864457ea966309c8cdd8d53465d2f30479da46c5179225249d76bc9f325a74",
+  "tests/epic-overland-service-native.luau": "6c487c3dd4b97806796f812ad25d8a5e71710e5e6db5139de10f7b9b80ee7af3",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6",
+  "tests/story-passage-walk-native.luau": "b047fbb30e766fe479c28855bd1778a0a7b7ff082ea6fa3b84a26f89403895a3"
+}
