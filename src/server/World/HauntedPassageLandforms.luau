@@ -33,7 +33,7 @@ function M.build(parent,center,size,safe)
   local p=cell.position;local r=cell.ballRadius;local h=cell.height
   -- Spherical caps meet the deep existing envelope, with exposed slate below turf.
   workspace.Terrain:FillBall(p+V(0,h-r,0),r,Enum.Material.Slate)
-  workspace.Terrain:FillBall(p+V(0,h-r+3,0),r-5,Enum.Material.Ground)
+  workspace.Terrain:FillBall(p+V(0,h-r+8,0),r-5,Enum.Material.Ground)
   local marker=Instance.new('Folder');marker.Name=cell.kind..cell.index
   marker:SetAttribute('Center',p);marker:SetAttribute('Height',h)
   marker:SetAttribute('FootprintRadius',cell.radius);marker:SetAttribute('BallRadius',r)
