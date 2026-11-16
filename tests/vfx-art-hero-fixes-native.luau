@@ -53,7 +53,7 @@ local ok,err=xpcall(function()
   check(type(key)=='string'and not signatures[key],'ultimate owns a unique focal form '..id);signatures[key]=true;ultimates+=1
   check(key==Profiles.get(id).signature,'signature follows the authored profile '..id)
   if key=='FrontWall'then check(m:FindFirstChild('UltimateFrontPanel',true).Transparency<=.6,'front panels retain contrast')
-  elseif key=='DawnBlade'then check(m:FindFirstChild('DawnBladeSpine',true).Position.X-first.X>1,'solar blade focus is offset from the actor silhouette')
+  elseif key=='DawnAegis'then check(m:FindFirstChild('DawnAegisPanel',true)~=nil and m:FindFirstChild('IconDawnCrest',true)~=nil,'dawn crest and allied shields follow the new icon')
   elseif key=='MountainRidge'then Hero.step(workspace:GetServerTimeNow()+.15);check(m:FindFirstChild('MountainRidgeFocus',true).Size.Y>3,'mountain focus grows into a heavy ridge')
   elseif key=='SiegeShells'then check(m:FindFirstChild('MortarShellBody',true).Size.X>=.6,'siege shell keeps a visible metal body')
   elseif key=='VolleyCrown'then check((m:FindFirstChild('VolleyDrawCrown',true).Attachment0.WorldPosition-first).Magnitude>3,'volley crown occupies a readable forward focus')

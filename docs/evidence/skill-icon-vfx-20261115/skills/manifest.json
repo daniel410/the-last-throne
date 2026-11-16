@@ -1,0 +1,1282 @@
+[
+  {
+    "height": 240,
+    "index": 1,
+    "name": "SHIELD BASH",
+    "id": "knight.common.bash",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "49c5d6536dd93953b17791d95795c990ff65beb985582820af3412fb78473151"
+  },
+  {
+    "height": 240,
+    "index": 2,
+    "name": "WHIRLWIND",
+    "id": "knight.common.whirlwind",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "e3e3b2147fa74ab7983d32a5650492ff7cc2e5e2a4e8945b79ed0048f2f0dd24"
+  },
+  {
+    "height": 240,
+    "index": 3,
+    "name": "PROVOKE",
+    "id": "knight.common.provoke",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "f1c2e95b6bc126f7b984dd033a77324f328f7bf4e1decc2969e344dbd98f0fe9"
+  },
+  {
+    "height": 240,
+    "index": 4,
+    "name": "COUNTER SLASH",
+    "id": "knight.steel_knight.counter_slash",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "6651b08256844e4720a2fdd23751d0735702ce61941d583565b633162bd1a6c5"
+  },
+  {
+    "height": 240,
+    "index": 5,
+    "name": "STEEL SWEEP",
+    "id": "knight.steel_knight.steel_sweep",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "125ce8a05bd38e035709592ab416818e64500a2a6848d0aa942bbffbff2aaacc"
+  },
+  {
+    "height": 240,
+    "index": 6,
+    "name": "CHALLENGING STRIKE",
+    "id": "knight.steel_knight.challenging_strike",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "c29d75050f83d16c98ca72789cf043c79f0e0fb2bbeb5c484035a296d93676f3"
+  },
+  {
+    "height": 240,
+    "index": 7,
+    "name": "TWIN CYCLONE",
+    "id": "knight.steel_knight.twin_cyclone",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "45f43c1b7b690b2abe2907647834ee78d45ac5f7d7fa7a1befd4047c885e9160"
+  },
+  {
+    "height": 240,
+    "index": 8,
+    "name": "SHIELD BREAKER",
+    "id": "knight.steel_knight.shield_breaker",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "bdae38c310ecebe68425ca4f99ea8b1df819ea7ccba6321838a4eb781bf8fa63"
+  },
+  {
+    "height": 240,
+    "index": 9,
+    "name": "GUARDIAN COUNTER",
+    "id": "knight.steel_knight.guardian_counter",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "39d75a35dfda663ea3ee173435381c0c0b04edcd675f91c39a4a255d50fe9db7"
+  },
+  {
+    "height": 240,
+    "index": 10,
+    "name": "RALLYING SLASH",
+    "id": "knight.steel_knight.rallying_slash",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4833bbd6c19fff40249f0943b67dbd103166cded73857ee1bad691a7c2e37272"
+  },
+  {
+    "height": 240,
+    "index": 11,
+    "name": "BREAKER CHARGE",
+    "id": "knight.steel_knight.breaker_charge",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "af48cc6c5196c3d206bd57c0c1ebe686c67727f36ed4814701c23090ef59a801"
+  },
+  {
+    "height": 240,
+    "index": 12,
+    "name": "VANGUARD STRIKE",
+    "id": "knight.steel_knight.vanguard_strike",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "6ace0c90fefc4118a01e602be7d1d1a85822cb04279358f6b60a425b94dce477"
+  },
+  {
+    "height": 240,
+    "index": 13,
+    "name": "BLADE STORM",
+    "id": "knight.steel_knight.blade_storm",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "975302391735b16e592d15216882995ea50a6173dcaf267ac8eab4c5e62b4132"
+  },
+  {
+    "height": 240,
+    "index": 14,
+    "name": "SWEEPING BREAK",
+    "id": "knight.steel_knight.sweeping_break",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "ab5ee9536b662e27f55a5a9c74d552bd2294c378dd18b718c38b907c8345b8d8"
+  },
+  {
+    "height": 240,
+    "index": 15,
+    "name": "WARCRY ASSAULT",
+    "id": "knight.steel_knight.warcry_assault",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "b088e3a57d933cc9a1aedfadf2b03b88c442760ad865ac296426c439d08c9718"
+  },
+  {
+    "height": 240,
+    "index": 16,
+    "name": "UNYIELDING FRONT",
+    "id": "knight.steel_knight.unyielding_front",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "6d61951ca2a8c7a88e9f9bcbd6ca6c3dbf51276a66ec0b5aa35de592e487a501"
+  },
+  {
+    "height": 240,
+    "index": 17,
+    "name": "OATHBLADE",
+    "id": "knight.paladin.oathblade",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "78e9feec576faf1b755172f46219636b0d6744aea5e9dba17ea21a420d5f81b9"
+  },
+  {
+    "height": 240,
+    "index": 18,
+    "name": "RADIANT SWEEP",
+    "id": "knight.paladin.radiant_sweep",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d0fa42a560e19754269f64db703411e36ef148d07ba568232dee2e8adfb5f6f1"
+  },
+  {
+    "height": 240,
+    "index": 19,
+    "name": "OATH CHALLENGE",
+    "id": "knight.paladin.oath_challenge",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "55ce95ff055d256f3592d8888245a8b7efc672813f08975bdf916ac3e12b5bef"
+  },
+  {
+    "height": 240,
+    "index": 20,
+    "name": "DAWN BURST",
+    "id": "knight.paladin.dawn_burst",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "706e12e387aa50105506aec4166fd0ee979d619f1d3ad6ce18e2c442919c4a5b"
+  },
+  {
+    "height": 240,
+    "index": 21,
+    "name": "OATHBREAKER STRIKE",
+    "id": "knight.paladin.oathbreaker_strike",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "8cdd099021b0559cfe28fdc85df72b0092a81e688681301b01cf677cbfffcfb0"
+  },
+  {
+    "height": 240,
+    "index": 22,
+    "name": "SHIELD VERDICT",
+    "id": "knight.paladin.shield_verdict",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "943cf34c6e12f2ebacb522167a796ee90eee5c43b706c9d26ec69cb05dc7b7ca"
+  },
+  {
+    "height": 240,
+    "index": 23,
+    "name": "GUARDIAN SLASH",
+    "id": "knight.paladin.guardian_slash",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "89fc56e72beb685f53b44da4c9a28b249b06e7fe259935b9a3762290220a672b"
+  },
+  {
+    "height": 240,
+    "index": 24,
+    "name": "RADIANT CHARGE",
+    "id": "knight.paladin.radiant_charge",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "bae3b77866e36edbdcac2ea2ed42d6d313f0004347a0e1000779454fac3dac3a"
+  },
+  {
+    "height": 240,
+    "index": 25,
+    "name": "VALIANT ADVANCE",
+    "id": "knight.paladin.valiant_advance",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "e1d5404899c5acd15a03058384800e1c98d707d09a45527e8a3973c2e5ffe812"
+  },
+  {
+    "height": 240,
+    "index": 26,
+    "name": "DAWN SPIRAL",
+    "id": "knight.paladin.dawn_spiral",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "29014b9e6b0683c64fd79227f5bbb5e35894d7ae27696218c88a404ab766148b"
+  },
+  {
+    "height": 240,
+    "index": 27,
+    "name": "SUNWARD CROSS",
+    "id": "knight.paladin.sunward_cross",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "79efdf154177a2589c9f74d0eaa1dd86223b79abd2126641d6fa43c9dcdd6eaf"
+  },
+  {
+    "height": 240,
+    "index": 28,
+    "name": "OATHBOUND ASSAULT",
+    "id": "knight.paladin.oathbound_assault",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "c1b0f8fdb487ce1a0c77dec9a77e355a3c4efaa9996b23d91998f7d53f1b8289"
+  },
+  {
+    "height": 240,
+    "index": 29,
+    "name": "OATH OF DAWN",
+    "id": "knight.paladin.oath_of_dawn",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "8f7d27c0028979b437532418ce43660d179423a23abef0f37afc89d7f8c92b43"
+  },
+  {
+    "height": 240,
+    "index": 30,
+    "name": "DRIVING THRUST",
+    "id": "knight_driving_thrust",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "f6fbacf1f96fab62ad6f3861c3362453bc2f79abad02a62cf4c7a51652233455"
+  },
+  {
+    "height": 240,
+    "index": 31,
+    "name": "CRESCENT CUT",
+    "id": "knight_crescent_cut",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "f4be10eca31ea5f7a2e19d4752b27ba7db03df86b05876357ef7cea150d92e29"
+  },
+  {
+    "height": 240,
+    "index": 32,
+    "name": "GUARDED STRIKE",
+    "id": "knight_guarded_strike",
+    "classId": "knight",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "0c0a96731d86e5671fb0dca4a150344fc505e36279e13bc488b3adb90ef6c3a4"
+  },
+  {
+    "height": 240,
+    "index": 33,
+    "name": "OVERHEAD SMASH",
+    "id": "dwarf.common.overhead",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "7e90926d622064f4586d7f451f424cc5559a9215ec0ab4b79ddb630692e81252"
+  },
+  {
+    "height": 240,
+    "index": 34,
+    "name": "AXE THROW",
+    "id": "dwarf.common.throw",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "5f8790f2447e0afeddec77c9e78788fa26ff00dc515fa0685a9f438b96afe634"
+  },
+  {
+    "height": 240,
+    "index": 35,
+    "name": "GROUND SLAM",
+    "id": "dwarf.common.ground",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "b08be894e959a48499c439b379104a7447f86d4cb206582632a5efbe6133bc3f"
+  },
+  {
+    "height": 240,
+    "index": 36,
+    "name": "ARMOR SPLITTER",
+    "id": "dwarf.iron_axe.armor_splitter",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "2c3e0d81ed587e37efd19a937b4710cae718343c83ec028b5538f2609410cd22"
+  },
+  {
+    "height": 240,
+    "index": 37,
+    "name": "RETURNING ECHO",
+    "id": "dwarf.iron_axe.returning_echo",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "afddb35cb468d2f7fbce5fb300b69c4aa48c120b8302736f5c7939bf40f3344b"
+  },
+  {
+    "height": 240,
+    "index": 38,
+    "name": "MOUNTAIN SWEEP",
+    "id": "dwarf.iron_axe.mountain_sweep",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "63dde76289c880d7af9987ed358d0f10870a9997d68b22129a3fb438f641b115"
+  },
+  {
+    "height": 240,
+    "index": 39,
+    "name": "CRAG CLEAVE",
+    "id": "dwarf.iron_axe.crag_cleave",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "66cb07e14cf5784a1ccd292c3418d0687c997ffb45a0de870dcffd4d180a5c2e"
+  },
+  {
+    "height": 240,
+    "index": 40,
+    "name": "BREAKER THROW",
+    "id": "dwarf.iron_axe.breaker_throw",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "212e3aca1f1071ecf70c3c5f8532b8356ff81d556e8a94bf6df26f57add2e3de"
+  },
+  {
+    "height": 240,
+    "index": 41,
+    "name": "STONEBOUND LEAP",
+    "id": "dwarf.iron_axe.stonebound_leap",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "279dc085ff092e99b49377e53c0c1acce51ff773b14c261da3a4a8ea197c3fed"
+  },
+  {
+    "height": 240,
+    "index": 42,
+    "name": "IRON SHOULDER",
+    "id": "dwarf.iron_axe.iron_shoulder",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "ec48b426b8a9e55267ecc21de8b9e458e4a562c381f9e5c7b97458dc74fe1ab8"
+  },
+  {
+    "height": 240,
+    "index": 43,
+    "name": "CROSSCUT AXE",
+    "id": "dwarf.iron_axe.crosscut_axe",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4f372b18ec20adfe73aeb9d475e0002572840ab50473135ffbdc1cf68973ff3f"
+  },
+  {
+    "height": 240,
+    "index": 44,
+    "name": "MOUNTAIN STRIKE",
+    "id": "dwarf.iron_axe.mountain_strike",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "72aa3ed24230a5262a499a54c27835a7dd96edd45e41c4f69ce166e8abd2de6c"
+  },
+  {
+    "height": 240,
+    "index": 45,
+    "name": "SHATTER BLOW",
+    "id": "dwarf.iron_axe.shatter_blow",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d64d37db1f2ee113e50d1fd6643d53d7bf9147c1f37bf725a51aefbe832c09a5"
+  },
+  {
+    "height": 240,
+    "index": 46,
+    "name": "TWIN AXE PATH",
+    "id": "dwarf.iron_axe.twin_axe_path",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4cd24c396a118981c95d82940c5b4e518f8cf1a23774ace0cc9ab56facc6b267"
+  },
+  {
+    "height": 240,
+    "index": 47,
+    "name": "TREMOR GUARD",
+    "id": "dwarf.iron_axe.tremor_guard",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "c159ad2a7c68b9960cd673141f0c53fa11524136472a95cf2de97993f19b0dca"
+  },
+  {
+    "height": 240,
+    "index": 48,
+    "name": "MOUNTAIN COLLAPSE",
+    "id": "dwarf.iron_axe.mountain_collapse",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "05e138bb0b5aac2c090610646069a20aa4da2ae86a0d864980e120a59e7881f6"
+  },
+  {
+    "height": 240,
+    "index": 49,
+    "name": "GUNNER SHOT",
+    "id": "dwarf.gunner.gunner_shot",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "cf9daf1e1a66d6e8ebdfa09a8cf004c74e7b6a336a617366f6f86f1fb6e1b3c2"
+  },
+  {
+    "height": 240,
+    "index": 50,
+    "name": "BOMB TOSS",
+    "id": "dwarf.gunner.bomb_toss",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "119cb7bce064fb9790ebced347bce26766dd967c3dbebee542c241394c3ead3f"
+  },
+  {
+    "height": 240,
+    "index": 51,
+    "name": "SHELL BURST",
+    "id": "dwarf.gunner.shell_burst",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "39aae548029c4994e91ecb2e390f9616157d359c463f7f609d5aae6ed41817db"
+  },
+  {
+    "height": 240,
+    "index": 52,
+    "name": "QUICKFIRE",
+    "id": "dwarf.gunner.quickfire",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "34cd1c93b586480b40b30ae9dd54114f16d74d429a0bcca8b1696f14ec7a3307"
+  },
+  {
+    "height": 240,
+    "index": 53,
+    "name": "SHRAPNEL TOSS",
+    "id": "dwarf.gunner.shrapnel_toss",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "dd8c0f86d8c656f8c68bbf49f03b7609542c17ce5aa334e41553763fe15321fa"
+  },
+  {
+    "height": 240,
+    "index": 54,
+    "name": "BLAST STEP",
+    "id": "dwarf.gunner.blast_step",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "dfb10fa0c3d5f55f87d17262d96b2ba6052e0b4c953aa4f88f8b1862ea6e2f20"
+  },
+  {
+    "height": 240,
+    "index": 55,
+    "name": "SCATTER SHOT",
+    "id": "dwarf.gunner.scatter_shot",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "b9a91a0227ab09fc50a4979d699b531c6a4e817f19040be809e63364e70c1167"
+  },
+  {
+    "height": 240,
+    "index": 56,
+    "name": "SKIPPING CHARGE",
+    "id": "dwarf.gunner.skipping_charge",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "264a99e5256191c7be136829b88b4a392f08e180940a3dae3d89cc125350533b"
+  },
+  {
+    "height": 240,
+    "index": 57,
+    "name": "FIELD MORTAR",
+    "id": "dwarf.gunner.field_mortar",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "c7db3cb0ff0dae21ec95f95855788cff0467f547ce72f5a2170845d9bd5602b6"
+  },
+  {
+    "height": 240,
+    "index": 58,
+    "name": "PIERCING ROUND",
+    "id": "dwarf.gunner.piercing_round",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "a0a84004492a8fa2cd9a8e31cfe116fe61294a14ffa558289bb71365799ae660"
+  },
+  {
+    "height": 240,
+    "index": 59,
+    "name": "ROLLING CHARGE",
+    "id": "dwarf.gunner.rolling_charge",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "8b3fc626cb2b9d8fe7359b3ba4c80f72282e4f0b70903fe581cdacd008362cf5"
+  },
+  {
+    "height": 240,
+    "index": 60,
+    "name": "SIEGE PATTERN",
+    "id": "dwarf.gunner.siege_pattern",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "cb161cb87e706bcfff8ff0bdbc64b9110875301096c752ae521d9f2e40d3c287"
+  },
+  {
+    "height": 240,
+    "index": 61,
+    "name": "SIEGE BARRAGE",
+    "id": "dwarf.gunner.siege_barrage",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "852d727cc638702be3c283d5a18bc837701a6cac4a87f44b6ccf67687ac46a3d"
+  },
+  {
+    "height": 240,
+    "index": 62,
+    "name": "HOOKING CHOP",
+    "id": "dwarf_hooking_chop",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "ff9fa4ca2e12121fc8e4d24534a75692ad7f73c358042e4606e7373fdd684cd7"
+  },
+  {
+    "height": 240,
+    "index": 63,
+    "name": "LOW SWEEP",
+    "id": "dwarf_low_sweep",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d09e418b13d924ded5830b7b6c83e23cfab4cc55eba92b493c3a1ee3e9bd6140"
+  },
+  {
+    "height": 240,
+    "index": 64,
+    "name": "BRACED THROW",
+    "id": "dwarf_braced_throw",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "a1ebec42f9706733fa2b54a3fbea597b6ba52c2a5a9ac03234f92568144dc364"
+  },
+  {
+    "height": 240,
+    "index": 65,
+    "name": "AIMED SHOT",
+    "id": "elf.common.aimed",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "9b5e86adf28743442315e28b6dd97b495dc098a4404bb66da5f2614b3b192f36"
+  },
+  {
+    "height": 240,
+    "index": 66,
+    "name": "RAPID FIRE",
+    "id": "elf.common.rapid",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "aeee3866e3c0691d3f8621a962ac27138c97ef479428857682bf9e7ce6a964da"
+  },
+  {
+    "height": 240,
+    "index": 67,
+    "name": "MULTI SHOT",
+    "id": "elf.common.multi",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "85b027577791b675d9a872e94d4848f80c416d36c072d31cd77ac31d4a0c7028"
+  },
+  {
+    "height": 240,
+    "index": 68,
+    "name": "WEAKPOINT SHOT",
+    "id": "elf.marksman.weakpoint_shot",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "288acf589dba82e036d74d3ef82c784c24fe9b027199357630240c6f4762e3f1"
+  },
+  {
+    "height": 240,
+    "index": 69,
+    "name": "MOVING VOLLEY",
+    "id": "elf.marksman.moving_volley",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "a579a668f14d49f9da25ab46cca1e2508bec2fc8d667b5a57d510b1dc1811f20"
+  },
+  {
+    "height": 240,
+    "index": 70,
+    "name": "PIERCING LINE",
+    "id": "elf.marksman.piercing_line",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "902e65d16fccf00f4299d22341b3cdad749d698999bc015a5e74bace77053462"
+  },
+  {
+    "height": 240,
+    "index": 71,
+    "name": "HEAVY DRAW",
+    "id": "elf.marksman.heavy_draw",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "9ced76578cb95806a78b93110824666c08c7ef0421cc70c2a5e1a88ba43827c7"
+  },
+  {
+    "height": 240,
+    "index": 72,
+    "name": "PRECISION VOLLEY",
+    "id": "elf.marksman.precision_volley",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "e68089cf2ab0a868ce1643fc8be4da5e2e60c1d92cc984957842b250bf157c97"
+  },
+  {
+    "height": 240,
+    "index": 73,
+    "name": "FAN BREAK",
+    "id": "elf.marksman.fan_break",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "3e72918e057a0817be4f51916892b62f06b4e4f54d07f2af5d5bcb2f1ba37096"
+  },
+  {
+    "height": 240,
+    "index": 74,
+    "name": "HUNTER'S FOCUS",
+    "id": "elf.marksman.hunter_s_focus",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "74d52ce12432b86d0ccbb5863b3682d277b4dc26ea325c4e02ca8a469b7266f3"
+  },
+  {
+    "height": 240,
+    "index": 75,
+    "name": "RETREATING FIRE",
+    "id": "elf.marksman.retreating_fire",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d6286fa273edbe97ddfbf11ca93b07b3f0f0e078d72341b9a687da57222c4d99"
+  },
+  {
+    "height": 240,
+    "index": 76,
+    "name": "PIERCING VOLLEY",
+    "id": "elf.marksman.piercing_volley",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "c5d4cd6b6592e954346100a1b76898d30963bc470d1d62d7c29e6b5dd0cc73a9"
+  },
+  {
+    "height": 240,
+    "index": 77,
+    "name": "MARK BREAKER",
+    "id": "elf.marksman.mark_breaker",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "b24c8d28559df7e2e312d54f9f8b98a21440da8ee23ee3d88ce66bb4d468576b"
+  },
+  {
+    "height": 240,
+    "index": 78,
+    "name": "CROSSFIRE",
+    "id": "elf.marksman.crossfire",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "da430f389f2c78525ee4365c630018f2a65543cea98e29e7f66b789c4a3f08b8"
+  },
+  {
+    "height": 240,
+    "index": 79,
+    "name": "ARROW RAIN",
+    "id": "elf.marksman.arrow_rain",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "c632860afe76bbddd8b72964b4ff19ac88cdf24b4e0d07ddda89fd561c8d48da"
+  },
+  {
+    "height": 240,
+    "index": 80,
+    "name": "GRAND VOLLEY",
+    "id": "elf.marksman.grand_volley",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "3d49711f36c3c3b9d6c9cddf242994eb44585b10d8c2b9023d04e731702ec320"
+  },
+  {
+    "height": 240,
+    "index": 81,
+    "name": "ELEMENTAL ARROW",
+    "id": "elf.magic_archer.elemental_arrow",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "9eeaa43bbaa4a4ca229873430ad966b0caf70eff828784116a4f064728608ef7"
+  },
+  {
+    "height": 240,
+    "index": 82,
+    "name": "SPARK VOLLEY",
+    "id": "elf.magic_archer.spark_volley",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "b7b15ba833c281b59fb52cdfa4ae292bf176c9f2bdb8c0ca2967c628de644157"
+  },
+  {
+    "height": 240,
+    "index": 83,
+    "name": "VINE TRAP",
+    "id": "elf.magic_archer.vine_trap",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d1f1b89b35cd7e1b464a6239c1e86f7d2aa92aa459add6cca70ab4cca2b1d958"
+  },
+  {
+    "height": 240,
+    "index": 84,
+    "name": "BLOOM SHOT",
+    "id": "elf.magic_archer.bloom_shot",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4493d5432e3034dc4657866e855ca7dc68f405e7c9e857ad7f2284574fcbb48b"
+  },
+  {
+    "height": 240,
+    "index": 85,
+    "name": "STORM ARROW",
+    "id": "elf.magic_archer.storm_arrow",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "267206ba4dd95a1433209efdc6a0fac3abdcb91072b1331f6123b7ffcb426969"
+  },
+  {
+    "height": 240,
+    "index": 86,
+    "name": "ROOTING FAN",
+    "id": "elf.magic_archer.rooting_fan",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "bcec523435b9099229e99ab22ef6f9a8d30fdb138145fbb5c280ce17874d55dd"
+  },
+  {
+    "height": 240,
+    "index": 87,
+    "name": "WARDEN ARROW",
+    "id": "elf.magic_archer.warden_arrow",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "80ffd2b5f44e95817defd7d41ed941e554e668636f61d569820fa88797dd72b1"
+  },
+  {
+    "height": 240,
+    "index": 88,
+    "name": "GLIDING SHOT",
+    "id": "elf.magic_archer.gliding_shot",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "e46bbfb2ccba883c8edefd81423b227bbf7ddbcdcdb7de528b90fc351a422348"
+  },
+  {
+    "height": 240,
+    "index": 89,
+    "name": "SPIRIT RAIN",
+    "id": "elf.magic_archer.spirit_rain",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "b6923e4922a9511c0529d185b9b928eff8068c41e16f89173e6e3805ba2909c6"
+  },
+  {
+    "height": 240,
+    "index": 90,
+    "name": "ELEMENTAL PIERCE",
+    "id": "elf.magic_archer.elemental_pierce",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d8f2ced48437d43c2110e5a132695a87654be1d2b3892537f767280eafbc021a"
+  },
+  {
+    "height": 240,
+    "index": 91,
+    "name": "ECHO ARROWS",
+    "id": "elf.magic_archer.echo_arrows",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "a953463bfa4ab1c1d431c3ffd753f3bd34e8dcbb7cfd6915a9688e9f62c502f0"
+  },
+  {
+    "height": 240,
+    "index": 92,
+    "name": "VINE BURST",
+    "id": "elf.magic_archer.vine_burst",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d7046fecb7205d4b159f55fd54cfd600dd9bd0c4a082e7886225f032c616b622"
+  },
+  {
+    "height": 240,
+    "index": 93,
+    "name": "SPIRIT ARROWFALL",
+    "id": "elf.magic_archer.spirit_arrowfall",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "43d6f50806de5b4d2c2b9cf34bed7a8c72c5114b29880c1110ea0ff6d57a36f4"
+  },
+  {
+    "height": 240,
+    "index": 94,
+    "name": "RETREATING SHOT",
+    "id": "elf_retreating_shot",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "8f08fa161c6a3b10e9bfc3b49befc353b253b541aa0000501a9258221a6ed10c"
+  },
+  {
+    "height": 240,
+    "index": 95,
+    "name": "PINNING SHOT",
+    "id": "elf_pinning_shot",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "12d2af17cb002230e736dd1d50984fe53ea939d11a486b35a3ebd5fda93f17d6"
+  },
+  {
+    "height": 240,
+    "index": 96,
+    "name": "ARROW SCREEN",
+    "id": "elf_arrow_screen",
+    "classId": "elf",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4cbba32fa2ea4d47082e520ddfa7ecaf95bda0ca6e1875d6a4162578b7255baa"
+  },
+  {
+    "height": 240,
+    "index": 97,
+    "name": "MANA BOLT",
+    "id": "mage.common.mana_bolt",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "324ba15e7a74194809ec3defcc6e6f6e2769c2c90bd51c2b90cbdc4719684101"
+  },
+  {
+    "height": 240,
+    "index": 98,
+    "name": "WATER BALL",
+    "id": "mage.common.water_ball",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "041e9b0af67b7daae42ad27669e84e04f2f8011994ec358c9787b1372ef15347"
+  },
+  {
+    "height": 240,
+    "index": 99,
+    "name": "GRAVITY",
+    "id": "mage.common.gravity",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "51b1809f63d417296dd33e3e09000f143f43713385a3b36e7302b01233933b30"
+  },
+  {
+    "height": 240,
+    "index": 100,
+    "name": "EMBER LANCE",
+    "id": "mage.pyro.ember_lance",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "db8486443fb677cb4edbbd1d9413814624aa54893a69e1771c96861a9a6161be"
+  },
+  {
+    "height": 240,
+    "index": 101,
+    "name": "STEAM BURST",
+    "id": "mage.pyro.steam_burst",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "6c457b03f8d60dc7d6c6e94b8dbdf4ed9250298b85a9485b6cecb1a24c0041fa"
+  },
+  {
+    "height": 240,
+    "index": 102,
+    "name": "CINDER RING",
+    "id": "mage.pyro.cinder_ring",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4ea8be559e5cb94147d2129a283fa49b2ba1bcf2608ec0fd6ce515e567da19f2"
+  },
+  {
+    "height": 240,
+    "index": 103,
+    "name": "FLAME DART",
+    "id": "mage.pyro.flame_dart",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "fcbcafcdb96560d961848c88b57f99b335ddf579e83a3df1c03501030368bbd3"
+  },
+  {
+    "height": 240,
+    "index": 104,
+    "name": "EARTH RISE",
+    "id": "mage.pyro.earth_rise",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "50ebfd015da904cec5649fb4e1ad12551927a9b0b6d27d0b22e0fb9e44df23b4"
+  },
+  {
+    "height": 240,
+    "index": 105,
+    "name": "EMBER STEP",
+    "id": "mage.pyro.ember_step",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "02ad0d8367004fbcc8ee4029149c29e1562794c872df8a3f5c73ab6dfe860ecb"
+  },
+  {
+    "height": 240,
+    "index": 106,
+    "name": "STONE LANCE",
+    "id": "mage.pyro.stone_lance",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "bde74c45ae18d0fb86d19912aa6ab1ee270b03a52cf6adb92abd0ed31406e581"
+  },
+  {
+    "height": 240,
+    "index": 107,
+    "name": "SEARING WARD",
+    "id": "mage.pyro.searing_ward",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4ea1b549d1690c9dac7ad7aa7ac36b5685bb67a346efa0e7e2bb410f516ffada"
+  },
+  {
+    "height": 240,
+    "index": 108,
+    "name": "LAVA ERUPTION",
+    "id": "mage.pyro.lava_eruption",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4ee4bbd9ed388efa3b0efbda40a41d5ece2cc08cb82143404b8397ea448dbb2d"
+  },
+  {
+    "height": 240,
+    "index": 109,
+    "name": "MAGMA SPEAR",
+    "id": "mage.pyro.magma_spear",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "8c9109f2c9765f6747279ae38f507861da9d7591d77c2d49130672fa22be1ac8"
+  },
+  {
+    "height": 240,
+    "index": 110,
+    "name": "MOLTEN LINE",
+    "id": "mage.pyro.molten_line",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "670585c2eb043191c1bdfc42a6a63c716bdb9eaa5158cef89b47cc4f578f1c00"
+  },
+  {
+    "height": 240,
+    "index": 111,
+    "name": "ASHFALL",
+    "id": "mage.pyro.ashfall",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "2b0aa80317d9d0c718366accd78ae92549570231f9e9ace272153fbb24de4551"
+  },
+  {
+    "height": 240,
+    "index": 112,
+    "name": "CALDERA'S JUDGMENT",
+    "id": "mage.pyro.caldera_s_judgment",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "1f4b01f91fd8307b0dd28d1410980d0c455338328fa3aa58315afce0ac74d144"
+  },
+  {
+    "height": 240,
+    "index": 113,
+    "name": "FROST LANCE",
+    "id": "mage.cryo.frost_lance",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "3d7863523dff258219470c0a04a057f533ee7097a91da70e78f12d17a990a2b5"
+  },
+  {
+    "height": 240,
+    "index": 114,
+    "name": "ICE SHARD",
+    "id": "mage.cryo.ice_shard",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "fb292cb6f71bac8ec2a8919f70cd9270af53029ad525282271a2c7e2d391cf3c"
+  },
+  {
+    "height": 240,
+    "index": 115,
+    "name": "FROST RING",
+    "id": "mage.cryo.frost_ring",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "1f5f2590e3258865469ff8732b25b35de3faff82ee87ea9e690bc1cf207c43c2"
+  },
+  {
+    "height": 240,
+    "index": 116,
+    "name": "SHATTER DART",
+    "id": "mage.cryo.shatter_dart",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "829f7bd2c2e30224194a06877249d382348deb3f3638df8b22457e4a558c374b"
+  },
+  {
+    "height": 240,
+    "index": 117,
+    "name": "CHAIN LIGHTNING",
+    "id": "mage.cryo.chain_lightning",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "9ba84e55f22551b900e55473bbfeeeade9f1d92179a44ccc94d56742d08ab89b"
+  },
+  {
+    "height": 240,
+    "index": 118,
+    "name": "FROST STEP",
+    "id": "mage.cryo.frost_step",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "59200ab813a724d2c99a8607a8c4b5b8b215d79e29ec02f05fcf0987efef7eb4"
+  },
+  {
+    "height": 240,
+    "index": 119,
+    "name": "THUNDER SPEAR",
+    "id": "mage.cryo.thunder_spear",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "a6302a8f455400e5d2c21e11756c0565490d2cc63cbb28505164fcd20c69421b"
+  },
+  {
+    "height": 240,
+    "index": 120,
+    "name": "ICE WARD",
+    "id": "mage.cryo.ice_ward",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "7e1390ea1b148dd346e76f1d0946780ef26679e26337c1d5e56975891eea3ec6"
+  },
+  {
+    "height": 240,
+    "index": 121,
+    "name": "FROSTSTORM",
+    "id": "mage.cryo.froststorm",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "2a808edb8eba9bf58f81bda5bcf937e0fc1bb995b24c508b23b1218c90f54485"
+  },
+  {
+    "height": 240,
+    "index": 122,
+    "name": "GLACIAL SPIKE",
+    "id": "mage.cryo.glacial_spike",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "dba13d6c5fcad522b58100ee4895c65936237dc026f11e05f3c750184d350a78"
+  },
+  {
+    "height": 240,
+    "index": 123,
+    "name": "LIGHTNING LINE",
+    "id": "mage.cryo.lightning_line",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "4939ac246048478e9e7046a673a003898d39ad2c95492095d6be790c2ead707c"
+  },
+  {
+    "height": 240,
+    "index": 124,
+    "name": "HAILFALL",
+    "id": "mage.cryo.hailfall",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "581a1fb6c702ed69cc2257f5dfa39537d32f13c601ee245f2330257af73e7378"
+  },
+  {
+    "height": 240,
+    "index": 125,
+    "name": "ETERNAL TEMPEST",
+    "id": "mage.cryo.eternal_tempest",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "7274016356c06c961ce0ec1303bcfa3198b7789b5b20a8d343c4ec0df6a7dcb9"
+  },
+  {
+    "height": 240,
+    "index": 126,
+    "name": "WIND LANCE",
+    "id": "mage_wind_lance",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "032621938b6af25a353fef0943108ac602d329b1d2395c2dc57fe135e0982c4b"
+  },
+  {
+    "height": 240,
+    "index": 127,
+    "name": "TIDAL RING",
+    "id": "mage_tidal_ring",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "d3aa2b0b12e91e0f56e89220fc026a3a1af884c98979cf845a72d3d3cbcec118"
+  },
+  {
+    "height": 240,
+    "index": 128,
+    "name": "ARCANE WARD",
+    "id": "mage_arcane_ward",
+    "classId": "mage",
+    "pulse": 1,
+    "width": 320,
+    "sha256": "adb4be5640cfec5398bc5505cfa5da0ddf68ce4424c51bfdcb76bf2e56b1b7a8"
+  }
+]

@@ -72,7 +72,7 @@ function Wind.step(now)
     for lane,r in s.spirals do
      for j,a in r.points do
       local t=(j-1)/(#r.points-1);local angle=t*math.pi*4+lane*math.pi*2/3-age*19
-      local radius=(.22+.65*math.sin(t*math.pi))*(1-u*.45)
+      local radius=(.12+.65*math.sin(t*math.pi))*(1-t*.7)*(1-u*.45)
       a.Position=Vector3.new(math.cos(angle)*radius,math.sin(angle)*radius,-length*t)
      end
      fade(r,.22+fadeOut*.78,1-fadeOut*.65)
@@ -114,7 +114,7 @@ function Wind.play(character,origin,center,pulse,points,sequence,firedAt,started
  end
  for i=#active,1,-1 do if active[i].character==character and active[i].stage=='Charge'then remove(i)end end
  if #active>=4 then return end
- local folder=Instance.new('Folder');folder.Name='WindLanceVFX';folder:SetAttribute('Stage',pulse==0 and 'Charge'or'Lance')
+ local folder=Instance.new('Folder');folder.Name='WindLanceVFX';folder:SetAttribute('Stage',pulse==0 and 'Charge'or'Lance');folder:SetAttribute('IconCue','wind')
  local p=Instance.new('Part');p.Name='WindCarrier';p.Size=Vector3.new(.1,.1,.1);p.Transparency=1;p.Anchored=true
  p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false;p.Parent=folder
  local first=tip(character,origin);if (center-first).Magnitude<.1 then first=origin end
@@ -133,9 +133,13 @@ function Wind.play(character,origin,center,pulse,points,sequence,firedAt,started
  if pulse~=0 then
   s.surface={model=folder,faces={},color=MINT}
   local frame=CFrame.lookAt(first,center)
-  Surfaces.ribbon(s.surface,"WindSurface",function(t)
-   return first+(center-first)*t+frame.RightVector*math.sin(t*math.pi*2)*.3
-  end,frame.UpVector,1.25,.62)
+  -- Two open, tapering ribbons follow the new icon's narrow air-lance silhouette.
+  for side=-1,1,2 do
+   Surfaces.ribbon(s.surface,"WindSurface",function(t)
+    local taper=math.sin(t*math.pi)*(1-t*.55)
+    return first+(center-first)*t+frame.RightVector*(side*taper*.55)
+   end,frame.UpVector,.48,.62,nil,4)
+  end
  end
  folder.Parent=workspace;Debris:AddItem(folder,s.life+.1);table.insert(active,s)
  Wind.step(now)

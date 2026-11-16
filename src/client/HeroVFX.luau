@@ -7,6 +7,7 @@ local Debris=game:GetService("Debris")
 local Catalog=require(RS.Shared.PixelFXCatalog)
 local Geometry=require(script.Parent.SkillEffectGeometry)
 local Profiles=require(script.Parent.SkillVFXProfiles)
+local IconVFX=require(script.Parent.SkillIconVFX)
 local Surfaces=require(script.Parent.HeroVFXSurfaces)
 local Palette=require(RS.Shared.CombatVFXPalette)
 local FX={}
@@ -81,12 +82,12 @@ local function curve(r,name,path,count,width,color)
   line(r,name,function(u)return path(from,u),path(to,u)end,width*(.4+.6*math.sin(from*math.pi)),color,width*(.4+.6*math.sin(to*math.pi)))
  end
 end
-local function ring(r,name,center,radius,width,vertical,inward,color,basis)
+local function ring(r,name,center,radius,width,vertical,inward,color,basis,segments)
  curve(r,name,function(t,u)
   local angle=t*math.pi*2+u*.7;local size=radius*(inward and(1-u*.8)or(.22+.78*(1-(1-u)^3)))
   local offset=vertical and Vector3.new(math.cos(angle)*size,math.sin(angle)*size,0)or Vector3.new(math.cos(angle)*size,0,math.sin(angle)*size)
   return center+(basis and basis:VectorToWorldSpace(offset)or offset)
- end,12,width,color)
+ end,segments or 12,width,color)
 end
 local function debris(r,center,count,kind,scale)
  for i=1,count do
@@ -235,17 +236,25 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
    for i=1,#points do Surfaces.triangle(r,'UltimateFrontPanel',at,points[i],points[i%#points+1],nil,.56,Enum.Material.SmoothPlastic)end
    stroke('FrontWallCrest',points[1],points[2],.13);stroke('FrontWallChevron',at-right*.55,at+Vector3.yAxis*.8,.12);stroke('FrontWallChevron',at+right*.55,at+Vector3.yAxis*.8,.12)
   end
- elseif key=='DawnBlade'then
-  local at=floor+flat*2+right*1.8
-  stroke('DawnSolarBlade',at+Vector3.yAxis*.5,at+Vector3.yAxis*5.2,.42,r.hot)
-  stroke('DawnSolarHilt',at-right*.95+Vector3.yAxis*1.6,at+right*.95+Vector3.yAxis*1.6,.2)
-  Surfaces.bar(r,'DawnBladeSpine',at+Vector3.yAxis*1.3,at+Vector3.yAxis*4.7,.25,r.color,.25,Enum.Material.Neon)
-  Surfaces.triangle(r,'DawnBladePoint',at-right*.45+Vector3.yAxis*3.8,at+Vector3.yAxis*5.6,at+right*.45+Vector3.yAxis*3.8,nil,.28)
-  for i=1,6 do local a=i*math.pi/3;local radial=Vector3.new(math.cos(a),0,math.sin(a));local pos=floor+radial*radius*.55
-   stroke('DawnSunRay',pos,pos+radial*.65+Vector3.yAxis*.6,.1)
-   Surfaces.volume(r,'DawnAscendingLight',pos+Vector3.yAxis*.75,Vector3.new(.12,1.5,.12),nil,.62,'ball',nil,false,1.1)
+ elseif key=='DawnAegis'then
+  -- The new ultimate icon is a dawn crest with allied shields, not a solar sword.
+  local focus=first+flat*2.4
+  for lane=-1,1 do
+   local size=lane==0 and 1.15 or .7
+   local at=focus+right*lane*2.1
+   local pts={at+Vector3.yAxis*size,at+right*size*.75+Vector3.yAxis*size*.5,at+right*size*.55-Vector3.yAxis*size*.4,at-Vector3.yAxis*size,at-right*size*.55-Vector3.yAxis*size*.4,at-right*size*.75+Vector3.yAxis*size*.5}
+   for i=1,#pts do
+    stroke('IconDawnAegis',pts[i],pts[i%#pts+1],.1)
+   end
+   Surfaces.triangle(r,'DawnAegisPanel',pts[1],pts[2],pts[4],r.color,.68,Enum.Material.SmoothPlastic)
+   Surfaces.triangle(r,'DawnAegisPanel',pts[1],pts[4],pts[6],r.color,.68,Enum.Material.SmoothPlastic)
   end
-  ring(r,'UltimateDawnSeal',floor,radius*.58,.1,false,false)
+  local crest=focus+Vector3.yAxis*1.4
+  for i=1,6 do
+   local a=(i-3.5)*.4;local axis=right*math.sin(a)+Vector3.yAxis*math.cos(a)
+   stroke('IconDawnCrest',crest+axis*.2,crest+axis*1.3,.12,r.hot)
+   Surfaces.volume(r,'DawnAscendingLight',crest+axis*.8,Vector3.new(.12,.8,.12),nil,.62,'ball',nil,false,.8)
+  end
  elseif key=='MountainRidge'then
   for i=1,5 do
    local a=math.rad(-angle*.42+angle*.84*(i-.5)/5);local radial=flat*math.cos(a)+right*math.sin(a)
@@ -406,7 +415,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    for lane=1,(shape=="holy"and 1 or shape=="ward"and 2 or count)do
     if shape=="ward"then
      local basis=CFrame.Angles(0,lane*math.pi/3+phase,0)
-     ring(r,"WardOrbit",first,2.2,width,true,false,nil,basis)
+     ring(r,"WardOrbit",first,2.2,width,true,false,nil,basis,8)
     else ring(r,"DawnSeal",floor,radius*(shape=="holy"and .87 or(.55+lane*.12)),width,false,false)end
    end
   end
@@ -559,6 +568,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    return first+(last-first)*t+basis.RightVector*math.cos(a)*.32+basis.UpVector*math.sin(a)*.32
   end,8,width)end
  end
+ IconVFX.draw(r,id,{first=first,last=last,flat=flat,right=right,floor=floor,radius=radius,area=area,definition=d,points=type(points)=='table' and points or {},pulse=pulse},line,curve)
  -- Filled silhouettes carry the effect; narrow beams remain as edge highlights.
  local surfaceOrigin=shape=="low"and floor or first
  if profile.signature then

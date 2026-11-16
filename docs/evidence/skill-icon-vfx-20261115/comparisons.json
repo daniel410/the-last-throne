@@ -1,0 +1,110 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "height": 270,
+    "time": 0.08,
+    "name": "Kite Shield",
+    "width": 480,
+    "sha256": "27f7275586de8c1ee73c68a8ec4e08a82b26aacb3f877c925ddd8b34439283dc"
+  },
+  {
+    "clockTime": 0,
+    "index": 2,
+    "height": 270,
+    "time": 0.08,
+    "name": "Dawn Aegis",
+    "width": 480,
+    "sha256": "c18183df1e180cb95231d9503cfcc70dcc883d1f952f773b09693bb6f14fe422"
+  },
+  {
+    "clockTime": 12,
+    "index": 3,
+    "height": 270,
+    "time": 0.08,
+    "name": "Armor Split",
+    "width": 480,
+    "sha256": "dabc5462548542bf6cf237c552d3418701144c0286706beee89fdc5c3069ef82"
+  },
+  {
+    "clockTime": 0,
+    "index": 4,
+    "height": 270,
+    "time": 0.08,
+    "name": "Skipping Charge",
+    "width": 480,
+    "sha256": "22b37cbaf819ee843277dc36f4c0934f490437456a3315dafec2275b9b0b526d"
+  },
+  {
+    "clockTime": 12,
+    "index": 5,
+    "height": 270,
+    "time": 0.08,
+    "name": "Bloom Shot",
+    "width": 480,
+    "sha256": "1032913cedb6760c4f0a6eb807a4fc8201de3c75b23d6cc652f4e1c180e02985"
+  },
+  {
+    "clockTime": 0,
+    "index": 6,
+    "height": 270,
+    "time": 0.08,
+    "name": "Echo Arrows",
+    "width": 480,
+    "sha256": "8f77de64467fa8d0e1ea04f7cb3928f3c7be04279c5ee34ae04d515171a15fb7"
+  },
+  {
+    "clockTime": 12,
+    "index": 7,
+    "height": 270,
+    "time": 0.08,
+    "name": "Glacial Spike",
+    "width": 480,
+    "sha256": "b1d3d528c5ae9dafd3846102b4cc11859c158e0b0f0b404af149cf8c6e67bea9"
+  },
+  {
+    "clockTime": 0,
+    "index": 8,
+    "height": 270,
+    "time": 0.08,
+    "name": "Water Ball",
+    "width": 480,
+    "sha256": "652c14d1a6418ad711fdbe69b44735ee6b975571b9df4332c0de1e7ef11f45f1"
+  },
+  {
+    "clockTime": 12,
+    "index": 9,
+    "height": 270,
+    "time": 0.08,
+    "name": "Gravity Field",
+    "width": 480,
+    "sha256": "b1e82d55a9ae49c1baad64c85c1f4127dfcd7d4746c711792c1aee34eb399ecf"
+  },
+  {
+    "clockTime": 0,
+    "index": 10,
+    "height": 270,
+    "time": 0.08,
+    "name": "Wind Lance",
+    "width": 480,
+    "sha256": "6d93f19fbba32d2217b7fd90b0cd2a564511979317ec0404d345a4deb8bb4271"
+  },
+  {
+    "clockTime": 12,
+    "index": 11,
+    "height": 270,
+    "time": 0.08,
+    "name": "Vine Trap",
+    "width": 480,
+    "sha256": "3c0e8cbe99ea509178a700b5d69a03502205c5829a7d13f86cb738ebf52c3927"
+  },
+  {
+    "clockTime": 0,
+    "index": 12,
+    "height": 270,
+    "time": 0.08,
+    "name": "Dawn Spiral",
+    "width": 480,
+    "sha256": "c1b2b0608816978ef36ffd1a8121f44bdb5a64c639ec8388d9c5cbb3de4c21cb"
+  }
+]

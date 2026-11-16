@@ -132,7 +132,7 @@ local Profiles = {byId = {
 -- Each ultimate replaces the generic decoration with one readable focal form.
 local signatures={
  ['knight.steel_knight.unyielding_front']='FrontWall',
- ['knight.paladin.oath_of_dawn']='DawnBlade',
+ ['knight.paladin.oath_of_dawn']='DawnAegis',
  ['dwarf.iron_axe.mountain_collapse']='MountainRidge',
  ['dwarf.gunner.siege_barrage']='SiegeShells',
  ['elf.marksman.grand_volley']='VolleyCrown',

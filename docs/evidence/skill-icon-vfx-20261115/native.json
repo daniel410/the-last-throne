@@ -1,0 +1,144 @@
+{
+  "suites": 15,
+  "checks": 30439,
+  "pass": true,
+  "results": [
+    {
+      "maxBeams": 48,
+      "failures": [],
+      "checks": 14266,
+      "missing": [],
+      "skills": 128,
+      "pass": true,
+      "pulses": 199,
+      "suite": "SKILL_ICON_VFX_NATIVE"
+    },
+    {
+      "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 2262,
+      "suite": "VFX_ART_HERO_FIXES_NATIVE"
+    },
+    {
+      "coverage": "Native geometry and timing; no GPU, multiplayer or user art acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 585,
+      "suite": "ARCADE_IMPACT_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 78,
+      "suite": "RPG_ELEMENT_MOTION_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 190,
+      "suite": "RPG_VFX_MOTION_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 84,
+      "suite": "ELEMENT_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 231,
+      "suite": "WOW_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 58,
+      "suite": "VFX_STYLE_FIT_NATIVE"
+    },
+    {
+      "assets": {
+        "rbxassetid://8196169974": true,
+        "rbxassetid://9937082969": true,
+        "rbxassetid://9997556038": true,
+        "rbxassetid://8030734851": true,
+        "rbxassetid://125374985892345": true
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 182,
+      "suite": "CURATED_VFX_NATIVE"
+    },
+    {
+      "assets": 20,
+      "failures": [],
+      "checks": 1690,
+      "status": "PASS",
+      "kind": "PIXELFX_NATIVE",
+      "basic": 4,
+      "skills": 128,
+      "suite": "PIXELFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 10229,
+      "suite": "HERO_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "WIND_LANCE_VISUAL_NATIVE",
+      "pass": true,
+      "checks": 128,
+      "suite": "WIND_LANCE_VISUAL_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 297,
+      "suite": "SKILL_VFX_INDIVIDUAL_NATIVE"
+    },
+    {
+      "coverage": "Native decoration, budgets and Lua update cost; not GPU or device acceptance",
+      "checks": 57,
+      "luaUpdateP95ms": 0.6081666797399521,
+      "luaUpdateP50ms": 0.5673751002177596,
+      "pass": true,
+      "failures": [],
+      "suite": "HERO_VFX_FLOURISH_NATIVE"
+    },
+    {
+      "coverage": "Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance",
+      "checks": 102,
+      "samples": [
+        {
+          "speed": 1.350000023841858,
+          "class": "knight",
+          "sound": "rbxasset://sounds/action_jump_land.mp3"
+        },
+        {
+          "speed": 0.8956111073493958,
+          "class": "dwarf",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.9072531461715698,
+          "class": "mage",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.910253643989563,
+          "class": "elf",
+          "sound": "rbxassetid://9118598279"
+        }
+      ],
+      "kind": "K0_HIT_EFFECTS_NATIVE",
+      "pass": true,
+      "failures": [],
+      "suite": "K0_HIT_EFFECTS_NATIVE"
+    }
+  ]
+}
