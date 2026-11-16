@@ -11,9 +11,19 @@ local rows = {
     {"knight", "knight.common.provoke"}, {"dwarf", 1}, {"dwarf", 2}, {"dwarf", 3},
     {"dwarf", "dwarf.common.overhead"}, {"dwarf", "dwarf.gunner.bomb_toss"},
 }
+local classes = {"knight","dwarf"}
+if _G.RangedActions then
+    classes = {"elf","mage"}
+    rows = {
+        {"elf",1}, {"elf","elf.common.rapid"}, {"elf","elf.marksman.heavy_draw"},
+        {"elf","elf_retreating_shot"}, {"elf","elf.magic_archer.spirit_arrowfall"},
+        {"mage",1}, {"mage","mage.common.water_ball"}, {"mage","mage_wind_lance"},
+        {"mage","mage.pyro.caldera_s_judgment"}, {"mage","mage.cryo.eternal_tempest"},
+    }
+end
 if _G.MeleeCatalog then
     rows = {}
-    for _, classId in {"knight","dwarf"} do
+    for _, classId in classes do
         for first=1,#config.Skills[classId],4 do
             table.insert(rows,{classId,first})
         end
@@ -82,10 +92,29 @@ for row, action in rows do
         actor:SetAttribute("K0AttackStartedAt", 100)
         actor:SetAttribute("K0SkillStartedAt", 100)
         actor:SetAttribute("K0AttackSeq", row)
-        actor:SetAttribute("K0AttackKind", "Melee")
+        actor:SetAttribute("K0AttackKind", definition.magic and "Arcane" or "Basic")
         actor:SetAttribute("K0Combo", combo)
         actor:SetAttribute("K0AttackPhase", age < definition.windup and "Windup"
             or age < definition.windup + definition.active and "Active" or "Recovery")
+        if classId == "elf" then
+            local spacing = definition.interval or definition.shotInterval
+            if spacing and age >= definition.windup then
+                local count = math.min(definition.pulses or definition.shotCount or 1,1+math.floor((age-definition.windup)/spacing))
+                local fired = 100+definition.windup+(count-1)*spacing
+                if definition.advanced then
+                    require(client.K0BowMotion).confirmPulse(actor,skillId,count,row,fired,100,100+age)
+                else
+                    actor:SetAttribute("K0RapidShotCount",count)
+                    actor:SetAttribute("K0RapidShotAt",fired)
+                end
+            end
+            -- Let the native draw-hand IK resolve the fixed target before freezing FK.
+            for _=1,8 do
+                visual.renderArms(actor,1/60,100+age)
+                visual.renderCharacter(actor,1/60,100+age)
+                game.RunService.Heartbeat:Wait()
+            end
+        end
         visual.renderArms(actor, 1/60, 100 + age)
         rigs.bake(actor)
         visual.renderCharacter(actor, 1/60, 100 + age)

@@ -669,7 +669,7 @@ function Visual.renderArms(character, dt, now)
   if solved then blockState.solution=solved;blockState.target=solved.target end
  end
  applyBlockArms(blockState,now)
- if classId=="knight" or classId=="dwarf" then return motion end
+ return bowPose or magePose
 end
 
 local function finite(value)
@@ -1069,7 +1069,7 @@ end
 
 -- Native fixtures may call this directly without installing a class-selection
 -- flow or making a preview character a persistent RPG character.
-function Visual.render(model, phase, combo, dt, attackKind, now, meleePose)
+function Visual.render(model, phase, combo, dt, attackKind, now, sampledPose)
 	local classId = classFor(model)
 	local spec = MELEE[classId]
 	if not spec then clearEffect(model); MageFocus.clear(model); return false end
@@ -1087,11 +1087,11 @@ function Visual.render(model, phase, combo, dt, attackKind, now, meleePose)
 	local skillId = character and character:GetAttribute("K0SkillId")
 	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, now or Workspace:GetServerTimeNow()) end
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
-	local motion = meleePose or character and (AdvancedMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
+	local motion = sampledPose or character and (AdvancedMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
 		or MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
 		or ShieldBashMotion.forCharacter(character, now or Workspace:GetServerTimeNow()))
-	local bowPose=character and BowMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
-	local magePose=character and MageMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
+	local bowPose=classId=="elf" and (sampledPose or character and BowMotion.forCharacter(character,now))
+	local magePose=classId=="mage" and (sampledPose or character and MageMotion.forCharacter(character,now))
 	motion=motion or bowPose or magePose
 	if motion then target = motion.weapon end
 	if classId == "dwarf" and motion and motion.axeStrikeTurn then
@@ -1147,7 +1147,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now, meleePose)
 	return true
 end
 
-function Visual.renderCharacter(character, dt, now, meleePose)
+function Visual.renderCharacter(character, dt, now, sampledPose)
 	CombatAudio.renderCharacter(character, now or Workspace:GetServerTimeNow())
 	local classId = character:GetAttribute("K0ClassId") or "knight"
  local id=character:GetAttribute("K0SkillId")
@@ -1198,7 +1198,7 @@ function Visual.renderCharacter(character, dt, now, meleePose)
 	local rendered = 0
 	for _, model in ipairs(character:GetChildren()) do
 		if model:IsA("Model") and classFor(model) == classId then
-			if Visual.render(model, character:GetAttribute("K0AttackPhase"), character:GetAttribute("K0Combo"), dt, character:GetAttribute("K0AttackKind"), now, meleePose) then
+			if Visual.render(model, character:GetAttribute("K0AttackPhase"), character:GetAttribute("K0Combo"), dt, character:GetAttribute("K0AttackKind"), now, sampledPose) then
 				rendered = rendered + 1
 			end
 			for _, name in ipairs({"K0LocalSwordFallback", "K0LocalShieldFallback"}) do
@@ -1228,8 +1228,8 @@ function Visual.start()
 		for _, player in ipairs(Players:GetPlayers()) do
 			if player.Character then
 				monitorKnightMeshes(player.Character)
-				local meleePose = Visual.renderArms(player.Character, dt, now)
-				Visual.renderCharacter(player.Character, dt, now, meleePose)
+				local sampledPose = Visual.renderArms(player.Character, dt, now)
+				Visual.renderCharacter(player.Character, dt, now, sampledPose)
 			end
 		end
 	end)

@@ -104,7 +104,11 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}) do
   character:SetAttribute("K0SpellVisual",payload(rig==Enum.HumanoidRigType.R15 and 2 or 1))
   Visual.renderCharacter(character,1/60,now)
   local orb=assert(workspace:FindFirstChild("K0VisualSpell"));local tip=weapon.grip.WeaponTip
-  check((orb.Position-tip.WorldPosition).Magnitude<.002,"Server-approved shot starts at current rendered staff tip")
+  local flat=Vector3.new(last.X-first.X,0,last.Z-first.Z)
+  local along=math.clamp((tip.WorldPosition-first):Dot(flat.Unit),0,flat.Magnitude-.05)
+  local rayPoint=first+flat.Unit*along
+  local expected=Vector3.new(rayPoint.X,tip.WorldPosition.Y,rayPoint.Z)
+  check((orb.Position-expected).Magnitude<.002,"Server-approved shot starts on its ray at the rendered staff tip height")
   check(orb.Anchored and not orb.CanCollide and not orb.CanTouch and not orb.CanQuery,"Projectile is inert presentation")
   Visual.renderCharacter(character,1/144,now)
   local count=0;for _,o in ipairs(workspace:GetChildren()) do if o.Name=="K0VisualSpell" then count+=1 end end

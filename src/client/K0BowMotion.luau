@@ -1,6 +1,7 @@
 -- Absolute server time drives draw, anchor, release and follow-through.
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
 local Clip=require(game.ReplicatedStorage.Shared.ElfBowClip)
+local Gestures=require(script.Parent.RangedActionPoses)
 local ReloadClip=require(script.Parent.K0ElfMixamoReload)
 local Motion={}
 local records=setmetatable({},{__mode="k"})
@@ -129,14 +130,20 @@ function Motion.forCharacter(character,now)
  local awaitingShot=false
  local advancedMulti=d.advanced and type(d.pulses)=="number" and d.pulses>1
  local repeated=d.effect=="rapid" or advancedMulti
+ local count, at, sinceRelease
+ if advancedMulti then
+  count,at=record.pulse or 0,record.pulseAt
+ elseif repeated then
+  count,at=character:GetAttribute("K0RapidShotCount") or 0,character:GetAttribute("K0RapidShotAt")
+ end
+ local moreShots=repeated and count<(advancedMulti and d.pulses or d.shotCount)
  if repeated and age>=d.windup then
-  local count=advancedMulti and (record.pulse or 0) or (character:GetAttribute("K0RapidShotCount") or 0)
-  local at=advancedMulti and record.pulseAt or character:GetAttribute("K0RapidShotAt")
   if count<=0 or type(at)~="number" then t=.8
   else
    local since=math.max(0,now-at)
+   sinceRelease=since
    if since<.04 then t=.8+.1*since/.04
-   elseif count<(advancedMulti and d.pulses or d.shotCount) then
+   elseif moreShots then
     local due=record.started+d.windup+count*(advancedMulti and d.interval or d.shotInterval)
     local span=math.max(.04,due-(at+.04))
     t=.18+.62*math.clamp((now-at-.04)/span,0,1)
@@ -154,10 +161,12 @@ function Motion.forCharacter(character,now)
   if not firedAt then t=.8;awaitingShot=true
   else
    local since=math.max(0,now-firedAt)*(record.rate or 1)
+   sinceRelease=since
    local remaining=total-(firedAt-record.started)*(record.rate or 1)
    t=since<.04 and .8+.1*since/.04 or .9+.1*math.clamp((since-.04)/math.max(.01,remaining-.04),0,1)
   end
  end
+ if not repeated and not awaitingShot and age>=release then sinceRelease=sinceRelease or age-release end
  local reload=d==Config.BasicAttackProfiles.elf.attacks[1] and rigType~=Enum.HumanoidRigType.R6
  local pose=reload and Motion.sampleBasic(t,rigType) or Motion.sample(t)
  pose.time=t;pose.nocked=t<.8;pose.aimDirection=lockedAim(character)
@@ -174,20 +183,31 @@ function Motion.forCharacter(character,now)
   pose.quiverTaken=t>=.22
  end
  if repeated and age>=d.windup then
-  local count=advancedMulti and (record.pulse or 0) or (character:GetAttribute("K0RapidShotCount") or 0)
-  local at=advancedMulti and record.pulseAt or character:GetAttribute("K0RapidShotAt")
-  if count<(advancedMulti and d.pulses or d.shotCount) then
+  if moreShots then
    local anchor=Motion.sample(.8)
-   for _,channel in ipairs({"left","leftElbow","torso","neck","weapon"}) do pose[channel]=anchor[channel] end
+   for _,channel in ipairs({"left","leftElbow","torso","neck","weapon"}) do pose[channel]=anchor[channel];pose.angles[channel]=anchor.angles[channel] end
    if type(at)=="number" and now-at>=.04 then
     pose.ikWeight=math.clamp((now-at-.04)/.035,0,1)
-    pose.nocked=now-at>=.065 and (advancedMulti or t<.8)
-   elseif advancedMulti and count==0 then
+    pose.nocked=now-at>=.065
+    -- The string can already be slack while the release hand is still
+    -- behind the cheek. Bridge the hand from the follow-through to the new draw.
+    local bridge=math.clamp((now-at-.04)/.055,0,1)
+    if bridge<1 then
+     local releasePose=Motion.sample(.9)
+     local weight=bridge*bridge*(3-2*bridge)
+     for _,channel in {"right","elbow","wrist"} do
+      local delta=releasePose.angles[channel]:Lerp(pose.angles[channel],weight)
+      pose.angles[channel]=delta
+      pose[channel]=CFrame.Angles(math.rad(delta.X),math.rad(delta.Y),math.rad(delta.Z))
+     end
+    end
+   elseif count==0 then
     pose.nocked=true
    end
   end
  end
  if awaitingShot then pose.nocked=true;pose.ikWeight=1 end
+ Gestures.bow(pose,d,age,sinceRelease,moreShots)
  -- Lob ground-targeted arrows upward; direct shots retain their reviewed aim.
  if d.form=="ground" then
   local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)

@@ -7,6 +7,7 @@ parser = argparse.ArgumentParser()
 for option in ('before', 'after', 'catalog', 'output'):
     parser.add_argument('--'+option, required=True, type=Path)
 parser.add_argument('--versions', nargs=2, required=True)
+parser.add_argument('--ranged', action='store_true')
 args = parser.parse_args()
 args.output.mkdir(parents=True, exist_ok=True)
 
@@ -50,7 +51,14 @@ names = ['Downcut', 'Rising Cut', 'Horizontal Sweep', 'Driving Thrust', 'Provoke
          'Overhead', 'Backhand', 'Wide Sweep', 'Overhead Smash', 'Bomb Toss']
 common = {'knight.common.bash': 'Shield Bash', 'dwarf.common.ground': 'Ground Slam',
           'dwarf.common.overhead': 'Overhead Smash', 'dwarf.common.throw': 'Axe Throw'}
-for hero, start, first in [('Knight', 1, 1), ('Dwarf', 6, 9)]:
+heroes = ['Knight', 'Dwarf']
+if args.ranged:
+    heroes = ['Elf', 'Mage']
+    names = ['Bow Shot', 'Rapid Fire', 'Heavy Draw', 'Retreating Shot', 'Spirit Arrowfall',
+             'Staff Strike', 'Water Ball', 'Wind Lance', "Caldera's Judgment", 'Eternal Tempest']
+    common.update({'elf.common.aimed': 'Aimed Shot', 'elf.common.rapid': 'Rapid Fire',
+                   'elf.common.multi': 'Multi Shot', 'mage.pyro.caldera_s_judgment': "Caldera's Judgment"})
+for hero, start, first in zip(heroes, [1, 6], [1, 9]):
     frames, delays = [], []
     for row in range(start, start+5):
         for f in range(12):

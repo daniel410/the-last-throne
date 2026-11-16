@@ -1,6 +1,7 @@
 -- Original Blender MCP animation curves. Only accepted server action time is
 -- sampled; this module never moves the root or authorizes hits/projectiles.
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
+local Gestures=require(script.Parent.RangedActionPoses)
 local Clips=require(script.Parent.K0MageClips)
 local Motion={}
 local records=setmetatable({},{__mode="k"})
@@ -50,10 +51,13 @@ function Motion.sample(d,profile,age,entry,entrySlope)
   elseif pulse<d.pulses then
    local reload=math.clamp((since-.055)/math.max(.01,d.interval-.055),0,1)
    -- A continuous return arc joins release (.82) to the next anchor (.65).
-   if reload<.5 then t=.82-.32*(reload*2) else t=.50+.15*((reload-.5)*2) end
+   local u=math.min(reload*2,(1-reload)*2)
+   local ease=u*u*(3-2*u)
+   t=reload<.5 and .82-.32*ease or .65-.15*ease
   else t=.82 end
  end
  local pose=Motion.raw(profile,t);if not pose then return nil end
+ Gestures.mage(pose,d,profile,age)
  local opening=w*.3
  if entry and age<opening then
   local u=math.clamp(age/opening,0,1);local u2,u3=u*u,u*u*u
@@ -81,13 +85,14 @@ function Motion.forCharacter(character,now)
   local d,profile=Motion.definition(character:GetAttribute("K0SkillId"),character:GetAttribute("K0AttackKind"))
   if not d or not finite(started) then records[character]=nil;return nil end
   if not previous or previous.started~=started or previous.d~=d then
+   local rate=not character:GetAttribute("K0SkillId") and (character:GetAttribute("K0BasicAttackRate") or 1) or 1
    local entry,entrySlope
    if previous and started>=previous.started then
     entry=presentation(previous,started);entrySlope={}
     local before,after=presentation(previous,started-.0001),presentation(previous,started+.0001)
-    for _,c in ipairs(Clips.channels) do entrySlope[c]=(after.angles[c]-before.angles[c])/.0002 end
+    for _,c in ipairs(Clips.channels) do entrySlope[c]=(after.angles[c]-before.angles[c])/(.0002*rate) end
    end
-   previous={d=d,profile=profile,started=started,entry=entry,entrySlope=entrySlope,rate=not character:GetAttribute("K0SkillId") and (character:GetAttribute("K0BasicAttackRate") or 1) or 1};records[character]=previous
+   previous={d=d,profile=profile,started=started,entry=entry,entrySlope=entrySlope,rate=rate};records[character]=previous
   end
  end
  if not previous then return Motion.raw("staff_strike",0) end
