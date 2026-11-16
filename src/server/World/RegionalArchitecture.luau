@@ -1,7 +1,7 @@
 -- Blender-authored primitives retain their exact local rotations and proportions.
 local Templates=require(script.Parent.RegionalArchitectureTemplates)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Architecture={version=7}
+local Architecture={version=8}
 function Architecture.build(kind)
  local rows=assert(Templates[kind],'Unknown regional architecture '..kind)
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
@@ -65,6 +65,22 @@ function Architecture.build(kind)
     Color3.fromRGB(65+i*4,61+i*3,62+i*3),Enum.Material.Basalt,'Wedge')
    p:SetAttribute('EpicDetailSolid',false);p:SetAttribute('TLTSceneryDistance',700)
    p:SetAttribute('MineWorkingFace',true);details+=1
+  end
+  -- Pinned TD volcanic geology makes the braced face part of a quarry rather
+  -- than a freestanding wall. Included before placement so its complete bounds
+  -- reserve the encounter/road clearance; Collision.apply owns the solid meshes.
+  local Env=require(script.Parent.DeepwoodEnvironment)
+  for i,row in ipairs({{-15,-20,29,.35},{13,-20,24,-.6},{-2,-31,34,.1}})do
+   local rock=Env.asset(m,'VolcanoCliff',Vector3.new(row[1],-.5,row[2]),row[3])
+   rock:PivotTo(CFrame.Angles(0,row[4],0)*rock:GetPivot())
+   rock.Name='MineQuarryMass'
+   rock:SetAttribute('MineQuarryMass',true)
+   for _,p in ipairs(rock:GetDescendants())do if p:IsA('MeshPart')then
+    p:SetAttribute('TDOriginalTexture',p.TextureID);p.TextureID=''
+    p.Color=Color3.fromRGB(77+i*5,73+i*4,75+i*4);p.Material=Enum.Material.Basalt
+    p:SetAttribute('TLTSceneryDistance',700)
+   end end
+   details+=1
   end
   -- EC-03: load-bearing uprights ground the existing rescue lintel and braces.
   -- Static fittings remain inside the authored footprint; no new blocker.
