@@ -159,9 +159,17 @@ function Pose.accent(model,current,attack,height,basic)
   drive=0
  end
  local reach=math.min(.58,(height or 5)*g.reach)
+ local advance=reach*(drive-.62*load)
+ if not d and model:GetAttribute('EnemyKind')=='Skeleton' then
+  -- Its close guard can cancel the forward reach of the alternating cut.
+  -- Transfer the weight into the swing, then settle onto the planted feet.
+  local age=current-attack.start
+  local transfer=smooth((age/attack.w-.80)/.20)*(1-smooth((age-attack.w)/(attack.a+attack.r)))
+  advance+=.035*(height or 5)*transfer
+ end
  local turn=d and CFrame.Angles(0,Pose.facingYaw(model,current,attack),0) or CFrame.identity
  local body=angles(g.wind*load+g.hit*drive)
- return turn*CFrame.new(0,0,reach*(.62*load-drive))*body,g,load,drive
+ return turn*CFrame.new(0,0,-advance)*body,g,load,drive
 end
 
 function Pose.joint(model,channel,phase,g,load,drive)

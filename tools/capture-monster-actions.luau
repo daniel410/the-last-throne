@@ -91,6 +91,11 @@ for _,case in cases do
     camera.FieldOfView=27
     local shot=CFrame.lookAt(target+view.Unit*extent*3.15,target)
     camera.CFrame=shot
+    if _G.ReviewWeaponHands then
+        -- Mesh assets can finish downloading before their first rendered frame.
+        -- Let the fixed camera see the complete rig before sampling the windup.
+        task.wait(2)
+    end
     local duration=d.windup+d.active+d.recovery
     actor:SetAttribute("K0EnemyAttackClock",string.format("%d|100|%.7f|%.7f|%.7f|%d",index,d.windup,d.active,d.recovery,d.heavy and 1 or 0))
     actor:SetAttribute("K0AttackSeq",index)

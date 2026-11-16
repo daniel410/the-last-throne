@@ -58,7 +58,8 @@ function Weapon.step(s,phase,active,heavy,clock,current,distance,discontinuity)
  end
  -- Short trails only during the actual downswing/follow-through. No idle glow.
  local d=Snapshot.get(s.model)
- local contact=active and phase>=.62 and phase<=.78
+ -- A decimal windup added to a long-running server clock can land just below .62.
+ local contact=active and phase>=.62-1e-6 and phase<=.78+1e-6
  if d and s.attack then
   local elapsed=current-s.attack.start-s.attack.windup
   local pulse=math.floor(math.max(0,elapsed)/d.interval)
