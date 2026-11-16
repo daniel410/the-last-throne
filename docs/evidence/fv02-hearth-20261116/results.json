@@ -1,0 +1,38 @@
+{
+  "geometry": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"scale\":1.2999999523162842,\"addedParts\":11,\"compiled\":528,\"position\":\"-262.04998779296875, 85.99996948242188, -8244.2734375\"}"
+      }
+    ],
+    "isError": false
+  },
+  "points": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"corrections\":[],\"lowSteps\":[],\"routeFailures\":[],\"blockers\":[],\"returns\":{\"1\":{\"chapter\":\"FV-Q1\",\"to\":{\"1\":-362.85000000000016,\"3\":-8317.9,\"2\":84},\"label\":\"FV-Q1:report\",\"epic\":3,\"from\":{\"1\":-867.8388061523438,\"3\":-8180.42041015625,\"2\":81}}},\"epics\":{\"3\":{\"chapters\":11,\"lowSteps\":0,\"connectors\":9,\"steps\":5808,\"samples\":6177,\"targets\":142,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0}},\"floors\":[]}"
+      }
+    ],
+    "isError": false
+  },
+  "worldPoints": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"corrections\":[],\"lowSteps\":[],\"routeFailures\":[],\"blockers\":[],\"returns\":{\"1\":{\"chapter\":\"FV-Q1\",\"to\":{\"1\":-362.85000000000016,\"3\":-8317.9,\"2\":84},\"label\":\"FV-Q1:report\",\"epic\":3,\"from\":{\"1\":-867.8388061523438,\"3\":-8180.42041015625,\"2\":81}}},\"epics\":{\"3\":{\"chapters\":11,\"lowSteps\":0,\"connectors\":9,\"steps\":5849,\"samples\":6218,\"targets\":143,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0}},\"floors\":[]}"
+      }
+    ],
+    "isError": false
+  },
+  "source": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Both modified module Sources match frozen build"
+      }
+    ],
+    "isError": false
+  }
+}
