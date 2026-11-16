@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"raised\":0,\"blocked\":0,\"missing\":0,\"samples\":2093,\"banks\":4}"
+    }
+  ],
+  "isError": false
+}

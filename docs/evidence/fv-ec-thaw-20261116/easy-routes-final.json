@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"5\":{\"chapters\":7,\"lowSteps\":0,\"connectors\":6,\"steps\":5003,\"samples\":5192,\"targets\":119,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0},\"4\":{\"chapters\":11,\"lowSteps\":0,\"connectors\":9,\"steps\":8223,\"samples\":8526,\"targets\":150,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0},\"3\":{\"chapters\":11,\"lowSteps\":0,\"connectors\":9,\"steps\":5849,\"samples\":6218,\"targets\":143,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0},\"2\":{\"chapters\":7,\"lowSteps\":0,\"connectors\":6,\"steps\":5275,\"samples\":5491,\"targets\":117,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0}}"
+    }
+  ],
+  "isError": false
+}
