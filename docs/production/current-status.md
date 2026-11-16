@@ -16,7 +16,7 @@
 
 - 로비 출발 안내: 솔로/멀티 시작 즉시 TD 공통 프레임으로 `ADVENTURE STARTING...`를 표시하고 저장·이동 준비 동안 유지한다. [출발 경계/격리 UI 검사·실제 Teleport 수용 후속](../evidence/adventure-starting-20261115/README.md).
 
-- EC-03 구조 시설: 0.111.12에서 기둥·기초·철제 띠·침목13파트로 지면 연결을 보강했다. [빌드·두 동선16,922표본·동일 장면 A/B·미검증](../evidence/ec03-mine-support-20261116/README.md). [기존 외곽 능선](../evidence/ec03-mine-rim-20261116/README.md). G5 미완료.
+- EC-03 구조 시설: 0.111.15에서 기존 암반18면을 현무암 색·표면 깊이로 파생했다. [형상 보존·두 동선16,922표본·전후 화면 미확보/후속](../evidence/ec03-fracture-20261116/README.md). [이전 지지대13파트](../evidence/ec03-mine-support-20261116/README.md)·[외곽 능선](../evidence/ec03-mine-rim-20261116/README.md). G5 미완료.
 
 - EC-03 채굴 흔적: 0.110.28에서 구조 통로 주변 비전투 여백을 TD 현무암 잔석3군집·9메시로 구성했다. [접지/충돌99검사·두 동선16,922표본·전후 비교/미게시·남은 실제 플레이 수용](../evidence/ec03-mine-spoil-20261115/README.md). G5 미완료.
 

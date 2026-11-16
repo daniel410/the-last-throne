@@ -1,0 +1,215 @@
+{
+  "engine": {
+    "syntax": 530,
+    "support": {
+      "names": {
+        "MineStoneFoot": 2,
+        "MineIronCollar": 4,
+        "MineRailSleeper": 5,
+        "MineUpright": 2
+      },
+      "pivot": "404.526215, 141.414856, -12538.7422, -0.823149085, 0, -0.567825258, 0, 1, 0, 0.567825258, 0, -0.823149085",
+      "parts": 13
+    },
+    "status": {
+      "ok": true,
+      "error": "nil"
+    },
+    "nav": {
+      "worldPoints": {
+        "lowSteps": [],
+        "floors": [],
+        "corrections": [],
+        "returns": [
+          {
+            "chapter": "EC-Q1",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q1:report",
+            "epic": 4,
+            "from": [
+              -1021.1762084960938,
+              127,
+              -12006.5341796875
+            ]
+          },
+          {
+            "chapter": "EC-Q2",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q2:report",
+            "epic": 4,
+            "from": [
+              -783.3861083984375,
+              143,
+              -12732.84375
+            ]
+          },
+          {
+            "chapter": "EC-Q3",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q3:report",
+            "epic": 4,
+            "from": [
+              1465.877197265625,
+              151,
+              -13439.2890625
+            ]
+          },
+          {
+            "chapter": "EC-Q4",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q4:report",
+            "epic": 4,
+            "from": [
+              -1977.529296875,
+              185,
+              -14555.1005859375
+            ]
+          }
+        ],
+        "epics": {
+          "4": {
+            "chapters": 11,
+            "lowSteps": 0,
+            "connectors": 9,
+            "steps": 8223,
+            "samples": 8526,
+            "targets": 150,
+            "floors": 0,
+            "corrections": 0,
+            "blockers": 0,
+            "routeFailures": 0
+          }
+        },
+        "routeFailures": [],
+        "blockers": []
+      },
+      "points": {
+        "lowSteps": [],
+        "floors": [],
+        "corrections": [],
+        "returns": [
+          {
+            "chapter": "EC-Q1",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q1:report",
+            "epic": 4,
+            "from": [
+              -1021.1762084960938,
+              127,
+              -12006.5341796875
+            ]
+          },
+          {
+            "chapter": "EC-Q2",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q2:report",
+            "epic": 4,
+            "from": [
+              -783.3861083984375,
+              143,
+              -12732.84375
+            ]
+          },
+          {
+            "chapter": "EC-Q3",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q3:report",
+            "epic": 4,
+            "from": [
+              1465.877197265625,
+              151,
+              -13439.2890625
+            ]
+          },
+          {
+            "chapter": "EC-Q4",
+            "to": [
+              -362.85000000000014,
+              132,
+              -12134.4
+            ],
+            "label": "EC-Q4:report",
+            "epic": 4,
+            "from": [
+              -1977.529296875,
+              185,
+              -14555.1005859375
+            ]
+          }
+        ],
+        "epics": {
+          "4": {
+            "chapters": 11,
+            "lowSteps": 0,
+            "connectors": 9,
+            "steps": 8093,
+            "samples": 8396,
+            "targets": 144,
+            "floors": 0,
+            "corrections": 0,
+            "blockers": 0,
+            "routeFailures": 0
+          }
+        },
+        "routeFailures": [],
+        "blockers": []
+      }
+    },
+    "rim": {
+      "count": 2,
+      "cells": {
+        "East5": {
+          "center": [
+            740.1500244140625,
+            140,
+            -12429.400390625
+          ],
+          "height": 71.66059875488281
+        },
+        "East4": {
+          "center": [
+            860.1500244140625,
+            140,
+            -12542.400390625
+          ],
+          "height": 87.88287353515625
+        }
+      }
+    }
+  },
+  "geometry": {
+    "templateParts": 34,
+    "baseParts": 47,
+    "physicsPreserved": true,
+    "fractureFaces": 18,
+    "variants": 5
+  }
+}
