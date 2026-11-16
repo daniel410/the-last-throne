@@ -1,0 +1,54 @@
+{
+  "pass": true,
+  "version": "0.111.3",
+  "sourceCommit": "dddfcc38b4697eb6bed657864a2bf2a71a7b9d12",
+  "bytes": 19830374,
+  "sha256": "b709985fb6185fc65bf082a3f32a4f962873f088c7a667bccf5d2844d48aab21",
+  "modules": [
+    {
+      "path": "src/client/HeroVFX.luau",
+      "sha256": "876398d0c48a601d8e3ec6b421c0a1d276fb6810084c5ac61447dac419ae68d3",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/WindLanceVisual.luau",
+      "sha256": "6ed85f718f6446300e46052be34982c4348583bd480f674daad0ffc30b26a09c",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/SkillIconVFX.luau",
+      "sha256": "5c7e30e38d8835554838ac66ed946c0fedb795a8686d5d8ea4fe42d780c8b87f",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/SkillIconVFXProfiles.luau",
+      "sha256": "2e26b5d2088e4616f7bcfd17ccb04462f31641debc8f1a13cb55598b215e720e",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/SkillVFXProfiles.luau",
+      "sha256": "cd1cfb9d6d18e1f035c61b70b3e18477e581526e598dce231aa4907e3a7f8709",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/HeroVFXArt.luau",
+      "sha256": "8553ec4659063a1161caa8d71fb68afb875dae7be21408724e1226b2ca28e3ae",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/HeroVFXSurfaces.luau",
+      "sha256": "a32100eea2e45cc83725dfd0586a0b231dce3716419bcbb96ad03773f5a68494",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/AdvancedSkillVisual.luau",
+      "sha256": "7faf33ac6b0efda053217f6ded10c0e1c33ed3dfd651a7e121f164c7b913b468",
+      "matchesNativeAndFinalCaptures": true
+    },
+    {
+      "path": "src/client/PixelFX.luau",
+      "sha256": "b50a7a6dd864099a76b47e016bd56b1e5066eae8e56f6f6257a41cf761632839",
+      "matchesNativeAndFinalCaptures": true
+    }
+  ]
+}

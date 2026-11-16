@@ -1,0 +1,15 @@
+{
+  "originalCapture": "comparison-provenance.json",
+  "refinedCapture": "refinement-provenance.json",
+  "changedModules": [
+    "src/client/HeroVFX.luau",
+    "src/client/HeroVFXArt.luau",
+    "src/client/PixelFX.luau"
+  ],
+  "affectedIds": [
+    "mage.pyro.molten_line",
+    "mage.common.water_ball",
+    "mage.cryo.lightning_line"
+  ],
+  "scope": "용암 띠/물 표면 발광과 지면 중심 PixelFX만 변경했다. 나머지 비교 분기는 불변이며 소스/픽셀 해시를 구분해 보존한다."
+}

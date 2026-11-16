@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "version": "0.111.3",
+  "checks": 14463,
+  "probeSha256": "5ae2e38c6d45570e25079d4c8d8a92165f4657fce4b0039cf24f7a72d9ecf195",
+  "results": [
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 43,
+      "suite": "SKILL_VFX_ART_NATIVE"
+    },
+    {
+      "maxBeams": 48,
+      "failures": [],
+      "checks": 14292,
+      "missing": [],
+      "skills": 128,
+      "pass": true,
+      "pulses": 199,
+      "suite": "SKILL_ICON_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "WIND_LANCE_VISUAL_NATIVE",
+      "pass": true,
+      "checks": 128,
+      "suite": "WIND_LANCE_VISUAL_NATIVE"
+    }
+  ]
+}

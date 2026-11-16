@@ -1,0 +1,2059 @@
+{
+  "schemaVersion": 1,
+  "tasks": [
+    "TLT-033",
+    "TLT-057",
+    "TLT-059"
+  ],
+  "role": "independent_art_review",
+  "date": "2026-11-15",
+  "baselineCommit": "2aa4ffb705956729e40d4ee83b61f606adfe7c75",
+  "baselineVersion": "0.111.2",
+  "verdict": "핵심 정지형상 개선 확인·잔여 미술 과제 있음",
+  "representativeSummary": {
+    "improved_static": 17,
+    "improved_static_with_motion_limit": 1,
+    "improved_static_with_residual": 2,
+    "partial_static": 8
+  },
+  "inputProvenanceSha256": {
+    "all-capture-provenance.json": "f96d1ff725ff9bf2710362d4d3a3c90f348ddd79705dafdc000e83d86ae4f2d5",
+    "refinement-provenance.json": "4016a25f5ca90f0f42e9523a027e02c92cd27605e5b036f61d3362fec92a382b",
+    "native-provenance.json": "a6df2f32abb1c3fae1de32917d3aab0b9d6621bd2f9da67b3cac0dbb6a0d6e52",
+    "contrast-provenance.json": "479acce8f9ae07fe35ae2c08ee5193148a118f78a85d718239680ddd643caae8",
+    "final-comparison-provenance.json": "9d249bd2f5ee994a1129b1152eb523fdf4cccf5e1c7ef191f87a437e173b11fc",
+    "comparison-provenance.json": "d8f7cefb18a24a03fd50eabd194ce6627a6b9aaabae9561ec7844177b5611509",
+    "return-provenance.json": "63e6ec1f9dc79ca0f27b149f84e65c73d38a5cd86830ed5f5579ae02936fe648"
+  },
+  "candidateBuild": "0.111.3",
+  "implementationInputCommit": "dddfcc38",
+  "newBlockingStaticFindings": [],
+  "userArtAcceptance": false,
+  "publishedClientAcceptance": false,
+  "deviceAcceptance": false,
+  "continuousMotionAcceptance": false,
+  "geometryTestsDoNotProveArtAcceptance": true,
+  "scopeCounts": {
+    "comparisons": 56,
+    "refinements": 6,
+    "contrast": 8,
+    "return": 6,
+    "final": 18,
+    "skills": 128
+  },
+  "evidencePriority": [
+    "final",
+    "contrast",
+    "refinements",
+    "comparisons"
+  ],
+  "evidenceScope": "다른 소스 시점의 캡처를 단일 최신 소스라고 합치지 않는다.28대표 비교·9종 최신 보완·전128장 회귀를 구분한다. return은bar이전의 축/위치 보조, 최신 주형상은final/skills를 사용한다.",
+  "provenanceFilesSha256": {
+    "all-capture-provenance.json": "f96d1ff725ff9bf2710362d4d3a3c90f348ddd79705dafdc000e83d86ae4f2d5",
+    "refinement-provenance.json": "4016a25f5ca90f0f42e9523a027e02c92cd27605e5b036f61d3362fec92a382b",
+    "native-provenance.json": "a6df2f32abb1c3fae1de32917d3aab0b9d6621bd2f9da67b3cac0dbb6a0d6e52",
+    "contrast-provenance.json": "479acce8f9ae07fe35ae2c08ee5193148a118f78a85d718239680ddd643caae8",
+    "final-comparison-provenance.json": "9d249bd2f5ee994a1129b1152eb523fdf4cccf5e1c7ef191f87a437e173b11fc",
+    "comparison-provenance.json": "d8f7cefb18a24a03fd50eabd194ce6627a6b9aaabae9561ec7844177b5611509",
+    "return-provenance.json": "63e6ec1f9dc79ca0f27b149f84e65c73d38a5cd86830ed5f5579ae02936fe648"
+  },
+  "representatives": [
+    {
+      "id": "mage.pyro.molten_line",
+      "status": "improved_static",
+      "observation": "공중 불창이 없어지고 연속 지면 용융심/밝은3구간으로 읽힌다. 중간의 염주형 구 마디도 해소됐다.",
+      "residual": "고저차 지형에서의 접지와 실제3펄스 타이밍은 후속.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/015-mage.pyro.molten_line.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "22d7c3c052e3cc1b0f72f9d5b3474da0652a2bb5e8e009f292e939e9c6d60ca5"
+        },
+        {
+          "path": "final/016-mage.pyro.molten_line.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "99c09c5e488c6fa3e31d0724120a05049619ea626c2e685dc5f4f2a4d188129a"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.common.water_ball",
+      "status": "improved_static",
+      "observation": "낮/밤 모두 둥근 청색 구와 국소 반사/물방울을 읽을 수 있다. 기존 도넛 주 형상과 야간 소실 문제가 해소됐다.",
+      "residual": "실제 배경/기기에서 과도하게 불투명한 공으로 보이지 않는지 후속.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/017-mage.common.water_ball.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "ccf9ba5df8208c7c0f110e939efe63f28faab1273a86ed850944b4b57b3e082b"
+        },
+        {
+          "path": "final/018-mage.common.water_ball.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "fd1a76225d6b779d67aad5864193b1afe901750995ab3e96be5263490ea45f62"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.common.gravity",
+      "status": "improved_static",
+      "observation": "넓은 바닥 다각 나선보다 조밀한 보라색 중심이 주제로 바뀌었다.",
+      "residual": "바위의 수렴 흐름·상태 지속의 연속 미술 수용은 별도.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/005-mage.common.gravity.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "8cf0f0d0d53edeb154dce39dd4951963069c7458614ad1f418fb25b59046fe93"
+        },
+        {
+          "path": "comparisons/006-mage.common.gravity.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "7039c69b5d5c15ad0c8f5ddf28e1b5df0a59cf73d9c8ca2387196cd72e2347d6"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.steam_burst",
+      "status": "improved_static",
+      "observation": "중간의 검은 반사 구슬이 옅은 청백 증기로 바뀌었다. 기존 가는 상승선과 함께 짧은 기체로 읽힌다.",
+      "residual": "전체 주 범위 원이 여전히 강하며 실제 지역의 증기 명암/지속은 후속.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/003-mage.pyro.steam_burst.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "b9bf9a19cafbac3ff966b42adaa44f51fc152ed48d4e724369bb5fbbff0479a9"
+        },
+        {
+          "path": "final/004-mage.pyro.steam_burst.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "aa907e9ccfa7e29f45cd8c638393240866c0c5d7ba33e975e49bca4435367423"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.frost_lance",
+      "status": "improved_static",
+      "observation": "불필요한 긴 공통 막대가 사라지고 가는 긴 단일 얼음 결정이 주제가 됐다.",
+      "residual": "실제 투사체 이동/카메라/충돌 합성은 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/009-mage.cryo.frost_lance.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "b6565a6985310f0a59325b92d7789c6438123219526a2852edffcc1de28130ef"
+        },
+        {
+          "path": "comparisons/010-mage.cryo.frost_lance.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "338b8b9c2250730a6a9a6bda9b8dfe7ca0685b6c6f4fef1217280fb3b7dcbb7f"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.ice_shard",
+      "status": "improved_static",
+      "observation": "긴 창 대신 짧고 넓은 결정이 보이며 Frost Lance와 위계가 분리됐다.",
+      "residual": "작은 감속 단서와 실제 발사/도착 연결은 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/011-mage.cryo.ice_shard.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "1b7b7f655e4b6a27655599fcc37e4e3c05efb855d46e12602b86179546dd816b"
+        },
+        {
+          "path": "comparisons/012-mage.cryo.ice_shard.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "ec630286433cee4b2b3b002372eaca7b0a50dfca683f11738ca0f5c8f227fabc"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.shatter_dart",
+      "status": "improved_static",
+      "observation": "작은 짧은 결정과 타점 파편이 구별되며 거대한 긴 창을 재사용하지 않는다.",
+      "residual": "작은 도형이 낮은 그래픽 품질에서 사라지는지 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/013-mage.cryo.shatter_dart.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "72bc907324712d62cdb10cc408abada4c0c03ecb0f7fc8061b184220381fcb38"
+        },
+        {
+          "path": "comparisons/014-mage.cryo.shatter_dart.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "f3a6988a67bc7236110ae602fc55193a6f9ab11bc39b7374887c941c2fb62028"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.glacial_spike",
+      "status": "improved_static",
+      "observation": "큰 주 결정과 측면 결정으로 질량이 생기며 나머지 얼음3종과 구별된다.",
+      "residual": "실제 전투 거리에서의 밝기/가림·피격 합성은 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/015-mage.cryo.glacial_spike.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "4234520edbb87a5b1c6959df21d4d9e437adf233dba3f95f49dfd2fb1640a0a4"
+        },
+        {
+          "path": "comparisons/016-mage.cryo.glacial_spike.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "5c38421826adab28e250b4a742b54a7b90c710824cf4e9ee318074d3d544a0cd"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.ember_lance",
+      "status": "improved_static",
+      "observation": "Flame Dart보다 길고 뾰족한 불창 중심과 절제된 꼬리가 남는다.",
+      "residual": "길게 남은 얇은 꼬리의 연속 움직임은 실제 플레이로 확인.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/017-mage.pyro.ember_lance.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "e3394df0886d7f66191bc83549261d2e2f1a99ad2f5ae5cabd54140982bec5ea"
+        },
+        {
+          "path": "comparisons/018-mage.pyro.ember_lance.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "6ecb47e8f93aae4e961bce844b8486b62eafdeb9b3b0a9712e9bd86a02265921"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.flame_dart",
+      "status": "improved_static",
+      "observation": "작은 불침으로 축소돼 Ember Lance와 크기 위계가 구별된다.",
+      "residual": "빠른 준비/소멸의 자연스러움은 별도.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/019-mage.pyro.flame_dart.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "77b29a7e89a44024da35168f06adb93d0fcb09c2bb340c9bd85806a95b68a8c0"
+        },
+        {
+          "path": "comparisons/020-mage.pyro.flame_dart.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "dfe4e3251957148a47ce12532f0c9318aaa9035ad43c89e76a1cf70334499dd4"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.magma_spear",
+      "status": "partial_static",
+      "observation": "타점의 어두운 외피/더 무거운 중심은 보강됐으나 전체 컷에서는 긴 공통 화염 꼬리도 여전히 강하다.",
+      "residual": "어두운 암석 외피가 불창과 충분히 구별되는지 실제 영웅/배경에서 후속.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/013-mage.pyro.magma_spear.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "889b407f8fab7adf077be017571edc1b69e80b83f14f7fe10ac212b2243a0cce"
+        },
+        {
+          "path": "final/014-mage.pyro.magma_spear.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "1b3f94d2b51052dbecff5662062d530e7d76e99f0efd569cf28df4f9c5aecb03"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.stone_lance",
+      "status": "partial_static",
+      "observation": "암석 색/불투명 결정 중심은 유지되며 불/얼음과 구별된다. 비교에서 개선 폭은 크지 않다.",
+      "residual": "긴 밝은 보조축과 작은 암석 중심의 상대 위계를 후속 확인.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/023-mage.pyro.stone_lance.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "d6915e85234e97215a30feb1fe3a71ab75ef7526e905f345f918bb2ae2a65398"
+        },
+        {
+          "path": "comparisons/024-mage.pyro.stone_lance.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "ca574dc28d556123329a7cdc51f905116575b24a1f5417be2ff7d4e1b0f978b1"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.ice_ward",
+      "status": "improved_static",
+      "observation": "최종 Block bar 이후 캐스터 둘레의3개 연속 모서리/보호판이 낮/밤 모두 보인다. 외곽8결정+중복 고리가 중심이던 초기 모습과 구별된다.",
+      "residual": "삼각 보호판의 추상적 외형과 실제 영웅 가림/지속 수용은 후속.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/001-mage.cryo.ice_ward.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "987daa949aac6d1c3c2db72f78a05bd0dd73bb31a7153fc8ab1afa775641fffb"
+        },
+        {
+          "path": "final/002-mage.cryo.ice_ward.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "20bea31b16fa09c024f31fd5cffc78e21655496cca66bca8ef21556eae3b3ef7"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.froststorm",
+      "status": "improved_static",
+      "observation": "지면의8결정만 있던 효과에 층별 기류/하강 결정이 생겨 보호막과 구별된다.",
+      "residual": "실제 폭풍의 상승/회전/하강 자연스러움과 지역 가림은 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/027-mage.cryo.froststorm.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "1bf6f08bc07dd507380e23912defa9dac0733562752e734979193c70e56cd387"
+        },
+        {
+          "path": "comparisons/028-mage.cryo.froststorm.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "e8e129a347f8e1d6e2bc9505cc5d9840148011d5591b4d9ff9a542cfedf73082"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.thunder_spear",
+      "status": "improved_static",
+      "observation": "연쇄 지그재그 대신 거의 곧은 주축과 짧은 분기로 단발 창을 읽을 수 있다.",
+      "residual": "0.18초의 소실은0.16초 방전 계약에 맞으며 연속 발광/스트로브 수용은 별도.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/029-mage.cryo.thunder_spear.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "e8e604780a2f35946be46de71813bebaed163f4a74547bd680d8c3ca8652df3c"
+        },
+        {
+          "path": "comparisons/030-mage.cryo.thunder_spear.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "706c6bda36cc49dbe041f1055cb3aef29109f1e8b1ff53cb9a4596b510c26ab4"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.lightning_line",
+      "status": "improved_static",
+      "observation": "낮고 곧은 좁은 통로축과 직각 분기로 Chain Lightning과 구별된다.",
+      "residual": "실제 선 범위/지면 높이와 다인 합성은 후속.0.18초 빈 컷은 만료로 취급.",
+      "primaryEvidenceSet": "refinements",
+      "frames": [
+        {
+          "path": "refinements/005-mage.cryo.lightning_line.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "48832f5fd51dadccf005169bc53f08ca449396f94caf86492e6d993af8a37039"
+        },
+        {
+          "path": "refinements/006-mage.cryo.lightning_line.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "0cf61c814c83af4132411cdd734d3fc53293a1bc6c98f511bcfd42d3e1394f94"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.returning_echo",
+      "status": "improved_static_with_motion_limit",
+      "observation": "긴 삼각 화살촉 대신 금속 날/손잡이와 짧은 회전 잔상이 보인다. 보조2펄스 컷은 귀환축을 보존한다.",
+      "residual": "실제 TD 장착 원본clone과 연속 회전/손 복귀의 미술 수용은 미검증.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/005-dwarf.iron_axe.returning_echo.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "3a535f49edc74b2b44030f36b3764de27765088015a0fe19f9c3844ce87d5566"
+        },
+        {
+          "path": "final/006-dwarf.iron_axe.returning_echo.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "786bdab35ae29335238ca6dc5d665e1ed475411f967b462664f8e4412128d114"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.iron_shoulder",
+      "status": "improved_static",
+      "observation": "기사의 큰 청색 연 방패가 제거되고 작은 강철 어깨 가드/주황 진행 흔적으로 바뀌었다.",
+      "residual": "실제 어깨/손/무기 포즈와 이동 타격의 합성은 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/035-dwarf.iron_axe.iron_shoulder.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "ed8c4e1a04863cdc5deb4fe261565f8abfc7af7a44b1a2fcc8adde46b6144f68"
+        },
+        {
+          "path": "comparisons/036-dwarf.iron_axe.iron_shoulder.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "74b416f25be5d0fc289f59cfd1cd03b756094986af5ce5c7d4da75f380688444"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.bloom_shot",
+      "status": "improved_static",
+      "observation": "가느다란 잎 윤곽 대신 타점의5개 잎 면과 작은 빈틈/밝은 중심맥이 보인다.",
+      "residual": "중앙 잡광/긴 화살축의 상대 위계와 실제 타격 순간 수용은 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/037-elf.magic_archer.bloom_shot.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "1a19401d82517db1e289f5043bd3696ee1a0ba954711d30c5458e5cffb73bb29"
+        },
+        {
+          "path": "comparisons/038-elf.magic_archer.bloom_shot.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "ee6a6a20567bb7e42ef090f098b5531b308da6c95dfa90d76d6cd03b3650a4e1"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.vine_trap",
+      "status": "improved_static_with_residual",
+      "observation": "긴 방사형 뿌리가 중심으로 모이고 짧은 고리/굵은 줄기/잎이 구속 영역을 읽히게 한다.",
+      "residual": "중앙의 혼합색 잡광은 남아 있어 전체 자연 모티프의 완전한 아트 수용은 보류.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/007-elf.magic_archer.vine_trap.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "cd81db1286e2438c7cdbc9791c9e5998f5cfbe07f025b2a781c4bf527a1e09c8"
+        },
+        {
+          "path": "final/008-elf.magic_archer.vine_trap.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "f8c2d4d893d6a1960a1878652ab5e02f0ee35e74b887cd7be88a43d54aa74ea6"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.vine_burst",
+      "status": "improved_static_with_residual",
+      "observation": "큰 잎과 집중된 뿌리로 Trap보다 바깥으로 펴지는 형태가 보강됐다.",
+      "residual": "중앙 잡광과 파열/수렴의 연속 방향은 실제 전투에서 후속 확인.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/009-elf.magic_archer.vine_burst.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "183cdd6f736a04d73a1a0b2b81f294a5193467d24b42b74b545561105cbf8ac0"
+        },
+        {
+          "path": "final/010-elf.magic_archer.vine_burst.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "f484e12398b0704bb8a01c955f33949fc71b17f2012ddec27b86c569ed58edde"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.earth_rise",
+      "status": "partial_static",
+      "observation": "네 흩어진 덩어리보다 중앙의 높이가 다른 기둥이 생겼다. 전체에서는 큰 범위 원/균열도 여전히 강하다.",
+      "residual": "3기둥의 성장과 바닥 밑동/중심 위계는 실제 지역에서 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/043-mage.pyro.earth_rise.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "910ea4afe780511a1db46636002cb03e758ca5407412c089e1bf1cadd309f536"
+        },
+        {
+          "path": "comparisons/044-mage.pyro.earth_rise.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "659a40c8f6b7850965281980275f7f4b5371888aa7b21229e1dcab374f59e3a0"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "knight.common.provoke",
+      "status": "improved_static",
+      "observation": "강한 다중 바닥 원/폭발성 중심이 줄고 머리 높이의3개 도발 호가 주제로 바뀌었다.",
+      "residual": "피해0/실제 약화 상태·다인 가독성은 엔진/플레이 수용으로 분리.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/045-knight.common.provoke.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "3d4df67ea61a0fdaa5e01a7098753af97b076068d7fc20bb17ac1c6f90f14377"
+        },
+        {
+          "path": "comparisons/046-knight.common.provoke.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "9e3c7bf5139c219d7f08b35f448ab3f58b8a4afeadc6c7c51714b931a641dfd6"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.searing_ward",
+      "status": "partial_static",
+      "observation": "기존 공격 화염 왕관 안의 보호 체적이 추가돼 공격/방어 결합을 암시한다.",
+      "residual": "야간 투명 돔은 여전히 약하며 실제 영웅/장비에서 보호 인상과 가림 수용이 남는다.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/047-mage.pyro.searing_ward.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "f96133700dc13c1bc5061a110bb5cf988980e8ba6c83b31d3e7e9642dcad78c4"
+        },
+        {
+          "path": "comparisons/048-mage.pyro.searing_ward.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "7b33606e79647b54d4fceb001b62977107b1ae3a4e193fdf36b054ebb6e8bf93"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "elf.marksman.grand_volley",
+      "status": "partial_static",
+      "observation": "앞의 활 왕관/긴 부채꼴이 유지되고 위계가 소폭 보강됐다.",
+      "residual": "일반 부채 기술 대비 최종 기술의 초점·세 파동 인상은 실제 카메라에서 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/049-elf.marksman.grand_volley.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "50fa78dcf8a8af304f2668852d6086f2669683e96e17f32980d8ce5328ed6d33"
+        },
+        {
+          "path": "comparisons/050-elf.marksman.grand_volley.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "33995a44053e790ffe6bd780da36da4eb398bc587df2296054aed3ead31169a3"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.spirit_arrowfall",
+      "status": "partial_static",
+      "observation": "최종 연속 bar의 가지/자연 초점과 큰 하강 형상이 일반 Spirit Rain보다 분명해졌다.",
+      "residual": "중앙 잡광·직사각 하강 몸체와3파동의 자연스러움은 잔여.",
+      "primaryEvidenceSet": "final",
+      "frames": [
+        {
+          "path": "final/011-elf.magic_archer.spirit_arrowfall.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "b718f580c057f5431d083facca0af0a06f123837c649eb91f7727fd1f2bce009"
+        },
+        {
+          "path": "final/012-elf.magic_archer.spirit_arrowfall.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "87c2ac78a5d2d6b9f631af71d1a44783f8ddc338c35349dacadd45359eb729af"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.pyro.caldera_s_judgment",
+      "status": "partial_static",
+      "observation": "어두운 중심/세 분출의 기본 주제는 유지되나 같은 카메라에서 Before와 차이가 크지 않다.",
+      "residual": "더 읽히는 분화구/현무암 대비와 일반 Lava Eruption 대비 위계는 잔여.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/053-mage.pyro.caldera_s_judgment.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "eff6fcb0d4d887f419bc8d8e68c1e13f6aa997b3d21cb7c4df33c7af7505b4e4"
+        },
+        {
+          "path": "comparisons/054-mage.pyro.caldera_s_judgment.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "bcd9ca8de3d0850ecfe406d14553dbd265d15e678d9d4523c85b32df92db8bf4"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    },
+    {
+      "id": "mage.cryo.eternal_tempest",
+      "status": "partial_static",
+      "observation": "큰 가는 다각 나선을 줄이고 층별 짧은 띠/열린 중심으로 모은 개선을 확인했다.",
+      "residual": "일부 지면 범위선이 여전히 강하며 큰 부유 결정/폭풍의 최종 위계는 실제 지역 후속.",
+      "primaryEvidenceSet": "comparisons",
+      "frames": [
+        {
+          "path": "comparisons/055-mage.cryo.eternal_tempest.png",
+          "age": 0.06,
+          "pulse": 1,
+          "sha256": "040a347114e7611355ac5bcb4f4c16bd74a18ffb5a584e26a870c058d3a94384"
+        },
+        {
+          "path": "comparisons/056-mage.cryo.eternal_tempest.png",
+          "age": 0.18,
+          "pulse": 1,
+          "sha256": "fc7793a6f12242e3b7cf08b2d60fef47a03861c8fb08b4b9d385dbac63095823"
+        }
+      ],
+      "scope": "격리 정지형상 판정. 사용자/게시/기기/완전한 연속 미술 수용 아님."
+    }
+  ],
+  "catalogReview": [
+    {
+      "id": "knight.common.bash",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.common.bash.png",
+      "sha256": "e7889f2df28a89daf944a66c18923e902e172eebd23a3a3d90f904565957659c"
+    },
+    {
+      "id": "knight.common.whirlwind",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.common.whirlwind.png",
+      "sha256": "ca396e0ac4bdc47df1a8c59ed9982c3c1ca0c1da3b7e8ef2738be20b50e81e49"
+    },
+    {
+      "id": "knight.common.provoke",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "강한 다중 바닥 원/폭발성 중심이 줄고 머리 높이의3개 도발 호가 주제로 바뀌었다.",
+      "fullFrame": "skills/knight.common.provoke.png",
+      "sha256": "f37b2b81780e545b5876da1db9e0767cbb3ab7e8230029dafd378964f52b4c92"
+    },
+    {
+      "id": "knight.steel_knight.counter_slash",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.steel_knight.counter_slash.png",
+      "sha256": "cb3ecd39e4eb377c525539f20da6bf4ccb902b8d32d21d51918391f85792c7d0"
+    },
+    {
+      "id": "knight.steel_knight.steel_sweep",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.steel_knight.steel_sweep.png",
+      "sha256": "b2f0e0fad98eecfcba4cf5974d6e24d3ecb429339abe5e5df6c19447cb166af1"
+    },
+    {
+      "id": "knight.steel_knight.challenging_strike",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.steel_knight.challenging_strike.png",
+      "sha256": "ca11edb0b57347ac72c57cbadba12d43c44dd4e43147b079bc2405f79e6a2972"
+    },
+    {
+      "id": "knight.steel_knight.twin_cyclone",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.steel_knight.twin_cyclone.png",
+      "sha256": "0831b30651eda09edf0438d2467c6be612d15426a794a95baf29d7dd549f9cce"
+    },
+    {
+      "id": "knight.steel_knight.shield_breaker",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.steel_knight.shield_breaker.png",
+      "sha256": "2b03728983601ed2c3461d7dde0c450a86137025a196e3bd9e516e89675df560"
+    },
+    {
+      "id": "knight.steel_knight.guardian_counter",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.steel_knight.guardian_counter.png",
+      "sha256": "3914374c1cb6a2c2c0074afa27555cd200d4ba870fc0dd67322d68937878b498"
+    },
+    {
+      "id": "knight.steel_knight.rallying_slash",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.steel_knight.rallying_slash.png",
+      "sha256": "e2497f970fbb6da7d0fb88d29c8a97434ff8bb126f171a563614e4e70f0ad2c2"
+    },
+    {
+      "id": "knight.steel_knight.breaker_charge",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.steel_knight.breaker_charge.png",
+      "sha256": "e147d782a6cbaec4233e8a23ffd5b7613f0de70c1aba2710046067c27ee6a9a8"
+    },
+    {
+      "id": "knight.steel_knight.vanguard_strike",
+      "classId": "knight",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/knight.steel_knight.vanguard_strike.png",
+      "sha256": "3e4a77d57fb480002422e293a63002017467fb1162211f2a456e9ccbacba4347"
+    },
+    {
+      "id": "knight.steel_knight.blade_storm",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.steel_knight.blade_storm.png",
+      "sha256": "7fd6d9a11c2fab357487d9a6d7dbfc3be4b0d0ca97fee64d9cbb4144c2d940cf"
+    },
+    {
+      "id": "knight.steel_knight.sweeping_break",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.steel_knight.sweeping_break.png",
+      "sha256": "b3b299013388a79383c12932f1f4d0bad78a282b8c57b4de7dce35263d61bcf8"
+    },
+    {
+      "id": "knight.steel_knight.warcry_assault",
+      "classId": "knight",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/knight.steel_knight.warcry_assault.png",
+      "sha256": "ef183bbcfbc41bd93685dccc16c9ce5b81cf5f53b179b65f528d4f0db871aee1"
+    },
+    {
+      "id": "knight.steel_knight.unyielding_front",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.steel_knight.unyielding_front.png",
+      "sha256": "cf64e13baac9f7beefeb52a5d4393bd12bab0c434a6a566222d320eff07ca5da"
+    },
+    {
+      "id": "knight.paladin.oathblade",
+      "classId": "knight",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/knight.paladin.oathblade.png",
+      "sha256": "dba846c3ffd7ec74592dd48fa2c6678b146d72b66b99c2941b233273e05e8afd"
+    },
+    {
+      "id": "knight.paladin.radiant_sweep",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.paladin.radiant_sweep.png",
+      "sha256": "86974098829404707f4dad74335c680c9544b4967fa6994ed4b3b65184f6be25"
+    },
+    {
+      "id": "knight.paladin.oath_challenge",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.paladin.oath_challenge.png",
+      "sha256": "696801737e6e31c3518371f61776cf6c551b6019d8287b10203e8fa111782768"
+    },
+    {
+      "id": "knight.paladin.dawn_burst",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.paladin.dawn_burst.png",
+      "sha256": "0afbc070b434889dbd318444ed9d984bea226722cbf54899857bae8ba4156637"
+    },
+    {
+      "id": "knight.paladin.oathbreaker_strike",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.paladin.oathbreaker_strike.png",
+      "sha256": "fea4cad71f1db015cf1e49e741847cf67a37c318c857bc09999aa05a057a8b12"
+    },
+    {
+      "id": "knight.paladin.shield_verdict",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.paladin.shield_verdict.png",
+      "sha256": "1c369c8e48ae2f678336c7e9f04b48c9ec7a6cd19788e0bd460794a1c871339c"
+    },
+    {
+      "id": "knight.paladin.guardian_slash",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.paladin.guardian_slash.png",
+      "sha256": "af3a24a618e041781fa6ed9a51c3ebc80bb8b43440e11507ab7783f53f63aa56"
+    },
+    {
+      "id": "knight.paladin.radiant_charge",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.paladin.radiant_charge.png",
+      "sha256": "1a3a5d6446ac978cb5255ee4db19532aa43c69b571b6bad1b15f206c73140b52"
+    },
+    {
+      "id": "knight.paladin.valiant_advance",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.paladin.valiant_advance.png",
+      "sha256": "62bb82ce0c7d6c24eb7c28c0a0039d2722bc168d43e8372ac988013c036a5ac0"
+    },
+    {
+      "id": "knight.paladin.dawn_spiral",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.paladin.dawn_spiral.png",
+      "sha256": "12b9efca378ec512b9781405507e5832c1609cff99a9263db01044d96159fe99"
+    },
+    {
+      "id": "knight.paladin.sunward_cross",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight.paladin.sunward_cross.png",
+      "sha256": "9aad6479af08357d0eb06d7ef9f384567cbb9af0c1aa1c60e6517dcc4654ba89"
+    },
+    {
+      "id": "knight.paladin.oathbound_assault",
+      "classId": "knight",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/knight.paladin.oathbound_assault.png",
+      "sha256": "497a1e89972a25f5674cb329dd0c66e9b73e3dd0d81bafbd7fa412571a9cbf8e"
+    },
+    {
+      "id": "knight.paladin.oath_of_dawn",
+      "classId": "knight",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/knight.paladin.oath_of_dawn.png",
+      "sha256": "f4045a1c12dc12e20409061d6037120bcda5566b8fef637285a9d016e1ad8da0"
+    },
+    {
+      "id": "knight_driving_thrust",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight_driving_thrust.png",
+      "sha256": "9f9224ddb995b9e07b17d5aa8203573a35bcfd5a6468ba6672dad5b68031b232"
+    },
+    {
+      "id": "knight_crescent_cut",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight_crescent_cut.png",
+      "sha256": "8fef30758599a723d3e6e9bed03c87168add40ee1195bcb46c9015d2128a96b1"
+    },
+    {
+      "id": "knight_guarded_strike",
+      "classId": "knight",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/knight_guarded_strike.png",
+      "sha256": "a5143f31dd95fd526a164022d8ab99728315db9641b29edbab718a39c3b04e0c"
+    },
+    {
+      "id": "dwarf.common.overhead",
+      "classId": "dwarf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/dwarf.common.overhead.png",
+      "sha256": "d30a57088fdf874289af39334bacd8c893933728648f2c09b3bbcd678b760aa6"
+    },
+    {
+      "id": "dwarf.common.throw",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.common.throw.png",
+      "sha256": "d7daf7cccce7266202aa3609df2c9d281b6b2aa0a86b45dacfc067692c261ea3"
+    },
+    {
+      "id": "dwarf.common.ground",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.common.ground.png",
+      "sha256": "1c3d8cac29ff5b9cae12957baf7e06a69a8f28b8037e2a33b51f997e27b9cf97"
+    },
+    {
+      "id": "dwarf.iron_axe.armor_splitter",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.armor_splitter.png",
+      "sha256": "ecd6fd9ab17e7b54486474671595b94f1348a3e31843c45447941e4f125c5e88"
+    },
+    {
+      "id": "dwarf.iron_axe.returning_echo",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static_with_motion_limit",
+      "observation": "긴 삼각 화살촉 대신 금속 날/손잡이와 짧은 회전 잔상이 보인다. 보조2펄스 컷은 귀환축을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.returning_echo.png",
+      "sha256": "621793970f831ef41fec47fe7c1253311789898fc2bfa5ac6a71a75a8a20534a"
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_sweep",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.mountain_sweep.png",
+      "sha256": "8eb565693fa8178302cd94cee12d7252706ad794a266000b0eb85147ecb98b56"
+    },
+    {
+      "id": "dwarf.iron_axe.crag_cleave",
+      "classId": "dwarf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/dwarf.iron_axe.crag_cleave.png",
+      "sha256": "985615ce009d6a96bf0fab97fa48cf4075f3b3f10e314e37f323796408416f2f"
+    },
+    {
+      "id": "dwarf.iron_axe.breaker_throw",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.breaker_throw.png",
+      "sha256": "fd35b07196a825060fe0a44a2cde223c2b311e90c130750eb683c21bf6651322"
+    },
+    {
+      "id": "dwarf.iron_axe.stonebound_leap",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.stonebound_leap.png",
+      "sha256": "1c43abfd1c01c6eddc60b4f188ec3c5b8940f4107f3852e5e58d86c014cf32d7"
+    },
+    {
+      "id": "dwarf.iron_axe.iron_shoulder",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "기사의 큰 청색 연 방패가 제거되고 작은 강철 어깨 가드/주황 진행 흔적으로 바뀌었다.",
+      "fullFrame": "skills/dwarf.iron_axe.iron_shoulder.png",
+      "sha256": "07285c0034a17870958840e81de94eda606cdbab681ecb11f4b2a4537218bc00"
+    },
+    {
+      "id": "dwarf.iron_axe.crosscut_axe",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "sampled_axe_path_improved",
+      "observation": "전체 컷의 도끼 주 형상과 보조2펄스 컷의 축/교차·분리 경로는 보강됐다. 실제 원본clone/연속 회전 수용은 별도.",
+      "fullFrame": "skills/dwarf.iron_axe.crosscut_axe.png",
+      "sha256": "405155b7ace28d14efeeffe285ffbcc2dfc0eb73ed0a4753935ea51175056a70"
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_strike",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.mountain_strike.png",
+      "sha256": "37b6ac8e7f2376baf3f300b86e21c3b809bddc4bab4576efff6e397460f7cbac"
+    },
+    {
+      "id": "dwarf.iron_axe.shatter_blow",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.shatter_blow.png",
+      "sha256": "f96ee879c79dd6c8b77579a187f0e2b02e4c8540d66aaf29912d31f2e1c7e73b"
+    },
+    {
+      "id": "dwarf.iron_axe.twin_axe_path",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "sampled_axe_path_improved",
+      "observation": "전체 컷의 도끼 주 형상과 보조2펄스 컷의 축/교차·분리 경로는 보강됐다. 실제 원본clone/연속 회전 수용은 별도.",
+      "fullFrame": "skills/dwarf.iron_axe.twin_axe_path.png",
+      "sha256": "5b7b3be9c325225df541f677abf3ae2c5765af982353c25caeb27ad147d0459c"
+    },
+    {
+      "id": "dwarf.iron_axe.tremor_guard",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.tremor_guard.png",
+      "sha256": "1922abd0290996d5447c9d2d23edc9717e22a0586e03b82111c3af7262d132d0"
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_collapse",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.iron_axe.mountain_collapse.png",
+      "sha256": "ac26aa494c9166bdb33ed13cea895e7632cd92effbdb8a24a9f010f1745c28f2"
+    },
+    {
+      "id": "dwarf.gunner.gunner_shot",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.gunner.gunner_shot.png",
+      "sha256": "744a80bab95a2dba5334e375a7ab7c5dd7206204dc91fa3d65ab54dd8f6991dc"
+    },
+    {
+      "id": "dwarf.gunner.bomb_toss",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.gunner.bomb_toss.png",
+      "sha256": "8c20ff1717df96aa92892f5acbb61a99290f2250962346d9a27e24c5cfb165ec"
+    },
+    {
+      "id": "dwarf.gunner.shell_burst",
+      "classId": "dwarf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/dwarf.gunner.shell_burst.png",
+      "sha256": "94c357c7ef1391002112d87058c1f4ee9f6777d40f247a73ad1d8bc7efba7f9e"
+    },
+    {
+      "id": "dwarf.gunner.quickfire",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.gunner.quickfire.png",
+      "sha256": "192646503db757d1b0f7d6dfcfcd1d56b26f8fc2e5e49cbb3f6522e9dfebdf07"
+    },
+    {
+      "id": "dwarf.gunner.shrapnel_toss",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.gunner.shrapnel_toss.png",
+      "sha256": "e1ffa93f50e49b26375aa69cf5d75cd8a46d0e298217fa2b6d179232971dadea"
+    },
+    {
+      "id": "dwarf.gunner.blast_step",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.gunner.blast_step.png",
+      "sha256": "ae6849de1e7e7872ad436a83a7515a1ad2ace01ef5320009c3e5be1cf1f163cd"
+    },
+    {
+      "id": "dwarf.gunner.scatter_shot",
+      "classId": "dwarf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/dwarf.gunner.scatter_shot.png",
+      "sha256": "231c50a3824b6e824f835788f95dad5b9b87836a051ca1a81b2479d83ff40922"
+    },
+    {
+      "id": "dwarf.gunner.skipping_charge",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.gunner.skipping_charge.png",
+      "sha256": "0fb2be905032a6685ebeb63505a6f3e55ff5d18960c3ea64b244ba275da19999"
+    },
+    {
+      "id": "dwarf.gunner.field_mortar",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.gunner.field_mortar.png",
+      "sha256": "e094c7c78989848ea1676c8127760d89aaac0e2d936ffa9fca3568c30052fedd"
+    },
+    {
+      "id": "dwarf.gunner.piercing_round",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.gunner.piercing_round.png",
+      "sha256": "5733dab75e42b26e8f8a14f12c1bd72256513a9d8fae6c1d5211448a6247358d"
+    },
+    {
+      "id": "dwarf.gunner.rolling_charge",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.gunner.rolling_charge.png",
+      "sha256": "e2c15ded9a4e75d14d38b9a58aebacc2d4c5c1d2ca3e2eda55dad4c322737a66"
+    },
+    {
+      "id": "dwarf.gunner.siege_pattern",
+      "classId": "dwarf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/dwarf.gunner.siege_pattern.png",
+      "sha256": "f2be04af1084069c333d8290c50262180a66c3f72e5e994d547b67a82d3eb974"
+    },
+    {
+      "id": "dwarf.gunner.siege_barrage",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf.gunner.siege_barrage.png",
+      "sha256": "302868d658f0354f223d7e2a0c7cf380be79b79fffa97d3673cb6a931763b70f"
+    },
+    {
+      "id": "dwarf_hooking_chop",
+      "classId": "dwarf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/dwarf_hooking_chop.png",
+      "sha256": "0346b73f7100bc1138e58070e130b0111e326fcfdf514fc71a6cf10c7768bf9b"
+    },
+    {
+      "id": "dwarf_low_sweep",
+      "classId": "dwarf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/dwarf_low_sweep.png",
+      "sha256": "8ae70fd12f6d13d0edcdff44caa5f56450c0a4f9f25228594abe36dd206b3f88"
+    },
+    {
+      "id": "dwarf_braced_throw",
+      "classId": "dwarf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/dwarf_braced_throw.png",
+      "sha256": "6c813777f5941acc84763f5450e6db77b911e27fd1343d16232c286c7a39c99d"
+    },
+    {
+      "id": "elf.common.aimed",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.common.aimed.png",
+      "sha256": "36d85c7cb998f46161bf8d210c8f728ae68000f2f1ddeec97536d65e78306d2e"
+    },
+    {
+      "id": "elf.common.rapid",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.common.rapid.png",
+      "sha256": "38afa3f09c8584c93f324c16f64e9f67aa90a61df85103eed28e3f67c8e20fa3"
+    },
+    {
+      "id": "elf.common.multi",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.common.multi.png",
+      "sha256": "a1c8789dbdbe461b3cf0a6ee876974c79275656de395fa0d321a653c5d029397"
+    },
+    {
+      "id": "elf.marksman.weakpoint_shot",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/elf.marksman.weakpoint_shot.png",
+      "sha256": "3ee999a0c42bb8b96a2dad5b02ab13d5e38be8f2a7c5ed34d60d8025250d13dd"
+    },
+    {
+      "id": "elf.marksman.moving_volley",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.marksman.moving_volley.png",
+      "sha256": "c4792554d2a281c361a819690b137d36d746c642b6a5581c2e76e6ec79979cf2"
+    },
+    {
+      "id": "elf.marksman.piercing_line",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/elf.marksman.piercing_line.png",
+      "sha256": "f34603f606f132d8415d6108e79fe1f5300be94d15cb41260ac43cef864548cf"
+    },
+    {
+      "id": "elf.marksman.heavy_draw",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.marksman.heavy_draw.png",
+      "sha256": "0d0f48d958a6ae00cd8b951352baa79dfabd443606c9d2efa364ab2d5c487a1b"
+    },
+    {
+      "id": "elf.marksman.precision_volley",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.marksman.precision_volley.png",
+      "sha256": "5ec6aac78be58603646ae4d9b7cc7aadecb48ee0edae7865553b7ad306dfde7d"
+    },
+    {
+      "id": "elf.marksman.fan_break",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.marksman.fan_break.png",
+      "sha256": "9b782161a65f60dcfb46f9bb0e655d13bca931fda614a84760abaccb754a634e"
+    },
+    {
+      "id": "elf.marksman.hunter_s_focus",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.marksman.hunter_s_focus.png",
+      "sha256": "25e09c936ae9c3d4be89afaf60aa815005489238e87e3025b13ac22eaa0b3051"
+    },
+    {
+      "id": "elf.marksman.retreating_fire",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.marksman.retreating_fire.png",
+      "sha256": "db1244ef1dd9198435b99c4edcc65a19dcfeb95efc0412370db65d28d06fcdc3"
+    },
+    {
+      "id": "elf.marksman.piercing_volley",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.marksman.piercing_volley.png",
+      "sha256": "1cc55038ca2e3ed3b6b2cb6deed5af87d5413a8a51e1c52cbb96116a019131a3"
+    },
+    {
+      "id": "elf.marksman.mark_breaker",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/elf.marksman.mark_breaker.png",
+      "sha256": "1337c70dc81ed0daf842575e259b4bf57e55ae686fdbc54c4a9f096f94389943"
+    },
+    {
+      "id": "elf.marksman.crossfire",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.marksman.crossfire.png",
+      "sha256": "c8524277b4f069e36076170751fb085781bdd4aa8436e970bae4bc31095e4f9e"
+    },
+    {
+      "id": "elf.marksman.arrow_rain",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.marksman.arrow_rain.png",
+      "sha256": "027fbd1ffd90dbda67637aa59f055916dfcdfbb6eb24f318b4ebf78078984e8e"
+    },
+    {
+      "id": "elf.marksman.grand_volley",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "앞의 활 왕관/긴 부채꼴이 유지되고 위계가 소폭 보강됐다.",
+      "fullFrame": "skills/elf.marksman.grand_volley.png",
+      "sha256": "740bdc73e09cdd5fd95ba225bc241adf26b076f46c263ad76684ec1190933a80"
+    },
+    {
+      "id": "elf.magic_archer.elemental_arrow",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/elf.magic_archer.elemental_arrow.png",
+      "sha256": "b30caed6c368185134de6cb636d6f9218148e85945616ebb0ec08d86ad3c8d1d"
+    },
+    {
+      "id": "elf.magic_archer.spark_volley",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.magic_archer.spark_volley.png",
+      "sha256": "c0959b358089142e0f195b9528447d272136e0e5f4b453a81d380bf38ef0a5df"
+    },
+    {
+      "id": "elf.magic_archer.vine_trap",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static_with_residual",
+      "observation": "긴 방사형 뿌리가 중심으로 모이고 짧은 고리/굵은 줄기/잎이 구속 영역을 읽히게 한다.",
+      "fullFrame": "skills/elf.magic_archer.vine_trap.png",
+      "sha256": "eb5805354c32cce0c633793943127862e530be994a9cc04364b4629fb85ec273"
+    },
+    {
+      "id": "elf.magic_archer.bloom_shot",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "가느다란 잎 윤곽 대신 타점의5개 잎 면과 작은 빈틈/밝은 중심맥이 보인다.",
+      "fullFrame": "skills/elf.magic_archer.bloom_shot.png",
+      "sha256": "a1aced87bcaecc0e1e30aa49f85a55ad6102566e3f0a4bc4494625a7c3e6a92e"
+    },
+    {
+      "id": "elf.magic_archer.storm_arrow",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.magic_archer.storm_arrow.png",
+      "sha256": "bb868840c0c32c117fbb2fedef2aa02019aff26e6303fe73b802f6c6468c2b01"
+    },
+    {
+      "id": "elf.magic_archer.rooting_fan",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/elf.magic_archer.rooting_fan.png",
+      "sha256": "31f6fe5378859e483193450053c4221518dc826551fe914cd38eb043da874a05"
+    },
+    {
+      "id": "elf.magic_archer.warden_arrow",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.magic_archer.warden_arrow.png",
+      "sha256": "8b8f63f140eebca7b8487fca74ffe402250f63159bee8f0934258e1c82b2ec97"
+    },
+    {
+      "id": "elf.magic_archer.gliding_shot",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.magic_archer.gliding_shot.png",
+      "sha256": "e5391bd3c4a28e055d52faee5424aa0cdeb00f356f07baf3058ff5e681923f07"
+    },
+    {
+      "id": "elf.magic_archer.spirit_rain",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf.magic_archer.spirit_rain.png",
+      "sha256": "5ae8be41e23e86f2dd3b221ae8387ada3557cf24b372754a9751068e8aaf66a7"
+    },
+    {
+      "id": "elf.magic_archer.elemental_pierce",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/elf.magic_archer.elemental_pierce.png",
+      "sha256": "aab892aa810539d2bbf5b1c49bdbf3256b1949b16fded002d7ee37b216164f84"
+    },
+    {
+      "id": "elf.magic_archer.echo_arrows",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf.magic_archer.echo_arrows.png",
+      "sha256": "522d6904e5b19b2503029212d01b9296de424a102c1330487d94d5dda2e3193c"
+    },
+    {
+      "id": "elf.magic_archer.vine_burst",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static_with_residual",
+      "observation": "큰 잎과 집중된 뿌리로 Trap보다 바깥으로 펴지는 형태가 보강됐다.",
+      "fullFrame": "skills/elf.magic_archer.vine_burst.png",
+      "sha256": "93493a95ea7322f8f311b97eb99a8be48ee11143d0be951985af441db5105280"
+    },
+    {
+      "id": "elf.magic_archer.spirit_arrowfall",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "최종 연속 bar의 가지/자연 초점과 큰 하강 형상이 일반 Spirit Rain보다 분명해졌다.",
+      "fullFrame": "skills/elf.magic_archer.spirit_arrowfall.png",
+      "sha256": "2f397610e76f3113f93500a9a0ebdce862dee9f0b00345f299ef6f20238209e7"
+    },
+    {
+      "id": "elf_retreating_shot",
+      "classId": "elf",
+      "initialStatus": "motion_hold",
+      "initialReview": "art-review-initial.json",
+      "assessment": "motion_acceptance_pending",
+      "observation": "첫 펄스 정지 컷의 주 방향은 유지된다. 초기 반복/이동/연속 미술 수용 보류는 해제하지 않는다.",
+      "fullFrame": "skills/elf_retreating_shot.png",
+      "sha256": "5fb15eb076d1e177aeb27e2e01b56536f8b15a8a1aba5310b2bf92d05676bc3b"
+    },
+    {
+      "id": "elf_pinning_shot",
+      "classId": "elf",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/elf_pinning_shot.png",
+      "sha256": "287f6f9025067b4e294fae8828d13631ddda00b9504ae7ba405a3a30693bee05"
+    },
+    {
+      "id": "elf_arrow_screen",
+      "classId": "elf",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/elf_arrow_screen.png",
+      "sha256": "41dc781f601012e6d91271188e5d56201446bccc3d4722caaeabcd5fd80eaa77"
+    },
+    {
+      "id": "mage.common.mana_bolt",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/mage.common.mana_bolt.png",
+      "sha256": "094c4ec6060d5a2baa8f3b3e167dcc5723711dbeb1fd8256fb9bfea21184f486"
+    },
+    {
+      "id": "mage.common.water_ball",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "낮/밤 모두 둥근 청색 구와 국소 반사/물방울을 읽을 수 있다. 기존 도넛 주 형상과 야간 소실 문제가 해소됐다.",
+      "fullFrame": "skills/mage.common.water_ball.png",
+      "sha256": "b04ac8d8a2105d7d5a4d3ac8651ed9a806293ed87bd060174cb50e7db454c3d8"
+    },
+    {
+      "id": "mage.common.gravity",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "넓은 바닥 다각 나선보다 조밀한 보라색 중심이 주제로 바뀌었다.",
+      "fullFrame": "skills/mage.common.gravity.png",
+      "sha256": "cf87dd712e56fc810d70d705dc6f65753a277b649442fc9065ba7a0941f9838c"
+    },
+    {
+      "id": "mage.pyro.ember_lance",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "Flame Dart보다 길고 뾰족한 불창 중심과 절제된 꼬리가 남는다.",
+      "fullFrame": "skills/mage.pyro.ember_lance.png",
+      "sha256": "b95ce7f6ae0908038c00f737d88bd36ce23e93507e176292d3fbae49280961cf"
+    },
+    {
+      "id": "mage.pyro.steam_burst",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "중간의 검은 반사 구슬이 옅은 청백 증기로 바뀌었다. 기존 가는 상승선과 함께 짧은 기체로 읽힌다.",
+      "fullFrame": "skills/mage.pyro.steam_burst.png",
+      "sha256": "9bfe3b75c6fc1d8103522c477428379844ac37bbb8a60d443b3a590ffd4b21d9"
+    },
+    {
+      "id": "mage.pyro.cinder_ring",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/mage.pyro.cinder_ring.png",
+      "sha256": "1b24d24982a6a687c32a70eca1b086a871fdc72dc5495ed0be10ee3708186eae"
+    },
+    {
+      "id": "mage.pyro.flame_dart",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "작은 불침으로 축소돼 Ember Lance와 크기 위계가 구별된다.",
+      "fullFrame": "skills/mage.pyro.flame_dart.png",
+      "sha256": "0e0f61f52239012b4cd3a9e6bc7119f1434230d39ccb7f493bc93154ba823f15"
+    },
+    {
+      "id": "mage.pyro.earth_rise",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "네 흩어진 덩어리보다 중앙의 높이가 다른 기둥이 생겼다. 전체에서는 큰 범위 원/균열도 여전히 강하다.",
+      "fullFrame": "skills/mage.pyro.earth_rise.png",
+      "sha256": "03c62b3f35985177ef5402df69b9a9effde8c48a322b77b75523631d7f24837f"
+    },
+    {
+      "id": "mage.pyro.ember_step",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/mage.pyro.ember_step.png",
+      "sha256": "5dc64f0a47fc9a8bb2aa3ffa7e17e135b9b7b6e40f14a39daa29b9ca7a1ff4aa"
+    },
+    {
+      "id": "mage.pyro.stone_lance",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "암석 색/불투명 결정 중심은 유지되며 불/얼음과 구별된다. 비교에서 개선 폭은 크지 않다.",
+      "fullFrame": "skills/mage.pyro.stone_lance.png",
+      "sha256": "25f96eee6ca8db4b57c7eac5de96c8b4fbaa1da07d22f441fe4aedaa8a4e38d2"
+    },
+    {
+      "id": "mage.pyro.searing_ward",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "기존 공격 화염 왕관 안의 보호 체적이 추가돼 공격/방어 결합을 암시한다.",
+      "fullFrame": "skills/mage.pyro.searing_ward.png",
+      "sha256": "06d8ce2937998dd93a7e5fb095aee57e212b585b7693b57a595b64ef2972cf83"
+    },
+    {
+      "id": "mage.pyro.lava_eruption",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/mage.pyro.lava_eruption.png",
+      "sha256": "ede0d02df7009f74eb4f5565eb7e12cad683581e3f0def3d8dc00ab7fd93ceab"
+    },
+    {
+      "id": "mage.pyro.magma_spear",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "타점의 어두운 외피/더 무거운 중심은 보강됐으나 전체 컷에서는 긴 공통 화염 꼬리도 여전히 강하다.",
+      "fullFrame": "skills/mage.pyro.magma_spear.png",
+      "sha256": "88eb9d0f2ea3ded4c0024325516b235ad3229b882fb39ac690ab3580d7556f0c"
+    },
+    {
+      "id": "mage.pyro.molten_line",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "공중 불창이 없어지고 연속 지면 용융심/밝은3구간으로 읽힌다. 중간의 염주형 구 마디도 해소됐다.",
+      "fullFrame": "skills/mage.pyro.molten_line.png",
+      "sha256": "c464e79d0a1b25df59cafefea7d22e8961ddf781f973142ee8cc2d077c8ab9cc"
+    },
+    {
+      "id": "mage.pyro.ashfall",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/mage.pyro.ashfall.png",
+      "sha256": "3a315a47629312143058b05a5bc56a9b120a3829e78502d5aee9443c0df7823a"
+    },
+    {
+      "id": "mage.pyro.caldera_s_judgment",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "어두운 중심/세 분출의 기본 주제는 유지되나 같은 카메라에서 Before와 차이가 크지 않다.",
+      "fullFrame": "skills/mage.pyro.caldera_s_judgment.png",
+      "sha256": "49b2cd39a67951065e75ff64cd6b83884fae90587fb4f96f4a8ee912aa330a8a"
+    },
+    {
+      "id": "mage.cryo.frost_lance",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "불필요한 긴 공통 막대가 사라지고 가는 긴 단일 얼음 결정이 주제가 됐다.",
+      "fullFrame": "skills/mage.cryo.frost_lance.png",
+      "sha256": "dfc8b3d5ef794bfaec3560005a0f6a01370d2d440c61dc151da4f3378644ac1f"
+    },
+    {
+      "id": "mage.cryo.ice_shard",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "긴 창 대신 짧고 넓은 결정이 보이며 Frost Lance와 위계가 분리됐다.",
+      "fullFrame": "skills/mage.cryo.ice_shard.png",
+      "sha256": "ab0b07de361a2291fe97208712472c3c9284cee65adbc6699197a1de78738101"
+    },
+    {
+      "id": "mage.cryo.frost_ring",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/mage.cryo.frost_ring.png",
+      "sha256": "a21efd06a36b6e789edef5306f3c5eb347b823052c173cc43a016f438f651d76"
+    },
+    {
+      "id": "mage.cryo.shatter_dart",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "작은 짧은 결정과 타점 파편이 구별되며 거대한 긴 창을 재사용하지 않는다.",
+      "fullFrame": "skills/mage.cryo.shatter_dart.png",
+      "sha256": "7f13ebdc3ef501e1ba1c2a114490f620df13d642baabc07b85d8d80bea08180d"
+    },
+    {
+      "id": "mage.cryo.chain_lightning",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/mage.cryo.chain_lightning.png",
+      "sha256": "0b4e34db7297bb6cd0e429885c7f8d15ccc1ea2f6da136c4374e439512ef5cfe"
+    },
+    {
+      "id": "mage.cryo.frost_step",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "initial_detail_residual",
+      "observation": "새 명백한 정지 회귀는 보이지 않지만 초기의 개별 모티프/위계 지적이 모두 해결됐다는 근거는 없다. 초기 상세 관측을 보존한다.",
+      "fullFrame": "skills/mage.cryo.frost_step.png",
+      "sha256": "ad00b1c2b4c651fe9417b08139cbf1a96090cfa8a310452d7feaac871c8af4d9"
+    },
+    {
+      "id": "mage.cryo.thunder_spear",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "연쇄 지그재그 대신 거의 곧은 주축과 짧은 분기로 단발 창을 읽을 수 있다.",
+      "fullFrame": "skills/mage.cryo.thunder_spear.png",
+      "sha256": "9930efad434786d1826e56490947c5af42f43f626a329cb84074ef56b512870f"
+    },
+    {
+      "id": "mage.cryo.ice_ward",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "최종 Block bar 이후 캐스터 둘레의3개 연속 모서리/보호판이 낮/밤 모두 보인다. 외곽8결정+중복 고리가 중심이던 초기 모습과 구별된다.",
+      "fullFrame": "skills/mage.cryo.ice_ward.png",
+      "sha256": "05fbbb47327902c9e51fb6bcddc825a26df99d8fa7e76e23ef869b00b45d375c"
+    },
+    {
+      "id": "mage.cryo.froststorm",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "지면의8결정만 있던 효과에 층별 기류/하강 결정이 생겨 보호막과 구별된다.",
+      "fullFrame": "skills/mage.cryo.froststorm.png",
+      "sha256": "4481bdd20300f23231d1c1c1a3cae0826d37ea9f98d360328cc9c37c2bfe8dcc"
+    },
+    {
+      "id": "mage.cryo.glacial_spike",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "큰 주 결정과 측면 결정으로 질량이 생기며 나머지 얼음3종과 구별된다.",
+      "fullFrame": "skills/mage.cryo.glacial_spike.png",
+      "sha256": "22447aef85c9f212e849f99bcbe922cfad5e18f6c295a84ccb53576c67ebeef2"
+    },
+    {
+      "id": "mage.cryo.lightning_line",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "improved_static",
+      "observation": "낮고 곧은 좁은 통로축과 직각 분기로 Chain Lightning과 구별된다.",
+      "fullFrame": "skills/mage.cryo.lightning_line.png",
+      "sha256": "ab19c271cecd1241c139a6f37d2acdab62546111ec61a6d8c0da4c1ad803d25a"
+    },
+    {
+      "id": "mage.cryo.hailfall",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/mage.cryo.hailfall.png",
+      "sha256": "3d8049875f2f23a226fcc24f01f70c273fd6cabf45166685016e15872e7c2638"
+    },
+    {
+      "id": "mage.cryo.eternal_tempest",
+      "classId": "mage",
+      "initialStatus": "revise",
+      "initialReview": "art-review-initial.json",
+      "assessment": "partial_static",
+      "observation": "큰 가는 다각 나선을 줄이고 층별 짧은 띠/열린 중심으로 모은 개선을 확인했다.",
+      "fullFrame": "skills/mage.cryo.eternal_tempest.png",
+      "sha256": "88ec2144b56a095a783fcf5c93277eef80d5cba17e5243b816f2ed6c51c9ece0"
+    },
+    {
+      "id": "mage_wind_lance",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/mage_wind_lance.png",
+      "sha256": "360b0289cab5452a3903d09b183acdcbf1a80405ff6d595d93669532557ef1fe"
+    },
+    {
+      "id": "mage_tidal_ring",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/mage_tidal_ring.png",
+      "sha256": "26354cac234985a68d8067ae4834d5d0726b84c25d8c2680eb1ba164b9c97e62"
+    },
+    {
+      "id": "mage_arcane_ward",
+      "classId": "mage",
+      "initialStatus": "retain_static",
+      "initialReview": "art-review-initial.json",
+      "assessment": "retained_static",
+      "observation": "초기 유지 후보의 주 형상이 보존되며 새로 명백한 빈 형상/속성색 반전/전후방 반전 정지 회귀는 관측되지 않았다.",
+      "fullFrame": "skills/mage_arcane_ward.png",
+      "sha256": "d885ad53da979881768c93e1d692a9461401a80dd84c8bcf1479c7253afef0c7"
+    }
+  ],
+  "returnSamples": [
+    {
+      "clockTime": 12,
+      "index": 1,
+      "id": "dwarf.iron_axe.returning_echo",
+      "age": 0.1,
+      "extent": 11,
+      "name": "RETURNING ECHO",
+      "variant": 2,
+      "height": 320,
+      "width": 480,
+      "pulse": 2,
+      "file": "001-dwarf.iron_axe.returning_echo.png",
+      "sha256": "5591ee0d66e04a801fbdbe7929ff721e7c6e2c0643afacde43eaba16dec6e6cd",
+      "iconSha256": "9f0bda366e074642172077d2cf1591f30be4888db9d3c2fa1856dee16b8d708a"
+    },
+    {
+      "clockTime": 0,
+      "index": 2,
+      "id": "dwarf.iron_axe.returning_echo",
+      "age": 0.25,
+      "extent": 11,
+      "name": "RETURNING ECHO",
+      "variant": 2,
+      "height": 320,
+      "width": 480,
+      "pulse": 2,
+      "file": "002-dwarf.iron_axe.returning_echo.png",
+      "sha256": "176fabf5b473034a71e7e2e43a45dae72731715de1b5dc822f6e3decbb038a09",
+      "iconSha256": "9f0bda366e074642172077d2cf1591f30be4888db9d3c2fa1856dee16b8d708a"
+    },
+    {
+      "clockTime": 12,
+      "index": 3,
+      "id": "dwarf.iron_axe.crosscut_axe",
+      "age": 0.1,
+      "extent": 11,
+      "name": "CROSSCUT AXE",
+      "variant": 2,
+      "height": 320,
+      "width": 480,
+      "pulse": 2,
+      "file": "003-dwarf.iron_axe.crosscut_axe.png",
+      "sha256": "5bf17649ad1f3d8392ae7872d5044b5bce895612db3355958559c8b0f63bace0",
+      "iconSha256": "aa99c711ec9b4553c939aeefb5fe94e615e5fa5d4d7fccb94d3e85bc0083588d"
+    },
+    {
+      "clockTime": 0,
+      "index": 4,
+      "id": "dwarf.iron_axe.crosscut_axe",
+      "age": 0.25,
+      "extent": 11,
+      "name": "CROSSCUT AXE",
+      "variant": 2,
+      "height": 320,
+      "width": 480,
+      "pulse": 2,
+      "file": "004-dwarf.iron_axe.crosscut_axe.png",
+      "sha256": "473a8bc279bdf56dc8f11016a9bc66e17304ca478540e01f86721a75badef3ef",
+      "iconSha256": "aa99c711ec9b4553c939aeefb5fe94e615e5fa5d4d7fccb94d3e85bc0083588d"
+    },
+    {
+      "clockTime": 12,
+      "index": 5,
+      "id": "dwarf.iron_axe.twin_axe_path",
+      "age": 0.1,
+      "extent": 11,
+      "name": "TWIN AXE PATH",
+      "variant": 2,
+      "height": 320,
+      "width": 480,
+      "pulse": 2,
+      "file": "005-dwarf.iron_axe.twin_axe_path.png",
+      "sha256": "1ab73f72ac005324d973e14d713ca6e1fe1d74ffd173426b9db8be3d05a2ce19",
+      "iconSha256": "ac9afa3216e83e2c2b12e991765a4ad49c11d1231959c990fe5953eb4564228b"
+    },
+    {
+      "clockTime": 0,
+      "index": 6,
+      "id": "dwarf.iron_axe.twin_axe_path",
+      "age": 0.25,
+      "extent": 11,
+      "name": "TWIN AXE PATH",
+      "variant": 2,
+      "height": 320,
+      "width": 480,
+      "pulse": 2,
+      "file": "006-dwarf.iron_axe.twin_axe_path.png",
+      "sha256": "f40544b3f0e11057ef0f94f0ac30344fa0b8150d100c898c5145760679abb41b",
+      "iconSha256": "ac9afa3216e83e2c2b12e991765a4ad49c11d1231959c990fe5953eb4564228b"
+    }
+  ],
+  "limits": [
+    "회색 합성 모형이며 실제 Player/장착 TD 원본·지역·다인·기기·게시 클라이언트 수용이 아니다.",
+    "FX.step으로 직접 샘플링한 절차형 도형을 정지시켰다. legacy Tween/입자 및 완전한 연속재생을 검증하지 않는다.",
+    "최초 대기 프레임 때문에 빈 도형으로 기록된 실패 시도는 판정 입력에서 제외했다.",
+    "Lightning0.18초의 빈 도형은0.16초 단발 방전 만료와 구별해 결함으로 세지 않는다.",
+    "초기68개 개선 지적·39개 유지 후보·21개 움직임 보류를 일괄 PASS로 바꾸지 않는다."
+  ]
+}

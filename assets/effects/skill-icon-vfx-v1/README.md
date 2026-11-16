@@ -7,3 +7,5 @@ TLT-033/057/059 · 신규 영웅 아이콘128종을 현행 기술의 의미와 �
 `tools/author-skill-icon-vfx.py`가 수작업으로 검토한 대응을 `SkillIconVFXProfiles`로 생성한다. 입력 PNG 해시를 검증하며 원본을 수정하지 않는다. `SkillIconVFX`는 `HeroVFX`의 확정 펄스에 연결돼 기존 Beam 예산·수명·정리 경로를 공유한다. Wind Lance는 전용 렌더러의 두 열린 면을 개선한다. 궁극기/동작의 기본 형상은 유지하고 Oath of Dawn은 새 아이콘에 맞춘 새벽 문장/동료 방패로 바꾼다.
 
 [실제 엔진 검증·전후 비교·남은 수용](../../../docs/evidence/skill-icon-vfx-20261115/README.md). 개별 장식은 예산 포화 시 일부 생략되며 원형 판정이나 서버 권한을 대신하지 않는다.
+
+독립 ART 후속에서는 `HeroVFXArt`가 도끼·결정·지면 용암·보호/폭풍 등의 주 형상을 담당한다. 이 폴더의 manifest는 원본 아이콘과 보조 cue의 출처로 계속 보존하며 최종 주 형상 전체를 나타내는 표로 해석하지 않는다. [독립 리뷰·재개선·단계별 화면/검증](../../../docs/evidence/skill-icon-vfx-art-20261115/README.md).
