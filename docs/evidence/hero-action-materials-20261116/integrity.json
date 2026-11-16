@@ -1,0 +1,17 @@
+{
+  "source": "e95e26a8ff5ed1b4145e31a3fda59877c5502d64",
+  "version": "0.111.16",
+  "fixtureSha256": "06cb0a2f26590454217b8854f43b076e39cfb35ab39d27141f2458dd0739eda5",
+  "buildSha256": "fe23e013d4254adb4a29b9c7be4c2caa976db78397fbfb47e99e04476c949b49",
+  "clientModuleSha256": {
+    "AdvancedSkillVisual": "0d5efb66db6e5997e5c3497aea07cece052a4d5af64bc646f6e724a3560d690e",
+    "HeroActionStrokes": "8344ffce4138bcf335ccd9b283cb510de1027a61ccec6c016985b1c638a9677b",
+    "HeroVFX": "9e966c8c391e7a06fff169e82bb048e368400a32a5a9fa63eb848690d4ed6a88",
+    "HeroVFXArt": "cc681a962a3ed24528b7c7418f5137d223b35d67a2b0ac73f7dbb8ee194bd4c1",
+    "HeroVFXPolish": "2eb3178c1b4d8c5ff385cf10cd22302514e5e87567c04427ce5e61848d5a0609",
+    "K0HitEffects": "f0db07ac1eed7f38e6fd4f98bd266c75ad28f44e1f8375aa8db064200e515506",
+    "K0SwordVisual": "642129710baa121eb5d94911d8824d5d2fbcf10e3fb2a710527ede97bea0fc5d",
+    "PixelFX": "59f4862c0dc6665580631432f99b077325563db51b58ccbfb2051d010b48d99c",
+    "PixelFXController": "f13d2a10bac2e29131408e4d2bf27d821c36684c91cceec85b12a4cd032234cb"
+  }
+}

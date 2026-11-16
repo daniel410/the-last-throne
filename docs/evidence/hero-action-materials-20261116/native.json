@@ -1,0 +1,120 @@
+{
+  "source": "e95e26a8ff5ed1b4145e31a3fda59877c5502d64",
+  "version": "0.111.16",
+  "probeSha256": "2bfbd43224f2bcbb9483403fcc9a822c7ac5eb0f438cd3b5de7a9feb454b2d97",
+  "suites": 24,
+  "checks": 118983,
+  "qaLogSha256": "b77a4c16d5e7bfe4782f0a5f00f4b39cbe6eea068947d74f21701129e2df3009",
+  "buildLogSha256": "09baa49b3dfbc41c9802fcdb08c4406381099559faf8cedf14ab3ef5c1282d56",
+  "productionScriptsDisabled": true,
+  "results": [
+    {
+      "suite": "RPG_VFX_GAP_NATIVE",
+      "checks": 21
+    },
+    {
+      "suite": "ROBLOX_VFX_POLISH_NATIVE",
+      "checks": 2255
+    },
+    {
+      "suite": "SKILL_VFX_ART_NATIVE",
+      "checks": 43
+    },
+    {
+      "suite": "SKILL_ICON_VFX_NATIVE",
+      "checks": 14663,
+      "pulses": 199,
+      "skills": 128
+    },
+    {
+      "suite": "VFX_ART_HERO_FIXES_NATIVE",
+      "checks": 2361
+    },
+    {
+      "suite": "VFX_ART_ENEMY_FIXES_NATIVE",
+      "checks": 16090
+    },
+    {
+      "suite": "VFX_ART_SUPPORT_FIXES_NATIVE",
+      "checks": 127
+    },
+    {
+      "suite": "VFX_ART_PALETTE_NATIVE",
+      "checks": 562,
+      "skills": 128
+    },
+    {
+      "suite": "VFX_REVIEW_FOLLOWUP_NATIVE",
+      "checks": 1401,
+      "attacks": 146
+    },
+    {
+      "suite": "ARCADE_IMPACT_VFX_NATIVE",
+      "checks": 585
+    },
+    {
+      "suite": "RPG_ELEMENT_MOTION_NATIVE",
+      "checks": 78
+    },
+    {
+      "suite": "RPG_VFX_MOTION_NATIVE",
+      "checks": 190
+    },
+    {
+      "suite": "ELEMENT_VFX_NATIVE",
+      "checks": 84
+    },
+    {
+      "suite": "WOW_VFX_NATIVE",
+      "checks": 231
+    },
+    {
+      "suite": "VFX_STYLE_FIT_NATIVE",
+      "checks": 58
+    },
+    {
+      "suite": "CURATED_VFX_NATIVE",
+      "checks": 182
+    },
+    {
+      "suite": "PIXELFX_NATIVE",
+      "checks": 2573,
+      "skills": 128,
+      "basic": 4
+    },
+    {
+      "suite": "HERO_VFX_NATIVE",
+      "checks": 10507,
+      "skills": 128
+    },
+    {
+      "suite": "WIND_LANCE_VISUAL_NATIVE",
+      "checks": 128
+    },
+    {
+      "suite": "SKILL_VFX_INDIVIDUAL_NATIVE",
+      "checks": 295,
+      "skills": 128
+    },
+    {
+      "suite": "HERO_VFX_FLOURISH_NATIVE",
+      "checks": 82,
+      "luaUpdateP95ms": 0.9145417716354132
+    },
+    {
+      "suite": "K0_HIT_EFFECTS_NATIVE",
+      "checks": 102
+    },
+    {
+      "suite": "MONSTER_SPELL_VFX_NATIVE",
+      "checks": 66173,
+      "attacks": 146,
+      "kinds": 50,
+      "projectiles": 40
+    },
+    {
+      "suite": "PROJECTILE_VFX_TIMING_NATIVE",
+      "checks": 192
+    }
+  ]
+}

@@ -13,7 +13,13 @@ local rows={
  "knight.common.whirlwind","dwarf.common.overhead","elf.common.aimed","mage.common.water_ball",
  "mage.cryo.eternal_tempest","mage.pyro.caldera_s_judgment","knight","dwarf","elf","mage",
 }
-if _G.HeroActionCatalog then
+local ages={.015,.055,.095,.135,.175,.215,.255,.295}
+if _G.HeroActionMotion then
+ rows={}
+ for _,id in {"knight.common.whirlwind","dwarf.common.overhead","elf.common.aimed","mage.common.water_ball"} do
+  for _ in ages do table.insert(rows,id) end
+ end
+elseif _G.HeroActionCatalog then
  rows={}
  for _,class in {"knight","dwarf","elf","mage"} do
   for _,skill in config.Skills[class] do table.insert(rows,skill.id) end
@@ -84,7 +90,7 @@ for index,id in rows do
   -- Melee common skills are already rendered by the weapon entry point.
   if skill and hero.count()==0 then hero.skill(actor,id,origin,center,1,points) end
  end
- local sample=.085
+ local sample=_G.HeroActionMotion and ages[(index-1)%#ages+1] or .085
  hero.step(at+sample);pixel.step(sample);wind.step(at+sample)
  local focus=(origin+center)*.5+Vector3.yAxis*(d.ultimate and 1.6 or .3)
  local distance=d.ultimate and 21 or 11
