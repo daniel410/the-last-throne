@@ -14,18 +14,18 @@ function M.apply(world)
  local length=(b-a).Magnitude
  local surface=Instance.new('Folder');surface.Name='ThawSurface'
  local snow,basalt=K.palette.FrozenVale.ground,K.palette.EmberCaldera.ground
- -- Narrow staggered tongues avoid a single straight biome seam across the road.
- for lane=1,3 do
+ -- One continuous rock material avoids checkerboard texture seams at walking height.
+ do
   for i=1,24 do
    local t=(i-.5)/24
-   local melt=math.clamp((t-.14+(lane==2 and .06 or -.03))/.72,0,1)
+   local melt=math.clamp((t-.08)/.84,0,1)
    local blend=melt*melt*(3-2*melt)
    local p=Instance.new('Part');p.Name='ThawRoadSurface'
    p.Anchored=true;p.CanCollide=false;p.CanQuery=false;p.CanTouch=false;p.CastShadow=false
-   p.Size=V(32,.06,length/24)
-   p.CFrame=CFrame.lookAt(a:Lerp(b,t),b)*CFrame.new((lane-2)*32,.04,0)
+   p.Size=V(96,.06,length/24)
+   p.CFrame=CFrame.lookAt(a:Lerp(b,t),b)*CFrame.new(0,.04,0)
    p.Color=snow:Lerp(basalt,blend)
-   p.Material=melt<.23 and Enum.Material.Snow or melt<.72 and Enum.Material.Rock or Enum.Material.Basalt
+   p.Material=Enum.Material.Rock
    p:SetAttribute('ThawFraction',melt);p.Parent=surface
   end
  end
