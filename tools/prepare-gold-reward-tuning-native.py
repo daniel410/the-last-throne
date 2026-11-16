@@ -1,6 +1,11 @@
 """고정 빌드의 실제 모듈·GUI를 검증하는 격리 Studio 실행기를 준비한다."""
 from pathlib import Path
+import argparse
 import re
+
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--ui-only',action='store_true')
+args=parser.parse_args()
 
 tests = [
     'gold-reward-tuning.spec.lua', 'campaign-mode-progress.spec.lua',
@@ -39,7 +44,7 @@ end
 assert(require(game.ReplicatedStorage.Shared.Difficulty).version==19)
 print('GOLD_TUNING_SOURCE_COMPILE '..compiled)
 """
-for name in tests:
+for name in ([] if args.ui_only else tests):
     suite = (Path('tests') / name).read_text()
     suite = re.sub(r"dofile\('(src/(?:shared|server)/[^']+\.luau)'\)",
                    lambda m: 'require(' + node(m[1]) + ')', suite)

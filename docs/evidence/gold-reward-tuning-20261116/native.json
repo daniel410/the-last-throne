@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "version": "0.111.13",
+  "sourceCommit": "94bc28465e5a9fe09061cfd9763d27b2922f221b",
+  "artifact_sha256": "b8cebfbac8afacfd0168ff33a7013e4d6c06a2f6edfcedc69378f0429c03616d",
+  "compiled_sources": 522,
+  "source_equality_checks": 14,
+  "rules_suites": 9,
+  "explicit_rule_checks": 20869,
+  "studio_defaults": "PASS: zero new wallet, preserve old balances/reconnect, four classes",
+  "ui_checks": 573,
+  "scope": "isolated fixed-build Roblox engine and actual GUI constructors; no players/live DataStore/publishing/device acceptance",
+  "initial_ui_fixture_failure": "native-rules.log: non-quest StoryContext row was incorrectly treated as a reward row; fixed fixture restricts Quest_ rows; the UI-only retry passed",
+  "published": false,
+  "releaseTag": null,
+  "ui_test_sha256": "96b0fcd98affcf9571039cb54104a50ae3fc1f0a18bfa5ca3afb224e082bd47c",
+  "verifier_sha256": "224fd338cc2b51172723d1bb7e09e02bbde1354ac0a49cfda2f962c6c2d8d73b"
+}

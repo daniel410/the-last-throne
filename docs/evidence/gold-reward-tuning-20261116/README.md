@@ -1,6 +1,6 @@
 # 골드 보상 감액·초기 지급 제거 검증
 
-2026-11-16 · TLT-045/027/029/044/050/084 · ENG/PLAN → QA/사용자. [현재 계약](../../production/gold-rewards-2026-11-16.md)과 [변경 전 조사](../../research/2026-11-16-gold-reward-review.md)를 따른다. 정적 구현·검증 완료, 고정 빌드/Studio 검증 진행 중이다. 게시·실기기·일반 입력 플레이 수용은 미검증이다.
+2026-11-16 · TLT-045/027/029/044/050/084 · ENG/PLAN → QA/사용자. [현재 계약](../../production/gold-rewards-2026-11-16.md)과 [변경 전 조사](../../research/2026-11-16-gold-reward-review.md)를 따른다. 정적 구현·고정 빌드·격리 Studio 엔진 검증 완료. 게시·실기기·일반 입력 플레이 수용은 미검증이다.
 
 ## 적용
 
@@ -43,9 +43,15 @@
 
 [옛 규칙 비교](pinned-comparison.json)는 변경 전 저장한 지급 계산과 변경 후 규칙1~18을47퀘스트×4모드×18버전=3,384조건에서 대조했다. 초회 원본 예산·완료 XP/Gold/재료·처치 XP/Gold·적 체력/수가 바이트 단위로 일치했다. 이는 실제 네트워크/운영 DataStore 테스트가 아니다.
 
-## 빌드·Studio·미검증
+## 빌드·Studio
 
-VERSION0.111.13으로 단일 고정 빌드를 준비한다. 빌드/엔진의 실제 결과는 후속 증거로 기록하며 성공 전 통과로 처리하지 않는다.
+소스 `94bc28465e5a9fe09061cfd9763d27b2922f221b`를 커밋·푸시하고 원격 일치를 확인한 뒤 **0.111.13** 단일 빌드를 만들었다. [빌드 기록](build.json)의 산출물은 `builds/0.111.13/TheLastThrone-0.111.13.rbxlx`이며 SHA256은 `b8cebfbac8afacfd0168ff33a7013e4d6c06a2f6edfcedc69378f0429c03616d`다. 생성 후 파일 해시를 다시 대조했다.
+
+`python3 tools/prepare-gold-reward-tuning-native.py`와 `run-in-roblox --place builds/0.111.13/TheLastThrone-0.111.13.rbxlx --script /tmp/tlt-gold-reward-tuning-native.luau`로 고정 빌드를 격리 실행했다. PlaceId0/플레이어0을 요구하고 수정14모듈의 Source 일치·전체522소스 컴파일을 선행한다. [엔진 지급/저장 로그](native-rules.log)에서9개 suite의20,869개 명시 검사와 Studio 초기값/재접속 검사가 모두 통과했다.
+
+첫 화면 검증에서는 최신 문맥 카드 `StoryContext`까지 퀘스트 보상 행으로 검사하던 fixture가 실패했다. `Quest_` 행만 검사하도록 시험기를 고친 뒤 `python3 tools/prepare-gold-reward-tuning-native.py --ui-only`로 같은 빌드에서 화면 검증만 재실행했다. [화면 로그](native-ui.log)와 [통합 결과](native.json): **573검사 통과**, 종료 코드0. 실제 TD GUI 생성기로800×510·726×299·270×510의 보상 문구·줄바꿈/행 내부 높이와 새/옛 필드 보상, 실제 지갑 잔액 표시를 확인했다. 고정 빌드의 게임 소스 수정은 없었으며 시험기 변경만으로 버전을 다시 올리거나 빌드를 덮어쓰지 않았다.
+
+## 미검증·다음 담당
 
 게시 클라이언트/운영 저장/실제 동시 서버, PC·터치·패드 일반 입력 완주·파티/AI 소비·사용자 밸런스 수용은 미검증이다. 실제 Roblox 게시나 릴리스 태그는 이 작업에서 만들지 않는다. 다음 담당은 QA/사용자로, 무구매 첫 영웅의 물약·지원 비용과 후반 반복 순잔액을 측정한다. 전체 TLT-045/G3/G7는 완료 처리하지 않는다.
 

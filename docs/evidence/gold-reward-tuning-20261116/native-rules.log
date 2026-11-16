@@ -1,0 +1,30 @@
+GOLD_TUNING_SOURCE_COMPILE 522
+Gold reward tuning: 8321 checks passed
+GOLD_TUNING_SUITE_PASS gold-reward-tuning.spec.lua
+Completed mode campaign: Easy
+Completed mode campaign: Hard
+Completed mode campaign: Insane
+Completed mode campaign: Hell
+Campaign mode progress: 4621 checks passed
+GOLD_TUNING_SUITE_PASS campaign-mode-progress.spec.lua
+CAMPAIGN_MODE_MIGRATION 88 checks passed
+GOLD_TUNING_SUITE_PASS campaign-mode-migration.spec.lua
+Campaign mode legacy replay: 3723 checks passed
+GOLD_TUNING_SUITE_PASS campaign-mode-legacy-replay.spec.lua
+Economy: 38 checks passed
+GOLD_TUNING_SUITE_PASS economy.spec.lua
+Difficulty reward rates: 2162 checks passed
+GOLD_TUNING_SUITE_PASS difficulty-reward-rates.spec.lua
+Gold/Diamond tuning: 1892 checks passed
+GOLD_TUNING_SUITE_PASS gold-diamond-tuning.spec.lua
+Expedition presentation: 24 checks passed
+GOLD_TUNING_SUITE_PASS expedition-presentation.spec.lua
+PASS: Studio defaults, four classes, account validation, mutation/rejoin preservation, fresh session and production isolation
+GOLD_TUNING_SUITE_PASS studio-test-defaults.spec.lua
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:4238: all lobby rows show completion payout
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:4238
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

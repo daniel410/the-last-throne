@@ -15,7 +15,7 @@ for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,
  for i=1,5 do
   journal.selectEpic(i);task.wait()
   local list=journal.root.Quests
-  for _,row in ipairs(list:GetChildren())do if row:IsA('Frame')then
+  for _,row in ipairs(list:GetChildren())do if row:IsA('Frame')and row.Name:sub(1,6)=='Quest_'then
    local reward=row:FindFirstChild('Reward')
    check(reward and reward.Text:find('XP',1,true)and reward.Text:find('Gold',1,true),'all lobby rows show completion payout')
    check(not reward.Text:find('No fixed',1,true),'no rewardless quest text')

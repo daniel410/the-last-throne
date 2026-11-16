@@ -1,0 +1,3 @@
+GOLD_TUNING_SOURCE_COMPILE 522
+QUEST_REWARD_UI_NATIVE {"scope":"native GUI constructors and text geometry; no real input/device acceptance","checks":573}
+GOLD_REWARD_TUNING_NATIVE_PASS {"uiChecks":573,"compiled":522,"published":false}
