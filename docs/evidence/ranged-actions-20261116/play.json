@@ -1,0 +1,112 @@
+{
+  "version": "0.111.19",
+  "sourceCommit": "bd6fe9dfbebe374b70de9b679966f96e117aad35",
+  "mode": "Studio local Play",
+  "rig": "R15",
+  "input": "K0Action RemoteEvent",
+  "moves": [
+    {
+      "observedSignals": {
+        "K0ArrowVisual": 1
+      },
+      "id": "basic.1",
+      "class": "elf",
+      "frames": 72,
+      "shoulderTravel": 170.4198265857775
+    },
+    {
+      "observedSignals": {
+        "K0ArrowVisual": 1
+      },
+      "id": "elf.common.aimed",
+      "class": "elf",
+      "frames": 49,
+      "shoulderTravel": 119.0975130486324
+    },
+    {
+      "observedSignals": {
+        "K0RapidShotCount": 3,
+        "K0ArrowVisual": 3
+      },
+      "id": "elf.common.rapid",
+      "class": "elf",
+      "frames": 63,
+      "shoulderTravel": 146.4483961456476
+    },
+    {
+      "observedSignals": {
+        "K0ArrowVisual": 1,
+        "K0MultiShotVisual": 1
+      },
+      "id": "elf.common.multi",
+      "class": "elf",
+      "frames": 46,
+      "shoulderTravel": 125.51998258719726
+    },
+    {
+      "observedSignals": [],
+      "id": "elf_retreating_shot",
+      "class": "elf",
+      "frames": 40,
+      "shoulderTravel": 114.24143605879038
+    },
+    {
+      "observedSignals": [],
+      "id": "elf.marksman.arrow_rain",
+      "class": "elf",
+      "frames": 141,
+      "shoulderTravel": 266.18401694277566
+    },
+    {
+      "observedSignals": [],
+      "id": "basic.1",
+      "class": "mage",
+      "frames": 52,
+      "shoulderTravel": 309.244682663385
+    },
+    {
+      "observedSignals": {
+        "K0SpellVisual": 1
+      },
+      "id": "mage.common.mana_bolt",
+      "class": "mage",
+      "frames": 63,
+      "shoulderTravel": 147.37512869200438
+    },
+    {
+      "observedSignals": {
+        "K0SpellVisual": 1
+      },
+      "id": "mage.common.water_ball",
+      "class": "mage",
+      "frames": 51,
+      "shoulderTravel": 175.86483761063946
+    },
+    {
+      "observedSignals": {
+        "K0SpellVisual": 1
+      },
+      "id": "mage.common.gravity",
+      "class": "mage",
+      "frames": 56,
+      "shoulderTravel": 199.78176273431617
+    },
+    {
+      "observedSignals": [],
+      "id": "mage_wind_lance",
+      "class": "mage",
+      "frames": 42,
+      "shoulderTravel": 192.17839575672167
+    },
+    {
+      "observedSignals": [],
+      "id": "mage.cryo.hailfall",
+      "class": "mage",
+      "frames": 159,
+      "shoulderTravel": 1178.381684537303
+    }
+  ],
+  "pass": true,
+  "error": "nil",
+  "errors": []
+}

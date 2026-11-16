@@ -1,0 +1,107 @@
+{
+  "version": "0.111.19",
+  "sourceCommit": "bd6fe9dfbebe374b70de9b679966f96e117aad35",
+  "placeId": 0,
+  "suites": {
+    "K0_ELF_BOW_NATIVE": {
+      "maxDegreesError": 1.5495374100282788e-05,
+      "checks": 4890,
+      "failures": [],
+      "kind": "K0_ELF_BOW_NATIVE",
+      "pass": true,
+      "maxNockError": 3.051856765523553e-05
+    },
+    "K0_MAGE_STAFF_NATIVE": {
+      "minReleaseForward": 0.9713628888130188,
+      "checks": 17087,
+      "maxDegreesError": 3.8152233173605055e-05,
+      "kind": "K0_MAGE_STAFF_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    "MIXAMO_ELF_NATIVE": {
+      "maxBlenderDegrees": 1.078959303413285e-05,
+      "skills": 32,
+      "pass": true,
+      "checks": 986
+    },
+    "ELF_CONFIRMED_RELEASE": {
+      "passed": true,
+      "checks": 9
+    },
+    "ELF_QUIVER_NATIVE": {
+      "parts": 14,
+      "pass": true,
+      "checks": 253
+    },
+    "ELF_BASIC_TEMPO_NATIVE": {
+      "checks": 873,
+      "pass": true,
+      "kind": "ELF_BASIC_TEMPO_NATIVE",
+      "cases": 12,
+      "failures": []
+    },
+    "ELF_STRAIGHT_SHOT_NATIVE": {
+      "failures": [],
+      "kind": "ELF_STRAIGHT_SHOT_NATIVE",
+      "pass": true,
+      "checks": 570
+    },
+    "MAGIC_SHOT_DIRECTION_NATIVE": {
+      "pass": true,
+      "checks": 120
+    },
+    "RANGED_ACTION_POSES_NATIVE": {
+      "checks": 158,
+      "pass": true,
+      "maxRedrawJumpDegrees": 0.010305087082087994,
+      "actions": 132,
+      "rigs": [
+        "R6",
+        "R15"
+      ]
+    },
+    "HERO_SKILLS_NATIVE": {
+      "failures": [],
+      "checks": 244520,
+      "rigs": [
+        "R6/knight",
+        "R6/dwarf",
+        "R6/elf",
+        "R6/mage",
+        "R15/knight",
+        "R15/dwarf",
+        "R15/elf",
+        "R15/mage"
+      ],
+      "kind": "HERO_SKILLS_NATIVE",
+      "pass": true,
+      "skills": 256
+    }
+  },
+  "checks": 269466,
+  "pass": true,
+  "rapidRedrawBoundary": {
+    "sampleSecondsBeforeAndAfter": 1e-05,
+    "secondsAfterFirstShot": 0.04,
+    "unit": "length of joint Euler angle difference in degrees",
+    "versions": {
+      "0.111.18": {
+        "elbow": 1.9970169067382812,
+        "torso": 4.1241984367370605,
+        "right": 13.420953750610352,
+        "wrist": 2.2364723682403564,
+        "left": 20.09950065612793,
+        "weapon": 19.99982452392578
+      },
+      "0.111.19": {
+        "elbow": 0.005279541015625,
+        "torso": 0.000592872267588973,
+        "right": 0.010305087082087994,
+        "wrist": 0.0004617045633494854,
+        "left": 0.0003814697265625,
+        "weapon": 0.00037860870361328125
+      }
+    }
+  }
+}
