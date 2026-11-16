@@ -1,0 +1,26 @@
+{
+  "version": "0.111.11",
+  "sourceCommit": "3bd400ac4aaec1cacdb004a6cca8682a59488f04",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-3bd400ac-pzq0hs2q",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-3bd400ac-pzq0hs2q/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/tlt-ec03-mine-rim-20261116/builds/0.111.11/TheLastThrone-0.111.11.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.111.11.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.111.11/TheLastThrone-0.111.11.rbxlx",
+      "sha256": "8f2e0b80a5cf7b734ee65c0f3e4d02ce1c5414dd1530f2fe147146c82e358af0",
+      "bytes": 19847974
+    }
+  ]
+}
