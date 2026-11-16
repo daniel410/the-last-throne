@@ -1,7 +1,7 @@
 -- Blender-authored primitives retain their exact local rotations and proportions.
 local Templates=require(script.Parent.RegionalArchitectureTemplates)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Architecture={version=5}
+local Architecture={version=6}
 function Architecture.build(kind)
  local rows=assert(Templates[kind],'Unknown regional architecture '..kind)
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
@@ -15,6 +15,19 @@ function Architecture.build(kind)
   if r[1]:match('^Silk')then
    local width=r[1]=='SilkAnchor'and .48 or r[1]=='SilkRadial'and .32 or .26
    p.Size=Vector3.new(width,width,p.Size.Z);p.Color=Color3.fromRGB(210,222,237)
+  elseif kind=='BracedMineHead'and r[1]=='CoursedMasonry'then
+   -- A fractured basalt working face, not an intact brick wall or open tunnel.
+   -- Mesh shaping changes only rendering: the original solid Part stays exact.
+   local column=math.floor((p.Position.X+10)/5+.5)
+   local course=math.floor(p.Position.Y/2.5)
+   local variation=(column*3+course*2)%5
+   p.Material=Enum.Material.Basalt
+   p.Color=Color3.fromRGB(69+variation*6,65+variation*5,64+variation*4)
+   local face=Instance.new('BlockMesh');face.Name='MineFractureSurface'
+   face.Scale=Vector3.new(.97,.96,.58+variation*.08)
+   face.Offset=Vector3.new(0,0,.16+variation*.09)
+   face.Parent=p
+   p:SetAttribute('MineFractureVisual',true)
   elseif r[3]=='Slate'then
    p.Color=p.Color:Lerp(Color3.fromRGB(176,188,201),.12)
   end
