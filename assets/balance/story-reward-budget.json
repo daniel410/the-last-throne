@@ -48,7 +48,8 @@
       "safe_hub": true,
       "first_clear_only": true,
       "expected_combat_xp": 0,
-      "expected_kill_coins": 0
+      "expected_kill_coins": 0,
+      "current_quest_gold": 20
     },
     {
       "id": "DS-02",
@@ -63,7 +64,8 @@
       "safe_hub": true,
       "first_clear_only": true,
       "expected_combat_xp": 0,
-      "expected_kill_coins": 0
+      "expected_kill_coins": 0,
+      "current_quest_gold": 30
     },
     {
       "id": "DS-03",
@@ -78,7 +80,8 @@
       "safe_hub": false,
       "first_clear_only": true,
       "expected_combat_xp": 28,
-      "expected_kill_coins": 8
+      "expected_kill_coins": 8,
+      "current_quest_gold": 50
     },
     {
       "id": "DS-04",
@@ -93,7 +96,8 @@
       "safe_hub": false,
       "first_clear_only": true,
       "expected_combat_xp": 32,
-      "expected_kill_coins": 10
+      "expected_kill_coins": 10,
+      "current_quest_gold": 80
     },
     {
       "id": "DW-01",
@@ -107,7 +111,8 @@
       "repeat_quest_coins": 45,
       "safe_hub": false,
       "expected_combat_xp": 60,
-      "expected_kill_coins": 18
+      "expected_kill_coins": 18,
+      "current_quest_gold": 105
     },
     {
       "id": "DW-02",
@@ -121,7 +126,8 @@
       "repeat_quest_coins": 72,
       "safe_hub": false,
       "expected_combat_xp": 62,
-      "expected_kill_coins": 18
+      "expected_kill_coins": 18,
+      "current_quest_gold": 168
     },
     {
       "id": "DW-03",
@@ -135,7 +141,8 @@
       "repeat_quest_coins": 0,
       "safe_hub": true,
       "expected_combat_xp": 0,
-      "expected_kill_coins": 0
+      "expected_kill_coins": 0,
+      "current_quest_gold": 70
     },
     {
       "id": "DW-04",
@@ -149,7 +156,8 @@
       "repeat_quest_coins": 96,
       "safe_hub": false,
       "expected_combat_xp": 140,
-      "expected_kill_coins": 40
+      "expected_kill_coins": 40,
+      "current_quest_gold": 224
     },
     {
       "id": "DW-05",
@@ -163,7 +171,8 @@
       "repeat_quest_coins": 135,
       "safe_hub": false,
       "expected_combat_xp": 322,
-      "expected_kill_coins": 129
+      "expected_kill_coins": 129,
+      "current_quest_gold": 315
     },
     {
       "id": "DW-06",
@@ -177,7 +186,8 @@
       "repeat_quest_coins": 114,
       "safe_hub": false,
       "expected_combat_xp": 142,
-      "expected_kill_coins": 40
+      "expected_kill_coins": 40,
+      "current_quest_gold": 266
     },
     {
       "id": "DW-07",
@@ -191,7 +201,8 @@
       "repeat_quest_coins": 195,
       "safe_hub": false,
       "expected_combat_xp": 400,
-      "expected_kill_coins": 154
+      "expected_kill_coins": 154,
+      "current_quest_gold": 455
     },
     {
       "id": "FV-01",
@@ -205,7 +216,8 @@
       "repeat_quest_coins": 84,
       "safe_hub": false,
       "expected_combat_xp": 162,
-      "expected_kill_coins": 45
+      "expected_kill_coins": 45,
+      "current_quest_gold": 196
     },
     {
       "id": "FV-02",
@@ -219,7 +231,8 @@
       "repeat_quest_coins": 0,
       "safe_hub": true,
       "expected_combat_xp": 0,
-      "expected_kill_coins": 0
+      "expected_kill_coins": 0,
+      "current_quest_gold": 84
     },
     {
       "id": "FV-03",
@@ -233,7 +246,8 @@
       "repeat_quest_coins": 108,
       "safe_hub": false,
       "expected_combat_xp": 240,
-      "expected_kill_coins": 64
+      "expected_kill_coins": 64,
+      "current_quest_gold": 252
     },
     {
       "id": "FV-04",
@@ -247,7 +261,8 @@
       "repeat_quest_coins": 144,
       "safe_hub": false,
       "expected_combat_xp": 224,
-      "expected_kill_coins": 60
+      "expected_kill_coins": 60,
+      "current_quest_gold": 336
     },
     {
       "id": "FV-05",
@@ -261,7 +276,8 @@
       "repeat_quest_coins": 162,
       "safe_hub": false,
       "expected_combat_xp": 286,
-      "expected_kill_coins": 77
+      "expected_kill_coins": 77,
+      "current_quest_gold": 378
     },
     {
       "id": "FV-06",
@@ -275,7 +291,8 @@
       "repeat_quest_coins": 204,
       "safe_hub": false,
       "expected_combat_xp": 406,
-      "expected_kill_coins": 168
+      "expected_kill_coins": 168,
+      "current_quest_gold": 476
     },
     {
       "id": "FV-07",
@@ -289,7 +306,8 @@
       "repeat_quest_coins": 270,
       "safe_hub": false,
       "expected_combat_xp": 424,
-      "expected_kill_coins": 178
+      "expected_kill_coins": 178,
+      "current_quest_gold": 630
     },
     {
       "id": "EC-01",
@@ -303,7 +321,8 @@
       "repeat_quest_coins": 126,
       "safe_hub": false,
       "expected_combat_xp": 192,
-      "expected_kill_coins": 52
+      "expected_kill_coins": 52,
+      "current_quest_gold": 294
     },
     {
       "id": "EC-02",
@@ -317,7 +336,8 @@
       "repeat_quest_coins": 0,
       "safe_hub": true,
       "expected_combat_xp": 0,
-      "expected_kill_coins": 0
+      "expected_kill_coins": 0,
+      "current_quest_gold": 112
     },
     {
       "id": "EC-03",
@@ -331,7 +351,8 @@
       "repeat_quest_coins": 168,
       "safe_hub": false,
       "expected_combat_xp": 358,
-      "expected_kill_coins": 94
+      "expected_kill_coins": 94,
+      "current_quest_gold": 392
     },
     {
       "id": "EC-04",
@@ -345,7 +366,8 @@
       "repeat_quest_coins": 204,
       "safe_hub": false,
       "expected_combat_xp": 336,
-      "expected_kill_coins": 88
+      "expected_kill_coins": 88,
+      "current_quest_gold": 476
     },
     {
       "id": "EC-05",
@@ -359,7 +381,8 @@
       "repeat_quest_coins": 216,
       "safe_hub": false,
       "expected_combat_xp": 236,
-      "expected_kill_coins": 62
+      "expected_kill_coins": 62,
+      "current_quest_gold": 504
     },
     {
       "id": "EC-06",
@@ -373,7 +396,8 @@
       "repeat_quest_coins": 270,
       "safe_hub": false,
       "expected_combat_xp": 564,
-      "expected_kill_coins": 234
+      "expected_kill_coins": 234,
+      "current_quest_gold": 630
     },
     {
       "id": "EC-07",
@@ -387,7 +411,8 @@
       "repeat_quest_coins": 360,
       "safe_hub": false,
       "expected_combat_xp": 732,
-      "expected_kill_coins": 282
+      "expected_kill_coins": 282,
+      "current_quest_gold": 840
     },
     {
       "id": "HG-01",
@@ -401,7 +426,8 @@
       "repeat_quest_coins": 180,
       "safe_hub": false,
       "expected_combat_xp": 412,
-      "expected_kill_coins": 108
+      "expected_kill_coins": 108,
+      "current_quest_gold": 420
     },
     {
       "id": "HG-02",
@@ -415,7 +441,8 @@
       "repeat_quest_coins": 0,
       "safe_hub": true,
       "expected_combat_xp": 0,
-      "expected_kill_coins": 0
+      "expected_kill_coins": 0,
+      "current_quest_gold": 154
     },
     {
       "id": "HG-03",
@@ -429,7 +456,8 @@
       "repeat_quest_coins": 234,
       "safe_hub": false,
       "expected_combat_xp": 502,
-      "expected_kill_coins": 131
+      "expected_kill_coins": 131,
+      "current_quest_gold": 546
     },
     {
       "id": "HG-04",
@@ -443,7 +471,8 @@
       "repeat_quest_coins": 270,
       "safe_hub": false,
       "expected_combat_xp": 452,
-      "expected_kill_coins": 118
+      "expected_kill_coins": 118,
+      "current_quest_gold": 630
     },
     {
       "id": "HG-05",
@@ -457,7 +486,8 @@
       "repeat_quest_coins": 294,
       "safe_hub": false,
       "expected_combat_xp": 394,
-      "expected_kill_coins": 102
+      "expected_kill_coins": 102,
+      "current_quest_gold": 686
     },
     {
       "id": "HG-06",
@@ -471,7 +501,8 @@
       "repeat_quest_coins": 360,
       "safe_hub": false,
       "expected_combat_xp": 744,
-      "expected_kill_coins": 304
+      "expected_kill_coins": 304,
+      "current_quest_gold": 840
     },
     {
       "id": "HG-07",
@@ -485,7 +516,18 @@
       "repeat_quest_coins": 480,
       "safe_hub": false,
       "expected_combat_xp": 780,
-      "expected_kill_coins": 318
+      "expected_kill_coins": 318,
+      "current_quest_gold": 1120
     }
-  ]
+  ],
+  "gold_reward_rules": {
+    "rules_version": 19,
+    "approved_date": "2026-11-16",
+    "legacy_fields": "quest_coins and expected_kill_coins remain immutable pre-19 planning/journal budgets",
+    "first_gold": "floor(quest_coins * 7 / 10); prologue unchanged",
+    "kill_gold": "floor(whole authored base Gold * 3 / 4), then existing mode/band multiplier, then finite-copy split",
+    "repeat_gold": "floor(pre-19 final repeat completion Gold / 2); independent of first Gold reduction",
+    "runtime_source": "src/shared/GoldRewardTuning.luau",
+    "preserved": "XP, materials, equipment, prices, existing wallets/receipts and runs 1-18"
+  }
 }

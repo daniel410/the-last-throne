@@ -4,8 +4,9 @@ local Content=game and require(script.Parent.CampaignContent) or dofile('src/sha
 local Easy=game and require(script.Parent.EasyCampaignTuning)or dofile('src/shared/EasyCampaignTuning.luau')
 local CampaignGrowth=game and require(script.Parent.CampaignGrowthBudget)or dofile('src/shared/CampaignGrowthBudget.luau')
 local ModeProgress=game and require(script.Parent.CampaignModeProgress)or dofile('src/shared/CampaignModeProgress.luau')
+local Gold=game and require(script.Parent.GoldRewardTuning)or dofile('src/shared/GoldRewardTuning.luau')
 -- Balance/rule generation is pinned by the run and persisted hero journal.
-local D={version=18,order={'Easy','Hard','Insane','Hell'},legacyModes={
+local D={version=19,order={'Easy','Hard','Insane','Hell'},legacyModes={
  Easy={level=1,hp=1,damage=1,bossHP=1,bossDamage=1,xp=1,gold=1,ore=6,cores=0,cache=1},
  Hard={level=20,previous='Easy',hp=1.35,damage=1.2,bossHP=1.25,bossDamage=1.15,xp=1.15,gold=1.5,ore=8,cores=1,cache=2},
  Insane={level=40,previous='Hard',hp=1.7,damage=1.4,bossHP=1.5,bossDamage=1.3,xp=1.3,gold=2,ore=10,cores=2,cache=3},
@@ -57,7 +58,7 @@ D.families={
  IceTrollKing={hp=1.1,damage=1},KingIceBear={hp=1.15,damage=1},KingIceGolem={hp=1.2,damage=1},QueenIceElf={hp=.9,damage=1},AncientGlacierKing={hp=1.15,damage=1.05},
  MagmaImp={hp=.9,damage=1},MagmaGolem={hp=1.15,damage=1},InfernoOverlord={hp=1,damage=1},CalderaTitan={hp=1.2,damage=1.05},KingVolcanoShaman={hp=.9,damage=1},
 }
-function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==9 or version==10 or version==11 or version==12 or version==13 or version==14 or version==15 or version==16 or version==17 or version==D.version end
+function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==9 or version==10 or version==11 or version==12 or version==13 or version==14 or version==15 or version==16 or version==17 or version==18 or version==D.version end
 function D.mode(mode,version)
  if version~=nil and not D.compatible(version)then return nil end
  return (version==1 and D.legacyModes or version==2 and D.previousModes or version~=nil and version<=14 and D.previousGoldModes or version~=nil and version<=17 and D.previousAttackModes or D.modes)[mode]
@@ -93,6 +94,8 @@ function D.completion(c,mode,version,cycle)
  local gold=math.floor(base.gold*m.gold*(version==1 and 1 or band.gold))
  -- Reduce only repeat completion Gold; runs pinned to rules 1-10 keep their payout.
  if version==nil or version>=11 then gold=math.floor(gold*4/5)end
+ -- Apply after the historic budget and rounding; never halve a reduced first award again.
+ gold=Gold.completion(gold,version)
  local xp=CampaignGrowth.questXP(c.id,mode,version or D.version,cycle)
  return {xp=xp or math.floor(base.xp*m.xp),gold=gold,
   ore=version==1 and D.combat(c)and m.ore or 0,cores=version==1 and D.combat(c)and m.cores or 0,

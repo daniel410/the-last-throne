@@ -70,7 +70,9 @@
     "filename": "haunted-graveyard-story-01-mist-gate.md",
     "quest_xp": 495,
     "repeat_quest_xp": 123,
-    "target_completion_level": 31
+    "target_completion_level": 31,
+    "gold_rules_version": 19,
+    "current_quest_gold": 420
   },
   {
     "n": 2,
@@ -134,7 +136,9 @@
     "filename": "haunted-graveyard-story-02-lantern-chapel.md",
     "quest_xp": 212,
     "repeat_quest_xp": 0,
-    "target_completion_level": 31
+    "target_completion_level": 31,
+    "gold_rules_version": 19,
+    "current_quest_gold": 154
   },
   {
     "n": 3,
@@ -222,7 +226,9 @@
     "filename": "haunted-graveyard-story-03-nameless-cemetery.md",
     "quest_xp": 929,
     "repeat_quest_xp": 232,
-    "target_completion_level": 33
+    "target_completion_level": 33,
+    "gold_rules_version": 19,
+    "current_quest_gold": 546
   },
   {
     "n": 4,
@@ -310,7 +316,9 @@
     "filename": "haunted-graveyard-story-04-forgotten-village.md",
     "quest_xp": 1373,
     "repeat_quest_xp": 343,
-    "target_completion_level": 35
+    "target_completion_level": 35,
+    "gold_rules_version": 19,
+    "current_quest_gold": 630
   },
   {
     "n": 5,
@@ -398,7 +406,9 @@
     "filename": "haunted-graveyard-story-05-silent-bell-tower.md",
     "quest_xp": 855,
     "repeat_quest_xp": 213,
-    "target_completion_level": 36
+    "target_completion_level": 36,
+    "gold_rules_version": 19,
+    "current_quest_gold": 686
   },
   {
     "n": 6,
@@ -486,7 +496,9 @@
     "filename": "haunted-graveyard-story-06-royal-tomb-gate.md",
     "quest_xp": 975,
     "repeat_quest_xp": 243,
-    "target_completion_level": 38
+    "target_completion_level": 38,
+    "gold_rules_version": 19,
+    "current_quest_gold": 840
   },
   {
     "n": 7,
@@ -570,6 +582,8 @@
     "filename": "haunted-graveyard-story-07-testimony-vault.md",
     "quest_xp": 1252,
     "repeat_quest_xp": 313,
-    "target_completion_level": 40
+    "target_completion_level": 40,
+    "gold_rules_version": 19,
+    "current_quest_gold": 1120
   }
 ]

@@ -50,11 +50,11 @@ for _,goal in ipairs(content.chapters[1].goals) do
  if goal.activity and goal.activity.steps then for _,step in ipairs(goal.activity.steps) do story=assert(R.story(story,'q','DW-01',goal.id,nil,C,step.id)) end
  else story=assert(R.story(story,'q','DW-01',goal.id,nil,C)) end
 end
-check(story.wallet.gold==150 and story.wallet.diamonds==3,'first main clear credits approved Gold and three account Diamonds')
-local replay=assert(R.story(story,'q','DW-01','trail_exit',nil,C,'approach'));check(replay.wallet.diamonds==3 and replay.wallet.gold==150,'story replay cannot duplicate currencies')
+check(story.wallet.gold==105 and story.wallet.diamonds==3,'first main clear credits approved Gold and three account Diamonds')
+local replay=assert(R.story(story,'q','DW-01','trail_exit',nil,C,'approach'));check(replay.wallet.diamonds==3 and replay.wallet.gold==105,'story replay cannot duplicate currencies')
 local xp=assert(R.progress(story,{action='AwardXP',heroId='q',stream='test',sequence=1,amount=10,coins=5,rewardKind='Defeat'},{serverReward=true},C))
 local xr=assert(R.progress(xp,{action='AwardXP',heroId='q',stream='test',sequence=1,amount=10,coins=5,rewardKind='Defeat'},{serverReward=true},C))
-check(xp.wallet.gold==155 and xr.wallet.gold==155,'kill Gold shares XP idempotency')
+check(xp.wallet.gold==110 and xr.wallet.gold==110,'kill Gold shares XP idempotency')
 local broken=R.copy(xp);broken.wallet.diamonds=-1;check(not R.validate(broken,C),'negative Diamond profile is rejected')
 local db,fail={},false
 local store=Store.new({UpdateAsync=function(_,key,fn) local v=fn(db[key] and R.copy(db[key]));if v then db[key]=R.copy(v) end;if fail then error('unknown after commit') end;return v end},R,C,function() return 100 end,function() end,'lease')

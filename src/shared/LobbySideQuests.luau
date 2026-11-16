@@ -46,7 +46,7 @@ function S.project(snapshot)
     or not accepted and c.quest.discoveryOnly and string.format(Text.discovery,region)
     or not accepted and string.format(Text.accept,c.quest.giver or 'the quest giver',region)or string.format(Text.next,region)
    if accepted and not canReport then local target=Log.target(j,c);if target then hint=(target.goal.title or '')..' · '..string.format(Text.next,region)end end
-   local reward=Log.reward(c)
+   local reward=Log.reward(c,admission and (admission.balanceVersion or 1))
    if hero.level>=99 then reward=reward:gsub('^On quest completion: %d+ XP','On quest completion: 0 XP')end
    if active and Modes.claimed(hero,c.id,mode)then local payout=D.completion(c,active.difficultyId,active.balanceVersion or 1);reward=string.format(Text.repeatReward,hero.level>=99 and 0 or payout.xp,payout.gold)end
    local row={id=c.id,title=c.quest.title or c.title,region=region,epic=c.epic,phase=phase,runId=runId or 'campaign',
@@ -104,7 +104,7 @@ function S.apply(profile,command,R,C)
  local state=S.project({ready=true,heroId=command.heroId,heroes=profile.heroes});local row
  for _,v in ipairs(state.rows)do if v.id==c.id then row=v;break end end
  if not row or not row.canReport or row.runId~=command.runId then return nil,'StoryLocked'end
- if command.runId=='campaign'then return R.story(profile,command.heroId,c.id,S.reports[c.id],nil,C,nil,mode,a and a.balanceVersion,a and a.growthCycle,progress,true)end
+ if command.runId=='campaign'then return R.story(profile,command.heroId,c.id,S.reports[c.id],nil,C,nil,mode,a and (a.balanceVersion or 1),a and a.growthCycle,progress,true)end
  return load('AdventureRules').event(profile,command.heroId,c.id,S.reports[c.id],nil,nil,R,C,command.runId)
 end
 return S

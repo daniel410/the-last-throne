@@ -113,6 +113,7 @@ function A.projection(hero)
  local nextChapter=A.continuation(a)
  view.expeditionMission=nextChapter and nextChapter.id or currentMission(a).id
  view.expeditionFirstClear=not Modes.claimed(hero,view.expeditionMission,a.difficultyId)
+ view.expeditionBalanceVersion=a.balanceVersion or 1
  view.seleneUnlocked=P.seleneUnlocked(hero.deepwood)
  view.seleneFollowing=hero.deepwood and hero.deepwood.seleneFollowing
  return view
@@ -178,6 +179,9 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  local saved=h.expeditions.runsByMode[mode]
  local previous=currentMission(saved)
  local resume=saved and saved.modeProgressVersion==1 and previous and previous.id==missionId and not saved.journal.clears[missionId]
+ -- Resuming an unfinished run never changes its pinned reward/combat budget.
+ local pinned=saved and previous and previous.id==missionId and not saved.journal.clears[missionId]
+ if pinned then version=saved.balanceVersion or 1 end
  local base=Modes.journal(h,mode);local first=not Modes.claimed(h,missionId,mode)
  local journal=resume and P.copy(saved.journal)or base.clears[missionId]and resetJournal(base,c)or base
  if version>=13 then journal=assert(P.enableExpansion(journal))end
@@ -189,7 +193,7 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  end end
  h.expeditions.active={version=1,modeProgressVersion=1,replay=resume and saved.replay==true or base.clears[missionId]==true,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills=kills,completedChapters={}}
  local active=h.expeditions.active
- if GrowthBudget.enabled(version)then active.growthCycle=GrowthBudget.cycle(h,mode)end
+ if GrowthBudget.enabled(version)then active.growthCycle=pinned and saved.growthCycle or GrowthBudget.cycle(h,mode)end
  Modes.save(h,active)
  p.revision=p.revision+1
  if not R.validate(p,C)then return nil,'Incompatible'end
@@ -215,7 +219,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  if not allowed then return nil,entryError end
  local firstClear=not Modes.claimed(hero,chapterId,active.difficultyId)
  if firstClear then
-  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId,active.difficultyId,active.balanceVersion,active.growthCycle,active.journal)
+  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId,active.difficultyId,active.balanceVersion or 1,active.growthCycle,active.journal)
   if not p then return nil,why end
   journal=P.copy(p.heroes[heroId].expeditions.active.journal)
  else

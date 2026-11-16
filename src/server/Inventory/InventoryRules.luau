@@ -10,6 +10,7 @@ local Growth = game and require(game:GetService("ReplicatedStorage").Shared.Hero
 local Daily=game and require(game:GetService('ReplicatedStorage').Shared.DailyLogin) or dofile('src/shared/DailyLogin.luau')
 local Pass=game and require(game:GetService('ReplicatedStorage').Shared.SupportPassRules) or dofile('src/shared/SupportPassRules.luau')
 local CompletionRewards=game and require(game:GetService('ReplicatedStorage').Shared.QuestCompletionRewards)or dofile('src/shared/QuestCompletionRewards.luau')
+local Gold=game and require(game:GetService('ReplicatedStorage').Shared.GoldRewardTuning)or dofile('src/shared/GoldRewardTuning.luau')
 local GrowthBudget=game and require(game:GetService('ReplicatedStorage').Shared.CampaignGrowthBudget)or dofile('src/shared/CampaignGrowthBudget.luau')
 local Grants=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
 local SideQuests=game and require(game:GetService('ReplicatedStorage').Shared.LobbySideQuests)or dofile('src/shared/LobbySideQuests.luau')
@@ -340,18 +341,20 @@ function Rules.apply(profile, command, context, catalog)
 end
 -- Clear receipt and award are committed together. Reopening a historic account
 -- catches up missing awards without modifying journal checksums or reissuing them.
-local function grantCompletion(profile,heroId,chapterId,catalog,xpOverride,mode,journalOverride)
+local function grantCompletion(profile,heroId,chapterId,catalog,xpOverride,mode,journalOverride,goldOverride)
  local award=CompletionRewards.awards[chapterId];local h=profile.heroes[heroId]
  local journal=journalOverride or h.deepwood
  local claims=mode and h.expeditions.modeRewardClaims[mode]or h.completionRewardClaims or {}
  if not award or not(journal and journal.clears[chapterId])or claims[chapterId]then return false end
- if profile.wallet.gold+award.coins>1e12 then return false end
+ -- No override during historic catch-up: previously earned entitlements keep their value.
+ local coins=goldOverride or award.coins
+ if profile.wallet.gold+coins>1e12 then return false end
  local g=h.progression or Growth.new(h.level)
  g.xp=g.xp+(xpOverride or award.xp)
  while g.level<Growth.maxLevel and g.xp>=Growth.xpToNext(g.level)do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
  if g.level==Growth.maxLevel then g.xp=0 end
  g.revision=g.revision+1;h.progression=g;h.level=g.level
- profile.wallet.gold=profile.wallet.gold+award.coins
+ profile.wallet.gold=profile.wallet.gold+coins
  local prefix='quest-award-v1-'..heroId..'-'..(mode and mode..'-'or '')..chapterId
  Grants.grant(profile,Rules,catalog,heroId,'iron_ore',award.ore or 0,prefix..'-ore')
  Grants.grant(profile,Rules,catalog,heroId,'enhancement_gem',award.gems or 0,prefix..'-gem')
@@ -497,9 +500,10 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,diffi
  -- Migrate historic earnings before assigning the new journal, then credit only this event.
  local migrated=Rules.copy(profile);Economy.upgrade(migrated);n.wallet=migrated.wallet
  local added=reward.chapter and CompletionRewards.awards[reward.chapter]
+ if reward.chapter then reward.coins=Gold.first(reward.coins,balanceVersion)end
  local xpOverride=reward.chapter and GrowthBudget.questXP(reward.chapter,difficultyId or 'Easy',balanceVersion,growthCycle)
  if added then
-  if not grantCompletion(n,heroId,reward.chapter,catalog,xpOverride,mode,journal)then return nil,'BalanceLimit'end
+  if not grantCompletion(n,heroId,reward.chapter,catalog,xpOverride,mode,journal,reward.coins)then return nil,'BalanceLimit'end
   reward={xp=0,coins=0,chapter=reward.chapter}
  end
  Economy.story(n,reward,heroId,mode)

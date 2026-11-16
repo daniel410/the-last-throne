@@ -88,7 +88,9 @@
     "repeat": 84,
     "quest_xp": 187,
     "repeat_quest_xp": 46,
-    "target_completion_level": 13
+    "target_completion_level": 13,
+    "gold_rules_version": 19,
+    "current_quest_gold": 196
   },
   {
     "n": 2,
@@ -166,7 +168,9 @@
     "repeat": 0,
     "quest_xp": 51,
     "repeat_quest_xp": 0,
-    "target_completion_level": 13
+    "target_completion_level": 13,
+    "gold_rules_version": 19,
+    "current_quest_gold": 84
   },
   {
     "n": 3,
@@ -262,7 +266,9 @@
     "repeat": 108,
     "quest_xp": 185,
     "repeat_quest_xp": 46,
-    "target_completion_level": 14
+    "target_completion_level": 14,
+    "gold_rules_version": 19,
+    "current_quest_gold": 252
   },
   {
     "n": 4,
@@ -364,7 +370,9 @@
     "repeat": 144,
     "quest_xp": 382,
     "repeat_quest_xp": 95,
-    "target_completion_level": 16
+    "target_completion_level": 16,
+    "gold_rules_version": 19,
+    "current_quest_gold": 336
   },
   {
     "n": 5,
@@ -466,7 +474,9 @@
     "repeat": 162,
     "quest_xp": 403,
     "repeat_quest_xp": 100,
-    "target_completion_level": 17
+    "target_completion_level": 17,
+    "gold_rules_version": 19,
+    "current_quest_gold": 378
   },
   {
     "n": 6,
@@ -568,7 +578,9 @@
     "repeat": 204,
     "quest_xp": 500,
     "repeat_quest_xp": 125,
-    "target_completion_level": 19
+    "target_completion_level": 19,
+    "gold_rules_version": 19,
+    "current_quest_gold": 476
   },
   {
     "n": 7,
@@ -670,6 +682,8 @@
     "repeat": 270,
     "quest_xp": 450,
     "repeat_quest_xp": 112,
-    "target_completion_level": 20
+    "target_completion_level": 20,
+    "gold_rules_version": 19,
+    "current_quest_gold": 630
   }
 ]

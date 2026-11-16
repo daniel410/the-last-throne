@@ -213,7 +213,7 @@ function Journal.start(hud)
   if not event and value.message and value.message~=lastMessage then lastMessage=value.message;showDialogue(value.message,'message') end
   if value.questOffer then
    local c=Content.byId[value.questOffer.id]
-   if offerShown~=c.id then offerShown=c.id;showDialogue('OPTIONAL · '..c.title..'\n'..c.quest.brief..'\n'..Log.reward(c),'offer',value.questOffer.discovery and 'ACCEPT & RECOVER CLUE' or 'ACCEPT QUEST','LATER') end
+   if offerShown~=c.id then offerShown=c.id;showDialogue('OPTIONAL · '..c.title..'\n'..c.quest.brief..'\n'..Log.reward(c,value.journal and value.journal.expeditionBalanceVersion),'offer',value.questOffer.discovery and 'ACCEPT & RECOVER CLUE' or 'ACCEPT QUEST','LATER') end
   else
    offerShown=nil
    if dialogKind=='offer' then closeDialogue();hud.showFeedback('This request is no longer nearby. Return to the resident or clue.',4) end

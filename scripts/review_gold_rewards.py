@@ -15,26 +15,24 @@ args = parser.parse_args()
 bridge = r"""
 local function load(n)return dofile('src/shared/'..n..'.luau')end
 local C,D,B,S,E,Shop=load('CampaignContent'),load('Difficulty'),load('DeepwoodEncounterBalance'),load('EncounterSummary'),load('Enhancement'),load('EconomyCatalog')
+local Gold=load('GoldRewardTuning')
 local function out(...)local t={};for i=1,select('#',...)do t[i]=tostring(select(i,...))end;print(table.concat(t,'\t'))end
 out('rules',D.version)
 for _,c in ipairs(C.chapters)do for _,mode in ipairs(D.order)do for players=1,4 do
- local kills,requiredKills,proposalKills,requiredProposalKills,count,zero,proposalZero=0,0,0,0,0,0,0
+ local kills,requiredKills,currentKills,requiredProposalKills,count,zero,currentZero=0,0,0,0,0,0,0
  for _,goal in ipairs(c.goals)do
   for _,wave in ipairs(B.encounterWaves(c,goal,players,mode,D.version))do for _,unit in ipairs(wave)do
-   local _,gold=B.rewards(unit,mode,D.version)
-   local base=(3+math.floor(unit.level/2))*(B.isBoss(unit.kind)and 10 or 1)
-   local whole=math.floor(math.floor(base*3/4)*D.goldMultiplier(unit.level,mode,D.version))
-   local copies,index=unit.rewardCopies or 1,unit.rewardIndex or 1
-   local proposed=math.floor(whole/copies)+(index<=whole%copies and 1 or 0)
-   kills=kills+gold;proposalKills=proposalKills+proposed;count=count+1
-   if gold==0 then zero=zero+1 end;if proposed==0 then proposalZero=proposalZero+1 end
+   local _,gold=B.rewards(unit,mode,18)
+   local _,proposed=B.rewards(unit,mode,D.version)
+   kills=kills+gold;currentKills=currentKills+proposed;count=count+1
+   if gold==0 then zero=zero+1 end;if proposed==0 then currentZero=currentZero+1 end
    if not goal.optional then requiredKills=requiredKills+gold;requiredProposalKills=requiredProposalKills+proposed end
   end end
  end
- local projection=S.mission(c,mode,players,D.version)
+ local projection=S.mission(c,mode,players,18)
  assert(kills==projection.gold and count==projection.count,'Projection mismatch '..c.id)
- local r=D.completion(c,mode,D.version)
- out('mission',c.id,c.epic,c.side and 'side' or 'main',mode,players,c.reward.coins,r.gold,kills,requiredKills,math.floor(c.reward.coins*7/10),math.floor(r.gold/2),proposalKills,requiredProposalKills,count,zero,proposalZero,r.gems,r.stones,r.cache)
+ local r=D.completion(c,mode,18);local now=D.completion(c,mode,D.version)
+ out('mission',c.id,c.epic,c.side and 'side' or 'main',mode,players,c.reward.coins,r.gold,kills,requiredKills,Gold.first(c.reward.coins,D.version),now.gold,currentKills,requiredProposalKills,count,zero,currentZero,r.gems,r.stones,r.cache)
 end end end
 for _,target in ipairs({3,6,9})do
  local gold,gems,stones,attempts=0,0,0,0
@@ -49,10 +47,10 @@ local daily=load('DailyLogin');local total=0;for _,v in ipairs(daily.rewards)do 
 """
 
 columns = ['id', 'epic', 'kind', 'mode', 'players', 'first_fixed', 'repeat_fixed',
-           'kill_gold', 'kill_gold_without_optional_goals', 'proposal_first_fixed',
-           'proposal_repeat_fixed', 'proposal_kill_gold',
-           'proposal_kill_gold_without_optional_goals', 'enemy_count',
-           'zero_gold_enemies', 'proposal_zero_gold_enemies', 'gems', 'stones', 'cache_progress']
+           'kill_gold', 'kill_gold_without_optional_goals', 'current_first_fixed',
+           'current_repeat_fixed', 'current_kill_gold',
+           'current_kill_gold_without_optional_goals', 'enemy_count',
+           'zero_gold_enemies', 'current_zero_gold_enemies', 'gems', 'stones', 'cache_progress']
 missions, enhancement, offers, diamonds = [], {}, {}, {}
 for line in subprocess.check_output(['lua', '-'], input=bridge, text=True).splitlines():
     tag, *values = line.split('\t')
@@ -79,16 +77,16 @@ for line in subprocess.check_output(['lua', '-'], input=bridge, text=True).split
 assert len(missions) == 47 * 4 * 4
 assert len({(r['id'], r['mode'], r['players']) for r in missions}) == len(missions)
 for r in missions:
-    assert 0 <= r['proposal_kill_gold'] <= r['kill_gold']
+    assert 0 <= r['current_kill_gold'] <= r['kill_gold']
     assert r['kill_gold_without_optional_goals'] <= r['kill_gold']
-    assert r['proposal_first_fixed'] <= r['first_fixed']
-    assert r['proposal_repeat_fixed'] <= r['repeat_fixed']
+    assert r['current_first_fixed'] <= r['first_fixed']
+    assert r['current_repeat_fixed'] <= r['repeat_fixed']
 
 
 def aggregate(rows):
     keys = [k for k in columns[5:] if k not in ('gems', 'stones', 'cache_progress')]
     total = {k: sum(r[k] for r in rows) for k in keys}
-    for prefix in ('', 'proposal_'):
+    for prefix in ('', 'current_'):
         for clear in ('first', 'repeat'):
             total[prefix + clear + '_gross'] = total[prefix + clear + '_fixed'] + total[prefix + 'kill_gold']
             total[prefix + clear + '_gross_without_optional_goals'] = (
@@ -114,6 +112,7 @@ current = {r['id']: r['first_fixed'] for r in missions}
 matched = [r for r in canonical['rows'] if r['id'] in current]
 assert len(matched) == 28
 assert all(r['quest_coins'] == current[r['id']] for r in matched)
+assert all(r['current_quest_gold'] == next(x['current_first_fixed'] for x in missions if x['id']==r['id']) for r in matched)
 validation = dict(projection_comparisons=len(missions), canonical_first_gold_matches=len(matched))
 paths = [
     'assets/balance/story-reward-budget.json', 'src/shared/CampaignContent.luau',
@@ -121,7 +120,7 @@ paths = [
     'src/shared/FrozenValeContent.luau', 'src/shared/EmberCalderaContent.luau',
     'src/shared/CampaignCombatRoutes.luau', 'src/shared/CampaignCombatPacing.luau',
     'src/shared/EasyCampaignTuning.luau',
-    'src/shared/Difficulty.luau', 'src/shared/RewardEconomy.luau',
+    'src/shared/Difficulty.luau', 'src/shared/RewardEconomy.luau', 'src/shared/GoldRewardTuning.luau',
     'src/shared/AdventureRepeatRewards.luau', 'src/shared/QuestCompletionRewards.luau',
     'src/shared/DeepwoodEncounterBalance.luau', 'src/shared/EncounterPopulation.luau',
     'src/shared/EncounterSummary.luau', 'src/shared/Enhancement.luau',
@@ -138,7 +137,7 @@ result = dict(
           '필수 교전 제외 경로의 실제 통행 가능성과 플레이 수용은 미검증.',
     source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
     version=Path('VERSION').read_text().strip(), rules_version=rules_version,
-    proposal='미승인. 초회 고정액 floor(기존*0.7), 처치 원본 전체 예산 floor(기존*0.75) 후 '
+    current='승인된 규칙19. 초회 고정액 floor(기존*0.7), 처치 원본 전체 예산 floor(기존*0.75) 후 '
              '현행 난이도/경제구간 배율 및 복제체 분배, 반복 완료 최종액 floor(기존*0.5). '
              'XP/재료/상자/장비/가격/기존 지급은 유지하는 민감도 비교.',
     validation=validation, source_hashes=hashes, totals=totals, missions=missions,
@@ -149,5 +148,5 @@ args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
 for mode in diamonds:
     t = totals[mode]['1']['main']
     print(mode, 'first', t['first_gross'], 'repeat', t['repeat_gross'],
-          'proposal_first', t['proposal_first_gross'], 'proposal_repeat', t['proposal_repeat_gross'])
+          'current_first', t['current_first_gross'], 'current_repeat', t['current_repeat_gross'])
 print(validation)

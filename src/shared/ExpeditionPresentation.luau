@@ -4,6 +4,7 @@ local D,Content,Summary=load('Difficulty'),load('CampaignContent'),load('Encount
 local Economy=load('EconomyCatalog')
 local GrowthBudget=load('CampaignGrowthBudget')
 local ModeProgress=load('CampaignModeProgress')
+local Gold=load('GoldRewardTuning')
 local P={}
 function P.missions(hero,players)
  local list={}
@@ -12,12 +13,17 @@ function P.missions(hero,players)
   for _,mode in ipairs(D.order)do
    local m=D.modes[mode];local ok,why=D.allowed(hero,c.id,mode)
    local cycle=GrowthBudget.cycle(hero,mode)
-   local reward=D.completion(c,mode,D.version,cycle)
-   local firstXP=GrowthBudget.questXP(c.id,mode,D.version,cycle)or c.reward.xp
+   local e=hero and hero.expeditions
+   local saved=e and (e.active and e.active.difficultyId==mode and e.active or e.runsByMode and e.runsByMode[mode])
+   local resumed=saved and not saved.journal.clears[c.id]
+    and (not saved.completed and saved.missionId==c.id or saved.completed and not Content.byId[saved.missionId].side and c.number==saved.journal.main+1)
+   local version=resumed and (saved.balanceVersion or 1)or D.version
+   local reward=D.completion(c,mode,version,cycle)
+   local firstXP=GrowthBudget.questXP(c.id,mode,version,cycle)or c.reward.xp
    modes[mode]={allowed=ok,reason=why,level=D.requiredLevel(c,mode),previous=m.previous,
     storyMain=D.requiredMain(c),firstClear=not ModeProgress.claimed(hero,c.id,mode),completed=ModeProgress.journal(hero,mode).clears[c.id]==true,
-    storyDiamonds=Economy.storyDiamondIds[c.id]and Economy.storyDiamondsByMode[mode] or 0,firstXP=firstXP,firstGold=c.reward.coins,firstOre=c.reward.ore or 0,firstGems=c.reward.gems or 0,repeatXP=reward.xp,repeatGold=reward.gold,
-    xpCapped=hero and hero.level>=99 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players,D.version,cycle),campaignCycle=cycle,
+    storyDiamonds=Economy.storyDiamondIds[c.id]and Economy.storyDiamondsByMode[mode] or 0,firstXP=firstXP,firstGold=Gold.first(c.reward.coins,version),firstOre=c.reward.ore or 0,firstGems=c.reward.gems or 0,repeatXP=reward.xp,repeatGold=reward.gold,balanceVersion=version,
+    xpCapped=hero and hero.level>=99 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players,version,cycle),campaignCycle=cycle,
     hp=m.hp,damage=m.damage,bossHP=m.bossHP,bossDamage=m.bossDamage}
   end
   local epic=Content.epics[c.epic or 1]

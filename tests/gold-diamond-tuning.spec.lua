@@ -5,7 +5,7 @@ local E=dofile('src/shared/EconomyRules.luau')
 local R=dofile('src/server/Inventory/InventoryRules.luau')
 local Items=dofile('src/shared/ItemCatalog.luau')
 local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
-check(D.version==17 and D.compatible(16) and D.compatible(15) and D.compatible(14)and D.compatible(13)and D.compatible(12)and D.compatible(11)and D.compatible(10),'expanded runs retain all previous economy rules')
+check(D.version==19 and D.compatible(18)and D.compatible(17) and D.compatible(16) and D.compatible(15) and D.compatible(14)and D.compatible(13)and D.compatible(12)and D.compatible(11)and D.compatible(10),'expanded runs retain all previous economy rules')
 for _,c in ipairs(Content.chapters)do for _,mode in ipairs(D.order)do
  local old,new=D.completion(c,mode,10),D.completion(c,mode,11)
  check(new.gold==math.floor(old.gold*4/5),'20 percent reduction rounded down: '..c.id..' '..mode)
@@ -14,7 +14,7 @@ for _,c in ipairs(Content.chapters)do for _,mode in ipairs(D.order)do
  check(oldKills.gold==newKills.gold and oldKills.xp==newKills.xp and oldKills.health==newKills.health,'kill rewards and combat unchanged')
 end end
 check(D.completion(Content.byId['DW-05'],'Easy',10).gold==135,'existing DW-05 completion stays 135')
-check(D.completion(Content.byId['DW-05'],'Easy').gold==108,'new DW-05 completion becomes 108')
+check(D.completion(Content.byId['DW-05'],'Easy').gold==54,'new DW-05 completion becomes 54')
 check(Summary.mission(Content.byId['DW-05'],'Easy',1,11).gold==164,'DW-05 kill Gold stays 164; total 272')
 local p=assert(R.addHero(R.new(71),'hero','knight',Items))
 for i=1,7 do E.story(p,{chapter='DW-0'..i,coins=0},'hero')end

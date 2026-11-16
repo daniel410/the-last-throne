@@ -379,6 +379,10 @@ local function atStorage(player)
  for _,chest in ipairs(options.chests or {options.chest}) do if (root.Position-chest.Position).Magnitude<=14 then return true end end
  return false
 end
+function Service.goldBalance(player)
+ local state=accounts[player]
+ return state and state.valid and state.profile and state.profile.wallet and state.profile.wallet.gold or nil
+end
 function Service.snapshot(player)
 	local state = accounts[player]
 	local context = options.heroSession.getInventoryContext(player)

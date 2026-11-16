@@ -11,6 +11,7 @@ local Sizing=require(script.Parent.Parent.World.StoryMonsterSizing)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
 local Difficulty=require(ReplicatedStorage.Shared.Difficulty)
+local Gold=require(ReplicatedStorage.Shared.GoldRewardTuning)
 local Checkpoints=require(ReplicatedStorage.Shared.CheckpointTravel)
 local travelCheckpoint
 local Service={}
@@ -64,7 +65,7 @@ local function publish(player,message,notice,completion)
  local offer=offers[player];local ctx,root=context(player)
  local admission=options.inventory.expedition(player,h.heroId)
  if offer and (not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16) then offers[player]=nil;offer=nil end
- remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),routePartySize=admittedCount(player,admission),heroId=h.heroId,training=h.training,journal=s,expedition=admission,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
+ remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),routePartySize=admittedCount(player,admission),heroId=h.heroId,training=h.training,gold=options.inventory.goldBalance and options.inventory.goldBalance(player),journal=s,expedition=admission,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
  local run=options.inventory.expedition(player,heroId)
@@ -148,7 +149,7 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
     local run=options.inventory.expedition(player,e.heroId)
     local firstClear=before and before.expeditionFirstClear
     if firstClear==nil then firstClear=not run or run.firstClear end
-    local reward=run and not firstClear and Difficulty.completion(e.c,run.difficultyId,run.balanceVersion or 1)or {xp=e.c.reward.xp,gold=e.c.reward.coins}
+    local reward=run and not firstClear and Difficulty.completion(e.c,run.difficultyId,run.balanceVersion or 1)or {xp=e.c.reward.xp,gold=Gold.first(e.c.reward.coins,run and (run.balanceVersion or 1))}
     if run and (run.balanceVersion or 1)>=16 then
      local budget=require(ReplicatedStorage.Shared.CampaignGrowthBudget)
      reward.xp=budget.questXP(e.c.id,run.difficultyId,run.balanceVersion,run.growthCycle)or reward.xp

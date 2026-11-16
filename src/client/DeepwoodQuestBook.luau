@@ -38,7 +38,7 @@ function Book.create(parent,track)
   for _,v in ipairs(list:GetChildren()) do if v:IsA('GuiObject') then v:Destroy() end end
   for name,b in pairs(buttons) do b.Caption.TextColor3=name==tab and Theme.color.gold or Theme.color.text end
   local s=current.journal
-  coins.Text=string.format('Gold earned: %d\nConfirmed progress is saved.',s.coins+(s.killCoins or 0))
+  coins.Text=type(current.gold)=='number'and string.format('Gold balance: %d\nConfirmed progress is saved.',current.gold)or 'Confirmed progress is saved.'
   if tab=='Main' then
    local c=Log.main(s)
    local epic=math.min(#Content.epics,math.floor(s.main/7)+1);local info=Content.epics[epic]
@@ -49,7 +49,7 @@ function Book.create(parent,track)
     local recap=Guide.recap(s,c)
     if recap then card(Guide.text.recap,{recap})end
     local phase,index,total=Log.phase(s,c)
-    card(string.format('MAIN STORY %d / 7 · %s',(c.number-1)%7+1,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,s.expeditionMission and Content.byId[s.expeditionMission] and Content.byId[s.expeditionMission].side and 'CONTINUE MAIN STORY' or 'TRACK MAIN STORY')
+    card(string.format('MAIN STORY %d / 7 · %s',(c.number-1)%7+1,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c,s.expeditionBalanceVersion)},function() track(c.id) end,s.expeditionMission and Content.byId[s.expeditionMission] and Content.byId[s.expeditionMission].side and 'CONTINUE MAIN STORY' or 'TRACK MAIN STORY')
     local currentPhase=c.quest.phases[index];local lines={}
     for _,id in ipairs(currentPhase.goals) do local g=P.goal(c,id);if P.required(s,g)then table.insert(lines,(s.flags[c.id..':'..id] and '✓ ' or '□ ')..g.title)end end
     card('CURRENT PHASE',lines)
@@ -73,7 +73,7 @@ function Book.create(parent,track)
    local count=0
    for _,c in ipairs(Content.chapters) do if c.side and Content.accessible(s,c.minMain,c.legacyMinMain) and not s.clears[c.id] and (c.id~='DW-Q1' or P.accepted(s,c)) then
     count+=1;local status=Log.status(s,c)
-    local lines={c.quest.brief,'Status: '..status,Log.reward(c)}
+    local lines={c.quest.brief,'Status: '..status,Log.reward(c,s.expeditionBalanceVersion)}
     if status=='Available' then table.insert(lines,c.quest.discoveryOnly and 'Find the field clue in '..Content.zones[c.zone].name..'.' or 'Quest giver: '..c.quest.giver..' · Elder Tree Outpost')
     else local t=Log.target(s,c);if t then table.insert(lines,'Next: '..t.goal.title) else table.insert(lines,'Continue the main story to reach '..c.quest.giver..'.') end end
     card(c.title,lines,function() track(c.id) end,status=='Available' and (c.quest.discoveryOnly and 'FIND CLUE' or 'FIND QUEST GIVER') or status=='Ready to report' and 'TRACK REPORT' or status:find('Waiting',1,true) and 'CONTINUE MAIN STORY' or 'TRACK SIDE QUEST')

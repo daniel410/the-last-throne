@@ -1,6 +1,7 @@
 local Economy=game and require(game:GetService('ReplicatedStorage').Shared.EconomyCatalog)or dofile('src/shared/EconomyCatalog.luau')
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local P=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
+local Gold=game and require(game:GetService('ReplicatedStorage').Shared.GoldRewardTuning)or dofile('src/shared/GoldRewardTuning.luau')
 local Log={text={progressConfirmed='Progress confirmed. Follow the next objective.',returnToControl='Return to the resident or control to continue.'}}
 -- Saved progression, rather than a completion-card button, drives main tracking.
 -- Snapshots can arrive before the one-shot completion event after a save.
@@ -102,13 +103,13 @@ function Log.dialogueAdvanced(previous,current)
  local step=P.nextStep(current.journal,c,g)
  return not step or step.id~=d.step
 end
-function Log.reward(c)
+function Log.reward(c,version)
  if c.reward.xp==0 and c.reward.coins==0 then return 'No fixed XP or Gold. Combat rewards are earned separately.' end
  local materials={}
  if c.reward.ore then table.insert(materials,string.format('%d Iron Ore',c.reward.ore))end
  if c.reward.gems then table.insert(materials,string.format('%d Enhancement Gem(s)',c.reward.gems))end
  local diamonds=Economy.storyDiamondIds[c.id]and string.format(' · Diamonds: Easy %d / Hard %d / Insane %d / Hell %d, once per hero per difficulty',Economy.storyDiamondsByMode.Easy,Economy.storyDiamondsByMode.Hard,Economy.storyDiamondsByMode.Insane,Economy.storyDiamondsByMode.Hell)or ''
- return string.format('On quest completion: %d XP · %d Gold%s. Items go to your bag or unclaimed rewards.',c.reward.xp,c.reward.coins,(#materials>0 and ' · '..table.concat(materials,' · ')or '')..diamonds)
+ return string.format('On quest completion: %d XP · %d Gold%s. Items go to your bag or unclaimed rewards.',c.reward.xp,Gold.first(c.reward.coins,version),(#materials>0 and ' · '..table.concat(materials,' · ')or '')..diamonds)
 end
 function Log.choices(s,c)
  local rows={}

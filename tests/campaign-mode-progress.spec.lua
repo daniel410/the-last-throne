@@ -73,7 +73,7 @@ for _,mode in ipairs(D.order)do
  for _,c in ipairs(C.mainChapters)do
   local before=R.copy(p.heroes.hero.expeditions.modeJournals)
   check(A.projection(p.heroes.hero).expeditionFirstClear,'first quest payout belongs to mode '..mode..':'..c.id)
-  p=finish(p,c,run);expectedGold=expectedGold+c.reward.coins
+  p=finish(p,c,run);expectedGold=expectedGold+load('GoldRewardTuning').first(c.reward.coins)
   check(p.heroes.hero.expeditions.modeJournals[mode].main==c.number,'mode campaign frontier advances')
   check(p.heroes.hero.expeditions.modeRewardClaims[mode][c.id],'mode reward receipt committed')
   for _,other in ipairs(D.order)do if other~=mode then
@@ -145,7 +145,7 @@ for _,mode in ipairs({'Hard','Easy'})do
  total=total+load('CampaignXPRewards')[mode]['DW-01'].quest
  check(Growth.totalXP(xpProfile.heroes.hero.progression)==total,'actual quest XP credited on '..mode)
 end
-check(xpProfile.wallet.gold==first.reward.coins*2 and gearCount(xpProfile)==2,'first Gold and equipment paid separately on both modes')
+check(xpProfile.wallet.gold==load('GoldRewardTuning').first(first.reward.coins)*2 and gearCount(xpProfile)==2,'first Gold and equipment paid separately on both modes')
 check(xpProfile.wallet.diamonds==8,'Hard 5 plus Easy 3 Diamonds remain separate and exact')
 -- Lost final-save response: retries see the committed mode receipt, not a fresh
 -- profile, and an overlapping server cannot acquire the account lease.

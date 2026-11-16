@@ -22,16 +22,20 @@ for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,
    check(reward.TextBounds.Y<=reward.AbsoluteSize.Y+1,'wrapped reward fits height at '..size.X..' '..row.Name)
    check(reward.Position.Y.Offset+reward.Size.Y.Offset<=row.Size.Y.Offset,'reward remains in row')
    local id=row.Name:sub(7)
-   if id=='DW-Q1'then check(reward.Text:find('60 XP · 100 Gold · 2 Iron Ore',1,true),'side reward text matches actual fixed grant')end
-   if id=='GW-01'then check(reward.Text:find('180 XP · 250 Gold',1,true),'Gloamwood first completion reward visible')end
+   if id=='DW-Q1'then check(reward.Text:find('60 XP · 70 Gold · 2 Iron Ore',1,true),'side reward text matches actual fixed grant')end
+   if id=='GW-01'then check(reward.Text:find('180 XP · 175 Gold',1,true),'Gloamwood first completion reward visible')end
   end end
  end
 end
 local book=require(client.DeepwoodQuestBook).create(gui,function()end)
 local state=assert(P.accept(P.new(),'DW-Q1',true))
-book.render({journal=state});book.setTab('Side')
+book.render({journal=state,gold=137});book.setTab('Side')
 local text={};for _,v in ipairs(book.panel:GetDescendants())do if v:IsA('TextLabel')then table.insert(text,v.Text)end end
-check(table.concat(text,'\n'):find('60 XP · 100 Gold · 2 Iron Ore',1,true),'battle quest book shares fixed reward definition')
+check(table.concat(text,'\n'):find('60 XP · 70 Gold · 2 Iron Ore',1,true),'battle quest book shares fixed reward definition')
+check(book.panel.Coins.Text:find('Gold balance: 137',1,true),'actual wallet balance is shown instead of historical journal checksum')
+state.expeditionBalanceVersion=18;book.render({journal=state,gold=137})
+text={};for _,v in ipairs(book.panel:GetDescendants())do if v:IsA('TextLabel')then table.insert(text,v.Text)end end
+check(table.concat(text,'\n'):find('60 XP · 100 Gold · 2 Iron Ore',1,true),'old pinned field reward stays visible')
 book.panel:Destroy();gui:Destroy()
 print('QUEST_REWARD_UI_NATIVE '..game.HttpService:JSONEncode(report))
 return report

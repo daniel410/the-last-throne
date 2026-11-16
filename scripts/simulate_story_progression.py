@@ -20,12 +20,14 @@ def main():
  prologue={q['id']:q for q in json.loads((ROOT/'assets/maps/dawnspire-prologue-v1/scenario-data.json').read_text())}
  old=current=cumulative(budget['start']['level'])+budget['start']['xp_in_level'];coins=budget['start']['coins'];rows=[]
  for q in budget['rows']:
+  assert q['current_quest_gold']==(q['quest_coins'] if q['id'].startswith('DS') else q['quest_coins']*7//10),q['id']+' current Gold mismatch'
   if q['id'].startswith('DS'):
    src=prologue[q['id']];mobs=[(m['level'],m['count'],m['boss']) for m in src['encounters']]
    assert src['quest_xp']==q['quest_xp'] and src['quest_coins']==q['quest_coins']
   elif q['id'].startswith('DW'):mobs=dw[int(q['id'][-2:])-1]
   else:
    src,mobs=sources[q['id']]
+   assert src['gold_rules_version']==19 and src['current_quest_gold']==q['current_quest_gold'],q['id']+' scenario current Gold mismatch'
    assert src['quest_xp']==q['quest_xp'] and src['coins']==q['quest_coins'],q['id']+' source rewards mismatch'
    assert src['repeat_quest_xp']==q['repeat_quest_xp'],q['id']+' repeat XP mismatch'
   combat=sum((enemy['xp_base']+enemy['xp_per_level']*lv)*(enemy['boss_xp_multiplier'] if boss else 1)*count for lv,count,boss in mobs)
@@ -34,7 +36,7 @@ def main():
   assert q['repeat_quest_xp']==(0 if q['safe_hub'] or q.get('first_clear_only') else q['quest_xp']//4)
   assert f'퀘스트XP{q["quest_xp"]}' in (ROOT/q['scenario']).read_text(),q['id']+' document XP mismatch'
   start=locate(current);old+=q['legacy_quest_xp']+combat;current+=q['quest_xp']+combat;coins+=q['quest_coins']+loot
-  rows.append({'id':q['id'],'name':q['name'],'quest_coins':q['quest_coins'],'existing_quest_xp':q['legacy_quest_xp'],'proposed_quest_xp':q['quest_xp'],'applied_quest_xp':q['quest_xp'],'repeat_quest_xp':q['repeat_quest_xp'],'target':q['target_level'],'planned_main_enemy_count':sum(c for _,c,_ in mobs),'start_adjusted':start,'cumulative_stat_points_earned':4*(locate(current)['level']-1),'cumulative_skill_points_earned':locate(current)['level']-1,'combat_xp_draft':combat,'kill_coins_draft':loot,'total_coins_draft':q['quest_coins']+loot,'cumulative_gross_coins_draft':coins,'baseline_finish':locate(old),'quest_xp_delta':q['quest_xp']-q['legacy_quest_xp'],'total_adjusted_xp':q['quest_xp']+combat,'adjusted_finish':locate(current),'baseline_reaches_target':locate(old)['level']>=q['target_level'],'baseline_exceeds_target':locate(old)['level']>q['target_level'],'adjusted_reaches_target':locate(current)['level']==q['target_level']})
+  rows.append({'id':q['id'],'name':q['name'],'quest_coins':q['quest_coins'],'current_quest_gold':q['current_quest_gold'],'existing_quest_xp':q['legacy_quest_xp'],'proposed_quest_xp':q['quest_xp'],'applied_quest_xp':q['quest_xp'],'repeat_quest_xp':q['repeat_quest_xp'],'target':q['target_level'],'planned_main_enemy_count':sum(c for _,c,_ in mobs),'start_adjusted':start,'cumulative_stat_points_earned':4*(locate(current)['level']-1),'cumulative_skill_points_earned':locate(current)['level']-1,'combat_xp_draft':combat,'kill_coins_draft':loot,'total_coins_draft':q['quest_coins']+loot,'cumulative_gross_coins_draft':coins,'baseline_finish':locate(old),'quest_xp_delta':q['quest_xp']-q['legacy_quest_xp'],'total_adjusted_xp':q['quest_xp']+combat,'adjusted_finish':locate(current),'baseline_reaches_target':locate(old)['level']>=q['target_level'],'baseline_exceeds_target':locate(old)['level']>q['target_level'],'adjusted_reaches_target':locate(current)['level']==q['target_level']})
  assert len(rows)==32 and len({q['id'] for q in rows})==32
  assert rows[3]['adjusted_finish']=={'level':5,'xp_in_level':0,'next_level_xp':200}
  assert rows[3]['cumulative_gross_coins_draft']==198

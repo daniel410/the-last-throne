@@ -114,7 +114,7 @@ local easyBefore=R.copy(hard.heroes.hero.expeditions.modeJournals.Easy)
 hard=begin(hard,'DW-01','Hard','legacy_hard')
 local goldBefore,expectedGold=hard.wallet.gold,0
 for i=1,14 do local c=C.mainChapters[i]
- hard=finish(hard,c,'legacy_hard');expectedGold=expectedGold+c.reward.coins
+ hard=finish(hard,c,'legacy_hard');expectedGold=expectedGold+load('GoldRewardTuning').first(c.reward.coins)
 end
 check(hard.heroes.hero.expeditions.modeJournals.Hard.main==14,'Hard GW-07 completion advances its own real frontier')
 check(hard.heroes.hero.deepwood.main==28,'shared history recalculates the complete union past historical FV/EC')
@@ -188,7 +188,7 @@ local hauntedXP=G.totalXP(newQuest.heroes.hero.progression)
 local firstItems=equipment(newQuest)
 check(not newQuest.heroes.hero.expeditions.modeRewardClaims.Easy[haunted.id],'new Haunted chapter has no prior first reward receipt')
 newQuest=finish(newQuest,haunted,'legacy_new_quest')
-check(newQuest.wallet.gold-hauntedGold==haunted.reward.coins,'new chapter reached through replay receives its first Gold exactly once')
+check(newQuest.wallet.gold-hauntedGold==load('GoldRewardTuning').first(haunted.reward.coins),'new chapter reached through replay receives its first Gold exactly once')
 check(newQuest.wallet.diamonds-hauntedDiamonds==3,'new Easy chapter reached through replay receives its first Diamonds exactly once')
 check(G.totalXP(newQuest.heroes.hero.progression)-hauntedXP==load('CampaignXPRewards').Easy[haunted.id].quest,'new chapter reached through replay receives its actual first quest XP')
 check(newQuest.heroes.hero.expeditions.modeRewardClaims.Easy[haunted.id]and newQuest.heroes.hero.expeditions.modeJournals.Easy.clears[haunted.id],'new chapter clear and first reward receipt are committed together')

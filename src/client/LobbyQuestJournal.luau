@@ -69,7 +69,7 @@ function Journal.create(panel)
    title.TextTruncate=Enum.TextTruncate.AtEnd
    local state=T.label(row,'Status',current,UDim2.fromOffset(12,29),UDim2.new(1,-24,0,20),11,current==Text.Locked and T.color.muted or current==Text.Completed and T.color.green or T.color.gold)
    local detail=T.label(row,'Hint',hint,UDim2.fromOffset(12,49),UDim2.new(1,-24,0,32),11,T.color.text);detail.TextYAlignment=Enum.TextYAlignment.Top
-   local reward=T.label(row,'Reward',Log.reward(c),UDim2.fromOffset(12,84),UDim2.new(1,-24,0,34),11,T.color.gold);reward.TextWrapped=true;reward.TextYAlignment=Enum.TextYAlignment.Top
+   local reward=T.label(row,'Reward',Log.reward(c,active and (active.balanceVersion or 1)),UDim2.fromOffset(12,84),UDim2.new(1,-24,0,34),11,T.color.gold);reward.TextWrapped=true;reward.TextYAlignment=Enum.TextYAlignment.Top
    local height=math.max(34,game:GetService('TextService'):GetTextSize(reward.Text,reward.TextSize,reward.Font,Vector2.new(math.max(120,root.AbsoluteSize.X-40),1000)).Y+4)
    reward.Size=UDim2.new(1,-24,0,height);row.Size=UDim2.new(1,-8,0,90+height)
   end

@@ -1,0 +1,47 @@
+[
+  {
+    "test": "gold-reward-tuning",
+    "exit_code": 0,
+    "output": "Gold reward tuning: 8321 checks passed"
+  },
+  {
+    "test": "campaign-mode-progress",
+    "exit_code": 0,
+    "output": "Completed mode campaign: Easy\nCompleted mode campaign: Hard\nCompleted mode campaign: Insane\nCompleted mode campaign: Hell\nCampaign mode progress: 4621 checks passed"
+  },
+  {
+    "test": "campaign-mode-migration",
+    "exit_code": 0,
+    "output": "CAMPAIGN_MODE_MIGRATION 88 checks passed"
+  },
+  {
+    "test": "campaign-mode-legacy-replay",
+    "exit_code": 0,
+    "output": "Campaign mode legacy replay: 3723 checks passed"
+  },
+  {
+    "test": "economy",
+    "exit_code": 0,
+    "output": "Economy: 38 checks passed"
+  },
+  {
+    "test": "difficulty-reward-rates",
+    "exit_code": 0,
+    "output": "Difficulty reward rates: 2162 checks passed"
+  },
+  {
+    "test": "gold-diamond-tuning",
+    "exit_code": 0,
+    "output": "Gold/Diamond tuning: 1892 checks passed"
+  },
+  {
+    "test": "expedition-presentation",
+    "exit_code": 0,
+    "output": "Expedition presentation: 24 checks passed"
+  },
+  {
+    "test": "studio-test-defaults",
+    "exit_code": 0,
+    "output": "PASS: Studio defaults, four classes, account validation, mutation/rejoin preservation, fresh session and production isolation"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "conditions": 3384,
+  "fields": "authored first budget, completion XP/Gold/materials/cache, kill XP/Gold, enemy health/count",
+  "versions": "1-18",
+  "before_sha256": "e2fa094742f20ad5c8c5f0152163e54f084c57b54b9683d630efd418b5ddf735",
+  "after_sha256": "e2fa094742f20ad5c8c5f0152163e54f084c57b54b9683d630efd418b5ddf735"
+}

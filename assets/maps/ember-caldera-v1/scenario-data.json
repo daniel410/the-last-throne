@@ -74,7 +74,9 @@
     "filename": "ember-caldera-story-01-ash-gate.md",
     "quest_xp": 316,
     "repeat_quest_xp": 79,
-    "target_completion_level": 21
+    "target_completion_level": 21,
+    "gold_rules_version": 19,
+    "current_quest_gold": 294
   },
   {
     "n": 2,
@@ -138,7 +140,9 @@
     "filename": "ember-caldera-story-02-forge-city.md",
     "quest_xp": 92,
     "repeat_quest_xp": 0,
-    "target_completion_level": 21
+    "target_completion_level": 21,
+    "gold_rules_version": 19,
+    "current_quest_gold": 112
   },
   {
     "n": 3,
@@ -226,7 +230,9 @@
     "filename": "ember-caldera-story-03-collapsed-mine.md",
     "quest_xp": 600,
     "repeat_quest_xp": 150,
-    "target_completion_level": 23
+    "target_completion_level": 23,
+    "gold_rules_version": 19,
+    "current_quest_gold": 392
   },
   {
     "n": 4,
@@ -314,7 +320,9 @@
     "filename": "ember-caldera-story-04-coolant-canals.md",
     "quest_xp": 657,
     "repeat_quest_xp": 164,
-    "target_completion_level": 25
+    "target_completion_level": 25,
+    "gold_rules_version": 19,
+    "current_quest_gold": 476
   },
   {
     "n": 5,
@@ -396,7 +404,9 @@
     "filename": "ember-caldera-story-05-ancestral-design-vault.md",
     "quest_xp": 630,
     "repeat_quest_xp": 157,
-    "target_completion_level": 26
+    "target_completion_level": 26,
+    "gold_rules_version": 19,
+    "current_quest_gold": 504
   },
   {
     "n": 6,
@@ -480,7 +490,9 @@
     "filename": "ember-caldera-story-06-geothermal-testworks.md",
     "quest_xp": 745,
     "repeat_quest_xp": 186,
-    "target_completion_level": 28
+    "target_completion_level": 28,
+    "gold_rules_version": 19,
+    "current_quest_gold": 630
   },
   {
     "n": 7,
@@ -570,6 +582,8 @@
     "filename": "ember-caldera-story-07-great-furnace.md",
     "quest_xp": 843,
     "repeat_quest_xp": 210,
-    "target_completion_level": 30
+    "target_completion_level": 30,
+    "gold_rules_version": 19,
+    "current_quest_gold": 840
   }
 ]
