@@ -1,0 +1,25 @@
+{
+  "version": "0.111.2",
+  "pass": true,
+  "checks": 14394,
+  "probeSha256": "fa7c1f6b967f8801d71aff4d41fe67dc6ecc076c516699c4184b2e9679dfe333",
+  "results": [
+    {
+      "maxBeams": 48,
+      "failures": [],
+      "checks": 14266,
+      "missing": [],
+      "skills": 128,
+      "pass": true,
+      "pulses": 199,
+      "suite": "SKILL_ICON_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "WIND_LANCE_VISUAL_NATIVE",
+      "pass": true,
+      "checks": 128,
+      "suite": "WIND_LANCE_VISUAL_NATIVE"
+    }
+  ]
+}

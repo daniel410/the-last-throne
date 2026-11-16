@@ -33,9 +33,15 @@ run-in-roblox --place /tmp/tlt-icon-vfx-tests/qa.rbxlx --script /tmp/tlt-icon-vf
 
 ## 화면
 
-[동일 시점/카메라의 전후12장](comparison-sheet.png)·[각 화면/해시](comparisons.json). 왼쪽 Before / 오른쪽 After. 낮/밤 조명을 번갈아 사용한 합성 모형의 정지 화면이다. 원본 아이콘을 월드 평면에 붙인 그림이 아니라 실제 절차형 VFX 도형을 캡처했다. 작은 모형이 일부 형상을 가리며 실제 영웅/승인 장비/지역 합성 수용을 대신하지 않는다.
+[동일 시점/카메라의 전후12장](comparison-sheet.png)·[각 화면/해시](comparisons.json)·[정확한 비교 소스](comparison-provenance.json). 왼쪽 Before / 오른쪽 After. 낮/밤 조명을 번갈아 사용한 합성 모형의 정지 화면이다. 원본 아이콘을 월드 평면에 붙인 그림이 아니라 실제 절차형 VFX 도형을 캡처했다. 작은 모형이 일부 형상을 가리며 실제 영웅/승인 장비/지역 합성 수용을 대신하지 않는다.
 
 전체128종 [개별 화면/해시](skills/manifest.json)·[기사1](skills/knight-1.png)/[2](skills/knight-2.png)·[드워프1](skills/dwarf-1.png)/[2](skills/dwarf-2.png)·[엘프1](skills/elf-1.png)/[2](skills/elf-2.png)·[마법사1](skills/mage-1.png)/[2](skills/mage-2.png)·[추출 소스](all-capture-provenance.json). 동일 도구의 첫 확정 펄스와0.10초 시점으로128/128개를 추출했으며, 반복/귀환 구간의 회수는 위199구간 엔진 검사로 보완한다. 화면 추출·소멸 검증·성능 실측은 서로 구분한다.
+
+## 고정 빌드
+
+**0.111.2 PASS**. 기존 VFX 개선으로 MICRO를 증가했다. 원격 반영한 입력 커밋 `aa01073df8cb6bf3c15405d436d9efc426f2cfbf`에서 `python3 tools/build-game.py --source aa01073d --record docs/evidence/skill-icon-vfx-20261115/build.json`으로 단일 `builds/0.111.2/TheLastThrone-0.111.2.rbxlx`를 생성했다. [빌드 명령/결과](build.json)·[무결성](build-integrity.json): 19,808,247bytes. VFX5모듈의 빌드 Source는 전수 엔진·128장·전후12장에 사용한 소스와 SHA256이 모두 같다.
+
+이 **실제 빌드 파일**을 별도 Studio 문서에서 열고 BaseScript를 비활성화한 계정/저장 없는 조건으로128기술·199구간과 Wind Lance를 다시 실행했다. [추가2묶음·14,394검사 PASS](build-native.json). Studio Edit의 도형/수명 검사이며 서버·실제 Player·게시 클라이언트의 전투 시험이 아니다.
 
 ## 미검증·다음 담당
 

@@ -6,7 +6,7 @@
     "time": 0.08,
     "name": "Kite Shield",
     "width": 480,
-    "sha256": "27f7275586de8c1ee73c68a8ec4e08a82b26aacb3f877c925ddd8b34439283dc"
+    "sha256": "3fa216e75daf46932523a30b708970d7b821511f337702ed9acfcd02c6f65220"
   },
   {
     "clockTime": 0,
@@ -15,7 +15,7 @@
     "time": 0.08,
     "name": "Dawn Aegis",
     "width": 480,
-    "sha256": "c18183df1e180cb95231d9503cfcc70dcc883d1f952f773b09693bb6f14fe422"
+    "sha256": "07526589142efbe0932bcf5d66446a747adf6b70ea4fa6813b0994b2a61468cb"
   },
   {
     "clockTime": 12,
@@ -24,7 +24,7 @@
     "time": 0.08,
     "name": "Armor Split",
     "width": 480,
-    "sha256": "dabc5462548542bf6cf237c552d3418701144c0286706beee89fdc5c3069ef82"
+    "sha256": "a90f82e91e71606fce3003a9a366fe8d68672f50143b5795d524bf9eb8f11f8a"
   },
   {
     "clockTime": 0,
@@ -33,7 +33,7 @@
     "time": 0.08,
     "name": "Skipping Charge",
     "width": 480,
-    "sha256": "22b37cbaf819ee843277dc36f4c0934f490437456a3315dafec2275b9b0b526d"
+    "sha256": "c586801fc4f604f93ff217b88460b180ee186217d34bd84cdf7573a9fbce8fe7"
   },
   {
     "clockTime": 12,
@@ -42,7 +42,7 @@
     "time": 0.08,
     "name": "Bloom Shot",
     "width": 480,
-    "sha256": "1032913cedb6760c4f0a6eb807a4fc8201de3c75b23d6cc652f4e1c180e02985"
+    "sha256": "c538949acbecfd4e22cda96dded6688e6a2842b34b9572cadd56a3537fbcf5f9"
   },
   {
     "clockTime": 0,
@@ -51,7 +51,7 @@
     "time": 0.08,
     "name": "Echo Arrows",
     "width": 480,
-    "sha256": "8f77de64467fa8d0e1ea04f7cb3928f3c7be04279c5ee34ae04d515171a15fb7"
+    "sha256": "f7753b3a7c9a333fff79c95d0411b5c545ae5427637e0b5937521d0ce125669b"
   },
   {
     "clockTime": 12,
@@ -60,7 +60,7 @@
     "time": 0.08,
     "name": "Glacial Spike",
     "width": 480,
-    "sha256": "b1d3d528c5ae9dafd3846102b4cc11859c158e0b0f0b404af149cf8c6e67bea9"
+    "sha256": "cbaa5c013909a51c652a4646060c595fe214e32bf58360a543dd3ff72826ad46"
   },
   {
     "clockTime": 0,
@@ -69,7 +69,7 @@
     "time": 0.08,
     "name": "Water Ball",
     "width": 480,
-    "sha256": "652c14d1a6418ad711fdbe69b44735ee6b975571b9df4332c0de1e7ef11f45f1"
+    "sha256": "e52b9979a1f01c7c091885a6f492e3341c1f349839e4f17fb4442c5fba446c5f"
   },
   {
     "clockTime": 12,
@@ -78,7 +78,7 @@
     "time": 0.08,
     "name": "Gravity Field",
     "width": 480,
-    "sha256": "b1e82d55a9ae49c1baad64c85c1f4127dfcd7d4746c711792c1aee34eb399ecf"
+    "sha256": "ad03c967587d23160cdac39e75ee77302ff0b9b595ad96060ef1cac032e93591"
   },
   {
     "clockTime": 0,
@@ -87,7 +87,7 @@
     "time": 0.08,
     "name": "Wind Lance",
     "width": 480,
-    "sha256": "6d93f19fbba32d2217b7fd90b0cd2a564511979317ec0404d345a4deb8bb4271"
+    "sha256": "0333b01a210859a2d27946232246f748633134d5786d8c704b2da2c45e5e6b31"
   },
   {
     "clockTime": 12,
@@ -96,7 +96,7 @@
     "time": 0.08,
     "name": "Vine Trap",
     "width": 480,
-    "sha256": "3c0e8cbe99ea509178a700b5d69a03502205c5829a7d13f86cb738ebf52c3927"
+    "sha256": "871a22b4618aa72021ece7d305ac8e6c3ca6ef8eb4d4deb484852a3215929f31"
   },
   {
     "clockTime": 0,
@@ -105,6 +105,6 @@
     "time": 0.08,
     "name": "Dawn Spiral",
     "width": 480,
-    "sha256": "c1b2b0608816978ef36ffd1a8121f44bdb5a64c639ec8388d9c5cbb3de4c21cb"
+    "sha256": "12c3745f6b8c5e0db0645cfd46118369db76b3ece7b6206a9384cadd00a4d6ce"
   }
 ]

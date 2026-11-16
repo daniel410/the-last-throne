@@ -1,0 +1,34 @@
+{
+  "pass": true,
+  "version": "0.111.2",
+  "sourceCommit": "aa01073df8cb6bf3c15405d436d9efc426f2cfbf",
+  "bytes": 19808247,
+  "sha256": "c8290d9612578ff83e88a3ffe87dec75fb67b421884fd98ba2fa0ac0681e471f",
+  "modules": [
+    {
+      "path": "src/client/HeroVFX.luau",
+      "sha256": "fdb8c79d1a1b066eabd5fe6bbff480f25a864d6836078568c4544678cac841f4",
+      "matchesNativeAndAllCaptures": true
+    },
+    {
+      "path": "src/client/SkillVFXProfiles.luau",
+      "sha256": "cd1cfb9d6d18e1f035c61b70b3e18477e581526e598dce231aa4907e3a7f8709",
+      "matchesNativeAndAllCaptures": true
+    },
+    {
+      "path": "src/client/WindLanceVisual.luau",
+      "sha256": "6ed85f718f6446300e46052be34982c4348583bd480f674daad0ffc30b26a09c",
+      "matchesNativeAndAllCaptures": true
+    },
+    {
+      "path": "src/client/SkillIconVFX.luau",
+      "sha256": "08aa21c64f27b21cfff7a9193ff9eb4e9dbf0a5e18eed3c62b5c211f2b0af3d1",
+      "matchesNativeAndAllCaptures": true
+    },
+    {
+      "path": "src/client/SkillIconVFXProfiles.luau",
+      "sha256": "2e26b5d2088e4616f7bcfd17ccb04462f31641debc8f1a13cb55598b215e720e",
+      "matchesNativeAndAllCaptures": true
+    }
+  ]
+}
