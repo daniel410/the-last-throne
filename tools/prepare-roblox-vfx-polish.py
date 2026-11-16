@@ -20,10 +20,10 @@ with tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', 
 for file in source.rglob('*'):
     if file.is_file() and file.read_bytes().startswith(b'version https://git-lfs.github.com/spec/v1\n'):
         file.write_bytes(subprocess.check_output(['git', 'lfs', 'smudge'], input=file.read_bytes(), cwd=ROOT))
-overlays = ['CombatVFXStyle', 'HeroVFX', 'HeroVFXSurfaces', 'WindLanceVisual', 'K0SwordVisual', 'K0EnemyWeaponMotion',
+overlays = ['CombatVFXStyle', 'HeroVFX', 'HeroVFXArt', 'HeroVFXPolish', 'HeroVFXSurfaces', 'PixelFX', 'WindLanceVisual', 'K0SwordVisual', 'K0EnemyWeaponMotion',
             'EnemySpellArt', 'EnemySpellVFX', 'SelenePresentation', 'K0MageFocus']
-frozen = [name for name in overlays + ['HeroVFXArt', 'AdvancedSkillVisual',
-          'SkillIconVFX', 'PixelFX', 'SkillVFXProfiles'] if (source / f'src/client/{name}.luau').exists()]
+frozen = [name for name in overlays + ['AdvancedSkillVisual',
+          'SkillIconVFX', 'SkillVFXProfiles'] if (source / f'src/client/{name}.luau').exists()]
 for name in frozen:
     data = (source / f'src/client/{name}.luau').read_text()
     for dependency in frozen:
@@ -42,7 +42,7 @@ fixture = {'name': 'RobloxVFXPolishQA', 'tree': {'$className': 'DataModel',
     'ServerStorage': assets}}
 (out / 'qa.project.json').write_text(json.dumps(fixture, indent=2)+'\n')
 subprocess.run(['rojo', 'build', str(out / 'qa.project.json'), '-o', str(out / 'qa.rbxlx')], check=True)
-names = ['roblox-vfx-polish', 'skill-vfx-art', 'skill-icon-vfx', 'vfx-art-hero-fixes',
+names = ['rpg-vfx-gap', 'roblox-vfx-polish', 'skill-vfx-art', 'skill-icon-vfx', 'vfx-art-hero-fixes',
          'vfx-art-enemy-fixes', 'vfx-art-support-fixes', 'vfx-art-palette', 'vfx-review-followup',
          'arcade-impact-vfx', 'rpg-element-motion', 'rpg-vfx-motion', 'element-vfx', 'wow-vfx',
          'vfx-style-fit', 'curated-vfx', 'pixelfx', 'hero-vfx', 'wind-lance-visual',

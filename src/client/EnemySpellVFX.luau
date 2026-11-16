@@ -177,6 +177,10 @@ end
 function V.projectile(d,owner,sequence,origin,direction,at)
  local r=make(d,'projectile',owner,sequence,at,d.range/d.speed+.2);if not r then return nil end
  motif(r)
+ if r.profile.family=='frost'and r.parts[1]then
+  local original=r.parts[1]
+  part(r,'IceLuminousVein',Vector3.new(.075,.075,original.size.Z*.82),original.cf,'block',r.color:Lerp(Color3.fromRGB(200,245,255),.3),.23)
+ end
  local main=r.parts[1]and r.parts[1].part
  if main then
   local a=Instance.new('Attachment');a.Position=Vector3.new(-.12,0,0);a.Parent=main

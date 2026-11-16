@@ -61,7 +61,7 @@ end
 local function pair(id,name,category,age,extent,focus,make)
  if _G.PolishCaptureCategory and _G.PolishCaptureCategory~=category then return end
  if _G.PolishCaptureIds and not _G.PolishCaptureIds[id]then return end
- index+=1;clear();game.Lighting.ClockTime=index%2==0 and 0 or 12
+ index+=1;clear();game.Lighting.ClockTime=_G.PolishClockTime or (index%2==0 and 0 or 12)
  camera.CFrame=CFrame.lookAt(focus+Vector3.new(extent*.8,extent*.6,extent),focus)
  task.wait(.2)
  for variant=1,2 do

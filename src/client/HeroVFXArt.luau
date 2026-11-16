@@ -24,7 +24,8 @@ local function gem(r,name,tip,axis,length,width,color,material)
  local offsets={frame.RightVector*width,frame.UpVector*width,-frame.RightVector*width,-frame.UpVector*width}
  for i=1,4 do
   local shade=i%2==0 and color:Lerp(r.hot,.28) or color:Lerp(Color3.new(0,0,0),.18)
-  S.triangle(r,name,tip,waist+offsets[i],waist+offsets[i%4+1],shade,.22,material)
+  local faceMaterial=material==Enum.Material.Ice and i==1 and Enum.Material.Neon or material
+  S.triangle(r,name,tip,waist+offsets[i],waist+offsets[i%4+1],shade,.22,faceMaterial)
   S.triangle(r,name,tip-axis*length,waist+offsets[i%4+1],waist+offsets[i],shade,.3,material)
  end
 end
@@ -226,8 +227,8 @@ function Art.surfaces(r,c)
   end
  elseif kind=='WaterBall'then
   S.volume(r,'WaterVolume',c.last,Vector3.one*1.75,r.color,.42,'ball',Enum.Material.Glass)
-  S.volume(r,'WaterInnerGlow',c.last,Vector3.one*1.5,Color3.fromRGB(61,157,233),.53,'ball',Enum.Material.Neon)
-  S.volume(r,'WaterSurfaceGlow',c.last,Vector3.one*1.8,Color3.fromRGB(78,187,255),.76,'ball',Enum.Material.Neon)
+  S.volume(r,'WaterInnerGlow',c.last,Vector3.one*1.5,Color3.fromRGB(61,157,233),.33,'ball',Enum.Material.Neon)
+  S.volume(r,'WaterSurfaceGlow',c.last,Vector3.one*1.8,Color3.fromRGB(78,187,255),.61,'ball',Enum.Material.Neon)
   for i=1,3 do
    local angle=i*math.pi*2/3;local radial=c.right*math.cos(angle)+UP*math.sin(angle)
    local at=c.last+radial*.8
@@ -244,6 +245,7 @@ function Art.surfaces(r,c)
   local core=S.volume(r,'IceLanceVolume',c.last-c.dir*length*.5,Vector3.new(width*.75,width*.75,length),r.color,.4,'wedge',Enum.Material.Ice)
   orient(r,core,CFrame.lookAt(c.last-c.dir*length*.5,c.last))
   gem(r,'IceLanceFacet',c.last,c.dir,length,width,r.color,Enum.Material.Ice)
+  S.bar(r,'IceLanceLuminousSpine',c.last-c.dir*length*.9,c.last,.075,r.color:Lerp(r.hot,.4),.23,Enum.Material.Neon)
   if kind=='GlacialSpike'then
    for side=-1,1,2 do gem(r,'GlacialSideCrystal',c.last-c.dir*1.6+c.right*side*.65,c.dir,2,.4,r.color,Enum.Material.Ice)end
   end

@@ -9,6 +9,7 @@ local Geometry=require(script.Parent.SkillEffectGeometry)
 local Profiles=require(script.Parent.SkillVFXProfiles)
 local IconVFX=require(script.Parent.SkillIconVFX)
 local Art=require(script.Parent.HeroVFXArt)
+local Polish=require(script.Parent.HeroVFXPolish)
 local Surfaces=require(script.Parent.HeroVFXSurfaces)
 local Style=require(script.Parent.CombatVFXStyle)
 local Palette=require(RS.Shared.CombatVFXPalette)
@@ -304,35 +305,54 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
   end,flat,.6,.34,r.color,6,Enum.Material.SmoothPlastic)
  elseif key=='SpiritCanopy'then
   for i=1,3 do local a=i*math.pi*2/3;local radial=Vector3.new(math.cos(a),0,math.sin(a))
-   local function path(t)return floor+Vector3.yAxis*(3.2+math.sin(t*math.pi*.8)*3.2)+radial*radius*.48*t end
+   local function path(t)return floor+Vector3.yAxis*(3.4+math.sin(t*math.pi*.8)*3.8)+radial*radius*.48*t end
    curve(r,'SpiritCanopyBranch',function(t)return path(t)end,5,.26,palette.nature:Lerp(r.hot,.25))
    for n=1,3 do Surfaces.bar(r,'SpiritCanopyBough',path((n-1)/3),path(n/3),.38,palette.nature:Lerp(r.hot,.3),.2,Enum.Material.SmoothPlastic)end
    local tip=path(.8);local tangent=Vector3.new(-radial.Z,0,radial.X)
-   Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip-tangent*.65,tip+radial*1.5+Vector3.yAxis*.9,tip+tangent*.65,palette.nature,.36,Enum.Material.SmoothPlastic)
+   local mid=tip+radial*1.2-Vector3.yAxis*.6;local endLeaf=tip+radial*2.7-Vector3.yAxis*1.8
+   Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip,mid+tangent*1.1,endLeaf,palette.nature,.36,Enum.Material.SmoothPlastic)
+   Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip,endLeaf,mid-tangent*1.1,palette.nature:Lerp(r.hot,.2),.4,Enum.Material.SmoothPlastic)
+   Surfaces.bar(r,'SpiritCanopyLeafVein',tip,endLeaf,.075,palette.nature:Lerp(r.hot,.35),.25,Enum.Material.Neon)
   end
   for i=1,6 do local a=i*2.39996;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.45
-   local leaf=Surfaces.volume(r,'SpiritCanopyLeaf',at+Vector3.yAxis*.6,Vector3.new(.75,2.8,.26),palette.nature:Lerp(r.hot,.2),.22,'wedge')
+   local leaf=Surfaces.volume(r,'SpiritCanopyLeaf',at+Vector3.yAxis*.6,Vector3.new(.13,2.8,.13),palette.nature:Lerp(r.hot,.2),.22,'wedge')
    if leaf then local face=r.faces[#r.faces];face.cf=CFrame.new(leaf.Position)*CFrame.Angles(math.pi,0,.12);face.fall={height=5,duration=r.life*.78,delay=(i%3)*.015}end
+   if i<=6 then
+    local start=#r.faces;local head=at+Vector3.yAxis*.65
+    Surfaces.triangle(r,'SpiritDescendingArrow',head+right*.5+Vector3.yAxis*.7,head,head-right*.5+Vector3.yAxis*.7,palette.nature,.16)
+    for j=start+1,#r.faces do r.faces[j].fall={height=5,duration=r.life*.78,delay=(i%3)*.015}end
+   end
    line(r,'SpiritCanopyRain',function(u)local t=math.clamp((u*r.life-(i%3)*.015)/(r.life*.78),0,1);local y=5*(1-t*t);return at+Vector3.yAxis*(y+1),at+Vector3.yAxis*(y+.4)end,.08,palette.nature)
   end
  elseif key=='CalderaVents'then
+  Surfaces.volume(r,'CalderaCentralVent',floor+Vector3.yAxis*.15,Vector3.new(2.8,.6,2.6),Color3.fromRGB(68,43,29),.12,'wedge',Enum.Material.Slate)
+  curve(r,'CalderaMagmaSpine',function(t,u)return floor+Vector3.yAxis*(.2+t*(5+u*2))+right*math.sin(t*5+u*3)*.35 end,3,.65,palette.fire)
+  Surfaces.plume(r,'CalderaCentralPlume',floor+Vector3.yAxis*2,6,9,Color3.fromRGB(255,163,61),'rbxassetid://125374985892345',.12)
   for i=1,3 do local a=i*math.pi*2/3;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.22
-   tongue(r,'CalderaEruptionTongue',at,5.2+(i%2)*.8,1.55,a,palette.fire);atmosphere(r,'CalderaFire',at,true,4,1.5)
+   tongue(r,'CalderaEruptionTongue',at,8.2+(i%2)*1.8,1.9,a,palette.fire);atmosphere(r,'CalderaFire',at,true,4,2)
+   Surfaces.plume(r,'CalderaVentPlume',at+Vector3.yAxis*2,5,8,Color3.fromRGB(255,145,40),'rbxassetid://125374985892345',.18)
+   curve(r,'CalderaLivingJet',function(t,u)
+    local height=7+u*4;local drift=Vector3.new(math.cos(a+t*4),0,math.sin(a+t*4))
+    return at+Vector3.yAxis*(t*height+.3)+drift*math.sin(t*math.pi)*1.25
+   end,3,1.1,palette.fire)
   end
   for i=1,5 do local a=i*math.pi*2/5;local radial=Vector3.new(math.cos(a),0,math.sin(a))
    curve(r,'CalderaHotFissure',function(t)return floor+radial*radius*.78*t+right*math.sin(t*9+i)*.2+Vector3.yAxis*.05 end,3,.16,palette.fire)
    Surfaces.volume(r,'CalderaRockCollar',floor+radial*radius*.3+Vector3.yAxis*.4,Vector3.new(2.3,1.1,1.8),Color3.fromRGB(70,51,41),.16,'wedge',Enum.Material.Slate)
   end
  elseif key=='FrostFunnel'then
+  for layer=1,3 do
+   Surfaces.plume(r,'TempestVaporLayer',floor+Vector3.yAxis*(layer*2.2),3+layer,2.4,palette.frost,'rbxasset://textures/particles/smoke_main.dds',.80)
+  end
   for lane=1,3 do
-   curve(r,'TempestSpiral',function(t,u)local a=t*math.pi*2.2+lane*math.pi*2/3+u*1.5;local rad=math.min(radius*.16,3.5)*(.5+t*.5);return floor+Vector3.new(math.cos(a)*rad,.4+t*6,math.sin(a)*rad)end,7,.065,palette.frost:Lerp(r.hot,.2))
+   curve(r,'TempestSpiral',function(t,u)local a=t*math.pi*2.2+lane*math.pi*2/3+u*1.5;local rad=math.min(radius*.30,5.5)*(.35+t*.65);return floor+Vector3.new(math.cos(a)*rad,.4+t*10,math.sin(a)*rad)end,7,.065,palette.frost:Lerp(r.hot,.2))
   end
   for layer=1,3 do
    local start=#r.faces
    Surfaces.ribbon(r,'TempestEyeBand',function(t)
     local a=t*math.pi*1.7+layer*.9
-    local rad=math.min(radius*.24,4.6)*(1-layer*.1)
-    return floor+Vector3.new(math.cos(a)*rad,layer*1.4+math.sin(t*math.pi)*.4,math.sin(a)*rad)
+    local rad=math.min(radius*.32,6)*(1-layer*.1)
+    return floor+Vector3.new(math.cos(a)*rad,layer*2+math.sin(t*math.pi)*.7,math.sin(a)*rad)
    end,Vector3.yAxis,.55,.58,palette.frost,4,Enum.Material.SmoothPlastic)
    Surfaces.animate(r,start,floor,Vector3.yAxis,1.5,false,r.life)
   end
@@ -401,7 +421,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   end,12,width*(1-(lane-1)*.12))
  end
  local artContext={id=id,shape=shape,key=row.key,first=first,last=last,dir=dir,flat=flat,right=right,floor=floor,radius=radius,angle=angle,area=area,definition=d,character=character,pulse=pulse}
- if Art.strokes(r,artContext,line,curve)then
+ if Polish.strokes(r,artContext,line,curve)then
+ elseif Art.strokes(r,artContext,line,curve)then
   -- A distinct primary path replaces the generic elemental helix.
  elseif profile.signature then
   signature(r,profile.signature,first,floor,flat,right,radius,angle)
@@ -609,7 +630,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  IconVFX.draw(r,id,{first=first,last=last,flat=flat,right=right,floor=floor,radius=radius,area=area,definition=d,points=type(points)=='table' and points or {},pulse=pulse},line,curve)
  -- Filled silhouettes carry the effect; narrow beams remain as edge highlights.
  local surfaceOrigin=shape=="low"and floor or first
- if Art.surfaces(r,artContext)then
+ if Polish.surfaces(r,artContext)then
+ elseif Art.surfaces(r,artContext)then
   -- ART owns this primary silhouette. Existing range geometry remains separate.
  elseif profile.signature then
   -- The authored signature above already owns its filled silhouettes.
@@ -846,10 +868,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   if d.form=='cone'then r.model:SetAttribute('ForwardOnly',true)end
  end
  Art.accents(r,artContext)
+ Polish.finish(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
  if (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
-  flourish(r,at,d.ultimate and 4.5 or area and 3.2 or 2.2,row.key,d.ultimate)
+  flourish(r,at,id=="knight.paladin.oathbound_assault"and .55 or d.ultimate and 4.5 or area and 3.2 or 2.2,row.key,d.ultimate)
  end
  FX.step(r.at);return r.model
 end

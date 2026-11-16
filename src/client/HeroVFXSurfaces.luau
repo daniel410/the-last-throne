@@ -86,10 +86,27 @@ end
 function S.disc(r,name,at,radius,color,alpha)
  return part(r,name,Vector3.new(.06,radius*2,radius*2),CFrame.new(at)*CFrame.Angles(0,0,math.pi/2),color,alpha,'disc',nil,true)
 end
+-- Soft organic plumes retain world depth; one carrier shares the normal part budget.
+function S.plume(r,name,at,width,height,color,texture,opacity)
+ local carrier=S.volume(r,name,at,Vector3.one*.05,color,1)
+ if not carrier then return end
+ local gui=Instance.new('BillboardGui');gui.Name=name..'Veil';gui.Adornee=carrier
+ gui.AlwaysOnTop=false;gui.LightInfluence=0;gui.MaxDistance=100;gui.Size=UDim2.fromScale(width,height);gui.Parent=carrier
+ local image=Instance.new('ImageLabel');image.Name='FlowingMaterial';image.BackgroundTransparency=1
+ image.Size=UDim2.fromScale(1,1);image.Image=texture;image.ImageColor3=color;image.ImageTransparency=opacity;image.Parent=gui
+ if texture=='rbxassetid://125374985892345'then image.ImageRectSize=Vector2.new(96,96)end
+ r.faces[#r.faces].plume={gui=gui,image=image,width=width,height=height,alpha=opacity,atlas=texture=='rbxassetid://125374985892345'}
+end
 function S.step(r,u,fade)
  for _,v in ipairs(r.faces)do
   local faceFade=v.fadeDuration and math.clamp(u*r.life/v.fadeDuration,0,1)or fade
   v.part.Transparency=v.alpha+(1-v.alpha)*faceFade
+  if v.plume then
+   local p=v.plume
+   if p.atlas then local frame=math.clamp(10+math.floor(u*40),0,63);p.image.ImageRectOffset=Vector2.new(frame%8*128+16,math.floor(frame/8)*128+16)end
+   p.gui.Size=UDim2.fromScale(p.width*(.85+.15*math.sin(u*8)),p.height*(.85+u*.15))
+   p.gui.StudsOffsetWorldSpace=Vector3.yAxis*u*.8;p.image.ImageTransparency=p.alpha+(1-p.alpha)*fade
+  end
   if v.grow then v.part.Size=v.size*(.72+u*.65)end
   if v.rise or v.drift then v.part.CFrame=v.cf+(v.drift or Vector3.zero)*u+Vector3.yAxis*u*(v.rise or 0)end
   if v.motion then

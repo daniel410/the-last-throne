@@ -111,6 +111,7 @@ function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
   at=hit and hit.Position+Vector3.new(0,.16,0)or at-Vector3.new(0,2.7,0)
   return FX.emit(row.key,at,1.2,.24,opts)
  end
+ if id=='knight.paladin.oathbound_assault'then return FX.emit(row.key,at,.75,.14,opts)end
  local imported=Curated.keyFor(id)
  if imported then
   opts.curated=imported
