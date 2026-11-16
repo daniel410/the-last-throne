@@ -70,8 +70,8 @@ function Architecture.build(kind)
   -- than a freestanding wall. Included before placement so its complete bounds
   -- reserve the encounter/road clearance; Collision.apply owns the solid meshes.
   local Env=require(script.Parent.DeepwoodEnvironment)
-  for i,row in ipairs({{-15,-20,29,.35},{13,-20,24,-.6},{-2,-31,34,.1}})do
-   local rock=Env.asset(m,'VolcanoCliff',Vector3.new(row[1],-.5,row[2]),row[3])
+  for i,row in ipairs({{-13,-17,29,.2},{12,-17,24,-.3},{0,-24,34,0}})do
+   local rock=Env.asset(m,'VolcanoCliff',Vector3.new(row[1],-row[3]*.32,row[2]),row[3])
    rock:PivotTo(CFrame.Angles(0,row[4],0)*rock:GetPivot())
    rock.Name='MineQuarryMass'
    rock:SetAttribute('MineQuarryMass',true)
