@@ -1,7 +1,7 @@
 -- Blender-authored primitives retain their exact local rotations and proportions.
 local Templates=require(script.Parent.RegionalArchitectureTemplates)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Architecture={version=4}
+local Architecture={version=5}
 function Architecture.build(kind)
  local rows=assert(Templates[kind],'Unknown regional architecture '..kind)
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
@@ -39,6 +39,26 @@ function Architecture.build(kind)
     local band=K.beam(m,'AnchoredSilkBand',a,b,.36,Color3.fromRGB(201,217,234),Enum.Material.Fabric)
     band:SetAttribute('EpicDetailSolid',false);band:SetAttribute('TLTSceneryDistance',700);details+=1
    end
+  end
+ end
+ if kind=='BracedMineHead'then
+  -- EC-03: load-bearing uprights ground the existing rescue lintel and braces.
+  -- Static fittings remain inside the authored footprint; no new blocker.
+  local function fitting(name,size,pos,color,material)
+   local p=K.part(m,name,size,CFrame.new(pos),color,material)
+   p:SetAttribute('EpicDetailSolid',false);p:SetAttribute('TLTSceneryDistance',700)
+   p:SetAttribute('MineSupportDetail',true);details+=1
+  end
+  for _,side in ipairs({-1,1})do
+   fitting('MineStoneFoot',Vector3.new(3.8,.6,3.8),Vector3.new(side*10,.3,-2),Color3.fromRGB(83,79,77),Enum.Material.Basalt)
+   fitting('MineUpright',Vector3.new(2,16,2),Vector3.new(side*10,8.6,-2),Color3.fromRGB(104,72,46),Enum.Material.Wood)
+   for _,height in ipairs({2,14.8})do
+    fitting('MineIronCollar',Vector3.new(2.16,.55,2.16),Vector3.new(side*10,height,-2),Color3.fromRGB(62,65,68),Enum.Material.Metal)
+   end
+  end
+  -- Five sleepers connect the two original haul rails to the worked ground.
+  for i=0,4 do
+   fitting('MineRailSleeper',Vector3.new(14,.16,.65),Vector3.new(0,.08,4+i*2),Color3.fromRGB(82+(i%2)*6,61,44),Enum.Material.Wood)
   end
  end
  if kind=='HearthLonghouse'then

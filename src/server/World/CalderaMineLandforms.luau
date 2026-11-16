@@ -8,7 +8,7 @@ function M.plan(center,size)
  for _,side in ipairs({-1,1})do for i=1,5 do
   for offset=160,320,40 do
   local p=center+V(side*(size[1]/2+offset),0,(i-3)*size[2]/4)
-  local radius=96 -- encloses every lobe, plus two voxel widths
+  local radius=96 -- encloses every lobe, 6.37 studs of horizontal clearance
   local valid=not Bounds.region(p.X,p.Z,radius)and not Bounds.connection(p.X,p.Z,radius)
   for _,old in ipairs(cells)do if (p-old.position).Magnitude<140 then valid=false end end
   if valid then cells[#cells+1]={position=p,radius=radius,height=({66,98,54,86,70})[i],side=side,index=i};break end
