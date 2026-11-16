@@ -69,7 +69,7 @@ function Motion.bind(model)
  if not root or not torso or not joint or not body then return nil end
  local kind=model:GetAttribute('EnemyKind');local profile=profileFor(kind);if not profile then return nil end
  local seed=model:GetAttribute('K0EnemyMotionSeed') or (math.abs(root.Position.X*.13+root.Position.Z*.17)%1)
- local s={model=model,root=root,torso=torso,joint=joint,kind=kind,profile=profile,height=model:GetAttribute('TdMonsterTargetHeight') or 5,
+ local s={model=model,root=root,torso=torso,joint=joint,kind=kind,profile=profile,basicGesture=PatternPose.basic(kind),height=model:GetAttribute('TdMonsterTargetHeight') or 5,
   phase=seed%1,seed=seed,position=root.Position,look=root.CFrame.LookVector,move=0,turn=0,joints={},legs={},body=body,bodySize=body.Size,
   bodyPoints=groundPoints(body,torso,profile),bodyCenter=torso.CFrame:PointToObjectSpace(body.Position),pose=Motion.sample(kind,'Idle',seed%1)}
  local rest=joint.C0*joint.C1:Inverse();s.bodyBottom=lowest(rest,s.bodyPoints)
@@ -102,7 +102,7 @@ function Motion.step(s,dt,current)
   local humanoid=s.model:FindFirstChildOfClass('Humanoid')
   if not humanoid or humanoid.Health<=0 or s.model:GetAttribute('K0EnemyState')=='Dead'then WeaponMotion.hide(s.weaponFX);return end
   local phase,active,heavy,clock,jumped=CasterMotion.step(s.caster,s,dt,current,Motion.attackPhase)
-  s.caster.bones.Root.Transform=s.caster.pose.Root*(s.caster.locomotion or CFrame.identity)*HitReaction.sample(s.model,current)*(s.caster.active and PatternPose.accent(s.model,current,s.caster.attack)or CFrame.identity)
+  s.caster.bones.Root.Transform=s.caster.pose.Root*HitReaction.sample(s.model,current)
   WeaponMotion.step(s.weaponFX,phase,active,heavy,clock,current,s.viewDistance or 0,jumped)
   return
  end
@@ -124,6 +124,7 @@ function Motion.step(s,dt,current)
  local clock=s.model:GetAttribute('K0EnemyAttackClock')
  if clock~=s.clock then
   s.clock=clock;s.attack=nil
+  s.entryPose=s.pose
   if type(clock)=='string' then
    local v=string.split(clock,'|');local start,w,a,r=tonumber(v[2]),tonumber(v[3]),tonumber(v[4]),tonumber(v[5])
    if start and w and a and r and w>0 and a>0 and r>0 then
@@ -138,6 +139,12 @@ function Motion.step(s,dt,current)
  if stunned or state=='Exposed' then target=Motion.sample(s.kind,'Stunned',(current*.65+s.seed)%1)
  elseif s.attack and (state=='Windup' or state=='Active' or state=='Recovery') then
   local a=s.attack;attackPhase=PatternPose.phase(s.model,current,a)or Motion.attackPhase(current-a.start,a.w,a.a,a.r);target=Motion.sample(s.kind,a.clip,attackPhase)
+  -- A chase may end on either foot. Blend out of that stride before the tell peaks.
+  local join=(current-a.start)/math.min(.14,a.w*.24)
+  if s.entryPose and join<1 and s.model:GetAttribute('K0PatternId') then
+   local u=clamp(join,0,1)
+   target=mix(s.entryPose,target,u*u*(3-2*u))
+  end
  end
  -- Attack timing is sampled directly; smoothing it would delay the impact.
  -- Reviewed gaits are already continuous distance samples. A second pose lerp
@@ -148,7 +155,12 @@ function Motion.step(s,dt,current)
  local cross=s.look:Cross(look).Y;s.look=look;s.turn=s.turn+(clamp(cross/math.max(dt,.001),-2,2)-s.turn)*(1-math.exp(-dt*9))
  local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,(-s.turn*.025-s.side*.045)*s.move)
  rootFrame=rootFrame*HitReaction.sample(s.model,current)
- if attackActive then rootFrame=rootFrame*PatternPose.accent(s.model,current,s.attack)end
+ local gesture,load,drive
+ if attackActive then
+  local accent
+  accent,gesture,load,drive=PatternPose.accent(s.model,current,s.attack,s.height,s.basicGesture)
+  rootFrame=rootFrame*accent
+ end
  local bodyInRoot=s.joint.C0*rootFrame*s.joint.C1:Inverse()
  if not s.profile.hasLegs then
   -- Robes/one-piece bodies keep their lower bound planted. Slime scales from
@@ -169,7 +181,9 @@ function Motion.step(s,dt,current)
   end
   if ch=='weapon' and s.model:GetAttribute('TdWeaponSwingReversed') then angles={-angles[1],angles[2],-angles[3]} end
   local transform=frame(angles)
-  if attackActive then transform=transform*PatternPose.joint(s.model,ch,attackPhase)end
+  if gesture and (ch=='weapon' or ch=='off') then
+   transform=transform*PatternPose.joint(s.model,ch,attackPhase,gesture,load,drive)
+  end
   local leg=s.legs[ch]
   if leg then
    local cf=bodyInRoot*motor.C0*transform*motor.C1:Inverse()

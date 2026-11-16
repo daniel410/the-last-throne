@@ -1,4 +1,5 @@
 -- Blender-authored per-species skin curves; no collision, damage or root movement.
+local SkinGait=require(script.Parent.EnemySkinGait)
 local PatternPose=require(script.Parent.EnemyPatternPose)
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local M={}
@@ -29,7 +30,11 @@ function M.bind(model)
  for _,b in visual:GetDescendants()do if b:IsA('Bone')then bones[b.Name]=b end end
  for _,name in data.bones do if not bones[name]then return nil end end
  local scale=model:GetAttribute('TdMonsterScale')or 1
- return {skinned=true,kind=kind,bones=bones,data=data,scale=scale,position=model.HumanoidRootPart.Position,phase=0,pose=M.sample(kind,'Idle',0,scale)}
+ local left,right
+ if bones.Wing_L then left,right='Wing_L','Wing_R'
+ elseif bones.LegUpper_L_1 then left,right='LegUpper_L_1','LegUpper_R_1'
+ elseif bones.ArmL then left,right='ArmL','ArmR' end
+ return {skinned=true,kind=kind,bones=bones,leadLeft=left,leadRight=right,data=data,scale=scale,position=model.HumanoidRootPart.Position,phase=0,pose=M.sample(kind,'Idle',0,scale)}
 end
 function M.reset(c)
  if not c then return end
@@ -38,15 +43,9 @@ end
 function M.stepSkinned(c,s,dt,current,attackPhase)
  local model=s.model;local state=model:GetAttribute('K0EnemyState');local humanoid=model:FindFirstChildOfClass('Humanoid')
  if not humanoid or humanoid.Health<=0 or state=='Dead'then M.reset(c);return end
- local delta=s.root.Position-c.position
- local distance=Vector3.new(delta.X,0,delta.Z).Magnitude;c.position=s.root.Position;s.position=c.position
  local stunned=(model:GetAttribute('K0EnemyStunUntil')or 0)>current or (model:GetAttribute('K0EnemyHitUntil')or 0)>current
- local moving=state=='Chase' and not stunned and distance>.001 and distance<math.max(3,s.height*1.5)
- local travel=s.root.CFrame:VectorToObjectSpace(delta)
- local backwards=distance>.001 and travel.Z/distance>.35
- local side=distance>.001 and math.clamp(travel.X/distance,-1,1)or 0
- c.side=(c.side or 0)+(side-(c.side or 0))*(1-math.exp(-dt*10))
- if moving then c.phase=(c.phase+distance/math.max(.5,s.height*.7)*(backwards and -1 or 1))%1 end
+ local moving=SkinGait.step(c,s.root,state=='Chase' and not stunned,s.height,math.max(.5,s.height*.7),dt,current)
+ s.position=c.position
  local clip=moving and 'Walk'or 'Idle';local phase=moving and c.phase or (current/c.data.clips.Idle.duration+s.seed)%1
  local clock=model:GetAttribute('K0EnemyAttackClock')
  if clock~=c.clock then
@@ -66,17 +65,32 @@ function M.stepSkinned(c,s,dt,current,attackPhase)
  local key=active and 'attack:'..tostring(clock)or clip
  if key~=c.key then c.key=key;c.from=table.clone(c.pose);c.transition=current end
  local target=M.sample(c.kind,clip,phase,c.scale)
+ local basis=c.bones.Root.CFrame.Rotation
+ local accent=CFrame.Angles(0,0,-c.side*.055)
+ if active then
+  local attackFrame,g,load,drive=PatternPose.accent(model,current,c.attack,s.height,s.basicGesture)
+  accent=accent*attackFrame
+  if g then
+   -- Each appendage stays on its authored bone. Body motion alone misses
+   -- the canopy of a wing stroke, a spider's front pair and the leading coil.
+   local left=c.leadLeft
+   if left then
+    target[left]=target[left]*PatternPose.joint(model,'off',phase,g,load,drive)
+    target[c.leadRight]=target[c.leadRight]*PatternPose.joint(model,'weapon',phase,g,load,drive)
+   elseif target.Segment0 then
+    local curve=math.rad(9*load-6*drive)
+    target.Segment0=target.Segment0*CFrame.Angles(0,curve,0)
+    target.Segment1=target.Segment1*CFrame.Angles(0,curve*.65,0)
+   end
+  end
+ end
+ target.Root=target.Root*basis:Inverse()*accent*basis
  local alpha=math.clamp((current-(c.transition or current))/.10,0,1)
  for _,name in c.data.bones do
   local cf=active and phase>=.5 and target[name]or c.from and c.from[name]:Lerp(target[name],alpha)or target[name]
   c.pose[name]=cf;c.bones[name].Transform=cf
  end
- -- Imported Root has a baked 180-degree rest rotation; convert reactions once.
- -- Legacy R6 bob/squash is bypassed for skinned monsters.
- local basis=c.bones.Root.CFrame.Rotation
- local accent=active and PatternPose.accent(model,current,c.attack)or CFrame.identity
- local locomotion=CFrame.Angles(0,0,moving and -c.side*.035 or 0)
- c.bones.Root.Transform=c.pose.Root*basis:Inverse()*HitReaction.sample(model,current)*locomotion*accent*basis
+ c.bones.Root.Transform=c.pose.Root*basis:Inverse()*HitReaction.sample(model,current)*basis
  c.clip=clip;c.samplePhase=phase;c.active=active==true;s.attack=c.attack
 end
 return M

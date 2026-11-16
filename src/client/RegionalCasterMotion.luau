@@ -1,6 +1,7 @@
 -- Deterministic imported Bone curves, driven by the existing server attack clock.
 local Clips=require(script.Parent.RegionalCasterClips)
 local Sockets=require(script.Parent.RegionalCasterSockets)
+local SkinGait=require(script.Parent.EnemySkinGait)
 local PatternPose=require(script.Parent.EnemyPatternPose)
 local Caster={}
 local names={'Root','Torso','UpperR','ForearmR','HandR','Staff','UpperL','ForearmL','HandL'}
@@ -30,15 +31,7 @@ end
 function Caster.step(c,s,dt,current,attackPhase)
  local model=s.model;local state=model:GetAttribute('K0EnemyState')
  local stunned=(model:GetAttribute('K0EnemyStunUntil') or 0)>current or (model:GetAttribute('K0EnemyHitUntil') or 0)>current
- local delta=s.root.Position-c.position
- local distance=Vector3.new(delta.X,0,delta.Z).Magnitude;c.position=s.root.Position
- local moving=state=='Chase' and not stunned and distance>.001 and distance<math.max(3,c.height*1.5)
- local travel=s.root.CFrame:VectorToObjectSpace(delta)
- local backwards=distance>.001 and travel.Z/distance>.35
- local side=distance>.001 and math.clamp(travel.X/distance,-1,1)or 0
- c.side=(c.side or 0)+(side-(c.side or 0))*(1-math.exp(-dt*10))
- if moving then c.phase=(c.phase+distance/(c.height*s.profile.stride)*(backwards and -1 or 1))%1 end
- c.locomotion=CFrame.Angles(0,0,moving and -c.side*.035 or 0)
+ local moving,distance=SkinGait.step(c,s.root,state=='Chase' and not stunned,s.height,c.height*s.profile.stride,dt,current)
  local clip=moving and 'Walk' or 'Idle';local phase=moving and c.phase or (current/s.profile.breathSeconds+s.seed)%1
  local clock=model:GetAttribute('K0EnemyAttackClock')
  if clock~=c.clock then
@@ -61,6 +54,17 @@ function Caster.step(c,s,dt,current,attackPhase)
  if key~=c.key then c.key=key;c.from=table.clone(c.pose);c.transition=current end
  local target=Caster.sample(c.kind,clip,phase,c.height)
  local alpha=math.clamp((current-(c.transition or current))/.1,0,1)
+ local lean=CFrame.Angles(0,0,-c.side*.055)
+ target.Root=target.Root*lean
+ if active then
+  local accent,g,load,drive=PatternPose.accent(model,current,c.attack,c.height,s.basicGesture)
+  target.Root=target.Root*accent
+  if g then
+   -- Leave the staff hierarchy intact at release. The free arm opens toward the spell.
+   target.UpperR=target.UpperR*PatternPose.joint(model,'weapon',phase,g,load,0)
+   target.UpperL=target.UpperL*PatternPose.joint(model,'off',phase,g,load,drive)
+  end
+ end
  local contact=active and phase>=.5
  for _,name in names do
   local frame=contact and target[name] or c.from and c.from[name]:Lerp(target[name],alpha)or target[name]
