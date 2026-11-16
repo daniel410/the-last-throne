@@ -100,7 +100,7 @@ local function firearm(character,d,seq)
  local arm=character:FindFirstChild("RightHand") or character:FindFirstChild("Right Arm")
  if not arm then return end
  local model=Instance.new("Model");model.Name="BranchSkillProp";model.Parent=character
- local record={model=model,hidden={},connections={}};props[character]=record
+ local record={model=model,hidden={},connections={},seq=seq,id=d.id};props[character]=record
  -- The temporary skill prop replaces the axe visually, never in inventory.
  local grip=character:FindFirstChild("WeaponGrip",true) or character:FindFirstChild("SwordGrip",true)
  local appearance=grip and grip.Parent
@@ -113,7 +113,8 @@ local function firearm(character,d,seq)
   local weld=Instance.new("WeldConstraint");weld.Part0=arm;weld.Part1=p;weld.Parent=p;return p
  end
  if d.element=="bomb" then
-  piece("Bomb",Vector3.one*.65,CFrame.new(0,-.35,-.25),Color3.fromRGB(65,66,72),Enum.PartType.Ball)
+  local bomb=piece("Bomb",Vector3.one*.65,CFrame.new(0,-.35,-.25),Color3.fromRGB(65,66,72),Enum.PartType.Ball)
+  local release=Instance.new("Attachment");release.Name="SkillMuzzle";release.Parent=bomb
   piece("Fuse",Vector3.new(.08,.25,.08),CFrame.new(0,.05,-.25),colors.bomb)
  else
   local heavy=d.element=="shell";local length=heavy and 2.3 or 1.7
@@ -189,6 +190,19 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   return
  end
  local first=source(character,origin,d)
+ local prop=props[character]
+ if d.element=="bomb" and prop and prop.seq==attackSeq and prop.id==id then
+  prop.pulse=pulse
+  for _,piece in prop.model:GetChildren() do piece.LocalTransparencyModifier=1 end
+  if pulse<d.pulses then
+   local drawAt=(firedAt or workspace:GetServerTimeNow())+d.interval*.34
+   task.delay(math.max(0,drawAt-workspace:GetServerTimeNow()),function()
+    if props[character]==prop and prop.pulse==pulse then
+     for _,piece in prop.model:GetChildren() do piece.LocalTransparencyModifier=0 end
+    end
+   end)
+  end
+ end
  local floor=ground(d.form=="area" and center or origin,character)
  local targetFloor=ground(center,character)
  local effect=profile.effect

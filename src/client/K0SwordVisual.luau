@@ -8,6 +8,7 @@ local EquipmentAssets = require(script.Parent.EquipmentAssetLoading)
 local Workspace = game:GetService("Workspace")
 local Config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
 local AdvancedMotion = require(script.Parent.AdvancedSkillMotion)
+local WeightShift = require(script.Parent.MeleeWeightShift)
 local MeleeMotion = require(script.Parent.K0MeleeMotion)
 local ShieldBashMotion = require(script.Parent.K0ShieldBashMotion)
 local BowMotion = require(script.Parent.K0BowMotion)
@@ -540,6 +541,11 @@ function Visual.renderArms(character, dt, now)
 		end
 	end
 	if motion then
+        local began = character:GetAttribute("K0AttackStartedAt")
+        if mode == "Attack" and type(began) == "number" and (classId == "knight" or classId == "dwarf") then
+            local rate = not skillId and character:GetAttribute("K0BasicAttackRate") or 1
+            WeightShift.apply(motion, classId, skillId, character:GetAttribute("K0Combo"), (now-began)*rate)
+        end
 		right, left, rightElbow, torso = motion.right, motion.left, motion.elbow, motion.torso
 		local humanoid = character:FindFirstChildOfClass("Humanoid")
 		if humanoid and humanoid.RigType == Enum.HumanoidRigType.R6 and motion.r6FollowAcross then
@@ -663,6 +669,7 @@ function Visual.renderArms(character, dt, now)
   if solved then blockState.solution=solved;blockState.target=solved.target end
  end
  applyBlockArms(blockState,now)
+ if classId=="knight" or classId=="dwarf" then return motion end
 end
 
 local function finite(value)
@@ -1062,7 +1069,7 @@ end
 
 -- Native fixtures may call this directly without installing a class-selection
 -- flow or making a preview character a persistent RPG character.
-function Visual.render(model, phase, combo, dt, attackKind, now)
+function Visual.render(model, phase, combo, dt, attackKind, now, meleePose)
 	local classId = classFor(model)
 	local spec = MELEE[classId]
 	if not spec then clearEffect(model); MageFocus.clear(model); return false end
@@ -1080,7 +1087,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	local skillId = character and character:GetAttribute("K0SkillId")
 	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, now or Workspace:GetServerTimeNow()) end
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
-	local motion = character and (AdvancedMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
+	local motion = meleePose or character and (AdvancedMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
 		or MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
 		or ShieldBashMotion.forCharacter(character, now or Workspace:GetServerTimeNow()))
 	local bowPose=character and BowMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
@@ -1140,7 +1147,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	return true
 end
 
-function Visual.renderCharacter(character, dt, now)
+function Visual.renderCharacter(character, dt, now, meleePose)
 	CombatAudio.renderCharacter(character, now or Workspace:GetServerTimeNow())
 	local classId = character:GetAttribute("K0ClassId") or "knight"
  local id=character:GetAttribute("K0SkillId")
@@ -1191,7 +1198,7 @@ function Visual.renderCharacter(character, dt, now)
 	local rendered = 0
 	for _, model in ipairs(character:GetChildren()) do
 		if model:IsA("Model") and classFor(model) == classId then
-			if Visual.render(model, character:GetAttribute("K0AttackPhase"), character:GetAttribute("K0Combo"), dt, character:GetAttribute("K0AttackKind"), now) then
+			if Visual.render(model, character:GetAttribute("K0AttackPhase"), character:GetAttribute("K0Combo"), dt, character:GetAttribute("K0AttackKind"), now, meleePose) then
 				rendered = rendered + 1
 			end
 			for _, name in ipairs({"K0LocalSwordFallback", "K0LocalShieldFallback"}) do
@@ -1217,11 +1224,12 @@ function Visual.start()
 	if started then return end
 	started = true
 	RunService.PreSimulation:Connect(function(dt)
+		local now = Workspace:GetServerTimeNow()
 		for _, player in ipairs(Players:GetPlayers()) do
 			if player.Character then
 				monitorKnightMeshes(player.Character)
-				Visual.renderArms(player.Character, dt)
-				Visual.renderCharacter(player.Character, dt)
+				local meleePose = Visual.renderArms(player.Character, dt, now)
+				Visual.renderCharacter(player.Character, dt, now, meleePose)
 			end
 		end
 	end)

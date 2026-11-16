@@ -10,6 +10,7 @@ end
 
 local Clips = require(script.Parent.K0MeleeClips)
 local DwarfMixamo = require(script.Parent.K0DwarfMixamoClips)
+local KnightThrust = require(script.Parent.K0KnightSkillThrust)
 local KnightReference = require(script.Parent.K0KnightReferenceCombo)
 local KnightVariants = require(script.Parent.K0KnightMixamoVariants)
 local channels = Clips.channels
@@ -58,6 +59,9 @@ end
 
 local function definitionFor(classId,combo,skillId)
  if skillId then
+  if classId=="knight" and skillId=="knight.skill.thrust" then
+   return Config.BasicAttackProfiles.knight.attacks[3],KnightThrust
+  end
   if classId=="knight" and skillId=="knight.common.whirlwind" then
    return Config.Skills.knight[2],KnightVariants["knight.mixamo.wide"]
   end
@@ -86,8 +90,11 @@ end
 -- The exported Bezier handles have one-third interval lengths, so each
 -- Blender segment is exactly a cubic Hermite segment in seconds/degrees.
 local function sampleAxis(keys, age)
- local segment=1
- for i=1,#keys-1 do if age>=keys[i][1] then segment=i end end
+ local segment, last = 1, #keys-1
+ while segment < last do
+  local middle = math.ceil((segment+last)/2)
+  if age >= keys[middle][1] then segment = middle else last = middle-1 end
+ end
  local a,b=keys[segment],keys[segment+1]
  local span=b[1]-a[1]
  local u=math.clamp((age-a[1])/span,0,1)
@@ -145,7 +152,7 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
   end
   result.angles[channel]=angles(unpack(v));result[channel]=rotation(unpack(v))
  end
- result.cutting=not definition.ranged and age>=w*.45 and age<=w+a and age<total
+ result.cutting=not definition.ranged and age>=impact-math.min(.085,w*.34) and age<=w+a and age<total
  -- The forward-facing held axe turns into the previously authored strike
  -- orientation during anticipation, before the cutting interval begins.
  if classId=="dwarf" then
