@@ -1,0 +1,47 @@
+{
+  "create": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"sourceMatch\":true,\"syntax\":523}"
+      }
+    ],
+    "isError": false
+  },
+  "verify": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"flags\":true,\"transitionSeconds\":4,\"parts\":28,\"poseDelta\":12,\"feet\":2,\"groupCount\":1,\"maxFootGap\":0,\"savedTags\":true}"
+      }
+    ],
+    "isError": false
+  },
+  "routes": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"4\":{\"chapters\":11,\"lowSteps\":0,\"connectors\":9,\"steps\":8093,\"samples\":8396,\"targets\":144,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0}}"
+      }
+    ],
+    "isError": false
+  },
+  "easyRoutes": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"4\":{\"chapters\":11,\"lowSteps\":0,\"connectors\":9,\"steps\":8223,\"samples\":8526,\"targets\":150,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0}}"
+      }
+    ],
+    "isError": false
+  },
+  "baseline": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"deck\":\"-847.8499755859375, 124.5999984741211, -11736.400390625\",\"base\":\"-847.8499755859375, 124, -11736.400390625\"}"
+      }
+    ],
+    "isError": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "baseline": "155c27a1",
+  "source": "e77945659bce3bf372de757de8814ead68587e9d",
+  "onlyHeadframeAndVersionChanged": true,
+  "origins": {
+    "src/server/World/EpicEnvironmentKit.luau": "f66910431ad5acc58fba0c44b0560894ccabc4d4",
+    "src/server/World/EmberCalderaWorld.luau": "b5f95e36dddd22d07e217c5ebd1050d86d4f8b26"
+  },
+  "baselinePlaceSHA256": "41358fb624bd20932ba40a9d31d0306a94b6b6244f6e0dc8e5ea505e9c195cd6"
+}
