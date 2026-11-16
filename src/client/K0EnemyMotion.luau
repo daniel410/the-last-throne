@@ -21,6 +21,7 @@ local CasterMotion=require(script.Parent.RegionalCasterMotion)
 local PatternPose=require(script.Parent.EnemyPatternPose)
 local BladeRigs=require(game.ReplicatedStorage.Shared.BladeMonsterRigs)
 local BladeSwing=require(script.Parent.EnemyBladeSwing)
+local VeyrSword=require(script.Parent.VeyrSwordMotion)
 local Motion={}
 local channels={'body','weapon','off','rightLeg','leftLeg'}
 local names={weapon='Left Shoulder',off='Right Shoulder',rightLeg='Right Hip',leftLeg='Left Hip'}
@@ -91,6 +92,7 @@ function Motion.bind(model)
  if model:GetAttribute('GloamwoodMeshyVersion') and not s.gloam then return nil end
  s.caster=CasterMotion.bind(model,visual,s.height)
  if model:GetAttribute('TdSkinnedCaster') and not s.caster then return nil end
+ if kind=='Veyr' then s.swordPose=VeyrSword.guard end
  s.weaponFX=WeaponMotion.bind(model,s.caster)
  return s
 end
@@ -127,6 +129,7 @@ function Motion.step(s,dt,current)
  if clock~=s.clock then
   s.clock=clock;s.attack=nil
   s.entryPose=s.pose
+  s.swordEntry=s.swordPose
   if type(clock)=='string' then
    local v=string.split(clock,'|');local start,w,a,r=tonumber(v[2]),tonumber(v[3]),tonumber(v[4]),tonumber(v[5])
    if start and w and a and r and w>0 and a>0 and r>0 then
@@ -155,7 +158,13 @@ function Motion.step(s,dt,current)
  else s.pose=mix(s.pose,target,1-math.exp(-dt*16))end
  local p=s.pose;local b=p.body;local look=s.root.CFrame.LookVector
  local cross=s.look:Cross(look).Y;s.look=look;s.turn=s.turn+(clamp(cross/math.max(dt,.001),-2,2)-s.turn)*(1-math.exp(-dt*9))
- local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,(-s.turn*.025-s.side*.045)*s.move)
+ local bodyRotation=frame(b,4)
+ if attackActive and s.kind=='Veyr' then
+  -- The old one-piece clip swings the entire suit of armor. Keep a small weight
+  -- shift behind the new shoulder swing so the empty hand does not lead it.
+  bodyRotation=CFrame.identity:Lerp(bodyRotation,.28)
+ end
+ local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*bodyRotation*CFrame.Angles(0,0,(-s.turn*.025-s.side*.045)*s.move)
  rootFrame=rootFrame*HitReaction.sample(s.model,current)
  local gesture,load,drive
  if attackActive then
@@ -182,6 +191,7 @@ function Motion.step(s,dt,current)
   if scale then s.body.Size=s.bodySize*scale end
  end
  s.joint.Transform=rootFrame
+ local swordEdge
  for ch,motor in pairs(s.joints)do
   local angles=p[ch]
   if moving and not attackActive and not s.profile.quadruped and (ch=='rightLeg'or ch=='leftLeg')then
@@ -191,7 +201,20 @@ function Motion.step(s,dt,current)
   end
   if ch=='weapon' and s.model:GetAttribute('TdWeaponSwingReversed') then angles={-angles[1],angles[2],-angles[3]} end
   local transform=frame(angles)
-  if attackActive and BladeRigs[s.kind] and (ch=='weapon' or ch=='off') then
+  if s.kind=='Veyr' and ch=='weapon' then
+   if attackActive then
+    transform,swordEdge=VeyrSword.sample(s.model,s.attack,current)
+    local join=(current-s.attack.start)/math.min(.10,.18*s.attack.w)
+    if join<1 and s.swordEntry then
+     transform=s.swordEntry:Lerp(transform,clamp(join,0,1))
+    end
+   else
+    local ready=(stunned or state=='Exposed') and transform or VeyrSword.guard*transform
+    transform=s.swordPose:Lerp(ready,1-math.exp(-dt*18))
+    swordEdge=false
+   end
+   s.swordPose=transform
+  elseif attackActive and BladeRigs[s.kind] and (ch=='weapon' or ch=='off') then
    transform=BladeSwing.joint(s.model,ch,attackPhase)
   elseif gesture and (ch=='weapon' or ch=='off') then
    transform=transform*PatternPose.joint(s.model,ch,attackPhase,gesture,load,drive)
@@ -215,7 +238,7 @@ function Motion.step(s,dt,current)
   end
   motor.Transform=transform
  end
- WeaponMotion.step(s.weaponFX,attackPhase,attackActive,s.attack and s.attack.heavy,clock,current,s.viewDistance or 0,distance>math.max(3,s.height*1.5))
+ WeaponMotion.step(s.weaponFX,attackPhase,attackActive,s.attack and s.attack.heavy,clock,current,s.viewDistance or 0,distance>math.max(3,s.height*1.5),swordEdge)
 end
 function Motion.unbind(s)
  GloamMotion.reset(s.gloam)

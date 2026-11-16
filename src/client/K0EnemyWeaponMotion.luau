@@ -40,7 +40,7 @@ function Weapon.bind(model,caster)
   root=root,rootJoint=root and root:FindFirstChild('RootJoint'),shoulder=not caster and shoulder or nil,caster=caster,
   socketInArm=shoulder and shoulder.Part1.CFrame:ToObjectSpace(part.CFrame)*a.CFrame}
 end
-function Weapon.step(s,phase,active,heavy,clock,current,distance,discontinuity)
+function Weapon.step(s,phase,active,heavy,clock,current,distance,discontinuity,swordEdge)
  if not s or not s.folder.Parent then return end
  if s.caster then
   local c=s.caster;local cf=c.bones.Staff.TransformedWorldCFrame
@@ -66,7 +66,9 @@ function Weapon.step(s,phase,active,heavy,clock,current,distance,discontinuity)
   contact=elapsed>=0 and pulse<d.pulses and elapsed-pulse*d.interval<.16
  end
  s.trail.Lifetime=d and d.motionStyle=='thrust'and .055 or heavy and .12 or .09
- s.trail.Enabled=active and contact and not jumped and distance<110 and (not d or d.motion~='cast')
+ local showEdge=contact and (not d or d.motion~='cast')
+ if swordEdge~=nil then showEdge=swordEdge end
+ s.trail.Enabled=active and showEdge and not jumped and distance<110
  if not active then s.trail:Clear()end
  local charge=active and distance<110 and phase>.18 and phase<.64 and math.sin(math.clamp((phase-.18)/.46,0,1)*math.pi) or 0
  local focus=s.a.WorldCFrame

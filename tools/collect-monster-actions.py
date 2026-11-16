@@ -13,7 +13,9 @@ import xml.etree.ElementTree as ET
 parser = argparse.ArgumentParser()
 parser.add_argument('place', type=Path)
 parser.add_argument('log', type=Path)
-parser.add_argument('--weapon-hands', action='store_true')
+selection = parser.add_mutually_exclusive_group()
+selection.add_argument('--weapon-hands', action='store_true')
+selection.add_argument('--veyr-swing', action='store_true')
 args = parser.parse_args()
 rows = {}
 endpoint = '/'+uuid4().hex
@@ -60,13 +62,13 @@ with ThreadingHTTPServer(('127.0.0.1', 0), FrameReceiver) as server, tempfile.Te
     enabled.text = 'true'
     place = Path(tmp)/'capture.rbxlx'
     tree.write(place, encoding='utf-8')
-    script.write_text('assert(game.PlaceId==0)\n_G.MonsterCaptureURL='+json.dumps(url)+'\n_G.ReviewWeaponHands='+str(args.weapon_hands).lower()+'\n'+src)
+    script.write_text('assert(game.PlaceId==0)\n_G.MonsterCaptureURL='+json.dumps(url)+'\n_G.ReviewWeaponHands='+str(args.weapon_hands).lower()+'\n_G.ReviewVeyrSwing='+str(args.veyr_swing).lower()+'\n'+src)
     result = subprocess.run(['run-in-roblox', '--place', str(place), '--script', str(script)],
                             capture_output=True, text=True)
     server.shutdown()
     args.log.write_text(result.stdout+result.stderr)
     result.check_returncode()
-    if 'MONSTER_CAPTURE_PASS' not in result.stdout or len(rows) != (64 if args.weapon_hands else 96):
+    if 'MONSTER_CAPTURE_PASS' not in result.stdout or len(rows) != (54 if args.veyr_swing else 64 if args.weapon_hands else 96):
         raise RuntimeError(f'Studio capture incomplete ({len(rows)} frames). See {args.log}')
     with args.log.open('a') as stream:
         for (kind, frame), data in rows.items():

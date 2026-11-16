@@ -43,7 +43,7 @@ local function capture(kind,frame)
         local img=game.AssetService:CreateEditableImageAsync(Content.fromUri(id))
         local raw=img:ReadPixelsBuffer(Vector2.zero,img.Size)
         local side=math.min(img.Size.X,img.Size.Y)
-        local n=if _G.ReviewWeaponHands then 320 else 240
+        local n=if _G.ReviewVeyrSwing then 384 elseif _G.ReviewWeaponHands then 320 else 240
         local rgb=buffer.create(n*n*3)
         for y=0,n-1 do for x=0,n-1 do
             local sx=math.floor((img.Size.X-side)/2+(x+.5)*side/n)
@@ -64,7 +64,9 @@ local function capture(kind,frame)
     assert(done,"Capture timeout "..kind)
 end
 local cases = {{"Goblin",2},{"Ogre",1},{"Gloambat",1},{"IceWolf",2},{"VolcanoShaman",1},{"Veyr",2}}
-if _G.ReviewWeaponHands then
+if _G.ReviewVeyrSwing then
+    cases = {{"Veyr",2}}
+elseif _G.ReviewWeaponHands then
     cases = {{"Veyr",2},{"DreadCommander",1},{"DeathKnight",1},{"EnragedWarlord",1}}
 end
 for _,case in cases do
@@ -87,11 +89,18 @@ for _,case in cases do
         extent=s.height*1.17
         view=Vector3.new(.43,.24,-1)
     end
+    if _G.ReviewVeyrSwing then
+        target=Vector3.new(root.Position.X,target.Y+s.height*.15,root.Position.Z)
+        extent=s.height*1.28
+        view=Vector3.new(-.18,.13,-1)
+        actor:SetAttribute("K0EnemyState","Idle")
+        for i=1,30 do motion.step(s,1/60,99+i/60) end
+    end
     camera.CameraType=Enum.CameraType.Scriptable
     camera.FieldOfView=27
     local shot=CFrame.lookAt(target+view.Unit*extent*3.15,target)
     camera.CFrame=shot
-    if _G.ReviewWeaponHands then
+    if _G.ReviewWeaponHands or _G.ReviewVeyrSwing then
         -- Mesh assets can finish downloading before their first rendered frame.
         -- Let the fixed camera see the complete rig before sampling the windup.
         task.wait(2)
@@ -103,8 +112,9 @@ for _,case in cases do
     snapshot.message({kind="begin",id=d.id,sequence=index,model=actor,definition=d,
         origin=root.Position,direction=-Vector3.zAxis,aim=root.Position-Vector3.zAxis*12})
     print("MONSTER_ACTION",kind,index,d.name,duration)
-    for i=0,15 do
-        local age=duration*i/16
+    local count=if _G.ReviewVeyrSwing then 54 else 16
+    for i=0,count-1 do
+        local age=duration*i/count
         if _G.ReviewWeaponHands then
             age=if i<8 then d.windup*i/8 elseif i<=11 then d.windup+math.min(.22,d.active)*(i-8)/3 else d.windup+d.active+d.recovery*(i-12)/3
         end

@@ -221,7 +221,9 @@ end
 local function draw(a,model,now,rangesEnabled)
  local d=a.d;local age=now-a.at
  if age<d.windup and d.element~='physical' and permitted(a.origin)then
-  local socket=model:FindFirstChild('EnemyCastSocket',true)
+  local blade=model:GetAttribute('EnemyKind')=='Veyr' and model:FindFirstChild('TdMonsterVisual')
+  blade=blade and blade:FindFirstChild('ArmL')
+  local socket=(blade and blade:FindFirstChild('K0BladeBase')) or model:FindFirstChild('EnemyCastSocket',true)
   if socket then
    if not a.charge or a.charge.dead then a.charge=Spell.charge(d,model,a.sequence,a.at)end
    if a.charge then
