@@ -304,7 +304,7 @@ local function vista(parent,c,size,pal,theme,index,id,safe)
   end
  end
  Composition.build(parent,id,c,size,pal,theme,safe,ground)
- if theme~='Deepwood'then for _,s in ipairs({-1,1})do Architecture.flame(m,c+V(s*108,0,124),pal,true)end end
+ if theme~='Deepwood'and id~='FV-02'then for _,s in ipairs({-1,1})do Architecture.flame(m,c+V(s*108,0,124),pal,true)end end
  range(m,900)
 end
 local function pass(parent,edge,index)
