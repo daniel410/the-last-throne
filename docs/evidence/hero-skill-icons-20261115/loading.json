@@ -1,777 +1,779 @@
 {
-  "checkedAt": "2026-11-16T02:40:05Z",
-  "universeId": 10773575153,
-  "loaded": 123,
-  "placeId": 129388473517823,
+  "checkedAt": "2026-11-16T02:53:50Z",
+  "universeId": 0,
+  "source": "built ModuleScripts",
   "records": [
     {
       "id": "knight.common.bash",
       "image": "rbxassetid://86231982401011",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.common.whirlwind",
       "image": "rbxassetid://94924772098727",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.common.provoke",
       "image": "rbxassetid://120321492298787",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.counter_slash",
       "image": "rbxassetid://108403648756381",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.steel_sweep",
       "image": "rbxassetid://136672924637840",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.challenging_strike",
       "image": "rbxassetid://102199520135615",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.twin_cyclone",
       "image": "rbxassetid://110853401634682",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.shield_breaker",
       "image": "rbxassetid://121323006224933",
-      "status": "Failure",
-      "loaded": false
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.guardian_counter",
       "image": "rbxassetid://83239712904864",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.rallying_slash",
       "image": "rbxassetid://138406340959023",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.breaker_charge",
       "image": "rbxassetid://85489643577738",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.vanguard_strike",
       "image": "rbxassetid://139807198337947",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.blade_storm",
       "image": "rbxassetid://139125536816916",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.sweeping_break",
       "image": "rbxassetid://140553347281168",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.warcry_assault",
       "image": "rbxassetid://136062653152386",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.steel_knight.unyielding_front",
       "image": "rbxassetid://138745500155651",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.oathblade",
       "image": "rbxassetid://119980682095298",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.radiant_sweep",
       "image": "rbxassetid://120741968993692",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.oath_challenge",
       "image": "rbxassetid://83674181984948",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.dawn_burst",
       "image": "rbxassetid://140113394816155",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.oathbreaker_strike",
       "image": "rbxassetid://111358408402453",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.shield_verdict",
       "image": "rbxassetid://130191128420477",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.guardian_slash",
       "image": "rbxassetid://89766030422508",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.radiant_charge",
       "image": "rbxassetid://101341492200749",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.valiant_advance",
       "image": "rbxassetid://95605680411374",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.dawn_spiral",
       "image": "rbxassetid://123865743945247",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.sunward_cross",
       "image": "rbxassetid://124207384932704",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.oathbound_assault",
       "image": "rbxassetid://84768759484391",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight.paladin.oath_of_dawn",
       "image": "rbxassetid://70542844021685",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight_driving_thrust",
       "image": "rbxassetid://131385236719658",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight_crescent_cut",
       "image": "rbxassetid://90131152910387",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "knight_guarded_strike",
       "image": "rbxassetid://92578929110714",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.common.overhead",
       "image": "rbxassetid://127521138451578",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.common.throw",
       "image": "rbxassetid://120609437480623",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.common.ground",
       "image": "rbxassetid://78021031463233",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.armor_splitter",
       "image": "rbxassetid://133605055421557",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.returning_echo",
       "image": "rbxassetid://99539509451483",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.mountain_sweep",
       "image": "rbxassetid://136409889455612",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.crag_cleave",
       "image": "rbxassetid://112850496343383",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.breaker_throw",
       "image": "rbxassetid://136760308027108",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.stonebound_leap",
       "image": "rbxassetid://110669367724852",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.iron_shoulder",
       "image": "rbxassetid://110654307551682",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.crosscut_axe",
       "image": "rbxassetid://140299388615665",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.mountain_strike",
       "image": "rbxassetid://100476074714192",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.shatter_blow",
       "image": "rbxassetid://85243472549588",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.twin_axe_path",
       "image": "rbxassetid://129172695331075",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.tremor_guard",
       "image": "rbxassetid://76034618581652",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.iron_axe.mountain_collapse",
       "image": "rbxassetid://138025481217187",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.gunner_shot",
       "image": "rbxassetid://95524873653716",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.bomb_toss",
       "image": "rbxassetid://86433990309269",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.shell_burst",
       "image": "rbxassetid://91582712645016",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.quickfire",
       "image": "rbxassetid://70743121132220",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.shrapnel_toss",
       "image": "rbxassetid://74063610339381",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.blast_step",
       "image": "rbxassetid://116340592183702",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.scatter_shot",
       "image": "rbxassetid://120489358966940",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.skipping_charge",
       "image": "rbxassetid://98112137480231",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.field_mortar",
       "image": "rbxassetid://134673887015612",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.piercing_round",
       "image": "rbxassetid://131881341441994",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.rolling_charge",
       "image": "rbxassetid://76499333486814",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.siege_pattern",
       "image": "rbxassetid://93466943718023",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf.gunner.siege_barrage",
       "image": "rbxassetid://120093486664155",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf_hooking_chop",
       "image": "rbxassetid://86451199308270",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf_low_sweep",
       "image": "rbxassetid://112566936820826",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "dwarf_braced_throw",
       "image": "rbxassetid://109153629635923",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.common.aimed",
       "image": "rbxassetid://112260985738586",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.common.rapid",
       "image": "rbxassetid://137198996216518",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.common.multi",
       "image": "rbxassetid://124992984983217",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.weakpoint_shot",
       "image": "rbxassetid://104907992071315",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.moving_volley",
       "image": "rbxassetid://97013500550722",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.piercing_line",
       "image": "rbxassetid://113365743710704",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.heavy_draw",
       "image": "rbxassetid://123923451078841",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.precision_volley",
       "image": "rbxassetid://125168218280664",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.fan_break",
       "image": "rbxassetid://73620786809212",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.hunter_s_focus",
       "image": "rbxassetid://75066339804585",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.retreating_fire",
       "image": "rbxassetid://103704385611331",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.piercing_volley",
       "image": "rbxassetid://89773919164982",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.mark_breaker",
       "image": "rbxassetid://104940914226413",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.crossfire",
       "image": "rbxassetid://107875933672106",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.arrow_rain",
       "image": "rbxassetid://99887728343530",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.marksman.grand_volley",
       "image": "rbxassetid://97786025177894",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.elemental_arrow",
       "image": "rbxassetid://114591384063643",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.spark_volley",
       "image": "rbxassetid://84484822983244",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.vine_trap",
       "image": "rbxassetid://88222718412152",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.bloom_shot",
       "image": "rbxassetid://117400722463628",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.storm_arrow",
       "image": "rbxassetid://127029836022551",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.rooting_fan",
       "image": "rbxassetid://88953206041456",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.warden_arrow",
       "image": "rbxassetid://88296050949661",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.gliding_shot",
       "image": "rbxassetid://123531603243143",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.spirit_rain",
       "image": "rbxassetid://97539006865399",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.elemental_pierce",
       "image": "rbxassetid://128779335574501",
-      "status": "Failure",
-      "loaded": false
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.echo_arrows",
       "image": "rbxassetid://136407364879714",
-      "status": "Failure",
-      "loaded": false
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.vine_burst",
       "image": "rbxassetid://111586160026521",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf.magic_archer.spirit_arrowfall",
       "image": "rbxassetid://111561224336918",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf_retreating_shot",
       "image": "rbxassetid://91879844959733",
-      "status": "Failure",
-      "loaded": false
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf_pinning_shot",
       "image": "rbxassetid://87700134954876",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "elf_arrow_screen",
       "image": "rbxassetid://93327394980228",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.common.mana_bolt",
       "image": "rbxassetid://104863799534788",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.common.water_ball",
       "image": "rbxassetid://129481296483121",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.common.gravity",
       "image": "rbxassetid://106456143901705",
-      "status": "Failure",
-      "loaded": false
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.ember_lance",
       "image": "rbxassetid://70568588520009",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.steam_burst",
       "image": "rbxassetid://70518459247959",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.cinder_ring",
       "image": "rbxassetid://103502088649359",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.flame_dart",
       "image": "rbxassetid://74851653721065",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.earth_rise",
       "image": "rbxassetid://123438476843679",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.ember_step",
       "image": "rbxassetid://87954245833545",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.stone_lance",
       "image": "rbxassetid://87597336822949",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.searing_ward",
       "image": "rbxassetid://83236701377449",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.lava_eruption",
       "image": "rbxassetid://136899146228104",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.magma_spear",
       "image": "rbxassetid://134334607845537",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.molten_line",
       "image": "rbxassetid://95599471172762",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.ashfall",
       "image": "rbxassetid://102004347172992",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.pyro.caldera_s_judgment",
       "image": "rbxassetid://92697137660044",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.frost_lance",
       "image": "rbxassetid://119051700333404",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.ice_shard",
       "image": "rbxassetid://76742757036316",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.frost_ring",
       "image": "rbxassetid://120077876246926",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.shatter_dart",
       "image": "rbxassetid://77117651047767",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.chain_lightning",
       "image": "rbxassetid://81592210671493",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.frost_step",
       "image": "rbxassetid://137411255806521",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.thunder_spear",
       "image": "rbxassetid://76944136315762",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.ice_ward",
       "image": "rbxassetid://114450867381271",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.froststorm",
       "image": "rbxassetid://78757898848451",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.glacial_spike",
       "image": "rbxassetid://83454690354705",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.lightning_line",
       "image": "rbxassetid://83800477939705",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.hailfall",
       "image": "rbxassetid://135799243762729",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage.cryo.eternal_tempest",
       "image": "rbxassetid://127085869913898",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage_wind_lance",
       "image": "rbxassetid://86910055121285",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage_tidal_ring",
       "image": "rbxassetid://88698943138050",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     },
     {
       "id": "mage_arcane_ward",
       "image": "rbxassetid://123812231068843",
-      "status": "Success",
-      "loaded": true
+      "loaded": true,
+      "status": "Success"
     }
   ],
-  "total": 128
+  "loaded": 128,
+  "placeId": 0,
+  "total": 128,
+  "file": "TheLastThrone-0.111.0.rbxlx"
 }

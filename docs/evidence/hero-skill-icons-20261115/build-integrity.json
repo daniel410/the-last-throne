@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "version": "0.111.0",
+  "sourceCommit": "d0dd44be209f8db79186c2b67cb7a8c133c16570",
+  "file": "builds/0.111.0/TheLastThrone-0.111.0.rbxlx",
+  "sha256": "41358fb624bd20932ba40a9d31d0306a94b6b6244f6e0dc8e5ea505e9c195cd6",
+  "bytes": 19785482,
+  "nativeTestedModulesMatched": 68,
+  "missing": [],
+  "published": false,
+  "releaseTag": null
+}
