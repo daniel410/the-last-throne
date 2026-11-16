@@ -1,7 +1,7 @@
 -- Blender-authored primitives retain their exact local rotations and proportions.
 local Templates=require(script.Parent.RegionalArchitectureTemplates)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Architecture={version=6}
+local Architecture={version=7}
 function Architecture.build(kind)
  local rows=assert(Templates[kind],'Unknown regional architecture '..kind)
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
@@ -16,18 +16,10 @@ function Architecture.build(kind)
    local width=r[1]=='SilkAnchor'and .48 or r[1]=='SilkRadial'and .32 or .26
    p.Size=Vector3.new(width,width,p.Size.Z);p.Color=Color3.fromRGB(210,222,237)
   elseif kind=='BracedMineHead'and r[1]=='CoursedMasonry'then
-   -- A fractured basalt working face, not an intact brick wall or open tunnel.
-   -- Mesh shaping changes only rendering: the original solid Part stays exact.
-   local column=math.floor((p.Position.X+10)/5+.5)
-   local course=math.floor(p.Position.Y/2.5)
-   local variation=(column*3+course*2)%5
-   p.Material=Enum.Material.Basalt
-   p.Color=Color3.fromRGB(69+variation*6,65+variation*5,64+variation*4)
-   local face=Instance.new('BlockMesh');face.Name='MineFractureSurface'
-   face.Scale=Vector3.new(.97,.96,.58+variation*.08)
-   face.Offset=Vector3.new(0,0,.16+variation*.09)
-   face.Parent=p
-   p:SetAttribute('MineFractureVisual',true)
+   -- Keep the pinned collision backing; continuous strata below replace the
+   -- brick-grid rendering without opening the personal rescue obstruction.
+   p.Transparency=1
+   p:SetAttribute('MineFaceBacking',true)
   elseif r[3]=='Slate'then
    p.Color=p.Color:Lerp(Color3.fromRGB(176,188,201),.12)
   end
@@ -55,6 +47,24 @@ function Architecture.build(kind)
   end
  end
  if kind=='BracedMineHead'then
+  -- The rail ends at a worked basalt face, not a masonry gate. Five large
+  -- offset strata cover the collision backing, with a rising broken skyline.
+  -- All geometry remains in the original architecture X/Z envelope.
+  local backing=K.part(m,'ContinuousBasaltFace',Vector3.new(24.9,9.95,2.5),CFrame.new(0,5,-8),Color3.fromRGB(69,65,66),Enum.Material.Basalt)
+  backing:SetAttribute('EpicDetailSolid',false);backing:SetAttribute('TLTSceneryDistance',700)
+  backing:SetAttribute('MineWorkingFace',true);details+=1
+  local strata={
+   {-8,5,-8,9,10,3,0}, {-1,6,-8,9,12,3,math.pi},
+   {7,4.5,-8,10,9,3,0}, {-6,10,-8.2,12,5,2.6,math.pi},
+   {5,11.5,-8.2,13,7,2.6,0},
+  }
+  for i,row in ipairs(strata)do
+   local p=K.part(m,'ExcavatedBasaltStratum',Vector3.new(row[4],row[5],row[6]),
+    CFrame.new(row[1],row[2],row[3])*CFrame.Angles(0,row[7],0),
+    Color3.fromRGB(65+i*4,61+i*3,62+i*3),Enum.Material.Basalt,'Wedge')
+   p:SetAttribute('EpicDetailSolid',false);p:SetAttribute('TLTSceneryDistance',700)
+   p:SetAttribute('MineWorkingFace',true);details+=1
+  end
   -- EC-03: load-bearing uprights ground the existing rescue lintel and braces.
   -- Static fittings remain inside the authored footprint; no new blocker.
   local function fitting(name,size,pos,color,material)
