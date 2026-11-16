@@ -1,0 +1,41 @@
+{
+  "version": "0.111.28",
+  "mode": "Studio local Play",
+  "rig": "R15",
+  "players": 1,
+  "fixtureDamage": 3,
+  "encounters": [
+    {
+      "maxHandAboveShoulder": 0.16359476110773444,
+      "messages": {
+        "projectile": 1,
+        "cancel": 1,
+        "projectileEnd": 1,
+        "impact": 1
+      },
+      "id": "Veyr.1",
+      "samples": 217,
+      "travel": 363.5510953301506,
+      "minLeft": -0.6909877061843872,
+      "welded": true,
+      "maxRight": 0.7009528279304504,
+      "hpLost": 3,
+      "initialTip": [
+        5.257876396179199,
+        5.200186729431152,
+        -6.390244483947754
+      ],
+      "kind": "Veyr",
+      "maxTipTravel": 10.91218090057373,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Idle": true,
+        "Active": true
+      }
+    }
+  ],
+  "pass": true,
+  "error": "nil",
+  "errors": []
+}
