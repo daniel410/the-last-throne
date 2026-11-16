@@ -24,6 +24,42 @@ local skills = {
     shoot = stroke(4,8,3,13,-.10), mortar = stroke(12,10,5,26,-.16),
     lob = stroke(-6,-18,-8,20,.20,28), challenge = stroke(10,12,6,23,-.14),
 }
+-- The weapon arm, shield/free arm and sternum have separate lead poses.
+-- A shoulder charge stays low; a rally raises the weapon above the group.
+local function lead(right, left, chest)
+    return {right = right, left = left, chest = chest}
+end
+local v = Vector3.new
+local highStandard = lead(v(46,12,-20), v(24,-16,25), v(-12,-10,-5))
+local shieldWall = lead(v(-26,12,-14), v(34,-27,7), v(17,10,-12))
+local shoulderDrive = lead(v(-16,18,-12), v(-12,-14,25), v(20,12,-14))
+local lowBlade = lead(v(-28,17,-17), v(14,-9,20), v(10,-16,8))
+local axeWedge = lead(v(28,15,-16), v(34,-28,21), v(-12,-11,6))
+local lowAxe = lead(v(-24,-22,15), v(30,20,-21), v(18,13,-8))
+local plantedGun = lead(v(12,-9,-7), v(27,-7,12), v(15,5,-8))
+local sightLine = lead(v(-10,8,-7), v(18,-22,13), v(3,12,9))
+local leads = {
+    ["knight.steel_knight.unyielding_front"] = shieldWall,
+    ["knight.steel_knight.breaker_charge"] = shoulderDrive,
+    ["knight.steel_knight.rallying_slash"] = highStandard,
+    ["knight.steel_knight.sweeping_break"] = lowBlade,
+    ["knight.steel_knight.guardian_counter"] = shieldWall,
+    ["knight.paladin.oath_of_dawn"] = highStandard,
+    ["knight.paladin.valiant_advance"] = shieldWall,
+    ["knight.paladin.radiant_charge"] = shoulderDrive,
+    ["knight.paladin.oath_challenge"] = highStandard,
+    ["knight.paladin.dawn_spiral"] = lowBlade,
+    ["dwarf.iron_axe.iron_shoulder"] = shoulderDrive,
+    ["dwarf.iron_axe.mountain_collapse"] = axeWedge,
+    ["dwarf.iron_axe.shatter_blow"] = axeWedge,
+    ["dwarf.iron_axe.tremor_guard"] = lowAxe,
+    ["dwarf.iron_axe.mountain_sweep"] = lowAxe,
+    ["dwarf.gunner.siege_barrage"] = plantedGun,
+    ["dwarf.gunner.field_mortar"] = plantedGun,
+    ["dwarf.gunner.blast_step"] = shoulderDrive,
+    ["dwarf.gunner.piercing_round"] = sightLine,
+    ["dwarf.gunner.scatter_shot"] = lowAxe,
+}
 local byId = {}
 for classId in basics do
     for _, skill in Config.Skills[classId] do
@@ -91,6 +127,16 @@ function WeightShift.apply(pose, classId, skillId, combo, age)
     pose.leftHip = (pose.leftHip or CFrame.identity) * angles(-crouch*.35,0,shift*23)
     pose.rightKnee = (pose.rightKnee or CFrame.identity) * angles(crouch,0,0)
     pose.leftKnee = (pose.leftKnee or CFrame.identity) * angles(crouch*.64,0,0)
+    local leadPose = leads[skillId]
+    if leadPose then
+        -- Draw back a second time for a repeated strike, and let the weapon
+        -- pull the shoulders through after contact. Keep the contact FK exact.
+        local armWeight = load-.36*brake
+        local r, l, c = leadPose.right*armWeight, leadPose.left*armWeight, leadPose.chest*transfer
+        pose.right = angles(r.X,r.Y,r.Z) * pose.right
+        pose.left = angles(l.X,l.Y,l.Z) * pose.left
+        pose.torso = pose.torso * angles(c.X,c.Y,c.Z)
+    end
     if classId == "knight" and not skillId then
         pose.left = (pose.left or CFrame.identity) * angles(14*load,0,9*transfer)
         pose.leftElbow = (pose.leftElbow or CFrame.identity) * angles(16*load-6*brake,0,0)

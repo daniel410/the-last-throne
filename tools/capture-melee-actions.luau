@@ -41,18 +41,22 @@ for row, action in rows do
     local board = Instance.new("Folder", workspace)
     local template = rigs.template(classId)
     for index = 0, 11 do
-        local combo = type(key) == "number" and key or 1
-        local skillId = type(key) == "string" and key or nil
-        local definition = config.BasicAttackProfiles[classId].attacks[combo]
-        for _, skill in config.Skills[classId] do
-            if skill.id == skillId then definition = skill end
-        end
-        local duration = definition.windup + definition.active + definition.recovery
+        local combo = 1
+        local skillId
+        local definition
         if _G.MeleeCatalog then
             definition = config.Skills[classId][key+math.floor(index/3)]
-            combo, skillId = 1, definition.id
-            duration = definition.windup+definition.active+definition.recovery
+            skillId = definition.id
+        elseif type(key) == "number" then
+            combo = key
+            definition = config.BasicAttackProfiles[classId].attacks[combo]
+        else
+            skillId = key
+            for _, skill in config.Skills[classId] do
+                if skill.id == skillId then definition = skill; break end
+            end
         end
+        local duration = definition.windup+definition.active+definition.recovery
         local actor = template:Clone()
         actor.Parent = board
         local position = center + view.RightVector * ((index % 4) - 1.5) * tile

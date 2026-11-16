@@ -55,4 +55,22 @@ for _, rig in {Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15} do
         for _,d in config.Skills[classId] do review(d,1) end
     end
 end
+-- Pairs used to share a base clip. Their preparation should identify the
+-- role even with particle effects disabled.
+for _, pair in {
+    {"knight","knight.paladin.oath_of_dawn","knight.steel_knight.unyielding_front"},
+    {"dwarf","dwarf.iron_axe.shatter_blow","dwarf.iron_axe.tremor_guard"},
+    {"dwarf","dwarf.gunner.field_mortar","dwarf.gunner.blast_step"},
+} do
+    local shoulders={}
+    for _,d in config.Skills[pair[1]] do
+        if d.id==pair[2] or d.id==pair[3] then
+            local age=d.windup*.48
+            local pose=advanced.sample(pair[1],d,age,Enum.HumanoidRigType.R15)
+            body.apply(pose,pair[1],d.id,1,age)
+            shoulders[d.id]=pose.right
+        end
+    end
+    check(delta(shoulders[pair[2]],shoulders[pair[3]])>18,"Distinct anticipation: "..pair[2])
+end
 print("MELEE_ACTION_BEATS_NATIVE "..game.HttpService:JSONEncode({pass=true,checks=checks,rigActions=actions,contacts=seams}))
