@@ -1,0 +1,115 @@
+{
+  "version": "0.111.27",
+  "sourceCommit": "9d35252344953cd2c6b956a41cc6ac9dedf4a4f8",
+  "mode": "Studio local Play",
+  "rig": "R15",
+  "players": 1,
+  "fixtureDamage": 3,
+  "encounters": [
+    {
+      "messages": {
+        "projectileEnd": 1,
+        "cancel": 1,
+        "projectile": 1,
+        "begin": 1,
+        "impact": 1
+      },
+      "id": "Veyr.2",
+      "samples": 214,
+      "travel": 244.82346267830437,
+      "hpLost": 3,
+      "welded": true,
+      "initialTip": [
+        5.075273036956787,
+        -2.9415125846862793,
+        -3.426194429397583
+      ],
+      "kind": "Veyr",
+      "maxTipTravel": 9.852139472961426,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Active": true
+      }
+    },
+    {
+      "messages": {
+        "projectileEnd": 1,
+        "cancel": 1,
+        "projectile": 1,
+        "begin": 1,
+        "impact": 1
+      },
+      "id": "DreadCommander.3",
+      "samples": 223,
+      "travel": 244.77880884918196,
+      "hpLost": 3,
+      "welded": true,
+      "initialTip": [
+        5.065556049346924,
+        -2.999746799468994,
+        -3.3150441646575928
+      ],
+      "kind": "DreadCommander",
+      "maxTipTravel": 9.909049034118652,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Active": true
+      }
+    },
+    {
+      "messages": {
+        "cancel": 1,
+        "pulse": 1,
+        "impact": 1
+      },
+      "id": "DeathKnight.1",
+      "samples": 123,
+      "travel": 309.6767970791806,
+      "hpLost": 3,
+      "welded": true,
+      "initialTip": [
+        1.1984914541244507,
+        -2.999296188354492,
+        -1.7146730422973633
+      ],
+      "kind": "DeathKnight",
+      "maxTipTravel": 8.066854476928711,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Chase": true,
+        "Active": true
+      }
+    },
+    {
+      "messages": {
+        "begin": 1,
+        "cancel": 1,
+        "pulse": 1,
+        "impact": 1
+      },
+      "id": "EnragedWarlord.3",
+      "samples": 147,
+      "travel": 309.59699870178207,
+      "hpLost": 3,
+      "welded": true,
+      "initialTip": [
+        3.164200782775879,
+        -2.8657541275024414,
+        -2.024583101272583
+      ],
+      "kind": "EnragedWarlord",
+      "maxTipTravel": 9.340644836425781,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Active": true
+      }
+    }
+  ],
+  "pass": true,
+  "error": "nil",
+  "errors": []
+}

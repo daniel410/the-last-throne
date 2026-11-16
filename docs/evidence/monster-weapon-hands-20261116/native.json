@@ -1,0 +1,344 @@
+{
+  "version": "0.111.27",
+  "sourceCommit": "9d35252344953cd2c6b956a41cc6ac9dedf4a4f8",
+  "weaponHands": {
+    "attacks": {
+      "DreadCommander": [
+        {
+          "tipTravelInHeights": 1.082684472949806,
+          "shoulderDegrees": 79.91815834610827,
+          "forwardInHeights": 0.9023512942109106,
+          "pulses": 1,
+          "attack": "basic"
+        },
+        {
+          "tipTravelInHeights": 0.7362528991262379,
+          "shoulderDegrees": 51.7914769100362,
+          "forwardInHeights": 0.9033267558764292,
+          "pulses": 1,
+          "attack": "DreadCommander.1"
+        },
+        {
+          "tipTravelInHeights": 1.046864869701736,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.9023512942109106,
+          "pulses": 3,
+          "attack": "DreadCommander.2"
+        },
+        {
+          "tipTravelInHeights": 1.046864869701736,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.9023512942109106,
+          "pulses": 3,
+          "attack": "DreadCommander.3"
+        },
+        {
+          "tipTravelInHeights": 1.046864869701736,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.9023512942109106,
+          "pulses": 2,
+          "attack": "DreadCommander.4"
+        }
+      ],
+      "Veyr": [
+        {
+          "tipTravelInHeights": 1.082684472949806,
+          "shoulderDegrees": 79.91815834610827,
+          "forwardInHeights": 0.9023512942109106,
+          "pulses": 1,
+          "attack": "basic"
+        },
+        {
+          "tipTravelInHeights": 0.7362528991262379,
+          "shoulderDegrees": 51.7914769100362,
+          "forwardInHeights": 0.9033267558764292,
+          "pulses": 1,
+          "attack": "Veyr.1"
+        },
+        {
+          "tipTravelInHeights": 1.046864869701736,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.9023512942109106,
+          "pulses": 3,
+          "attack": "Veyr.2"
+        },
+        {
+          "tipTravelInHeights": 1.0442835875783374,
+          "shoulderDegrees": 82.47323649196166,
+          "forwardInHeights": 0.8276926559941871,
+          "pulses": 3,
+          "attack": "Veyr.3"
+        },
+        {
+          "tipTravelInHeights": 0.7362528991262379,
+          "shoulderDegrees": 51.7914769100362,
+          "forwardInHeights": 0.9033267558764292,
+          "pulses": 3,
+          "attack": "Veyr.4"
+        }
+      ],
+      "EnragedWarlord": [
+        {
+          "tipTravelInHeights": 0.8885837856091952,
+          "shoulderDegrees": 79.91815834610827,
+          "forwardInHeights": 0.6944128714109722,
+          "pulses": 1,
+          "attack": "basic"
+        },
+        {
+          "tipTravelInHeights": 0.8644431515743858,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.6944128714109722,
+          "pulses": 1,
+          "attack": "EnragedWarlord.1"
+        },
+        {
+          "tipTravelInHeights": 0.8644431515743858,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.6944128714109722,
+          "pulses": 3,
+          "attack": "EnragedWarlord.2"
+        },
+        {
+          "tipTravelInHeights": 0.8644431515743858,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.6944128714109722,
+          "pulses": 1,
+          "attack": "EnragedWarlord.3"
+        },
+        {
+          "tipTravelInHeights": 0.9383364727622585,
+          "shoulderDegrees": 82.47323649196166,
+          "forwardInHeights": 0.7127865992094341,
+          "pulses": 3,
+          "attack": "EnragedWarlord.4"
+        }
+      ],
+      "DeathKnight": [
+        {
+          "tipTravelInHeights": 0.9176755763724715,
+          "shoulderDegrees": 79.91815834610827,
+          "forwardInHeights": 0.7152457227687797,
+          "pulses": 1,
+          "attack": "basic"
+        },
+        {
+          "tipTravelInHeights": 0.8936116403950479,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.7152457227687797,
+          "pulses": 1,
+          "attack": "DeathKnight.1"
+        },
+        {
+          "tipTravelInHeights": 0.8936116403950479,
+          "shoulderDegrees": 76.82376846339068,
+          "forwardInHeights": 0.7152457227687797,
+          "pulses": 2,
+          "attack": "DeathKnight.2"
+        }
+      ]
+    },
+    "bladePointErrors": {
+      "rbxassetid://117192097017225": 1.5045930013002362e-06,
+      "rbxassetid://70962156910748": 1.7956517694983631e-06,
+      "rbxassetid://99380945192517": 0
+    }
+  },
+  "patterns": {
+    "styles": [
+      "CalderaTitan.1",
+      "CalderaTitan.2",
+      "CalderaTitan.3",
+      "CalderaTitan.4",
+      "DeathKnight.1",
+      "DeathKnight.2",
+      "Gloambat.1",
+      "Hellhound.1",
+      "Hellhound.2",
+      "IceBear.1",
+      "SkeletonKnight.1",
+      "Slime.1",
+      "WidowQueen.1"
+    ],
+    "checks": 1289,
+    "travelRecoveries": 40,
+    "kinds": 50,
+    "attacks": 146,
+    "bosses": 23,
+    "pass": true,
+    "pulses": 285,
+    "skinned": 12
+  },
+  "haunted": {
+    "checks": 371796,
+    "failures": [],
+    "species": {
+      "DeathKnight": {
+        "maxStoppedFootLift": 2.384185791015625e-07,
+        "stanceSlipHeightFraction": 0.007515030060120241,
+        "source": "death_knight"
+      },
+      "SkeletonKnight": {
+        "maxStoppedFootLift": 2.384185791015625e-07,
+        "bladeForwardTravel": {
+          "HeavyAlt": 1.5155178904533386,
+          "AttackAlt": 1.3227936029434204,
+          "Heavy": 1.8687427937984467,
+          "Attack": 1.6336648166179657
+        },
+        "source": "skeleton_knight",
+        "stanceSlipHeightFraction": 0.007745754667229196
+      },
+      "Hellhound": {
+        "maxStoppedFootLift": 0,
+        "stanceSlipHeightFraction": 0.012478298611111112,
+        "source": "hellhound"
+      },
+      "Skeleton": {
+        "maxStoppedFootLift": 2.384185791015625e-07,
+        "bladeForwardTravel": {
+          "HeavyAlt": 0.349629282951355,
+          "AttackAlt": 0.18645870685577393,
+          "Heavy": 1.2538674473762512,
+          "Attack": 1.002429723739624
+        },
+        "source": "skeleton",
+        "stanceSlipHeightFraction": 0.012613932291666668
+      },
+      "Lich": {
+        "source": "lich",
+        "maxStoppedFootLift": 0
+      },
+      "Veyr": {
+        "source": "dread_commander",
+        "maxStoppedFootLift": 0
+      },
+      "DreadCommander": {
+        "source": "dread_commander",
+        "maxStoppedFootLift": 0
+      },
+      "Ghoul": {
+        "maxStoppedFootLift": 2.384185791015625e-07,
+        "stanceSlipHeightFraction": 0.00493646978021978,
+        "source": "ghoul"
+      },
+      "LichSovereign": {
+        "source": "lich_sovereign",
+        "maxStoppedFootLift": 0
+      },
+      "Mummy": {
+        "source": "mummy",
+        "maxStoppedFootLift": 0
+      },
+      "Zombie": {
+        "maxStoppedFootLift": 0,
+        "stanceSlipHeightFraction": 0.011463994565217392,
+        "source": "zombie"
+      }
+    },
+    "pass": true,
+    "kind": "HAUNTED_MONSTER_MOTION_NATIVE"
+  },
+  "deepwood": {
+    "assets": [
+      {
+        "id": "rbxassetid://125573495482004",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://87399918907313",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://117874108145110",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://106328589826371",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://113674939992670",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://88945334149416",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://138116124325219",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://138116124325219",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://138116124325219",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://138116124325219",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://138116124325219",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://138116124325219",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://109193659046547",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://109193659046547",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://109193659046547",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://109193659046547",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://109193659046547",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://90044855807618",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://134959425193033",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://130470854551025",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://88982650364847",
+        "status": "Success"
+      },
+      {
+        "id": "rbxassetid://98579416793544",
+        "status": "Success"
+      }
+    ],
+    "checks": 108,
+    "failures": [],
+    "pass": true,
+    "kind": "DEEPWOOD_WEAPON_OWNERSHIP_NATIVE"
+  },
+  "legacyBaseline": {
+    "version": "0.111.21",
+    "SkeletonAttackAltForwardStuds": 0.01872074604034424
+  },
+  "verifiedTemplateParts": 9,
+  "lfsInputsVerified": 4
+}
