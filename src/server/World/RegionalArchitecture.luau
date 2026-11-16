@@ -1,7 +1,7 @@
 -- Blender-authored primitives retain their exact local rotations and proportions.
 local Templates=require(script.Parent.RegionalArchitectureTemplates)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Architecture={version=3}
+local Architecture={version=4}
 function Architecture.build(kind)
  local rows=assert(Templates[kind],'Unknown regional architecture '..kind)
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
@@ -49,6 +49,13 @@ function Architecture.build(kind)
    p:SetAttribute('EpicDetailSolid',false);p:SetAttribute('TLTSceneryDistance',700)
    p:SetAttribute('RefugeHearthDetail',true);details+=1
    return p
+  end
+  -- FV-02: a dry timber interior distinguishes refuge from the snow outside.
+  -- Thin visual boards overlay the existing authoritative floor; no new step.
+  for i=1,8 do
+   local board=K.part(m,'RefugeFloorboard',Vector3.new(2.995,.08,18),CFrame.new(-13.5+i*3,.04,.5),Color3.fromRGB(91+(i%3)*4,72+(i%3)*3,54+(i%3)*2),Enum.Material.Wood)
+   board:SetAttribute('EpicDetailSolid',false);board:SetAttribute('TLTSceneryDistance',700)
+   board:SetAttribute('RefugeFloorDetail',true);details+=1
   end
   local stone=Color3.fromRGB(133,161,182)
   local coping=Color3.fromRGB(207,226,235)
