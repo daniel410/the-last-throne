@@ -159,7 +159,15 @@ function Motion.step(s,dt,current)
  if attackActive then
   local accent
   accent,gesture,load,drive=PatternPose.accent(s.model,current,s.attack,s.height,s.basicGesture)
-  rootFrame=rootFrame*accent
+  if s.profile.armLimitRadians then
+   -- These low-slung rigs have reviewed shoulder seams and millimetres of
+   -- hand clearance. Move the entire pose along the ground plane.
+   local _,yaw=accent:ToOrientation()
+   rootFrame=CFrame.new(accent.Position)*CFrame.Angles(0,yaw,0)*rootFrame
+   gesture=nil
+  else
+   rootFrame=rootFrame*accent
+  end
  end
  local bodyInRoot=s.joint.C0*rootFrame*s.joint.C1:Inverse()
  if not s.profile.hasLegs then

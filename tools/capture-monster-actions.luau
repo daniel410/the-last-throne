@@ -23,6 +23,20 @@ surface.Color=Color3.fromRGB(57,68,76)
 surface.Material=Enum.Material.Slate
 game.Lighting.ClockTime=14
 game.Lighting.Ambient=Color3.fromRGB(130,138,151)
+local function framing(visual)
+    local lo=Vector3.one*math.huge
+    local hi=-lo
+    for _,p in visual:GetDescendants() do
+        if p:IsA("BasePart") and p.Transparency<.95 then
+            for _,x in {-.5,.5} do for _,y in {-.5,.5} do for _,z in {-.5,.5} do
+                local v=p.CFrame:PointToWorldSpace(p.Size*Vector3.new(x,y,z))
+                lo=lo:Min(v)
+                hi=hi:Max(v)
+            end end end
+        end
+    end
+    return (lo+hi)/2,hi-lo
+end
 local function capture(kind,frame)
     local done=false
     game.CaptureService:CaptureScreenshot(function(id)
@@ -39,7 +53,9 @@ local function capture(kind,frame)
         local bytes=game.EncodingService:CompressBuffer(rgb,Enum.CompressionAlgorithm.Zstd,4)
         local encoded=game.EncodingService:Base64Encode(bytes)
         local data=buffer.tostring(encoded)
-        for i=1,#data,5000 do print("MONSTER_PIXELS",kind,frame,data:sub(i,i+4999)) end
+        assert(_G.MonsterCaptureURL,"Use tools/collect-monster-actions.py")
+        game.HttpService:PostAsync(_G.MonsterCaptureURL,game.HttpService:JSONEncode({
+            kind=kind,frame=frame,data=data}),Enum.HttpContentType.ApplicationJson,false)
         img:Destroy()
         done=true
     end)
@@ -59,8 +75,7 @@ for _,case in {{"Goblin",2},{"Ogre",1},{"Gloambat",1},{"IceWolf",2},{"VolcanoSha
     local s=assert(motion.bind(actor),kind)
     game.ContentProvider:PreloadAsync(actor:GetDescendants())
     run.Heartbeat:Wait()
-    local center,size=actor.TdMonsterVisual:GetBoundingBox()
-    local target=center.Position
+    local target,size=framing(actor.TdMonsterVisual)
     local extent=math.max(size.X,size.Y,size.Z,s.height)
     camera.CameraType=Enum.CameraType.Scriptable
     camera.FieldOfView=27
