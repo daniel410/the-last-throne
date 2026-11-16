@@ -21,6 +21,12 @@ local function inspect()
   check(p.CanCollide==false and p.CanTouch==false and p.CanQuery==false,"cosmetic physics only")
   if p:GetAttribute('CuratedVFXKey')then
    check(p:FindFirstChild('PixelFXSprite')==nil,'imported artwork replaces pixel layer')
+  elseif p:GetAttribute("HeroBrush")then
+   check(not p:FindFirstChildWhichIsA("BillboardGui"),"hero stroke stays in attack space")
+   local body=p:FindFirstChild("MaterialWake")
+   local edge=p:FindFirstChild("LeadingFilament")
+   check(body and edge and body.Attachment0==edge.Attachment0 and body.Attachment1==edge.Attachment1,"wake and filament share the curve")
+   check(body.Width1>edge.Width1 and body.Width1>0,"body and edge have distinct pressure")
   else
   check(p.PixelFXSprite.AlwaysOnTop==false,"world occlusion preserved")
   local image=p.PixelFXSprite.Frame
@@ -50,7 +56,7 @@ local ok,err=xpcall(function()
     character:SetAttribute("K0AttackSeq",report.skills+1)
     check(not FX.skill(character,d.id,root.Position,root.Position+Vector3.new(0,0,-3),0,nil,1),"windup never emits contact")
     for pulse=1,d.pulses do
-     FX.clear();check(FX.skill(character,d.id,root.Position,root.Position+Vector3.new(0,0,-3),pulse,nil,report.skills+1),d.id.." pulse "..pulse)
+     FX.clear();check(FX.skill(character,d.id,root.Position,root.Position+Vector3.new(0,0,-3),pulse,nil,report.skills+1),d.id.." pulse "..pulse);inspect()
     end
    else
     character:SetAttribute("K0SkillId",d.id);character:SetAttribute("K0AttackStartedAt",100)
@@ -59,14 +65,22 @@ local ok,err=xpcall(function()
      FX.clear()
      local now=100+d.windup+(d.hitDelay or 0)+(beat-1)*(d.shotInterval or .3)+.01
      check(Controller.renderCharacter(character,now),d.id.." release "..beat)
-     check(not Controller.renderCharacter(character,now),"release is idempotent")
+     inspect();check(not Controller.renderCharacter(character,now),"release is idempotent")
     end
    end
   end
-  character:SetAttribute("K0SkillId",nil);character:SetAttribute("K0Combo",1)
-  character:SetAttribute("K0AttackSeq",1000+report.skills);character:SetAttribute("K0AttackStartedAt",100)
-  local d=Config.BasicAttackProfiles[classId].attacks[1]
-  FX.clear();check(Controller.renderCharacter(character,100+d.windup+(d.hitDelay or 0)+.01),classId.." basic release")
+  character:SetAttribute("K0SkillId",nil);character:SetAttribute("K0AttackStartedAt",100)
+  local expected={knight={"Cleave","Rising","Sweep"},dwarf={"Cleave","Sweep","Sweep"},elf={"Fletching"},mage={"Sweep"}}
+  for combo,d in ipairs(Config.BasicAttackProfiles[classId].attacks) do
+   character:SetAttribute("K0Combo",combo);character:SetAttribute("K0AttackSeq",1000+report.skills+combo)
+   FX.clear();check(Controller.renderCharacter(character,100+d.windup+(d.hitDelay or 0)+.01),classId.." basic release")
+   local holder=assert(workspace:FindFirstChild("PixelFXAccent"))
+   check(holder:GetAttribute("HeroBrush")==expected[classId][combo],classId.." combo "..combo.." follows its weapon")
+   local stroke=holder.MaterialWake;local start=stroke.Attachment1.Position
+   FX.step(.065);check((stroke.Attachment1.Position-start).Magnitude>.09,"stroke draws through space")
+   character:SetAttribute("K0State","Dodge");FX.step(.001);check(not holder.Parent,"interrupt removes hero strokes")
+   character:SetAttribute("K0State","Attack")
+  end
   report.basic+=1
  end
  check(report.skills==128 and report.basic==4,"all 128 skills and 4 basic profiles")

@@ -960,11 +960,13 @@ local function consumeSpell(character)
 	end
 	local waterDroplets
 	if skillId == "mage.common.water_ball" and classId == "mage" then
-		orb.Name, orb.Material, orb.Transparency = "K0WaterBall", Enum.Material.Glass, 0.25
+		orb.Name, orb.Material, orb.Transparency = "K0WaterBall", Enum.Material.Glass, 0.28
+		orb.Color, orb.Reflectance = Color3.fromRGB(33, 107, 153), .23
 		waterDroplets = {}
 		for index = 1, 5 do
 			local droplet = arrowPart(orb, "K0WaterDroplet", Vector3.one * (index % 2 == 0 and 0.20 or 0.27), Color3.fromRGB(160, 226, 255), Enum.Material.Glass)
 			droplet.Shape, droplet.Transparency = Enum.PartType.Ball, 0.15
+			droplet.Size *= Vector3.new(.74, .86, 1.45)
 			droplet.Position = first + Vector3.new(math.cos(index * 1.256) * 0.9, (index % 2) * 0.3, math.sin(index * 1.256) * 0.9)
 			table.insert(waterDroplets, droplet)
 		end
@@ -979,6 +981,11 @@ local function consumeSpell(character)
 	trail.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,.2),NumberSequenceKeypoint.new(1,1)})
 	trail.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(1,0)})
 	trail.Lifetime, trail.LightEmission = .20, .7
+	if waterDroplets then
+		trail.Color = ColorSequence.new(Color3.fromRGB(145,224,240), Color3.fromRGB(36,106,153))
+		VFXStyle.trail(trail,"spell")
+		trail.Lifetime, trail.LightEmission = .14, .32
+	end
 	if heldWeapon then
 		-- A short, pale blade-tip sweep leaves the rotating silhouette readable.
 		front.Position = Vector3.new(-0.12, orb.Size.Y * 0.35, 0)
@@ -1022,7 +1029,9 @@ local function advanceSpells(dt)
 			end
 			for i, droplet in ipairs(spell.waterDroplets or {}) do
 				local angle = spell.elapsed * 12 + i * 2 * math.pi / 5
-				droplet.Position = position + Vector3.new(math.cos(angle) * 0.9, math.sin(angle * 1.3) * 0.55, math.sin(angle) * 0.9)
+				local radius = .74 - .055 * i
+				local offset = Vector3.new(math.cos(angle)*radius, math.sin(angle)*radius, .16 + .23*i)
+				droplet.CFrame = spell.part.CFrame * CFrame.new(offset)
 			end
 			if spell.elapsed >= spell.duration then
 				if not spell.heldWeapon then impact(position, spell.part.Color) end

@@ -5,6 +5,7 @@ local Run=game:GetService("RunService")
 local Assets=require(RS.Shared.PixelFXAssets)
 local Catalog=require(RS.Shared.PixelFXCatalog)
 local Curated=require(script.Parent.CuratedVFX)
+local Strokes=require(script.Parent.HeroActionStrokes)
 local FX={}
 local records={}
 local connection
@@ -38,6 +39,7 @@ function FX.step(dt)
   else
    if r.follow then r.holder.Position=r.follow.Position+r.offset end
    Curated.step(r.curated,r.age)
+   if r.strokes then Strokes.step(r.strokes,r.age/r.duration) end
    if r.image then
     local index=math.min(15,math.floor(r.age/r.duration*16))
     r.image.ImageRectOffset=Vector2.new(index%4*128,math.floor(index/4)*128)
@@ -59,8 +61,13 @@ function FX.emit(key,position,size,duration,options)
  holder.Anchored=true;holder.Transparency=1;holder.CanCollide=false;holder.CanTouch=false;holder.CanQuery=false;holder.CastShadow=false
  holder:SetAttribute("PixelFXKey",key)
  local curated=options.curated and Curated.mount(holder,options.curated,math.clamp(size,.3,6))
- local image
- if not curated then
+ local strokes, image
+ if not curated and options.hero then
+  local direction=options.direction
+  if not vector(direction) or direction.Magnitude<.001 then direction=Vector3.new(0,0,-1) end
+  strokes=Strokes.mount(holder,options.hero,direction.Unit,size,options.phase,options.beat or 1,options.weaponSocket)
+  Strokes.step(strokes,0)
+ elseif not curated then
  local gui=Instance.new("BillboardGui")
  gui.Name="PixelFXSprite";gui.Size=UDim2.fromScale(math.clamp(size,.3,6),math.clamp(size,.3,6))
  gui.AlwaysOnTop=false;gui.LightInfluence=0;gui.MaxDistance=MAX_DISTANCE;gui.Adornee=holder;gui.Parent=holder
@@ -71,16 +78,16 @@ function FX.emit(key,position,size,duration,options)
  end
  holder.Parent=workspace
  Curated.play(curated)
- local r={holder=holder,image=image,curated=curated,key=key,age=0,duration=math.clamp(duration,.12,1.6),character=options.character,seq=options.seq,follow=options.follow,offset=options.offset or Vector3.zero}
+ local r={holder=holder,image=image,strokes=strokes,curated=curated,key=key,age=0,duration=math.clamp(duration,.12,1.6),character=options.character,seq=options.seq,follow=options.follow,offset=options.offset or Vector3.zero}
  table.insert(records,r)
  -- Fixtures can step explicitly without leaving a frame connection behind.
  if not options.manual and not connection and Run:IsClient() then connection=Run.RenderStepped:Connect(FX.step) end
  return true,holder
 end
-function FX.hit(position,classId,id,scale)
+function FX.hit(position,classId,id,scale,direction)
  local row=Catalog.get(classId,id)
  if not row then return false end
- return FX.emit(row.key,position,(row.key=="axe" and 2.5 or 1.8)*(scale or 1),.32)
+ return FX.emit(row.key,position,(row.key=="axe" and 2.5 or 1.8)*(scale or 1),.19,{hero=row,direction=direction,phase="Contact"})
 end
 local seenPulses=setmetatable({},{__mode="k"})
 function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
@@ -103,7 +110,15 @@ function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
   local delta=center-origin
   at=origin+(delta.Magnitude>.01 and delta.Unit or Vector3.new(0,0,-1))*((d.form=="self" or d.form=="area") and 0 or 2)
  end
- local opts={character=character,seq=seq}
+ local direction=center-origin
+ if direction.Magnitude<.001 then
+  local root=character and character:FindFirstChild("HumanoidRootPart")
+  direction=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
+ end
+ if d.form=="chain" then
+  at=type(points)=="table" and vector(points[1]) and points[1] or origin
+ end
+ local opts={character=character,seq=seq,hero=row,direction=direction,beat=pulse}
  if id=='mage.pyro.molten_line' or id=='mage.cryo.lightning_line'then
   local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
   params.FilterDescendantsInstances=character and {character}or{};params.RespectCanCollide=true
@@ -124,7 +139,7 @@ function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
   if imported=='blast'then at=at+Vector3.new(0,1.6,0)end
   return FX.emit(row.key,at,imported=='blast'and 3.2 or 4.5,Curated.duration(imported),opts)
  end
- return FX.emit(row.key,at,area and 4.5 or d.form=="self" and 3.5 or 2.5,area and .7 or .4,opts)
+ return FX.emit(row.key,at,area and 4.5 or d.form=="self" and 3.5 or 2.5,d.ultimate and .42 or area and .30 or .22,opts)
 end
 function FX.support(character,action)
  local root=character and character:FindFirstChild("HumanoidRootPart")

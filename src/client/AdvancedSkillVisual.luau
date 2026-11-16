@@ -164,6 +164,12 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   confirmed[character]={seq=attackSeq,id=id,pulse=pulse}
  end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
+ -- The server rotates its line hit direction but retains cast.center in the
+ -- visual event. Project the same single 18-degree rotation for the even beat.
+ if pulse>0 and d.crosscut and d.form=="line" and pulse%2==0 then
+  local direction=CFrame.Angles(0,math.rad(18),0):VectorToWorldSpace(center-origin)
+  center=origin+direction
+ end
  if pulse~=0 then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
@@ -181,12 +187,6 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    end
   end
   return
- end
- -- The server rotates its line hit direction but retains cast.center in the
- -- visual event. Project the same single 18-degree rotation for the even beat.
- if d.crosscut and d.form=="line" and pulse%2==0 then
-  direction=CFrame.Angles(0,math.rad(18),0):VectorToWorldSpace(direction)
-  center=origin+direction
  end
  local first=source(character,origin,d)
  local floor=ground(d.form=="area" and center or origin,character)

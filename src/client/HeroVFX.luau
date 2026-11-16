@@ -20,12 +20,13 @@ local beams=0
 local chips=0
 local glowCount=0
 local particleCount=0
+local lightCount=0
 local WHITE=Color3.fromRGB(248,248,229)
 local palette=Palette.colors
 local function finite(n)return type(n)=="number" and n==n and math.abs(n)<math.huge end
 local function vector(v)return typeof(v)=="Vector3" and finite(v.X)and finite(v.Y)and finite(v.Z)and math.abs(v.X)<1e7 and math.abs(v.Y)<1e7 and math.abs(v.Z)<1e7 end
 local function erase(i)
- local r=table.remove(active,i);beams-=#r.lines;chips-=#r.chips;glowCount-=#r.glows;particleCount-=r.particles;Surfaces.release(r);r.model:Destroy()
+ local r=table.remove(active,i);if r.light then lightCount-=1 end;beams-=#r.lines;chips-=#r.chips;glowCount-=#r.glows;particleCount-=r.particles;Surfaces.release(r);r.model:Destroy()
 end
 local function atmosphere(r,name,at,flame,count,scale)
  count=math.min(count,(Input.TouchEnabled and 96 or 192)-particleCount);if count<=0 then return end
@@ -81,11 +82,13 @@ local function line(r,name,path,width,color,endWidth)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, RadiantOpeningFan=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
   local stroke=line(r,name,function(u)return path(from,u),path(to,u)end,width*(.4+.6*math.sin(from*math.pi)),color,width*(.4+.6*math.sin(to*math.pi)))
   if stroke then
+   if cuttingStrokes[name] then stroke.cutStart=from;stroke.cutEnd=to end
    stroke.span=function(u)return Style.span(path,from,to,u)end
    stroke.beam.Segments=3;if stroke.glow then stroke.glow.Segments=3 end
   end
@@ -116,11 +119,20 @@ local function flourish(r,position,scale,key,strong)
  local gui=Instance.new("BillboardGui");gui.Name="ImpactFlare";gui.Adornee=a;gui.AlwaysOnTop=false
  gui.LightInfluence=0;gui.MaxDistance=100;gui.Size=UDim2.fromScale(scale,scale);gui.Parent=r.carrier
  local halo=Instance.new("ImageLabel");halo.Name="ElementalFlare";halo.BackgroundTransparency=1;halo.Size=UDim2.fromScale(1,1)
- halo.Image="rbxasset://textures/particles/sparkles_main.dds";halo.ImageColor3=r.color;halo.ImageTransparency=.25;halo.Parent=gui
+ halo.Image="rbxasset://textures/glow.png";halo.ImageColor3=r.color;halo.ImageTransparency=.25;halo.Parent=gui
  local aura=halo:Clone();aura.Name="SoftFlare";aura.Image="rbxasset://textures/particles/smoke_main.dds";aura.Size=UDim2.fromScale(1.5,1.5);aura.Position=UDim2.fromScale(-.25,-.25);aura.ImageTransparency=.55;aura.ZIndex=1;aura.Parent=gui
  halo.ZIndex=2
  local core=halo:Clone();core.Name="WhiteHotCore";core.Size=UDim2.fromScale(.38,.38);core.Position=UDim2.fromScale(.31,.31);core.ImageColor3=r.hot;core.ZIndex=3;core.Parent=gui
  table.insert(r.flares,{gui=gui,halo=halo,core=core,aura=aura,size=scale})
+ -- Bounce the flash off nearby armour and terrain. Only luminous materials
+ -- receive a light, and simultaneous party casts share the same small cap.
+ local emissive=key=="fire" or key=="bomb" or key=="lightning" or key=="holy" or key=="arcane"
+ if emissive and not r.light and lightCount<(Input.TouchEnabled and 1 or 3)then
+  local light=Instance.new("PointLight")
+  light.Name="ReflectedFlash";light.Shadows=false;light.Color=r.color;light.Range=math.min(13,4+scale*1.6)
+  r.lightPeak=strong and 2.4 or 1.25
+  light.Brightness=r.lightPeak;light.Parent=a;r.light=light;lightCount+=1
+ end
  local function burst(name,texture,count,size,speed,smoke)
   local available=(Input.TouchEnabled and 96 or 192)-particleCount
   count=math.min(count,available);if count<=0 then return end
@@ -144,6 +156,10 @@ local function flourish(r,position,scale,key,strong)
   burst("ElementalPlume",key=="earth"and"rbxasset://textures/particles/smoke_main.dds"or"rbxasset://textures/particles/fire_main.dds",strong and 7 or 4,scale*.65,scale*.8,true)
  end
 end
+local function edgePressure(t,front)
+ local distance=(t-front)/.29
+ return .18+1.12*math.exp(-distance*distance)
+end
 function FX.step(now)
  if not finite(now)then return end
  for i=#active,1,-1 do
@@ -154,17 +170,28 @@ function FX.step(now)
    local bucket=math.floor(fade*24)
    local changed=r.fadeBucket~=bucket
    if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.7+fade^.65*.3)end
+   local cutFront=.18+.82*(1-(1-math.min(1,u/.76))^2)
    for _,s in ipairs(r.lines)do
     if s.span then
      local a,b,ta,tb,c0,c1=s.span(u);Style.pose(s.a,s.b,s.beam,a,b,ta,tb,c0,c1)
      if s.glow then s.glow.CurveSize0=c0;s.glow.CurveSize1=c1 end
     else local a,b=s.path(u);s.a.WorldPosition=a;s.b.WorldPosition=b end
-    s.beam.Width0=s.width*(1-fade*.7);s.beam.Width1=s.endWidth*(1-fade*.7)
+    local pressure=1-fade*.7
+    local startWidth,endWidth=s.width*pressure,s.endWidth*pressure
+    if s.cutStart then
+     startWidth*=edgePressure(s.cutStart,cutFront);endWidth*=edgePressure(s.cutEnd,cutFront)
+    end
+    s.beam.Width0=startWidth;s.beam.Width1=endWidth
     if changed then s.beam.Transparency=r.alpha end
     if s.glow then
      s.glow.Width0=s.beam.Width0*2.6;s.glow.Width1=s.beam.Width1*2.6
      if changed then s.glow.Transparency=r.glowAlpha end
     end
+   end
+   if r.light then
+    local remaining=1-math.clamp((now-r.at)/.18,0,1)
+    r.light.Brightness=r.lightPeak*remaining^2
+    r.light.Enabled=remaining>0
    end
    Surfaces.step(r,u,fade)
    for _,s in ipairs(r.flares)do
@@ -327,10 +354,10 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
  elseif key=='CalderaVents'then
   Surfaces.volume(r,'CalderaCentralVent',floor+Vector3.yAxis*.15,Vector3.new(2.8,.6,2.6),Color3.fromRGB(68,43,29),.12,'wedge',Enum.Material.Slate)
   curve(r,'CalderaMagmaSpine',function(t,u)return floor+Vector3.yAxis*(.2+t*(5+u*2))+right*math.sin(t*5+u*3)*.35 end,3,.65,palette.fire)
-  Surfaces.plume(r,'CalderaCentralPlume',floor+Vector3.yAxis*2,6,9,Color3.fromRGB(255,163,61),'rbxassetid://125374985892345',.12)
+  Surfaces.plume(r,'CalderaCentralPlume',floor+Vector3.yAxis*3.7,8,13,Color3.fromRGB(255,163,61),'rbxassetid://125374985892345',.12)
   for i=1,3 do local a=i*math.pi*2/3;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.22
    tongue(r,'CalderaEruptionTongue',at,8.2+(i%2)*1.8,1.9,a,palette.fire);atmosphere(r,'CalderaFire',at,true,4,2)
-   Surfaces.plume(r,'CalderaVentPlume',at+Vector3.yAxis*2,5,8,Color3.fromRGB(255,145,40),'rbxassetid://125374985892345',.18)
+   Surfaces.plume(r,'CalderaVentPlume',at+Vector3.yAxis*(1.8+i*.45),4.5+i*.55,6+i*1.5,Color3.fromRGB(255,145,40),'rbxassetid://125374985892345',.18)
    curve(r,'CalderaLivingJet',function(t,u)
     local height=7+u*4;local drift=Vector3.new(math.cos(a+t*4),0,math.sin(a+t*4))
     return at+Vector3.yAxis*(t*height+.3)+drift*math.sin(t*math.pi)*1.25
@@ -342,10 +369,15 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
   end
  elseif key=='FrostFunnel'then
   for layer=1,3 do
-   Surfaces.plume(r,'TempestVaporLayer',floor+Vector3.yAxis*(layer*2.2),3+layer,2.4,palette.frost,'rbxasset://textures/particles/smoke_main.dds',.80)
+   Surfaces.plume(r,'TempestVaporLayer',floor+Vector3.yAxis*(layer*2.1),2.4+layer*1.7,3.6,palette.frost,'rbxasset://textures/particles/smoke_main.dds',.52)
   end
   for lane=1,3 do
-   curve(r,'TempestSpiral',function(t,u)local a=t*math.pi*2.2+lane*math.pi*2/3+u*1.5;local rad=math.min(radius*.30,5.5)*(.35+t*.65);return floor+Vector3.new(math.cos(a)*rad,.4+t*10,math.sin(a)*rad)end,7,.065,palette.frost:Lerp(r.hot,.2))
+   curve(r,'TempestSpiral',function(t,u)
+    local angle=t*math.pi*1.65+lane*math.pi*2/3+u*2.8
+    local rad=math.min(radius*.31,5.8)*(.14+.86*t^1.3)
+    local lean=right*(t*t*1.25)
+    return floor+lean+Vector3.new(math.cos(angle)*rad,.35+t*(8.1+lane*.48),math.sin(angle)*rad)
+   end,7,.30,palette.frost:Lerp(r.hot,.12))
   end
   for layer=1,3 do
    local start=#r.faces
@@ -403,7 +435,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   local storm=spinStyle=='BrokenBladeStorm'
   local sign=spinStyle=='CrossingCyclones'and lane==2 and -1 or 1
   local turn=u and (1-(1-u)^3-.5)*sign*2.4 or 0
-  local a=t*math.rad(storm and 78 or 360)+phase+(lane-1)*math.pi*2/spinLanes+turn
+  local a=t*math.rad(storm and 78 or spinStyle=="CrossingCyclones" and 360 or 246)+phase+(lane-1)*math.pi*2/spinLanes+turn
   local offset=(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*(storm and .78 or .8)
   if spinStyle=='CrossingCyclones'then offset=CFrame.fromAxisAngle(flat,lane==1 and .48 or -.48):VectorToWorldSpace(offset)end
   return first+offset+Vector3.yAxis*(storm and (lane-2)*.3 or 0)
@@ -487,7 +519,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     local offset=right*(wake-((shape=="fan"and 1 or count)+1)/2)*.08
     local start=first
     if row.key=='gun'then start=target-forward(first,target)*math.min(2.5,(target-first).Magnitude)end
-    stroke(shape=="bullet"and"RifleTracer"or"ArrowPressure",start+offset,target+offset,width/wake^.3)
+    local axis=forward(start,target)
+    local length=(target-start).Magnitude
+    line(r,shape=="bullet"and"RifleTracer"or"ArrowPressure",function(u)
+     local tail=math.min(length,row.key=="gun" and 2.5 or 8)*(1-u)^1.6
+     return target-axis*tail+offset,target+offset
+    end,width*.25/wake^.3,r.color,width*.95/wake^.3)
    end
    local axis=forward(first,target);local cf=CFrame.lookAt(target,target+axis)
    if shape~="bullet"and row.key~='gun'then
@@ -642,7 +679,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    local segments=spinStyle=='BrokenBladeStorm'and 4 or spinStyle=='CrossingCyclones'and Input.TouchEnabled and 8 or 12
    Surfaces.ribbon(r,'BladeSurface',function(t)return spinPath(lane,t)end,normal,spinStyle=='BrokenBladeStorm'and .65 or .85,.46,r.color:Lerp(r.hot,.18),segments,Enum.Material.SmoothPlastic)
    local sign=spinStyle=='CrossingCyclones'and lane==2 and -1 or 1
-   Surfaces.animate(r,start,first,normal,sign*2.4,false,r.life)
+   Surfaces.animate(r,start,first,normal,-sign*2.4,false,r.life)
   end
  elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="low"or shape=="counter"then
   local sweep=angle
@@ -830,7 +867,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     if row.key=='gun'then
      Surfaces.bar(r,'ShotPelletBody',target-axis*.55,target,.1,Color3.fromRGB(200,207,214),.15,Enum.Material.Metal)
     else
-     local w=shape=="bullet"and .12 or row.key=="arrow"and .28 or .45
+     local w=shape=="bullet"and .12 or row.key=="arrow"and .13 or .31
      Surfaces.triangle(r,"ProjectileSurface",back-side*w,target,back+side*w,nil,.42)
     end
    end

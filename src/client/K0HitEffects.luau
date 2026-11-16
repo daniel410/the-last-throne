@@ -110,7 +110,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	if model and model:GetAttribute("SlimeSplitGeneration") == 1 then scale = 0.7 end
 	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
 	HitReaction.record(model, flat)
-	PixelFX.hit(position, classId, skillId, scale)
+	PixelFX.hit(position, classId, skillId, scale, flat)
 	local contact = HeroVFX.contact(position, classId, skillId, flat, scale)
 	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
 	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)

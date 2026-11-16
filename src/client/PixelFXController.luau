@@ -31,7 +31,15 @@ function Controller.renderCharacter(character,now)
  -- Ranged releases sit near the weapon, not at a guessed target.
  local ranged=classId=="elf" or classId=="mage" and row.definition and row.definition.magic
  local position=root.Position+root.CFrame.LookVector*(ranged and 1.8 or 2.4)
- return FX.emit(row.key,position,row.definition and 2.5 or 1.6,.32,{character=character,seq=seq})
+ local socket=character:FindFirstChild(classId=="elf" and "NockedArrow" or "WeaponTip",true)
+ local socketPosition
+ if socket and socket:IsA("Attachment") then socketPosition=socket.WorldPosition
+ elseif socket and socket:IsA("BasePart") then socketPosition=socket.Position end
+ local onWeapon=socketPosition and (socketPosition-root.Position).Magnitude<=8
+ if onWeapon then position=socketPosition end
+ local combo=character:GetAttribute("K0Combo") or 1
+ return FX.emit(row.key,position,row.definition and 2.5 or 1.8,.23,
+  {character=character,seq=seq,hero=row,weaponSocket=onWeapon,direction=root.CFrame.LookVector,beat=row.definition and beat or combo})
 end
 function Controller.renderHurt(character,now)
  local specific=character:GetAttribute('K0PatternHurtAt');if type(specific)=='number' and now-specific<.3 then return false end

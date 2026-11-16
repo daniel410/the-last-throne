@@ -226,9 +226,21 @@ function Art.surfaces(r,c)
    if shard then r.faces[#r.faces].fall={height=4,duration=r.life*.78,delay=(lane-1)*.02}end
   end
  elseif kind=='WaterBall'then
-  S.volume(r,'WaterVolume',c.last,Vector3.one*1.75,r.color,.42,'ball',Enum.Material.Glass)
-  S.volume(r,'WaterInnerGlow',c.last,Vector3.one*1.5,Color3.fromRGB(61,157,233),.33,'ball',Enum.Material.Neon)
-  S.volume(r,'WaterSurfaceGlow',c.last,Vector3.one*1.8,Color3.fromRGB(78,187,255),.61,'ball',Enum.Material.Neon)
+  local shell=S.volume(r,'WaterVolume',c.last,Vector3.one*1.78,Color3.fromRGB(33,107,153),.28,'ball',Enum.Material.Glass)
+  if shell then shell.Reflectance=.23 end
+  S.volume(r,'WaterInnerGlow',c.last-c.dir*.14,Vector3.one*1.15,Color3.fromRGB(28,106,157),.64,'ball',Enum.Material.Neon)
+  local glint=c.last+UP*.52+c.right*.42+c.dir*.31
+  S.volume(r,'WaterSurfaceGlow',glint,Vector3.new(.56,.15,.30),Color3.fromRGB(131,219,249),.22,'ball',Enum.Material.Neon)
+  for lane=1,5 do
+   local a=lane*2.39996
+   local radial=c.right*math.cos(a)+UP*math.sin(a)
+   local at=c.last-c.dir*(.6+lane*.24)+radial*(.36+lane*.08)
+   local drop=S.volume(r,'StrippedDroplet',at,Vector3.new(.15,.18,.36)*(1.3-lane*.11),r.color,.22,'ball',Enum.Material.Glass)
+   if drop then
+    orient(r,drop,CFrame.lookAt(at,at+c.dir))
+    r.faces[#r.faces].drift=-c.dir*.72+radial*.28
+   end
+  end
   for i=1,3 do
    local angle=i*math.pi*2/3;local radial=c.right*math.cos(angle)+UP*math.sin(angle)
    local at=c.last+radial*.8

@@ -20,10 +20,11 @@ with tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', 
 for file in source.rglob('*'):
     if file.is_file() and file.read_bytes().startswith(b'version https://git-lfs.github.com/spec/v1\n'):
         file.write_bytes(subprocess.check_output(['git', 'lfs', 'smudge'], input=file.read_bytes(), cwd=ROOT))
-overlays = ['CombatVFXStyle', 'HeroVFX', 'HeroVFXArt', 'HeroVFXPolish', 'HeroVFXSurfaces', 'PixelFX', 'WindLanceVisual', 'K0SwordVisual', 'K0EnemyWeaponMotion',
+overlays = ['AdvancedSkillVisual', 'HeroActionStrokes', 'PixelFXController', 'K0HitEffects',
+            'CombatVFXStyle', 'HeroVFX', 'HeroVFXArt', 'HeroVFXPolish', 'HeroVFXSurfaces',
+            'PixelFX', 'WindLanceVisual', 'K0SwordVisual', 'K0EnemyWeaponMotion',
             'EnemySpellArt', 'EnemySpellVFX', 'SelenePresentation', 'K0MageFocus']
-frozen = [name for name in overlays + ['AdvancedSkillVisual',
-          'SkillIconVFX', 'SkillVFXProfiles'] if (source / f'src/client/{name}.luau').exists()]
+frozen = [name for name in overlays + ['SkillIconVFX', 'SkillVFXProfiles'] if (source / f'src/client/{name}.luau').exists()]
 for name in frozen:
     data = (source / f'src/client/{name}.luau').read_text()
     for dependency in frozen:
@@ -40,13 +41,14 @@ fixture = {'name': 'RobloxVFXPolishQA', 'tree': {'$className': 'DataModel',
     'ServerScriptService': {'Server': {'$path': str(source / 'src/server')},
         'HeroLevelUpEffect': {'$path': str(source / 'src/server/Combat/HeroLevelUpEffect.luau')}},
     'ServerStorage': assets}}
+fixture['tree']['ServerStorage']['HeroReviewRigs'] = {'$path': str(ROOT / 'tools/review-hero-skills-studio.luau')}
 (out / 'qa.project.json').write_text(json.dumps(fixture, indent=2)+'\n')
 subprocess.run(['rojo', 'build', str(out / 'qa.project.json'), '-o', str(out / 'qa.rbxlx')], check=True)
 names = ['rpg-vfx-gap', 'roblox-vfx-polish', 'skill-vfx-art', 'skill-icon-vfx', 'vfx-art-hero-fixes',
          'vfx-art-enemy-fixes', 'vfx-art-support-fixes', 'vfx-art-palette', 'vfx-review-followup',
          'arcade-impact-vfx', 'rpg-element-motion', 'rpg-vfx-motion', 'element-vfx', 'wow-vfx',
          'vfx-style-fit', 'curated-vfx', 'pixelfx', 'hero-vfx', 'wind-lance-visual',
-         'skill-vfx-individual', 'hero-vfx-flourish', 'k0-hit-effects', 'monster-spell-vfx']
+         'skill-vfx-individual', 'hero-vfx-flourish', 'k0-hit-effects', 'monster-spell-vfx', 'projectile-vfx-timing']
 suites = [a.capture.resolve()] if a.capture else [ROOT / f'tests/{name}-native.luau' for name in names]
 prefix = "assert(game.PlaceId==0 and game.GameId==0 and #game.Players:GetPlayers()==0,'Local fixture only')\nfor _,s in game:GetDescendants()do if s:IsA('BaseScript')then s.Enabled=false end end\n"
 probe = prefix + '\n'.join('local function review()\n'+f.read_text()+'\nend\nreview()' for f in suites)

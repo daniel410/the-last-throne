@@ -56,7 +56,6 @@ function P.surfaces(r,c)
  return true
 end
 function P.finish(r,c)
- local tempest=0
  for _,v in ipairs(r.lines)do
   local name=v.beam.Name
   if name=='BladeRibbon'or name=='RadiantOpeningFan'or name=='FroststormFlow'then
@@ -65,8 +64,11 @@ function P.finish(r,c)
    v.beam.Texture=name=='CalderaLivingJet'and'rbxasset://textures/particles/fire_main.dds'or name=='TempestSpiral'and'rbxasset://textures/particles/smoke_main.dds'or'rbxassetid://8196169974'
    v.beam.TextureMode=Enum.TextureMode.Wrap;v.beam.TextureLength=name=='CalderaLivingJet'and 2 or 4
    v.beam.TextureSpeed=name=='TidalLip'and .55 or name=='CalderaLivingJet'and -1.8 or .8
-   local gain=name=='TempestSpiral'and 12 or 1.3
-   if name=='TempestSpiral'then tempest+=1;v.beam.Texture='';gain=4 end
+   local gain=name=='TempestSpiral'and 6 or 1.3
+   if name=='TempestSpiral'then
+    v.beam.TextureMode=Enum.TextureMode.Wrap;v.beam.TextureLength=3.8;v.beam.TextureSpeed=.65
+    v.beam.Color=ColorSequence.new(Color3.fromRGB(58,138,186),Color3.fromRGB(168,228,241))
+   end
    v.width*=gain;v.endWidth*=gain
   end
  end

@@ -86,4 +86,5 @@ function H.sheet(classId,first,count)
  H.report[classId.."_"..first]=H.rows
  return {classId=classId,first=first,count=#H.rows,camera={9,528,105},target={0,528,0},rows=H.rows}
 end
+H.bake=bake
 return H
