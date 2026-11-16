@@ -6,7 +6,7 @@ local Bounds=require(Shared.CampaignBounds)
 local Route=require(Shared.CampaignIncidentRoute)
 local Kit=require(script.Parent.EpicEnvironmentKit)
 local Props=require(script.Parent.StoryProps)
-local M={version=2};local V=Vector3.new
+local M={version=3};local V=Vector3.new
 local function position(t)return V(table.unpack(t))end
 local function goal(chapter,id)
  for _,g in ipairs(Content.byId[chapter].goals)do if g.id==id then return g end end
@@ -137,6 +137,39 @@ local function ember(root,world)
   part(scene,'CarrierGuide',V(.7,25,.7),base+V(x,12.5,0),steel,Enum.Material.Metal)
  end
  part(scene,'CarrierCrosshead',V(14,1,2),base+V(0,25,0),steel,Enum.Material.Metal)
+ -- Reuse the two fixed landing guides as the load-bearing headframe piers.
+ -- The overhead truss makes the freight destination legible without filling
+ -- the workers' landing or changing its authoritative collision.
+ local head=model(scene,'FreightHeadframe')
+ head:SetAttribute('AssetOrigin','Derived:FreightLiftGuide/EpicEnvironmentKit')
+ for _,x in ipairs({-20,20})do
+  part(head,'PierFoot',V(5,1,5),base+V(x,.5,6),steel,Enum.Material.Metal)
+  part(head,'PierCapital',V(5,2,6),base+V(x,26,6),steel,Enum.Material.Metal)
+ end
+ for _,y in ipairs({28,35})do
+  part(head,'HeadframeChord',V(45,1.6,4),base+V(0,y,6),steel,Enum.Material.Metal)
+ end
+ for i=0,5 do
+  local x=-21+i*7
+  Kit.beam(head,'HeadframeWeb',base+V(x,28,6),base+V(x+7,35,6),1.1,steel,Enum.Material.Metal)
+  Kit.beam(head,'HeadframeWeb',base+V(x,35,6),base+V(x+7,28,6),1.1,steel,Enum.Material.Metal)
+ end
+ for _,x in ipairs({-6,6})do
+  Kit.beam(head,'DrumCradle',base+V(x,28,6),base+V(x,29,0),1.4,steel,Enum.Material.Metal)
+  part(head,'DrumBearing',V(2,7,7),base+V(x,30,0),steel,Enum.Material.Metal)
+ end
+ -- Roblox cylinders run along local X, matching the horizontal winch axle.
+ local drum=part(head,'HoistDrum',V(10,5,5),base+V(0,30,0),brass,Enum.Material.Metal)
+ drum.Shape=Enum.PartType.Cylinder
+ for _,x in ipairs({-4.6,4.6})do
+  local flange=part(head,'DrumFlange',V(.6,6.5,6.5),base+V(x,30,0),steel,Enum.Material.Metal)
+  flange.Shape=Enum.PartType.Cylinder
+ end
+ Kit.beam(head,'UpperHoistCable',base+V(0,27.5,0),base+V(0,24,0),.2,brass,Enum.Material.Metal)
+ for _,x in ipairs({-17.5,17.5})do
+  Kit.beam(head,'HeadframeKnee',base+V(x/17.5*20,21,6),base+V(x/17.5*12,28,6),1.4,steel,Enum.Material.Metal)
+ end
+
  local carrier=model(scene,'FreightCarrier')
  part(carrier,'CarrierBed',V(10,.4,8),base+V(0,.6,0),steel,Enum.Material.DiamondPlate)
  for _,x in ipairs({-5,5})do part(carrier,'CarrierSafetyRail',V(.3,2,8),base+V(x,1.8,0),brass,Enum.Material.Metal)end
