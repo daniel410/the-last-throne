@@ -1,0 +1,2 @@
+PASS: Studio defaults, four classes, account validation, mutation/rejoin preservation, fresh session and production isolation
+STUDIO_TEST_CURRENCY_RESTORE_NATIVE_PASS
