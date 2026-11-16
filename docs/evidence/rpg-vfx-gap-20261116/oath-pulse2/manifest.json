@@ -1,0 +1,32 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "id": "knight.paladin.oathbound_assault",
+    "age": 0.06,
+    "extent": 11,
+    "name": "OATHBOUND ASSAULT",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 2,
+    "file": "001-knight.paladin.oathbound_assault.png",
+    "sha256": "1e3499c55fe80fee4f04fd0a5afea8cbb585ffe997248c2fb552f8cea711dfa6",
+    "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+  },
+  {
+    "clockTime": 0,
+    "index": 2,
+    "id": "knight.paladin.oathbound_assault",
+    "age": 0.18,
+    "extent": 11,
+    "name": "OATHBOUND ASSAULT",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 2,
+    "file": "002-knight.paladin.oathbound_assault.png",
+    "sha256": "a519b7bf68a6047e1d45c3bf3b76487e2c8b4e9d657e1d2662ada2f04056edbc",
+    "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "8d4d2d20f4b5e228684e043537566852f8f1364d",
+  "version": "0.111.6",
+  "buildSha256": "100a444329c913b7021511d6aaac8b0208fc9b202d3b7dba3966457fae465fc5",
+  "runtimeModules": {
+    "src/client/CombatVFXStyle.luau": "338c6a8501bbca6f8104fab796e1023163ba048e0d71368531096a75f2f32f99",
+    "src/client/HeroVFX.luau": "02693e3cf90422ec48604941856f8003b655040dbd9e0b7200cb75fb7ff4afb0",
+    "src/client/HeroVFXArt.luau": "26108c3e93d01417933aee16c5cc4e869e64e873319de0500a26798ee809a1a7",
+    "src/client/HeroVFXPolish.luau": "db52a7f3212264920f352ad360c0be4744da7f56af96911f07467c5eedf62a88",
+    "src/client/HeroVFXSurfaces.luau": "72f7e032352b663d3f2c17a68ac4a9938fd08d83ad7c46a6e97a7765f3de9caf",
+    "src/client/PixelFX.luau": "4c09149c38dd232311700120863a601f1f8145d88b770aee4539d592521ebc84",
+    "src/client/WindLanceVisual.luau": "b8ffb5ec7f278157d455dd2dcb492f30bca7c6d7e647b96c65c886947b8bca94",
+    "src/client/K0SwordVisual.luau": "6c6232a82c4989347973cef6006747ef92d2eaaf491303dc8970b964e70b5362",
+    "src/client/K0EnemyWeaponMotion.luau": "9111cec5fdc62fbf64e70148d2dda5c831062dc012332d739a0c585765077315",
+    "src/client/EnemySpellArt.luau": "5fa9fc75ae99d1393deb362c080df75986ef3d4ea7ea66036e74597c34e280a8",
+    "src/client/EnemySpellVFX.luau": "a0fe6987985bc307de99cd5186a24e894596bae02594050d41b7f9d7f6053a68",
+    "src/client/SelenePresentation.luau": "19f3ae871682c4f038ddb93356fce7ed02621ed59210aa0d0c5cd7e08e680392",
+    "src/client/K0MageFocus.luau": "2624c72019c90c18443d5a5dd1dd3fc6b8338d41ff80d1094235bee5987a90c2"
+  },
+  "nativeModulesMatch": true,
+  "probeSha256": "dfea973df188aaaefde67d9fbc895fa14990e78653ec7445c1a284ebd7cf1939",
+  "published": false
+}

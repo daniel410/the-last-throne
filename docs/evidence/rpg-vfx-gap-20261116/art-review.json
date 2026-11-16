@@ -1,0 +1,1855 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-16",
+  "tasks": [
+    "TLT-033",
+    "TLT-057",
+    "TLT-059"
+  ],
+  "role": "independent_art_review",
+  "status": "final_art_observation_complete_residuals_open",
+  "baselineVersion": "0.111.4",
+  "candidateIdentity": "0.111.6 fixed-build source hashes matched to reviewed capture inputs; no gameplay/device acceptance",
+  "captureBaseCommit": "e039714d8bf48eff112ddb283d3db6f67f296e66",
+  "verdict": "궁극기 초점/낙하 방향·야간 본체·성기사 개별 형상의 개선을 확인했다.검격/물결의 판형 재질과 시간/실전 가독성 격차는 남는다.최상급 RPG 완성도 또는 네 격차의 완전 해소로 수용하지 않는다.",
+  "currentFinalVisualEvidence": {
+    "set": "release",
+    "pairedFrames": 29,
+    "uniqueHeroTargets": 12,
+    "sheetsViewed": [
+      "release/sheet-01.png",
+      "release/sheet-02.png",
+      "release/sheet-03.png"
+    ],
+    "originalPairsMagnified": [
+      "release/002-mage.pyro.caldera_s_judgment.png",
+      "release/006-elf.magic_archer.spirit_arrowfall.png",
+      "release/021-knight.paladin.oathbound_assault.png",
+      "release/022-knight.paladin.oathbound_assault.png",
+      "release/024-mage.cryo.froststorm.png"
+    ],
+    "releasePairs": 24,
+    "additionalOathPairs": 4,
+    "enemyIceNightPairs": 1,
+    "uniqueEnemyTargets": 1,
+    "catalogFrames": 128,
+    "catalogSheets": 8,
+    "supplementalSheetsViewed": [
+      "oath-pulse2/sheet-01.png",
+      "oath-pulse3/sheet-01.png"
+    ],
+    "enemyOriginalViewed": "ice-matched/001-enemy.IceElf.flight.png"
+  },
+  "referenceScope": {
+    "record": "docs/research/2026-11-15-rpg-vfx-quality-comparison.md",
+    "recordReadByThisAgent": true,
+    "commercialVideosViewedByThisArtReviewAgent": false,
+    "directObservationsOwnedBy": "root engineer/researcher as recorded in the source document",
+    "method": "이번 ART는 총괄이 직접 관찰한 공식 로아 영상의 기록을 비교 원리로 읽고,우리 release 이미지를 직접 view_image로 관찰했다.새 게임/새 프레임을 직접 봤다고 주장하지 않는다.",
+    "sources": [
+      {
+        "title": "Lost Ark official Berserker / Whirlwind",
+        "page": "https://www.playlostark.com/en-gb/game/classes/warrior/berserker",
+        "video": "https://www.youtube.com/watch?v=0EO4YTZJl8A&t=4s",
+        "rootApproxSamplesSeconds": [
+          4,
+          9
+        ],
+        "dateLimit": "페이지 확인2026-11-15,영상 정확한 게시일 미확인",
+        "comparisonPrinciple": "밝은 날과 폭/길이/불투명도가 다른 약한 층·먼지 잔류의 분리"
+      },
+      {
+        "title": "Lost Ark official Sorceress / Awakening Incinerate",
+        "page": "https://www.playlostark.com/en-gb/game/classes/mage/sorceress",
+        "video": "https://www.youtube.com/watch?v=ef4qjxx7ZE4&t=17s",
+        "rootApproxSamplesSeconds": [
+          5,
+          17
+        ],
+        "dateLimit": "페이지 확인2026-11-15,영상 정확한 게시일 미확인",
+        "comparisonPrinciple": "크기가 다른 밝은 불꽃·어두운 덩어리/연기·불티와 지면 압력/파편의 구분"
+      }
+    ],
+    "notClaimed": [
+      "직접 플레이",
+      "현행 라이브 패치 비교",
+      "같은 장면/카메라의 성능 비교",
+      "장르 순위/최고 수준 인증",
+      "외부 자산 복제"
+    ]
+  },
+  "gapAssessment": [
+    {
+      "id": "GAP-01",
+      "title": "궁극기 초점",
+      "status": "improved_with_residual",
+      "observed": "Caldera 불꽃 초점/지면 연결,Spirit 하향 촉과 절제된 수관,Tempest 더 읽히는 회전축",
+      "remaining": "Tempest 코일 인상과 실제 분출/폭풍/낙하의 압력·무게·잔류 시간 위계"
+    },
+    {
+      "id": "GAP-02",
+      "title": "검격/물결 판형 재질",
+      "status": "partially_improved_not_closed",
+      "observed": "주날 회복,Froststorm의 연속 흐름 우세,옅어진 보조 면",
+      "remaining": "Whirl/Twin/Tidal의 균일 분할 띠,단색 면/코일 재질,실제 선두-꼬리 운동"
+    },
+    {
+      "id": "GAP-03",
+      "title": "야간 본체",
+      "status": "local_night_readability_improved",
+      "observed": "Water/Frost Lance의 유색 본체·좁은 맥 대비 개선과 최종 IceElf의 Glass 본체를 보존한 전방맥 개선",
+      "remaining": "실제 거리/지형/이동과 그래픽 품질 양끝의 가독성은 미수용"
+    },
+    {
+      "id": "GAP-04",
+      "title": "성기사3검격 정체성",
+      "status": "three_pulse_static_identity_improved",
+      "observed": "넓은 Radiant/두 보호표식 Guardian/보석+짧은 Oath 검흔.pulse1/2/3 각1검흔의 위치/기울기 차이를 표본에서 직접 확인",
+      "remaining": "실제3연속 타이밍/무기 동기와 강한 단색 면 재질은 미수용"
+    }
+  ],
+  "acceptanceCriteria": {
+    "GAP-01": [
+      "Caldera의 암석/용융 핵·상승 분출,Tempest의 층진 기류/하강 결정,Spirit의 잎 수관/하강 화살이 각기 읽힘",
+      "같은 전투 거리/카메라에서 범위선보다 기술 고유 초점의 대비가 먼저 읽히며 몸/위험 바닥 유지"
+    ],
+    "GAP-02": [
+      "검격은 선명한 날에서 가늘고 옅은 꼬리로 이어짐",
+      "물마루의 높이/두께/명암이 다르고 열린 내부 유지",
+      "큰 균일 판/접합 꺾임이 첫 인상으로 남으면 완전 수용 아님"
+    ],
+    "GAP-03": [
+      "Water의 둥근 곡면/Frost Lance의 긴 결정/IceElf의 전진축이 밤에도 구별됨",
+      "작은 유색 핵/면/맥으로 읽히고 전체 백색 블룸으로 메우지 않음"
+    ],
+    "GAP-04": [
+      "Radiant:넓은 단일 금빛 초승달/작은 보석",
+      "Guardian:전방 검격/두 보호표식",
+      "Oathbound:확정3펄스의 각1짧은 베기/서약 보석",
+      "기술 이름 없이도 세 실루엣이 구별되고 서버 피해/펄스/보호 의미 유지"
+    ]
+  },
+  "pendingEvidence": [],
+  "evidenceExclusions": [
+    "comparisons",
+    "first-refinement",
+    "focus",
+    "reviewed",
+    "final",
+    "caldera-final",
+    "ice-night"
+  ],
+  "exclusionReason": "release24+oath-pulse2/3 각2+ice-matched1만 최종 전후 근거로 사용한다.중간 소스/실패화면과 이전 ice-night는 현재 최종 수용에 혼합하지 않는다.",
+  "limits": [
+    "0.06초 낮과0.18초 밤은 같은 환경의 연속 시간 측정이 아니다.동일 시점 Before/After 형상과 대비만 비교한다.",
+    "geometry 고정과 legacy 입자 재방출 표본은 정확한 입자 나이/궤적/소멸·완전한 연속재생의 증거가 아니다.",
+    "실제 캐릭터/장비·다인 합성·게시 클라이언트·실기기/GPU는 별도 미검증.기존0.111.4의128/73쌍 수용 범위를 자동 승계하지 않는다.",
+    "이 ART 역할은 런타임/빌드 검사를 실행하지 않았다.엔진 검사 개수나 새 P0 회귀 부재가 최상급 미술 완성도 인증은 아니다."
+  ],
+  "integrity": {
+    "releaseManifestSha256": "b5b988dba5f1a0d592928effc5c4d046e060cb69eb1c30d408a938564ea7f440",
+    "releaseProvenanceSha256": "4a74cc6d6b974108d23511785d2eb7067463e56f1dff64c8bf2aa9514bb83a9f",
+    "nativeProvenanceSha256": "09c3b7e7ea0240dbe630137f0a60411291b9a65665fcd95f8d635fa38417c5a2",
+    "releasePngChecked": 24,
+    "releasePngMismatches": [],
+    "releaseRuntimeHashes": {
+      "src/client/CombatVFXStyle.luau": "338c6a8501bbca6f8104fab796e1023163ba048e0d71368531096a75f2f32f99",
+      "src/client/SelenePresentation.luau": "19f3ae871682c4f038ddb93356fce7ed02621ed59210aa0d0c5cd7e08e680392",
+      "src/client/K0MageFocus.luau": "2624c72019c90c18443d5a5dd1dd3fc6b8338d41ff80d1094235bee5987a90c2",
+      "src/client/K0EnemyWeaponMotion.luau": "9111cec5fdc62fbf64e70148d2dda5c831062dc012332d739a0c585765077315",
+      "src/client/HeroVFXSurfaces.luau": "72f7e032352b663d3f2c17a68ac4a9938fd08d83ad7c46a6e97a7765f3de9caf",
+      "src/client/PixelFX.luau": "4c09149c38dd232311700120863a601f1f8145d88b770aee4539d592521ebc84",
+      "src/client/EnemySpellArt.luau": "5fa9fc75ae99d1393deb362c080df75986ef3d4ea7ea66036e74597c34e280a8",
+      "src/client/EnemySpellVFX.luau": "a0fe6987985bc307de99cd5186a24e894596bae02594050d41b7f9d7f6053a68",
+      "src/client/K0SwordVisual.luau": "6c6232a82c4989347973cef6006747ef92d2eaaf491303dc8970b964e70b5362",
+      "src/client/HeroVFX.luau": "02693e3cf90422ec48604941856f8003b655040dbd9e0b7200cb75fb7ff4afb0",
+      "src/client/HeroVFXPolish.luau": "db52a7f3212264920f352ad360c0be4744da7f56af96911f07467c5eedf62a88",
+      "src/client/WindLanceVisual.luau": "b8ffb5ec7f278157d455dd2dcb492f30bca7c6d7e647b96c65c886947b8bca94",
+      "src/client/HeroVFXArt.luau": "26108c3e93d01417933aee16c5cc4e869e64e873319de0500a26798ee809a1a7"
+    },
+    "releaseRuntimeMatchesNative": {
+      "src/client/CombatVFXStyle.luau": true,
+      "src/client/SelenePresentation.luau": true,
+      "src/client/K0MageFocus.luau": true,
+      "src/client/K0EnemyWeaponMotion.luau": true,
+      "src/client/HeroVFXSurfaces.luau": true,
+      "src/client/PixelFX.luau": true,
+      "src/client/EnemySpellArt.luau": true,
+      "src/client/EnemySpellVFX.luau": true,
+      "src/client/K0SwordVisual.luau": true,
+      "src/client/HeroVFX.luau": true,
+      "src/client/HeroVFXPolish.luau": true,
+      "src/client/WindLanceVisual.luau": true,
+      "src/client/HeroVFXArt.luau": true
+    },
+    "nativeRecordReviewed": {
+      "suites": 23,
+      "checks": 117733,
+      "pass": true,
+      "independentlyRerunByArt": false
+    },
+    "engineeringWarningNotPromotedToPass": "총괄이 보고한 assetHash PlaceId0 부수 경고의 실제 게시/기기 수용을 ART가 확인하지 않았다.",
+    "provenanceSha256": {
+      "release-provenance.json": "4a74cc6d6b974108d23511785d2eb7067463e56f1dff64c8bf2aa9514bb83a9f",
+      "oath-pulse2-provenance.json": "3cd10f9719372ea0605b2bb05e21ab8b3dd52686d861c6d50e7f0b4d1030e2c4",
+      "oath-pulse3-provenance.json": "76daf7758c4798def05526b1d10377647fc3715f86728d8efeb6cf20f481233f",
+      "ice-matched-provenance.json": "34bd23fc5b872d65cd2b7b4b0fa83573813fba97aa09d48130c69c0e4705859c",
+      "catalog-provenance.json": "7262195afbb7a2f54f16d4ef3343f9c80fb2edd32796c04ec5e747e2e0306fa7"
+    },
+    "manifestSha256": {
+      "release/manifest.json": "b5b988dba5f1a0d592928effc5c4d046e060cb69eb1c30d408a938564ea7f440",
+      "oath-pulse2/manifest.json": "3191eb456a7fbf6309df4a90b96d3da034c64077bd86ce280d555b721cabdeae",
+      "oath-pulse3/manifest.json": "bde21e7ab93a6b91e36ed0b5e6187dea12e8cca333cce142f0db3e63cfe5c420",
+      "ice-matched/manifest.json": "36fedb07e3db19817cc595051eded16267228d5d388dbd85be5420164d1d6354",
+      "catalog/manifest.json": "5aa6bde41e5b3823c943a41d439019fd1bf6960b1f7e2a87a704cfca9b83fcfa"
+    },
+    "pngVerification": {
+      "release": {
+        "checkedPngs": 24,
+        "mismatches": []
+      },
+      "oath-pulse2": {
+        "checkedPngs": 2,
+        "mismatches": []
+      },
+      "oath-pulse3": {
+        "checkedPngs": 2,
+        "mismatches": []
+      },
+      "ice-matched": {
+        "checkedPngs": 1,
+        "mismatches": []
+      },
+      "catalog": {
+        "checkedPngs": 128,
+        "mismatches": []
+      }
+    },
+    "runtime13MatchesNativeBySet": {
+      "release": {
+        "src/client/CombatVFXStyle.luau": true,
+        "src/client/SelenePresentation.luau": true,
+        "src/client/K0MageFocus.luau": true,
+        "src/client/K0EnemyWeaponMotion.luau": true,
+        "src/client/HeroVFXSurfaces.luau": true,
+        "src/client/PixelFX.luau": true,
+        "src/client/EnemySpellArt.luau": true,
+        "src/client/EnemySpellVFX.luau": true,
+        "src/client/K0SwordVisual.luau": true,
+        "src/client/HeroVFX.luau": true,
+        "src/client/HeroVFXPolish.luau": true,
+        "src/client/WindLanceVisual.luau": true,
+        "src/client/HeroVFXArt.luau": true
+      },
+      "oath-pulse2": {
+        "src/client/CombatVFXStyle.luau": true,
+        "src/client/SelenePresentation.luau": true,
+        "src/client/K0MageFocus.luau": true,
+        "src/client/K0EnemyWeaponMotion.luau": true,
+        "src/client/HeroVFXSurfaces.luau": true,
+        "src/client/PixelFX.luau": true,
+        "src/client/EnemySpellArt.luau": true,
+        "src/client/EnemySpellVFX.luau": true,
+        "src/client/K0SwordVisual.luau": true,
+        "src/client/HeroVFX.luau": true,
+        "src/client/HeroVFXPolish.luau": true,
+        "src/client/WindLanceVisual.luau": true,
+        "src/client/HeroVFXArt.luau": true
+      },
+      "oath-pulse3": {
+        "src/client/CombatVFXStyle.luau": true,
+        "src/client/SelenePresentation.luau": true,
+        "src/client/K0MageFocus.luau": true,
+        "src/client/K0EnemyWeaponMotion.luau": true,
+        "src/client/HeroVFXSurfaces.luau": true,
+        "src/client/PixelFX.luau": true,
+        "src/client/EnemySpellArt.luau": true,
+        "src/client/EnemySpellVFX.luau": true,
+        "src/client/K0SwordVisual.luau": true,
+        "src/client/HeroVFX.luau": true,
+        "src/client/HeroVFXPolish.luau": true,
+        "src/client/WindLanceVisual.luau": true,
+        "src/client/HeroVFXArt.luau": true
+      },
+      "ice-matched": {
+        "src/client/CombatVFXStyle.luau": true,
+        "src/client/SelenePresentation.luau": true,
+        "src/client/K0MageFocus.luau": true,
+        "src/client/K0EnemyWeaponMotion.luau": true,
+        "src/client/HeroVFXSurfaces.luau": true,
+        "src/client/PixelFX.luau": true,
+        "src/client/EnemySpellArt.luau": true,
+        "src/client/EnemySpellVFX.luau": true,
+        "src/client/K0SwordVisual.luau": true,
+        "src/client/HeroVFX.luau": true,
+        "src/client/HeroVFXPolish.luau": true,
+        "src/client/WindLanceVisual.luau": true,
+        "src/client/HeroVFXArt.luau": true
+      },
+      "catalog": {
+        "src/client/CombatVFXStyle.luau": true,
+        "src/client/SelenePresentation.luau": true,
+        "src/client/K0MageFocus.luau": true,
+        "src/client/K0EnemyWeaponMotion.luau": true,
+        "src/client/HeroVFXSurfaces.luau": true,
+        "src/client/PixelFX.luau": true,
+        "src/client/EnemySpellArt.luau": true,
+        "src/client/EnemySpellVFX.luau": true,
+        "src/client/K0SwordVisual.luau": true,
+        "src/client/HeroVFX.luau": true,
+        "src/client/HeroVFXPolish.luau": true,
+        "src/client/WindLanceVisual.luau": true,
+        "src/client/HeroVFXArt.luau": true
+      }
+    },
+    "buildRecordSha256": "569144c2cb18f3b15b1e5f63d381a77892e00055de85fd1dd9de0984deca8b28",
+    "buildIntegrityRecordSha256": "d9dd3ea95c05ae2d3dba43f91babe7c608bb2da4da78630d32faa7952ca89744",
+    "buildSourceCommit": "8d4d2d20f4b5e228684e043537566852f8f1364d",
+    "buildVersion": "0.111.6",
+    "buildArtifactSha256": "100a444329c913b7021511d6aaac8b0208fc9b202d3b7dba3966457fae465fc5",
+    "buildIntegrityRecordRuntime13MatchesCapture": true,
+    "actualBuiltPlacePlayedOrTestedByArt": false
+  },
+  "newMandatoryStaticRegressionObservedInRelease": [],
+  "acceptanceClaims": {
+    "observedLocalImprovements": true,
+    "allFourGapsFullyClosed": false,
+    "topTierRpgArtAcceptance": false,
+    "all128Improved": false,
+    "continuousMotionPass": false,
+    "particleMotionPass": false,
+    "publishedClientPass": false,
+    "deviceGpuPass": false,
+    "multiplayerPass": false,
+    "userArtAcceptance": false,
+    "g4Complete": false
+  },
+  "targets": [
+    {
+      "id": "mage.pyro.caldera_s_judgment",
+      "gap": "GAP-01",
+      "status": "improved_focal_shape_with_residual",
+      "observation": "주황색 큰 판이 없어지고 크기가 다른 유색 불꽃/중앙 분출과 바닥의 연결이 읽힌다.작은 흰 공중 촛불만 보이던 중간 문제도 완화됐다.",
+      "residual": "범위선이 차지하는 화면 비중은 여전히 크다.분출 압력·어두운 덩어리/연기·잔류의 시간 위계는 정지 표본으로 수용하지 않는다.",
+      "frames": [
+        {
+          "file": "release/001-mage.pyro.caldera_s_judgment.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "227dd0486759356d44006c72c6dfa3deade49e99ed7cf18f8361b54db881cdb0",
+          "iconSha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b"
+        },
+        {
+          "file": "release/002-mage.pyro.caldera_s_judgment.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "782bc8a02b51fd66157e3f4567aaec5e93e3840c0c26765176114895a471aa13",
+          "iconSha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b"
+        }
+      ]
+    },
+    {
+      "id": "mage.cryo.eternal_tempest",
+      "gap": "GAP-01",
+      "status": "partial_focus_improvement",
+      "observation": "연속된3기류가 더 높은 회전축을 형성해 작고 약한 중심보다 폭풍 방향이 명확해졌다.",
+      "residual": "밝은 코일/철사 인상이 강하고 기류의 면/명암과 중앙 폭풍의 질량감은 제한적이다.완성도 격차가 닫혔다고 판단하지 않는다.",
+      "frames": [
+        {
+          "file": "release/003-mage.cryo.eternal_tempest.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "71fd115219821a925f126d6fdb9dd2d070b722ecb4cf2c97610f426277bf1819",
+          "iconSha256": "503cb3180113d88bc7fbdeead47e6a98379535bb0b9bde411df4bfc867c522b9"
+        },
+        {
+          "file": "release/004-mage.cryo.eternal_tempest.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "da60f70c4dc9af38f88b29857332c600916eb391777005cbc6bc626c8062926b",
+          "iconSha256": "503cb3180113d88bc7fbdeead47e6a98379535bb0b9bde411df4bfc867c522b9"
+        }
+      ]
+    },
+    {
+      "id": "elf.magic_archer.spirit_arrowfall",
+      "gap": "GAP-01",
+      "status": "improved_direction_and_canopy",
+      "observation": "낙하 판의 폭이 줄고 여러 하향 화살촉이 보이며 수관과 하강 방향이 분리돼 읽힌다.수관의 과대 확대도 절제됐다.",
+      "residual": "중앙 상향 줄기와 주황 입자는 남는다.실제 낙하·잔류/다인 합성과 궁극기의 무게는 미수용.",
+      "frames": [
+        {
+          "file": "release/005-elf.magic_archer.spirit_arrowfall.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "cd1b6a9eb5ff4506316f25301fec0865317c13e8b55bca1a9402e2d1d9b1f3e3",
+          "iconSha256": "2114cbe350d1cdb8e55f25ef92dfb856eab2ace13be73a18ee65b9130fd90fc7"
+        },
+        {
+          "file": "release/006-elf.magic_archer.spirit_arrowfall.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "14e88f3ac0cf6fa0bfe23746c345072105047038a1b76b430ccd379d3db1468f",
+          "iconSha256": "2114cbe350d1cdb8e55f25ef92dfb856eab2ace13be73a18ee65b9130fd90fc7"
+        }
+      ]
+    },
+    {
+      "id": "knight.common.whirlwind",
+      "gap": "GAP-02",
+      "status": "partial_material_change",
+      "observation": "연속된 밝은 날과 열린 내부가 보존돼 중간의 어둡고 얼룩진 잔상 회귀는 해소됐다.",
+      "residual": "0.111.4 대비 면 변화는 작게 보이며 균일한 분할 띠의 인상은 남는다.로아의 폭/길이/불투명도 층과 시간적 잔류를 동등하게 구현했다고 볼 수 없다.",
+      "frames": [
+        {
+          "file": "release/007-knight.common.whirlwind.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "92b9419f6902c88c61304a6d79e10659a98ffce6bdd0f9f1d4ae05ac6ebd4efa",
+          "iconSha256": "849ec1c91acd61529b74891e88ac736a9410cae5eea5a21dfa4f815a528b22c2"
+        },
+        {
+          "file": "release/008-knight.common.whirlwind.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "1fc75e86efc876a87983d563fc6440410f54cf40f11db95f2f4a9037f7506fe4",
+          "iconSha256": "849ec1c91acd61529b74891e88ac736a9410cae5eea5a21dfa4f815a528b22c2"
+        }
+      ]
+    },
+    {
+      "id": "knight.steel_knight.twin_cyclone",
+      "gap": "GAP-02",
+      "status": "partial_material_change",
+      "observation": "두 기울어진 주 궤도의 날이 다시 연속적으로 읽히고 잔상은 주날을 가리지 않는다.",
+      "residual": "두 띠의 큰 형상은 기준판과 유사하고 균일한 판형/분할 면이 보인다.질감·명암·선두/꼬리 운동의 격차는 잔여.",
+      "frames": [
+        {
+          "file": "release/009-knight.steel_knight.twin_cyclone.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "f945f91cd67c316cf469fd4d80f64d7951d9764d5cdafb58d253c819b0cf4718",
+          "iconSha256": "43d3bea08955f06352c092884513d4a7c40ac2186f95cbef3645d8d8df8d4867"
+        },
+        {
+          "file": "release/010-knight.steel_knight.twin_cyclone.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "2f1ae5a953cc4b30c91009bbb6d1259414587871388fe6ff95a6e27aef7d788b",
+          "iconSha256": "43d3bea08955f06352c092884513d4a7c40ac2186f95cbef3645d8d8df8d4867"
+        }
+      ]
+    },
+    {
+      "id": "mage_tidal_ring",
+      "gap": "GAP-02",
+      "status": "partial_material_change",
+      "observation": "파란 물마루와 열린 내부가 남고 옅은 면의 지배가 줄었다.",
+      "residual": "전체 변화가 제한적이며 물결의 두께/높이/명암이 달라지는 재질과 실제 흐름은 미수용.",
+      "frames": [
+        {
+          "file": "release/011-mage_tidal_ring.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "8f9fec9f5c61c14ee3c09d3abeaf97e3bdce5224ed34829136e0f9e837dd88a2",
+          "iconSha256": "67a025d4cfc0b35b3b1508910dedd9fff1112a661dd4754231c086561c8278af"
+        },
+        {
+          "file": "release/012-mage_tidal_ring.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "5c6beaca991e993b1e8964982e2ed0f1d4fee98b35c2544f43d16f993c97a880",
+          "iconSha256": "67a025d4cfc0b35b3b1508910dedd9fff1112a661dd4754231c086561c8278af"
+        }
+      ]
+    },
+    {
+      "id": "mage.common.water_ball",
+      "gap": "GAP-03",
+      "status": "improved_night_contrast_local",
+      "observation": "야간 본체의 청색 대비가 높아져 둥근 방울 위치가 더 분명하다.물방울 외형과 짧은 포말 윤곽을 보존했다.",
+      "residual": "단일 거리의 모형 화면이다.다른 어두운 지형·원거리·이동·그래픽 품질 양끝에서는 미검증.",
+      "frames": [
+        {
+          "file": "release/013-mage.common.water_ball.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "66423687fd9e653e50201b88b2f7607a20d053b3711521ea89c29f2bcb8d5ef1",
+          "iconSha256": "ac780f2d90bb6072961efb3fb4d6bcde519ac2baf82c9187ebc2034dab5b6a37"
+        },
+        {
+          "file": "release/014-mage.common.water_ball.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "e57bda3f48d0933f4f53b11c939473dffb14d17f4eb682276ba7c1ed76ffc689",
+          "iconSha256": "ac780f2d90bb6072961efb3fb4d6bcde519ac2baf82c9187ebc2034dab5b6a37"
+        }
+      ]
+    },
+    {
+      "id": "mage.cryo.frost_lance",
+      "gap": "GAP-03",
+      "status": "improved_night_axis_local",
+      "observation": "청색 Glass 결정 본체를 남기고 좁고 밝은 맥으로 길이/전진축을 드러낸다.",
+      "residual": "얼음4종 동시 비교·원거리/지형 합성은 미검증.전체 본체를 흰색으로 바꾼 것으로 평가하지 않는다.",
+      "frames": [
+        {
+          "file": "release/015-mage.cryo.frost_lance.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "63bc572320c9cff3b5729b9a278d9ca341119d19031a01987a7274bcc2f36e0d",
+          "iconSha256": "ddaf516e612eacedd78d312efccd4dc18e4bfb15aa8f572e2bc44434b1865d08"
+        },
+        {
+          "file": "release/016-mage.cryo.frost_lance.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "04226a257f1d0529f0d7fbff9f990347c039b5355224010fc5c50ae1e4c91c78",
+          "iconSha256": "ddaf516e612eacedd78d312efccd4dc18e4bfb15aa8f572e2bc44434b1865d08"
+        }
+      ]
+    },
+    {
+      "id": "knight.paladin.radiant_sweep",
+      "gap": "GAP-04",
+      "status": "improved_skill_identity",
+      "observation": "넓은 단일 주날/초승달과 작은 서약 보석이 읽혀 보호표식·짧은 베기와 구별된다.가는 선만 남았던 중간 문제는 해소됐다.",
+      "residual": "주날은 강한 단색 면으로 읽힌다.폭/끝 감쇠와 실제 무기 동기는 미검증이며 재질 완성도 잔여.",
+      "frames": [
+        {
+          "file": "release/017-knight.paladin.radiant_sweep.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "5c334fb8a32fc9708f3fd08f901e9f9c09450fe7b66cb6787951759aff2aedec",
+          "iconSha256": "e190f50e428130758e6e577741fd75fdabaaf42e361a5d1e96596c0d1f60c5bc"
+        },
+        {
+          "file": "release/018-knight.paladin.radiant_sweep.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "9aefb5b04493058984b899d0b6f369d8f8fe2f0d43bf524b2a0e263cd97dde4b",
+          "iconSha256": "e190f50e428130758e6e577741fd75fdabaaf42e361a5d1e96596c0d1f60c5bc"
+        }
+      ]
+    },
+    {
+      "id": "knight.paladin.guardian_slash",
+      "gap": "GAP-04",
+      "status": "improved_skill_identity",
+      "observation": "전방 짧은 검격과 두 보호표식이 함께 보여 Radiant의 넓은 검호와 구별된다.",
+      "residual": "보호표식의 세부 방패 형태는 단순하다.실제 아군/무기/시야에서의 가독성과 보호 동작은 미수용.",
+      "frames": [
+        {
+          "file": "release/019-knight.paladin.guardian_slash.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "31147bda0176ea70726f5f793365425cdeed770382b8b7f53ebf1cf23322ffaf",
+          "iconSha256": "1cc30596d403a9d7e2e86639715bdb04ea88abb43a805049d12a3369649b363e"
+        },
+        {
+          "file": "release/020-knight.paladin.guardian_slash.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "95555d786113deaf74ee78d43265f7433ee52526698ae08b02c8e4832301000a",
+          "iconSha256": "1cc30596d403a9d7e2e86639715bdb04ea88abb43a805049d12a3369649b363e"
+        }
+      ]
+    },
+    {
+      "id": "knight.paladin.oathbound_assault",
+      "gap": "GAP-04",
+      "status": "improved_three_pulse_static_identity",
+      "observation": "공통 큰 별광이 억제돼 서약 보석을 가르는 짧은 검흔이 드러난다.pulse1/2/3의 각 표본에서 위치/기울기가 다른1짧은 검흔이 보인다.검흔 은폐/동시3개 복제 문제는 이 정지 표본 범위에서 해소됐다.",
+      "residual": "각 pulse의0.06/0.18초 정지 표본은 실제3연속 타이밍/무기 동기와 완전한 연속재생의 수용이 아니다.",
+      "frames": [
+        {
+          "file": "release/021-knight.paladin.oathbound_assault.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "6c6cb460ec707769e4c0f17d77a7a7df81c746d764f9c41c404a9a274e542c82",
+          "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+        },
+        {
+          "file": "release/022-knight.paladin.oathbound_assault.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "66353a47901c8ce45adf25f674094824ec8d0ed4d1b7e38226becf4dfcba8f82",
+          "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+        },
+        {
+          "file": "oath-pulse2/001-knight.paladin.oathbound_assault.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 2,
+          "sha256": "1e3499c55fe80fee4f04fd0a5afea8cbb585ffe997248c2fb552f8cea711dfa6",
+          "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+        },
+        {
+          "file": "oath-pulse2/002-knight.paladin.oathbound_assault.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 2,
+          "sha256": "a519b7bf68a6047e1d45c3bf3b76487e2c8b4e9d657e1d2662ada2f04056edbc",
+          "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+        },
+        {
+          "file": "oath-pulse3/001-knight.paladin.oathbound_assault.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 3,
+          "sha256": "88f889696ccdfdc0c12669af2aeff98ab759a3304b9157ddc165a2a0062f900f",
+          "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+        },
+        {
+          "file": "oath-pulse3/002-knight.paladin.oathbound_assault.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 3,
+          "sha256": "271f95383a003f069b9b0617cc5e11c464cc11fafa71ba724b66bd42e3d54e85",
+          "iconSha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052"
+        }
+      ]
+    },
+    {
+      "id": "mage.cryo.froststorm",
+      "gap": "GAP-02",
+      "status": "improved_flow_hierarchy_with_residual",
+      "observation": "사각/쐐기 판형보다3층 연속 회전 흐름이 먼저 읽히고 하강 결정과 분리된다.",
+      "residual": "기존 어두운 각진 면이 뒤에 남고 새 흐름도 선/띠 인상이다.입자·바람의 연속 운동과 질량감은 미수용.",
+      "frames": [
+        {
+          "file": "release/023-mage.cryo.froststorm.png",
+          "age": 0.06,
+          "clockTime": 12,
+          "pulse": 1,
+          "sha256": "e5a20ef76431e93440758ce173b72192d0f0f9c652ae17a61ceb10c41b7ea82e",
+          "iconSha256": "934d067cd442173407927cae61208ae3b7fffcb06a04cc69bda94d8156f04930"
+        },
+        {
+          "file": "release/024-mage.cryo.froststorm.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "27ce7e7b83b58fe12abeffa9af8b18e66378ef72d631c19973124d4a891c46b6",
+          "iconSha256": "934d067cd442173407927cae61208ae3b7fffcb06a04cc69bda94d8156f04930"
+        }
+      ]
+    },
+    {
+      "id": "enemy.IceElf.flight",
+      "gap": "GAP-03",
+      "status": "improved_night_axis_local",
+      "observation": "청색 Glass 본체를 유지하고 좁고 밝은 전방맥이 생겨 밤의 위치/진행 방향이 더 명확하다.꼬리는 본체보다 약하다.",
+      "residual": "한 거리/시점의 정지 표본이며 실제 이동/원거리·다인·기기 가독성은 미수용.",
+      "frames": [
+        {
+          "file": "ice-matched/001-enemy.IceElf.flight.png",
+          "age": 0.12,
+          "clockTime": 0,
+          "pulse": 1,
+          "sha256": "009f2609f14b289bfade47f956b89267399d656ae13f6219f000ccb5b06f6c0b"
+        }
+      ]
+    }
+  ],
+  "nextOwner": {
+    "ENG": "추가 pulse/관련 소스 해시·실제 빌드 검증 및 잔여 채택/보류 기록",
+    "ART": "본 관측은 확정.질감/명암/선두-잔류 운동과 실제 전투 자료의 별도 재리뷰로 잔여 미술 수용.",
+    "QA_USER": "실제 전투·PC/터치/패드·GPU·사용자 미술 수용"
+  },
+  "candidateVersion": "0.111.6",
+  "candidateSourceCommit": "8d4d2d20f4b5e228684e043537566852f8f1364d",
+  "catalogReview": {
+    "frames": 128,
+    "sheets": 8,
+    "sheetSha256": {
+      "catalog/knight-1.png": "a0484ebdd09889af2477922a7e580d299bf5a81ab55ec400492bb0bca4811901",
+      "catalog/knight-2.png": "94aeec23b99c66e74025965171cb61a26fc88f44b7dd7d30a3521129cd2a3ee8",
+      "catalog/dwarf-1.png": "bb52be83eac7abc650308d1bfbd2aba174b093f9d63cdd15ab4e7caf1b126db0",
+      "catalog/dwarf-2.png": "864ea865bfbac04e559f2de7f092a4420149ec78d95964a4fc3849428a18fe4f",
+      "catalog/elf-1.png": "eedee0b75c03931845dc8e775bd319248ed6a070d8cd0f8d6aad8d4ad0f69bbf",
+      "catalog/elf-2.png": "8908d02f236ceaeb579f6f1f352ea64ba67c06617a82e1cd46764e9394e0940e",
+      "catalog/mage-1.png": "3b1a2cc15fd6e3249ccbdbd1d91621d862a074c5af1383d94ea6ec3673bd8c0c",
+      "catalog/mage-2.png": "a84cb7a1bad5c6e5fb0c321f656fcadb89d00a77ad073e80b01f450a301baf88"
+    },
+    "observation": "8contact sheet를 직접 전수 열람해 검기/방패·도끼/포탄·화살/자연·물/얼음/불/암석/비전/기류의 존재를 확인했다.새로운 뚜렷한 주형상 누락이나 뒤틀림은 관측하지 못했다.",
+    "limit": "낮/pulse1 단일 모형 화면이다.128종이 각각 개선됐거나 전체199구간/야간/실전이 수용됐다는 판정은 아니다.일부 큰 효과는 작은 tile 밖이며 기존 작은 궁극기 초점/균일한 면 문제는 남는다.",
+    "rows": [
+      {
+        "id": "knight.common.bash",
+        "classId": "knight",
+        "file": "catalog/knight.common.bash.png",
+        "sha256": "187a77cce361a5f7580332060dce75208d2e08358ae0ea31134d467495aa3114",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.common.whirlwind",
+        "classId": "knight",
+        "file": "catalog/knight.common.whirlwind.png",
+        "sha256": "ba1170bf28c5b9cbd023478b0b88d98259ec8a2e4f770b83f9232837ff3dbbe2",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.common.provoke",
+        "classId": "knight",
+        "file": "catalog/knight.common.provoke.png",
+        "sha256": "ff3ada8c0d957de2081364b72b1c3d140c2811f23f1746343fd724ea52ec8871",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.counter_slash",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.counter_slash.png",
+        "sha256": "902a1fa7326f55d2eaf7478232f67a7eb636c75f2619882b5e778e8ebde498bd",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.steel_sweep",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.steel_sweep.png",
+        "sha256": "db9eb31da3f9b1c5f4297adf3e5650cfde862ee701730725e834df4b34478a8c",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.challenging_strike",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.challenging_strike.png",
+        "sha256": "57e888112a60b80d858748eb65909d0b31767f01b9e24a26d664f7fb961fb174",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.twin_cyclone",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.twin_cyclone.png",
+        "sha256": "4de485e89ff488238bb29f4941d7e723f843b906c9f22d68ff9bed1e8bfb6d7d",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.shield_breaker",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.shield_breaker.png",
+        "sha256": "2bc16a82d95df5c8501e1786a41ec40d370752d1cc3ac472d2df67859d2a66d0",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.guardian_counter",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.guardian_counter.png",
+        "sha256": "2dcb6ed4ed6aeec8f1bf7e84aba10af5dd65efbdb3a4ba426f9af8c7f7fd6eb8",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.rallying_slash",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.rallying_slash.png",
+        "sha256": "1cbbe0d0ce63d472311d003830cdeb9f81dbd914c0f2695254214fe4bf68a4fd",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.breaker_charge",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.breaker_charge.png",
+        "sha256": "85397af303f92b6e7d0f071d671074873c8aa28237732694512ffe3ab0528485",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.vanguard_strike",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.vanguard_strike.png",
+        "sha256": "cfbf31a931dc199ddfef4d9a8bab44728006e41b941c6d523db2b63af4f89ed6",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.blade_storm",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.blade_storm.png",
+        "sha256": "9bdec3265b4e045b3cbb93812c679d7a1f7ce03feba59a52e61ac6bd391c3972",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.sweeping_break",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.sweeping_break.png",
+        "sha256": "b5051249b15f219ab11a61780b1de0edb6a8f3008b6d9db9cb39809b57ec1a0a",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.warcry_assault",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.warcry_assault.png",
+        "sha256": "d27264d62262e489574106389cdee26b7618369705be4afadb040a471f5ba349",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.steel_knight.unyielding_front",
+        "classId": "knight",
+        "file": "catalog/knight.steel_knight.unyielding_front.png",
+        "sha256": "570deef89e2496b261cb2e7696c2ebfc7d628442d2cb838345fde05d56b83f92",
+        "viewedVia": "catalog/knight-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.oathblade",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.oathblade.png",
+        "sha256": "5c6bd1ad2cb4a8cc85a50819d97adbcc7e5cf7a55726336c8c1d88a671654af3",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.radiant_sweep",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.radiant_sweep.png",
+        "sha256": "ca7c9d21c5317990af36a96000606e6d6ddb55d7412bf4379cf797717fa1ef8e",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.oath_challenge",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.oath_challenge.png",
+        "sha256": "ceaf3c4025c3eb5c3a4bdb3127731613f14a4e62db87a8f36ef7a4c24c118b72",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.dawn_burst",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.dawn_burst.png",
+        "sha256": "fd14defe66d949e97c4937ab42a39074bfaa440179447afb8b32a26dc343ee01",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.oathbreaker_strike",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.oathbreaker_strike.png",
+        "sha256": "e008f02b2e39f5c5acebb455faf1c2cd81247ddf260a571b938a10b04fc2e7ac",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.shield_verdict",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.shield_verdict.png",
+        "sha256": "ee0eb0cee854906f988d6588f83be3655e0a972f012f45749ac51a3cdfb94217",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.guardian_slash",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.guardian_slash.png",
+        "sha256": "757a1fed17a9b3c2112ff32dd1e1c3f37790231ad033d80aca375c3cc9414190",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.radiant_charge",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.radiant_charge.png",
+        "sha256": "ff4852323c3ac9a6ca1facacc9692160fab382d7bc44d0f498c37e5c0dfe9082",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.valiant_advance",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.valiant_advance.png",
+        "sha256": "20a52afa74cec68ec40a2f6ef3260d033183d12873ebcd8ac2bb32cf1d449929",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.dawn_spiral",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.dawn_spiral.png",
+        "sha256": "005f8f93602ba50391d027236a447651b1ade0b2c9bebe5c4f8f8fe3b3b1081f",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.sunward_cross",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.sunward_cross.png",
+        "sha256": "e39fb382e4f8af7e99b06c7a386005afd51e78cc7a4992d042ea695da52711a3",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.oathbound_assault",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.oathbound_assault.png",
+        "sha256": "c892b4856e6cd1a578a3fb6d07860aadd5284ae9913b448e594f54e84dff44e5",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight.paladin.oath_of_dawn",
+        "classId": "knight",
+        "file": "catalog/knight.paladin.oath_of_dawn.png",
+        "sha256": "419bb5a8cc75e4e15c803441b3965fef46a00bde4743dd89094c095fe8927f7f",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight_driving_thrust",
+        "classId": "knight",
+        "file": "catalog/knight_driving_thrust.png",
+        "sha256": "b06311eaa4e15693f040aa3b5ab4dd99bd332f20e867f77cd6413134810b221b",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight_crescent_cut",
+        "classId": "knight",
+        "file": "catalog/knight_crescent_cut.png",
+        "sha256": "79e0146764ae767b1415a8a7c003462afc495747877319d142804234a22e7ea6",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "knight_guarded_strike",
+        "classId": "knight",
+        "file": "catalog/knight_guarded_strike.png",
+        "sha256": "9c2b81457eae81734d85844f8ffff43ccfa4b3d811c88c9b89954aada2c65963",
+        "viewedVia": "catalog/knight-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.common.overhead",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.common.overhead.png",
+        "sha256": "7203b118f441ff00c9a6e2a11b145ae6610bb2604f7a73738adb20f96595ec77",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.common.throw",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.common.throw.png",
+        "sha256": "e3b6e6db2b2252c9b7906f3802fbe0b9ac6ddf890bfe232edc39ac5b5b47931d",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.common.ground",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.common.ground.png",
+        "sha256": "bd0a0337d99c7ba9914c32eaed024fd490797a853407fc70660460c4ad464c55",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.armor_splitter",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.armor_splitter.png",
+        "sha256": "fe1fdbf8a32e3703bd0c875fca5ee47374bcbbaa0d073483bc8dd27cf6f67573",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.returning_echo",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.returning_echo.png",
+        "sha256": "9d3cf01d2da513b5890b48d6220359d6a12da167f4e77f8ec859c302a9bbb969",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_sweep",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.mountain_sweep.png",
+        "sha256": "04cf4060bbbda62912ba8e0b16a69fb71705dc5f71c39731121180efbda4e5c9",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.crag_cleave",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.crag_cleave.png",
+        "sha256": "5af595d320f08484ad67783ac59bd15a3f79d96cf6d408ef33bf2fe7c787d343",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.breaker_throw",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.breaker_throw.png",
+        "sha256": "280a74b4fb8e35403abc2d1e2cee77a3cad9bebc0ce81fb0cd480017f2ff86ec",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.stonebound_leap",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.stonebound_leap.png",
+        "sha256": "eb301678e7329baeda753b9a78e8788b21480f27de1c8dd9942cd56bed892fe8",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.iron_shoulder",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.iron_shoulder.png",
+        "sha256": "0afd6bc1a838f79e8541bf39d3ee821735bcc9a2fb1f58d917c54bcf6784ac43",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.crosscut_axe",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.crosscut_axe.png",
+        "sha256": "e3225563a0624ae1e91571e01910159068a26f51211fb136d54b502d4c0147d0",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_strike",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.mountain_strike.png",
+        "sha256": "e2192b5d57a1fc1a802dd24eaaf305e09a29ccd44dcddd111794fbf6ecc803e8",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.shatter_blow",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.shatter_blow.png",
+        "sha256": "06b2dc37b443e715880ecc464a8a458146151d95d9d3e560d9ee9acdd0d3c2bd",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.twin_axe_path",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.twin_axe_path.png",
+        "sha256": "f162a947cb44fafa12334e3f6e68c8736c401d68e2231c0f9d5fb7ee2d22012f",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.tremor_guard",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.tremor_guard.png",
+        "sha256": "d5bcb8b2ffcba79755ba436142a7f7742d3f2c511ced24c007c09c06f94d87c2",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.iron_axe.mountain_collapse",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.iron_axe.mountain_collapse.png",
+        "sha256": "9c9c0366cd3151ef0aac8ca4a7104bc6055442f1897318360b156273b4e460e5",
+        "viewedVia": "catalog/dwarf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.gunner_shot",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.gunner_shot.png",
+        "sha256": "60287965deb8d14172fe08b624f8f2fc31d6526827f5cf05e6be5da3ce0ebd9f",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.bomb_toss",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.bomb_toss.png",
+        "sha256": "a18a65f861168d4c425f3a597b1178c24b6bb5b8e2b66e79e6b3690efd492cc8",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.shell_burst",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.shell_burst.png",
+        "sha256": "179ab0972d6a84a265e8d535a97ad24c446823688d4aa149711cee2754876f36",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.quickfire",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.quickfire.png",
+        "sha256": "d5ff2a9de99bd745e77a40acfa58c0c8b349505e902e2e78d0b161eb403d83f9",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.shrapnel_toss",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.shrapnel_toss.png",
+        "sha256": "425af8fd1f2ff825a9fddf137ca7c815c9a61a9ffc7cd7dc45fb1b70e25dd04a",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.blast_step",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.blast_step.png",
+        "sha256": "36edeff466e5a108bef07db642c33cf9c9bedc8eb1234a2507925d98c1614138",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.scatter_shot",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.scatter_shot.png",
+        "sha256": "fcbd9d44d6cf2f355ded03578af52b3a2b7425530f98a18d61284d62f4d89e2a",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.skipping_charge",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.skipping_charge.png",
+        "sha256": "fba5365452c8ba9ee83d20e7b4b29568ac5506592ad5f4aba93d97e0a8d89882",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.field_mortar",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.field_mortar.png",
+        "sha256": "3316dfec9ac484e4ffb77af3c8604840849b104a03769afa30bdc491226171d4",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.piercing_round",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.piercing_round.png",
+        "sha256": "238eb31e4101ddd19793043d9ca028fcfef27fb5bae9980817df0ea3bf88dc6b",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.rolling_charge",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.rolling_charge.png",
+        "sha256": "2547c3ad8cbda6894e305b1767e4c23dff95e69e72fa48634d9f090206d4efc5",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.siege_pattern",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.siege_pattern.png",
+        "sha256": "f255849fbba981da233e48e870de415d009540fb044ebebfa0d07b3998729474",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf.gunner.siege_barrage",
+        "classId": "dwarf",
+        "file": "catalog/dwarf.gunner.siege_barrage.png",
+        "sha256": "e84a379e6aebcc39c83f36838e2e233ff9f2d72a03d80aa8b802bc4005c852f4",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf_hooking_chop",
+        "classId": "dwarf",
+        "file": "catalog/dwarf_hooking_chop.png",
+        "sha256": "456abb0b8c4967ba45098a82967ed40162b2c820d2e3fb6c3b274b942addff03",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf_low_sweep",
+        "classId": "dwarf",
+        "file": "catalog/dwarf_low_sweep.png",
+        "sha256": "3efb07456d14b18d6eb34fae418e8cee86592b59123a2bf110a018b96e22a72e",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "dwarf_braced_throw",
+        "classId": "dwarf",
+        "file": "catalog/dwarf_braced_throw.png",
+        "sha256": "70d28f9fa115b6565cfd2dfb8841d153046a32ba2a6e04b5a6171479040cfbe2",
+        "viewedVia": "catalog/dwarf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.common.aimed",
+        "classId": "elf",
+        "file": "catalog/elf.common.aimed.png",
+        "sha256": "3db111f9068f81ef0760822ce2121b0c35ffcd1b235c5fd0ed0ab7781c899ca5",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.common.rapid",
+        "classId": "elf",
+        "file": "catalog/elf.common.rapid.png",
+        "sha256": "445f16195d15a6bce54142a6b265059b5c53b5ca668df27190ca4b661de72c69",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.common.multi",
+        "classId": "elf",
+        "file": "catalog/elf.common.multi.png",
+        "sha256": "ac2c24f9af8c9a67ca650a689a39ad448d0ea8793631421d469c089da1659428",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.weakpoint_shot",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.weakpoint_shot.png",
+        "sha256": "dbeb4d01cde96ca648bd43a62c320a7b61d3d7aae086a0863579f365be1287d7",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.moving_volley",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.moving_volley.png",
+        "sha256": "a03f02ad82ce6517984ef49673df70944461fef58d1667b89ba7ca9bf35a040e",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.piercing_line",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.piercing_line.png",
+        "sha256": "147bb365d5cb126070754e1b2586e6a6b095c0ac59407d156e9a1507648acbdc",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.heavy_draw",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.heavy_draw.png",
+        "sha256": "5859d78d01696065e562eb89665b784e92044b3eb87742630632b70696220006",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.precision_volley",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.precision_volley.png",
+        "sha256": "49e214e70e59d18a074d68bd33a396371c8c2e9746eb4ed1f45d7729943d6808",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.fan_break",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.fan_break.png",
+        "sha256": "fc8e7fd01371d7cee6af60ca094124af5540e6a3d28d57e0db95a320476a47ba",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.hunter_s_focus",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.hunter_s_focus.png",
+        "sha256": "52ca266722d7934f90e6ac2082e40ecdf763da76bd0b1b95fc7f2a42cef0612f",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.retreating_fire",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.retreating_fire.png",
+        "sha256": "76a9b522379cd1c8be1f3d2b47473fa312d131f27f1f2876985fcba1b0d35820",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.piercing_volley",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.piercing_volley.png",
+        "sha256": "0e368a13556e55bcb4bda42adb5bc286c9c46f260c65f37167e0da42e7e0880a",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.mark_breaker",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.mark_breaker.png",
+        "sha256": "c66b9af64ae5e8210134c8aa63357a689c5d28dbf9b9ee24c9401377ad700fd9",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.crossfire",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.crossfire.png",
+        "sha256": "ce13c79e96cef16debb9b225d328ebb7512ae52d48deee8c6534847217391c26",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.arrow_rain",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.arrow_rain.png",
+        "sha256": "3db7f00016db730fa49add6681916aca327acc4d8a1c080d27bae4fdc95f399e",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.marksman.grand_volley",
+        "classId": "elf",
+        "file": "catalog/elf.marksman.grand_volley.png",
+        "sha256": "77c8c48a3357dd0d0b1b30c1cf44f953e487292bdb7a8f9183c6053ea76d25da",
+        "viewedVia": "catalog/elf-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.elemental_arrow",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.elemental_arrow.png",
+        "sha256": "da9995291a4cd67a49e8ec0f33e6a717cd5dad689a4bae81153526c5fec693f2",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.spark_volley",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.spark_volley.png",
+        "sha256": "1ff88801d738c0895221d03b08de5df76515acb1942632e1fb9d7ee2a5d988d8",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.vine_trap",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.vine_trap.png",
+        "sha256": "0c79a4ed924bf9e540459aadb016eb16bea0affcfb259d05daccb43ff2a0ac99",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.bloom_shot",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.bloom_shot.png",
+        "sha256": "4f63ab09bc527fcb2f8ce97895826c88a364718726eecb847e3f57b8da11802e",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.storm_arrow",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.storm_arrow.png",
+        "sha256": "613175e3acd344c1b0a83198219dbb6ad790f4c6cc93033e5de3dab3bca89c82",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.rooting_fan",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.rooting_fan.png",
+        "sha256": "f32c9f0e7d35a806a166739a0d990c590c13dc94c4588cdea949d44a53f6a4e9",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.warden_arrow",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.warden_arrow.png",
+        "sha256": "163f42820aa3cb084235ea51017022fb16bd8657fdbac9fdcd100b0a9e2c1a14",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.gliding_shot",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.gliding_shot.png",
+        "sha256": "753143a810da9b60456940eed72d9b8ff1e9cda6ab751f8500b176d2d9fc155e",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.spirit_rain",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.spirit_rain.png",
+        "sha256": "1ba7c05fbe146464184fb8423559c4d31dc7e1fe7c0ee1eedaeac633f8422c88",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.elemental_pierce",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.elemental_pierce.png",
+        "sha256": "ed66a9d13621862fa18ef04f43f257600c651add7f299697c485f8246422240a",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.echo_arrows",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.echo_arrows.png",
+        "sha256": "56675517af1db95c25ab2ad89cd2bbbd889a1e816f8de270c3c98bdfceeb8979",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.vine_burst",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.vine_burst.png",
+        "sha256": "1f71550388401e286b98aeea8b6bd22a9d69adf54ca62a270ccc59d2fa4be5cb",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf.magic_archer.spirit_arrowfall",
+        "classId": "elf",
+        "file": "catalog/elf.magic_archer.spirit_arrowfall.png",
+        "sha256": "0f5fb3196c7b022d46be99580935cbf3f8c691c98ed6afb4446ad3fedcacd84d",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf_retreating_shot",
+        "classId": "elf",
+        "file": "catalog/elf_retreating_shot.png",
+        "sha256": "f60109d5b03d2067f5677183fcf096cbdcaeab745de4501418e7438b1daad9fb",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf_pinning_shot",
+        "classId": "elf",
+        "file": "catalog/elf_pinning_shot.png",
+        "sha256": "891a3ec8661bcb722244832499edc1f29981085721ab4bf235010cd33025a508",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "elf_arrow_screen",
+        "classId": "elf",
+        "file": "catalog/elf_arrow_screen.png",
+        "sha256": "6cde26a581626ee1cf426fdc65fc6c4d42d60637ea6c7d43f75409fb284c475e",
+        "viewedVia": "catalog/elf-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.common.mana_bolt",
+        "classId": "mage",
+        "file": "catalog/mage.common.mana_bolt.png",
+        "sha256": "5a9aa4dfa93dbeaa79b1b39f22ceab026ae6524a589663da58bf2d5dfd6c093f",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.common.water_ball",
+        "classId": "mage",
+        "file": "catalog/mage.common.water_ball.png",
+        "sha256": "f8eae16d5c3bb5b8ef94deeccf56f29238bc0d9be6604d3a2c577d2fca152269",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.common.gravity",
+        "classId": "mage",
+        "file": "catalog/mage.common.gravity.png",
+        "sha256": "a95223d29d4c067a0d10f2345f05cf3aef01caeb37ded3e1f42d476524e4b94b",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.ember_lance",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.ember_lance.png",
+        "sha256": "601a8faed966f02ccc228d065d0029a5b2ddc546590574d11666e7ba393285f0",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.steam_burst",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.steam_burst.png",
+        "sha256": "14f1a97c150e07bc402df546ec01fe840d1fdda044637ed51eb8fa2a00db44f5",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.cinder_ring",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.cinder_ring.png",
+        "sha256": "0940daccdb85b74f25f49fc2470576fe99f593806bd15509e3629788e9ca85a4",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.flame_dart",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.flame_dart.png",
+        "sha256": "475321ed2049e9b227c15098aca5d4d067cbd23470ddf0f964338853dca0eb25",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.earth_rise",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.earth_rise.png",
+        "sha256": "8a9c51252bb69e3986bd8749b12d097df1e840c7aa67b2bde4339f6d47575dde",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.ember_step",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.ember_step.png",
+        "sha256": "beb88f9571aaf01719b08e7cf2f5ee8d84b6d4bdba9167f97aa7aa9618824450",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.stone_lance",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.stone_lance.png",
+        "sha256": "ac4983c0256c7d48d9ba638a137d6452f1699e57a8c2c64163fe2084b1d3cfe4",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.searing_ward",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.searing_ward.png",
+        "sha256": "9bee632ff376b43d42bb2e8e069bad4c914697a138abd9220998e9da98ae5680",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.lava_eruption",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.lava_eruption.png",
+        "sha256": "ef9d2092bef79f9cff418d790852aa43eb9d4c2c076a3d2c950726497adb9a9d",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.magma_spear",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.magma_spear.png",
+        "sha256": "64954bd826ca6b67e27e6bcdaf685b85969b730b7b184e055c69de4cf3827d31",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.molten_line",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.molten_line.png",
+        "sha256": "cf9f3f4eef01894a68923f68cd4178df3b18d38f7aa5dbd7b07d83fcffac064b",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.ashfall",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.ashfall.png",
+        "sha256": "0ec8648089eb939706d8e7489f6267d3ee6d6e856bc261e06af3c7341e7929fd",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.pyro.caldera_s_judgment",
+        "classId": "mage",
+        "file": "catalog/mage.pyro.caldera_s_judgment.png",
+        "sha256": "800dc6ce1e50ca917965ab56ef6b470c9690cdc437e983cd8c73ac2203734e37",
+        "viewedVia": "catalog/mage-1.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.frost_lance",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.frost_lance.png",
+        "sha256": "c217558bb582f7a6b8f65379b6033613a396080e4af7b33d94112592d07b186b",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.ice_shard",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.ice_shard.png",
+        "sha256": "8ac05f158ff8b546ca3cff883e959462db0bda9f68a5c10789d6cafad14a41bc",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.frost_ring",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.frost_ring.png",
+        "sha256": "1c25d75915e1915c33a5c2efda1206580c5154acbc54b858735dcdf9a5a2badd",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.shatter_dart",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.shatter_dart.png",
+        "sha256": "6897e6a35c4edf284c313a0d90c8a5f9649191fe25ad6667d26fc66ebcab0cff",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.chain_lightning",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.chain_lightning.png",
+        "sha256": "6bcfab85670e16750758e44086f29994b031a11aa34c61bb651d7cb563894584",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.frost_step",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.frost_step.png",
+        "sha256": "fd3f8baca772147854667807c3e1fa7ec68416ae4ce63024b1bab8abb4db8e71",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.thunder_spear",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.thunder_spear.png",
+        "sha256": "67f3c50cc6758a5e6a9b0290020bc3879221dd4a055677fc6e68d1b77a9dcf3e",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.ice_ward",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.ice_ward.png",
+        "sha256": "490a1e29cd7d8904368f91312fa5a3f72864069833f840887594bcbc95748187",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.froststorm",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.froststorm.png",
+        "sha256": "a00b0290d2720468b9c4132859231f3f83b529d4b61843479fb322e34c60b5e8",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.glacial_spike",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.glacial_spike.png",
+        "sha256": "389f8265b2c493cab729f8199a49f849c2ebfbd0227feb46ff4029bd8b80d9f3",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.lightning_line",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.lightning_line.png",
+        "sha256": "cac3422a336cc2bc6bb12d500b57692ebb64471aa57069c3b6d54f086d258a6a",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.hailfall",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.hailfall.png",
+        "sha256": "1fac14f7de9371124089e3ce0f26193c3f2da591d896b535e029ad14dd9a2cc5",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage.cryo.eternal_tempest",
+        "classId": "mage",
+        "file": "catalog/mage.cryo.eternal_tempest.png",
+        "sha256": "c31245e979117eee2add1b3a8cab12434d682dc8ed875d6dc2aae6b40949903a",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage_wind_lance",
+        "classId": "mage",
+        "file": "catalog/mage_wind_lance.png",
+        "sha256": "a2a68e61e21f5c02e2e333bb1ec38b09b722aef5b164afc72d0e4707956401b8",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage_tidal_ring",
+        "classId": "mage",
+        "file": "catalog/mage_tidal_ring.png",
+        "sha256": "07ca532a85206f7f9e29b007e49897808ce1722c6e87d716fe8dfca45970d823",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      },
+      {
+        "id": "mage_arcane_ward",
+        "classId": "mage",
+        "file": "catalog/mage_arcane_ward.png",
+        "sha256": "74ef8b953f7fca432d788d06f21b56d5460640974575c2c07633d68001c47f1a",
+        "viewedVia": "catalog/mage-2.png",
+        "status": "single_frame_presence_and_shape_regression_reviewed",
+        "limit": "개별 전후 개선/야간/연속재생 수용 아님."
+      }
+    ]
+  },
+  "completionBoundary": "요청된 최종 화면 검수와 문서 인계는 완료.네 격차/로아 동급/최상급 미술·실전·기기 수용은 완료 처리하지 않음."
+}

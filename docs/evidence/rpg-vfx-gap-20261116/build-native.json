@@ -1,0 +1,209 @@
+{
+  "pass": true,
+  "suites": 23,
+  "checks": 117733,
+  "version": "0.111.6",
+  "sourceCommit": "8d4d2d20f4b5e228684e043537566852f8f1364d",
+  "buildSha256": "100a444329c913b7021511d6aaac8b0208fc9b202d3b7dba3966457fae465fc5",
+  "probeSha256": "dfea973df188aaaefde67d9fbc895fa14990e78653ec7445c1a284ebd7cf1939",
+  "logSha256": "61348716bee20d638a0ebbde54104d9c471bbc4d1e119fdce137e49b7febfede",
+  "gameplayScriptsDisabled": true,
+  "results": [
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 21,
+      "suite": "RPG_VFX_GAP_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 2066,
+      "suite": "ROBLOX_VFX_POLISH_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 43,
+      "suite": "SKILL_VFX_ART_NATIVE"
+    },
+    {
+      "maxBeams": 48,
+      "failures": [],
+      "checks": 14663,
+      "missing": [],
+      "skills": 128,
+      "pass": true,
+      "pulses": 199,
+      "suite": "SKILL_ICON_VFX_NATIVE"
+    },
+    {
+      "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 2361,
+      "suite": "VFX_ART_HERO_FIXES_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 16090,
+      "suite": "VFX_ART_ENEMY_FIXES_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 127,
+      "suite": "VFX_ART_SUPPORT_FIXES_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 562,
+      "suite": "VFX_ART_PALETTE_NATIVE"
+    },
+    {
+      "attacks": 146,
+      "checks": 1403,
+      "failures": [],
+      "pass": true,
+      "dashes": 11,
+      "suite": "VFX_REVIEW_FOLLOWUP_NATIVE"
+    },
+    {
+      "coverage": "Native geometry and timing; no GPU, multiplayer or user art acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 585,
+      "suite": "ARCADE_IMPACT_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 78,
+      "suite": "RPG_ELEMENT_MOTION_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 190,
+      "suite": "RPG_VFX_MOTION_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 84,
+      "suite": "ELEMENT_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 231,
+      "suite": "WOW_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 58,
+      "suite": "VFX_STYLE_FIT_NATIVE"
+    },
+    {
+      "assets": {
+        "rbxassetid://8196169974": true,
+        "rbxassetid://9937082969": true,
+        "rbxassetid://9997556038": true,
+        "rbxassetid://8030734851": true,
+        "rbxassetid://125374985892345": true
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 182,
+      "suite": "CURATED_VFX_NATIVE"
+    },
+    {
+      "assets": 20,
+      "failures": [],
+      "checks": 1690,
+      "status": "PASS",
+      "kind": "PIXELFX_NATIVE",
+      "basic": 4,
+      "skills": 128,
+      "suite": "PIXELFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 10527,
+      "suite": "HERO_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "WIND_LANCE_VISUAL_NATIVE",
+      "pass": true,
+      "checks": 128,
+      "suite": "WIND_LANCE_VISUAL_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 295,
+      "suite": "SKILL_VFX_INDIVIDUAL_NATIVE"
+    },
+    {
+      "coverage": "Native decoration, budgets and Lua update cost; not GPU or device acceptance",
+      "checks": 74,
+      "luaUpdateP95ms": 0.9075000416487455,
+      "luaUpdateP50ms": 0.8207083446905017,
+      "pass": true,
+      "failures": [],
+      "suite": "HERO_VFX_FLOURISH_NATIVE"
+    },
+    {
+      "coverage": "Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance",
+      "checks": 102,
+      "samples": [
+        {
+          "speed": 1.350000023841858,
+          "class": "knight",
+          "sound": "rbxasset://sounds/action_jump_land.mp3"
+        },
+        {
+          "speed": 0.9170557856559753,
+          "class": "dwarf",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.9118167757987976,
+          "class": "mage",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.8856195211410522,
+          "class": "elf",
+          "sound": "rbxassetid://9118598279"
+        }
+      ],
+      "kind": "K0_HIT_EFFECTS_NATIVE",
+      "pass": true,
+      "failures": [],
+      "suite": "K0_HIT_EFFECTS_NATIVE"
+    },
+    {
+      "attacks": 146,
+      "projectiles": 40,
+      "kinds": 50,
+      "checks": 66173,
+      "suite": "MONSTER_SPELL_VFX_NATIVE"
+    }
+  ],
+  "warnings": [
+    "ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.",
+    "ContentId: rbxassethash://45a84a576ad52cab4163fe70de30a0c0 failed due to: Request must have a PlaceId set.",
+    "ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.",
+    "ContentId: rbxassethash://9f652390a8f570eb1c9c469037d6382b failed due to: Request must have a PlaceId set.",
+    "ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set."
+  ]
+}

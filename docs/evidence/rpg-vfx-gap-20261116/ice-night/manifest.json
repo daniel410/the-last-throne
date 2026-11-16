@@ -1,0 +1,19 @@
+[
+  {
+    "clockTime": 0,
+    "index": 1,
+    "id": "enemy.IceElf.flight",
+    "age": 0.12,
+    "extent": 5,
+    "width": 480,
+    "name": "IceElf Flight",
+    "category": "Enemy spell",
+    "height": 320,
+    "mode": "frozen geometry; particle bursts re-emitted",
+    "variant": 2,
+    "pulse": 1,
+    "file": "001-enemy.IceElf.flight.png",
+    "sha256": "8a95df6f5544400e9070787d159c3990295239400a98bc3b89a94df230807bc9",
+    "iconSha256": null
+  }
+]

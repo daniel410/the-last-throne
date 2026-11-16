@@ -1,0 +1,32 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "id": "mage.pyro.caldera_s_judgment",
+    "age": 0.06,
+    "extent": 19,
+    "name": "CALDERA'S JUDGMENT",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "001-mage.pyro.caldera_s_judgment.png",
+    "sha256": "55ae8355b11d43fbf8286c5a29912219f657e692f94cbe376574eb5027c83299",
+    "iconSha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b"
+  },
+  {
+    "clockTime": 0,
+    "index": 2,
+    "id": "mage.pyro.caldera_s_judgment",
+    "age": 0.18,
+    "extent": 19,
+    "name": "CALDERA'S JUDGMENT",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "002-mage.pyro.caldera_s_judgment.png",
+    "sha256": "e216f42b37177b0540f462d4c5707665410922d9e290d07d33dd17c775f7500b",
+    "iconSha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b"
+  }
+]

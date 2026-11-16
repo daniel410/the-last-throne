@@ -1,0 +1,198 @@
+{
+  "pass": true,
+  "suites": 23,
+  "checks": 117733,
+  "logSha256": "dc54b38852598eaa0f3b7955178e0a7e3d9ef4eea4a546c5918fa80ceefefae7",
+  "results": [
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 21,
+      "suite": "RPG_VFX_GAP_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 2066,
+      "suite": "ROBLOX_VFX_POLISH_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 43,
+      "suite": "SKILL_VFX_ART_NATIVE"
+    },
+    {
+      "maxBeams": 48,
+      "failures": [],
+      "checks": 14663,
+      "missing": [],
+      "skills": 128,
+      "pass": true,
+      "pulses": 199,
+      "suite": "SKILL_ICON_VFX_NATIVE"
+    },
+    {
+      "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 2361,
+      "suite": "VFX_ART_HERO_FIXES_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 16090,
+      "suite": "VFX_ART_ENEMY_FIXES_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 127,
+      "suite": "VFX_ART_SUPPORT_FIXES_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 562,
+      "suite": "VFX_ART_PALETTE_NATIVE"
+    },
+    {
+      "attacks": 146,
+      "checks": 1403,
+      "failures": [],
+      "pass": true,
+      "dashes": 11,
+      "suite": "VFX_REVIEW_FOLLOWUP_NATIVE"
+    },
+    {
+      "coverage": "Native geometry and timing; no GPU, multiplayer or user art acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 585,
+      "suite": "ARCADE_IMPACT_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 78,
+      "suite": "RPG_ELEMENT_MOTION_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 190,
+      "suite": "RPG_VFX_MOTION_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 84,
+      "suite": "ELEMENT_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 231,
+      "suite": "WOW_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "pass": true,
+      "checks": 58,
+      "suite": "VFX_STYLE_FIT_NATIVE"
+    },
+    {
+      "assets": {
+        "rbxassetid://8196169974": true,
+        "rbxassetid://9937082969": true,
+        "rbxassetid://9997556038": true,
+        "rbxassetid://8030734851": true,
+        "rbxassetid://125374985892345": true
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 182,
+      "suite": "CURATED_VFX_NATIVE"
+    },
+    {
+      "assets": 20,
+      "failures": [],
+      "checks": 1690,
+      "status": "PASS",
+      "kind": "PIXELFX_NATIVE",
+      "basic": 4,
+      "skills": 128,
+      "suite": "PIXELFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 10527,
+      "suite": "HERO_VFX_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "WIND_LANCE_VISUAL_NATIVE",
+      "pass": true,
+      "checks": 128,
+      "suite": "WIND_LANCE_VISUAL_NATIVE"
+    },
+    {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 295,
+      "suite": "SKILL_VFX_INDIVIDUAL_NATIVE"
+    },
+    {
+      "coverage": "Native decoration, budgets and Lua update cost; not GPU or device acceptance",
+      "checks": 74,
+      "luaUpdateP95ms": 0.8899166714400053,
+      "luaUpdateP50ms": 0.7997499778866768,
+      "pass": true,
+      "failures": [],
+      "suite": "HERO_VFX_FLOURISH_NATIVE"
+    },
+    {
+      "coverage": "Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance",
+      "checks": 102,
+      "samples": [
+        {
+          "speed": 1.350000023841858,
+          "class": "knight",
+          "sound": "rbxasset://sounds/action_jump_land.mp3"
+        },
+        {
+          "speed": 0.8969627618789673,
+          "class": "dwarf",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.8852296471595764,
+          "class": "mage",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.9132665991783142,
+          "class": "elf",
+          "sound": "rbxassetid://9118598279"
+        }
+      ],
+      "kind": "K0_HIT_EFFECTS_NATIVE",
+      "pass": true,
+      "failures": [],
+      "suite": "K0_HIT_EFFECTS_NATIVE"
+    },
+    {
+      "attacks": 146,
+      "projectiles": 40,
+      "kinds": 50,
+      "checks": 66173,
+      "suite": "MONSTER_SPELL_VFX_NATIVE"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "id": "mage.pyro.caldera_s_judgment",
+    "age": 0.06,
+    "extent": 19,
+    "name": "CALDERA'S JUDGMENT",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "001-mage.pyro.caldera_s_judgment.png",
+    "sha256": "6b9ba1206c9eeae1a1a555779009a90e58ed1d9dca6c74f8d9fcf6ef3c5ca139",
+    "iconSha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b"
+  },
+  {
+    "clockTime": 0,
+    "index": 2,
+    "id": "mage.pyro.caldera_s_judgment",
+    "age": 0.18,
+    "extent": 19,
+    "name": "CALDERA'S JUDGMENT",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "002-mage.pyro.caldera_s_judgment.png",
+    "sha256": "8f4704ee544df786de49134b8b0fce3954d2555c7a3eae022af11d855ba62f2d",
+    "iconSha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b"
+  },
+  {
+    "clockTime": 12,
+    "index": 3,
+    "id": "mage.cryo.eternal_tempest",
+    "age": 0.06,
+    "extent": 19,
+    "name": "ETERNAL TEMPEST",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "003-mage.cryo.eternal_tempest.png",
+    "sha256": "1c9888df82959bf0563d08dc3f2f6f1d925e05c5579548a7765fb02eaf20816c",
+    "iconSha256": "503cb3180113d88bc7fbdeead47e6a98379535bb0b9bde411df4bfc867c522b9"
+  },
+  {
+    "clockTime": 0,
+    "index": 4,
+    "id": "mage.cryo.eternal_tempest",
+    "age": 0.18,
+    "extent": 19,
+    "name": "ETERNAL TEMPEST",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "004-mage.cryo.eternal_tempest.png",
+    "sha256": "e80103d7411c6d80b957a8089ef91db9595ef92d2b636bbce6ec79f6747aa66c",
+    "iconSha256": "503cb3180113d88bc7fbdeead47e6a98379535bb0b9bde411df4bfc867c522b9"
+  }
+]
