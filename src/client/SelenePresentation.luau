@@ -4,6 +4,7 @@ local Players=game:GetService('Players')
 local Tags=game:GetService('CollectionService')
 local Skin=require(script.Parent.SeleneSkinMotion)
 local PixelFX=require(script.Parent.PixelFX)
+local Style=require(script.Parent.CombatVFXStyle)
 local View={}
 local GOLD=Color3.fromRGB(255,223,132)
 local MINT=Color3.fromRGB(145,255,200)
@@ -15,8 +16,8 @@ local function part(parent,name,size,color)
 end
 local function emitter(parent,color)
  local e=Instance.new('ParticleEmitter');e.Name='SupportMotes';e.Texture='rbxasset://textures/particles/sparkles_main.dds'
- e.Color=ColorSequence.new(color);e.LightEmission=.85;e.Rate=0;e.Lifetime=NumberRange.new(.65,1.2)
- e.Speed=NumberRange.new(1,3);e.SpreadAngle=Vector2.new(180,180);e.Acceleration=Vector3.new(0,2,0)
+ e.Color=ColorSequence.new(color);e.LightEmission=.85;e.Rate=0;e.Lifetime=NumberRange.new(.35,.65)
+ e.Speed=NumberRange.new(.5,1.5);e.SpreadAngle=Vector2.new(24,24);e.EmissionDirection=Enum.NormalId.Top;e.Acceleration=Vector3.new(0,2,0)
  e.Size=NumberSequence.new({NumberSequenceKeypoint.new(0,.12),NumberSequenceKeypoint.new(.35,.22),NumberSequenceKeypoint.new(1,0)})
  e.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.2),NumberSequenceKeypoint.new(.7,.35),NumberSequenceKeypoint.new(1,1)})
  e.Parent=parent;return e
@@ -51,7 +52,7 @@ function View.bind(model,resolveCharacter)
   if action=='Protect'then emitter(target,color):Emit(24)end
   local beam=Instance.new('Beam');beam.Name='BlessingLink';beam.Attachment0=source;beam.Attachment1=target
   beam.FaceCamera=true;beam.Segments=16;beam.CurveSize0=1.4;beam.CurveSize1=-1.4
-  beam.Width0=.18;beam.Width1=.4;beam.LightEmission=1;beam.Color=ColorSequence.new(GOLD,color)
+  beam.Width0=.10;beam.Width1=.18;beam.LightEmission=1;beam.Color=ColorSequence.new(GOLD,color)
   beam.Transparency=NumberSequence.new(.25);beam.Parent=folder
   local light=Instance.new('PointLight');light.Color=GOLD;light.Brightness=1.5;light.Range=7;light.Parent=source
   local glow=part(folder,'HealingFocus',Vector3.one*.24,GOLD);glow.Shape=Enum.PartType.Ball
@@ -97,8 +98,12 @@ function View.bind(model,resolveCharacter)
    local alive=e.character:FindFirstChildOfClass('Humanoid')
    if t>e.duration or not e.root.Parent or not alive or alive.Health<=0 or root.LocalTransparencyModifier>=1 then clearEffect(self);return end
    local fade=math.clamp((t-e.duration+.5)/.5,0,1)
-   e.beam.Transparency=NumberSequence.new(math.clamp(.2+t*.8,.2,1));e.light.Brightness=1.5*(1-fade)
+   local release=math.clamp(t/.65,0,1)
+   e.beam.Transparency=NumberSequence.new(.2+release*.8);e.light.Brightness=1.5*(1-release)
    e.source.CFrame=self.skin.visual.CFrame:ToObjectSpace(Skin.hand(self.skin))
+   local source,target=e.source.WorldPosition,e.target.WorldPosition
+   local bow=math.clamp((target-source).Magnitude*.13,.35,1.3)
+   Style.pose(e.source,e.target,e.beam,source,target,Vector3.yAxis,-Vector3.yAxis,bow,bow)
    e.glow.CFrame=e.source.WorldCFrame;e.glow.Transparency=math.clamp(t,0,1)
    local h=e.character:FindFirstChildOfClass('Humanoid')
    local foot=e.root.Position.Y-(h and h.HipHeight+e.root.Size.Y*.5 or 3)+.08

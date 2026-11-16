@@ -2,6 +2,7 @@
 local Run=game:GetService('RunService')
 local Debris=game:GetService('Debris')
 local Surfaces=require(script.Parent.HeroVFXSurfaces)
+local Style=require(script.Parent.CombatVFXStyle)
 local Wind={}
 local active={};local seen=setmetatable({},{__mode='k'});local connection
 local WHITE=Color3.fromRGB(230,255,247)
@@ -27,13 +28,14 @@ local function ribbon(s,name,count,width,color)
   local a=Instance.new('Attachment');a.Name=name..i;a.Parent=s.carrier;table.insert(r.points,a)
   if i>1 then
    local b=Instance.new('Beam');b.Name=name;b.Attachment0=r.points[i-1];b.Attachment1=a;b.FaceCamera=true
-   b.Color=ColorSequence.new(color);b.LightEmission=1;b.LightInfluence=0;b.Segments=1
+   b.Color=ColorSequence.new(color);b.LightEmission=1;b.LightInfluence=0;b.Segments=count>1 and 3 or 1
    b.Width0=width;b.Width1=width;b.Transparency=NumberSequence.new(.2);b.Parent=s.carrier;table.insert(r.beams,b)
   end
  end
  return r
 end
 local function fade(r,alpha,scale)
+ Style.ribbon(r.points,r.beams)
  for i,b in r.beams do
   local taper=math.sin((i-.5)/#r.beams*math.pi)
   b.Width0=r.width*scale*(.2+.8*taper);b.Width1=b.Width0

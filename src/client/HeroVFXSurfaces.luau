@@ -60,15 +60,16 @@ function S.growLine(r,first,last,duration,delay)
  if face then face.growLine={first=first,last=last,duration=duration,delay=delay or 0}end
 end
 -- An open annulus leaves the actor, target and ground telegraphs visible.
-function S.arc(r,name,at,radius,width,color,alpha,basis,arc)
+function S.arc(r,name,at,radius,width,color,alpha,basis,arc,segments)
+ segments=segments or 8
  local span=math.rad(arc or 300)
  local function point(a,rad)
   local offset=Vector3.new(math.cos(a)*rad,0,math.sin(a)*rad)
   return at+(basis and basis:VectorToWorldSpace(offset)or offset)
  end
- for i=1,8 do
-  local a,b=(i-1)/8*span,i/8*span
-  local inner=math.max(.05,radius-width*math.sin((i-.5)/8*math.pi))
+ for i=1,segments do
+  local a,b=(i-1)/segments*span,i/segments*span
+  local inner=math.max(.05,radius-width*math.sin((i-.5)/segments*math.pi))
   local p,q,s,t=point(a,inner),point(a,radius),point(b,inner),point(b,radius)
   S.triangle(r,name,p,q,s,color,alpha);S.triangle(r,name,q,t,s,color,alpha)
  end

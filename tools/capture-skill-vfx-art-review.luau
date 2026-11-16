@@ -40,6 +40,8 @@ for _,id in ipairs(samples)do for _,age in ipairs(times)do
  camera.CFrame=CFrame.lookAt(focus+Vector3.new(extent*.8,extent*.7,extent),focus)
  game.Lighting.ClockTime=sampleIndex%2==0 and 0 or 12
  game.Lighting.Brightness=2;game.Lighting.Ambient=Color3.fromRGB(90,98,115)
+ -- Warm material/lighting before either variant, while no live VFX can expire.
+ task.wait(sampleIndex==1 and 1.5 or .2)
  actor:SetAttribute('K0ClassId',id:match('^(%a+)'));actor:SetAttribute('K0SkillId',id)
  for variant,fx in ipairs({before,after})do
   before.clear();after.clear();Pixel.clear();PixelBefore.clear()

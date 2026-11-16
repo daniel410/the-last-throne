@@ -11,6 +11,8 @@ p.add_argument('log', type=Path)
 p.add_argument('output', type=Path)
 p.add_argument('--expected', type=int, default=56)
 p.add_argument('--allow-partial', action='store_true')
+p.add_argument('--before-label', default='Before 0.111.2')
+p.add_argument('--after-label', default='After ART')
 a = p.parse_args()
 text = a.log.read_text()
 if not a.allow_partial:
@@ -46,16 +48,18 @@ for idx in sorted({key[0] for key in rows}):
     frame = Image.new('RGB', (1120, 365), '#101728'); draw = ImageDraw.Draw(frame)
     for i, img in enumerate(frames):
         frame.paste(img, (160 + i * 480, 40))
-        draw.text((170 + i * 480, 12), ('Before 0.111.2' if i == 0 else 'After ART') + f' | {r["age"]:.2f}s | pulse {r["pulse"]}', font=font, fill='white')
-    icon = icons[r['id']]; source = ROOT / 'assets/ui/hero-skill-icons-v2' / icon['file']
-    image = Image.open(source).convert('RGB'); image.thumbnail((150, 150)); frame.paste(image, (5, 75))
-    draw.text((5, 232), 'Skill icon', font=font, fill='white')
+        draw.text((170 + i * 480, 12), (a.before_label if i == 0 else a.after_label) + f' | {r["age"]:.2f}s | pulse {r["pulse"]}', font=font, fill='white')
+    icon = icons.get(r['id']); source = None
+    if icon:
+        source = ROOT / 'assets/ui/hero-skill-icons-v2' / icon['file']
+        image = Image.open(source).convert('RGB'); image.thumbnail((150, 150)); frame.paste(image, (5, 75))
+    draw.text((5, 232), 'Skill icon' if icon else r.get('category','Combat VFX'), font=font, fill='white')
     label = r['name']
     for line, start in enumerate(range(0, len(label), 15)):
         draw.text((5, 260 + line * 20), label[start:start + 15], font=font, fill='white')
     name = f'{idx:03}-{r["id"]}.png'; target = a.output / name; frame.save(target)
     records.append({**r, 'file': name, 'sha256': hashlib.sha256(target.read_bytes()).hexdigest(),
-                    'iconSha256': hashlib.sha256(source.read_bytes()).hexdigest()})
+                    'iconSha256': hashlib.sha256(source.read_bytes()).hexdigest() if source else None})
 assert a.allow_partial or len(records) == a.expected, f'{len(records)} complete pairs, expected {a.expected}'
 (a.output / 'manifest.json').write_text(json.dumps(records, indent=2) + '\n')
 for page in range((len(records) + 7) // 8):

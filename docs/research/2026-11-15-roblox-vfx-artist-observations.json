@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "tasks": ["TLT-033", "TLT-057", "TLT-059"],
+  "date": "2026-11-15",
+  "role": "art_creator_reference_research",
+  "question": "아이콘 기반 128영웅 VFX와 적 근접/마법·지원 효과에 적용할 Roblox 제작 원리를 실제 공개 이미지·영상에서 구분한다.",
+  "status": "research_handoff",
+  "runtimeEdited": false,
+  "externalAssetsDownloadedInstalledExecuted": false,
+  "sourceCount": 8,
+  "viewingMethod": "공개 원문은 Chrome AX/DOM으로 읽고 원본 이미지와 원문에 연결된 영상을 cua_repl 스크린샷으로 직접 관찰했다. DOM은 게시일·현재 재생시각·공개 media URL을 읽는 데만 사용했다. 영상 파일/모델/스크립트는 내려받거나 실행하지 않았다.",
+  "evidenceLimits": [
+    "검색 도구에서 DevForum 원문4건은 JavaScript/robot 검증 화면만 반환했다. 해당 화면을 본문이나 시각 증거로 사용하지 않고 Chrome에서 공개 원문을 읽었다. CAPTCHA는 나타나지 않았고 우회하지 않았다.",
+    "Loca1t의 직접 mp4 URL 탐색1회는 ERR_BLOCKED_BY_CLIENT로 거절됐다. 다른 URL로 우회하지 않았으며 원문 안의 플레이어와 공개 정지 이미지만 관찰했다.",
+    "영상의 명시 시점은 재생기/DOM의 표본시각이다. 스크린샷 처리 사이에 재생이 계속된 표본은 근사치이며 정확한 프레임 시간이나 효과 수명 측정이 아니다.",
+    "제작자 쇼케이스/플러그인 미리보기는 실제 다인 플레이·서버 타격 일치·기기 성능 증거가 아니다. 공개 계정의 실명/계정 동일성은 감사하지 않았다.",
+    "외부 이미지/영상을 저장·복제하지 않았다. 이 문서의 URL과 직접 관찰 기록이 열람 범위이며 로컬 원본 프레임 보관본은 없다."
+  ],
+  "priorityGameReferences": [
+    {
+      "game": "Diablo IV",
+      "source": "https://news.blizzard.com/en-gb/article/23746639/diablo-iv-quarterly-updatedecember-2021",
+      "period": "2021-12 개발 중 설명",
+      "verification": "기존 2026-11-15-skill-icon-vfx.md 및 2026-11-13-roblox-rpg-vfx.md 조사 재사용. 이번 ART 분담에서 새 라이브 플레이나 본문 재열람을 주장하지 않음. 공식 최신 재확인은 총괄 담당.",
+      "application": "환경 안의 전투 가독성과 시간/강도 위계를 우선하며 현재 시즌 수치로 일반화하지 않는다."
+    },
+    {
+      "game": "World of Warcraft Retail",
+      "source": "https://worldofwarcraft.blizzard.com/en-us/news/20946579/patch-73-new-combat-animations-its-magic",
+      "period": "Retail 7.3 / 2017",
+      "verification": "기존 조사 재사용. 기존 본문403 한계 유지. 이번 ART 분담에서 현행 Retail/Classic 플레이를 확인했다고 주장하지 않음. 공식 재확인은 총괄 담당.",
+      "application": "직업과 기존 주문의 정체성을 보존한다. Roblox 사례의 색/문양으로 기술 속성을 바꾸지 않는다."
+    }
+  ],
+  "contracts": {
+    "source": "docs/production/element-vfx.md",
+    "unchanged": ["서버 피해/타격시점/범위/MP/쿨다운/해금", "청색 Lightning와 금빛 Holy", "Wind Lance 전용 렌더러", "실제 범위선과 월드 깊이", "원본 아이콘128종의 주 형상", "전역/개별 장식 예산"],
+    "priorArtBaseline": "docs/evidence/skill-icon-vfx-art-20261115/art-review-final.json의 0.111.3은 새 리서치 이전 기준이다. 그 정지형상 판정은 이번 구현의 동작/사용자 수용이 아니다."
+  },
+  "sources": [
+    {
+      "id": "CREATOR-01",
+      "creator": "ImaginePowerq",
+      "title": "Crecent Sword Slash Effect",
+      "url": "https://devforum.roblox.com/t/crecent-sword-slash-effect/1113871",
+      "published": "2021-03-16",
+      "editedObserved": "2022-01-19",
+      "accessed": "2026-11-15",
+      "scope": "제작자 첫 글과 제작 이미지. GIMP 선 질감1675×1002와 완성434×377를 원본 URL로 직접 열어 스크린샷 관찰. Gyazo 동영상은 이번에 열지 않았다.",
+      "media": [
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/7/7/e/2/77e251fc6d908b03d080975579c8592d3ddc3d17.png", "viewed": true, "kind": "texture_work_image"},
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/7/0/f/f/70ff8511bfa345886810dde228ddf18f37b850cd.jpeg", "viewed": true, "kind": "final_still"}
+      ],
+      "creatorClaims": ["굵기/불투명도/색이 다른 직선을 그리고 가장자리를 지운 뒤 Polar Coordinates로 호 질감을 만든다.", "납작한 구형 메시의 양면 UV와 Texture 객체를 사용한다."],
+      "visualObservation": ["작업 이미지의 평행선은 길이와 굵기가 불균등하며 양끝이 흐려진다.", "완성 스틸은 한쪽 위/오른쪽에 진한 중첩 호가 모이고 반대쪽은 연해진다. 균일하게 채운 발광 원판이 아니다. 회색 원형 면도 보이므로 이 스틸만으로 완전 투명 처리 품질을 확정할 수 없다."],
+      "inference": "호의 밝기/폭/끝 감쇠를 달리하면 원판보다 휘두름 축과 끝이 읽힐 가능성이 있다. 실제 무기 동기·시간 곡선은 확인하지 않았다.",
+      "application": ["HeroVFX curve/ribbon과 K0SwordVisual Trail에서 선명한 날·연한 꼬리·열린 끝을 분리", "물리 칼/도끼는 원소 장식 앞에서도 실제 무기 형상이 남게 조정"],
+      "cost": "우리 제안: 기존 Beam/Trail 폭·투명도·곡률 조정은 낮음~중간. 같은 세부 질감의 재현은 자체 텍스처 제작이 추가로 필요할 수 있으나 이번 필수 조건은 아님. GPU 절감은 미측정.",
+      "reject": ["제작자 메시/텍스처 복사", "검기마다 여러 겹 원판 추가", "스틸을 근거로 무기 애니메이션 동기나 부드러운 움직임 통과 선언"]
+    },
+    {
+      "id": "CREATOR-02",
+      "creator": "Loca1t",
+      "title": "Hit Effect Handler | How to make a good hit effect in 5 minutes! Mesh + Particles",
+      "url": "https://devforum.roblox.com/t/hit-effect-handler-how-to-make-a-good-hit-effect-in-5-minutes-mesh-particles/1511337",
+      "published": "2021-10-16",
+      "accessed": "2026-11-15",
+      "scope": "첫 글, 메시/ParticleEmitter 정지 이미지2장, 원문 내 짧은 영상 플레이어. 결합 영상의 0.15/0.50/0.58/1.04/1.62s 표본은 접촉 순간을 포착하지 못해 시간/팽창 관찰 근거에서 제외.",
+      "media": [
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/5/1/e/51ed86344df2adf778635ffb3d65b44954dccfc0.jpeg", "viewed": true, "kind": "mesh_still"},
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/3/b/b/3bb35679f2ee6dcb45f95966793b869df8063baa.jpeg", "viewed": true, "kind": "particle_still"}
+      ],
+      "creatorClaims": ["메시 폭발과 입자를 별도 구성하고 결합하는 예제를 제공한다."],
+      "visualObservation": ["메시는 길고 얇은 백색 조각이며 양끝이 가늘어진다.", "입자 스틸은 빈 중심 둘레에서 길이/크기가 다른 뾰족한 백색 조각과 가느다란 어두운 선이 방사한다. 균일한 둥근 구름보다 중심 주변의 빈 곳이 많다."],
+      "inference": "방사 조각과 소량 입자를 분리하면 짧은 접촉감을 만들면서 몸통을 덜 가릴 수 있다. 빈 중심이 의도된 히트마커 설계인지는 제작자가 명시하지 않았다.",
+      "application": ["K0HitEffects 물리 타격은 짧은 중심+불균등한 방사 조각", "EnemySpellVFX.impact는 비행 본체와 다른 접촉 실루엣 사용"],
+      "cost": "우리 제안: 기존 조각/입자 재사용은 낮음~중간. 입자 수 증가는 비용이므로 기존 예산 안에서만 재배분. 외부 모듈은 사용하지 않음.",
+      "reject": ["공개 ModuleScript/모델 설치·실행", "모든 명중을 같은 커다란 폭발로 표현", "놓친 접촉 프레임을 실제로 관찰했다고 서술"]
+    },
+    {
+      "id": "CREATOR-03",
+      "creator": "Yuruzuu",
+      "title": "Yuruzuu's Open Source VFX / Aether Elemental Skill / Healing VFX",
+      "url": "https://devforum.roblox.com/t/yuruzuus-open-source-vfx/1840021",
+      "published": "2022-06-20",
+      "editedObserved": "2025-07-29",
+      "accessed": "2026-11-15",
+      "scope": "포럼 첫 글의9개 예시 제목/링크 열람. 실제 시각 판정은 Lightning Blade로 표기된 Aether 영상과 Healing 영상/각 썸네일만. 나머지7개는 시각 관찰에 포함하지 않음.",
+      "media": [
+        {"url": "https://www.youtube.com/watch?v=s-4izv9fdbE", "viewed": true, "kind": "video", "titleObserved": "Aether Elemental Skill ー Roblox VFX [GIVEAWAY]", "samplesSeconds": [5,10,15], "published": null, "publishedLimit": "정확한 업로드 날짜 미확인. 영상 UI의4년 전 표시는 정확한 날짜로 변환하지 않음."},
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/a/e/e/5/aee5281f7a82e755dbbf7b71ca7a96b9c3de1956.jpeg", "viewed": true, "kind": "blade_thumbnail"},
+        {"url": "https://www.youtube.com/watch?v=9t4vEJmvxPs", "viewed": true, "kind": "video", "titleObserved": "Healing VFX ー Roblox VFX + Breakdown [GIVEAWAY]", "samplesSeconds": [1.311666,5], "published": "2022-06-26", "chaptersObserved": {"showcase": 0, "breakdown": 4}},
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/c/b/7/1/cb716bbe5bf1ec58925d817d05fea0eab1c099d8.jpeg", "viewed": true, "kind": "healing_thumbnail"}
+      ],
+      "creatorClaims": ["포럼은 커스터마이즈 가능한 공개 VFX와 ParticleEmitter 학습 목적을 설명한다. 이 문서는 권리 상태를 별도 감사하거나 자산 도입을 승인하지 않는다."],
+      "visualObservation": ["Aether 썸네일은 밝은4방향 핵과 얇은 보라 외곽을 가진 열린 원형 칼날3개를 깊이 방향으로 배치한다.", "Aether 5/10/15s 표본은 매우 밝은 보라-백색 핵, 원형/초승달 외곽, 옅은 잔광을 보인다. 가까운 큰 링의 흰 블룸은 캐릭터 일부와 형상을 가린다.", "Healing 1.31s는 몸통 옆 소수의 초록 plus, 긴 수직 반짝임과 작은 점으로 수혜자를 둘러싸며 얼굴/몸이 잘 보인다. 5s Breakdown은 점·plus·수직 조각을 떨어진 판 위에 나눠 보여준다."],
+      "inference": "기능을 읽게 하는 주 표식과 작은 주변 입자를 분리하는 제작 단위가 유용하다. 기술별 실제 상태/시간과 다인전 가독성은 쇼케이스로 검증되지 않는다.",
+      "application": ["투사체 핵/외피/잔류를 별도 강도와 소멸로 구성", "Selene 지원은 수혜자 근처 짧은 표식/상승 흐름과 link의 방출·잔류를 분리", "Holy는 예시 초록/보라 대신 현행 금빛 계약 유지; Heal도 기술 정의와 현행 자연 표현 보존"],
+      "cost": "우리 제안: 기존 표식·입자 레이어 재사용은 중간. 작은 표식도 동료4명/적과 겹치면 비용/가림이 누적하므로 수량 상한과 거리 축소 필요. 기기 성능 미측정.",
+      "reject": ["Genshin 캐릭터·고유 칼날 문양 복제", "근거리 백화", "플레이어를 가리는 대형 링 반복", "포럼에 제목만 있는 나머지 예시를 실제 관찰 목록으로 계산"]
+    },
+    {
+      "id": "CREATOR-04",
+      "creator": "VibeStrider",
+      "title": "Dark magic missiles VFX showcase",
+      "url": "https://devforum.roblox.com/t/dark-magic-missiles-vfx-showcase/1813413",
+      "published": "2022-05-27",
+      "accessed": "2026-11-15",
+      "scope": "첫 글, 제작자의2022-05-28 답변, 원문 내15.32s 영상. 1.97/3.25/3.89/5.05/11.69s 정지 표본을 직접 관찰.",
+      "media": [{"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/0/9/c/09cf5e25d85e7dae8986af5a628678f8947863d7.mp4", "viewed": true, "kind": "embedded_video", "samplesSeconds": [1.966458,3.246685,3.886798,5.048485,11.686695]}],
+      "creatorClaims": ["직접 그린 입자이며 대부분은 애니메이션이 아니다. 하나에 noise texture를 겹친 dissolve flipbook을 사용했다고 답한다."],
+      "visualObservation": ["3.25/3.89s에는 작은 밝은 보라색 점/가늘고 뾰족한 빛과 그 주위의 검은 보라 연기·굽은 어두운 조각을 구분할 수 있다.", "5.05/11.69s에는 벽 가까이 떨어진 여러 검은 보라 흔적이 남는다. 표본 사이에 다시 시전되므로 같은 흔적의 정확한 수명/소멸 속도는 단정하지 않는다.", "어두운 배경에서 검은 성분은 잘 섞이고 밝은 보라 단서가 위치를 알려준다."],
+      "inference": "한 투사체 안에서도 명확한 위치 핵과 불규칙한 잔류를 구분할 수 있다. 곡선 비행의 수학적 구현이나 Bezier 사용은 시청자 질문만으로 확정하지 않는다.",
+      "application": ["EnemySpellVFX의 spirit/shadow 계열에 위치 핵·옅은 잔류·짧은 접촉 흔적을 구분", "현재 청색 Lightning를 보라 마법으로 바꾸지 않음", "Fire/poison 등은 이 색/운동을 공통 복제하지 않음"],
+      "cost": "우리 제안: 기존 입자 속도/투명도 조절은 낮음~중간. 새 flipbook 제작/도입은 중간 이상이므로 이번 필수 조건에서 제외. 비용 수치/모바일 overdraw 미측정.",
+      "reject": ["검은 구름을 전 원소의 공통 본체로 사용", "댓글의 Bezier 추정을 구현 사실로 서술", "noise/dissolve 원본 텍스처 복제", "정확한 잔류 수명 주장"]
+    },
+    {
+      "id": "CREATOR-05",
+      "creator": "ExhaultedDev portfolio / embedded channel Bill Titanhelpdesk",
+      "title": "Roblox VFX Pack Showcase [COMMISSIONS OPEN] / Anime VFX Showcase",
+      "url": "https://exhaulteddev.artstation.com/projects/wrq3Rg",
+      "published": null,
+      "accessed": "2026-11-15",
+      "scope": "포트폴리오 본문과 해당 페이지가 직접 연결한 YouTube32.4s 영상의5/10/15/20/25s 표본. 포트폴리오 게시일은 표시되지 않아 미확인; 연결 영상은2025-03-21 공개 표시. 두 계정의 동일인 여부는 별도 확인하지 않음.",
+      "media": [{"url": "https://www.youtube.com/watch?v=Dy_OvTyvt1A", "viewed": true, "kind": "video", "published": "2025-03-21", "samplesSeconds": [5,10,15,20,25]}],
+      "creatorClaims": ["Roblox VFX 작업을 포트폴리오로 제시한다."],
+      "visualObservation": ["5s는 보라색 밝은 중심 주위에 얇은 곡선·연기층을,15s는 전진축 방향으로 길어진 보라 핵/작은 구체 외곽을 보여준다.", "20s는 작은 Dummy 부근의 별도 방사 폭발과 큰 바닥 링, 앞쪽의 빛나는 구체를 함께 보여준다. 같은 밝기의 여러 층이 겹쳐 국소 위치와 크기 위계가 흐려진다.", "10/25s 넓은 시야에는 여러 색의 작은 효과가 따로 배치되며 이는 전투가 아닌 작업 미리보기다."],
+      "inference": "투사체와 도착 폭발을 각각 제작하는 방식은 참고할 수 있다. 장면의 큰 링/블룸을 실전 가독성의 모범이나 성능 우수 근거로 볼 수 없다.",
+      "application": ["EnemySpellVFX.projectile/impact의 방출과 접촉을 다른 소멸층으로 구분", "영웅 궁극기도 넓은 바닥 장식보다 아이콘 초점에 최대 대비 배정"],
+      "cost": "우리 제안: 기존 본체/접촉 레코드 재사용은 중간. 큰 투명 면과 다중 입자는 overdraw 위험이 있어 상한 유지. 효과 수와 GPU 시간을 이 영상으로 측정하지 않음.",
+      "reject": ["쇼케이스의 대형 링을 모든 궁극기에 추가", "상업 팩 도입/구매", "포트폴리오와 영상 채널 동일성 확정", "작업 미리보기를 실전 플레이 검증으로 보고"]
+    },
+    {
+      "id": "CREATOR-06",
+      "creator": "enderlinc",
+      "title": "Effects Commissioning",
+      "url": "https://devforum.roblox.com/t/effects-commissioning/1213303",
+      "published": "2021-05-08",
+      "editedObserved": "2021-05-09",
+      "accessed": "2026-11-15",
+      "scope": "첫 글의 전체1336×472 예시와 Simple Fireball336×284 이미지2장을 직접 열어 관찰. 영상/실제 시전은 없음.",
+      "media": [
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/5/0/b/50b14a4a85608f1985543e35bacdfb3d3a71ba7f.png", "viewed": true, "kind": "catalog_still"},
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/c/b/2/cb2e7bf6db314678e28d670da7299141c52d696d.jpeg", "viewed": true, "kind": "fireball_still"}
+      ],
+      "creatorClaims": ["마법/VFX 제작 예시로 제시한다. 동작 스크립팅은 이 포트폴리오의 검증 범위가 아니다."],
+      "visualObservation": ["Fireball은 노란 내부, 주황 둥근 외피와 찢긴 검은 띠가 나뉜다. 내부가 구형이라는 단서는 검은 띠의 틈 사이에도 남는다.", "전체 예시는 얇은 코일/구체/가로 투사체/큰 수직 분출의 형상이 다르다. 가장 큰 흰 효과는 여러 선과 면이 합쳐져 내부가 백화된다."],
+      "inference": "색뿐 아니라 밀도·불투명/투명 면·찢긴 가장자리의 대비로 재질을 달리할 수 있다. 정지 이미지로 화염 상승이나 회전 속도를 관찰했다고 할 수 없다.",
+      "application": ["Fire의 밝은 핵과 덜 밝은 외피, Earth/Lava의 불투명 암석과 용융 이음 대비", "Water의 매끈한 곡면과 Ice의 각진 면 유지", "새 텍스처 없이 기존 면·재질·색 범위에서 먼저 구현"],
+      "cost": "우리 제안: 기존 형상/재질 대비는 낮음~중간. 조각 수를 늘려 검은 띠를 그대로 흉내 내는 것은 비용 대비 이득 불확실.",
+      "reject": ["검은 띠/황색 구체를 전 원소에 복제", "큰 백색 분출의 밝기 그대로 수용", "스틸에서 시간적 움직임 추정 확정"]
+    },
+    {
+      "id": "CREATOR-07",
+      "creator": "spiderman6dan",
+      "title": "Effects Creator [FOR HIRE]",
+      "url": "https://devforum.roblox.com/t/effects-creator-for-hire/720640",
+      "published": "2020-08-12",
+      "accessed": "2026-11-15",
+      "scope": "첫 글과 공개 스크린샷2장. 글은 Sword slashes 제작 가능이라고 쓰지만 실제 관찰 이미지는 노란 구체/층진 소용돌이이므로 검격 동작의 근거에서 제외.",
+      "media": [
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/f/6/4/f6458afe0d72f80268e6019ffc6741f76e2f6e21.png", "viewed": true, "kind": "orb_still"},
+        {"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/9/0/b/90b30d22da0b27d1fc7f48f831f38f4ec703902b.png", "viewed": true, "kind": "vortex_still"}
+      ],
+      "creatorClaims": ["Magic Meshes와 Sword slashes를 제작한다고 소개한다."],
+      "visualObservation": ["구체는 강한 노란 중심과 주변의 끊긴 띠로 구성된다.", "소용돌이는 아래가 좁고 위가 넓은 층진 형태다. 층 사이의 큰 구멍으로 하늘/지면이 드러난다. 밝은 하늘에서는 옅은 상단 띠의 대비가 낮다."],
+      "inference": "기류를 겹친 면으로 보이게 하되 층 사이를 비워 캐릭터/지면을 드러내는 원리는 유용하다. 실제 회전·지속시간·가림 비용은 스틸만으로 알 수 없다.",
+      "application": ["Tempest/Froststorm은 서로 다른 높이의 열린 기류면 유지", "Wind Lance의 전방 열린 리본과 다른 축/형상 보존", "밝은 지역과 어두운 지역에서 옅은 Wind의 대비를 따로 확인"],
+      "cost": "우리 제안: 이미 있는 층/면 재배치는 낮음. 정지 예시처럼 많은 투명 층을 늘리는 것은 중간 이상이며 원거리에서 장식부터 줄여야 함.",
+      "reject": ["흰색 수평 고리를 촘촘히 쌓기", "검술 제작 가능 문장을 실제 검격 관찰로 계산", "회전 방향/속도나 GPU 비용 확정"]
+    },
+    {
+      "id": "CREATOR-08",
+      "creator": "nix102on (HyperDev)",
+      "title": "Show off your VFX designs / Sword Slash",
+      "url": "https://devforum.roblox.com/t/show-off-your-vfx-designs/4098665",
+      "published": "2025-11-26",
+      "editedObserved": "2025-12-30",
+      "accessed": "2026-11-15",
+      "scope": "첫 글의 Sword Slash를 펼쳐25.15s 원문 영상을 직접 재생. 약4.91s 재생·14.10s 정지·15.13s 재생 화면을 관찰. 다른 접힌 쇼케이스는 열지 않음.",
+      "media": [{"url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/0/7/4/a/074a110cabc21172546264a9d21d4c673e59f3f1.mp4", "viewed": true, "kind": "embedded_video", "samplesSecondsApprox": [4.91,14.10,15.13]}],
+      "creatorClaims": ["자신의 게임을 위해 만든 VFX이며 VFX Studio를 사용한다고 소개한다. 플러그인의 현재 상태/안전성은 이 글의 의견으로만 취급한다."],
+      "visualObservation": ["열린 C형 주황 검기에 밝고 폭이 모이는 날과 가늘어지는 두 끝이 있다. 중심의 그리드는 드러난다.", "주황 면 밖에 소량의 청색 직선/점이 보인다. 표본별 검기 방향이 달라지지만 카메라와 반복 방출도 있으므로 실제 무기 궤적/정확한 회전 운동을 분리해 측정하지 않았다.", "장면은 플러그인/Studio 미리보기이며 실제 캐릭터가 무기를 휘두르는 전투 장면은 아니다."],
+      "inference": "밝은 날·연한 바깥 꼬리·적은 보조 입자로 검기를 읽히게 하는 방향은 이 프로젝트의 무기 Trail/절차형 검기에 적용 가능하다.",
+      "application": ["HeroVFX curve의 구간 접선/폭을 연결해 각진 다각형 조각을 줄임", "K0SwordVisual과 적 무기 Trail의 시작 밝기·꼬리 감쇠를 분리", "아이콘의 주 형상을 덮는 추가 원판 없이 기존 면 수 안에서 조정"],
+      "cost": "우리 제안: 기존 구간 접선·폭/투명도 곡선 수정은 중간. 인스턴스가 같아도 Segments/투명 면 변화의 GPU 비용은 별도 검증해야 함.",
+      "reject": ["외부 플러그인 설치", "보조 청색을 무관한 속성 표기로 복제", "Studio 미리보기로 실전 무기 동기/모바일 성능 통과", "독립 타격 범위를 검기 시각 크기로 재정의"]
+    }
+  ],
+  "principles": [
+    {"id":"ART-R01","priority":"P0","title":"주 형상 하나에 대비를 모으고 내부를 비운다","basis":["CREATOR-01","CREATOR-02","CREATOR-08"],"scope":["hero.skills.128","enemy.melee","enemy.spells","support"],"targets":["HeroVFX","AdvancedSkillVisual","HeroVFXSurfaces"],"change":"아이콘 주 형상/실제 무기 본체에 최대 대비를 배정한다. 주변 원·띠는 폭/불투명도를 낮추며 큰 내부 채움을 만들지 않는다.","acceptance":"같은 시점/카메라 Before/After에서 도끼 머리·물방울·각진 얼음·잎·궁극기 초점이 보조 장식보다 먼저 읽히고 캐릭터 몸과 위험 바닥이 남는다.","cost":"낮음~중간: 기존 장식 예산 재배분"},
+    {"id":"ART-R02","priority":"P0","title":"아이콘 의미와 원소의 재질을 동시에 지킨다","basis":["CREATOR-06","CREATOR-07","CREATOR-03"],"scope":["hero.skills.128","enemy.spells"],"targets":["HeroVFX","EnemySpellVFX.motif"],"change":"Fire/Water/Ice/Earth/Wind/Lightning/Holy를 색 교체만으로 구분하지 않는다. 물 곡면·얼음 각면·암석 불투명면·기류 빈 층을 유지하며 아이콘의 무기/깃/잎/문장을 가리지 않는다.","acceptance":"원소색을 감춘 정지 화면과 연속재생에서도 대표 원소 형상/흐름이 다르고 Holy 금빛·Lightning 청색 계약이 유지된다.","cost":"중간: 속성별 조정과 회귀"},
+    {"id":"ART-R03","priority":"P0","title":"검기 곡선을 연결하고 날에서 꼬리로 감쇠한다","basis":["CREATOR-01","CREATOR-08"],"scope":["hero.melee","hero.curved_spells","enemy.melee"],"targets":["HeroVFX.curve","HeroVFXSurfaces.ribbon","K0SwordVisual.meleeEffect","enemy weapon Trail path"],"change":"구간별 시작/끝 접선을 이어 꺾인 이음새를 줄인다. 휘두르는 날은 선명하고 끝/오래된 꼬리는 가늘고 옅게 한다. 실제 무기 궤적과 장식의 축을 함께 검토한다.","acceptance":"측면/정면과30/60fps 표본에서 간격·각진 접합·끝 역전이 없으며 무기 날/도끼 머리가 남는다. Trail 폭이 실제 공격 범위를 뜻하지 않는다.","cost":"중간: 수학/시간 회귀. 동일 인스턴스 수가 성능 PASS를 뜻하지 않음"},
+    {"id":"ART-R04","priority":"P0","title":"시전·비행·접촉·잔류의 위치와 소멸을 분리한다","basis":["CREATOR-04","CREATOR-05","CREATOR-03"],"scope":["hero.projectiles","enemy.spells","support.links"],"targets":["HeroVFX","EnemySpellVFX.charge/projectile/impact/pulse","SelenePresentation"],"change":"무기/지팡이 시작점, 확정 비행축, 월드 접촉점과 수혜자 위치를 구분한다. 작고 선명한 핵이 먼저 사라지고 연한 잔류가 뒤따르되 같은 큰 구체를 모든 단계에 반복하지 않는다.","acceptance":"이동 중 시전과 취소에서 발사 뒤 본체/명중점이 시전자에게 끌리지 않는다. 서버 확정 시간·이벤트 수·피해 범위는 바뀌지 않는다.","cost":"중간: 위치 기준/정리/cancel 검증"},
+    {"id":"ART-R05","priority":"P1","title":"비행은 본체가 읽히고 꼬리는 보조한다","basis":["CREATOR-04","CREATOR-05","CREATOR-06"],"scope":["hero.projectiles","enemy.spells"],"targets":["HeroVFX projectile branches","EnemySpellVFX.projectile/pose","K0SwordVisual.consumeSpell"],"change":"도끼·화살·물방울·얼음의 앞쪽 본체를 보존한다. 뒤쪽 원소 잔류를 본체보다 얇고 옅게 하며 같은 긴 막대로 다른 투사체를 덮지 않는다.","acceptance":"IceShard/GlacialSpike와 물/불/도끼가 낮/밤·상대 시점에서 본체 실루엣으로 구별된다. 원거리 축소에서도 본체는 남는다.","cost":"낮음~중간: 기존 층의 크기/투명도 조절"},
+    {"id":"ART-R06","priority":"P1","title":"접촉은 작은 중심과 불균등 방사로 만든다","basis":["CREATOR-02","CREATOR-05"],"scope":["hero.hits","enemy.melee","enemy.spell_impacts"],"targets":["K0HitEffects","EnemySpellVFX.impact"],"change":"타격 중심은 짧게, 방사 조각은 길이/두께가 다르게 한다. 확정 공격 방향/접촉 법선을 사용하며 망치/칼·도끼/관통형을 구별한다.","acceptance":"같은 대상 연속 명중에서 몸통과 다음 예고가 가려지지 않는다. 기존0.08s 중심광/0.23s 압력파 계약과 예산을 유지한다.","cost":"낮음~중간: 기존 조각 재사용"},
+    {"id":"ART-R07","priority":"P1","title":"입자의 운동은 기존 원소 의미를 따른다","basis":["CREATOR-04","CREATOR-03","CREATOR-06"],"scope":["hero.elemental","enemy.spells"],"targets":["HeroVFX.atmosphere","EnemySpellVFX"],"change":"우리 속성 계약에 따라 불은 상승 불티, 물은 바깥 포말, 얼음은 각진 하강/파쇄, 땅은 무거운 파편, 바람은 회전 흐름, 영혼은 옅은 상승/수렴으로 분리한다. 이 전체 운동표는 외부 모든 사례에서 본 사실이 아닌 우리 적용안이다.","acceptance":"핵이 사라진 뒤에도 잔류가 원소를 바꿔 보이지 않으며 모든 기술이 같은 방사 구름으로 수렴하지 않는다. 독/영혼은 실제 프로필 의미를 보존한다.","cost":"중간: 속성별 운동과 cull 검사"},
+    {"id":"ART-R08","priority":"P1","title":"지원의 초점은 수혜자 가까이에 둔다","basis":["CREATOR-03"],"scope":["support.heal","support.protect","support.cleanse","support.links"],"targets":["SelenePresentation","CuratedVFX","PixelFX"],"change":"Heal의 상승 잎/줄기, Protect의 열린 금빛 막, Cleanse의 짧은 바깥 흐름을 수혜자 주변에서 읽히게 한다. link와 지팡이 focus는 방출과 잔류를 분리하고 몸 앞을 넓게 채우지 않는다.","acceptance":"수혜자 얼굴/장비·적 예고가 남으며 Heal/Protect/Cleanse가 색 없이도 구별된다. 예시의 초록 plus를 모든 Holy 보호 기술에 추가하지 않는다.","cost":"낮음~중간: 기존 지원 재사용"},
+    {"id":"ART-R09","priority":"P0","title":"판정 경계와 장식 면을 다른 역할로 둔다","basis":["CREATOR-05","CREATOR-07"],"scope":["hero.areas","enemy.telegraphs","support.areas"],"targets":["AdvancedSkillVisual","existing server-authoritative telegraph paths"],"change":"정확한 범위선/위험 패턴은 보존하고 장식의 넓은 내부 채움을 줄인다. 궁극기/기류의 층 사이에 캐릭터와 바닥을 보이는 공간을 둔다.","acceptance":"적의 unblockable 패턴·돌진 활성0.45s·내부 안전 반경이 그대로 읽힌다. 장식을 실제 범위나 안전 지대 정본으로 설명하지 않는다.","cost":"낮음~중간: 실제 합성 화면 재검토 필요"},
+    {"id":"ART-R10","priority":"P0","title":"색 핵과 연한 꼬리를 분리하고 백화를 억제한다","basis":["CREATOR-03","CREATOR-05","CREATOR-06","CREATOR-08"],"scope":["hero.skills.128","enemy.spells","support"],"targets":["combat palette consumers","HeroVFX","EnemySpellVFX","weapon Trails"],"change":"밝은 중심도 원소색 단서를 남기며 흰색 최대광은 작고 짧게 한다. 야간 Glass/밝은 하늘의 옅은 Wind를 각각 보정하되 주변 장식을 함께 밝히지 않는다.","acceptance":"낮/밤·밝은 바닥/어두운 바닥·블룸 최소/현재 설정에서 주 형상과 몸이 남는다. 흰 블룸 하나로 다른 원소가 같아지지 않는다.","cost":"중간: 장면별 대비 수용. 수치만으로 미술 PASS 불가"},
+    {"id":"ART-R11","priority":"P1","title":"예산이 줄어도 기능 표식과 주 형상은 남긴다","basis":["CREATOR-02","CREATOR-03","CREATOR-07"],"scope":["hero.skills.128","enemy.spells","support"],"targets":["existing shared/per-effect budgets","fallback/cull branches"],"change":"먼 거리/동시 교전에서 작은 불티·외곽 띠부터 줄이고 본체·목표/범위 정보·지원 상태를 남긴다. 외부 pack 대신 승인 원본과 기존 절차형 면/텍스처를 재사용한다.","acceptance":"1~4인 동시 효과와 전역 포화에서 핵심 위험/아군 상태가 남고 수명 후 모든 레코드/Attachment/Trail/Beam이 회수된다. 기기 성능은 실기기에서 별도 판정한다.","cost":"중간: 우선순위/포화/회수 회귀"},
+    {"id":"ART-R12","priority":"P0","title":"정지 접합과 연속 동작을 따로 검수한다","basis":["CREATOR-01","CREATOR-02","CREATOR-08"],"scope":["hero.skills.128","enemy.melee","enemy.spells","support"],"targets":["ART evidence capture","native regression","gameplay QA"],"change":"아이콘+동일 월드좌표/카메라 Before/After와 별도 연속재생을 제공한다. 초기/접촉/잔류·반복 pulse/귀환·cancel·빈 대상과 포화를 따로 검사한다.","acceptance":"128 전수 정지 회귀와 대표 동작을 구분해 보고한다. 모형/정지 프레임·정적 수학 PASS로 게시/실기기/사용자 미술 수용을 닫지 않는다.","cost":"중간~높음: 캡처/검수 시간. 런타임 장식 추가 비용과 별개"}
+  ],
+  "assetDecision": {
+    "recommended": "기존 Beam/Trail/절차형 면·승인 원본 재사용부터 적용",
+    "newBitmapOrMeshRequiredForThisPass": false,
+    "reason": "연속 곡선·폭/투명도·위치/수명·원소 운동·층 위계는 현 엔진 구성에서 조정 가능하다. 사례의 찢긴 섬세한 가장자리까지 같은 품질로 재현 가능하다고 보장하지는 않는다.",
+    "optionalLater": "자체 제작한 소형 질감/flipbook은 실제 캡처에서 면의 단조로움이 필수 결함으로 남을 때만 별도 제작·권리·업로드·기기 확인을 거친다. 이번 조사에서 생성/설치/업로드하지 않음.",
+    "rejected": "외부 pack/ModuleScript/모델/플러그인 다운로드·설치·실행, 원작 애니메이션 캐릭터/고유 문양 복제"
+  },
+  "minimumExperiment": {
+    "hero": "128종과 모든 확정 반복 구간 전수 회귀. 대표는 검기/도끼·물/얼음4종·MoltenLine·기류·자연·8궁극기의 주 형상/궤적을 포함한다.",
+    "enemy": "기본 근접 무기·돌진 예고·종별 Fire·Ice·spirit/shadow·poison의 charge/projectile/impact와 cancel/목표 소멸을 포함한다.",
+    "support": "이동 중 Heal/Protect/Cleanse와 link/지팡이 focus,4수혜자 겹침을 포함한다.",
+    "capture": "기존과 같은 낮/밤 카메라, 최소 측면/상대 시점, 실제 무기·캐릭터/지형 합성. 기술 정의에 맞는 초기·접촉·잔류·귀환 시점과30/60fps 연속재생을 분리한다. 임의 고정 프레임이 기술 시점을 대체하지 않는다.",
+    "checks": ["본체/캐릭터/위험 바닥 가림", "곡선 접합과 꼬리 감쇠", "원소색/재질·운동 구별", "기존 서버 이벤트·범위·수치 불변", "예산/회수/빈 대상/포화", "게시 클라이언트/실기기/사용자 수용 미검증 분리"]
+  },
+  "nextOwner": {"engineering":"총괄 ENG: 원칙 채택/보류와 구현·고정 엔진 회귀", "art":"동일 조건의 새 전후 및 연속재생을 받은 뒤 독립 재리뷰", "qa":"실제 영웅/장비·다인·게시 클라이언트·PC/터치/패드·사용자 수용"},
+  "acceptanceClaims": {"implementationComplete":false,"publishedClientPass":false,"devicePass":false,"userArtAcceptance":false,"g4Complete":false}
+}

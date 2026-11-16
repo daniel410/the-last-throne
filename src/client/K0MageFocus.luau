@@ -15,8 +15,9 @@ function Focus.render(model,pose,hidden)
   local tip=model:FindFirstChild("WeaponTip",true);if not tip or not tip:IsA("Attachment") then return end
   local emitter=Instance.new("ParticleEmitter");emitter.Name="K0StaffFocus";emitter.Texture="rbxasset://textures/particles/sparkles_main.dds"
   emitter.Rate=0;emitter.Lifetime=NumberRange.new(.16,.24);emitter.Speed=NumberRange.new(.15,.45);emitter.SpreadAngle=Vector2.new(180,180)
-  emitter.Size=NumberSequence.new({NumberSequenceKeypoint.new(0,.14),NumberSequenceKeypoint.new(1,0)})
-  emitter.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.2),NumberSequenceKeypoint.new(1,1)})
+  emitter.Size=NumberSequence.new({NumberSequenceKeypoint.new(0,.08),NumberSequenceKeypoint.new(.2,.14),NumberSequenceKeypoint.new(1,0)})
+  emitter.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.5),NumberSequenceKeypoint.new(.2,.18),NumberSequenceKeypoint.new(1,1)})
+  emitter.Drag=4;emitter.RotSpeed=NumberRange.new(-25,25)
   emitter.LightEmission=1;emitter.Parent=tip
   local light=Instance.new("PointLight");light.Name="K0StaffFocusLight";light.Range=5;light.Shadows=false;light.Enabled=false;light.Parent=tip
   local stone=model:FindFirstChild("SmallCrystal",true)

@@ -53,9 +53,13 @@ for kind,p in pairs(Patterns.profiles)do for _,d in ipairs(p.attacks)do
   -- Use the real emitted event clock, not time spent inspecting earlier attacks.
   seq=enemy.attackSeq
   enemy.attack.fired=d.pulses
-  Runtime.step(enemy,now+d.windup+.30,{{root=targetRoot,character=target}},
-   {valid=function()return true end,raycast=function()return nil end,
-    floor=function()return {Position=Vector3.zero}end,hit=function()hits+=1 end,emit=function()end})
+  -- The runtime stops a dash after a >.22s server gap. Sample normal frames
+  -- through the late collision instead of accidentally testing that gap guard.
+  local ctx={valid=function()return true end,raycast=function()return nil end,
+   floor=function()return {Position=Vector3.zero}end,hit=function()hits+=1 end,emit=function()end}
+  for _,offset in ipairs({-.05,.1,.2,.3})do
+   Runtime.step(enemy,now+d.windup+offset,{{root=targetRoot,character=target}},ctx)
+  end
   Effects.render(began.at+d.windup+.30,viewer)
   check(hits==1,'server still collides after old warning deadline '..d.id)
   check(warning()~=nil,'outline covers the late dash collision '..d.id)

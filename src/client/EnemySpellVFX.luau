@@ -2,6 +2,7 @@
 local RS=game:GetService('ReplicatedStorage')
 local Profiles=require(RS.Shared.EnemySpellProfiles)
 local Art=require(script.Parent.EnemySpellArt)
+local Style=require(script.Parent.CombatVFXStyle)
 local V={}
 local records={};local budget=0
 local MAX_PARTS=640;local MAX_RECORDS=64
@@ -181,7 +182,7 @@ function V.projectile(d,owner,sequence,origin,direction,at)
   local a=Instance.new('Attachment');a.Position=Vector3.new(-.12,0,0);a.Parent=main
   local b=Instance.new('Attachment');b.Position=Vector3.new(.12,0,0);b.Parent=main
   local trail=Instance.new('Trail');trail.Name='SpellWake';trail.Attachment0=a;trail.Attachment1=b;trail.Lifetime=.18;trail.MinLength=.08
-  trail.Color=ColorSequence.new(r.color);trail.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.35),NumberSequenceKeypoint.new(1,1)});trail.Parent=main
+  trail.Color=ColorSequence.new(r.color);Style.trail(trail,'spell');trail.Parent=main
  end
  Art.attach(r);V.pose(r,CFrame.lookAt(origin,origin+direction),0,1)
  return r

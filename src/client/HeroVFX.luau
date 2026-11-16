@@ -10,6 +10,7 @@ local Profiles=require(script.Parent.SkillVFXProfiles)
 local IconVFX=require(script.Parent.SkillIconVFX)
 local Art=require(script.Parent.HeroVFXArt)
 local Surfaces=require(script.Parent.HeroVFXSurfaces)
+local Style=require(script.Parent.CombatVFXStyle)
 local Palette=require(RS.Shared.CombatVFXPalette)
 local FX={}
 local active={}
@@ -67,20 +68,26 @@ local function line(r,name,path,width,color,endWidth)
  local a=Instance.new("Attachment");a.Parent=r.carrier
  local b=Instance.new("Attachment");b.Parent=r.carrier
  local beam=Instance.new("Beam");beam.Name=name;beam.Attachment0=a;beam.Attachment1=b;beam.FaceCamera=true;beam.Segments=1
- beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(r.key=="holy"and(color==WHITE and r.hot or color or r.color)or color or r.color,r.hot)
+ local primary=color==WHITE and r.color:Lerp(r.hot,.72)or color or r.color
+ beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(primary,r.color:Lerp(r.hot,r.key=='lightning'and .7 or .35))
  beam.LightEmission=1;beam.LightInfluence=0;beam.Transparency=NumberSequence.new(.18);beam.Parent=r.carrier
  local glow
  if glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
-  glow=beam:Clone();glow.Name="SoftGlow";glow.Width0=width*3.8;glow.Width1=endWidth*3.8
+  glow=beam:Clone();glow.Name="SoftGlow";glow.Width0=width*2.6;glow.Width1=endWidth*2.6
   glow.Color=ColorSequence.new(r.color);glow.Texture="rbxasset://textures/particles/smoke_main.dds";glow.TextureMode=Enum.TextureMode.Stretch;glow.Transparency=NumberSequence.new(.62);glow.Parent=r.carrier
   table.insert(r.glows,glow);glowCount+=1
  end
- table.insert(r.lines,{a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth});beams+=1
+ local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
+ table.insert(r.lines,stroke);beams+=1;return stroke
 end
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
-  line(r,name,function(u)return path(from,u),path(to,u)end,width*(.4+.6*math.sin(from*math.pi)),color,width*(.4+.6*math.sin(to*math.pi)))
+  local stroke=line(r,name,function(u)return path(from,u),path(to,u)end,width*(.4+.6*math.sin(from*math.pi)),color,width*(.4+.6*math.sin(to*math.pi)))
+  if stroke then
+   stroke.span=function(u)return Style.span(path,from,to,u)end
+   stroke.beam.Segments=3;if stroke.glow then stroke.glow.Segments=3 end
+  end
  end
 end
 local function ring(r,name,center,radius,width,vertical,inward,color,basis,segments)
@@ -127,6 +134,7 @@ local function flourish(r,position,scale,key,strong)
   if key=="fire"or key=="holy"then e.EmissionDirection=Enum.NormalId.Top;e.SpreadAngle=Vector2.new(25,25)end
   if key=="fire"then e.Color=ColorSequence.new(Color3.fromRGB(255,199,64),Color3.fromRGB(207,46,18))end
   if key=="lightning"then e.Lifetime=NumberRange.new(.05,.11);e.Size=NumberSequence.new(size*.5)end
+  Style.particles(e,key,smoke)
   e:SetAttribute("ReviewBurstCount",count);e.Parent=a;e:Emit(count)
   r.particles+=count;particleCount+=count
  end
@@ -144,21 +152,25 @@ function FX.step(now)
    local fade=r.key=="lightning"and math.clamp((now-r.at)/.16,0,1)or math.clamp((u-.12)/.88,0,1)
    local bucket=math.floor(fade*24)
    local changed=r.fadeBucket~=bucket
-   if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.62+fade*.38)end
+   if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.7+fade^.65*.3)end
    for _,s in ipairs(r.lines)do
-    local a,b=s.path(u);s.a.WorldPosition=a;s.b.WorldPosition=b
+    if s.span then
+     local a,b,ta,tb,c0,c1=s.span(u);Style.pose(s.a,s.b,s.beam,a,b,ta,tb,c0,c1)
+     if s.glow then s.glow.CurveSize0=c0;s.glow.CurveSize1=c1 end
+    else local a,b=s.path(u);s.a.WorldPosition=a;s.b.WorldPosition=b end
     s.beam.Width0=s.width*(1-fade*.7);s.beam.Width1=s.endWidth*(1-fade*.7)
     if changed then s.beam.Transparency=r.alpha end
     if s.glow then
-     s.glow.Width0=s.beam.Width0*3.8;s.glow.Width1=s.beam.Width1*3.8
+     s.glow.Width0=s.beam.Width0*2.6;s.glow.Width1=s.beam.Width1*2.6
      if changed then s.glow.Transparency=r.glowAlpha end
     end
    end
    Surfaces.step(r,u,fade)
    for _,s in ipairs(r.flares)do
-    local burstFade=math.clamp(u/.65,0,1)
-    local size=s.size*(.6+math.sin(math.min(u*4,1)*math.pi/2)*.6)
-    s.gui.Size=UDim2.fromScale(size,size);s.halo.ImageTransparency=.25+burstFade*.75;s.core.ImageTransparency=burstFade;s.aura.ImageTransparency=.55+burstFade*.45
+    local age=now-r.at;local burstFade=math.clamp(age/.14,0,1)
+    local coreFade=math.clamp(age/.075,0,1)
+    local size=s.size*(.65+math.sin(math.min(u*4,1)*math.pi/2)*.35)
+    s.gui.Size=UDim2.fromScale(size,size);s.halo.ImageTransparency=.25+burstFade*.75;s.core.ImageTransparency=coreFade;s.aura.ImageTransparency=.7+math.clamp(age/.24,0,1)*.3
    end
    for _,s in ipairs(r.chips)do
     local p=s.part
@@ -605,7 +617,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   for lane=1,spinLanes do
    local start=#r.faces
    local normal=spinNormal(lane)
-   Surfaces.ribbon(r,'BladeSurface',function(t)return spinPath(lane,t)end,normal,spinStyle=='BrokenBladeStorm'and .65 or .85,.46,r.color:Lerp(r.hot,.18),spinStyle=='WaistWhirlwind'and 8 or 4,Enum.Material.SmoothPlastic)
+   local segments=spinStyle=='BrokenBladeStorm'and 4 or spinStyle=='CrossingCyclones'and Input.TouchEnabled and 8 or 12
+   Surfaces.ribbon(r,'BladeSurface',function(t)return spinPath(lane,t)end,normal,spinStyle=='BrokenBladeStorm'and .65 or .85,.46,r.color:Lerp(r.hot,.18),segments,Enum.Material.SmoothPlastic)
    local sign=spinStyle=='CrossingCyclones'and lane==2 and -1 or 1
    Surfaces.animate(r,start,first,normal,sign*2.4,false,r.life)
   end
@@ -615,17 +628,17 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   Surfaces.ribbon(r,"BladeSurface",function(t)
    local a=math.rad(-sweep/2+sweep*t)
    return surfaceOrigin+(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*.8
-  end,Vector3.yAxis,1.05,.44,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
+  end,Vector3.yAxis,1.05,.44,r.color:Lerp(r.hot,.18),12,Enum.Material.SmoothPlastic)
   Surfaces.ribbon(r,"BladeCuttingEdge",function(t)
    local a=math.rad(-sweep/2+sweep*t)
    return surfaceOrigin+Vector3.yAxis*.025+(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*.84
-  end,Vector3.yAxis,.18,.12,r.hot,4,Enum.Material.Neon)
+  end,Vector3.yAxis,.18,.12,r.hot,6,Enum.Material.Neon)
   Surfaces.animate(r,start,surfaceOrigin,Vector3.yAxis,.6,false,r.life)
   for i=start+1,#r.faces do r.faces[i].motion.duration=math.min(r.life,.22)end
  elseif shape=="cleave"then
   local start=#r.faces
-  Surfaces.ribbon(r,"CleaveSurface",function(t)local a=t*math.pi*.8;return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8 end,right,1.2,.36,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
-  Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)local a=t*math.pi*.8;return first+flat*(math.sin(a)*math.min(radius,5)+.04)+Vector3.yAxis*math.cos(a)*2.8 end,right,.2,.12,r.hot,4,Enum.Material.Neon)
+  Surfaces.ribbon(r,"CleaveSurface",function(t)local a=t*math.pi*.8;return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8 end,right,1.2,.36,r.color:Lerp(r.hot,.18),12,Enum.Material.SmoothPlastic)
+  Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)local a=t*math.pi*.8;return first+flat*(math.sin(a)*math.min(radius,5)+.04)+Vector3.yAxis*math.cos(a)*2.8 end,right,.2,.12,r.hot,6,Enum.Material.Neon)
   Surfaces.animate(r,start,first,right,.65,false,math.min(r.life,.22))
  elseif shape=="cross"then
   for side=-1,1,2 do
@@ -766,7 +779,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   else
   local at=area and floorAt(last,character)or last
   local start=#r.faces
-  Surfaces.arc(r,"ElementalSurface",at,area and radius*.78 or 1.7,shape=="gravity"and .4 or .65,nil,.55)
+  Surfaces.arc(r,"ElementalSurface",at,area and radius*.78 or 1.7,shape=="gravity"and .4 or .65,nil,.55,nil,nil,shape=='water'and(Input.TouchEnabled and 10 or 14)or nil)
   Surfaces.animate(r,start,at,Vector3.yAxis,shape=="gravity"and -1.2 or .35,true,r.life)
   end
   if shape=="water"then

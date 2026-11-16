@@ -6,6 +6,7 @@ local FrozenRigs=table.clone(require(game:GetService('ReplicatedStorage').Shared
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do FrozenRigs[kind]=spec end
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.HauntedGraveyardRigs))do FrozenRigs[kind]=spec end
 local Weapon={}
+local Style=require(script.Parent.CombatVFXStyle)
 local function point(part,v)return part.Size*Vector3.new(v[1],v[2],v[3])end
 function Weapon.bind(model,caster)
  local kind=model:GetAttribute('EnemyKind');local spec=Sockets[kind] or FrozenRigs[kind] and FrozenRigs[kind].socket
@@ -21,6 +22,7 @@ function Weapon.bind(model,caster)
  trail.Color=ColorSequence.new(spec.element=='fire' and Color3.fromRGB(255,183,105) or spec.caster and Color3.fromRGB(123,224,190) or Color3.fromRGB(224,231,214))
  trail.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.65),NumberSequenceKeypoint.new(.6,.84),NumberSequenceKeypoint.new(1,1)})
  trail.Lifetime=.09;trail.MinLength=.04;trail.LightEmission=.25;trail.FaceCamera=true;trail.Enabled=false;trail.Parent=folder
+ Style.trail(trail,'enemy')
  local shards={}
  if spec.caster then
   for i=1,3 do

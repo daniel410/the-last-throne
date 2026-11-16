@@ -26,6 +26,7 @@ local HitFeedback = require(script.Parent.K0PlayerHitFeedback)
 local CombatAudio = require(script.Parent.K0CombatAudio)
 local HitStop = require(script.Parent.K0HitStop)
 local HeroVFX = require(script.Parent.HeroVFX)
+local VFXStyle = require(script.Parent.CombatVFXStyle)
 local Visual = {}
 local seenHeroEffects = setmetatable({}, {__mode="k"})
 local commonDefinitions = {}
@@ -100,7 +101,6 @@ local function meleeEffect(model, joint, classId)
 	trail.Attachment0, trail.Attachment1 = bottom, top
 	trail.Lifetime = classId == "dwarf" and 0.11 or 0.14
 	trail.MinLength = .035
-	trail.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0, .45), NumberSequenceKeypoint.new(.18, 1), NumberSequenceKeypoint.new(1, 0)})
 	trail.LightEmission = 0.6
 	local colors = {
 		knight = { Color3.fromRGB(255, 235, 171), Color3.fromRGB(114, 183, 255) },
@@ -109,7 +109,7 @@ local function meleeEffect(model, joint, classId)
 	}
 	local pair = colors[classId]
 	trail.Color = ColorSequence.new(pair[1], pair[2])
-	trail.Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.18), NumberSequenceKeypoint.new(1, 1) })
+	VFXStyle.trail(trail,'weapon')
 	trail.Enabled = false
 	trail.Parent = blade
 	local effect = { joint = joint, blade = blade, trail = trail }

@@ -1,6 +1,7 @@
 -- Layered spell art: soft light, animated ribbons, bounded particles and impact timing.
 -- All assets are engine-bundled. No scene-wide lighting or camera effects are changed.
 local Input=game:GetService('UserInputService')
+local Style=require(script.Parent.CombatVFXStyle)
 local A={}
 local used={beams=0,particles=0,lights=0,flares=0}
 local limits={beams=Input.TouchEnabled and 96 or 192,particles=Input.TouchEnabled and 240 or 480,lights=6,flares=32}
@@ -27,9 +28,9 @@ local function beam(r,name,path,width,soft,texture)
  local v=Instance.new('Beam');v.Name=name;v.Attachment0=a;v.Attachment1=b;v.FaceCamera=true;v.Segments=12
  v.Texture=texture or (soft and SMOKE or '');v.TextureMode=Enum.TextureMode.Stretch
  v.LightEmission=1;v.LightInfluence=0;v.Width0=width;v.Width1=width*.3
- v.Color=ColorSequence.new({ColorSequenceKeypoint.new(0,r.color),ColorSequenceKeypoint.new(.7,r.color:Lerp(color(r),.65)),ColorSequenceKeypoint.new(1,color(r))})
+ v.Color=ColorSequence.new(r.color,r.color:Lerp(color(r),.38))
  v.Transparency=NumberSequence.new(soft and .7 or .22);v.Parent=art.carrier
- art.lines[#art.lines+1]={a=a,b=b,beam=v,path=path,width=width,soft=soft};used.beams+=1
+ art.lines[#art.lines+1]={a=a,b=b,beam=v,path=path,width=width,soft=soft,tail=name=='FlowingWake'or name=='FlowingWakeGlow'};used.beams+=1
 end
 local function ribbon(r,name,path,width,texture)
  beam(r,name..'Glow',path,width*3.2,true,SMOKE)
@@ -59,7 +60,7 @@ local function flare(r,size)
  local at=Instance.new('Attachment');at.Name='RadianceOrigin';at.Parent=art.carrier
  local gui=Instance.new('BillboardGui');gui.Name='SpellRadiance';gui.Adornee=at;gui.AlwaysOnTop=false;gui.LightInfluence=0;gui.MaxDistance=100;gui.Size=UDim2.fromScale(size,size);gui.Parent=art.carrier
  local images={}
- for i,row in ipairs({{SMOKE,r.color,.72,1.4},{SPARK,r.color,.48,.8},{SMOKE,color(r),.15,.24}})do
+ for i,row in ipairs({{SMOKE,r.color,.8,1.1},{SPARK,r.color,.55,.65},{SMOKE,color(r),.15,.18}})do
   local image=Instance.new('ImageLabel');image.Name=i==3 and 'LuminousCore'or 'SoftRadiance';image.BackgroundTransparency=1
   image.AnchorPoint=Vector2.new(.5,.5);image.Position=UDim2.fromScale(.5,.5);image.Size=UDim2.fromScale(row[4],row[4]);image.Image=row[1];image.ImageColor3=row[2];image.ImageTransparency=row[3];image.ZIndex=i;image.Parent=gui
   images[#images+1]={image=image,alpha=row[3]}
@@ -81,6 +82,8 @@ local function particles(r,name,texture,n,size,speed,life,rate,smoke,offset)
  e.Acceleration=Vector3.yAxis*(smoke and 1.5 or -2)
  e:SetAttribute('ReviewBurstCount',rate and 0 or n);e.Parent=at
  if not rate then e.SpreadAngle=Vector2.new(180,180)end
+ -- Perimeter cones have a separately validated safe-hole envelope.
+ if r.stage~='pulse'then Style.particles(e,r.profile.family,smoke)end
  art.emitters[#art.emitters+1]={at=at,e=e,offset=offset or Vector3.zero,reserve=reserve,burst=not rate and n or nil};used.particles+=reserve
 end
 local function wake(r,lanes,width,length)
@@ -230,11 +233,12 @@ function A.pose(r,cf,age,scale,fade)
   local p,q,ta,tb,c0,c1=v.path(math.max(0,age))
   v.a.WorldCFrame=cf*frame(p*scale,ta);v.b.WorldCFrame=cf*frame(q*scale,tb)
   local width=v.width*scale*gain*(1-dissolve*.7)
-  v.beam.Width0=width;v.beam.Width1=width*(r.stage=='charge'and .2 or .7)
+  v.beam.Width0=width;v.beam.Width1=width*(v.tail and .12 or r.stage=='charge'and .2 or .7)
   v.beam.CurveSize0=(c0 or 0)*scale;v.beam.CurveSize1=(c1 or 0)*scale
-  local base=v.soft and .65 or .12
-  local bucket=math.floor(dissolve*30)
-  if v.bucket~=bucket then v.bucket=bucket;v.beam.Transparency=NumberSequence.new(base+(1-base)*dissolve)end
+  local base=v.soft and .76 or .12
+  local layerFade=v.soft and dissolve^.65 or dissolve
+  local bucket=math.floor(layerFade*30)
+  if v.bucket~=bucket then v.bucket=bucket;v.beam.Transparency=NumberSequence.new(base+(1-base)*layerFade)end
  end
  for _,v in ipairs(art.emitters)do
   v.at.WorldCFrame=cf*CFrame.new(v.offset*scale)
@@ -242,10 +246,13 @@ function A.pose(r,cf,age,scale,fade)
  end
  if art.flare then
   local f=art.flare;f.at.WorldPosition=cf.Position
-  local flash=transient and (1-smooth(u/.5))or (.88+.12*math.sin(age*8))
-  local extent=f.size*scale*(transient and .7+smooth(u)*.6 or 1)
+  local extent=f.size*scale*(transient and .7+smooth(u)*.3 or 1)
   f.gui.Size=UDim2.fromScale(extent,extent)
-  for _,v in ipairs(f.images)do v.image.ImageTransparency=1-(1-v.alpha)*flash*gain end
+  for i,v in ipairs(f.images)do
+   local duration=i==3 and .075 or i==2 and .14 or .24
+   local flash=transient and (1-smooth(age/duration))or (i==3 and .65 or .85)
+   v.image.ImageTransparency=1-(1-v.alpha)*flash*gain
+  end
  end
  if art.light then art.light.Brightness=.6*(transient and 1-smooth(u/.4)or gain)end
 end
