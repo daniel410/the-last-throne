@@ -41,6 +41,32 @@ function Architecture.build(kind)
    end
   end
  end
+ if kind=='HearthLonghouse'then
+  -- FV-02: a sheltered hearth connects the existing flue to the refuge floor.
+  -- All additions stay inside the original lodge footprint and stay decorative.
+  local function hearth(name,size,pos,color,material)
+   local p=K.part(m,name,size,CFrame.new(pos),color,material)
+   p:SetAttribute('EpicDetailSolid',false);p:SetAttribute('TLTSceneryDistance',700)
+   p:SetAttribute('RefugeHearthDetail',true);details+=1
+   return p
+  end
+  local stone=Color3.fromRGB(133,161,182)
+  local coping=Color3.fromRGB(207,226,235)
+  hearth('HearthSlab',Vector3.new(8,.6,6),Vector3.new(-8,.3,-3),coping,Enum.Material.Slate)
+  hearth('HearthSootBack',Vector3.new(5,6,.4),Vector3.new(-8,3.6,-4.8),Color3.fromRGB(38,42,48),Enum.Material.Slate)
+  for _,side in ipairs({-1,1})do
+   hearth('HearthJamb',Vector3.new(1.5,6,4),Vector3.new(-8+side*3,3.6,-3),stone,Enum.Material.Slate)
+  end
+  hearth('HearthMantel',Vector3.new(8,1.2,5),Vector3.new(-8,7.2,-3),coping,Enum.Material.Slate)
+  hearth('HearthThroat',Vector3.new(4,4.4,4),Vector3.new(-8,9.7,-3),stone,Enum.Material.Slate)
+  hearth('BankedEmbers',Vector3.new(4,.15,2),Vector3.new(-8,.68,-3),Color3.fromRGB(225,116,47),Enum.Material.Neon)
+  for i=1,3 do
+   local log=hearth('HearthSplitLog',Vector3.new(3.7,.65,.65),Vector3.new(-8,.95,-4+i*.65),Color3.fromRGB(76,55,44),Enum.Material.Wood)
+   log.CFrame*=CFrame.Angles(0,(i-2)*.12,0)
+  end
+  -- A small static glow gives warmth without lights, particles or update loops.
+  hearth('HearthWarmCore',Vector3.new(2.4,.8,.45),Vector3.new(-8,1.5,-3),Color3.fromRGB(245,173,77),Enum.Material.Neon)
+ end
  if kind=='GreatFurnaceCrown'then
   -- A tall flue and contained furnace heat give the final works a skyline
   -- without widening its reserved ground footprint or adding any light/loop.
