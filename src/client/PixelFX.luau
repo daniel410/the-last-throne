@@ -104,6 +104,13 @@ function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
   at=origin+(delta.Magnitude>.01 and delta.Unit or Vector3.new(0,0,-1))*((d.form=="self" or d.form=="area") and 0 or 2)
  end
  local opts={character=character,seq=seq}
+ if id=='mage.pyro.molten_line' or id=='mage.cryo.lightning_line'then
+  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
+  params.FilterDescendantsInstances=character and {character}or{};params.RespectCanCollide=true
+  local hit=workspace:Raycast(at+Vector3.new(0,2,0),Vector3.new(0,-18,0),params)
+  at=hit and hit.Position+Vector3.new(0,.16,0)or at-Vector3.new(0,2.7,0)
+  return FX.emit(row.key,at,1.2,.24,opts)
+ end
  local imported=Curated.keyFor(id)
  if imported then
   opts.curated=imported

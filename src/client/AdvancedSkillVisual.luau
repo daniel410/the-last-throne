@@ -192,7 +192,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local floor=ground(d.form=="area" and center or origin,character)
  local targetFloor=ground(center,character)
  local effect=profile.effect
- HeroVFX.skill(character,id,origin,center,pulse,points,first)
+ local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first)
  -- Core geometry is rendered before optional impact decoration.
  if d.form=="chain" then
   local from=first
@@ -222,7 +222,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="vine" then
    -- HeroVFX owns ground-planted roots; no duplicate upright helix.
   elseif effect=="earth" or effect=="lava" or effect=="frost" then
-   spikes(targetFloor,direction,d.radius,360,color,effect)
+   if not primary then spikes(targetFloor,direction,d.radius,360,color,effect)end
    if effect=="lava" then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
   elseif effect=="shell" then
    -- HeroVFX owns the falling metal shell and short wake.
@@ -241,6 +241,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
   else arrow(first,center,color,character) end
  elseif effect=="axe" then
+  if not primary then
   local from,to=origin,center;if d.returning and pulse==2 then from,to=center,origin end
   segment(from,to,color,.2,.08,"AxeWake")
   local axis=to-from
@@ -248,6 +249,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local cf=CFrame.lookAt(to,to+axis)
    segment(cf:PointToWorldSpace(Vector3.new(0,-.6,0)),cf:PointToWorldSpace(Vector3.new(0,.7,0)),colors.earth,.2,.12,"ThrownAxeHandle")
    segment(cf:PointToWorldSpace(Vector3.new(-.45,.45,0)),cf:PointToWorldSpace(Vector3.new(.45,.45,0)),color,.2,.3,"ThrownAxeBlade")
+  end
   end
  elseif effect=="bullet" then
   if d.form=="cone" then
@@ -257,26 +259,31 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  elseif d.form=="area" or d.form=="cone" or d.form=="melee" then
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector")
-  if effect=="earth" or effect=="frost" then spikes(floor,direction,radius,angle,color,effect)
+  if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
   elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
+   if not primary or id~="dwarf.iron_axe.iron_shoulder" then
    local flat=Vector3.new(direction.X,0,direction.Z)
    local delta=flat.Magnitude>.001 and flat.Unit or Vector3.new(0,0,-1)
    local at=origin+delta*2
    part("ShieldContact",color,Enum.PartType.Block,Vector3.new(2.2,2.6,.12),CFrame.lookAt(at,at+delta),.18,.65)
+   end
   elseif effect=="fire"then
    -- HeroVFX owns the cinder circle, ember wake and searing crown. A second
    -- full ring would erase their silhouettes; the SkillSector above remains.
   elseif effect=="holy" or effect=="water" then arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave") end
  else
-  if effect=="lightning" then lightning(first,center,color)
+  if effect=="lightning" then
+   if not primary or(id~="mage.cryo.thunder_spear" and id~="mage.cryo.lightning_line")then lightning(first,center,color)end
+  elseif primary and primary:GetAttribute("ArtSilhouette")then
+   -- The primary owns its length/shape; a full legacy ray would hide the new silhouette.
   else
    segment(first,center,color,.2,effect=="frost" and .2 or .16,"ElementalTrail")
-   if effect=="earth" or effect=="frost" then spikes(targetFloor,direction,1,100,color,effect) end
+   if not primary and(effect=="earth" or effect=="frost")then spikes(targetFloor,direction,1,100,color,effect)end
    impact(center,color,1.2)
   end
  end
- if d.shield and d.form~="self" then arc(floor,direction,2.7,360,color,.5,"GuardGranted") end
+ if d.shield and d.form~="self" and(not primary or(id~="mage.cryo.ice_ward" and id~="mage.pyro.searing_ward" and id~="dwarf.iron_axe.iron_shoulder"))then arc(floor,direction,2.7,360,color,.5,"GuardGranted")end
  if type(points)=="table" then for i=1,math.min(#points,4) do impact(points[i],color,.7) end end
 end
 local started=false

@@ -13,6 +13,19 @@ local function part(r,name,size,cf,color,alpha,shape,material,grow,rise)
  p.Parent=r.model;table.insert(r.faces,{part=p,cf=cf,size=size,alpha=p.Transparency,grow=grow,rise=rise});count+=1
  return p
 end
+-- Clone only a bounded appearance source; never keep joints, code or ownership links.
+function S.clone(r,name,source,at)
+ if count>=(Input.TouchEnabled and 80 or 160)then return end
+ local p=source:Clone();if not p then return end
+ for _,child in ipairs(p:GetChildren())do
+  if not child:IsA('SurfaceAppearance') and not child:IsA('SpecialMesh')then child:Destroy()end
+ end
+ p.Name=name;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
+ p.LocalTransparencyModifier=0;p.Transparency=0;p.CFrame=CFrame.new(at)*source.CFrame.Rotation
+ p.Parent=r.model
+ table.insert(r.faces,{part=p,cf=p.CFrame,size=p.Size,alpha=0});count+=1
+ return p
+end
 function S.triangle(r,name,a,b,c,color,alpha,material)
  local ab,ac,bc=b-a,c-a,c-b
  local aa,bb,cc=ab:Dot(ab),ac:Dot(ac),bc:Dot(bc)
@@ -40,7 +53,7 @@ function S.ribbon(r,name,path,normal,width,alpha,color,segments,material)
 end
 function S.bar(r,name,first,last,width,color,alpha,material)
  local delta=last-first;if delta.Magnitude<.02 then return end
- return part(r,name,Vector3.new(width,width,delta.Magnitude),CFrame.lookAt((first+last)*.5,last),color,alpha,'ball',material or Enum.Material.SmoothPlastic)
+ return part(r,name,Vector3.new(width,width,delta.Magnitude),CFrame.lookAt((first+last)*.5,last),color,alpha,'block',material or Enum.Material.SmoothPlastic)
 end
 function S.growLine(r,first,last,duration,delay)
  local face=r.faces[#r.faces]
@@ -96,6 +109,10 @@ function S.step(r,u,fade)
    local t=math.clamp((u*r.life-v.fall.delay)/v.fall.duration,0,1)
    v.part.CFrame=v.cf+Vector3.yAxis*v.fall.height*(1-t*t)
    v.part.Transparency=v.alpha+(1-v.alpha)*math.clamp((t-.72)/.28,0,1)
+  end
+  if v.spin then
+   local m=v.spin;local rotation=CFrame.fromAxisAngle(m.axis,u*m.turn)
+   v.part.CFrame=CFrame.new(m.pivot)*rotation*CFrame.new(v.cf.Position-m.pivot)*v.cf.Rotation
   end
   if v.growLine then
    local g=v.growLine;local t=math.clamp((u*r.life-g.delay)/g.duration,0,1)

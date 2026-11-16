@@ -18,6 +18,7 @@ function Motifs.draw(r,id,c,line,curve)
   curve(record,name,fn,math.min(segments,remaining),width,color)
  end
  r.model:SetAttribute('IconCue',cue)
+ if r.model:GetAttribute('PrimaryIconCue')then return end
  -- Empty chain packets must never fabricate targets or a discharge.
  if c.definition.form=='chain' and #c.points==0 then return end
  local first,last,flat,right,floor=c.first,c.last,c.flat,c.right,c.floor
@@ -67,7 +68,7 @@ function Motifs.draw(r,id,c,line,curve)
  elseif cue=='orbit' or cue=='sweep' or cue=='hook' or cue=='dust' or cue=='tremor' or cue=='rings' or cue=='frostbreak' then
   local ground=cue=='dust' or cue=='tremor' or cue=='rings' or cue=='frostbreak'
   for lane=1,n do path(ground and 'OpenRim' or 'CutEcho',function(t,u)
-   local a=t*(cue=='hook' and 2.6 or cue=='sweep' and 2.1 or 4.7)+lane*.5+u*.8
+   local a=t*(cue=='hook' and 2.6 or cue=='sweep' and 2.1 or 2.6)+lane*.5+u*.8
    local rad=(ground and radius or math.min(c.radius,5)*.65)*(.65+lane*.14)
    return (ground and floor+UP*.15 or first)+(flat*math.cos(a)+right*math.sin(a))*rad+UP*(ground and 0 or math.sin(t*math.pi)*.5)
   end,6)end
@@ -127,7 +128,7 @@ function Motifs.draw(r,id,c,line,curve)
    else
     path(cue=='infall' and 'GravityAccretion' or 'StormBand',function(t,u)
      local angle=t*math.pi*1.5+a+(cue=='infall' and -u*2 or u*.8)
-     local rad=radius*.55*(cue=='infall' and (1-u*.75) or 1)
+     local rad=math.min(radius*.55,1.6)*(cue=='infall' and (1-u*.75) or 1)
      return at+right*math.cos(angle)*rad+flat*math.sin(angle)*rad+UP*(cue=='storm' and lane*.7 or .45+math.sin(t*math.pi)*.8)
     end,6)
    end

@@ -41,7 +41,7 @@ for _,classId in ipairs({'knight','dwarf','elf','mage'})do for _,d in ipairs(Con
  if d.advanced then Visual.play(char,d.id,origin,center,pulse,points,nil,now,now-d.windup)
  else FX.skill(char,d.id,origin,center,pulse,points)end
  FX.step(now+.10);Wind.step(now+.1);Pixel.step(.1)
- task.wait(.04)
+ -- Freeze before yielding so short effects survive slow capture/editor frames.
  local originals={};local clones={}
  for _,node in ipairs(workspace:GetChildren())do if not before[node]then
   table.insert(originals,node);local clone=node:Clone();table.insert(clones,clone)

@@ -21,15 +21,21 @@ source.mkdir(exist_ok=True)
 archive = subprocess.check_output(['git', 'archive', commit, '--', 'src'], cwd=ROOT)
 with tarfile.open(fileobj=io.BytesIO(archive)) as stream:
     stream.extractall(source, filter='data')
-for name in ['HeroVFX', 'WindLanceVisual']:
+for name in ['HeroVFX', 'WindLanceVisual', 'AdvancedSkillVisual', 'SkillIconVFX', 'PixelFX', 'HeroVFXSurfaces']:
     data=(source / f'src/client/{name}.luau').read_text()
     if name=='HeroVFX':
-        data=data.replace('script.Parent.SkillVFXProfiles)', 'script.Parent.SkillVFXProfilesBefore)')
+        data=data.replace('script.Parent.SkillVFXProfiles)', 'script.Parent.SkillVFXProfilesBefore)').replace('script.Parent.SkillIconVFX)', 'script.Parent.SkillIconVFXBefore)').replace('script.Parent.HeroVFXSurfaces)', 'script.Parent.HeroVFXSurfacesBefore)')
+    if name=='WindLanceVisual':
+        data=data.replace('script.Parent.HeroVFXSurfaces)', 'script.Parent.HeroVFXSurfacesBefore)')
+    if name=='AdvancedSkillVisual':
+        data=data.replace('script.Parent.HeroVFX)', 'script.Parent.HeroVFXBefore)').replace('script.Parent.WindLanceVisual)', 'script.Parent.WindLanceVisualBefore)').replace('script.Parent.PixelFX)', 'script.Parent.PixelFXBefore)')
     (source / f'src/client/{name}Before.luau').write_text(data)
 (source / 'src/client/SkillVFXProfilesBefore.luau').write_bytes((source / 'src/client/SkillVFXProfiles.luau').read_bytes())
 overlays = ['src/client/HeroVFX.luau', 'src/client/WindLanceVisual.luau',
             'src/client/SkillIconVFX.luau', 'src/client/SkillIconVFXProfiles.luau',
-            'src/client/SkillVFXProfiles.luau']
+            'src/client/SkillVFXProfiles.luau', 'src/client/HeroVFXArt.luau',
+            'src/client/HeroVFXSurfaces.luau', 'src/client/AdvancedSkillVisual.luau',
+            'src/client/PixelFX.luau']
 for relative in overlays:
     (source / relative).write_bytes((ROOT / relative).read_bytes())
 project = {'name': 'SkillIconVFXQA', 'tree': {'$className': 'DataModel',
@@ -37,7 +43,7 @@ project = {'name': 'SkillIconVFXQA', 'tree': {'$className': 'DataModel',
     'StarterPlayer': {'StarterPlayerScripts': {'Client': {'$path': str(source / 'src/client')}}}}}
 (out / 'qa.project.json').write_text(json.dumps(project, indent=2) + '\n')
 subprocess.run(['rojo', 'build', str(out / 'qa.project.json'), '-o', str(out / 'qa.rbxlx')], check=True)
-names = ['skill-icon-vfx', 'vfx-art-hero-fixes', 'vfx-review-followup', 'arcade-impact-vfx',
+names = ['skill-vfx-art', 'skill-icon-vfx', 'vfx-art-hero-fixes', 'vfx-review-followup', 'arcade-impact-vfx',
          'rpg-element-motion', 'rpg-vfx-motion', 'element-vfx', 'wow-vfx', 'vfx-style-fit',
          'curated-vfx', 'pixelfx', 'hero-vfx', 'wind-lance-visual', 'skill-vfx-individual',
          'hero-vfx-flourish', 'k0-hit-effects']

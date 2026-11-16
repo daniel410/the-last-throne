@@ -8,6 +8,7 @@ local Catalog=require(RS.Shared.PixelFXCatalog)
 local Geometry=require(script.Parent.SkillEffectGeometry)
 local Profiles=require(script.Parent.SkillVFXProfiles)
 local IconVFX=require(script.Parent.SkillIconVFX)
+local Art=require(script.Parent.HeroVFXArt)
 local Surfaces=require(script.Parent.HeroVFXSurfaces)
 local Palette=require(RS.Shared.CombatVFXPalette)
 local FX={}
@@ -246,8 +247,8 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
    for i=1,#pts do
     stroke('IconDawnAegis',pts[i],pts[i%#pts+1],.1)
    end
-   Surfaces.triangle(r,'DawnAegisPanel',pts[1],pts[2],pts[4],r.color,.68,Enum.Material.SmoothPlastic)
-   Surfaces.triangle(r,'DawnAegisPanel',pts[1],pts[4],pts[6],r.color,.68,Enum.Material.SmoothPlastic)
+   Surfaces.triangle(r,'DawnAegisPanel',pts[1],pts[2],pts[4],r.color,.52,Enum.Material.SmoothPlastic)
+   Surfaces.triangle(r,'DawnAegisPanel',pts[1],pts[4],pts[6],r.color,.52,Enum.Material.SmoothPlastic)
   end
   local crest=focus+Vector3.yAxis*1.4
   for i=1,6 do
@@ -281,13 +282,13 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
   end
   -- A bow-shaped crown close to the caster stays readable when the long fan
   -- occupies most of the frame. It replaces the small, distant decorative arc.
-  local crown=first+flat*math.min(radius*.25,9)
-  local span=math.min(radius*.22,8)
+  local crown=first+flat*math.min(radius*.13,5)
+  local span=math.min(radius*.16,6)
   curve(r,'VolleyDrawCrown',function(t)
-   return crown+right*((t-.5)*span*2)+flat*(math.sin(t*math.pi)*1.3)+Vector3.yAxis*(.5+math.sin(t*math.pi)*4.2)
+   return crown+right*((t-.5)*span*2)+flat*(math.sin(t*math.pi)*1.3)+Vector3.yAxis*(.5+math.sin(t*math.pi)*5.6)
   end,6,.26)
   Surfaces.ribbon(r,'VolleyCrownLimb',function(t)
-   return crown+right*((t-.5)*span*2)+flat*(math.sin(t*math.pi)*1.3)+Vector3.yAxis*(.5+math.sin(t*math.pi)*4.2)
+   return crown+right*((t-.5)*span*2)+flat*(math.sin(t*math.pi)*1.3)+Vector3.yAxis*(.5+math.sin(t*math.pi)*5.6)
   end,flat,.6,.34,r.color,6,Enum.Material.SmoothPlastic)
  elseif key=='SpiritCanopy'then
   for i=1,3 do local a=i*math.pi*2/3;local radial=Vector3.new(math.cos(a),0,math.sin(a))
@@ -298,8 +299,8 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
    Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip-tangent*.65,tip+radial*1.5+Vector3.yAxis*.9,tip+tangent*.65,palette.nature,.36,Enum.Material.SmoothPlastic)
   end
   for i=1,6 do local a=i*2.39996;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.45
-   local leaf=Surfaces.volume(r,'SpiritCanopyLeaf',at+Vector3.yAxis*.6,Vector3.new(.65,1.9,.22),palette.nature:Lerp(r.hot,.2),.22,'wedge')
-   if leaf then r.faces[#r.faces].fall={height=5,duration=r.life*.78,delay=(i%3)*.015}end
+   local leaf=Surfaces.volume(r,'SpiritCanopyLeaf',at+Vector3.yAxis*.6,Vector3.new(.75,2.8,.26),palette.nature:Lerp(r.hot,.2),.22,'wedge')
+   if leaf then local face=r.faces[#r.faces];face.cf=CFrame.new(leaf.Position)*CFrame.Angles(math.pi,0,.12);face.fall={height=5,duration=r.life*.78,delay=(i%3)*.015}end
    line(r,'SpiritCanopyRain',function(u)local t=math.clamp((u*r.life-(i%3)*.015)/(r.life*.78),0,1);local y=5*(1-t*t);return at+Vector3.yAxis*(y+1),at+Vector3.yAxis*(y+.4)end,.08,palette.nature)
   end
  elseif key=='CalderaVents'then
@@ -308,11 +309,20 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
   end
   for i=1,5 do local a=i*math.pi*2/5;local radial=Vector3.new(math.cos(a),0,math.sin(a))
    curve(r,'CalderaHotFissure',function(t)return floor+radial*radius*.78*t+right*math.sin(t*9+i)*.2+Vector3.yAxis*.05 end,3,.16,palette.fire)
-   Surfaces.volume(r,'CalderaRockCollar',floor+radial*radius*.3+Vector3.yAxis*.4,Vector3.new(1.3,.8,1.2),palette.earth,.18,'wedge',Enum.Material.Slate)
+   Surfaces.volume(r,'CalderaRockCollar',floor+radial*radius*.3+Vector3.yAxis*.4,Vector3.new(2.3,1.1,1.8),Color3.fromRGB(70,51,41),.16,'wedge',Enum.Material.Slate)
   end
  elseif key=='FrostFunnel'then
   for lane=1,3 do
-   curve(r,'TempestSpiral',function(t,u)local a=t*math.pi*2.2+lane*math.pi*2/3+u*1.5;local rad=radius*(.1+t*.23);return floor+Vector3.new(math.cos(a)*rad,.4+t*6,math.sin(a)*rad)end,7,.16,palette.frost:Lerp(r.hot,.2))
+   curve(r,'TempestSpiral',function(t,u)local a=t*math.pi*2.2+lane*math.pi*2/3+u*1.5;local rad=math.min(radius*.16,3.5)*(.5+t*.5);return floor+Vector3.new(math.cos(a)*rad,.4+t*6,math.sin(a)*rad)end,7,.065,palette.frost:Lerp(r.hot,.2))
+  end
+  for layer=1,3 do
+   local start=#r.faces
+   Surfaces.ribbon(r,'TempestEyeBand',function(t)
+    local a=t*math.pi*1.7+layer*.9
+    local rad=math.min(radius*.24,4.6)*(1-layer*.1)
+    return floor+Vector3.new(math.cos(a)*rad,layer*1.4+math.sin(t*math.pi)*.4,math.sin(a)*rad)
+   end,Vector3.yAxis,.55,.58,palette.frost,4,Enum.Material.SmoothPlastic)
+   Surfaces.animate(r,start,floor,Vector3.yAxis,1.5,false,r.life)
   end
   for i=1,6 do local a=i*math.pi/3;local radial=Vector3.new(math.cos(a),0,math.sin(a))
    local p=Surfaces.volume(r,'TempestSuspendedCrystal',floor+radial*radius*.28+Vector3.yAxis*(1.8+i%3*.8),Vector3.new(.55,2,.6),palette.frost:Lerp(r.hot,.25),.2,'wedge',Enum.Material.Ice)
@@ -378,7 +388,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    return at+v*rad+Vector3.yAxis*(low and .12 or math.sin(t*math.pi)*.35+(lane-1)*.22)
   end,12,width*(1-(lane-1)*.12))
  end
- if profile.signature then
+ local artContext={id=id,shape=shape,key=row.key,first=first,last=last,dir=dir,flat=flat,right=right,floor=floor,radius=radius,angle=angle,area=area,definition=d,character=character,pulse=pulse}
+ if Art.strokes(r,artContext,line,curve)then
+  -- A distinct primary path replaces the generic elemental helix.
+ elseif profile.signature then
   signature(r,profile.signature,first,floor,flat,right,radius,angle)
  elseif shape=="thrust"then
   stroke("ThrustEdge",first,last,width,WHITE)
@@ -439,7 +452,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   for lane,target in ipairs(targets)do
    for wake=1,(shape=="fan"and 1 or count)do
     local offset=right*(wake-((shape=="fan"and 1 or count)+1)/2)*.08
-    stroke(shape=="bullet"and"RifleTracer"or"ArrowPressure",first+offset,target+offset,width/wake^.3)
+    local start=first
+    if row.key=='gun'then start=target-forward(first,target)*math.min(2.5,(target-first).Magnitude)end
+    stroke(shape=="bullet"and"RifleTracer"or"ArrowPressure",start+offset,target+offset,width/wake^.3)
    end
    local axis=forward(first,target);local cf=CFrame.lookAt(target,target+axis)
    if shape~="bullet"and row.key~='gun'then
@@ -532,11 +547,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    end
   end
  elseif shape=="vine"then
-  roots(r,area and floorAt(last,character)or floor,flat,right,radius,d.form=='cone'and angle or 360,count)
+  local rootRadius=id=='elf.magic_archer.vine_trap' and math.min(radius,3.2)or id=='elf.magic_archer.vine_burst' and math.min(radius,3.8)or radius
+  roots(r,area and floorAt(last,character)or floor,flat,right,rootRadius,d.form=='cone'and angle or 360,count)
  elseif shape=="gravity"then
   local at=floorAt(last,character)
+  local gravityRadius=math.min(radius*.45,2.4)
   for lane=1,count do curve(r,"GravityInfall",function(t,u)
-   local a=t*math.pi*3+lane*math.pi+u*3;local rad=radius*(1-t)*(.8-u*.6)
+   local a=t*math.pi*3+lane*math.pi+u*3;local rad=gravityRadius*(1-t)*(.8-u*.6)
    return at+Vector3.new(math.cos(a)*rad,.3+t*1.6,math.sin(a)*rad)
   end,10,width)end
  elseif shape=="steam"then
@@ -548,7 +565,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   end
  elseif shape=="water"then
   local at=area and floorAt(last,character)or last
-  ring(r,"TidalLip",at,area and radius or 1.8,width,false,false)
+  if Art.kind(id)=='WaterBall'then
+   curve(r,'WaterBallHighlight',function(t,u)
+    local a=t*math.pi*1.25+u*.5
+    return last+right*math.cos(a)*.94+Vector3.yAxis*math.sin(a)*.94
+   end,6,.09,r.hot)
+   curve(r,'WaterBallFoam',function(t,u)
+    local a=t*math.pi*.65+math.pi+u*.35
+    return last+right*math.cos(a)*.95+Vector3.yAxis*math.sin(a)*.95+dir*.12
+   end,5,.07,r.hot)
+  else ring(r,"TidalLip",at,area and radius or 1.8,width,false,false)end
   debris(r,at,math.min(count,6),"WaterSpray",1)
  elseif shape=="fire"or shape=="arcane"then
   local at=area and floorAt(last,character)or first
@@ -571,7 +597,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  IconVFX.draw(r,id,{first=first,last=last,flat=flat,right=right,floor=floor,radius=radius,area=area,definition=d,points=type(points)=='table' and points or {},pulse=pulse},line,curve)
  -- Filled silhouettes carry the effect; narrow beams remain as edge highlights.
  local surfaceOrigin=shape=="low"and floor or first
- if profile.signature then
+ if Art.surfaces(r,artContext)then
+  -- ART owns this primary silhouette. Existing range geometry remains separate.
+ elseif profile.signature then
   -- The authored signature above already owns its filled silhouettes.
  elseif shape=='spin'then
   for lane=1,spinLanes do
@@ -765,7 +793,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     local axis=forward(departure,target);local side=axis:Cross(Vector3.yAxis);side=side.Magnitude>.01 and side.Unit or right
     local back=target-axis*math.min(5,(target-departure).Magnitude*.5)
     if row.key=='gun'then
-     Surfaces.bar(r,'ShotPelletBody',target-axis*.28,target,.1,palette.gun,.15,Enum.Material.Metal)
+     Surfaces.bar(r,'ShotPelletBody',target-axis*.55,target,.1,Color3.fromRGB(200,207,214),.15,Enum.Material.Metal)
     else
      local w=shape=="bullet"and .12 or row.key=="arrow"and .28 or .45
      Surfaces.triangle(r,"ProjectileSurface",back-side*w,target,back+side*w,nil,.42)
@@ -804,9 +832,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif shape=="vine"then
   if d.form=='cone'then r.model:SetAttribute('ForwardOnly',true)end
  end
+ Art.accents(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
- if d.form~="chain"or type(points)=="table"and #points>0 then
-  local at=area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
+ if (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
+  local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   flourish(r,at,d.ultimate and 4.5 or area and 3.2 or 2.2,row.key,d.ultimate)
  end
  FX.step(r.at);return r.model
