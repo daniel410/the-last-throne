@@ -1,0 +1,68 @@
+[
+  {
+    "suite": "KNIGHT_REFERENCE_COMBO_NATIVE",
+    "joins": 24,
+    "maxJoinDegrees": 0,
+    "pass": true,
+    "checks": 18630
+  },
+  {
+    "suite": "K0_MELEE_CURVES_NATIVE",
+    "checks": 4638,
+    "failures": [],
+    "pass": true
+  },
+  {
+    "suite": "MELEE_BASIC_TEMPO_NATIVE",
+    "checks": 16914,
+    "pass": true,
+    "failures": []
+  },
+  {
+    "suite": "DWARF_RECOVERY_NATIVE",
+    "pass": true,
+    "maxEndStuds": 8.726646072432231e-09,
+    "checks": 3640,
+    "maxEndDegrees": 0,
+    "actions": 280,
+    "failures": []
+  },
+  {
+    "suite": "MIXAMO_KNIGHT_NATIVE",
+    "maxBlenderDegrees": 5.7040899264393374e-05,
+    "skills": 64,
+    "pass": true,
+    "checks": 43088
+  },
+  {
+    "suite": "KNIGHT_WIDE_COMBO_NATIVE",
+    "pass": true,
+    "checks": 21329
+  },
+  {
+    "suite": "MELEE_ACTION_BEATS_NATIVE",
+    "rigActions": 140,
+    "contacts": 204,
+    "pass": true,
+    "checks": 2143
+  },
+  {
+    "suite": "HERO_SKILL_SOCKETS_NATIVE",
+    "checks": 12,
+    "failures": [],
+    "pass": true
+  },
+  {
+    "suite": "SHIELD_BASH_LEADING_NATIVE",
+    "checks": 86,
+    "failures": [],
+    "pass": true
+  },
+  {
+    "suite": "HERO_SKILLS_NATIVE",
+    "failures": [],
+    "checks": 244520,
+    "pass": true,
+    "skills": 256
+  }
+]

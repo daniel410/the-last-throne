@@ -1,0 +1,103 @@
+{
+  "moves": [
+    {
+      "id": "basic.1",
+      "class": "knight",
+      "frames": 33,
+      "shoulderTravel": 260.15422984726246
+    },
+    {
+      "id": "basic.2",
+      "class": "knight",
+      "frames": 40,
+      "shoulderTravel": 357.6281539377007
+    },
+    {
+      "id": "basic.3",
+      "class": "knight",
+      "frames": 51,
+      "shoulderTravel": 166.46656680187257
+    },
+    {
+      "id": "knight.common.bash",
+      "class": "knight",
+      "frames": 44,
+      "shoulderTravel": 77.97721710637373
+    },
+    {
+      "id": "knight.common.whirlwind",
+      "class": "knight",
+      "frames": 51,
+      "shoulderTravel": 303.26705823616135
+    },
+    {
+      "id": "knight.common.provoke",
+      "class": "knight",
+      "frames": 40,
+      "shoulderTravel": 134.4535847244389
+    },
+    {
+      "id": "knight.paladin.radiant_charge",
+      "class": "knight",
+      "frames": 66,
+      "shoulderTravel": 161.9656949337352
+    },
+    {
+      "id": "knight.paladin.sunward_cross",
+      "class": "knight",
+      "frames": 66,
+      "shoulderTravel": 563.2544633543084
+    },
+    {
+      "id": "basic.1",
+      "class": "dwarf",
+      "frames": 49,
+      "shoulderTravel": 459.59810629163877
+    },
+    {
+      "id": "basic.2",
+      "class": "dwarf",
+      "frames": 42,
+      "shoulderTravel": 744.4116548606216
+    },
+    {
+      "id": "basic.3",
+      "class": "dwarf",
+      "frames": 57,
+      "shoulderTravel": 476.02513897277595
+    },
+    {
+      "id": "dwarf.common.overhead",
+      "class": "dwarf",
+      "frames": 69,
+      "shoulderTravel": 973.2607331734422
+    },
+    {
+      "id": "dwarf.common.throw",
+      "class": "dwarf",
+      "frames": 44,
+      "shoulderTravel": 279.2533268870368
+    },
+    {
+      "id": "dwarf.common.ground",
+      "class": "dwarf",
+      "frames": 57,
+      "shoulderTravel": 647.042432394157
+    },
+    {
+      "id": "dwarf.gunner.field_mortar",
+      "class": "dwarf",
+      "frames": 198,
+      "shoulderTravel": 447.2250295726692
+    },
+    {
+      "id": "dwarf.gunner.bomb_toss",
+      "class": "dwarf",
+      "frames": 69,
+      "shoulderTravel": 314.89813681436794
+    }
+  ],
+  "pass": true,
+  "error": "nil",
+  "errors": []
+}
