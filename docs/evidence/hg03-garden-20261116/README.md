@@ -4,7 +4,7 @@
 
 묘역4곳에 낮은 측벽/석재 덮개60파트를 추가했다. 기존 뒤벽12개와 묘비/석관을 유지한다. 신규 파트는 anchored·비충돌·비쿼리·비접촉. Studio에서 묘역별15개,34stud 예약 범위, 기존 벽 수 확인. results.json / verify.luau 참조.
 
-고정 빌드에서 BaseScript만 Disabled로 변경한 별도 로컬 Edit fixture로 CampaignWorld.create(5)를 호출했다. XML fixture를 Python 기본 ASCII로 쓸 때 두 UI Source의 Unicode가 손상돼 최초 전체 구문 검사가 실패했다. 두 Source를 고정 작업트리 원문으로 복원한 후527개 구문 통과. 제품 소스 결함으로 분류하지 않는다. 이후 HG7장/6연결/105목표/4,749표본의 경로 감사에서 차단·바닥·보정·안내·단차0. Easy 동선119목표/5,192표본도 동일 오류0(easy-results.json). 실제 Humanoid 조작 시험은 아니다.
+고정 빌드에서 BaseScript만 Disabled로 변경한 별도 로컬 Edit fixture로 CampaignWorld.create(5)를 호출했다. XML fixture를 Python 기본 ASCII로 쓸 때 두 UI Source의 Unicode가 손상돼 최초 전체 구문 검사가 실패했다. 두 Source를 고정 작업트리 원문으로 복원한 후527개 구문 통과. 제품 소스 결함으로 분류하지 않는다. 변경 모듈 Source가 고정 소스 원문과 일치함도 확인했다. 이후 HG7장/6연결/105목표/4,749표본의 경로 감사에서 차단·바닥·보정·안내·단차0. Easy 동선119목표/5,192표본도 동일 오류0(easy-results.json). 실제 Humanoid 조작 시험은 아니다.
 
 ## 같은 장면 비교
 
