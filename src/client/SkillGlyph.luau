@@ -1,4 +1,6 @@
--- Native UI symbols for action families; no concept image is sliced into runtime icons.
+-- Skill artwork uses stable IDs; native symbols remain for non-skill stat emblems.
+local Icon=require(script.Parent.SkillIcon)
+local Assets=require(game:GetService('ReplicatedStorage').Shared.SkillIconAssets)
 local Glyph={}
 local function shape(p,n,x,y,w,h,color,rotation,round)
  local f=Instance.new('Frame');f.Name=n;f.Position=UDim2.fromOffset(x,y);f.Size=UDim2.fromOffset(w,h);f.BackgroundColor3=color;f.BorderSizePixel=0;f.Rotation=rotation or 0;f.Parent=p
@@ -11,6 +13,12 @@ local function ring(p,x,y,size,color)
  return f
 end
 function Glyph.draw(parent,classId,base,size,unlocked)
+ if base.id and Assets.byId[base.id] then
+  local image=Icon.create(parent,UDim2.new(.5,-size/2,.5,-size/2),UDim2.fromOffset(size,size))
+  image.Name='SkillGlyph';Icon.set(image,base,unlocked,false)
+  local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(1,0);corner.Parent=image
+  return image
+ end
  local root=Instance.new('Frame');root.Name='SkillGlyph';root.Size=UDim2.fromOffset(64,64);root.Position=UDim2.new(.5,-size/2,.5,-size/2);root.BackgroundTransparency=1;root.Parent=parent
  local scale=Instance.new('UIScale');scale.Scale=size/64;scale.Parent=root
  local color=unlocked and (base.element=='fire' and Color3.fromRGB(255,190,72) or base.root==3 and classId=='knight' and Color3.fromRGB(255,211,93) or Color3.fromRGB(173,233,255)) or Color3.fromRGB(103,121,146)

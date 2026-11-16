@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:17:21.286Z",
+  "finishedAt": "2026-11-16T02:20:49.821Z",
+  "images": {
+    "http://127.0.0.1:8822/elf_pinning_shot.png": "rbxassetid://87700134954876",
+    "http://127.0.0.1:8822/mage.cryo.chain_lightning.png": "rbxassetid://81592210671493",
+    "http://127.0.0.1:8822/mage.common.water_ball.png": "rbxassetid://129481296483121",
+    "http://127.0.0.1:8822/mage.common.gravity.png": "rbxassetid://106456143901705",
+    "http://127.0.0.1:8822/elf_retreating_shot.png": "rbxassetid://91879844959733",
+    "http://127.0.0.1:8822/mage.cryo.frost_ring.png": "rbxassetid://120077876246926",
+    "http://127.0.0.1:8822/mage.cryo.eternal_tempest.png": "rbxassetid://127085869913898",
+    "http://127.0.0.1:8822/mage.common.mana_bolt.png": "rbxassetid://104863799534788"
+  }
+}

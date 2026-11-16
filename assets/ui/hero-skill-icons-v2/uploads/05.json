@@ -1,0 +1,11 @@
+{
+  "startedAt": "2026-11-16T02:06:32.885Z",
+  "finishedAt": "2026-11-16T02:07:40.156Z",
+  "images": {
+    "http://127.0.0.1:8822/knight.paladin.radiant_charge.png": "rbxassetid://101341492200749",
+    "http://127.0.0.1:8822/knight_driving_thrust.png": "rbxassetid://131385236719658",
+    "http://127.0.0.1:8822/knight.paladin.radiant_sweep.png": "rbxassetid://120741968993692",
+    "http://127.0.0.1:8822/knight_guarded_strike.png": "rbxassetid://92578929110714",
+    "http://127.0.0.1:8822/dwarf.common.overhead.png": "rbxassetid://127521138451578"
+  }
+}

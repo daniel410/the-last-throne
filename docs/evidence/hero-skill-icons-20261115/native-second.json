@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Tools.ExecuteLuauTool:101: sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Util.CommandExecution:54: AssistantCommand:100: AssistantCommand:92: attempt to index nil with 'path'\nAssistantCommand:92 function req\nsrc/shared/CampaignContent.luau:3\nAssistantCommand:94 function req\nsrc/shared/CampaignAccess.luau:1\nAssistantCommand:94 function req\nsrc/client/BattleMinimap.luau:7\nAssistantCommand:94 function req\nsrc/client/K0Hud.luau:15\nAssistantCommand:94 function req\n[string \"-- Native UI integration with a fixture actor; no saves, combat or publishing....\"]:61\nAssistantCommand:98\nAssistantCommand:98\n"
+    }
+  ],
+  "isError": true
+}

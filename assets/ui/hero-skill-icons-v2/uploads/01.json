@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:02:23.940Z",
+  "finishedAt": "2026-11-16T02:04:10.446Z",
+  "images": {
+    "http://127.0.0.1:8822/knight.paladin.oath_challenge.png": "rbxassetid://83674181984948",
+    "http://127.0.0.1:8822/knight.common.provoke.png": "rbxassetid://120321492298787",
+    "http://127.0.0.1:8822/knight.paladin.dawn_burst.png": "rbxassetid://140113394816155",
+    "http://127.0.0.1:8822/knight.steel_knight.blade_storm.png": "rbxassetid://139125536816916",
+    "http://127.0.0.1:8822/knight.paladin.shield_verdict.png": "rbxassetid://130191128420477",
+    "http://127.0.0.1:8822/knight.paladin.oathbreaker_strike.png": "rbxassetid://111358408402453",
+    "http://127.0.0.1:8822/knight.paladin.guardian_slash.png": "rbxassetid://89766030422508",
+    "http://127.0.0.1:8822/knight.paladin.oathblade.png": "rbxassetid://119980682095298"
+  }
+}

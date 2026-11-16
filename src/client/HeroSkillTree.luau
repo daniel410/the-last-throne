@@ -9,6 +9,7 @@ local Config=require(RS.Shared.K0Config)
 local Preview=require(RS.Shared.SkillStatPreview)
 local SkillText=require(RS.Shared.SkillStatText)
 local Glyph=require(script.Parent.SkillGlyph)
+local SkillIcon=require(script.Parent.SkillIcon)
 local Advancement=require(script.Parent.SkillAdvancementView)
 local AdvancementText=require(RS.Shared.AdvancementText)
 local Tree={}
@@ -27,6 +28,7 @@ local function grayNode(node)
   if v:IsA('Frame') then
    local c=v.BackgroundColor3;local gray=c.R*.299+c.G*.587+c.B*.114
    v.BackgroundColor3=Color3.new(gray,gray,gray)
+  elseif v:IsA('ImageLabel') then v.ImageColor3=Color3.fromRGB(103,103,103)
   elseif v:IsA('UIStroke') then v.Color=Color3.fromRGB(117,117,117)
   elseif v:IsA('UIGradient') then v.Color=ColorSequence.new(Color3.new(1,1,1),Color3.fromRGB(55,55,55)) end
  end
@@ -181,6 +183,14 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   local columns=narrow and 3 or 5;local w=(width-40-(columns-1)*8)/columns
   local b=Theme.button(load,'Slot'..slot,slot..'  '..(active and (equipped and equipped.name or 'EMPTY') or ('Lv.'..(slot==4 and 5 or 10))),UDim2.fromOffset(14+col*(w+8),48+row*66),UDim2.fromOffset(w,56),index==selected)
   b.Caption.TextSize=10;Theme.enabled(b,editable and active and learned and not base.ultimate)
+  if active and equipped then
+   local compact=w<130;local iconSize=compact and 26 or 38
+   local icon=SkillIcon.create(b,UDim2.fromOffset(compact and (w-iconSize)/2 or 8,compact and 3 or 9),UDim2.fromOffset(iconSize,iconSize))
+   SkillIcon.set(icon,equipped,true,false)
+   b.Caption.Position=UDim2.fromOffset(compact and 4 or 50,compact and 30 or 0)
+   b.Caption.Size=UDim2.new(1,compact and -8 or -56,0,compact and 24 or 56)
+   b.Caption.TextSize=compact and 8 or 10
+  end
   b.Activated:Connect(function() if b.Active then send('SetSkillSlot',{slot=slot,skill=selected}) end end)
  end
  local finish=loadY+(narrow and 200 or 120)+12

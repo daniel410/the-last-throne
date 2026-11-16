@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:12:01.368Z",
+  "finishedAt": "2026-11-16T02:15:29.973Z",
+  "images": {
+    "http://127.0.0.1:8822/dwarf_hooking_chop.png": "rbxassetid://86451199308270",
+    "http://127.0.0.1:8822/elf.marksman.hunter_s_focus.png": "rbxassetid://75066339804585",
+    "http://127.0.0.1:8822/elf.marksman.fan_break.png": "rbxassetid://73620786809212",
+    "http://127.0.0.1:8822/elf.common.multi.png": "rbxassetid://124992984983217",
+    "http://127.0.0.1:8822/elf.common.rapid.png": "rbxassetid://137198996216518",
+    "http://127.0.0.1:8822/elf.marksman.heavy_draw.png": "rbxassetid://123923451078841",
+    "http://127.0.0.1:8822/dwarf_low_sweep.png": "rbxassetid://112566936820826",
+    "http://127.0.0.1:8822/elf.common.aimed.png": "rbxassetid://112260985738586"
+  }
+}

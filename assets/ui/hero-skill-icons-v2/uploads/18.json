@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:22:32.517Z",
+  "finishedAt": "2026-11-16T02:24:15.250Z",
+  "images": {
+    "http://127.0.0.1:8822/mage_arcane_ward.png": "rbxassetid://123812231068843",
+    "http://127.0.0.1:8822/mage.pyro.searing_ward.png": "rbxassetid://83236701377449",
+    "http://127.0.0.1:8822/mage.pyro.steam_burst.png": "rbxassetid://70518459247959",
+    "http://127.0.0.1:8822/mage_tidal_ring.png": "rbxassetid://88698943138050",
+    "http://127.0.0.1:8822/mage.pyro.lava_eruption.png": "rbxassetid://136899146228104",
+    "http://127.0.0.1:8822/mage.pyro.stone_lance.png": "rbxassetid://87597336822949",
+    "http://127.0.0.1:8822/mage.pyro.molten_line.png": "rbxassetid://95599471172762",
+    "http://127.0.0.1:8822/mage.pyro.magma_spear.png": "rbxassetid://134334607845537"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-11-16T02:07:54.045Z",
+  "finishedAt": "2026-11-16T02:09:30.330Z",
+  "images": {
+    "http://127.0.0.1:8822/dwarf.iron_axe.armor_splitter.png": "rbxassetid://133605055421557",
+    "http://127.0.0.1:8822/dwarf.gunner.quickfire.png": "rbxassetid://70743121132220",
+    "http://127.0.0.1:8822/dwarf.iron_axe.breaker_throw.png": "rbxassetid://136760308027108",
+    "http://127.0.0.1:8822/dwarf.gunner.scatter_shot.png": "rbxassetid://120489358966940",
+    "http://127.0.0.1:8822/dwarf.gunner.shrapnel_toss.png": "rbxassetid://74063610339381",
+    "http://127.0.0.1:8822/dwarf.iron_axe.crag_cleave.png": "rbxassetid://112850496343383",
+    "http://127.0.0.1:8822/dwarf.iron_axe.mountain_sweep.png": "rbxassetid://136409889455612"
+  }
+}

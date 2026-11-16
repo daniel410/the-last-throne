@@ -1,0 +1,1282 @@
+[
+  {
+    "id": "knight.common.bash",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "84b71e740644a0c8753124da6f4fe4feee1c3f0f35133b077a1cac98665021c8",
+    "bytes": 1565702
+  },
+  {
+    "id": "knight.common.whirlwind",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "849ec1c91acd61529b74891e88ac736a9410cae5eea5a21dfa4f815a528b22c2",
+    "bytes": 1609823
+  },
+  {
+    "id": "knight.common.provoke",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "19743cf0106f1495f95e922d93f368aeb6bbc56bf32405e786164684ae76366b",
+    "bytes": 1694984
+  },
+  {
+    "id": "knight.steel_knight.counter_slash",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "6c540ead64b543fe13483e13db64e05e823e9da5a7d53689732e9b839758450f",
+    "bytes": 1511326
+  },
+  {
+    "id": "knight.steel_knight.steel_sweep",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "155d23b6cd41da4cf445cbf17b04087a5173c9e9eb211a0036bbe6a5ec25792a",
+    "bytes": 1532493
+  },
+  {
+    "id": "knight.steel_knight.challenging_strike",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "91160e4ae0349b3a13acf5732944f4b9b8066159e0f7d20baf5cb811ede2054e",
+    "bytes": 1734883
+  },
+  {
+    "id": "knight.steel_knight.twin_cyclone",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "43d3bea08955f06352c092884513d4a7c40ac2186f95cbef3645d8d8df8d4867",
+    "bytes": 1582693
+  },
+  {
+    "id": "knight.steel_knight.shield_breaker",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "9c06b3990bc9b94aed2a39308bedeca1a0b49b70baeee7e827b26d26df81acbd",
+    "bytes": 1639679
+  },
+  {
+    "id": "knight.steel_knight.guardian_counter",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "7579b880f1a01352cdb2e041dc0c484ecf0dcc58ed6eb0eab1e98bd6f7a50a74",
+    "bytes": 1661945
+  },
+  {
+    "id": "knight.steel_knight.rallying_slash",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "f0b86a01fde749b7afebd6cbd7cddd1edcec7fd8d3a968fc033ca50dbf82cc5f",
+    "bytes": 1579774
+  },
+  {
+    "id": "knight.steel_knight.breaker_charge",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "8668fdee7b5da9d300fbf5da2e5bbfede1b44dd5115485dca8d99e27a716db54",
+    "bytes": 1510544
+  },
+  {
+    "id": "knight.steel_knight.vanguard_strike",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "d9a4f3bcf3bf5ac578de4700227375c81a83a67b29469974e03c7b759f9e4020",
+    "bytes": 1609018
+  },
+  {
+    "id": "knight.steel_knight.blade_storm",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "03e19111930b95c5cee259eb439124f6855d4af98b14738856daf51d9a07d0ee",
+    "bytes": 1637597
+  },
+  {
+    "id": "knight.steel_knight.sweeping_break",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c5f8bab1b588b86a9badd7774be4d62d5c67348ac135407dcd90b19aa87873d9",
+    "bytes": 1598204
+  },
+  {
+    "id": "knight.steel_knight.warcry_assault",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "d848be86d4f6173601fb210ce4a439cd3a2e1ae4e3d0f647d3d4b6cf83427977",
+    "bytes": 1647031
+  },
+  {
+    "id": "knight.steel_knight.unyielding_front",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "4f0144fbfaf021559f387e107a0d52e58c1349a4d3f5e356de8b2eed550cb7bf",
+    "bytes": 1571283
+  },
+  {
+    "id": "knight.paladin.oathblade",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "186de138deabaae2f5fdc27e742f69fb6cecce5cf78730b71626739285f99d03",
+    "bytes": 1592992
+  },
+  {
+    "id": "knight.paladin.radiant_sweep",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "e190f50e428130758e6e577741fd75fdabaaf42e361a5d1e96596c0d1f60c5bc",
+    "bytes": 1571799
+  },
+  {
+    "id": "knight.paladin.oath_challenge",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "e9afcb34d9ececb65cfd2615c683909789994b7954499dbfa636f7cfe9a36aa5",
+    "bytes": 1562407
+  },
+  {
+    "id": "knight.paladin.dawn_burst",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "7abc3f300043a817848d01a06cfab326765ed12e6b8c93024121eb5e4827b55b",
+    "bytes": 1646652
+  },
+  {
+    "id": "knight.paladin.oathbreaker_strike",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "65ff0905a5470505becda00e89b526b1f17d8d9eef678077c88db109165e8cfa",
+    "bytes": 1605322
+  },
+  {
+    "id": "knight.paladin.shield_verdict",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "5922e0136cc09f8552c8482d295f0238321237d5219523a4ae75ef6177b4d8b3",
+    "bytes": 1603825
+  },
+  {
+    "id": "knight.paladin.guardian_slash",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "1cc30596d403a9d7e2e86639715bdb04ea88abb43a805049d12a3369649b363e",
+    "bytes": 1668200
+  },
+  {
+    "id": "knight.paladin.radiant_charge",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "a5050c5a20176af85cec5c93edc213a0b7f2893d0b742f1fa24271edeb837d1b",
+    "bytes": 1548056
+  },
+  {
+    "id": "knight.paladin.valiant_advance",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "a1a38c23969e3c74811cdcf7134746dc91a2705ffc6fc7ca17f4d455d770c7fa",
+    "bytes": 1645049
+  },
+  {
+    "id": "knight.paladin.dawn_spiral",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "9d5051a548e9075acdda0a49dc444aaa932eebbf6061ee28f12a1f92498136e1",
+    "bytes": 1624063
+  },
+  {
+    "id": "knight.paladin.sunward_cross",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "b66fcfa89cc41828aaec26d58c4c86b3707f1bb442acca0afcc6750c84f92928",
+    "bytes": 1567278
+  },
+  {
+    "id": "knight.paladin.oathbound_assault",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052",
+    "bytes": 1590830
+  },
+  {
+    "id": "knight.paladin.oath_of_dawn",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "04beb3157c9a7637a9fce8bfa1da05c805ac472fd9a6d5cfc281614b47248b85",
+    "bytes": 1707147
+  },
+  {
+    "id": "knight_driving_thrust",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "67e26395a7c71e0944e34de9b657e6d12638ba0cf68f81ecae7eb91f1f591d99",
+    "bytes": 1589735
+  },
+  {
+    "id": "knight_crescent_cut",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "5eb799d9e98cc50cbc0a2dff04b4844de91ded6c8a9eee43ac16e6bd6ec1164f",
+    "bytes": 1530263
+  },
+  {
+    "id": "knight_guarded_strike",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "4bef5fd99cfbf209e36ef3f8b1968364e5696dd167ad5c92350e3a64a5168c1d",
+    "bytes": 1547360
+  },
+  {
+    "id": "dwarf.common.overhead",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "5ef2d3d1ac78d928d3d82f9b37d51442f25cc5ef1d4246a8b08a48db0d3b2e3e",
+    "bytes": 1611259
+  },
+  {
+    "id": "dwarf.common.throw",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "06e6f641948cc9d1e6d1864c2647d97488bc1a1f6626d270036a5052db651db3",
+    "bytes": 1589314
+  },
+  {
+    "id": "dwarf.common.ground",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "ec1bfa4c945e0a4be7b7fcdb15e026d8b60474769693295c932aba0217bd76d2",
+    "bytes": 1618330
+  },
+  {
+    "id": "dwarf.iron_axe.armor_splitter",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "deedffa74723f8a2b106641a04330cb1359befd351483d8524eb248707979ad4",
+    "bytes": 1731238
+  },
+  {
+    "id": "dwarf.iron_axe.returning_echo",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "9f0bda366e074642172077d2cf1591f30be4888db9d3c2fa1856dee16b8d708a",
+    "bytes": 1541809
+  },
+  {
+    "id": "dwarf.iron_axe.mountain_sweep",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "22a746031bfa6441649c00af4e545d6ed54a5f5d922b62d5781b5fe3111d3c39",
+    "bytes": 1614810
+  },
+  {
+    "id": "dwarf.iron_axe.crag_cleave",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "7648d3fb40c1dab838d32e6ad6d6b9633f5d6ebccbf08b5a0d405cb8c7de1faa",
+    "bytes": 1673339
+  },
+  {
+    "id": "dwarf.iron_axe.breaker_throw",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "3b197068ebf40c1f56d968c98684821990f76c7f9fb3243da67be2913ca50fe7",
+    "bytes": 1613988
+  },
+  {
+    "id": "dwarf.iron_axe.stonebound_leap",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "00f5302d4820f8223fd547ca7c49c0b4a73076280067923f1b816c02b6253158",
+    "bytes": 1647870
+  },
+  {
+    "id": "dwarf.iron_axe.iron_shoulder",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "ce5d2ee3e19de582222960404113c1c7e0ca1e41623f25830e0835bfc55fe9ee",
+    "bytes": 1611588
+  },
+  {
+    "id": "dwarf.iron_axe.crosscut_axe",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "aa99c711ec9b4553c939aeefb5fe94e615e5fa5d4d7fccb94d3e85bc0083588d",
+    "bytes": 1616506
+  },
+  {
+    "id": "dwarf.iron_axe.mountain_strike",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "60c01c5ede305c70aa1b63f28cdcd925144e71fde43aafe71dbcfb10e652b501",
+    "bytes": 1635591
+  },
+  {
+    "id": "dwarf.iron_axe.shatter_blow",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "57ce703523c67008106aa7386a2e4f4f4b739bcecefab7e78dc0194667137bce",
+    "bytes": 1705881
+  },
+  {
+    "id": "dwarf.iron_axe.twin_axe_path",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "ac9afa3216e83e2c2b12e991765a4ad49c11d1231959c990fe5953eb4564228b",
+    "bytes": 1607019
+  },
+  {
+    "id": "dwarf.iron_axe.tremor_guard",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "60d96a2c35235f51368ca721a9ec72bf70dcf9e9f8100c3b146958ce910c42c5",
+    "bytes": 1598635
+  },
+  {
+    "id": "dwarf.iron_axe.mountain_collapse",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "9504b03216cbcf07ae729266e71447db01710cbafdbe1485daff9fcc459a1bca",
+    "bytes": 1733496
+  },
+  {
+    "id": "dwarf.gunner.gunner_shot",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c39e4881198107534e2a30ae6e500113408b3158712603372436c6b0e15da118",
+    "bytes": 1636037
+  },
+  {
+    "id": "dwarf.gunner.bomb_toss",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "636fae0d40a09d294b7d53f754abfa4c7e668f2cb1272ef82dafd6aa2ef7ea3f",
+    "bytes": 1538214
+  },
+  {
+    "id": "dwarf.gunner.shell_burst",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "429a3c5ff87f893b4f414a4ae16c4e30a2c33673ecf39e9b280540c62a5ad60d",
+    "bytes": 1569901
+  },
+  {
+    "id": "dwarf.gunner.quickfire",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "f37b5a3e9e20cfa42b9c1222d233ba0baa81af876ca26aecfedaaf493a63f62e",
+    "bytes": 1597028
+  },
+  {
+    "id": "dwarf.gunner.shrapnel_toss",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "e5d08314c97e95ee44910854093851f0089cd5d36a4e40a49cab3b397ac419eb",
+    "bytes": 1598522
+  },
+  {
+    "id": "dwarf.gunner.blast_step",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "f909d94ea309d99b09ffd980355c4e49f3a1a155740f92dfa473e680d5fc6dc4",
+    "bytes": 1551290
+  },
+  {
+    "id": "dwarf.gunner.scatter_shot",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "f658757e62dc7e47e935af46d2dda1da9d0f136db854392a6f80180e0e8bb0b5",
+    "bytes": 1624568
+  },
+  {
+    "id": "dwarf.gunner.skipping_charge",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "2a3127b1352c7be08d3ec64b304f8fe59c71bb4962738596d25c2f1daba57a0a",
+    "bytes": 1543323
+  },
+  {
+    "id": "dwarf.gunner.field_mortar",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "77c8a6b1533209948cbd7e6c30351d5092b67473b8bf25e59df2c47233667937",
+    "bytes": 1621221
+  },
+  {
+    "id": "dwarf.gunner.piercing_round",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c96d0d10e8882f95e23232fc1ae96b32d655976c4ea967a8342d03d95f91b42f",
+    "bytes": 1525927
+  },
+  {
+    "id": "dwarf.gunner.rolling_charge",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "a77542b1037a98f243ce40096c8088ea42d10f5971be5616ff7a8632336b9615",
+    "bytes": 1575500
+  },
+  {
+    "id": "dwarf.gunner.siege_pattern",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "34df24561cfc75904983f2592f4bfaee891b449bbe37f8ca48b6d59737068784",
+    "bytes": 1485177
+  },
+  {
+    "id": "dwarf.gunner.siege_barrage",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "3fb626faa4108fccb3d1b8a9d0db379b15babf810976be2c8e3a1bded6fa887d",
+    "bytes": 1676591
+  },
+  {
+    "id": "dwarf_hooking_chop",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "f825c6280cfcf1c395c6ebf991fc905491a7f1742ec5ea7fd3f45361d7969b0d",
+    "bytes": 1607981
+  },
+  {
+    "id": "dwarf_low_sweep",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "6dbecd6ae298b3a4aafdac3ef7555ccd5c172650215b15b37216e740facd007e",
+    "bytes": 1433857
+  },
+  {
+    "id": "dwarf_braced_throw",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "e51bdc904488adfdca5babcfe00861e26fd26b52ac0b7e2c381945cd17bc0bf1",
+    "bytes": 1547487
+  },
+  {
+    "id": "elf.common.aimed",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "0994149ff53482a9883ac2330d456d106715a3fb8d2fcedf1e3d2d37c6d1ca71",
+    "bytes": 1649945
+  },
+  {
+    "id": "elf.common.rapid",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "fc651fcd6dc17e735be685321f138a7508148c186d759363818bc553e39664f2",
+    "bytes": 1591563
+  },
+  {
+    "id": "elf.common.multi",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "4405890b154dfc07a9a79570b01c57221914643f97d56b4c78b091b1b6edbbbc",
+    "bytes": 1542076
+  },
+  {
+    "id": "elf.marksman.weakpoint_shot",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "ce62cecc3808fbf62918c06edd4d0d6b6b8407ae4c072c7fdec6fa42a7d50527",
+    "bytes": 1620194
+  },
+  {
+    "id": "elf.marksman.moving_volley",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "e30b8ab0f61200f7114583c8e8c9c8934272ad5e927dbee28483ed698b1e7422",
+    "bytes": 1553392
+  },
+  {
+    "id": "elf.marksman.piercing_line",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "b15a688aff05d2aefbd133c9dd3289430a1238b5515b69f1ee2c747a15260e8b",
+    "bytes": 1542627
+  },
+  {
+    "id": "elf.marksman.heavy_draw",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "d02f0d4b2e8b28bc5b4934691ba0c24ed09730beaf120438b6168e460f21d054",
+    "bytes": 1625172
+  },
+  {
+    "id": "elf.marksman.precision_volley",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "bac2a0b7b02ec0ab4297c7bc5e4e534f0f190f22f8c343b6989f8424a83279fd",
+    "bytes": 1548428
+  },
+  {
+    "id": "elf.marksman.fan_break",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c140b2034e16ebff4fa381c22b08fa937f9b71ecc880f7cab687a181f66bf3e7",
+    "bytes": 1586106
+  },
+  {
+    "id": "elf.marksman.hunter_s_focus",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "910f5ea42e0ced55fd496bcd22b0d2f18264a680899c5a1b2d761e9209d71dd0",
+    "bytes": 1573708
+  },
+  {
+    "id": "elf.marksman.retreating_fire",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "6eb57841c49336f11b53359d73a185aef885d6d75ef073d5398d3ecede0f0eb6",
+    "bytes": 1563354
+  },
+  {
+    "id": "elf.marksman.piercing_volley",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "33896b7798f3f79acb55089ba7c3381f3502805c2f60694cdfc5a8552a4c9a3b",
+    "bytes": 1591352
+  },
+  {
+    "id": "elf.marksman.mark_breaker",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "72f7e7b256b3fa978f7c5a8eaba3913a996076918bcc9799f885a3e0f9e3db0c",
+    "bytes": 1600435
+  },
+  {
+    "id": "elf.marksman.crossfire",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "57bbde6682306568c5f2c0cec15d1423dabb4a07348e88b4aea5c39e02d10bff",
+    "bytes": 1572777
+  },
+  {
+    "id": "elf.marksman.arrow_rain",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "cd5afae52e7f99b21ed8455f31ca5a568269fe58b1a4b408d4e5346447833cbe",
+    "bytes": 1491833
+  },
+  {
+    "id": "elf.marksman.grand_volley",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "f8c91140802687d923ac4bd97161fe0eef4d6aa1a4ddb7325abd4b600c49f29e",
+    "bytes": 1740633
+  },
+  {
+    "id": "elf.magic_archer.elemental_arrow",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "a3a7d28586b4def1e36b398c0717d392378f6941a089d63178bc1952f3248448",
+    "bytes": 1565809
+  },
+  {
+    "id": "elf.magic_archer.spark_volley",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "595ede6bd6b13ef4c7a05e39f44a34feea6cd346b1fee729b92dae31173c46ef",
+    "bytes": 1627046
+  },
+  {
+    "id": "elf.magic_archer.vine_trap",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "da34f83bb00a803b9b16a70d9df3896b5144e18465f838f3099f44e9dc576a89",
+    "bytes": 1520987
+  },
+  {
+    "id": "elf.magic_archer.bloom_shot",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c79e4e212daa47edaba437c8039131f1347b6ddc19388e9f099462e6f5e8c333",
+    "bytes": 1545829
+  },
+  {
+    "id": "elf.magic_archer.storm_arrow",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "5a9743f6ab77916f94310c84a0b7769cbabc2ddb8c9de0e357e95615631ed665",
+    "bytes": 1544750
+  },
+  {
+    "id": "elf.magic_archer.rooting_fan",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c86f4e60239f98dc581f7757c61c4a5c197dcac477cc961c2f34497e954d8b7a",
+    "bytes": 1603534
+  },
+  {
+    "id": "elf.magic_archer.warden_arrow",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c0d8fba90452803c2c7e391d25c8ad3b3fd47094a6182d3e58e1c39562ed60be",
+    "bytes": 1548767
+  },
+  {
+    "id": "elf.magic_archer.gliding_shot",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "a4a7e76fc047b167d19fdd09f2733684c0b0940d46436a44f6506588068644cc",
+    "bytes": 1539944
+  },
+  {
+    "id": "elf.magic_archer.spirit_rain",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "3deae0dd1fef4a1e88c8eb4629aff09ed4da9a1c7ae84c857e88d20a62d76716",
+    "bytes": 1510505
+  },
+  {
+    "id": "elf.magic_archer.elemental_pierce",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "224baded4bed225b429d25d0463d1cf75831a82f93b5582351c2662464aa6c33",
+    "bytes": 1578600
+  },
+  {
+    "id": "elf.magic_archer.echo_arrows",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "03b3f3a5d32cc9be2b4d8b5367583ac3517193d55c364f6831155332503fcef4",
+    "bytes": 1496813
+  },
+  {
+    "id": "elf.magic_archer.vine_burst",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "74ba4a800a89b0a23bc9fb2f7960ac4ef8301c9543fef78b8dab0fd096c9e1d6",
+    "bytes": 1629963
+  },
+  {
+    "id": "elf.magic_archer.spirit_arrowfall",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "2114cbe350d1cdb8e55f25ef92dfb856eab2ace13be73a18ee65b9130fd90fc7",
+    "bytes": 1630280
+  },
+  {
+    "id": "elf_retreating_shot",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "84df6132f786030e7d6b17976fec29b35ab6e3456cccddc719ae02f48233b531",
+    "bytes": 1486821
+  },
+  {
+    "id": "elf_pinning_shot",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "8c7d879406bfa689e547f42f30139b9e62dac5d3c3b368bdd0340fc738f9f527",
+    "bytes": 1577452
+  },
+  {
+    "id": "elf_arrow_screen",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "17766aff5b773547a2f177a3e2192c368976fe0220a815619d7734817eaec7f8",
+    "bytes": 1442671
+  },
+  {
+    "id": "mage.common.mana_bolt",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "5389d3bb7d87bd22085b780c196e1ab8e45e7977ace2439145c63a5775009a74",
+    "bytes": 1519596
+  },
+  {
+    "id": "mage.common.water_ball",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "ac780f2d90bb6072961efb3fb4d6bcde519ac2baf82c9187ebc2034dab5b6a37",
+    "bytes": 1511921
+  },
+  {
+    "id": "mage.common.gravity",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "45cd482afea061a53518099441b7f2babfd0ec06bc08e49eb7ad85dc512f1bd8",
+    "bytes": 1625631
+  },
+  {
+    "id": "mage.pyro.ember_lance",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "dcfcd1c1fb00e2878a746772a17c60de69bab90b03c6a7ac9438e582b6bb9f7c",
+    "bytes": 1613199
+  },
+  {
+    "id": "mage.pyro.steam_burst",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "765d888097f88b50b630d58ec7532943f9adafc08b5dab96f3b5fa41cd1593a4",
+    "bytes": 1500651
+  },
+  {
+    "id": "mage.pyro.cinder_ring",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "899a5870bdecc60e57c496c0a0f0c3af6fac59c62e82106bed80873919f5a134",
+    "bytes": 1599194
+  },
+  {
+    "id": "mage.pyro.flame_dart",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "4e3b6c55a88ff2c4d407ee5d62594bb8cff71cacf6b688dc09928845d222857c",
+    "bytes": 1597243
+  },
+  {
+    "id": "mage.pyro.earth_rise",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "3d94f3ba9425f36c50156fc2c985b70f7ea9c544cbb3796d875a52f712a0f99d",
+    "bytes": 1644350
+  },
+  {
+    "id": "mage.pyro.ember_step",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "dd7e97bb8466177711c85d22937cde23ff523ea91212770c83b1b1ec35c8f91f",
+    "bytes": 1573708
+  },
+  {
+    "id": "mage.pyro.stone_lance",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "59653ac5de863996083c9ac6aa766e7fc5992abce79ffd46bf30a2cea956e12d",
+    "bytes": 1594831
+  },
+  {
+    "id": "mage.pyro.searing_ward",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "4e64036418b17fcb5fa69fd51275daf1250fcaf1e95bc532a21167f7fe63271a",
+    "bytes": 1578185
+  },
+  {
+    "id": "mage.pyro.lava_eruption",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "6241d92c040f33123a198067d766dabb0d7299a220b512ad826a429a5ff3dcf2",
+    "bytes": 1667074
+  },
+  {
+    "id": "mage.pyro.magma_spear",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "44822890398bfdb6aa33df038bcdc9409d08be8f71722b882cf094431e9576c9",
+    "bytes": 1591969
+  },
+  {
+    "id": "mage.pyro.molten_line",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "464de1193623e77da68bbd1cafd8c09197f8e907266458d4b436af9af2cfabe2",
+    "bytes": 1575008
+  },
+  {
+    "id": "mage.pyro.ashfall",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "4e4e0ab62ffe47e391867777b51243ec2957d15ba821c6bde0281fef15f2c70a",
+    "bytes": 1592503
+  },
+  {
+    "id": "mage.pyro.caldera_s_judgment",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b",
+    "bytes": 1570207
+  },
+  {
+    "id": "mage.cryo.frost_lance",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "ddaf516e612eacedd78d312efccd4dc18e4bfb15aa8f572e2bc44434b1865d08",
+    "bytes": 1514473
+  },
+  {
+    "id": "mage.cryo.ice_shard",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "0a1e5a308e743a4500275b1d37ecd71db78e02394289bca2b9b352d1846a6adf",
+    "bytes": 1541309
+  },
+  {
+    "id": "mage.cryo.frost_ring",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "85257bf496470b43f5db898678b28271d275c797544752f32a1fe731fb4a7002",
+    "bytes": 1574530
+  },
+  {
+    "id": "mage.cryo.shatter_dart",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "4e6f8bcf2cf975a1439a3f8603a83670fed3eb17fecc9c2eb075dba208d16123",
+    "bytes": 1560735
+  },
+  {
+    "id": "mage.cryo.chain_lightning",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "c4e32b4d5fa4c59029851c58ce2efed92172ccbbb076fae575b2b137fc889a64",
+    "bytes": 1518392
+  },
+  {
+    "id": "mage.cryo.frost_step",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "9f8f57ec74198864302f0093a8281257869ac0c36d2995b5645cdc9f198dfb06",
+    "bytes": 1639423
+  },
+  {
+    "id": "mage.cryo.thunder_spear",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "fb4717fc6e589e1d9bd2376f646c25bccc9986a5b834cfa5371789e501689da7",
+    "bytes": 1520042
+  },
+  {
+    "id": "mage.cryo.ice_ward",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "5c39be47c57b5b0296b4c2c0b7b9725da768e84b8b916f5b943f8080a61e44ec",
+    "bytes": 1546994
+  },
+  {
+    "id": "mage.cryo.froststorm",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "934d067cd442173407927cae61208ae3b7fffcb06a04cc69bda94d8156f04930",
+    "bytes": 1510953
+  },
+  {
+    "id": "mage.cryo.glacial_spike",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "5e69674aa90b6e44ccf36efe828fdf3024db7b1b6393ec440793d4ff5deea5a5",
+    "bytes": 1523950
+  },
+  {
+    "id": "mage.cryo.lightning_line",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "046080c16d0079799b836f3bb248e38cb68df5b7cd9d787ec72571d15a9fafbb",
+    "bytes": 1457723
+  },
+  {
+    "id": "mage.cryo.hailfall",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "6aa8fb849bd1b08e8aa5e64b8d344c6b7acc7725115564f3ae4515987756ac77",
+    "bytes": 1522093
+  },
+  {
+    "id": "mage.cryo.eternal_tempest",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "503cb3180113d88bc7fbdeead47e6a98379535bb0b9bde411df4bfc867c522b9",
+    "bytes": 1598011
+  },
+  {
+    "id": "mage_wind_lance",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "beaac911e82d28f30789758b4c8d0bdfc673d62512469355e94939a9c956313c",
+    "bytes": 1506893
+  },
+  {
+    "id": "mage_tidal_ring",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "67a025d4cfc0b35b3b1508910dedd9fff1112a661dd4754231c086561c8278af",
+    "bytes": 1486078
+  },
+  {
+    "id": "mage_arcane_ward",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "sha256": "702a71695302a1420826cbc16a2ea7eaaa8d3736162192f00549c56d962361de",
+    "bytes": 1570000
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"coverage\":\"Studio native GUI with fixture actor; no live Player, published client or physical device\",\"compiledModules\":68,\"treeCases\":24,\"skills\":128,\"hudCases\":28,\"checks\":2224}"
+    }
+  ],
+  "isError": false
+}

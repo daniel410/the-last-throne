@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:15:30.053Z",
+  "finishedAt": "2026-11-16T02:17:20.885Z",
+  "images": {
+    "http://127.0.0.1:8822/elf.magic_archer.spirit_arrowfall.png": "rbxassetid://111561224336918",
+    "http://127.0.0.1:8822/elf.marksman.piercing_line.png": "rbxassetid://113365743710704",
+    "http://127.0.0.1:8822/elf.marksman.piercing_volley.png": "rbxassetid://89773919164982",
+    "http://127.0.0.1:8822/elf.marksman.moving_volley.png": "rbxassetid://97013500550722",
+    "http://127.0.0.1:8822/elf.marksman.mark_breaker.png": "rbxassetid://104940914226413",
+    "http://127.0.0.1:8822/elf.magic_archer.vine_burst.png": "rbxassetid://111586160026521",
+    "http://127.0.0.1:8822/elf.marksman.precision_volley.png": "rbxassetid://125168218280664",
+    "http://127.0.0.1:8822/elf.marksman.retreating_fire.png": "rbxassetid://103704385611331"
+  }
+}

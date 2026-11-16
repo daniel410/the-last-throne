@@ -1,0 +1,898 @@
+[
+  {
+    "id": "knight.common.bash",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-d67b268b-d9fc-4eae-bfdc-7df1f00e97ad.png",
+    "sha256": "84b71e740644a0c8753124da6f4fe4feee1c3f0f35133b077a1cac98665021c8",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.common.whirlwind",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-fa86b647-6786-4b57-b735-a551cd200a23.png",
+    "sha256": "849ec1c91acd61529b74891e88ac736a9410cae5eea5a21dfa4f815a528b22c2",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.common.provoke",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-bc8a8206-53b9-46ec-a23e-f5b07ffb06dd.png",
+    "sha256": "19743cf0106f1495f95e922d93f368aeb6bbc56bf32405e786164684ae76366b",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.counter_slash",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-06d9db20-56e8-43b8-8154-4840e2d4c95a.png",
+    "sha256": "6c540ead64b543fe13483e13db64e05e823e9da5a7d53689732e9b839758450f",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.steel_sweep",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-c57c43f1-c97a-46e5-aa5a-a97bfa17a5b3.png",
+    "sha256": "155d23b6cd41da4cf445cbf17b04087a5173c9e9eb211a0036bbe6a5ec25792a",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.challenging_strike",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-e4406821-7c4b-401d-9a02-335bc293f8db.png",
+    "sha256": "91160e4ae0349b3a13acf5732944f4b9b8066159e0f7d20baf5cb811ede2054e",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.twin_cyclone",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-4c93cb71-3b43-41fa-8785-aa9af8bfd0a4.png",
+    "sha256": "43d3bea08955f06352c092884513d4a7c40ac2186f95cbef3645d8d8df8d4867",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.shield_breaker",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-b3c0a21e-0508-4c94-b4fb-b6eada52dba2.png",
+    "sha256": "9c06b3990bc9b94aed2a39308bedeca1a0b49b70baeee7e827b26d26df81acbd",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.guardian_counter",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-d6cdaf9f-b116-4b9c-8782-3143bb08e885.png",
+    "sha256": "7579b880f1a01352cdb2e041dc0c484ecf0dcc58ed6eb0eab1e98bd6f7a50a74",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.rallying_slash",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-07b60592-97a3-4bdd-b3a8-8f0e25dea1cc.png",
+    "sha256": "f0b86a01fde749b7afebd6cbd7cddd1edcec7fd8d3a968fc033ca50dbf82cc5f",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.breaker_charge",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-c9cc19fc-a68d-4b3f-94de-eab7c9db93a6.png",
+    "sha256": "8668fdee7b5da9d300fbf5da2e5bbfede1b44dd5115485dca8d99e27a716db54",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.vanguard_strike",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-56f8d0c3-2f4e-43da-9df3-a9bf5c8a628a.png",
+    "sha256": "d9a4f3bcf3bf5ac578de4700227375c81a83a67b29469974e03c7b759f9e4020",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.blade_storm",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-da7403ff-d95f-4c1d-82fe-7fd13011f842.png",
+    "sha256": "03e19111930b95c5cee259eb439124f6855d4af98b14738856daf51d9a07d0ee",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.sweeping_break",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-db557170-6851-43d4-a5dc-f887863ab329.png",
+    "sha256": "c5f8bab1b588b86a9badd7774be4d62d5c67348ac135407dcd90b19aa87873d9",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.warcry_assault",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-beaf14c8-63f7-494e-9845-472f7a3571d2.png",
+    "sha256": "d848be86d4f6173601fb210ce4a439cd3a2e1ae4e3d0f647d3d4b6cf83427977",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.steel_knight.unyielding_front",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-df43eaf0-70b6-416e-b216-af0cc3ddb29c.png",
+    "sha256": "4f0144fbfaf021559f387e107a0d52e58c1349a4d3f5e356de8b2eed550cb7bf",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.oathblade",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-225ea109-7af6-48ab-ae82-a6d789de9936.png",
+    "sha256": "186de138deabaae2f5fdc27e742f69fb6cecce5cf78730b71626739285f99d03",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.radiant_sweep",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-70021432-1ccb-4d20-8eec-21ce64a87ce5.png",
+    "sha256": "e190f50e428130758e6e577741fd75fdabaaf42e361a5d1e96596c0d1f60c5bc",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.oath_challenge",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3048193b-56e0-4069-96cc-12ffc19c110b.png",
+    "sha256": "e9afcb34d9ececb65cfd2615c683909789994b7954499dbfa636f7cfe9a36aa5",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.dawn_burst",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-6273fdfe-4f41-40b9-8a82-71ccc5ad8f67.png",
+    "sha256": "7abc3f300043a817848d01a06cfab326765ed12e6b8c93024121eb5e4827b55b",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.oathbreaker_strike",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3004d8a4-0375-4501-91fa-6d0ce78e66f2.png",
+    "sha256": "65ff0905a5470505becda00e89b526b1f17d8d9eef678077c88db109165e8cfa",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.shield_verdict",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-30ee9c11-bfb4-40aa-8553-047490cec27e.png",
+    "sha256": "5922e0136cc09f8552c8482d295f0238321237d5219523a4ae75ef6177b4d8b3",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.guardian_slash",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-c264c118-15c9-4cd0-9f26-7b2b71527931.png",
+    "sha256": "1cc30596d403a9d7e2e86639715bdb04ea88abb43a805049d12a3369649b363e",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.radiant_charge",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-04f93576-6279-472f-b14b-70b4e1ea04dd.png",
+    "sha256": "a5050c5a20176af85cec5c93edc213a0b7f2893d0b742f1fa24271edeb837d1b",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.valiant_advance",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-f15c0cf2-67c9-4d2f-93f4-20c5c5027973.png",
+    "sha256": "a1a38c23969e3c74811cdcf7134746dc91a2705ffc6fc7ca17f4d455d770c7fa",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.dawn_spiral",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-8195f7de-c4a7-486d-95d4-b330cdb9fcea.png",
+    "sha256": "9d5051a548e9075acdda0a49dc444aaa932eebbf6061ee28f12a1f92498136e1",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.sunward_cross",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-37318b34-758d-4b17-8ef6-032475ad19ae.png",
+    "sha256": "b66fcfa89cc41828aaec26d58c4c86b3707f1bb442acca0afcc6750c84f92928",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.oathbound_assault",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-7200f944-15ad-429f-b228-95c7ff46c478.png",
+    "sha256": "ec6ff02cd80c2f0f3890a1d03190d13fad8448ba49bc3026ab940ee7be75b052",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight.paladin.oath_of_dawn",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-c826296c-bda8-4215-8610-5555fb43b51c.png",
+    "sha256": "04beb3157c9a7637a9fce8bfa1da05c805ac472fd9a6d5cfc281614b47248b85",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight_driving_thrust",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-9d18280e-de3f-4793-897d-cef0ed0bfe18.png",
+    "sha256": "67e26395a7c71e0944e34de9b657e6d12638ba0cf68f81ecae7eb91f1f591d99",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight_crescent_cut",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-53e79e22-8f86-4ace-81c0-fffe79df5e30.png",
+    "sha256": "5eb799d9e98cc50cbc0a2dff04b4844de91ded6c8a9eee43ac16e6bd6ec1164f",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "knight_guarded_strike",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-6c8e3ef5-3300-48e7-a58c-54609bdf6aad.png",
+    "sha256": "4bef5fd99cfbf209e36ef3f8b1968364e5696dd167ad5c92350e3a64a5168c1d",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.common.overhead",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-609371f0-3d50-460a-902d-b41b4ff24645.png",
+    "sha256": "5ef2d3d1ac78d928d3d82f9b37d51442f25cc5ef1d4246a8b08a48db0d3b2e3e",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.common.throw",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3de4d9cc-db93-45bf-b02e-919148ac8445.png",
+    "sha256": "06e6f641948cc9d1e6d1864c2647d97488bc1a1f6626d270036a5052db651db3",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.common.ground",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-f9e92728-57c9-4a56-b230-76bc1a58dfe2.png",
+    "sha256": "ec1bfa4c945e0a4be7b7fcdb15e026d8b60474769693295c932aba0217bd76d2",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.armor_splitter",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-babc7c29-d05a-4b84-9418-39e233dcbfb8.png",
+    "sha256": "deedffa74723f8a2b106641a04330cb1359befd351483d8524eb248707979ad4",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.returning_echo",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-a59c37c8-3b3f-406a-a07c-1f2d5e74e43d.png",
+    "sha256": "9f0bda366e074642172077d2cf1591f30be4888db9d3c2fa1856dee16b8d708a",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.mountain_sweep",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-e4f210a3-8060-4642-ae9c-c2921413529c.png",
+    "sha256": "22a746031bfa6441649c00af4e545d6ed54a5f5d922b62d5781b5fe3111d3c39",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.crag_cleave",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-cddfb71d-b157-4ff7-945a-d652025f510c.png",
+    "sha256": "7648d3fb40c1dab838d32e6ad6d6b9633f5d6ebccbf08b5a0d405cb8c7de1faa",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.breaker_throw",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-6e239c49-6318-448d-92c6-3f27e80192d4.png",
+    "sha256": "3b197068ebf40c1f56d968c98684821990f76c7f9fb3243da67be2913ca50fe7",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.stonebound_leap",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-dbd154c2-8415-4057-bdf5-c21f4a45790a.png",
+    "sha256": "00f5302d4820f8223fd547ca7c49c0b4a73076280067923f1b816c02b6253158",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.iron_shoulder",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-93f2c250-fe07-48a7-a5e7-ac7d6c69e119.png",
+    "sha256": "ce5d2ee3e19de582222960404113c1c7e0ca1e41623f25830e0835bfc55fe9ee",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.crosscut_axe",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-9f037adb-3f65-4a01-b138-14d204a98d23.png",
+    "sha256": "aa99c711ec9b4553c939aeefb5fe94e615e5fa5d4d7fccb94d3e85bc0083588d",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.mountain_strike",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-a28e7caa-3925-4f32-bb82-5effb0445254.png",
+    "sha256": "60c01c5ede305c70aa1b63f28cdcd925144e71fde43aafe71dbcfb10e652b501",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.shatter_blow",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-9209602e-2633-40ce-a42d-7f1a5e71b9a3.png",
+    "sha256": "57ce703523c67008106aa7386a2e4f4f4b739bcecefab7e78dc0194667137bce",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.twin_axe_path",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-fdace169-f769-4f71-bc9a-9b3e3af83e7a.png",
+    "sha256": "ac9afa3216e83e2c2b12e991765a4ad49c11d1231959c990fe5953eb4564228b",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.tremor_guard",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-a57b2716-71ee-4324-8d15-e6f6698905b6.png",
+    "sha256": "60d96a2c35235f51368ca721a9ec72bf70dcf9e9f8100c3b146958ce910c42c5",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.iron_axe.mountain_collapse",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3b6fab8a-1e91-4994-86d1-ed3d4244ff64.png",
+    "sha256": "9504b03216cbcf07ae729266e71447db01710cbafdbe1485daff9fcc459a1bca",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.gunner_shot",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-62a5556e-494c-4548-bbac-ab8364cddeea.png",
+    "sha256": "c39e4881198107534e2a30ae6e500113408b3158712603372436c6b0e15da118",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.bomb_toss",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-531a96cf-af7f-4d76-8092-8cb850f74c17.png",
+    "sha256": "636fae0d40a09d294b7d53f754abfa4c7e668f2cb1272ef82dafd6aa2ef7ea3f",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.shell_burst",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-101864aa-b519-46e9-966e-f732d766452b.png",
+    "sha256": "429a3c5ff87f893b4f414a4ae16c4e30a2c33673ecf39e9b280540c62a5ad60d",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.quickfire",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-0b0ed2b8-fed8-435a-b2f5-d2722be2b4ad.png",
+    "sha256": "f37b5a3e9e20cfa42b9c1222d233ba0baa81af876ca26aecfedaaf493a63f62e",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.shrapnel_toss",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-b8e75d94-86d8-489a-a67e-f5d7b9203129.png",
+    "sha256": "e5d08314c97e95ee44910854093851f0089cd5d36a4e40a49cab3b397ac419eb",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.blast_step",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-8bc7e22b-95b5-44bb-8cb7-7b43a95f4031.png",
+    "sha256": "f909d94ea309d99b09ffd980355c4e49f3a1a155740f92dfa473e680d5fc6dc4",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.scatter_shot",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-ea972f05-ead3-4612-b9f1-bf7a94c62e48.png",
+    "sha256": "f658757e62dc7e47e935af46d2dda1da9d0f136db854392a6f80180e0e8bb0b5",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.skipping_charge",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-392a9705-1e0d-4162-86a9-113b009b7508.png",
+    "sha256": "2a3127b1352c7be08d3ec64b304f8fe59c71bb4962738596d25c2f1daba57a0a",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.field_mortar",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-04ba30e6-ea6b-4843-b9d0-8f7bb730a9d0.png",
+    "sha256": "77c8a6b1533209948cbd7e6c30351d5092b67473b8bf25e59df2c47233667937",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.piercing_round",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3ba0b0b2-be1c-497c-b998-0362cac68116.png",
+    "sha256": "c96d0d10e8882f95e23232fc1ae96b32d655976c4ea967a8342d03d95f91b42f",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.rolling_charge",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-2b95e9f1-2b1f-467e-90e8-5d725e9f7fed.png",
+    "sha256": "a77542b1037a98f243ce40096c8088ea42d10f5971be5616ff7a8632336b9615",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.siege_pattern",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-5da37062-7c6c-43fa-8610-69d71830342e.png",
+    "sha256": "34df24561cfc75904983f2592f4bfaee891b449bbe37f8ca48b6d59737068784",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf.gunner.siege_barrage",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-17ca4ec5-7910-4cd0-829e-f2179879ff0c.png",
+    "sha256": "3fb626faa4108fccb3d1b8a9d0db379b15babf810976be2c8e3a1bded6fa887d",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf_hooking_chop",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-d9456985-0525-476b-bfa5-ca02ae1d7aca.png",
+    "sha256": "f825c6280cfcf1c395c6ebf991fc905491a7f1742ec5ea7fd3f45361d7969b0d",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf_low_sweep",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-600001ea-2840-49cf-802d-6788730878f4.png",
+    "sha256": "6dbecd6ae298b3a4aafdac3ef7555ccd5c172650215b15b37216e740facd007e",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "dwarf_braced_throw",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-f02b28d6-e890-4825-bfd7-01329c6c608a.png",
+    "sha256": "e51bdc904488adfdca5babcfe00861e26fd26b52ac0b7e2c381945cd17bc0bf1",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.common.aimed",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-2eee619d-9515-4541-8b20-c4d40e511242.png",
+    "sha256": "0994149ff53482a9883ac2330d456d106715a3fb8d2fcedf1e3d2d37c6d1ca71",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.common.rapid",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-6c06690c-bb28-4c22-88bb-4f32fa5ab786.png",
+    "sha256": "fc651fcd6dc17e735be685321f138a7508148c186d759363818bc553e39664f2",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.common.multi",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-4cee4aae-4e57-4eff-8b2d-24960b59a9d1.png",
+    "sha256": "4405890b154dfc07a9a79570b01c57221914643f97d56b4c78b091b1b6edbbbc",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.weakpoint_shot",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-bac7782d-b8ef-4d6d-b856-17980c5c9413.png",
+    "sha256": "ce62cecc3808fbf62918c06edd4d0d6b6b8407ae4c072c7fdec6fa42a7d50527",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.moving_volley",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-07ad72ab-3ea5-4dd7-b57f-8b3fab90a43c.png",
+    "sha256": "e30b8ab0f61200f7114583c8e8c9c8934272ad5e927dbee28483ed698b1e7422",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.piercing_line",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-93b7cbec-69f8-47dd-8476-21d3cf6ad8dc.png",
+    "sha256": "b15a688aff05d2aefbd133c9dd3289430a1238b5515b69f1ee2c747a15260e8b",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.heavy_draw",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-4cbc41b6-fdc4-4559-8d44-e1c67ffdcfce.png",
+    "sha256": "d02f0d4b2e8b28bc5b4934691ba0c24ed09730beaf120438b6168e460f21d054",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.precision_volley",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3f528c1c-2b74-450d-b9df-3287d17717cf.png",
+    "sha256": "bac2a0b7b02ec0ab4297c7bc5e4e534f0f190f22f8c343b6989f8424a83279fd",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.fan_break",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-6163b2b4-9eaf-4bd9-8cc6-774fb647a8a7.png",
+    "sha256": "c140b2034e16ebff4fa381c22b08fa937f9b71ecc880f7cab687a181f66bf3e7",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.hunter_s_focus",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-328fd00c-7db6-47fa-ab8e-8ee132e673fb.png",
+    "sha256": "910f5ea42e0ced55fd496bcd22b0d2f18264a680899c5a1b2d761e9209d71dd0",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.retreating_fire",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-c08fadcf-76a5-44c7-8271-4516f6f1d8b9.png",
+    "sha256": "6eb57841c49336f11b53359d73a185aef885d6d75ef073d5398d3ecede0f0eb6",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.piercing_volley",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-5130d9b0-26c7-4978-8d4d-908043090ed9.png",
+    "sha256": "33896b7798f3f79acb55089ba7c3381f3502805c2f60694cdfc5a8552a4c9a3b",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.mark_breaker",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-d724321f-43f8-4c46-9f66-aa1697b365d4.png",
+    "sha256": "72f7e7b256b3fa978f7c5a8eaba3913a996076918bcc9799f885a3e0f9e3db0c",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.crossfire",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-489b8ebf-dcaa-40df-bcc8-2b528f2a0542.png",
+    "sha256": "57bbde6682306568c5f2c0cec15d1423dabb4a07348e88b4aea5c39e02d10bff",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.arrow_rain",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-823523d1-5479-41c8-8e5a-26c1c1afbdd0.png",
+    "sha256": "cd5afae52e7f99b21ed8455f31ca5a568269fe58b1a4b408d4e5346447833cbe",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.marksman.grand_volley",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-02c6b65b-5cf3-4a57-83b5-ce7837f9683e.png",
+    "sha256": "f8c91140802687d923ac4bd97161fe0eef4d6aa1a4ddb7325abd4b600c49f29e",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.elemental_arrow",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-d9d173e5-2606-4b7d-a094-5cf9213f5259.png",
+    "sha256": "a3a7d28586b4def1e36b398c0717d392378f6941a089d63178bc1952f3248448",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.spark_volley",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-024cc20c-23ed-4d4c-b1b8-b5f63130b732.png",
+    "sha256": "595ede6bd6b13ef4c7a05e39f44a34feea6cd346b1fee729b92dae31173c46ef",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.vine_trap",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-77fbabba-f462-4a4c-96cd-07cf6667f324.png",
+    "sha256": "da34f83bb00a803b9b16a70d9df3896b5144e18465f838f3099f44e9dc576a89",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.bloom_shot",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-ffa08eb9-0e95-491a-acc0-36c82f4522fe.png",
+    "sha256": "c79e4e212daa47edaba437c8039131f1347b6ddc19388e9f099462e6f5e8c333",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.storm_arrow",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-93cc80fd-c023-456e-856f-e4a5b57fd4b6.png",
+    "sha256": "5a9743f6ab77916f94310c84a0b7769cbabc2ddb8c9de0e357e95615631ed665",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.rooting_fan",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-a97584f3-f069-4968-8483-17e6387ea08c.png",
+    "sha256": "c86f4e60239f98dc581f7757c61c4a5c197dcac477cc961c2f34497e954d8b7a",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.warden_arrow",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3d625250-15a9-451e-b7bb-9bd1b1192cb4.png",
+    "sha256": "c0d8fba90452803c2c7e391d25c8ad3b3fd47094a6182d3e58e1c39562ed60be",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.gliding_shot",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-fa3bcf55-ac56-4d8a-8a1d-af6abe3c8a75.png",
+    "sha256": "a4a7e76fc047b167d19fdd09f2733684c0b0940d46436a44f6506588068644cc",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.spirit_rain",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-9dda898a-cb34-4458-b9f3-57734cea9443.png",
+    "sha256": "3deae0dd1fef4a1e88c8eb4629aff09ed4da9a1c7ae84c857e88d20a62d76716",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.elemental_pierce",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-ee073cd4-2296-4229-b912-a82aa9b57d5e.png",
+    "sha256": "224baded4bed225b429d25d0463d1cf75831a82f93b5582351c2662464aa6c33",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.echo_arrows",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-5ee7f184-6195-42c4-aec2-d7c6f1ef13f6.png",
+    "sha256": "03b3f3a5d32cc9be2b4d8b5367583ac3517193d55c364f6831155332503fcef4",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.vine_burst",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-95da9665-d25f-4cbb-9558-14d6a9baa471.png",
+    "sha256": "74ba4a800a89b0a23bc9fb2f7960ac4ef8301c9543fef78b8dab0fd096c9e1d6",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf.magic_archer.spirit_arrowfall",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-6a3ce405-2319-475d-a960-e3bb01fe2328.png",
+    "sha256": "2114cbe350d1cdb8e55f25ef92dfb856eab2ace13be73a18ee65b9130fd90fc7",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf_retreating_shot",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-4ad179eb-dae2-4aad-a76a-a638996e601b.png",
+    "sha256": "84df6132f786030e7d6b17976fec29b35ab6e3456cccddc719ae02f48233b531",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf_pinning_shot",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-263d2f5e-7c7d-4ef2-b906-dee50bba87e2.png",
+    "sha256": "8c7d879406bfa689e547f42f30139b9e62dac5d3c3b368bdd0340fc738f9f527",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "elf_arrow_screen",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-8c954434-5158-4a2a-adcd-0d629a1fa693.png",
+    "sha256": "17766aff5b773547a2f177a3e2192c368976fe0220a815619d7734817eaec7f8",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.common.mana_bolt",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-f73b7c0c-5554-4a2e-af71-f35440bd677b.png",
+    "sha256": "5389d3bb7d87bd22085b780c196e1ab8e45e7977ace2439145c63a5775009a74",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.common.water_ball",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-1f84c7fa-105d-4081-842f-be74f9a41223.png",
+    "sha256": "ac780f2d90bb6072961efb3fb4d6bcde519ac2baf82c9187ebc2034dab5b6a37",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.common.gravity",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-8cadc564-3b8e-45d8-9dd1-cd8bdda8e88c.png",
+    "sha256": "45cd482afea061a53518099441b7f2babfd0ec06bc08e49eb7ad85dc512f1bd8",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.ember_lance",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-c3c0a9b1-d8df-4e47-8e14-80b246980ee0.png",
+    "sha256": "dcfcd1c1fb00e2878a746772a17c60de69bab90b03c6a7ac9438e582b6bb9f7c",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.steam_burst",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-74f7735d-d3d9-47cc-8bdb-59d802bda68e.png",
+    "sha256": "765d888097f88b50b630d58ec7532943f9adafc08b5dab96f3b5fa41cd1593a4",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.cinder_ring",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-038f0672-9a47-4a58-ace0-2e60009a4735.png",
+    "sha256": "899a5870bdecc60e57c496c0a0f0c3af6fac59c62e82106bed80873919f5a134",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.flame_dart",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-201803f3-29fd-48ef-be14-1e116faf5c4a.png",
+    "sha256": "4e3b6c55a88ff2c4d407ee5d62594bb8cff71cacf6b688dc09928845d222857c",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.earth_rise",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-bf057a71-16e7-4762-9d46-8a4b380fa1c2.png",
+    "sha256": "3d94f3ba9425f36c50156fc2c985b70f7ea9c544cbb3796d875a52f712a0f99d",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.ember_step",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-193cf51e-1365-429d-814b-b8bb20659a00.png",
+    "sha256": "dd7e97bb8466177711c85d22937cde23ff523ea91212770c83b1b1ec35c8f91f",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.stone_lance",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-24bb7c41-ed9c-43b2-8dc5-d143340440f7.png",
+    "sha256": "59653ac5de863996083c9ac6aa766e7fc5992abce79ffd46bf30a2cea956e12d",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.searing_ward",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-304a10f8-c695-49bc-a6ed-9befa7d0a29d.png",
+    "sha256": "4e64036418b17fcb5fa69fd51275daf1250fcaf1e95bc532a21167f7fe63271a",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.lava_eruption",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-0c16c153-e90c-4868-aea1-a85542f41ff7.png",
+    "sha256": "6241d92c040f33123a198067d766dabb0d7299a220b512ad826a429a5ff3dcf2",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.magma_spear",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-270ea655-83cb-4c1a-95be-98ed4026bd52.png",
+    "sha256": "44822890398bfdb6aa33df038bcdc9409d08be8f71722b882cf094431e9576c9",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.molten_line",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-5fedfa95-c1f5-4708-9035-7b63bc39784b.png",
+    "sha256": "464de1193623e77da68bbd1cafd8c09197f8e907266458d4b436af9af2cfabe2",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.ashfall",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-03e83b0f-95df-4fcf-bef1-b01d5ecf1b15.png",
+    "sha256": "4e4e0ab62ffe47e391867777b51243ec2957d15ba821c6bde0281fef15f2c70a",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.pyro.caldera_s_judgment",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-b93d26ae-4336-4cde-87c3-050e9aca2f03.png",
+    "sha256": "56d8e15b8126bb9be957301d53de34adc95a02f8e4ee4c12bb8aedd48edf067b",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.frost_lance",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-1066dd76-36f8-47e0-9053-dbbac00a7378.png",
+    "sha256": "ddaf516e612eacedd78d312efccd4dc18e4bfb15aa8f572e2bc44434b1865d08",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.ice_shard",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-000617ed-aa65-4c9b-883c-52deff5fe0ef.png",
+    "sha256": "0a1e5a308e743a4500275b1d37ecd71db78e02394289bca2b9b352d1846a6adf",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.frost_ring",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3be5e95c-ea77-4fcf-9e16-8a64ec884492.png",
+    "sha256": "85257bf496470b43f5db898678b28271d275c797544752f32a1fe731fb4a7002",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.shatter_dart",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-83cf89d8-4450-4ea8-9c7a-c4f636648fc6.png",
+    "sha256": "4e6f8bcf2cf975a1439a3f8603a83670fed3eb17fecc9c2eb075dba208d16123",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.chain_lightning",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-71d1c02e-e559-4f7f-9ea9-e9614aa3852c.png",
+    "sha256": "c4e32b4d5fa4c59029851c58ce2efed92172ccbbb076fae575b2b137fc889a64",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.frost_step",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-8b003ed3-72dd-44f5-b141-85719afd11d6.png",
+    "sha256": "9f8f57ec74198864302f0093a8281257869ac0c36d2995b5645cdc9f198dfb06",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.thunder_spear",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-6bb28b87-ca01-4fde-a15b-4a782a35346a.png",
+    "sha256": "fb4717fc6e589e1d9bd2376f646c25bccc9986a5b834cfa5371789e501689da7",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.ice_ward",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-3c388aac-8d52-41fc-b644-1f79e422b442.png",
+    "sha256": "5c39be47c57b5b0296b4c2c0b7b9725da768e84b8b916f5b943f8080a61e44ec",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.froststorm",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-5274bb7b-3ff4-4e2b-b7d1-d519a8b3874a.png",
+    "sha256": "934d067cd442173407927cae61208ae3b7fffcb06a04cc69bda94d8156f04930",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.glacial_spike",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-23af1d39-65f2-4117-9e4c-b4eba6d08192.png",
+    "sha256": "5e69674aa90b6e44ccf36efe828fdf3024db7b1b6393ec440793d4ff5deea5a5",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.lightning_line",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-8a2e7ac6-ded4-4520-afaf-1d0660092be7.png",
+    "sha256": "046080c16d0079799b836f3bb248e38cb68df5b7cd9d787ec72571d15a9fafbb",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.hailfall",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-e9c5b0db-5155-49f2-933d-5e3098bd54b5.png",
+    "sha256": "6aa8fb849bd1b08e8aa5e64b8d344c6b7acc7725115564f3ae4515987756ac77",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage.cryo.eternal_tempest",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-d1a99b80-11fe-4822-8826-c2a9616c842b.png",
+    "sha256": "503cb3180113d88bc7fbdeead47e6a98379535bb0b9bde411df4bfc867c522b9",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage_wind_lance",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-fbb31a42-8881-49be-b640-9eeb75d049d2.png",
+    "sha256": "beaac911e82d28f30789758b4c8d0bdfc673d62512469355e94939a9c956313c",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage_tidal_ring",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-ba2f3838-63e2-481a-afce-baea816cb2dd.png",
+    "sha256": "67a025d4cfc0b35b3b1508910dedd9fff1112a661dd4754231c086561c8278af",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  },
+  {
+    "id": "mage_arcane_ward",
+    "sourcePath": "/Users/daniel/.codex/generated_images/01a1e1f7-8391-7071-bf61-41c3e9b208cb/exec-eb52fe6d-85f3-464b-a7f3-62fbdc5a5373.png",
+    "sha256": "702a71695302a1420826cbc16a2ea7eaaa8d3736162192f00549c56d962361de",
+    "generator": "built-in image_gen",
+    "promptFile": "prompts.json"
+  }
+]

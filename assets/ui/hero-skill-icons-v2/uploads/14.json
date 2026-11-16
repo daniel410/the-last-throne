@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:17:21.234Z",
+  "finishedAt": "2026-11-16T02:19:07.012Z",
+  "images": {
+    "http://127.0.0.1:8822/elf.magic_archer.gliding_shot.png": "rbxassetid://123531603243143",
+    "http://127.0.0.1:8822/elf.magic_archer.vine_trap.png": "rbxassetid://88222718412152",
+    "http://127.0.0.1:8822/elf.magic_archer.elemental_pierce.png": "rbxassetid://128779335574501",
+    "http://127.0.0.1:8822/elf.magic_archer.spirit_rain.png": "rbxassetid://97539006865399",
+    "http://127.0.0.1:8822/elf.magic_archer.echo_arrows.png": "rbxassetid://136407364879714",
+    "http://127.0.0.1:8822/elf_arrow_screen.png": "rbxassetid://93327394980228",
+    "http://127.0.0.1:8822/elf.marksman.weakpoint_shot.png": "rbxassetid://104907992071315",
+    "http://127.0.0.1:8822/elf.magic_archer.spark_volley.png": "rbxassetid://84484822983244"
+  }
+}

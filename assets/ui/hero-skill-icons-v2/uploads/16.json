@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:19:07.099Z",
+  "finishedAt": "2026-11-16T02:20:52.925Z",
+  "images": {
+    "http://127.0.0.1:8822/mage.cryo.shatter_dart.png": "rbxassetid://77117651047767",
+    "http://127.0.0.1:8822/mage.cryo.ice_ward.png": "rbxassetid://114450867381271",
+    "http://127.0.0.1:8822/mage.cryo.hailfall.png": "rbxassetid://135799243762729",
+    "http://127.0.0.1:8822/mage.cryo.ice_shard.png": "rbxassetid://76742757036316",
+    "http://127.0.0.1:8822/mage.cryo.frost_step.png": "rbxassetid://137411255806521",
+    "http://127.0.0.1:8822/mage.cryo.lightning_line.png": "rbxassetid://83800477939705",
+    "http://127.0.0.1:8822/mage.cryo.froststorm.png": "rbxassetid://78757898848451",
+    "http://127.0.0.1:8822/mage.cryo.glacial_spike.png": "rbxassetid://83454690354705"
+  }
+}

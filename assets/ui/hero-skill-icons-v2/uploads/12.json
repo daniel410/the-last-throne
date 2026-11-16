@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:13:45.142Z",
+  "finishedAt": "2026-11-16T02:15:31.988Z",
+  "images": {
+    "http://127.0.0.1:8822/elf.marksman.arrow_rain.png": "rbxassetid://99887728343530",
+    "http://127.0.0.1:8822/elf.magic_archer.bloom_shot.png": "rbxassetid://117400722463628",
+    "http://127.0.0.1:8822/elf.magic_archer.elemental_arrow.png": "rbxassetid://114591384063643",
+    "http://127.0.0.1:8822/elf.magic_archer.warden_arrow.png": "rbxassetid://88296050949661",
+    "http://127.0.0.1:8822/elf.magic_archer.storm_arrow.png": "rbxassetid://127029836022551",
+    "http://127.0.0.1:8822/elf.marksman.grand_volley.png": "rbxassetid://97786025177894",
+    "http://127.0.0.1:8822/elf.magic_archer.rooting_fan.png": "rbxassetid://88953206041456",
+    "http://127.0.0.1:8822/elf.marksman.crossfire.png": "rbxassetid://107875933672106"
+  }
+}

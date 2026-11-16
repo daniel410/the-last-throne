@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:04:10.524Z",
+  "finishedAt": "2026-11-16T02:05:53.455Z",
+  "images": {
+    "http://127.0.0.1:8822/knight.paladin.valiant_advance.png": "rbxassetid://95605680411374",
+    "http://127.0.0.1:8822/knight.paladin.dawn_spiral.png": "rbxassetid://123865743945247",
+    "http://127.0.0.1:8822/knight.steel_knight.unyielding_front.png": "rbxassetid://138745500155651",
+    "http://127.0.0.1:8822/knight.steel_knight.vanguard_strike.png": "rbxassetid://139807198337947",
+    "http://127.0.0.1:8822/knight.paladin.oath_of_dawn.png": "rbxassetid://70542844021685",
+    "http://127.0.0.1:8822/knight.paladin.sunward_cross.png": "rbxassetid://124207384932704",
+    "http://127.0.0.1:8822/knight.steel_knight.twin_cyclone.png": "rbxassetid://110853401634682",
+    "http://127.0.0.1:8822/knight.paladin.oathbound_assault.png": "rbxassetid://84768759484391"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "reason": "Initial visible-node requests failed with Studio HttpError: NetFail; re-upload resolved to the same content-addressed asset IDs.",
+  "images": {
+    "http://127.0.0.1:8822/elf.magic_archer.elemental_pierce.png": "rbxassetid://128779335574501",
+    "http://127.0.0.1:8822/elf_retreating_shot.png": "rbxassetid://91879844959733",
+    "http://127.0.0.1:8822/knight.steel_knight.shield_breaker.png": "rbxassetid://121323006224933",
+    "http://127.0.0.1:8822/elf.magic_archer.echo_arrows.png": "rbxassetid://136407364879714",
+    "http://127.0.0.1:8822/mage.common.gravity.png": "rbxassetid://106456143901705"
+  }
+}

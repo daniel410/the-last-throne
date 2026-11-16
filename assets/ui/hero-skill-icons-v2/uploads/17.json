@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:20:49.908Z",
+  "finishedAt": "2026-11-16T02:22:32.451Z",
+  "images": {
+    "http://127.0.0.1:8822/mage.pyro.ember_lance.png": "rbxassetid://70568588520009",
+    "http://127.0.0.1:8822/mage.pyro.earth_rise.png": "rbxassetid://123438476843679",
+    "http://127.0.0.1:8822/mage.pyro.cinder_ring.png": "rbxassetid://103502088649359",
+    "http://127.0.0.1:8822/mage.pyro.caldera_s_judgment.png": "rbxassetid://92697137660044",
+    "http://127.0.0.1:8822/mage.cryo.thunder_spear.png": "rbxassetid://76944136315762",
+    "http://127.0.0.1:8822/mage.pyro.ashfall.png": "rbxassetid://102004347172992",
+    "http://127.0.0.1:8822/mage.pyro.flame_dart.png": "rbxassetid://74851653721065",
+    "http://127.0.0.1:8822/mage.pyro.ember_step.png": "rbxassetid://87954245833545"
+  }
+}

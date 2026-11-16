@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:09:30.402Z",
+  "finishedAt": "2026-11-16T02:11:22.712Z",
+  "images": {
+    "http://127.0.0.1:8822/dwarf.gunner.skipping_charge.png": "rbxassetid://98112137480231",
+    "http://127.0.0.1:8822/dwarf.gunner.blast_step.png": "rbxassetid://116340592183702",
+    "http://127.0.0.1:8822/dwarf.gunner.piercing_round.png": "rbxassetid://131881341441994",
+    "http://127.0.0.1:8822/dwarf.gunner.siege_pattern.png": "rbxassetid://93466943718023",
+    "http://127.0.0.1:8822/dwarf.iron_axe.iron_shoulder.png": "rbxassetid://110654307551682",
+    "http://127.0.0.1:8822/dwarf.gunner.field_mortar.png": "rbxassetid://134673887015612",
+    "http://127.0.0.1:8822/dwarf.iron_axe.crosscut_axe.png": "rbxassetid://140299388615665",
+    "http://127.0.0.1:8822/dwarf.gunner.rolling_charge.png": "rbxassetid://76499333486814"
+  }
+}

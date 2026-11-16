@@ -11,6 +11,7 @@ local Theme = require(script.Parent.TDInventoryTheme)
 local BattleArt = require(ReplicatedStorage.Shared.TDUI.BattleChromeArtAssets)
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local PotionIcon = require(script.Parent.PotionIcon)
+local SkillIcon = require(script.Parent.SkillIcon)
 local MiniMap=require(script.Parent.BattleMinimap)
 local StoryHeading=require(script.Parent.StoryHeading)
 local Hud = {}
@@ -243,19 +244,25 @@ function Hud.create()
 	for index = 1, 5 do
 		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72 + 24, 0), 64)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
-		button.Caption.TextSize = 9
-		button.Caption.Position = UDim2.fromOffset(3, 36)
-		button.Caption.Size = UDim2.new(1, -6, 0, 25)
+		button.Caption.TextSize = 8
+		button.Caption.Position = UDim2.fromOffset(3, 41)
+		button.Caption.Size = UDim2.new(1, -6, 0, 20)
 		button.Caption.TextWrapped = true
 		quickKey(key)
 		local icon = text(button, "Icon", "", UDim2.new(0.5, -15, 0, 5), UDim2.fromOffset(30, 28), 17, COLORS.gold)
 		icon.TextXAlignment = Enum.TextXAlignment.Center
+		SkillIcon.create(button, UDim2.fromOffset(13, 3), UDim2.fromOffset(38, 38))
+		key.ZIndex = button.SkillIcon.ZIndex + 1
 		skillButtons[index], skillHints[index] = button, key
 	end
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 0), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 132), 56)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
 	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey,UDim2.fromOffset(90,-76),64)
+	SkillIcon.create(ultimate,UDim2.fromOffset(13,3),UDim2.fromOffset(38,38))
+	ultimate.Caption.Position,ultimate.Caption.Size=UDim2.fromOffset(3,41),UDim2.new(1,-6,0,20)
+	ultimate.Caption.TextSize=8;ultimate.Caption.TextWrapped=true
+	quickKey(ultimateHint);ultimateHint.ZIndex=ultimate.SkillIcon.ZIndex+1
 	ultimate.Visible=false
 	local minimap=MiniMap.create(topRoot)
 	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame
@@ -459,11 +466,14 @@ function Hud.create()
    for _,d in ipairs(Config.Skills[character and character:GetAttribute('K0ClassId')] or {}) do if d.id==ultimateId and d.ultimate then ultimateSkill=d end end
    -- No locked placeholder or reserved combat slot before the final advancement.
    ultimate.Visible=ultimateSkill~=nil
+   if not ultimateSkill then SkillIcon.set(ultimate.SkillIcon,nil,false,false) end
    if ultimateSkill then
     local remaining=math.max(0,(character:GetAttribute('K0UltimateReady') or 0)-Workspace:GetServerTimeNow())
     ultimate.Active=remaining<=0;ultimate.Caption.Text=remaining>0 and string.format('%.1fs',remaining) or Text.Ultimate
     ultimateHint.Text=UserInputService.TouchEnabled and 'TAP' or UserInputService.GamepadEnabled and 'D-PAD UP' or 'T'
+    ultimateHint.Size=UDim2.fromOffset(#ultimateHint.Text>2 and 43 or 21,19)
     ultimate.TDButtonArt.ImageTransparency=remaining>0 and .45 or 0
+    SkillIcon.set(ultimate.SkillIcon,ultimateSkill,true,remaining>0)
    end
 			for index, button in ipairs(skillButtons) do
 				local classId = character and character:GetAttribute("K0ClassId")
@@ -478,12 +488,14 @@ function Hud.create()
 				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())
 				button.BackgroundTransparency = remaining > 0 and 0.45 or 0
 				button.TDButtonArt.ImageTransparency = index > count and .6 or remaining > 0 and .35 or 0
-				button.Icon.Visible = remaining <= 0
+				local hasArt=SkillIcon.set(button.SkillIcon,index<=count and ability or nil,index<=count,remaining>0)
+				button.Icon.Visible = index<=count and not hasArt and remaining <= 0
 				local label = button:FindFirstChild("Cooldown")
 				if not label then
 					label = text(button, "Cooldown", "", UDim2.fromOffset(24, 5), UDim2.new(1, -26, 0, 27), 12, COLORS.cream)
 					label.TextXAlignment = Enum.TextXAlignment.Center
 					label.TextStrokeTransparency = 0.3
+					label.ZIndex = button.SkillIcon.ZIndex + 1
 				end
 				label.Visible = remaining > 0
 				label.Text = remaining > 0 and string.format("%.1fs", remaining) or ""

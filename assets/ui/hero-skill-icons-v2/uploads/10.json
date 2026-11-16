@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-16T02:12:01.368Z",
+  "finishedAt": "2026-11-16T02:13:45.057Z",
+  "images": {
+    "http://127.0.0.1:8822/dwarf.gunner.siege_barrage.png": "rbxassetid://120093486664155",
+    "http://127.0.0.1:8822/dwarf.iron_axe.stonebound_leap.png": "rbxassetid://110669367724852",
+    "http://127.0.0.1:8822/dwarf.iron_axe.mountain_collapse.png": "rbxassetid://138025481217187",
+    "http://127.0.0.1:8822/dwarf_braced_throw.png": "rbxassetid://109153629635923",
+    "http://127.0.0.1:8822/dwarf.iron_axe.tremor_guard.png": "rbxassetid://76034618581652",
+    "http://127.0.0.1:8822/dwarf.gunner.shell_burst.png": "rbxassetid://91582712645016",
+    "http://127.0.0.1:8822/dwarf.gunner.gunner_shot.png": "rbxassetid://95524873653716",
+    "http://127.0.0.1:8822/dwarf.gunner.bomb_toss.png": "rbxassetid://86433990309269"
+  }
+}
