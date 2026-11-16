@@ -18,7 +18,8 @@ function Architecture.build(kind)
   elseif kind=='BracedMineHead'and r[1]=='CoursedMasonry'then
    -- Keep the pinned collision backing; continuous strata below replace the
    -- brick-grid rendering without opening the personal rescue obstruction.
-   p.Transparency=1
+   p.Material=Enum.Material.Basalt
+   p.Color=Color3.fromRGB(69,65,66)
    p:SetAttribute('MineFaceBacking',true)
   elseif r[3]=='Slate'then
    p.Color=p.Color:Lerp(Color3.fromRGB(176,188,201),.12)
@@ -50,7 +51,7 @@ function Architecture.build(kind)
   -- The rail ends at a worked basalt face, not a masonry gate. Five large
   -- offset strata cover the collision backing, with a rising broken skyline.
   -- All geometry remains in the original architecture X/Z envelope.
-  local backing=K.part(m,'ContinuousBasaltFace',Vector3.new(24.9,9.95,2.5),CFrame.new(0,5,-8),Color3.fromRGB(69,65,66),Enum.Material.Basalt)
+  local backing=K.part(m,'ContinuousBasaltFace',Vector3.new(24.9,9.95,2.7),CFrame.new(0,5,-8),Color3.fromRGB(69,65,66),Enum.Material.Basalt)
   backing:SetAttribute('EpicDetailSolid',false);backing:SetAttribute('TLTSceneryDistance',700)
   backing:SetAttribute('MineWorkingFace',true);details+=1
   local strata={
