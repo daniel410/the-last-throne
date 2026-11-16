@@ -1,0 +1,22 @@
+{
+  "geometry": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"addedParts\":60,\"retainedWalls\":12,\"plots\":{\"1\":{\"added\":15,\"at\":{\"1\":127.97517395019531,\"3\":-16492.14453125,\"2\":181.7400665283203}},\"4\":{\"added\":15,\"at\":{\"1\":428.8813781738281,\"3\":-16128.115234375,\"2\":181.7220458984375}},\"3\":{\"added\":15,\"at\":{\"1\":136.9375762939453,\"3\":-16115.001953125,\"2\":182.520263671875}},\"2\":{\"added\":15,\"at\":{\"1\":519.7786865234375,\"3\":-16401.14453125,\"2\":181.31387329101563}}}}"
+      }
+    ],
+    "isError": false
+  },
+  "routes": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"corrections\":[],\"lowSteps\":[],\"routeFailures\":[],\"blockers\":[],\"returns\":[],\"epics\":{\"5\":{\"chapters\":7,\"lowSteps\":0,\"connectors\":6,\"steps\":4560,\"samples\":4749,\"targets\":105,\"floors\":0,\"corrections\":0,\"blockers\":0,\"routeFailures\":0}},\"floors\":[]}"
+      }
+    ],
+    "isError": false
+  },
+  "syntax": 527
+}
+
