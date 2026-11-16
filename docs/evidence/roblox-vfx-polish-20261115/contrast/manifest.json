@@ -1,0 +1,19 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "id": "enemy.Imp.flight",
+    "age": 0.12,
+    "extent": 5,
+    "width": 480,
+    "name": "Imp Flight",
+    "category": "Enemy spell",
+    "height": 320,
+    "mode": "frozen geometry; particle bursts re-emitted",
+    "variant": 2,
+    "pulse": 1,
+    "file": "001-enemy.Imp.flight.png",
+    "sha256": "f1ae15ecfd77473c591d01b45ff420d46cf6b2ddfc1def644c87479131f82d47",
+    "iconSha256": null
+  }
+]

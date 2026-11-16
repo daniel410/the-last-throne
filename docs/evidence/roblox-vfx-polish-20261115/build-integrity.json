@@ -1,0 +1,55 @@
+{
+  "version": "0.111.4",
+  "sourceCommit": "78b5cc18d29b05d5fd64e4bff882c897b4fa1c97",
+  "buildSha256": "6e4d792ac07fd7cac2f3c27d120c6b8530b3fa3a9c59ddddbe0b14b37d46ad49",
+  "runtimeModules": {
+    "src/client/CombatVFXStyle.luau": {
+      "sha256": "338c6a8501bbca6f8104fab796e1023163ba048e0d71368531096a75f2f32f99",
+      "nativeMatch": true
+    },
+    "src/client/HeroVFX.luau": {
+      "sha256": "448f4d0aa0f3fdd1a52bfc0af9d606a9bcb6ce7601d0a4fb03d732db8caf2aec",
+      "nativeMatch": true
+    },
+    "src/client/HeroVFXSurfaces.luau": {
+      "sha256": "4b59c8a7315502e5c1fbb090dcbfe35e9af408c0a6fd5a730f3501c34d8fe76b",
+      "nativeMatch": true
+    },
+    "src/client/WindLanceVisual.luau": {
+      "sha256": "b8ffb5ec7f278157d455dd2dcb492f30bca7c6d7e647b96c65c886947b8bca94",
+      "nativeMatch": true
+    },
+    "src/client/K0SwordVisual.luau": {
+      "sha256": "6c6232a82c4989347973cef6006747ef92d2eaaf491303dc8970b964e70b5362",
+      "nativeMatch": true
+    },
+    "src/client/K0EnemyWeaponMotion.luau": {
+      "sha256": "9111cec5fdc62fbf64e70148d2dda5c831062dc012332d739a0c585765077315",
+      "nativeMatch": true
+    },
+    "src/client/EnemySpellArt.luau": {
+      "sha256": "5fa9fc75ae99d1393deb362c080df75986ef3d4ea7ea66036e74597c34e280a8",
+      "nativeMatch": true
+    },
+    "src/client/EnemySpellVFX.luau": {
+      "sha256": "1c65060c1d24620ced9995289a4089f3f34b23eae46dad47f12ea24994bda2e9",
+      "nativeMatch": true
+    },
+    "src/client/SelenePresentation.luau": {
+      "sha256": "19f3ae871682c4f038ddb93356fce7ed02621ed59210aa0d0c5cd7e08e680392",
+      "nativeMatch": true
+    },
+    "src/client/K0MageFocus.luau": {
+      "sha256": "2624c72019c90c18443d5a5dd1dd3fc6b8338d41ff80d1094235bee5987a90c2",
+      "nativeMatch": true
+    }
+  },
+  "finalCapturePhasesMatch": [
+    "final",
+    "skills",
+    "weapons-final",
+    "contrast"
+  ],
+  "nativeProbeSha256": "95102bf62539e6da997ba25c8af89f4818676e88d753af0dbc45bcf049eac2e9",
+  "published": false
+}

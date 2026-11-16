@@ -1,0 +1,36 @@
+{
+  "baselineSource": "11c0a9cf78c902550726ffe406f0b2aa261cd040",
+  "baselineCandidateOverlays": [],
+  "baselineProbeSha256": "e47cd15c78a36647ee18c679b2c61e8081c68be26a6d35f9643f8f219ab99e8d",
+  "oldTestResult": {
+    "attacks": 146,
+    "checks": 1305,
+    "failures": [
+      "server still collides after old warning deadline Hellhound.2",
+      "server still collides after old warning deadline Zombie.2",
+      "server still collides after old warning deadline VenomcoilKing.2",
+      "server still collides after old warning deadline Warlord.3",
+      "server still collides after old warning deadline Gloambat.2",
+      "server still collides after old warning deadline GoblinKing.3",
+      "server still collides after old warning deadline MagmaImp.3",
+      "server still collides after old warning deadline KingIceBear.3",
+      "server still collides after old warning deadline EnragedWarlord.3",
+      "server still collides after old warning deadline Ghoul.2",
+      "server still collides after old warning deadline MagmaWorm.2"
+    ],
+    "pass": false,
+    "dashes": 11
+  },
+  "baselineLogSha256": "ef157eeb498898d2f67f9348dd5699e8cf2b0662115d9c71e0b68e1cbcaee9fc",
+  "unchangedServerRuntimeSha256": "7d90958c04711bd86fc8193cd1ced16ecd4570449f0c9642b4671cf3d7358b73",
+  "condition": "Old test jumps windup+0.30s at once and triggers existing >0.22s dash gap guard; corrected test samples normal frames",
+  "serverChanged": false,
+  "correctedResult": {
+    "attacks": 146,
+    "checks": 1382,
+    "failures": [],
+    "pass": true,
+    "dashes": 11,
+    "suite": "VFX_REVIEW_FOLLOWUP_NATIVE"
+  }
+}

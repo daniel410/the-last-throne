@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-15",
+  "tasks": [
+    "TLT-033",
+    "TLT-057",
+    "TLT-059"
+  ],
+  "role": "independent_art_review",
+  "baselineVersion": "0.111.3",
+  "candidateVersion": "0.111.4",
+  "candidateSourceCommit": "78b5cc18d29b05d5fd64e4bff882c897b4fa1c97",
+  "captureSourceCommit": "11c0a9cf78c902550726ffe406f0b2aa261cd040",
+  "verdict": "곡선/면 접합·잔광 위계의 부분 개선과 주 형상 보존 확인.관측 범위의 신규 P0 정지형상 결함 없음.전체 실전 미술 수용은 미완료.",
+  "newP0StaticFindings": [],
+  "additionalMandatoryStaticFixesObserved": [],
+  "representativeSummary": {
+    "improved_static_detail": 10,
+    "partial_static_detail": 9,
+    "preserved_static_identity": 5
+  },
+  "evidenceCounts": {
+    "heroesRawPairs": 46,
+    "heroesSupersededPairs": 8,
+    "finalPairs": 10,
+    "heroEffectivePairs": 48,
+    "heroRepresentativeSkills": 24,
+    "combatRawPairs": 25,
+    "combatExcludedPairs": 3,
+    "combatEffectivePairs": 22,
+    "contrastReplacementPairs": 1,
+    "weaponFinalLimitedPairs": 2,
+    "effectiveReviewedPairs": 73,
+    "catalogSingleFrames": 128,
+    "catalogSheets": 8
+  },
+  "evidencePrecedence": {
+    "hero": "final10을 우선.그중4기술8장만 heroes와 중복되며 Overhead2장은 새 대표.나머지 heroes38장을 사용.",
+    "enemy": "contrast/001은 combat/001의 워밍업 환경차를 대체.나머지 combat/002~023을 사용.",
+    "weapon": "weapons-final2만 제한 판정.중간 weapons 전체와 combat/024~025는 최종판정 제외.",
+    "catalog": "skills128은 최종10모듈과 같은 해시의 단일 정지 회귀이며128종 전후 개선으로 해석하지 않음."
+  },
+  "exclusions": [
+    {
+      "path": "heroes/001-knight_crescent_cut.png",
+      "reason": "Slate 셰이더 워밍업 차이.최종 final/001로 대체.다른 동일 기술/최종면 변경 표본도 중복 집계 제외."
+    },
+    {
+      "path": "combat/001-enemy.Imp.flight.png",
+      "reason": "지면 워밍업 차이.동일 조건 contrast/001로 대체."
+    },
+    {
+      "path": "combat/024-basic.knight.png",
+      "reason": "Trail 순간 미포착.무기 모델/동작 확인 이상으로 수용하지 않음."
+    },
+    {
+      "path": "combat/025-basic.dwarf.png",
+      "reason": "Trail 순간 미포착.최종 weapon 표본으로 대체."
+    },
+    {
+      "path": "weapons/",
+      "reason": "준비/초기 cutting 표본으로 잔상 수용에 부적합.최종 판정 제외."
+    }
+  ],
+  "limits": [
+    "대표 영웅0.055초는 낮,0.18초는 밤이다.동일 시점 Before/After 차이는 관찰할 수 있지만 두 시점을 단순 연결해 정확한 시간 곡선/소멸 수명을 측정하지 않는다.",
+    "Hero/Enemy/Support 정지 캡처는 geometry를 샘플링해 고정하고 일부 legacy Tween/입자를 재방출한다.완전한 연속재생이나 정확한 입자 나이의 증거가 아니다.",
+    "128전수는 각 기술의 pulse1 단일 낮 정지 모형 화면이다.반복/귀환/모든199구간의 시각 수용이나 실제 장비·다인·야간 수용을 뜻하지 않는다.",
+    "일부 넓은 기술의 바깥 부분은 카메라/작은 contact tile 밖이다.초점 크기·장식 가림에 대한 실전 수용은 남는다.",
+    "무기2쌍은 실제 승인 장비/프로덕션 motion과 이동 기록이 있으나 Before/After 콜백의 미세 위상차가 있다.정확한 폭/잔상수명/동기 검증으로 일반화하지 않는다.",
+    "사용자 미술 수용·게시 클라이언트·실기기/GPU·다인 전투는 본 ART 관측과 별도이며 미검증.초기68개 수정/21개 동작 보류와 G4를 모두 닫지 않는다."
+  ],
+  "integrity": {
+    "provenanceSha256": {
+      "heroes-provenance.json": "90082c72c42e147e90a3797868915a0b515ab84ee86a997c70fd4b263f7a9120",
+      "combat-provenance.json": "7b86a0f623b5b81254845c5618da0af84e2d4b4e881c073c6053f0ccd1edc4ec",
+      "final-provenance.json": "553e335a154c78e7276c8be4778413a640f2c9903309776485d9c9fbbeddf029",
+      "contrast-provenance.json": "4af9082d67b30227be5a6d74387d024982f0a04bbeac1d8e99dfeab80de3ea37",
+      "skills-provenance.json": "4d6c3cbc2e6986fc4bca6c0a9f7d557e8e21468b1d54886e0b2a7f51fd7e0521",
+      "weapons-final-provenance.json": "590490bed00402d33332bd7114e8f560e41de4c029e0a3975b0d99d8e2f9a69f",
+      "native-provenance.json": "906298577554c425bab405ef7bb273e8fb5f18f6922ffcfc7695a78b92eb545c"
+    },
+    "manifestSha256": {
+      "heroes/manifest.json": "1f1fad4d8ac3de23d3fad66895c23584d491a609ff26972568d73fbf76d2a4a7",
+      "final/manifest.json": "5eea555f7958db226690579ab14cb252f5b0ea5797d422b1dd828d4864bb8e5c",
+      "combat/manifest.json": "dddd7d1030b8fffb2f4f053839f85594c1aeeb6ea94b231beb3b472dfcfe77d2",
+      "contrast/manifest.json": "90fd2a02ccbebb4eca45a825c21f9294f1160a0f868266691dd521ed85f4f54a",
+      "skills/manifest.json": "5931fc3ad2239cb98a29f5f97b7abf35ab4f964c92e41b791d1470974ae15e38",
+      "weapons-final/manifest.json": "eac114f9e376804eb90ba844c32d74540a2cee5ea41184957faad51d7d29dc69"
+    },
+    "pngVerification": {
+      "heroes": {
+        "checkedPngs": 46,
+        "mismatches": []
+      },
+      "final": {
+        "checkedPngs": 10,
+        "mismatches": []
+      },
+      "combat": {
+        "checkedPngs": 25,
+        "mismatches": []
+      },
+      "contrast": {
+        "checkedPngs": 1,
+        "mismatches": []
+      },
+      "skills": {
+        "checkedPngs": 128,
+        "mismatches": []
+      },
+      "weapons-final": {
+        "checkedPngs": 2,
+        "mismatches": []
+      }
+    },
+    "finalRuntimeModuleHashes": {
+      "src/client/CombatVFXStyle.luau": "338c6a8501bbca6f8104fab796e1023163ba048e0d71368531096a75f2f32f99",
+      "src/client/HeroVFX.luau": "448f4d0aa0f3fdd1a52bfc0af9d606a9bcb6ce7601d0a4fb03d732db8caf2aec",
+      "src/client/HeroVFXSurfaces.luau": "4b59c8a7315502e5c1fbb090dcbfe35e9af408c0a6fd5a730f3501c34d8fe76b",
+      "src/client/WindLanceVisual.luau": "b8ffb5ec7f278157d455dd2dcb492f30bca7c6d7e647b96c65c886947b8bca94",
+      "src/client/K0SwordVisual.luau": "6c6232a82c4989347973cef6006747ef92d2eaaf491303dc8970b964e70b5362",
+      "src/client/K0EnemyWeaponMotion.luau": "9111cec5fdc62fbf64e70148d2dda5c831062dc012332d739a0c585765077315",
+      "src/client/EnemySpellArt.luau": "5fa9fc75ae99d1393deb362c080df75986ef3d4ea7ea66036e74597c34e280a8",
+      "src/client/EnemySpellVFX.luau": "1c65060c1d24620ced9995289a4089f3f34b23eae46dad47f12ea24994bda2e9",
+      "src/client/SelenePresentation.luau": "19f3ae871682c4f038ddb93356fce7ed02621ed59210aa0d0c5cd7e08e680392",
+      "src/client/K0MageFocus.luau": "2624c72019c90c18443d5a5dd1dd3fc6b8338d41ff80d1094235bee5987a90c2"
+    },
+    "provenanceRuntime10MatchesNative": {
+      "final-provenance.json": true,
+      "skills-provenance.json": true,
+      "weapons-final-provenance.json": true,
+      "contrast-provenance.json": true
+    },
+    "currentRuntimeMatchesFinalHashes": {
+      "src/client/CombatVFXStyle.luau": true,
+      "src/client/HeroVFX.luau": true,
+      "src/client/HeroVFXSurfaces.luau": true,
+      "src/client/WindLanceVisual.luau": true,
+      "src/client/K0SwordVisual.luau": true,
+      "src/client/K0EnemyWeaponMotion.luau": true,
+      "src/client/EnemySpellArt.luau": true,
+      "src/client/EnemySpellVFX.luau": true,
+      "src/client/SelenePresentation.luau": true,
+      "src/client/K0MageFocus.luau": true
+    },
+    "nativeRecordReviewed": {
+      "path": "native.json",
+      "suites": 22,
+      "checks": 117973,
+      "pass": true,
+      "independentlyRerunByArt": false,
+      "actualBuiltPlacePassClaimedByArt": false
+    },
+    "earlierSourceScope": "heroes/combat은9 overlay 단계이며 HeroVFX/Surfaces가 final10과 다르다.중복 대표는 final로 대체한다.같은 변경이 없는 적/지원/Wind와 나머지 대표 관측은 이전 캡처로 제한하고128최종 회귀를 함께 사용."
+  },
+  "viewedContactSheets": [
+    "heroes/sheet-01.png",
+    "heroes/sheet-02.png",
+    "heroes/sheet-03.png",
+    "heroes/sheet-04.png",
+    "heroes/sheet-05.png",
+    "heroes/sheet-06.png",
+    "combat/sheet-01.png",
+    "combat/sheet-02.png",
+    "combat/sheet-03.png",
+    "combat/sheet-04.png",
+    "final/sheet-01.png",
+    "final/sheet-02.png",
+    "skills/knight-1.png",
+    "skills/knight-2.png",
+    "skills/dwarf-1.png",
+    "skills/dwarf-2.png",
+    "skills/elf-1.png",
+    "skills/elf-2.png",
+    "skills/mage-1.png",
+    "skills/mage-2.png"
+  ],
+  "representatives": [
+    {
+      "id": "knight_crescent_cut",
+      "status": "improved_static_detail",
+      "evidenceSet": "final",
+      "frames": [
+        {
+          "file": "final/001-knight_crescent_cut.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "5956bfe21f8099645fb9dedbd20331bcc690a7d066fe7c3f6584c0f9d726b37a"
+        },
+        {
+          "file": "final/002-knight_crescent_cut.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "3fa44d9d6ae5df580ef466779137fd931fbaa2a8c3d9d4df1d43682c41119caa"
+        }
+      ],
+      "observation": "면과 날의 이어짐이 완화되고0.18초 중심 별광이 줄었다. 열린 초승달과 무기 방향은 남는다.",
+      "residual": "분할 면과 끝의 미세 꺾임은 남으며 실제 휘두름 속도는 정지 표본으로 수용하지 않는다."
+    },
+    {
+      "id": "knight.common.whirlwind",
+      "status": "improved_static_detail",
+      "evidenceSet": "final",
+      "frames": [
+        {
+          "file": "final/003-knight.common.whirlwind.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "a8b9504353a8944c8b35e67eb32a38f3a245efbe1b9f61af60b856db26d85879"
+        },
+        {
+          "file": "final/004-knight.common.whirlwind.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "d5b54b7436b1d840886433de605e81ce0a84329da73690df439e9a09e407df90"
+        }
+      ],
+      "observation": "굵은 수평 궤도의 큰 꺾임과 얇은 안쪽 선의 이음이 줄고0.18초 중심광이 사라진다.",
+      "residual": "넓은 궤도는 여전히 분할 면이다. 실제 무기 궤적/다인 가림은 별도."
+    },
+    {
+      "id": "knight.steel_knight.twin_cyclone",
+      "status": "improved_static_detail",
+      "evidenceSet": "final",
+      "frames": [
+        {
+          "file": "final/005-knight.steel_knight.twin_cyclone.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "0b5fc2057b4d161ce24791a8e7a22986f7c913c92f436f72d2e41f8d9823ab88"
+        },
+        {
+          "file": "final/006-knight.steel_knight.twin_cyclone.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "d444263d59d4884c75dfddd3a1f247b9825dbfdf99af5d4c05c9ea3c43c73ac2"
+        }
+      ],
+      "observation": "큰4각 교차 띠가 둥근 두 기울기 궤도로 바뀌어 굵은 면 접합에 대한 중간 지적이 해소됐다.",
+      "residual": "12분할은 관찰됐지만 완전 연속 곡면은 아니다. 터치8분할의 실제 기기 화면은 미검증."
+    },
+    {
+      "id": "knight.steel_knight.blade_storm",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/007-knight.steel_knight.blade_storm.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "43ccee743cdcf5eb947afb74c450bd38bb9eb40ecaa06c04c50fd0b809c3c362"
+        },
+        {
+          "file": "heroes/008-knight.steel_knight.blade_storm.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "49b076de7a2069ec786319574621a337307378757990208c9d70571751ce9945"
+        }
+      ],
+      "observation": "안쪽 짧은 선의 접합이 매끄러워지고 늦은 중심광이 줄었다. 높이가 다른 칼날 호는 보존된다.",
+      "residual": "굵은 호의 분할과 큰 범위선은 남는다. 이번 변화로 전체 기술 미술을 수용하지 않는다."
+    },
+    {
+      "id": "knight.paladin.dawn_burst",
+      "status": "improved_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/009-knight.paladin.dawn_burst.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "c8ce620d586a9433c8fdfa49efeb47ffe94eeb7539f3b8e65bd6984353a4f392"
+        },
+        {
+          "file": "heroes/010-knight.paladin.dawn_burst.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "b9b7df43bb7fe81cdc9c67bb88681f5be32d2aa4582e8bf0da023aa54facfa0f"
+        }
+      ],
+      "observation": "0.18초 발밑 금빛 flare가 줄고 금빛 인장/방패와 열린 지면이 남는다.",
+      "residual": "여러 바닥 원에 비해 아이콘 초점이 작다. 기본 회색 모형 비교라 실전 읽기는 후속."
+    },
+    {
+      "id": "mage.pyro.ember_lance",
+      "status": "improved_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/011-mage.pyro.ember_lance.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "36ac5e97c591532570569e96428b1c1de916a05dfc74b350cfa13215e0da8063"
+        },
+        {
+          "file": "heroes/012-mage.pyro.ember_lance.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "cf23d8e88a9cd82b94e67434521889b421761e61e21c54d3115409e474463f53"
+        }
+      ],
+      "observation": "각진 백색 이중선이 이어진 주황 곡선으로 바뀌어 화염 본체와 꼬리가 구분된다.",
+      "residual": "본체의 큰 형상은 기존판 유지. 연속 화염 운동과 길이/수명은 미검증."
+    },
+    {
+      "id": "mage.pyro.flame_dart",
+      "status": "improved_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/013-mage.pyro.flame_dart.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "8903a296e6918da54d08ff1c46de333f8b7fdd73a18ffb35b0b35c05f8abb839"
+        },
+        {
+          "file": "heroes/014-mage.pyro.flame_dart.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "f01efe35dd5d0b0ef5d46ba3a31082dbaa5d11b0fd3b5426ad16552c7177e817"
+        }
+      ],
+      "observation": "밝고 각진 줄의 이음이 연속 주황 꼬리로 완화되며 작은 화염 핵이 남는다.",
+      "residual": "야간 꼬리는 매우 약하다. 실제 이동과 거리에 따른 위치 단서 확인 필요."
+    },
+    {
+      "id": "mage.pyro.molten_line",
+      "status": "preserved_static_identity",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/015-mage.pyro.molten_line.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "af53128d6daf32d82c7183ab3f7498b0eb3d000917f3cdcc83b26dfdfd6b77ac"
+        },
+        {
+          "file": "heroes/016-mage.pyro.molten_line.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "2968f0578a6db4ed57070872b0451503e82c96486729916b255e077fd8b7ea67"
+        }
+      ],
+      "observation": "지면의 연속 용융 띠와 밝은 마디가 유지된다. 공중 불창으로 되돌아가지 않았다.",
+      "residual": "이번 전후에서 큰 형상 개선을 주장할 차이는 제한적이며 고저차 접지는 미검증."
+    },
+    {
+      "id": "mage.pyro.caldera_s_judgment",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/017-mage.pyro.caldera_s_judgment.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "5f3dbeee2d9c41918082359b9b6efbdb1e9ad1ee35758d9344136acde239695c"
+        },
+        {
+          "file": "heroes/018-mage.pyro.caldera_s_judgment.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "479af14fdfa8b01171fa9d078e6e0e60a0bb9ce29b30ba759a4c578567e156a9"
+        }
+      ],
+      "observation": "주변 선의 접합/색 위계가 완화되고 암석·분출 초점이 유지된다.",
+      "residual": "큰 원/방사선에 비해 분출 초점이 작고 판형 면이 드러난다. 실제 궁극기 초점 수용은 남음."
+    },
+    {
+      "id": "mage.common.water_ball",
+      "status": "preserved_static_identity",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/019-mage.common.water_ball.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "af567b781d4cb87333ef2b8fc9a0ae73ed675659a8794ba0a0f6cfd14412bce5"
+        },
+        {
+          "file": "heroes/020-mage.common.water_ball.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "04359c50a69d3c6175f51f7e7b72a6114b6271252d6bb8593c7a4f9baf24361d"
+        }
+      ],
+      "observation": "등방 물방울과 짧은 포말 윤곽이 보존된다.",
+      "residual": "0.18초 야간 구체는 어둡고 전후 차이가 작다. 야간/원거리 가독성은 남음."
+    },
+    {
+      "id": "mage_tidal_ring",
+      "status": "improved_static_detail",
+      "evidenceSet": "final",
+      "frames": [
+        {
+          "file": "final/007-mage_tidal_ring.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "666cc149df91c018daf268057d25a15ddd92b2cc6c388d92499ad5903e91dd74"
+        },
+        {
+          "file": "final/008-mage_tidal_ring.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "4dbe582ea36e60b926689812acb7cfcf5579f6b50d94892bf79297f0600dc333"
+        }
+      ],
+      "observation": "물마루 굵은 띠가 더 둥글어지고 중심광이 낮아지며 내부의 바닥/몸이 보인다.",
+      "residual": "분할 면과 별도 범위선은 남는다. 수면의 연속 움직임은 미수용."
+    },
+    {
+      "id": "mage.common.gravity",
+      "status": "improved_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/023-mage.common.gravity.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "a35800113c24c43a01c07a942709e52bc67863fc8be0d766472891f212a99cf2"
+        },
+        {
+          "file": "heroes/024-mage.common.gravity.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "a6d165b0c8307a7b37b13c8381c4db66a1f4b8eafdcc39057d9eff0873c4e723"
+        }
+      ],
+      "observation": "다각형처럼 꺾이던 보라 궤도가 이어진 궤도로 바뀌고 수렴 중심은 남는다.",
+      "residual": "작은 회전/수렴의 전체 시간 흐름은 정지 표본으로 확정하지 않는다."
+    },
+    {
+      "id": "mage.cryo.frost_lance",
+      "status": "preserved_static_identity",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/025-mage.cryo.frost_lance.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "10364bd72414708080eda0acb30b2d72650fd914e6421d4b0614897735d430a9"
+        },
+        {
+          "file": "heroes/026-mage.cryo.frost_lance.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "e63c09a04890bb9026d00d42dcd6ac6f129cc9337054221f702ed3480e193a0a"
+        }
+      ],
+      "observation": "가늘고 긴 각진 얼음 본체와 뒤쪽 눈 조각이 보존된다.",
+      "residual": "야간 본체가 어둡다. 이번 자료에는 얼음4종의 같은 시점 야간 전후가 모두 있지 않다."
+    },
+    {
+      "id": "mage.cryo.froststorm",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/027-mage.cryo.froststorm.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "d72d848b4b281974cce73421450167627be3aed965662e6707d687e82938d226"
+        },
+        {
+          "file": "heroes/028-mage.cryo.froststorm.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "76c5b9679f18d85863afd72513084f2d6647a33bca52e7bc183225948d5d9c2c"
+        }
+      ],
+      "observation": "얇은 원/기류 선의 접합이 줄고3층 형태·하강 결정이 유지된다.",
+      "residual": "굵은 기류 면은 여전히 각지며 실제 낙하/층의 소멸은 미검증."
+    },
+    {
+      "id": "mage.cryo.eternal_tempest",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/029-mage.cryo.eternal_tempest.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "15b9e3cc8eeb029e74127ca9af54287557cafeb9742cc5a19f5e2ebabe9c70b7"
+        },
+        {
+          "file": "heroes/030-mage.cryo.eternal_tempest.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "1be430fea76d9a687f2afbbff131eeca012d146653cb8beb323dcafaa6d82763"
+        }
+      ],
+      "observation": "중앙 회전선이 이어지고 층진 기류/주변 결정이 남는다.",
+      "residual": "큰 범위에 비해 중앙 초점이 작다. 다인 시야의 주목도와 결정 하강은 미수용."
+    },
+    {
+      "id": "mage.cryo.chain_lightning",
+      "status": "preserved_static_identity",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/031-mage.cryo.chain_lightning.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "47a9dda535205883ccd3fcd7e5b73108c75445df1b8185dc868174f8840cc2c1"
+        },
+        {
+          "file": "heroes/032-mage.cryo.chain_lightning.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "4705ca2c6ba06d951bbdefd0ea7727b8f78decdb6c25e96ab9127b7c53e06a74"
+        }
+      ],
+      "observation": "청색 꺾인 주 경로와 끝/분기 단서가 유지된다.",
+      "residual": "이 표본의 변화는 제한적이다. 연쇄 대상 이동/빈 대상/시간은 엔진 검사와 실제 재생을 분리."
+    },
+    {
+      "id": "elf.magic_archer.bloom_shot",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/033-elf.magic_archer.bloom_shot.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "755d307742216b32c0a84d57bcabd415fbdd2f298f5a94b8918b8c0cc97a3aea"
+        },
+        {
+          "file": "heroes/034-elf.magic_archer.bloom_shot.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "a25fb3a10e46a02073c579f1082334951903b1a5c2d642d9f1da58544d6d5752"
+        }
+      ],
+      "observation": "연속 자연색 꼬리와 잎 면을 보존하고 밝은 잔광의 지배가 줄었다.",
+      "residual": "잎/촉의 큰 형상은 기존판이다. 일부 주황 입자는 Before에도 있어 신규 색 회귀로 분류하지 않음."
+    },
+    {
+      "id": "elf.magic_archer.vine_burst",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/035-elf.magic_archer.vine_burst.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "eb466c16c1c5b5b4f9392773e085d168b7c448a3cdeb3b6155b222f9607a1d5b"
+        },
+        {
+          "file": "heroes/036-elf.magic_archer.vine_burst.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "26f4d5a4c77bc08b5aa236e52079f933f3102791375e5ceeeb0177bdd06da6b5"
+        }
+      ],
+      "observation": "중심광을 줄인 뒤 잎·줄기/구속부가 남으며 얇은 둘레선이 이어진다.",
+      "residual": "자연 초점 뒤에 기존 주황 입자가 남는다. 입자 재방출 표본의 운동/수명은 미검증."
+    },
+    {
+      "id": "elf.magic_archer.spirit_arrowfall",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/037-elf.magic_archer.spirit_arrowfall.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "3ffd0c8cdee0d5c80da834561346bea01aec43b546fb3ffeb3caf4f692cf5798"
+        },
+        {
+          "file": "heroes/038-elf.magic_archer.spirit_arrowfall.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "12bc547d64456d5242817c3348d78f31b74d4be4de2de71974e951587910559f"
+        }
+      ],
+      "observation": "수관 곡선이 이어지고 잎 달린 중심과 낙하 표식이 유지된다.",
+      "residual": "큰 범위/선에 비해 수관 초점이 작고 일부 낙하 형상은 직사각 면으로 읽힌다."
+    },
+    {
+      "id": "dwarf.iron_axe.returning_echo",
+      "status": "preserved_static_identity",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/039-dwarf.iron_axe.returning_echo.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "58a71e5efba6bc878740675a1fe035c3632951db468527aeee738eae9dd1f653"
+        },
+        {
+          "file": "heroes/040-dwarf.iron_axe.returning_echo.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "6d9a91c7ef1ee6350b37c70e5dd446f55530cb786e31dbe29f3bf00dc0b90332"
+        }
+      ],
+      "observation": "도끼 형상과 가는 궤적이 남고 본체를 덮는 새 큰 잔상이 생기지 않았다.",
+      "residual": "이번 pulse1 표본만으로 귀환과 반복 타격 전체를 수용하지 않는다."
+    },
+    {
+      "id": "dwarf.common.ground",
+      "status": "improved_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/041-dwarf.common.ground.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "961bf9aa3be74df99638e9e93d94c28c017bee20f95cc2346e614109a68d8d54"
+        },
+        {
+          "file": "heroes/042-dwarf.common.ground.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "7a56ec59be269197b56909ef6bc7a781ac21a1e2428be69a3dcdfb1c723ec894"
+        }
+      ],
+      "observation": "지면 원/갈라지는 선의 다각 접합이 완화되고 무거운 파편이 남는다.",
+      "residual": "지면 접촉 시점/고저차와 후속 펄스는 정지 표본 밖."
+    },
+    {
+      "id": "dwarf.gunner.siege_barrage",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/043-dwarf.gunner.siege_barrage.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "ce6a296c05f10e9a725338432a4944ed5a9a23f93f56a1ba4038d42ad9302571"
+        },
+        {
+          "file": "heroes/044-dwarf.gunner.siege_barrage.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "799527167ddac6bb23ca20283887d90b871eb3dab71e12b6cd42893caee0d1f7"
+        }
+      ],
+      "observation": "포탄 탄도의 꺾임이 줄고 탄 묶음/접촉 초점이 보존된다.",
+      "residual": "범위 대비 작은 포탄 묶음의 주목도와 실제 탄도·다중 펄스는 미수용."
+    },
+    {
+      "id": "elf.marksman.grand_volley",
+      "status": "partial_static_detail",
+      "evidenceSet": "heroes",
+      "frames": [
+        {
+          "file": "heroes/045-elf.marksman.grand_volley.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "f27d9ade552d3358ffaff835ef6fb9a47f68516a08c3b0643e3b4cbef370e094"
+        },
+        {
+          "file": "heroes/046-elf.marksman.grand_volley.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "8e72fcaff399eed460327018c2df405f4e414c1c53f64792f5135d4e43426eef"
+        }
+      ],
+      "observation": "중앙 활 곡선이 이어지고 분산 화살/촉 방향이 보존된다.",
+      "residual": "실제 시야에서 작은 활 왕관 초점이 충분한지 남는다. 화살 전체 이동은 정지 재생 아님."
+    },
+    {
+      "id": "dwarf.common.overhead",
+      "status": "improved_static_detail",
+      "evidenceSet": "final",
+      "frames": [
+        {
+          "file": "final/009-dwarf.common.overhead.png",
+          "age": 0.055,
+          "clockTime": 12,
+          "sha256": "a6d8744dec91b0bae24e4be41c5b193007ee8200192eb3c63eeb514e2743e540"
+        },
+        {
+          "file": "final/010-dwarf.common.overhead.png",
+          "age": 0.18,
+          "clockTime": 0,
+          "sha256": "03e0b4e13e2e852fe633176bde4dd98a7cd67a1ea9f3c84877006f1862decc76"
+        }
+      ],
+      "observation": "날과 바깥 잔상 접합이 완화되고0.18초 중심광이 줄며 내려찍기 방향의 열린 호가 남는다.",
+      "residual": "실제 도끼의 동기/접촉은 별도 무기 표본과 연속재생이 필요하다."
+    }
+  ],
+  "combatReview": [
+    {
+      "id": "enemy.Imp.contact",
+      "file": "combat/002-enemy.Imp.contact.png",
+      "age": 0.035,
+      "clockTime": 0,
+      "sha256": "0b40c28812fac71ce5868dd65afaad54ff4d1b0eb43e931e72cac65e4c5e729e",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "주황 고리/파편이 유지되고0.035초 중심광은 축소된다.0.18초 잔류 고리는 남는다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Imp.contact",
+      "file": "combat/003-enemy.Imp.contact.png",
+      "age": 0.18,
+      "clockTime": 12,
+      "sha256": "f273d2e01ece5cdf475abe3df3056a1f46d0c8df36cb139a84a58baf04dec5e6",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "주황 고리/파편이 유지되고0.035초 중심광은 축소된다.0.18초 잔류 고리는 남는다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.IceElf.flight",
+      "file": "combat/004-enemy.IceElf.flight.png",
+      "age": 0.12,
+      "clockTime": 0,
+      "sha256": "68bc869c220e8beb87a2506e3900eca2c250f15e753ce97dca8a7a50b8410f20",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "청색 각진 본체를 유지하고 흰 꼬리가 줄어든다. 어두운 본체와 약한 꼬리의 원거리 위협 가독성은 미수용.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.IceElf.contact",
+      "file": "combat/005-enemy.IceElf.contact.png",
+      "age": 0.18,
+      "clockTime": 12,
+      "sha256": "0c58dca62261fe17fbf4983ca6a38f438b81d025e367b87e9f6ace5c4eb48243",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "각진 청색 얼음 파편과 접촉 외곽이 유지된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Shaman.flight",
+      "file": "combat/006-enemy.Shaman.flight.png",
+      "age": 0.12,
+      "clockTime": 0,
+      "sha256": "07e22ad68d6d597653ac96c6975f2b128fe85e335f9ff6753f30b6e958a6d223",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "보라 삼각 핵/궤도와 주변 조각은 남고 밝은 꼬리가 줄어든다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Shaman.contact",
+      "file": "combat/007-enemy.Shaman.contact.png",
+      "age": 0.18,
+      "clockTime": 12,
+      "sha256": "bc8f355c392d269b668981b2ad690f3e1f669a6f164090f0c2c069959510e56d",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "보라 조각과 궤도형 접촉이 유지된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Lich.flight",
+      "file": "combat/008-enemy.Lich.flight.png",
+      "age": 0.12,
+      "clockTime": 0,
+      "sha256": "63e4713b8db1623c93df4dbbb7c1a53e2518f7241751daaddf2e0d6c76103a63",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "청록 영혼 핵/외곽을 유지하고 길고 밝은 꼬리의 지배가 줄어든다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Lich.contact",
+      "file": "combat/009-enemy.Lich.contact.png",
+      "age": 0.035,
+      "clockTime": 12,
+      "sha256": "25d12656b51c2e49e16f9e40b690e2759542984cf7e2de17dd1b8c0342e5dc35",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "상승 줄기형 접촉이 보존되며0.035초 중심광 축소/0.18초 잔류 분리가 관측된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Lich.contact",
+      "file": "combat/010-enemy.Lich.contact.png",
+      "age": 0.18,
+      "clockTime": 0,
+      "sha256": "803d4477090d78cccd41f7e4d59fc152198c667a04782f4d569c3344825b0eeb",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "상승 줄기형 접촉이 보존되며0.035초 중심광 축소/0.18초 잔류 분리가 관측된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Veyr.flight",
+      "file": "combat/011-enemy.Veyr.flight.png",
+      "age": 0.12,
+      "clockTime": 12,
+      "sha256": "17c33ebcbc7ca2ca15b03b71822dc486578e6d6eed78c79cc4812cd5e614785b",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "보라 육각/뾰족한 핵은 남고 밝은 꼬리가 옅어진다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Veyr.contact",
+      "file": "combat/012-enemy.Veyr.contact.png",
+      "age": 0.18,
+      "clockTime": 0,
+      "sha256": "f9039447e9e5bb8da2c96f4363529abf2d30414d6e2d3fcc87e751c585ec75ab",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "보라색 불균등 방사 조각이 유지된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.VenomcoilKing.flight",
+      "file": "combat/013-enemy.VenomcoilKing.flight.png",
+      "age": 0.12,
+      "clockTime": 12,
+      "sha256": "c4dffd30b627a74187ff1452cf079581a47c0d20b31f0feac47012746afaf266",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "황록 다중 방울 본체와 소수 주변 방울이 유지되고 꼬리는 약해진다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.VenomcoilKing.contact",
+      "file": "combat/014-enemy.VenomcoilKing.contact.png",
+      "age": 0.18,
+      "clockTime": 0,
+      "sha256": "2853c50e3a39056ccf99bec742ea58f40b34688e98e0f1c3f0560b4c87c3b4f8",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "황록 고리/방울 접촉이 유지된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Silkweaver.flight",
+      "file": "combat/015-enemy.Silkweaver.flight.png",
+      "age": 0.12,
+      "clockTime": 12,
+      "sha256": "0f87f2041154061fe682931fa6167917ccd5ba97b5ab94e712da97ceba3242a1",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "백색 격자형 본체는 보존되고 뒤 잔상이 옅어진다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Silkweaver.contact",
+      "file": "combat/016-enemy.Silkweaver.contact.png",
+      "age": 0.18,
+      "clockTime": 0,
+      "sha256": "594c87fad17e55ec3a9523327f9c7c2fee96234cc9b234730e16a90aa5ae560e",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "열린 방사형 접촉선이 보존된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "mage_wind_lance",
+      "file": "combat/017-mage_wind_lance.png",
+      "age": 0.12,
+      "clockTime": 12,
+      "sha256": "58056962a97be8dee816a4a3d6a475d670c4eb61a0fcbdc75c69703c719f4396",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "두 열린 기류 리본/전진축과 밝은 앞부분이 유지된다. 이 캡처로 전체 비행 동작 개선을 판정하지 않는다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "support.Heal",
+      "file": "combat/018-support.Heal.png",
+      "age": 0.12,
+      "clockTime": 0,
+      "sha256": "207a5e54b373cd101cb4a119fcb5141ac0b59209e43e882e38117dc42e784242",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "얇고 덜 지배적인 link와 수혜자 옆 상승 줄기/잎을 보존하며 몸통이 보인다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "support.Heal",
+      "file": "combat/019-support.Heal.png",
+      "age": 0.45,
+      "clockTime": 12,
+      "sha256": "5857a7dd023040619422f50cd2563b5ed998c99c46b291082175b63907321498",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "얇고 덜 지배적인 link와 수혜자 옆 상승 줄기/잎을 보존하며 몸통이 보인다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "support.Protect",
+      "file": "combat/020-support.Protect.png",
+      "age": 0.12,
+      "clockTime": 0,
+      "sha256": "7ee6ef20d4a15b6c49e0bb23196b60f9a6292f958dbc4024b712668223ea0934",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "얇은 금빛 link와 내부 몸이 보이는 금빛 구/바닥 고리가 보존된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "support.Protect",
+      "file": "combat/021-support.Protect.png",
+      "age": 0.45,
+      "clockTime": 12,
+      "sha256": "573ee29c46cb0bd8bbbfbef35949d33c175e76ed277d66285b3e65832195ea4f",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "얇은 금빛 link와 내부 몸이 보이는 금빛 구/바닥 고리가 보존된다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "support.Cleanse",
+      "file": "combat/022-support.Cleanse.png",
+      "age": 0.12,
+      "clockTime": 0,
+      "sha256": "b805e5417b7ebdb4098f2049553e5cf4560b07eb73a270e842153130f7344cb3",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "얇은 link와 수혜자 바깥의 짧은 조각이 보존되며0.45초 표본에는 소수 잔류만 남는다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "support.Cleanse",
+      "file": "combat/023-support.Cleanse.png",
+      "age": 0.45,
+      "clockTime": 12,
+      "sha256": "b2d1eb5286aeb3787de1b60c822461185ccfad9030a2fdb735b7f8d1c7ba7991",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "얇은 link와 수혜자 바깥의 짧은 조각이 보존되며0.45초 표본에는 소수 잔류만 남는다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    },
+    {
+      "id": "enemy.Imp.flight",
+      "file": "contrast/001-enemy.Imp.flight.png",
+      "age": 0.12,
+      "clockTime": 12,
+      "sha256": "f1ae15ecfd77473c591d01b45ff420d46cf6b2ddfc1def644c87479131f82d47",
+      "status": "partial_detail_improvement_or_identity_preserved",
+      "observation": "동일하게 워밍업된 지면에서 주황/백색 화염 본체가 유지되고 뒤의 밝고 넓은 꼬리가 옅어진다.",
+      "limit": "geometry를 고정하고 입자를 재방출한 정지 비교.입자 운동·전체 수명·실전 가독성 수용 아님."
+    }
+  ],
+  "weaponReview": [
+    {
+      "id": "basic.knight",
+      "file": "weapons-final/001-basic.knight.png",
+      "sha256": "b13b1c24eedfb0f5f8a8fd33a890af5d1bcb8b0c44c2465fae35361a92a4d38d",
+      "requestedAge": 0.26399999999999996,
+      "sampledAfterAge": 0.2735391254425049,
+      "afterTipTravel": 0.1985326111316681,
+      "beforeApproxAgeReportedByEngineering": 0.261,
+      "status": "observed_live_weapon_head_tail_only",
+      "observation": "실제 승인 무기와 열린 방향성 잔상이 보인다. After에서 꼬리 끝이 가늘고 옅은 형상을 관찰할 수 있다.",
+      "limit": "Before/After 콜백 시점이 완전히 같지 않다.정확한 폭·속도·잔상 수명·공격/타격 동기·다인 가림은 수용하지 않는다."
+    },
+    {
+      "id": "basic.dwarf",
+      "file": "weapons-final/002-basic.dwarf.png",
+      "sha256": "75d290dd1c7c3d1ad513f6e878b25403bdb14475d64d22bddeb6eb7f6a280fc7",
+      "requestedAge": 0.34476190476190477,
+      "sampledAfterAge": 0.35147304534912105,
+      "afterTipTravel": 0.5296312570571899,
+      "beforeApproxAgeReportedByEngineering": 0.35,
+      "status": "observed_live_weapon_head_tail_only",
+      "observation": "실제 승인 무기와 열린 방향성 잔상이 보인다. After에서 꼬리 끝이 가늘고 옅은 형상을 관찰할 수 있다.",
+      "limit": "Before/After 콜백 시점이 완전히 같지 않다.정확한 폭·속도·잔상 수명·공격/타격 동기·다인 가림은 수용하지 않는다."
+    }
+  ],
+  "catalogReview": [
+    {
+      "id": "knight.common.bash",
+      "name": "SHIELD BASH",
+      "classId": "knight",
+      "file": "skills/knight.common.bash.png",
+      "sha256": "3852ba2bbf20112461dcf3d102a90aaaa46cdc5c4796e62f0fbae01cb346c587",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.common.whirlwind",
+      "name": "WHIRLWIND",
+      "classId": "knight",
+      "file": "skills/knight.common.whirlwind.png",
+      "sha256": "68e351d604dfe1c958c44f7ae33d5cff7b324f3b5f98a7b76fe3eeabcae0cde0",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.common.provoke",
+      "name": "PROVOKE",
+      "classId": "knight",
+      "file": "skills/knight.common.provoke.png",
+      "sha256": "995f1b5e7556fca4f4d8238cc416613a91e743d3225b73f41638bc76fbf4a777",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.counter_slash",
+      "name": "COUNTER SLASH",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.counter_slash.png",
+      "sha256": "b3d52b1ddec583db24d590ac727912278378823760ee9cc1a54ca06a769315fb",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.steel_sweep",
+      "name": "STEEL SWEEP",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.steel_sweep.png",
+      "sha256": "1054058a6e56cf6072d74d22509ac61445d3dd134f3085c05fd7a29970ca1844",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.challenging_strike",
+      "name": "CHALLENGING STRIKE",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.challenging_strike.png",
+      "sha256": "25519bd0128bf630613c0dba716522c2b51f943f43f0e550ad3f75055240ee89",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.twin_cyclone",
+      "name": "TWIN CYCLONE",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.twin_cyclone.png",
+      "sha256": "14c0f8536b86cef10eddddf821cc71ec1f3da53669915e21ac243289f143262e",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.shield_breaker",
+      "name": "SHIELD BREAKER",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.shield_breaker.png",
+      "sha256": "a819b3dd6c019988c17c35283e9160de64bffe27d0b8c34ddaac6fa9fa0c2943",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.guardian_counter",
+      "name": "GUARDIAN COUNTER",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.guardian_counter.png",
+      "sha256": "9853a8938d5a04db81122038ade6a5c02a547d21f07ea3193d9788a8a7bd22f9",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.rallying_slash",
+      "name": "RALLYING SLASH",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.rallying_slash.png",
+      "sha256": "acdbe44abeabdbea24485d388918b8e404f160e9229993ad82e00b67180545b0",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.breaker_charge",
+      "name": "BREAKER CHARGE",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.breaker_charge.png",
+      "sha256": "05ba884af30badfcbfc88633fd65e10dfe34bb5df100c9b6e76dc80b8a71de34",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.vanguard_strike",
+      "name": "VANGUARD STRIKE",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.vanguard_strike.png",
+      "sha256": "16ad0df40b14a0cc833ef1b98ed15a26c5e62813b028c18c734961352148a6e4",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.blade_storm",
+      "name": "BLADE STORM",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.blade_storm.png",
+      "sha256": "3717caa32ea4d48b961a98ffd69810c4c6857e17f1f4b01f7d2a193a836c79b3",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.sweeping_break",
+      "name": "SWEEPING BREAK",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.sweeping_break.png",
+      "sha256": "1782dc26c3fb35f6afe2d8478f347cf2bf024bcbf22b7182e5fd3e4380753ace",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.warcry_assault",
+      "name": "WARCRY ASSAULT",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.warcry_assault.png",
+      "sha256": "8293eae9e543b9c1146612c7042a43d61e61a23651b0098e41ba3a3a64e5b989",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.steel_knight.unyielding_front",
+      "name": "UNYIELDING FRONT",
+      "classId": "knight",
+      "file": "skills/knight.steel_knight.unyielding_front.png",
+      "sha256": "66243618f30d385b63234b00321e1b495319738325178ff93e1e96ca8028deae",
+      "reviewedVia": "skills/knight-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.oathblade",
+      "name": "OATHBLADE",
+      "classId": "knight",
+      "file": "skills/knight.paladin.oathblade.png",
+      "sha256": "562e5cedbdd875ebd17ee50bd2732195d1c69f325e0949d864e5c0b45464652a",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.radiant_sweep",
+      "name": "RADIANT SWEEP",
+      "classId": "knight",
+      "file": "skills/knight.paladin.radiant_sweep.png",
+      "sha256": "870b3931e5d15714a324586e6e34bbf55a33007d769cac4afef4be11113604e4",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.oath_challenge",
+      "name": "OATH CHALLENGE",
+      "classId": "knight",
+      "file": "skills/knight.paladin.oath_challenge.png",
+      "sha256": "77898c5fe8bb7e6b9bd1f4bf41a4efcbda0b84821729fa17cb31e8c317b91f6e",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.dawn_burst",
+      "name": "DAWN BURST",
+      "classId": "knight",
+      "file": "skills/knight.paladin.dawn_burst.png",
+      "sha256": "d8070cd782a942b49f3df4a3552f4fe4b97b4feefcf8f8031730c08794d6d01a",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.oathbreaker_strike",
+      "name": "OATHBREAKER STRIKE",
+      "classId": "knight",
+      "file": "skills/knight.paladin.oathbreaker_strike.png",
+      "sha256": "f6e49fdee0ef67fdba0b1347b92b066027886e541d2f5e198ac7f4617e551325",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.shield_verdict",
+      "name": "SHIELD VERDICT",
+      "classId": "knight",
+      "file": "skills/knight.paladin.shield_verdict.png",
+      "sha256": "145f7274dc2dcac3076d51f903db44bbd50df6b08a00745abe75667b603b694c",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.guardian_slash",
+      "name": "GUARDIAN SLASH",
+      "classId": "knight",
+      "file": "skills/knight.paladin.guardian_slash.png",
+      "sha256": "f0999096de555efb9439fd40e8bbb68495229df9bae6bd3a9393cdbac6b0b2ff",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.radiant_charge",
+      "name": "RADIANT CHARGE",
+      "classId": "knight",
+      "file": "skills/knight.paladin.radiant_charge.png",
+      "sha256": "912973e93c857426a0f7fb741a08f87323c034998f475628580e925317880a23",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.valiant_advance",
+      "name": "VALIANT ADVANCE",
+      "classId": "knight",
+      "file": "skills/knight.paladin.valiant_advance.png",
+      "sha256": "5c01e05ed84d3f44928947a667027bcf22a0ab11c98c0db6c4278ff2e9a5729f",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.dawn_spiral",
+      "name": "DAWN SPIRAL",
+      "classId": "knight",
+      "file": "skills/knight.paladin.dawn_spiral.png",
+      "sha256": "4d12e7ddb5dfa993bbc27b53125449aadb1bc5e6f5c34a9b998891ac1cb76b8b",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.sunward_cross",
+      "name": "SUNWARD CROSS",
+      "classId": "knight",
+      "file": "skills/knight.paladin.sunward_cross.png",
+      "sha256": "808c7dc312612a8249e7ae17eac4a3d479d7312111142b9c2897f3e15242a54d",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.oathbound_assault",
+      "name": "OATHBOUND ASSAULT",
+      "classId": "knight",
+      "file": "skills/knight.paladin.oathbound_assault.png",
+      "sha256": "573d28d69f185f704382389b2ca3ab3b354430aacb2c6ba78986f5e5fa59fc1e",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight.paladin.oath_of_dawn",
+      "name": "OATH OF DAWN",
+      "classId": "knight",
+      "file": "skills/knight.paladin.oath_of_dawn.png",
+      "sha256": "0e18b0bbe72384effd69a1430adc2a6bb72a14099219446ed1ba37327da81035",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight_driving_thrust",
+      "name": "DRIVING THRUST",
+      "classId": "knight",
+      "file": "skills/knight_driving_thrust.png",
+      "sha256": "d2d8b7d62a84e5795a07f64e1bdcd28b495c5ac7397ae0faf6150579af88e01d",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight_crescent_cut",
+      "name": "CRESCENT CUT",
+      "classId": "knight",
+      "file": "skills/knight_crescent_cut.png",
+      "sha256": "7f30dcb67b8a3ee70eab39553f601916a3803036c82ccbbb761eb35bec9df98d",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "knight_guarded_strike",
+      "name": "GUARDED STRIKE",
+      "classId": "knight",
+      "file": "skills/knight_guarded_strike.png",
+      "sha256": "2a72656ee0b566c9759a7918e7517a8a834cc7483a7b9e96ce0377ceaace775a",
+      "reviewedVia": "skills/knight-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.common.overhead",
+      "name": "OVERHEAD SMASH",
+      "classId": "dwarf",
+      "file": "skills/dwarf.common.overhead.png",
+      "sha256": "6a7bb954c04c57553257decd0b0291f0f7ace8009acea7214f9705ca24fbee94",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.common.throw",
+      "name": "AXE THROW",
+      "classId": "dwarf",
+      "file": "skills/dwarf.common.throw.png",
+      "sha256": "db2f0fec6e79952d94ee459b26dd6ff9f9b95895774a5c4210d5c9c0a9526830",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.common.ground",
+      "name": "GROUND SLAM",
+      "classId": "dwarf",
+      "file": "skills/dwarf.common.ground.png",
+      "sha256": "bf3c706f03f1bb169d22403f6801142755ffc4b86f42b6b3ca9c28970e0c36cf",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.armor_splitter",
+      "name": "ARMOR SPLITTER",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.armor_splitter.png",
+      "sha256": "21a99a99fea5055e53c132fd24a0bde8fad6a38a22e6e5060468d79a816e435f",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.returning_echo",
+      "name": "RETURNING ECHO",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.returning_echo.png",
+      "sha256": "ff964a6a72a5043cc59b8b65317b31a402376f6b2c267f01a5da1aece5b7d6d5",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "preserved_static_identity",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_sweep",
+      "name": "MOUNTAIN SWEEP",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.mountain_sweep.png",
+      "sha256": "e1c6f1e5395fddc31c6d04f41bc367fc018ce232c285790c8cf4bb51ea38c9d2",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.crag_cleave",
+      "name": "CRAG CLEAVE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.crag_cleave.png",
+      "sha256": "17b78b236536b61e76c8c03d9d070526747fca69c1876634f56a4436909045d3",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.breaker_throw",
+      "name": "BREAKER THROW",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.breaker_throw.png",
+      "sha256": "c15b41367df5a76a131b6e0ba36440216d18eb67e2db0499fb8631d5c2d211b5",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.stonebound_leap",
+      "name": "STONEBOUND LEAP",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.stonebound_leap.png",
+      "sha256": "a83e251dbac8cd87fe0e3837f618813b7f24de3bddce9cbed8163265bf0f2005",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.iron_shoulder",
+      "name": "IRON SHOULDER",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.iron_shoulder.png",
+      "sha256": "adf0ad83cf7fd2fdaff7dd0ca7c1f9150b3f0ff56202a88c6554564fddd318a6",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.crosscut_axe",
+      "name": "CROSSCUT AXE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.crosscut_axe.png",
+      "sha256": "7bf16407101177a21fbfe000b8d4f5e63db3bc8b02c3d8efb3080e47c656c177",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_strike",
+      "name": "MOUNTAIN STRIKE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.mountain_strike.png",
+      "sha256": "159b57defb9e0886a70b59319f968afeb299057b77d50a180d1bbb3799cb58bf",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.shatter_blow",
+      "name": "SHATTER BLOW",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.shatter_blow.png",
+      "sha256": "e2885551f6d9f2f097a5dc2ca356b16d11e0c0576d9415e24e74804aeca0029e",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.twin_axe_path",
+      "name": "TWIN AXE PATH",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.twin_axe_path.png",
+      "sha256": "9d5ecf03f5df13890799208b94253b0a2e0f1b71ba488b78de0a071ea99967f6",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.tremor_guard",
+      "name": "TREMOR GUARD",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.tremor_guard.png",
+      "sha256": "993c919ce4e6b0218cb9e315323a335190d3337c3d93fff625ae4a6030567e93",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_collapse",
+      "name": "MOUNTAIN COLLAPSE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.iron_axe.mountain_collapse.png",
+      "sha256": "70447c5567afaa3dfa1f619e5bb89507c545c694fe789d0f52252829fbf60e56",
+      "reviewedVia": "skills/dwarf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.gunner_shot",
+      "name": "GUNNER SHOT",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.gunner_shot.png",
+      "sha256": "58eb736687e312b439c72320354a8961be85965837a986fe31ff33a65e98223e",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.bomb_toss",
+      "name": "BOMB TOSS",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.bomb_toss.png",
+      "sha256": "5a403e6d13922cac86a118fa5e4a9a11f764eba08b0c891eebafb19bbe33b75c",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.shell_burst",
+      "name": "SHELL BURST",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.shell_burst.png",
+      "sha256": "937b39cde11b6348d304cb2ae29d04054ae2c2fb0ef6b62d6f74ec07b5b313d4",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.quickfire",
+      "name": "QUICKFIRE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.quickfire.png",
+      "sha256": "ee9cd84cb5584f51128047da981e5dfeaf47f2b194a69723daa2a511dd50d28d",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.shrapnel_toss",
+      "name": "SHRAPNEL TOSS",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.shrapnel_toss.png",
+      "sha256": "64bf624661398ef9fd247b679d4ffb24acc6665e562433d253067f27a18d2b54",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.blast_step",
+      "name": "BLAST STEP",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.blast_step.png",
+      "sha256": "891b28c05c6f1042a66577fbf8c6c6635d940f92f48525f5799694d47760f618",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.scatter_shot",
+      "name": "SCATTER SHOT",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.scatter_shot.png",
+      "sha256": "9468ebe8d17907470eb9325dc1aec4e966b6b4e34fd78ef2902a6c6034568aa9",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.skipping_charge",
+      "name": "SKIPPING CHARGE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.skipping_charge.png",
+      "sha256": "224bdf899a7f21ff3a3e87af73b0fb481487f159b21953eb97923ecb9934633a",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.field_mortar",
+      "name": "FIELD MORTAR",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.field_mortar.png",
+      "sha256": "0eabc2c8b2ea02be53569ea10dca9c89da0cb595f850a72801fbaac1f7465e40",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.piercing_round",
+      "name": "PIERCING ROUND",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.piercing_round.png",
+      "sha256": "154206a61613c9919ad1b32e12404f57799dcb326a5016f500dd0df36853c2d4",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.rolling_charge",
+      "name": "ROLLING CHARGE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.rolling_charge.png",
+      "sha256": "b249d54c9eaf64ef8121c74d82269c5b322b16fa3cc10058311440d4eb6cabce",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.siege_pattern",
+      "name": "SIEGE PATTERN",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.siege_pattern.png",
+      "sha256": "8f0f9883ebc43054831f92a34d848a2c00731d72852aa8a9cab353335d61fa23",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf.gunner.siege_barrage",
+      "name": "SIEGE BARRAGE",
+      "classId": "dwarf",
+      "file": "skills/dwarf.gunner.siege_barrage.png",
+      "sha256": "d2391bdd04e7b1cf3e6391b1d3ef5972a7d4b5e85b4137d941ad7ab85503f856",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf_hooking_chop",
+      "name": "HOOKING CHOP",
+      "classId": "dwarf",
+      "file": "skills/dwarf_hooking_chop.png",
+      "sha256": "64830f7f28ee8aab89d280728ee0603ddda21a05ce15df9e1b0026d0f3599110",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf_low_sweep",
+      "name": "LOW SWEEP",
+      "classId": "dwarf",
+      "file": "skills/dwarf_low_sweep.png",
+      "sha256": "5a62df13990e7a0fe4cfd5705168698ffbabe278aa055ec688bec0f6c4bd653d",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "dwarf_braced_throw",
+      "name": "BRACED THROW",
+      "classId": "dwarf",
+      "file": "skills/dwarf_braced_throw.png",
+      "sha256": "4f39744d253c2aa5946ed4ceb1278bf3b25ec6eac235e69fa3770d8bb4eb99c9",
+      "reviewedVia": "skills/dwarf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.common.aimed",
+      "name": "AIMED SHOT",
+      "classId": "elf",
+      "file": "skills/elf.common.aimed.png",
+      "sha256": "2a3ffeee157bfad6a8f0ad32cbe5f5159e98ea123a943ac6beb7498aa05500d5",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.common.rapid",
+      "name": "RAPID FIRE",
+      "classId": "elf",
+      "file": "skills/elf.common.rapid.png",
+      "sha256": "555c704ed304db2a076b0bf0b1cf25790e05763fb06783588eec13af5c0fc13a",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.common.multi",
+      "name": "MULTI SHOT",
+      "classId": "elf",
+      "file": "skills/elf.common.multi.png",
+      "sha256": "429f931bce7828049678bba108f1d6be1771cd205e9d4ed53b96bad03c8dcb8d",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.weakpoint_shot",
+      "name": "WEAKPOINT SHOT",
+      "classId": "elf",
+      "file": "skills/elf.marksman.weakpoint_shot.png",
+      "sha256": "5abb96dc4ffe1244cec18f77af634cbaf77c7ca117f90fd449c4c0b4af4b463e",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.moving_volley",
+      "name": "MOVING VOLLEY",
+      "classId": "elf",
+      "file": "skills/elf.marksman.moving_volley.png",
+      "sha256": "5e3351a700559e889af3dd8eb924ed1610063e54de09bd56796f96117e191d81",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.piercing_line",
+      "name": "PIERCING LINE",
+      "classId": "elf",
+      "file": "skills/elf.marksman.piercing_line.png",
+      "sha256": "a4102dad4cc6927e51ab98adb1cb7bb45d36161267e445dae846ff46edcf0c6d",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.heavy_draw",
+      "name": "HEAVY DRAW",
+      "classId": "elf",
+      "file": "skills/elf.marksman.heavy_draw.png",
+      "sha256": "28bfed35a6e521cd1eda253a9db5c04ccd8a229b21a33fbefa68249560ebec10",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.precision_volley",
+      "name": "PRECISION VOLLEY",
+      "classId": "elf",
+      "file": "skills/elf.marksman.precision_volley.png",
+      "sha256": "3db9e1cf1519be6d01669eeafc47df10301020cee74d6b51cde307fdcf9b9631",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.fan_break",
+      "name": "FAN BREAK",
+      "classId": "elf",
+      "file": "skills/elf.marksman.fan_break.png",
+      "sha256": "9e5636961ed160241659b080602d6be80783578ef404a7f4edfcd3e132b1a85c",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.hunter_s_focus",
+      "name": "HUNTER'S FOCUS",
+      "classId": "elf",
+      "file": "skills/elf.marksman.hunter_s_focus.png",
+      "sha256": "171124626796821409a31b7e3b32009e91ebbbc96269040643cf272ae49e54aa",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.retreating_fire",
+      "name": "RETREATING FIRE",
+      "classId": "elf",
+      "file": "skills/elf.marksman.retreating_fire.png",
+      "sha256": "b560b4dd28ca781ff5bb30f11a48c4770650d7447186d5fba9bafea1b9a5e169",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.piercing_volley",
+      "name": "PIERCING VOLLEY",
+      "classId": "elf",
+      "file": "skills/elf.marksman.piercing_volley.png",
+      "sha256": "0e97124944883b88200dcc499d9017651dfafe68ffc6cdb492c768fdba2de781",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.mark_breaker",
+      "name": "MARK BREAKER",
+      "classId": "elf",
+      "file": "skills/elf.marksman.mark_breaker.png",
+      "sha256": "bf277e4f011462ad6cfbd1031dd9cf100ff99a5f4924293e51c46b119521fec3",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.crossfire",
+      "name": "CROSSFIRE",
+      "classId": "elf",
+      "file": "skills/elf.marksman.crossfire.png",
+      "sha256": "86ea900136552dba62a8c0be80d43ef5c06a10dff2b7d67c3f9f0b520256b4dc",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.arrow_rain",
+      "name": "ARROW RAIN",
+      "classId": "elf",
+      "file": "skills/elf.marksman.arrow_rain.png",
+      "sha256": "b2c41cb8e33f2128bafb42f16d04b09b9c665c0e810ac7a9d6b2f089e9d61458",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.marksman.grand_volley",
+      "name": "GRAND VOLLEY",
+      "classId": "elf",
+      "file": "skills/elf.marksman.grand_volley.png",
+      "sha256": "8f44bae2fe23f947871e6348cf588a00d8e0db409d2459ae4a843c214bd76749",
+      "reviewedVia": "skills/elf-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.elemental_arrow",
+      "name": "ELEMENTAL ARROW",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.elemental_arrow.png",
+      "sha256": "eff10230c1506cf584d7deaf20a3466eb855e1f7c237059947fb3fbb65176067",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.spark_volley",
+      "name": "SPARK VOLLEY",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.spark_volley.png",
+      "sha256": "e52b3935eacf09dc300ddee0250e9639eb39abe4865062f51b53d2ec5fa03724",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.vine_trap",
+      "name": "VINE TRAP",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.vine_trap.png",
+      "sha256": "b19098ddc38e2790cfd43cbb02f6f41f9fd301fb343a5a9c4d3fe80d8173db5c",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.bloom_shot",
+      "name": "BLOOM SHOT",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.bloom_shot.png",
+      "sha256": "fc5eacbe6fdc0910b5b00277109d255838aad70c9c97d4c08abd31804ac3f740",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.storm_arrow",
+      "name": "STORM ARROW",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.storm_arrow.png",
+      "sha256": "00eecfe35303f956ee1ce5432102222a73e1255a53add698c47317cd962aba46",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.rooting_fan",
+      "name": "ROOTING FAN",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.rooting_fan.png",
+      "sha256": "f7b965955491e7f4530f159437a908a66dd5677d5ab57d65f9a7f215da4af1d9",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.warden_arrow",
+      "name": "WARDEN ARROW",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.warden_arrow.png",
+      "sha256": "93097d2cad0a7e68691a0078bef0982cb3140378bb268644ccb461123d63a2c7",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.gliding_shot",
+      "name": "GLIDING SHOT",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.gliding_shot.png",
+      "sha256": "bf41dd008fc2593cb2550a69ebcbc0687305ada56a1a2ea2a3c4cf5fd9d3fc07",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.spirit_rain",
+      "name": "SPIRIT RAIN",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.spirit_rain.png",
+      "sha256": "154fce4af54c5a25f205cccc04c6c3cd71ffeb64e799c978abf7aaf7439b31e2",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.elemental_pierce",
+      "name": "ELEMENTAL PIERCE",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.elemental_pierce.png",
+      "sha256": "76c2713ed6f878e7b6aa928ec06cfc204525060c80520bdb4d2b74c1f09c2e62",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.echo_arrows",
+      "name": "ECHO ARROWS",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.echo_arrows.png",
+      "sha256": "3bbd3251e156ddceb42dbedce6cc528d7fae980a7e74c3fc7b3d7ba17dbba8d7",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.vine_burst",
+      "name": "VINE BURST",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.vine_burst.png",
+      "sha256": "2952e9e685dd1209a5771a50fce99db757fe4e8f8a24abc1a2e4a87a06172b51",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf.magic_archer.spirit_arrowfall",
+      "name": "SPIRIT ARROWFALL",
+      "classId": "elf",
+      "file": "skills/elf.magic_archer.spirit_arrowfall.png",
+      "sha256": "4070afea26b796005a0e48749f9c557bf2c928af47f1b4acc7fc3b9956fea1b7",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf_retreating_shot",
+      "name": "RETREATING SHOT",
+      "classId": "elf",
+      "file": "skills/elf_retreating_shot.png",
+      "sha256": "1fcfb8cf9346ffe9f42fd6e3069682b0b15328a3e778f26bb9d7ec14121e292e",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf_pinning_shot",
+      "name": "PINNING SHOT",
+      "classId": "elf",
+      "file": "skills/elf_pinning_shot.png",
+      "sha256": "9b1c1bed84bd4a3390f3b8aeca1825d2edbe00bfa0fc25da5d074be42f1ff446",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "elf_arrow_screen",
+      "name": "ARROW SCREEN",
+      "classId": "elf",
+      "file": "skills/elf_arrow_screen.png",
+      "sha256": "aca132933c4f12e7205c323ad1bdf61862d1ab2a9b62f70f3978768b1863c9b6",
+      "reviewedVia": "skills/elf-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.common.mana_bolt",
+      "name": "MANA BOLT",
+      "classId": "mage",
+      "file": "skills/mage.common.mana_bolt.png",
+      "sha256": "9a2a2d36292965f53742a4d64cf57efd55d3c867c46c1c9b14a621b8988b0910",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.common.water_ball",
+      "name": "WATER BALL",
+      "classId": "mage",
+      "file": "skills/mage.common.water_ball.png",
+      "sha256": "9bca793db89fbc2927c51adde292245bb137159131b8fc5a5658e5708feffab1",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "preserved_static_identity",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.common.gravity",
+      "name": "GRAVITY",
+      "classId": "mage",
+      "file": "skills/mage.common.gravity.png",
+      "sha256": "c52908c6a0536e83f604c87dbc1f59f65c9d562984d98b560822c5512ac11941",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.ember_lance",
+      "name": "EMBER LANCE",
+      "classId": "mage",
+      "file": "skills/mage.pyro.ember_lance.png",
+      "sha256": "34589975f15886553e9e1e7c74b63eb50a76e197f0a73a7b662019ac2fbcd22f",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.steam_burst",
+      "name": "STEAM BURST",
+      "classId": "mage",
+      "file": "skills/mage.pyro.steam_burst.png",
+      "sha256": "8d28aa3be9bbaa8d32d4148ec50de831b193d8a7e6f328e135fec3c4fdff5ed3",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.cinder_ring",
+      "name": "CINDER RING",
+      "classId": "mage",
+      "file": "skills/mage.pyro.cinder_ring.png",
+      "sha256": "46bd4004f4a47e57d7ed46093b1860d15f6e42c7a45ca83582d24779e3ced82c",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.flame_dart",
+      "name": "FLAME DART",
+      "classId": "mage",
+      "file": "skills/mage.pyro.flame_dart.png",
+      "sha256": "22c5bfe947f13be797100b9bdd8db4e0aca245df2db135a4daca3f736c16ee12",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.earth_rise",
+      "name": "EARTH RISE",
+      "classId": "mage",
+      "file": "skills/mage.pyro.earth_rise.png",
+      "sha256": "351a4f8edb088193d85394f20d968be511116089cce9e9bd2524c40b14f4a3f0",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.ember_step",
+      "name": "EMBER STEP",
+      "classId": "mage",
+      "file": "skills/mage.pyro.ember_step.png",
+      "sha256": "640fda104bfd2082e22be1f65a8862e41da1cc581dfff8e370a39e0de6bd00fa",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.stone_lance",
+      "name": "STONE LANCE",
+      "classId": "mage",
+      "file": "skills/mage.pyro.stone_lance.png",
+      "sha256": "0b6b7a7b9cb7ec36c4752b9b2494da69f94353d189b81eceed8d0040332e8285",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.searing_ward",
+      "name": "SEARING WARD",
+      "classId": "mage",
+      "file": "skills/mage.pyro.searing_ward.png",
+      "sha256": "663f1088f527f79d5cd437ead536190781139056bea7f229cb468f52260c6dca",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.lava_eruption",
+      "name": "LAVA ERUPTION",
+      "classId": "mage",
+      "file": "skills/mage.pyro.lava_eruption.png",
+      "sha256": "d1f5680da43bb7e3bfb9afcbd16b3d28cc0d40e22901f4bfc03a112f273fac8f",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.magma_spear",
+      "name": "MAGMA SPEAR",
+      "classId": "mage",
+      "file": "skills/mage.pyro.magma_spear.png",
+      "sha256": "ee77330b774d9eb3c0c50cc74adb339cc6c3c0fe8dd941fb6b9f216e30bd4792",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.molten_line",
+      "name": "MOLTEN LINE",
+      "classId": "mage",
+      "file": "skills/mage.pyro.molten_line.png",
+      "sha256": "d99b5d52b8d241a96eb3142769bccfdaefc29809cede9ca626a5052a43b8169b",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "preserved_static_identity",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.ashfall",
+      "name": "ASHFALL",
+      "classId": "mage",
+      "file": "skills/mage.pyro.ashfall.png",
+      "sha256": "50e746a68bb3a70eacf452f3d3090598cbd53f918f8d1ed31494c3560dc6b438",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.pyro.caldera_s_judgment",
+      "name": "CALDERA'S JUDGMENT",
+      "classId": "mage",
+      "file": "skills/mage.pyro.caldera_s_judgment.png",
+      "sha256": "6dbe834ff943b38ada1915e55763470059cfda0dbd87cb1792a39a8c3f0a70f1",
+      "reviewedVia": "skills/mage-1.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.frost_lance",
+      "name": "FROST LANCE",
+      "classId": "mage",
+      "file": "skills/mage.cryo.frost_lance.png",
+      "sha256": "6f249103f4d2dc84da3e05b7e4186143e49bd0967220b2a3f22e958fc6867bfb",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "preserved_static_identity",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.ice_shard",
+      "name": "ICE SHARD",
+      "classId": "mage",
+      "file": "skills/mage.cryo.ice_shard.png",
+      "sha256": "896fdee5047c17af23052bcc064cf015382b4ae8a87a0de6ce00e9d47c83f3c6",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.frost_ring",
+      "name": "FROST RING",
+      "classId": "mage",
+      "file": "skills/mage.cryo.frost_ring.png",
+      "sha256": "7cdb2d2f69a0e97f060b00c1579c291960f7536a282b83a6d737d80370667786",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.shatter_dart",
+      "name": "SHATTER DART",
+      "classId": "mage",
+      "file": "skills/mage.cryo.shatter_dart.png",
+      "sha256": "a3b90b0eb508a0aab68c646c28bde080d525d163c8bc70607fb9f7ca4591eab7",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.chain_lightning",
+      "name": "CHAIN LIGHTNING",
+      "classId": "mage",
+      "file": "skills/mage.cryo.chain_lightning.png",
+      "sha256": "e12b57b133d4a88d4b244eea81b72b1a2019a3b65e57c7d3b6c0e06e34a47284",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "preserved_static_identity",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.frost_step",
+      "name": "FROST STEP",
+      "classId": "mage",
+      "file": "skills/mage.cryo.frost_step.png",
+      "sha256": "58042bc445e39849d40d53f1b24ab62de37ad9b5b8db5810660ad5d9115b3640",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.thunder_spear",
+      "name": "THUNDER SPEAR",
+      "classId": "mage",
+      "file": "skills/mage.cryo.thunder_spear.png",
+      "sha256": "715a410b0e843082dacf0aabb7e6c3869cd79bbaabf975d49c2a66bd9fe60575",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.ice_ward",
+      "name": "ICE WARD",
+      "classId": "mage",
+      "file": "skills/mage.cryo.ice_ward.png",
+      "sha256": "4d8eb674bf72e6208aef0a8fdb95117ed58b52f291fdd8aaa0ad8b401b5d0d39",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.froststorm",
+      "name": "FROSTSTORM",
+      "classId": "mage",
+      "file": "skills/mage.cryo.froststorm.png",
+      "sha256": "7911f4c249f071279db070f8979cc1fa24551d125f974a389a561c1ea9bb3e5f",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.glacial_spike",
+      "name": "GLACIAL SPIKE",
+      "classId": "mage",
+      "file": "skills/mage.cryo.glacial_spike.png",
+      "sha256": "527e5bb54d0ebdf2024ce50afb82e027f0c2fc3a394ee8f0e1c01d3b849543b3",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.lightning_line",
+      "name": "LIGHTNING LINE",
+      "classId": "mage",
+      "file": "skills/mage.cryo.lightning_line.png",
+      "sha256": "222ae03f399d869fb8d7104e0a235b9aa3eef29342ee32b0e9f47b13e0572a32",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.hailfall",
+      "name": "HAILFALL",
+      "classId": "mage",
+      "file": "skills/mage.cryo.hailfall.png",
+      "sha256": "70f41860495b60948d5c8f6d4bccad75ecc8625c07b5d6396f172bb35a30b104",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage.cryo.eternal_tempest",
+      "name": "ETERNAL TEMPEST",
+      "classId": "mage",
+      "file": "skills/mage.cryo.eternal_tempest.png",
+      "sha256": "e6b157a4b476beb2940729fea28ce28fe12ee98130e6d049b53a1e17f8ef061e",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "partial_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage_wind_lance",
+      "name": "WIND LANCE",
+      "classId": "mage",
+      "file": "skills/mage_wind_lance.png",
+      "sha256": "fc05421d9ddef6b8e37334592125560d6cd3e926c39e9a104d0a1706352b6d99",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage_tidal_ring",
+      "name": "TIDAL RING",
+      "classId": "mage",
+      "file": "skills/mage_tidal_ring.png",
+      "sha256": "893353b828296f60abda85444b61b6cdf42c1530ccd99e44e264f25ca3dd5952",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": "improved_static_detail",
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    },
+    {
+      "id": "mage_arcane_ward",
+      "name": "ARCANE WARD",
+      "classId": "mage",
+      "file": "skills/mage_arcane_ward.png",
+      "sha256": "24c9aed97ea84f187247d2c717ac13ec697aee1d8d8a426c0dec576dfc814482",
+      "reviewedVia": "skills/mage-2.png",
+      "status": "single_frame_observed_no_new_P0_static_blocker",
+      "representativeStatus": null,
+      "limit": "초기 pulse1/단일 모형 정지화면의 존재·주 형상 회귀 관측.128종별 전후 개선·야간·연속재생 수용 아님."
+    }
+  ],
+  "catalogClassNotes": {
+    "knight": "방패/검기·찌르기·금빛 서약 인장이 존재한다. 큰 원/반복 검기와 작은 궁극기 초점은 기존 잔여이며 단일 표본으로 개별 기술의 동작 차이를 확정하지 않는다.",
+    "dwarf": "도끼/탄환·포탄·지면 파쇄가 존재한다. 작은 투척 본체와 포격 초점, 일부 화면 밖 큰 호는 실전 시야 재확인이 필요하다.",
+    "elf": "화살/부채꼴·자연색 잎/구속·낙하 형상이 존재한다. 원거리 작은 조준/왕관과 기존 주황 입자는 후속 구별 과제다.",
+    "mage": "물 곡면·얼음 각면·화염/용융·암석·기류·비전 방어를 구분할 수 있다. 야간 작은 본체, 일부 판형 기류/분출과 작은 궁극기 초점은 남는다."
+  },
+  "residuals": [
+    {
+      "id": "RES-01",
+      "priority": "P1_followup",
+      "kind": "existing_or_unverified",
+      "skills": [
+        "mage.common.water_ball",
+        "mage.cryo.frost_lance",
+        "enemy.IceElf.flight"
+      ],
+      "observation": "야간의 작은 청색 본체가 어두우며 적 냉기 꼬리는 매우 약해진다. 새 P0 정지결함으로 판정하지는 않았다.",
+      "next": "실제 전투 카메라/밝고 어두운 지형/원거리에서 핵심 본체만 대비를 조정하며 위협 위치와 원소가 읽히는지 확인."
+    },
+    {
+      "id": "RES-02",
+      "priority": "P1_followup",
+      "kind": "existing_partial_art",
+      "skills": [
+        "mage.pyro.caldera_s_judgment",
+        "mage.cryo.eternal_tempest",
+        "elf.magic_archer.spirit_arrowfall",
+        "elf.marksman.grand_volley",
+        "dwarf.gunner.siege_barrage",
+        "knight.paladin.oath_of_dawn"
+      ],
+      "observation": "큰 범위선·방사선에 비해 궁극기 고유 초점이 작거나 단순한 면으로 읽히는 과제가 남는다.",
+      "next": "기술 중심/실제 전투 거리의 두 구도와 다인 합성에서 아이콘 초점이 먼저 읽히는지 검수.실제 범위선을 줄여 해결하지 않음."
+    },
+    {
+      "id": "RES-03",
+      "priority": "P2_followup",
+      "kind": "procedural_surface_limit",
+      "skills": [
+        "knight.common.whirlwind",
+        "knight.steel_knight.twin_cyclone",
+        "mage_tidal_ring",
+        "mage.cryo.froststorm",
+        "dwarf.common.overhead"
+      ],
+      "observation": "면 분할 증가는 큰 각을 줄였으나 완전한 연속 곡면/질감이 아니다.일부 기류/분출은 판형이며 터치 낮은 분할은 실제 화면에서 미확인.",
+      "next": "현재 예산 안의 결과를 실기기/움직임에서 평가.필수 결함이 남을 때만 자체 질감/메시를 별도 제작 검토."
+    },
+    {
+      "id": "RES-04",
+      "priority": "P2_followup",
+      "kind": "existing_palette_detail",
+      "skills": [
+        "elf.magic_archer.vine_burst",
+        "elf.magic_archer.vine_trap",
+        "elf.magic_archer.bloom_shot"
+      ],
+      "observation": "자연 본체 주변의 일부 주황 입자는 Before에도 존재한다.이번 신규 색 회귀가 아니며 자연/화염 혼동 가능성은 미검증.",
+      "next": "연속 재생/다인 합성에서 실제 혼동이 나타나는지 확인한 뒤 기존 팔레트와 장식 의미를 함께 검토."
+    },
+    {
+      "id": "RES-05",
+      "priority": "QA_required_for_acceptance",
+      "kind": "evidence_limit",
+      "skills": [
+        "basic.knight",
+        "basic.dwarf",
+        "all_particle_motion"
+      ],
+      "observation": "무기2표본은 head/tail 형상만 관찰 가능하고 입자는 재방출 표본이다.전체 궤적·소멸·정확한 무기동기 수용 근거가 없다.",
+      "next": "실제 플레이 연속재생으로 초기/active/접촉/잔류·귀환/다중pulse/cancel을 확인.게시 클라이언트·터치/패드/GPU/사용자 미술 수용을 별도 유지."
+    }
+  ],
+  "acceptanceClaims": {
+    "staticDetailImprovementObserved": true,
+    "all128IndividuallyImproved": false,
+    "completeContinuousMotionPass": false,
+    "particleMotionPass": false,
+    "exactWeaponTrailTimingPass": false,
+    "actualBuiltPlacePass": false,
+    "publishedClientPass": false,
+    "deviceGpuPass": false,
+    "multiplayerReadabilityPass": false,
+    "userArtAcceptance": false,
+    "g4Complete": false
+  },
+  "assetDecision": "외부 pack/모델/스크립트/플러그인을 도입하지 않고 승인 원본·기존 Beam/Trail/면을 재사용한 방향은 타당하다.현 관측에서 새 PNG/3D의 필수 제작을 요구할 P0 정지결함은 발견하지 않았다.필수 결함이 실제 재생에서 남을 때 자체 질감/메시를 별도 검토한다.",
+  "nextOwner": {
+    "ENG": "잔여 사항의 채택/보류와 실제 빌드/엔진 검증을 기록.서버 피해/범위/속성/타이밍 계약 보존.",
+    "ART": "실제 캐릭터/장비·야간/원거리·연속재생/다인 합성 자료로 잔여 미술 수용.",
+    "QA_USER": "게시 클라이언트·PC/터치/패드·GPU/성능·사용자 최종 미술 수용."
+  }
+}

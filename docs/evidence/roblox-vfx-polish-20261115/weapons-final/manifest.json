@@ -1,0 +1,42 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "sampledAge": 0.2735391254425049,
+    "id": "basic.knight",
+    "width": 480,
+    "age": 0.26399999999999996,
+    "extent": 12,
+    "tipTravel": 0.1985326111316681,
+    "variant": 2,
+    "name": "Sword Trail",
+    "category": "Equipped weapon",
+    "height": 320,
+    "mode": "live production animation; callback is not exact frame synchronization",
+    "live": true,
+    "pulse": 1,
+    "file": "001-basic.knight.png",
+    "sha256": "b13b1c24eedfb0f5f8a8fd33a890af5d1bcb8b0c44c2465fae35361a92a4d38d",
+    "iconSha256": null
+  },
+  {
+    "clockTime": 12,
+    "index": 2,
+    "sampledAge": 0.35147304534912105,
+    "id": "basic.dwarf",
+    "width": 480,
+    "age": 0.34476190476190477,
+    "extent": 12,
+    "tipTravel": 0.5296312570571899,
+    "variant": 2,
+    "name": "Axe Trail",
+    "category": "Equipped weapon",
+    "height": 320,
+    "mode": "live production animation; callback is not exact frame synchronization",
+    "live": true,
+    "pulse": 1,
+    "file": "002-basic.dwarf.png",
+    "sha256": "75d290dd1c7c3d1ad513f6e878b25403bdb14475d64d22bddeb6eb7f6a280fc7",
+    "iconSha256": null
+  }
+]
