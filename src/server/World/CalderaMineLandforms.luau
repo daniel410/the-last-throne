@@ -1,7 +1,7 @@
 -- EC-03: a cold, excavated basalt rim around the miners' rescue clearing.
 -- Only unused exterior terrain; no heat source or alternate mine entrance.
 local Bounds=require(game.ReplicatedStorage.Shared.CampaignBounds)
-local M={version=1}
+local M={version=2}
 local V=Vector3.new
 function M.plan(center,size)
  local cells={}
@@ -16,6 +16,21 @@ function M.plan(center,size)
  end end
  return cells
 end
+-- Three diminishing working benches keep a readable excavated profile.
+-- Cylinder height runs along local X; rotate it upright onto world Y.
+function M.benches(cell)
+ local h=cell.height
+ local rows={}
+ local bottom=-12
+ for tier,top in ipairs({h*.30,h*.64,h})do
+  local radius=({68,51,34})[tier]
+  local offset=V(cell.side*(tier-1)*9,0,(tier-1)*-7)
+  rows[tier]={cframe=CFrame.new(cell.position+offset+V(0,(bottom+top)/2,0))*CFrame.Angles(0,0,math.pi/2),
+   height=top-bottom,radius=radius,top=top,offset=offset}
+  bottom=top-4 -- one voxel of overlap avoids cracks between the tiers
+ end
+ return rows
+end
 function M.build(parent,center,size)
  local root=Instance.new('Folder');root.Name='ExcavatedMineRim'
  root:SetAttribute('LandformVersion',M.version);root:SetAttribute('StoryZone','EC-03')
@@ -23,10 +38,11 @@ function M.build(parent,center,size)
  local cells=M.plan(center,size)
  for _,cell in ipairs(cells)do
   local p=cell.position;local h=cell.height
-  -- Unequal overlapping masses replace identical isolated pillar silhouettes.
-  workspace.Terrain:FillBall(p+V(0,h-68,0),68,Enum.Material.Basalt)
-  workspace.Terrain:FillBall(p+V(cell.side*18,h*.62-58,26),58,Enum.Material.Basalt)
-  workspace.Terrain:FillBall(p+V(-cell.side*14,h*.4-48,-30),48,Enum.Material.Basalt)
+  -- Broad quarry shelves replace the bulbous, uninterrupted hill profile.
+  -- All three volumes remain within the existing reserved 96-stud envelope.
+  for _,bench in ipairs(M.benches(cell))do
+   workspace.Terrain:FillCylinder(bench.cframe,bench.height,bench.radius,Enum.Material.Basalt)
+  end
   local marker=Instance.new('Folder');marker.Name=(cell.side<0 and 'West'or 'East')..cell.index
   marker:SetAttribute('Center',p);marker:SetAttribute('Height',h);marker:SetAttribute('FootprintRadius',cell.radius);marker.Parent=root
   task.wait()
