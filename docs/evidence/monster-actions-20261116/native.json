@@ -1,0 +1,211 @@
+{
+  "version": "0.111.21",
+  "sourceCommit": "eca39b1475c04c4ffb76ab9ea937b4d5e4d0ad6e",
+  "suites": {
+    "MONSTER_ACTION_PHRASING": {
+      "styles": [
+        "CalderaTitan.1",
+        "CalderaTitan.2",
+        "CalderaTitan.3",
+        "CalderaTitan.4",
+        "DeathKnight.1",
+        "DeathKnight.2",
+        "Gloambat.1",
+        "Hellhound.1",
+        "Hellhound.2",
+        "IceBear.1",
+        "SkeletonKnight.1",
+        "Slime.1",
+        "WidowQueen.1"
+      ],
+      "checks": 1289,
+      "travelRecoveries": 40,
+      "kinds": 50,
+      "attacks": 146,
+      "bosses": 23,
+      "pass": true,
+      "pulses": 285,
+      "skinned": 12
+    },
+    "ENEMY_COMBAT_PRESENTATION_NATIVE": {
+      "attacks": 584,
+      "checks": 15904
+    },
+    "ENEMY_DIRECTION_MOTION_NATIVE": {
+      "uniqueCurves": 339,
+      "casts": 1752,
+      "frameRates": [
+        30,
+        60,
+        144
+      ],
+      "checks": 357341
+    },
+    "ENEMY_ATTACK_MOTION_NATIVE": {
+      "attacks": 146,
+      "kinds": 50,
+      "checks": 446523
+    },
+    "UNDEAD_INDIVIDUAL_MOTION_NATIVE": {
+      "checks": 135426,
+      "failures": [],
+      "species": {
+        "Ghoul": {
+          "clips": 7,
+          "directionCases": 48,
+          "minimumSurfaceHeight": 8.940696716308594e-08,
+          "interruptionChecks": 2
+        },
+        "Zombie": {
+          "clips": 7,
+          "directionCases": 48,
+          "minimumSurfaceHeight": -5.960464477539063e-08,
+          "interruptionChecks": 2
+        }
+      },
+      "pass": true,
+      "kind": "UNDEAD_INDIVIDUAL_MOTION_NATIVE"
+    },
+    "GLOAMWOOD_MESHY_RESULT": {
+      "models": [
+        {
+          "bones": 18,
+          "height": 1.7386030316417513,
+          "kind": "Webling",
+          "mesh": "rbxassetid://132731227329747",
+          "texture": "rbxassetid://87041370819307"
+        },
+        {
+          "bones": 18,
+          "height": 2.0301923525477528,
+          "kind": "Silkweaver",
+          "mesh": "rbxassetid://92280398865893",
+          "texture": "rbxassetid://90157337142817"
+        },
+        {
+          "bones": 18,
+          "height": 2.3684445728684698,
+          "kind": "Barkstalker",
+          "mesh": "rbxassetid://106309469785242",
+          "texture": "rbxassetid://99145131743015"
+        },
+        {
+          "bones": 6,
+          "height": 3.889803000764866,
+          "kind": "Gloambat",
+          "mesh": "rbxassetid://103638822774187",
+          "texture": "rbxassetid://72391808960013"
+        },
+        {
+          "bones": 14,
+          "height": 1.086158219011903,
+          "kind": "VenomcoilCentipede",
+          "mesh": "rbxassetid://72669066254172",
+          "texture": "rbxassetid://106291858986253"
+        },
+        {
+          "bones": 18,
+          "height": 2.901024034030984,
+          "kind": "WidowQueen",
+          "mesh": "rbxassetid://72516309373191",
+          "texture": "rbxassetid://139553609301130"
+        },
+        {
+          "bones": 10,
+          "height": 9,
+          "kind": "AncientHollowbark",
+          "mesh": "rbxassetid://103283623112756",
+          "texture": "rbxassetid://88236660743771"
+        },
+        {
+          "bones": 14,
+          "height": 3.1920765474184827,
+          "kind": "VenomcoilKing",
+          "mesh": "rbxassetid://138080691573925",
+          "texture": "rbxassetid://93469012689254"
+        }
+      ],
+      "assets": {
+        "rbxassetid://99145131743015": "Success",
+        "rbxassetid://72516309373191": "Success",
+        "rbxassetid://87041370819307": "Success",
+        "rbxassetid://138080691573925": "Success",
+        "rbxassetid://93469012689254": "Success",
+        "rbxassetid://106309469785242": "Success",
+        "rbxassetid://139553609301130": "Success",
+        "rbxassetid://88236660743771": "Success",
+        "rbxassetid://72669066254172": "Success",
+        "rbxassetid://132731227329747": "Success",
+        "rbxassetid://90157337142817": "Success",
+        "rbxassetid://103283623112756": "Success",
+        "rbxassetid://103638822774187": "Success",
+        "rbxassetid://106291858986253": "Success",
+        "rbxassetid://72391808960013": "Success",
+        "rbxassetid://92280398865893": "Success"
+      },
+      "status": "PASS",
+      "checks": 27999
+    },
+    "REGIONAL_CASTER_RUNTIME_NATIVE": {
+      "assets": {
+        "rbxassetid://105871246621076": "Success",
+        "rbxassetid://98788108850990": "Success",
+        "rbxassetid://77540020824267": "Success",
+        "rbxassetid://87082222255321": "Success",
+        "rbxassetid://131610066809992": "Success",
+        "rbxassetid://119163831733699": "Success",
+        "rbxassetid://112698580463422": "Success",
+        "rbxassetid://116018092489297": "Success",
+        "rbxassetid://117483065629295": "Success"
+      },
+      "maxSourcePositionFraction": 0.00132963997010159,
+      "checks": 4269,
+      "pass": true,
+      "kind": "REGIONAL_CASTER_RUNTIME_NATIVE",
+      "maxSourceAngle": 0.007126245182007551,
+      "failures": []
+    },
+    "DEEPWOOD_MONSTER_MOTION_NATIVE": {
+      "maxFootError": 4.76837158203125e-07,
+      "checks": 9553,
+      "kind": "DEEPWOOD_MONSTER_MOTION_NATIVE",
+      "pass": true,
+      "failures": []
+    }
+  },
+  "totalChecks": 998304,
+  "baselineComparison": {
+    "0.111.19": {
+      "projectile": {
+        "duration": 2.1052631578947367,
+        "phaseDuringFlight": 0.78,
+        "phaseAtRelease": 0.62
+      },
+      "walkFrames": {
+        "VolcanoShaman": 6,
+        "Gloambat": 6
+      }
+    },
+    "0.111.21": {
+      "projectile": {
+        "duration": 2.1052631578947367,
+        "phaseDuringFlight": 1,
+        "phaseAtRelease": 0.62
+      },
+      "walkFrames": {
+        "VolcanoShaman": 18,
+        "Gloambat": 18
+      }
+    }
+  },
+  "motionSuitesPassed": true,
+  "luaChecks": {
+    "enemy-patterns.spec.lua": 3717,
+    "deepwood-bosses.spec.lua": 96,
+    "boss-pressure-boost.spec.lua": {
+      "before": "new run pins current rules",
+      "after": "new run pins current rules",
+      "line": 75
+    }
+  }
+}

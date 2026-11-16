@@ -1,0 +1,89 @@
+{
+  "version": "0.111.21",
+  "sourceCommit": "eca39b1475c04c4ffb76ab9ea937b4d5e4d0ad6e",
+  "mode": "Studio local Play",
+  "players": 1,
+  "rig": "R15",
+  "expeditionRules": 18,
+  "fixtureDamage": 3,
+  "encounters": [
+    {
+      "hpLost": 3,
+      "messages": {
+        "begin": 2,
+        "cancel": 1,
+        "pulse": 1,
+        "impact": 1
+      },
+      "kind": "Goblin",
+      "id": "Goblin.2",
+      "samples": 118,
+      "travel": 98.22329800841153,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Chase": true,
+        "Active": true
+      }
+    },
+    {
+      "hpLost": 3,
+      "messages": {
+        "begin": 1,
+        "weakness": 1,
+        "cancel": 1,
+        "impact": 1
+      },
+      "kind": "Gloambat",
+      "id": "Gloambat.1",
+      "samples": 213,
+      "travel": 73.57603620475233,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Active": true
+      }
+    },
+    {
+      "hpLost": 3,
+      "messages": {
+        "projectile": 1,
+        "cancel": 1,
+        "projectileEnd": 1,
+        "impact": 1
+      },
+      "kind": "VolcanoShaman",
+      "id": "VolcanoShaman.1",
+      "samples": 235,
+      "travel": 58.74613368451115,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Chase": true,
+        "Active": true
+      }
+    },
+    {
+      "hpLost": 3,
+      "messages": {
+        "projectileEnd": 1,
+        "cancel": 1,
+        "projectile": 1,
+        "begin": 1,
+        "impact": 1
+      },
+      "kind": "Veyr",
+      "id": "Veyr.2",
+      "samples": 222,
+      "travel": 103.89565438108734,
+      "states": {
+        "Recovery": true,
+        "Windup": true,
+        "Active": true
+      }
+    }
+  ],
+  "pass": true,
+  "error": "nil",
+  "errors": []
+}
