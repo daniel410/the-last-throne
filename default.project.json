@@ -51,6 +51,9 @@
       "SeleneArticulatedModels": {
         "$path": "assets/shared/td-selene-articulated/runtime.rbxmx"
       },
+      "BladeMonsterModels": {
+        "$path": "assets/shared/commander-weapon-rigs/runtime.rbxmx"
+      },
       "DeepwoodWeaponRepairModels": {
         "$path": "assets/shared/deepwood-weapon-repair/runtime.rbxmx"
       },

@@ -2,6 +2,7 @@
 local Snapshot=require(script.Parent.EnemyPatternDefinition)
 local AttackFrame=require(game:GetService('ReplicatedStorage').Shared.EnemyAttackFrame)
 local CombatProfiles=require(game:GetService('ReplicatedStorage').Shared.EnemyCombatProfiles)
+local BladeRigs=require(game:GetService("ReplicatedStorage").Shared.BladeMonsterRigs)
 local Pose={}
 local facingCache=setmetatable({},{__mode='k'})
 local function smooth(t)
@@ -76,7 +77,7 @@ function Pose.phase(model,current,attack)
   if localAge<follow then return .62+.16*smooth(localAge/follow)end
   if strike==d.pulses-1 then return .78 end
   local prepare=d.interval*.72
-  local ready=d.motion=='cast' and .60 or .44
+  local ready=d.motion=='cast' and not BladeRigs[model:GetAttribute('EnemyKind')] and .60 or .44
   if localAge<prepare then return .78+(ready-.78)*smooth((localAge-follow)/(prepare-follow))end
   return ready+(.62-ready)*smooth((localAge-prepare)/(d.interval-prepare))
  end

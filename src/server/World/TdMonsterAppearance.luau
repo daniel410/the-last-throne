@@ -15,7 +15,6 @@ local SPECS = {
  Warlord = {template = "warlord", folder = "DeepwoodWeaponRepairModels", weaponArm = "ArmL", reverseWeaponSwing = true, parts = {"Body", "ArmL", "ArmR", "LegL", "LegR"}},
  GoblinKing = {template = "king", parts = {"Body", "ArmL", "ArmR"}},
  KingOgre = {template = "king_ogre", parts = {"Body", "ArmL", "ArmR"}},
- EnragedWarlord = {template = "warlord:enraged", parts = {"Body"}},
  KingShaman = {template = "king_shaman", parts = {"Body", "ArmL", "ArmR"}},
 	Slime = { template = "slime", parts = { "Body" } },
 }
@@ -23,6 +22,8 @@ local SPECS = {
 for kind,spec in pairs(FrozenRigs)do SPECS[kind]=spec end
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do SPECS[kind]=spec end
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.HauntedGraveyardRigs))do SPECS[kind]=spec end
+local BladeRigs = require(game.ReplicatedStorage.Shared.BladeMonsterRigs)
+for kind, spec in pairs(BladeRigs) do SPECS[kind] = spec end
 local Gloamwood=require(script.Parent.GloamwoodAppearance)
 local function templateFor(kind)
 	local spec = SPECS[kind]

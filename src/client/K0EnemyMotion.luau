@@ -19,6 +19,8 @@ local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
 local CasterMotion=require(script.Parent.RegionalCasterMotion)
 local PatternPose=require(script.Parent.EnemyPatternPose)
+local BladeRigs=require(game.ReplicatedStorage.Shared.BladeMonsterRigs)
+local BladeSwing=require(script.Parent.EnemyBladeSwing)
 local Motion={}
 local channels={'body','weapon','off','rightLeg','leftLeg'}
 local names={weapon='Left Shoulder',off='Right Shoulder',rightLeg='Right Hip',leftLeg='Left Hip'}
@@ -71,7 +73,7 @@ function Motion.bind(model)
  local seed=model:GetAttribute('K0EnemyMotionSeed') or (math.abs(root.Position.X*.13+root.Position.Z*.17)%1)
  local s={model=model,root=root,torso=torso,joint=joint,kind=kind,profile=profile,basicGesture=PatternPose.basic(kind),height=model:GetAttribute('TdMonsterTargetHeight') or 5,
   phase=seed%1,seed=seed,position=root.Position,look=root.CFrame.LookVector,move=0,turn=0,joints={},legs={},body=body,bodySize=body.Size,
-  bodyPoints=groundPoints(body,torso,profile),bodyCenter=torso.CFrame:PointToObjectSpace(body.Position),pose=Motion.sample(kind,'Idle',seed%1)}
+  bodyPoints=groundPoints(body,torso,BladeRigs[kind] or profile),bodyCenter=torso.CFrame:PointToObjectSpace(body.Position),pose=Motion.sample(kind,'Idle',seed%1)}
  local rest=joint.C0*joint.C1:Inverse();s.bodyBottom=lowest(rest,s.bodyPoints)
  for ch,name in pairs(names)do
   local weaponArm=model:GetAttribute('TdWeaponArm') or 'ArmR'
@@ -189,7 +191,9 @@ function Motion.step(s,dt,current)
   end
   if ch=='weapon' and s.model:GetAttribute('TdWeaponSwingReversed') then angles={-angles[1],angles[2],-angles[3]} end
   local transform=frame(angles)
-  if gesture and (ch=='weapon' or ch=='off') then
+  if attackActive and BladeRigs[s.kind] and (ch=='weapon' or ch=='off') then
+   transform=BladeSwing.joint(s.model,ch,attackPhase)
+  elseif gesture and (ch=='weapon' or ch=='off') then
    transform=transform*PatternPose.joint(s.model,ch,attackPhase,gesture,load,drive)
   end
   local leg=s.legs[ch]

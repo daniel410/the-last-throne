@@ -1,5 +1,6 @@
 -- Derived solid geometry and sockets on the existing TD originals. No asset IDs or collision changes.
 local Profiles=require(game:GetService('ReplicatedStorage').Shared.EnemyPatterns)
+local BladeRigs = require(game.ReplicatedStorage.Shared.BladeMonsterRigs)
 local Details={version=1}
 local colors={arcane=Color3.fromRGB(165,102,222),frost=Color3.fromRGB(126,211,237),fire=Color3.fromRGB(232,121,49),venom=Color3.fromRGB(139,183,77),web=Color3.fromRGB(186,178,206),soul=Color3.fromRGB(100,184,154),shadow=Color3.fromRGB(159,106,198),physical=Color3.fromRGB(158,130,81)}
 local casters={Shaman=true,KingShaman=true,IceElf=true,QueenIceElf=true,VolcanoShaman=true,KingVolcanoShaman=true,Lich=true,LichSovereign=true}
@@ -24,7 +25,7 @@ function Details.attach(rig,kind,visual,footOffset,height)
    piece('ThroneCrest','WedgePart',Vector3.new(.11,.18,.045)*height,feet*CFrame.new(0,height*.63,-height*.17))
   end
  end
- if profile.boss and profile.element~='physical' or casters[kind]then
+ if not BladeRigs[kind] and (profile.boss and profile.element~='physical' or casters[kind]) then
   local staff=visual:FindFirstChild('Staff')or visual:FindFirstChild(rig:GetAttribute('TdWeaponPart')or 'ArmR')
   if staff and staff:IsA('BasePart')then
    local tip=staff.CFrame*CFrame.new(0,staff.Size.Y*.43,0)

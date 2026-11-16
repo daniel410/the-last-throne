@@ -43,7 +43,7 @@ local function capture(kind,frame)
         local img=game.AssetService:CreateEditableImageAsync(Content.fromUri(id))
         local raw=img:ReadPixelsBuffer(Vector2.zero,img.Size)
         local side=math.min(img.Size.X,img.Size.Y)
-        local n=240
+        local n=if _G.ReviewWeaponHands then 320 else 240
         local rgb=buffer.create(n*n*3)
         for y=0,n-1 do for x=0,n-1 do
             local sx=math.floor((img.Size.X-side)/2+(x+.5)*side/n)
@@ -63,7 +63,11 @@ local function capture(kind,frame)
     repeat task.wait(.03) until done or os.clock()>deadline
     assert(done,"Capture timeout "..kind)
 end
-for _,case in {{"Goblin",2},{"Ogre",1},{"Gloambat",1},{"IceWolf",2},{"VolcanoShaman",1},{"Veyr",2}} do
+local cases = {{"Goblin",2},{"Ogre",1},{"Gloambat",1},{"IceWolf",2},{"VolcanoShaman",1},{"Veyr",2}}
+if _G.ReviewWeaponHands then
+    cases = {{"Veyr",2},{"DreadCommander",1},{"DeathKnight",1},{"EnragedWarlord",1}}
+end
+for _,case in cases do
     local kind,index=unpack(case)
     local d=profiles.resolve(kind,patterns.get(kind).attacks[index],"Hard",.65)
     local actor=field.makeEnemy(stage,kind,0,0,1,1)
@@ -77,9 +81,15 @@ for _,case in {{"Goblin",2},{"Ogre",1},{"Gloambat",1},{"IceWolf",2},{"VolcanoSha
     run.Heartbeat:Wait()
     local target,size=framing(actor.TdMonsterVisual)
     local extent=math.max(size.X,size.Y,size.Z,s.height)
+    local view=Vector3.new(.83,.29,-1)
+    if _G.ReviewWeaponHands then
+        target=Vector3.new(root.Position.X,target.Y,root.Position.Z)
+        extent=s.height*1.17
+        view=Vector3.new(.43,.24,-1)
+    end
     camera.CameraType=Enum.CameraType.Scriptable
     camera.FieldOfView=27
-    local shot=CFrame.lookAt(target+Vector3.new(.83,.29,-1).Unit*extent*3.15,target)
+    local shot=CFrame.lookAt(target+view.Unit*extent*3.15,target)
     camera.CFrame=shot
     local duration=d.windup+d.active+d.recovery
     actor:SetAttribute("K0EnemyAttackClock",string.format("%d|100|%.7f|%.7f|%.7f|%d",index,d.windup,d.active,d.recovery,d.heavy and 1 or 0))
@@ -90,6 +100,9 @@ for _,case in {{"Goblin",2},{"Ogre",1},{"Gloambat",1},{"IceWolf",2},{"VolcanoSha
     print("MONSTER_ACTION",kind,index,d.name,duration)
     for i=0,15 do
         local age=duration*i/16
+        if _G.ReviewWeaponHands then
+            age=if i<8 then d.windup*i/8 elseif i<=11 then d.windup+math.min(.22,d.active)*(i-8)/3 else d.windup+d.active+d.recovery*(i-12)/3
+        end
         actor:SetAttribute("K0EnemyState",age<d.windup and "Windup" or age<d.windup+d.active and "Active" or "Recovery")
         motion.step(s,1/60,100+age)
         run.Heartbeat:Wait()

@@ -5,6 +5,7 @@ local Snapshot=require(script.Parent.EnemyPatternDefinition)
 local FrozenRigs=table.clone(require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs))
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do FrozenRigs[kind]=spec end
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.HauntedGraveyardRigs))do FrozenRigs[kind]=spec end
+for kind,spec in pairs(require(game.ReplicatedStorage.Shared.BladeMonsterRigs))do FrozenRigs[kind]=spec end
 local Weapon={}
 local Style=require(script.Parent.CombatVFXStyle)
 local function point(part,v)return part.Size*Vector3.new(v[1],v[2],v[3])end
