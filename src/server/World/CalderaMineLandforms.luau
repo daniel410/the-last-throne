@@ -17,7 +17,7 @@ function M.plan(center,size)
  return cells
 end
 -- Three diminishing working benches keep a readable excavated profile.
--- Cylinder height runs along local X; rotate it upright onto world Y.
+-- Terrain cylinder height follows local Y (verified in Studio).
 function M.benches(cell)
  local h=cell.height
  local rows={}
@@ -25,7 +25,7 @@ function M.benches(cell)
  for tier,top in ipairs({h*.30,h*.64,h})do
   local radius=({68,51,34})[tier]
   local offset=V(cell.side*(tier-1)*9,0,(tier-1)*-7)
-  rows[tier]={cframe=CFrame.new(cell.position+offset+V(0,(bottom+top)/2,0))*CFrame.Angles(0,0,math.pi/2),
+  rows[tier]={cframe=CFrame.new(cell.position+offset+V(0,(bottom+top)/2,0)),
    height=top-bottom,radius=radius,top=top,offset=offset}
   bottom=top-4 -- one voxel of overlap avoids cracks between the tiers
  end
