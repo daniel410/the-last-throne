@@ -2,18 +2,20 @@ local R=dofile('src/server/Inventory/InventoryRules.luau')
 local Items=dofile('src/shared/ItemCatalog.luau')
 local Content=dofile('src/shared/CampaignContent.luau')
 local A=dofile('src/shared/AdventureRules.luau')
+local Progress=dofile('src/shared/DeepwoodProgress.luau')
 local Pass=dofile('src/shared/SupportPassRules.luau')
 local Store=dofile('src/server/Inventory/AccountStore.luau')
 local Info=dofile('src/shared/SupporterInfo.luau')
 local Completion=dofile('src/shared/StoryCompletion.luau')
 local count=0;local function check(v,m)count=count+1;assert(v,m)end
 local p=assert(R.addHero(R.new(87),'hero','knight',Items))
+p.heroes.hero.level=80;p.heroes.hero.progression=dofile('src/shared/HeroProgression.luau').new(80)
 p=assert(A.begin(p,'hero','DW-01','Easy','trial_run',p.revision,R,Items))
 local function finish(profile,id)
  local c=Content.byId[id]
- for _,g in ipairs(c.goals)do if not g.optional then
+ for _,g in ipairs(c.goals)do if Progress.required(A.projection(profile.heroes.hero),g) then
   for _,step in ipairs(g.activity and g.activity.steps or {false})do
-   profile=assert(A.event(profile,'hero',id,g.id,step and step.choices and step.choices[1].id or g.choice and 'shared' or nil,step and step.id or nil,R,Items,'trial_run'))
+   profile=assert(A.event(profile,'hero',id,g.id,step and step.choices and (step.solution or step.choices[1].id) or g.choice and 'shared' or nil,step and step.id or nil,R,Items,'trial_run'))
   end
  end end
  return profile

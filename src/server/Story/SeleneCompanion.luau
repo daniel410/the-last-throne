@@ -123,7 +123,7 @@ function M.create(o)
     local s=o.state(player,hero.heroId)
     local pass=o.passState and o.passState(player,hero.heroId)
     if s and Progress.seleneUnlocked(s) and s.seleneFollowing and pass and pass.active then table.insert(chosen,player) end
-    if pass and not pass.active and (pass.departure and not pass.side or pass.trialAvailable and api.atCamp(player,hero.heroId)) then
+    if pass and not pass.active and not pass.side and (pass.departure or pass.trialAvailable and api.atCamp(player,hero.heroId)) then
      local ctx,root=o.context(player)
      if ctx and ctx.heroId==hero.heroId and root then table.insert(departures,player) end
     end

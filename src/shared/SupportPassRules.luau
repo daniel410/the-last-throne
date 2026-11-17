@@ -75,6 +75,7 @@ function M.apply(p,cmd,ctx,R,catalog)
   if completed or ctx.maxStories and story>ctx.maxStories then return nil,'SupportStoryComplete' end
   local c=s.active[cmd.heroId]
   if c and not c.ended and c.story==story and c.scope==scope then return R.copy(p),nil,true end
+  if chapter and chapter.side then return nil,'Unavailable' end
   local trial=trialAvailable(p,cmd.heroId,story,completed)
   if not trial and s.credits<1 then return nil,'SupportPassRequired' end
   n.heroes[cmd.heroId].deepwood.seleneFollowing=true

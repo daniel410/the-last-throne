@@ -7,7 +7,7 @@ local checks=0;local function check(v,m)checks+=1;assert(v,m)end
 local fixture=Instance.new('Folder');fixture.Name='SeleneDepartureQA';fixture.Parent=workspace
 local remotes=RS:FindFirstChild('Remotes');local ownRemotes=not remotes
 if not remotes then remotes=Instance.new('Folder');remotes.Name='Remotes';remotes.Parent=RS end
-local lobby,battle;local players={}
+local lobby,battle,presentation;local players={}
 local ok,err=xpcall(function()
  local center=Vector3.new(20000,1000,20000)
  local floor=Instance.new('Part');floor.Anchored=true;floor.Size=Vector3.new(300,2,300);floor.Position=center-Vector3.new(0,1,0);floor.Parent=fixture
@@ -70,6 +70,7 @@ local ok,err=xpcall(function()
  check(lobbyFolder:FindFirstChild('LobbySelene_1'),'respawn restores prepared lobby follower without spending')
  for _,p in ipairs(players)do phases[p]='Tutorial'end
  lobby.update(.1);check(#lobbyFolder:GetChildren()==0,'departure removes all lobby actors')
+ local prepared=R.copy(accounts[first])
  local activations=0;local population=players;local tick=0
  battle=require(Server.Story.SeleneCompanion).create({frameDriven=true,players=function()return population end,
   clock=function()tick+=1;return tick end,
@@ -79,7 +80,7 @@ local ok,err=xpcall(function()
   publish=function()end,notice=function()end,combat={},
   activate=function(p)
    activations+=1;local v=Pass.view(accounts[p],'hero')
-   local nextProfile,why=R.supportPass(accounts[p],{action='Activate',heroId='hero',story=v.story,scope=v.scope,requestId='native_entry_'..activations},{inAdventure=true,hasCampAccess=false},C)
+   local nextProfile,why=R.supportPass(accounts[p],{action='Activate',heroId='hero',story=v.story,scope=v.scope,requestId='native_entry_'..activations},{inAdventure=true,hasCampAccess=battle.atCamp(p,'hero')},C)
    if nextProfile then accounts[p]=nextProfile end;return why
   end,select=function(p,_,following)accounts[p]=assert(R.selectSelene(accounts[p],'hero',following))end})
  battle.update(.2)
@@ -94,10 +95,51 @@ local ok,err=xpcall(function()
  check(Pass.view(accounts[first],'hero').credits==2 and Pass.view(accounts[first],'hero').active and not Pass.view(accounts[first],'hero').departure,'successful admission spends one credit and clears departure intent')
  for i=2,4 do check(Pass.view(accounts[players[i]],'hero').credits==2 and Pass.view(accounts[players[i]],'hero').departure,'occupied party slot preserves waiting player '..i..' credit and intent')end
  battle.update(.2);check(activations==1,'repeated update cannot spend another credit')
+ population={first}
+ local camp=battleFolder.NPCActors.Selene
+ local campPosition=camp.PrimaryPart.Position
+ roots[first].Position=campPosition+Vector3.new(0,3,2)
+ follower:PivotTo(CFrame.new(campPosition+Vector3.new(0,0,8)))
+ presentation=require(game.StarterPlayer.StarterPlayerScripts.Client.NPCPresentation).create(first,battleFolder,function()
+  return {journal=accounts[first].heroes.hero.deepwood,supporter={pass=Pass.view(accounts[first],'hero')}}
+ end)
+ presentation.update()
+ local invite=camp.PrimaryPart.Invite.Invite
+ local rest=camp.PrimaryPart.Rest.Rest
+ local details=camp.PrimaryPart.SupporterDetails.SupporterDetails
+ check(battle.atCamp(first,'hero') and rest.Enabled and details.Enabled and not invite.Enabled,'following owner can rest and inspect at camp')
+ check(camp.PrimaryPart.LocalTransparencyModifier==0 and follower.PrimaryPart.LocalTransparencyModifier==1,'camp interaction has one visible Selene')
+ check(battle.select(first,false),'camp rest reaches the server selection path')
+ battle.update(.2);presentation.update()
+ check(not battleFolder:FindFirstChild('Selene_1') and invite.Enabled and not rest.Enabled and details.Enabled,'rest removes follower and exposes invitation')
+ check(Pass.view(accounts[first],'hero').active and Pass.view(accounts[first],'hero').credits==2,'rest retains entitlement and credits')
+ check(battle.select(first,true),'camp reinvitation succeeds')
+ battle.update(.2);presentation.update()
+ follower=battleFolder:FindFirstChild('Selene_1')
+ check(follower and rest.Enabled and details.Enabled and Pass.view(accounts[first],'hero').credits==2,'reinvitation resumes without another credit')
+ roots[first].Position=campPosition+Vector3.new(30,3,0)
+ follower:PivotTo(CFrame.new(campPosition+Vector3.new(22,0,0)))
+ presentation.update()
+ check(not rest.Enabled and not details.Enabled and follower.PrimaryPart.LocalTransparencyModifier==0,'leaving camp restores moving companion presentation')
+ presentation.destroy();presentation=nil
+ local callsBeforeCompletion=activations
  population={first};accounts[first]=finish(accounts[first],'DW-04');battle.update(.2)
- check(not battleFolder:FindFirstChild('Selene_1') and activations==1 and Pass.view(accounts[first],'hero').credits==2,'main-story completion ends support without automatic renewal')
+ check(not battleFolder:FindFirstChild('Selene_1') and activations==callsBeforeCompletion and Pass.view(accounts[first],'hero').credits==2,'main-story completion ends support without automatic renewal')
+ local side=R.copy(prepared)
+ side.supportPasses.trials=nil
+ side=assert(require(RS.Shared.AdventureRules).begin(side,'hero','DW-Q1','Easy','side_native',side.revision,R,C))
+ accounts[first]=side
+ roots[first].Position=campPosition+Vector3.new(0,3,2)
+ local callsBeforeSide=activations
+ for _=1,3 do battle.update(.2)end
+ check(Pass.view(accounts[first],'hero').side and Pass.view(accounts[first],'hero').trialAvailable,'fixture reaches side camp with unused trial')
+ check(activations==callsBeforeSide and not battleFolder:FindFirstChild('Selene_1'),'side camp never schedules automatic trial activation')
+ check(not battle.select(first,true),'manual side camp invitation is rejected by account transaction')
+ check(accounts[first].revision==side.revision and Pass.view(accounts[first],'hero').trialAvailable
+  and Pass.view(accounts[first],'hero').credits==3 and Pass.view(accounts[first],'hero').departure,'side camp preserves trial, credits and prepared departure')
  lobby.remove(first);check(not lobbyFolder:FindFirstChild('LobbySelene_1'),'explicit cleanup is safe after departure')
 end,debug.traceback)
+if presentation then presentation.destroy()end
 if battle then for _,p in ipairs(players)do battle.remove(p)end end
 if lobby then for _,p in ipairs(players)do lobby.remove(p)end end
 fixture:Destroy();if ownRemotes then remotes:Destroy()end

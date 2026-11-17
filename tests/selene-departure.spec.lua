@@ -3,6 +3,7 @@ local R=dofile('src/server/Inventory/InventoryRules.luau')
 local C=dofile('src/shared/ItemCatalog.luau')
 local Content=dofile('src/shared/CampaignContent.luau')
 local A=dofile('src/shared/AdventureRules.luau')
+local Progress=dofile('src/shared/DeepwoodProgress.luau')
 local Pass=dofile('src/shared/SupportPassRules.luau')
 local Info=dofile('src/shared/SupporterInfo.luau')
 local Store=dofile('src/server/Inventory/AccountStore.luau')
@@ -10,7 +11,7 @@ local n=0;local function check(v,m)n=n+1;assert(v,m)end
 local function finish(p,id)
  for _,g in ipairs(Content.byId[id].goals)do if not g.optional then
   for _,s in ipairs(g.activity and g.activity.steps or {false})do
-   p=assert(R.story(p,'hero',id,g.id,s and s.choices and s.choices[1].id or g.choice and 'shared' or nil,C,s and s.id or nil))
+   p=assert(R.story(p,'hero',id,g.id,s and s.choices and (s.solution or s.choices[1].id) or g.choice and 'shared' or nil,C,s and s.id or nil))
   end
  end end
  return p
@@ -59,9 +60,9 @@ bad=R.copy(prepared);bad.supportPasses.departure={};check(not R.validate(bad,C),
 local ended=assert(apply(p,{action='End',heroId='hero',requestId='return'},{serverEnd=true}))
 check(not Pass.view(ended,'hero').active and ended.supportPasses.credits==4,'return ends only current support')
 -- Next story cannot silently spend a second credit within the same adventure.
-for _,g in ipairs(Content.byId['DW-04'].goals)do if not g.optional then
+for _,g in ipairs(Content.byId['DW-04'].goals)do if Progress.required(A.projection(p.heroes.hero),g) then
  for _,s in ipairs(g.activity and g.activity.steps or {false})do
-  p=assert(A.event(p,'hero','DW-04',g.id,s and s.choices and s.choices[1].id or g.choice and 'shared' or nil,s and s.id or nil,R,C,'depart_run'))
+  p=assert(A.event(p,'hero','DW-04',g.id,s and s.choices and (s.solution or s.choices[1].id) or g.choice and 'shared' or nil,s and s.id or nil,R,C,'depart_run'))
  end
 end end
 check(not Pass.view(p,'hero').active and not Pass.view(p,'hero').departure and p.supportPasses.credits==4,'completion clears active support without automatic paid renewal')
@@ -70,6 +71,28 @@ local side=assert(A.begin(prepared,'hero','DW-Q1','Easy','side_run',prepared.rev
 check(sv.side and sv.departure,'side entry retains main-story departure intent')
 no,err=apply(side,{action='Activate',heroId='hero',story=sv.story,scope=sv.scope,requestId='sideentry'},{inAdventure=true,hasCampAccess=false})
 check(not no and err=='Unavailable' and side.supportPasses.credits==2,'side entry cannot accidentally consume main-story credit')
+-- Camp access must not turn a side expedition into paid or trial main support.
+for _,unusedTrial in ipairs({true,false})do
+ local sideProfile=R.copy(side)
+ if unusedTrial then sideProfile.supportPasses.trials=nil end
+ local before=R.copy(sideProfile)
+ local command={action='Activate',heroId='hero',story=sv.story,scope=sv.scope,requestId='sidecamp'}
+ for attempt=1,2 do
+  local result,reason=apply(sideProfile,command,{inAdventure=true,hasCampAccess=true})
+  check(not result and reason=='Unavailable','side camp rejects new support, including retries')
+ end
+ check(sideProfile.revision==before.revision and sideProfile.wallet.gold==before.wallet.gold
+  and sideProfile.supportPasses.credits==before.supportPasses.credits
+  and sideProfile.supportPasses.departure==before.supportPasses.departure
+  and not sideProfile.supportPasses.active.hero,'rejected side support preserves account and departure')
+ check(Pass.view(sideProfile,'hero').trialAvailable==unusedTrial,'side camp preserves unused trial')
+ local main=assert(A.begin(sideProfile,'hero','DW-04','Easy','after_side',sideProfile.revision,R,C))
+ local target=Pass.view(main,'hero')
+ local started=assert(apply(main,{action='Activate',heroId='hero',story=target.story,scope=target.scope,requestId='main_after_side'},
+  {inAdventure=true,hasCampAccess=false}))
+ check(Pass.view(started,'hero').active and Pass.view(started,'hero').trial==unusedTrial
+  and started.supportPasses.credits==before.supportPasses.credits-(unusedTrial and 0 or 1),'main entry uses preserved trial or one credit')
+end
 -- AccountStore recovery replays the same entry receipt after a lost response.
 local saved,lose
 local store=Store.new({UpdateAsync=function(_,_,fn)local q=fn(R.copy(saved));if q then saved=R.copy(q)end;if lose then error('lost acknowledgement')end;return q end},R,C,function()return 1000 end,function()end,'departure-test')

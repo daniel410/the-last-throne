@@ -28,6 +28,9 @@ function View.create(player,world,readState)
      local role=model:GetAttribute('NPCActorRole');local priority=0
      if role=='escort' then priority=4
      elseif role=='companion' and distance<=120 then priority=model:GetAttribute('OwnerUserId')==player.UserId and 4 or 3 end
+     -- The camp actor owns rest, invite and details interactions.
+     local camp=model:GetAttribute('SeleneCampPosition')
+     if identity=='npc:selene' and root and typeof(camp)=='Vector3' and (root.Position-camp).Magnitude<=16 then priority=5 end
      if identity=='npc:selene' and model:GetAttribute('NPCRole_camp') and distance<80
       and journal and journal.main>=2 and not Progress.seleneUnlocked(journal) then priority=6 end
      candidates[model]={identity=identity,priority=priority,distance=distance}
