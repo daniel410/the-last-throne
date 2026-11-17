@@ -1,0 +1,1413 @@
+{
+  "combat": {
+    "done": true,
+    "samples": [
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              242.14999389648438,
+              140,
+              -12644.400390625
+            ],
+            "wave": 1,
+            "remaining": 6,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 177.789055250003,
+        "hp": 1485,
+        "d": 2.249959945678711
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              242.14999389648438,
+              140,
+              -12644.400390625
+            ],
+            "wave": 1,
+            "remaining": 4,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 183.6205835415749,
+        "hp": 1485,
+        "d": 5.154505729675293
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              242.14999389648438,
+              140,
+              -12644.400390625
+            ],
+            "wave": 1,
+            "remaining": 3,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 189.45336154161487,
+        "hp": 1431,
+        "d": 7.807231426239014
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              242.14999389648438,
+              140,
+              -12644.400390625
+            ],
+            "wave": 1,
+            "remaining": 2,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 195.28702212497592,
+        "hp": 1430,
+        "d": 10.674322128295898
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              242.14999389648438,
+              140,
+              -12644.400390625
+            ],
+            "wave": 1,
+            "remaining": 1,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 201.11906387493946,
+        "hp": 1355,
+        "d": 6.788503170013428
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": true,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 1,
+            "remaining": 0,
+            "active": false,
+            "waves": 3
+          }
+        },
+        "t": 206.95233624998946,
+        "hp": 1353
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 2,
+            "remaining": 6,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 212.786681458354,
+        "hp": 1353,
+        "d": 12.630167007446289
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 2,
+            "remaining": 5,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 218.61878866667394,
+        "hp": 1353,
+        "d": 4.020989418029785
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 2,
+            "remaining": 4,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 224.45299141667783,
+        "hp": 1353,
+        "d": 11.704503059387207
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 2,
+            "remaining": 3,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 230.28571570827626,
+        "hp": 1315,
+        "d": 11.682305335998535
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 2,
+            "remaining": 3,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 236.13516954157967,
+        "hp": 1276,
+        "d": 11.681674003601074
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 2,
+            "remaining": 2,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 241.9682746665785,
+        "hp": 1221,
+        "d": 2.0193073749542236
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              133.14999389648438,
+              140,
+              -12701.400390625
+            ],
+            "wave": 2,
+            "remaining": 1,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 247.784397166688,
+        "hp": 1221,
+        "d": 9.747380256652832
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": true,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 2,
+            "remaining": 0,
+            "active": false,
+            "waves": 3
+          }
+        },
+        "t": 253.6175289999228,
+        "hp": 1183
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": true,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 2,
+            "remaining": 0,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 259.45047337491997,
+        "hp": 1183
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 3,
+            "remaining": 6,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 265.2838517499622,
+        "hp": 1183,
+        "d": 7.1895575523376465
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 3,
+            "remaining": 5,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 271.11730841663666,
+        "hp": 1140,
+        "d": 4.8580145835876465
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 3,
+            "remaining": 4,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 276.94959691667464,
+        "hp": 1101,
+        "d": 5.996531963348389
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 3,
+            "remaining": 3,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 282.78269949997775,
+        "hp": 1099,
+        "d": 12.976459503173828
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 3,
+            "remaining": 2,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 288.6159792082617,
+        "hp": 1082,
+        "d": 8.014528274536133
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 3,
+            "remaining": 1,
+            "active": true,
+            "waves": 3
+          }
+        },
+        "t": 294.44874570833053,
+        "hp": 1065,
+        "d": 10.846586227416992
+      },
+      {
+        "encounters": {
+          "EC-03:worm": {
+            "pillars": 0,
+            "waiting": false,
+            "routeTitle": "Braced mine road",
+            "boss": false,
+            "route": true,
+            "position": [
+              25.149999618530273,
+              140,
+              -12793.400390625
+            ],
+            "wave": 3,
+            "remaining": 0,
+            "active": false,
+            "waves": 3
+          }
+        },
+        "t": 300.2831679582596,
+        "hp": 1065
+      }
+    ],
+    "worm": true,
+    "started": 172.1868221249897
+  },
+  "final": {
+    "flags": {
+      "miners": true,
+      "exp_1": true,
+      "worm": true,
+      "supports": true
+    },
+    "actorProjection": [],
+    "activities": {
+      "EC-03:supports": 1,
+      "EC-03:exp_1": 3,
+      "EC-03:miners": 2
+    },
+    "position": "319.8054504394531, 143.09629821777344, -12557.5400390625"
+  },
+  "follow": {
+    "jumps": 0,
+    "elapsed": 43.43190508335829,
+    "started": 467.6253824583255,
+    "discontinuities": 0,
+    "samples": [
+      {
+        "player": [
+          325.9385070800781,
+          143.09629821777344,
+          -12546.5908203125
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 467.6254768749932,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          321.24462890625,
+          143.09629821777344,
+          -12562.94921875
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 468.69170749990735,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          316.51416015625,
+          143.09629821777344,
+          -12579.44921875
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 469.7576213333523,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          311.7439270019531,
+          143.09629821777344,
+          -12596.078125
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 470.8263586666435,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          307.0465393066406,
+          143.09629821777344,
+          -12612.44921875
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 471.89193191658705,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          302.3083801269531,
+          143.09629821777344,
+          -12628.94921875
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 472.9585913332412,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          297.5674743652344,
+          143.09629821777344,
+          -12645.44921875
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 474.02422358328477,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          292.82220458984375,
+          143.09629821777344,
+          -12661.94921875
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 475.09177683328744,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          288.06951904296875,
+          143.09629821777344,
+          -12678.44921875
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 476.15825345832855,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          284.4681701660156,
+          143.09629821777344,
+          -12690.9189453125
+        ],
+        "status": "The resident is waiting. Return to their side.",
+        "t": 477.22475720825605,
+        "actor": [
+          282.7605285644531,
+          140,
+          -12696.7978515625
+        ]
+      },
+      {
+        "player": [
+          279.3207702636719,
+          143.09629821777344,
+          -12694.5380859375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 478.29183799994644,
+        "actor": [
+          274.0052490234375,
+          140,
+          -12698.2568359375
+        ]
+      },
+      {
+        "player": [
+          279.3207702636719,
+          143.09629821777344,
+          -12694.5380859375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 479.3571417082567,
+        "actor": [
+          274.0052490234375,
+          140,
+          -12698.2568359375
+        ]
+      },
+      {
+        "player": [
+          267.0580139160156,
+          143.09629821777344,
+          -12698.3544921875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 480.4241952915909,
+        "actor": [
+          259.6337585449219,
+          140,
+          -12700.6533203125
+        ]
+      },
+      {
+        "player": [
+          267.0580139160156,
+          143.09629821777344,
+          -12698.3544921875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 481.49241137492936,
+        "actor": [
+          246.73617553710938,
+          140,
+          -12702.802734375
+        ]
+      },
+      {
+        "player": [
+          252.42935180664062,
+          143.09629821777344,
+          -12701.546875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 482.5576755416114,
+        "actor": [
+          246.73617553710938,
+          140,
+          -12702.802734375
+        ]
+      },
+      {
+        "player": [
+          244.0184783935547,
+          143.09629821777344,
+          -12703.115234375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 483.6071664999472,
+        "steps": 1,
+        "actor": [
+          239.29920959472656,
+          140,
+          -12701.736328125
+        ]
+      },
+      {
+        "player": [
+          244.0184783935547,
+          143.09629821777344,
+          -12703.115234375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 484.6748789999401,
+        "steps": 1,
+        "actor": [
+          239.29920959472656,
+          140,
+          -12701.736328125
+        ]
+      },
+      {
+        "player": [
+          244.56826782226562,
+          143.09629821777344,
+          -12698.970703125
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 485.7406579166418,
+        "steps": 1,
+        "actor": [
+          245.73033142089844,
+          140,
+          -12690.21875
+        ]
+      },
+      {
+        "player": [
+          244.8632354736328,
+          143.09629821777344,
+          -12696.7470703125
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 486.80854054167867,
+        "steps": 1,
+        "actor": [
+          245.73033142089844,
+          140,
+          -12690.21875
+        ]
+      },
+      {
+        "player": [
+          247.23651123046875,
+          143.09629821777344,
+          -12691.052734375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 487.8574562499998,
+        "steps": 1,
+        "actor": [
+          252.95245361328125,
+          140,
+          -12677.28515625
+        ]
+      },
+      {
+        "player": [
+          250.5540008544922,
+          143.09629821777344,
+          -12683.0693359375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 488.92366500000935,
+        "steps": 1,
+        "actor": [
+          252.95245361328125,
+          140,
+          -12677.28515625
+        ]
+      },
+      {
+        "player": [
+          254.3175506591797,
+          143.09629821777344,
+          -12675.6513671875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 489.99043087498285,
+        "steps": 1,
+        "actor": [
+          258.75537109375,
+          140,
+          -12666.890625
+        ]
+      },
+      {
+        "player": [
+          255.32943725585938,
+          143.09629821777344,
+          -12673.65625
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 491.05754862492904,
+        "steps": 1,
+        "actor": [
+          258.75537109375,
+          140,
+          -12666.890625
+        ]
+      },
+      {
+        "player": [
+          259.3497619628906,
+          143.09629821777344,
+          -12666.232421875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 492.1235440833261,
+        "steps": 1,
+        "actor": [
+          265.9763488769531,
+          140,
+          -12653.958984375
+        ]
+      },
+      {
+        "player": [
+          262.44696044921875,
+          143.09629821777344,
+          -12660.49609375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 493.1911356250057,
+        "steps": 1,
+        "actor": [
+          265.9763488769531,
+          140,
+          -12653.958984375
+        ]
+      },
+      {
+        "player": [
+          267.5605773925781,
+          143.09629821777344,
+          -12651.208984375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 494.2568970415741,
+        "steps": 1,
+        "actor": [
+          271.148193359375,
+          140,
+          -12644.697265625
+        ]
+      },
+      {
+        "player": [
+          267.60870361328125,
+          143.09629821777344,
+          -12651.1220703125
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 495.3235284999246,
+        "steps": 1,
+        "actor": [
+          271.148193359375,
+          140,
+          -12644.697265625
+        ]
+      },
+      {
+        "player": [
+          273.80218505859375,
+          143.09629821777344,
+          -12639.9609375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 496.39017337490804,
+        "steps": 1,
+        "actor": [
+          278.31964111328125,
+          140,
+          -12631.853515625
+        ]
+      },
+      {
+        "player": [
+          274.8924865722656,
+          143.09629821777344,
+          -12637.9990234375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 497.4569489583373,
+        "steps": 1,
+        "actor": [
+          278.31964111328125,
+          140,
+          -12631.853515625
+        ]
+      },
+      {
+        "player": [
+          280.1113586425781,
+          143.09629821777344,
+          -12628.6298828125
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 498.523020624998,
+        "steps": 1,
+        "actor": [
+          283.379638671875,
+          140,
+          -12622.791015625
+        ]
+      },
+      {
+        "player": [
+          280.1113586425781,
+          143.09629821777344,
+          -12628.6298828125
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 499.5904447915964,
+        "steps": 1,
+        "actor": [
+          290.6014099121094,
+          140,
+          -12609.8583984375
+        ]
+      },
+      {
+        "player": [
+          287.4236755371094,
+          143.09629821777344,
+          -12615.5361328125
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 500.6582434165757,
+        "steps": 1,
+        "actor": [
+          290.6014099121094,
+          140,
+          -12609.8583984375
+        ]
+      },
+      {
+        "player": [
+          288.4189147949219,
+          143.09629821777344,
+          -12613.7509765625
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 501.72392587491777,
+        "steps": 1,
+        "actor": [
+          296.9756774902344,
+          140,
+          -12598.44140625
+        ]
+      },
+      {
+        "player": [
+          293.69097900390625,
+          143.09629821777344,
+          -12604.310546875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 502.79081216664053,
+        "steps": 1,
+        "actor": [
+          296.9756774902344,
+          140,
+          -12598.44140625
+        ]
+      },
+      {
+        "player": [
+          295.7303466796875,
+          143.09629821777344,
+          -12600.650390625
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 503.8575820833212,
+        "steps": 1,
+        "actor": [
+          303.5146179199219,
+          140,
+          -12586.73046875
+        ]
+      },
+      {
+        "player": [
+          299.95831298828125,
+          143.09629821777344,
+          -12593.0849609375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 504.9233147499617,
+        "steps": 1,
+        "actor": [
+          303.5146179199219,
+          140,
+          -12586.73046875
+        ]
+      },
+      {
+        "player": [
+          303.04205322265625,
+          143.09629821777344,
+          -12587.5498046875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 505.99095612496603,
+        "steps": 1,
+        "actor": [
+          310.6259460449219,
+          140,
+          -12573.994140625
+        ]
+      },
+      {
+        "player": [
+          307.2703857421875,
+          143.09629821777344,
+          -12579.9892578125
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 507.05717237491626,
+        "steps": 1,
+        "actor": [
+          310.6259460449219,
+          140,
+          -12573.994140625
+        ]
+      },
+      {
+        "player": [
+          311.3997497558594,
+          143.09629821777344,
+          -12572.5888671875
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 508.1239826249657,
+        "steps": 1,
+        "actor": [
+          316.31256103515625,
+          140,
+          -12563.810546875
+        ]
+      },
+      {
+        "player": [
+          312.49334716796875,
+          143.09629821777344,
+          -12570.634765625
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 509.1901362083154,
+        "steps": 1,
+        "actor": [
+          316.31256103515625,
+          140,
+          -12563.810546875
+        ]
+      },
+      {
+        "player": [
+          317.66693115234375,
+          143.09629821777344,
+          -12561.359375
+        ],
+        "status": "Stay beside the resident and follow the safe route.",
+        "t": 510.2569511249894,
+        "steps": 1,
+        "actor": [
+          323.4790344238281,
+          140,
+          -12550.9755859375
+        ]
+      }
+    ],
+    "done": true,
+    "miners": true
+  },
+  "evacuation": {
+    "ok": true,
+    "done": true,
+    "prepared": true
+  },
+  "escortStart": true,
+  "walk": [
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        155.585205078125,
+        143.09629821777344,
+        -12603.28515625
+      ],
+      "label": "supports",
+      "target": [
+        157.14999389648438,
+        141,
+        -12604.400390625
+      ],
+      "done": true,
+      "elapsed": 5.890602333354764,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        238.74072265625,
+        143.09629821777344,
+        -12642.7890625
+      ],
+      "label": "worm",
+      "target": [
+        242.14999389648438,
+        141,
+        -12644.400390625
+      ],
+      "done": true,
+      "elapsed": 5.733439874951728,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        159.67469787597656,
+        143.09629821777344,
+        -12605.5927734375
+      ],
+      "label": "supports-return",
+      "target": [
+        157.14999389648438,
+        141,
+        -12604.400390625
+      ],
+      "done": true,
+      "elapsed": 5.464258625055663,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        238.8011474609375,
+        143.09629821777344,
+        -12642.818359375
+      ],
+      "label": "worm-ready",
+      "target": [
+        242.14999389648438,
+        141,
+        -12644.400390625
+      ],
+      "done": true,
+      "elapsed": 5.461849124985747,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        159.67459106445312,
+        143.09629821777344,
+        -12605.5927734375
+      ],
+      "label": "supports-final",
+      "target": [
+        157.14999389648438,
+        141,
+        -12604.400390625
+      ],
+      "done": true,
+      "elapsed": 5.464588499977253,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        238.86196899414062,
+        143.09629821777344,
+        -12642.84765625
+      ],
+      "label": "worm-combat",
+      "target": [
+        242.14999389648438,
+        141,
+        -12644.400390625
+      ],
+      "done": true,
+      "elapsed": 5.466417666641064,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        136.6645965576172,
+        143.09629821777344,
+        -12700.2353515625
+      ],
+      "label": "worm-route-1",
+      "target": [
+        133.14999389648438,
+        140,
+        -12701.400390625
+      ],
+      "done": true,
+      "elapsed": 15.333561000064947,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 1,
+      "arrived": true,
+      "position": [
+        27.22455596923828,
+        143.09629821777344,
+        -12790.3779296875
+      ],
+      "label": "worm-route-2",
+      "target": [
+        25.149999618530273,
+        140,
+        -12793.400390625
+      ],
+      "done": true,
+      "elapsed": 18.131941333413124,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "position": [
+        216.70684814453125,
+        143.09629821777344,
+        -12880.658203125
+      ],
+      "label": "exp_1-step1",
+      "target": [
+        185.7899932861328,
+        140,
+        -12936.2802734375
+      ],
+      "done": true,
+      "elapsed": 35.03200141666457,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        188.72288513183594,
+        143.09629821777344,
+        -12934.052734375
+      ],
+      "label": "exp_1-step1",
+      "target": [
+        185.7899932861328,
+        140,
+        -12936.2802734375
+      ],
+      "done": true,
+      "elapsed": 4.399955791654065,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        216.43270874023438,
+        143.09629821777344,
+        -13054.58203125
+      ],
+      "label": "exp_1-step2",
+      "target": [
+        217.14999389648438,
+        140,
+        -13057.7197265625
+      ],
+      "done": true,
+      "elapsed": 7.731677333358675,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        250.0179443359375,
+        143.09629821777344,
+        -12950.888671875
+      ],
+      "label": "exp_1-step3",
+      "target": [
+        250.75,
+        140,
+        -12948.599609375
+      ],
+      "done": true,
+      "elapsed": 6.817711458308622,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        296.3888244628906,
+        143.09629821777344,
+        -12696.1708984375
+      ],
+      "label": "Orik",
+      "target": [
+        297.1499938964844,
+        140,
+        -12694.400390625
+      ],
+      "done": true,
+      "elapsed": 17.599161749938503,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        239.23158264160156,
+        143.09629821777344,
+        -12704.1005859375
+      ],
+      "label": "escort-supports",
+      "target": [
+        237.14999389648438,
+        140,
+        -12704.400390625
+      ],
+      "done": true,
+      "elapsed": 3.6170030833454803,
+      "discontinuities": 0
+    },
+    {
+      "jumps": 0,
+      "arrived": true,
+      "position": [
+        325.8902587890625,
+        143.09629821777344,
+        -12546.677734375
+      ],
+      "label": "escort-exit",
+      "target": [
+        327.1499938964844,
+        140,
+        -12544.400390625
+      ],
+      "done": true,
+      "elapsed": 11.199619583319873,
+      "discontinuities": 0
+    }
+  ]
+}
