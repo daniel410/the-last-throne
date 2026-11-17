@@ -44,7 +44,16 @@ for host=1,3 do
  local store=Store.new(map,function()return 0 end,{partyLease=180})
  assert(store.create('p',member(host),3,'job',1))
  assert(store.configure('p',host,'DW-04','Easy',true))
- for i=1,3 do if i~=host then assert(store.join('p',member(i)))end end
+ for i=1,3 do if i~=host then
+  local before=store.readParty('p')
+  local ad=Store.advertisement(before,i==1 and 1 or 2)
+  local listing=Store.listing(ad,member(i).routes)
+  assert(listing.missionId==before.missionId and listing.difficultyId=='Easy' and not listing.route)
+  local rejected,why=store.join('p',member(i),listing.joinMissionId,'Hard')
+  assert(not rejected and why=='ListingChanged' and not store.readParty('p').members[tostring(i)])
+  local joined=assert(store.join('p',member(i),listing.joinMissionId,listing.difficultyId))
+  assert(joined.missionId==listing.joinMissionId)
+ end end
  local p=store.readParty('p')
  assert(p.missionId=='DW-01','all leaders recommend earliest shared frontier')
  for i=1,3 do assert(store.touch('p',member(i),true,p.missionId,'Easy'))end
@@ -52,6 +61,8 @@ for host=1,3 do
  assert(v.launchAllowed and v.members[1].firstClear and not v.members[2].firstClear and not v.members[3].firstClear)
  assert(store.configure('p',host,'DW-04','Easy'))
  assert(store.readParty('p').recommendedMissionId=='DW-01' and store.readParty('p').missionId=='DW-04','manual selection retains common alternative')
+ local manual=Store.listing(Store.advertisement(store.readParty('p'),3),member(1).routes)
+ assert(manual.joinMissionId=='DW-04' and manual.missionId=='DW-04','manually selected mission is advertised unchanged')
  assert(not store.touch('p',member(1),true,'DW-01','Easy'),'late Ready cannot consent to a different mission')
  assert(not V.party(store.readParty('p'),function(m)return hero(profiles[m.userId])end).launchAllowed)
  assert(store.configure('p',host,'DW-04','Easy',true).missionId=='DW-01')

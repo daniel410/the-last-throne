@@ -18,13 +18,20 @@ local function scenario(size,mixed,advancedHost)
  source=source:gsub("local Teleport=game:GetService%('TeleportService'%)",[[local Teleport={TeleportInitFailed={Connect=function()end},calls={}}
  function Teleport:TeleportAsync(place,people,options)table.insert(self.calls,{userId=people[1].UserId,place=place,reserved=options.ReservedServerId,data=options:GetTeleportData()})end]],1)
  local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.openMenu',first,true))
- source=source:sub(1,first-1)..'local function publish(p,e) p.notice=e end\n'..source:sub(last)
+ source=source:sub(1,first-1)..source:sub(first,last-1):gsub('local function publish','local function captureListing',1)..'local function publish(p,e) p.notice=e end\n'..source:sub(last)
  source=source:gsub('return Service%s*$',[[
  function Service.qaActors(list)Players.list=list;for _,p in ipairs(list)do p.Parent=Players end end
  function Service.qaCommand(p,c)last[p]=-math.huge;return handle(p,c)end
  function Service.qaParty(p)return parties[p]and store.readParty(parties[p].id)end
  function Service.qaLive()studio=false end
  function Service.qaCalls()return Teleport.calls end
+ function Service.qaBrowse(p)
+  local original=remote
+  remote={FireClient=function(_,actor,state)actor.snapshot=state end}
+  captureListing(p)
+  remote=original
+  return p.snapshot
+ end
  return Service]])
  module.Source=source;module.Parent=original.Parent
  local service=require(module);local actors,profiles,prepared,resumed={},{},{},{}
@@ -54,7 +61,7 @@ local function scenario(size,mixed,advancedHost)
  local inv={ready=function()return true end,storyState=function(p)return profiles[p.UserId].heroes.hero.deepwood end,
   growth=function(p)return {level=profiles[p.UserId].heroes.hero.level}end,
   expeditionHero=function(p)return R.copy(profiles[p.UserId].heroes.hero)end,
-  expedition=function(p)return profiles[p.UserId].heroes.hero.expeditions.active end,
+  expedition=function(p)local e=profiles[p.UserId].heroes.hero.expeditions;return e and e.active end,
   prepareTransfer=function(p)
    for _,a in ipairs(actors)do check(a.attrs.TLTAdventureStarting,'every participant notified before first save');local blocked,why=service.beforeHeroAction(a,'SelectHero');check(blocked and why=='Busy','every participant locked before save')end
    prepared[p]=(prepared[p]or 0)+1;return true
@@ -62,7 +69,28 @@ local function scenario(size,mixed,advancedHost)
  local heroes={getActiveHero=function()return {heroId='hero',classId='knight'}end,getInventoryContext=function()return {heroId='hero',atHub=true}end,refresh=function()end}
  service.start({role='Lobby',inventory=inv,heroSession=heroes})
  service.qaCommand(actors[1],{action='Create',target=size});local party=assert(service.qaParty(actors[1]))
- if advancedHost then check(party.missionId=='DW-02','advanced leader starts at own frontier')end
+ if advancedHost then
+  check(party.missionId=='DW-02','advanced leader starts at own frontier')
+  local browser=actors[2]
+  local snapshot=service.qaBrowse(browser)
+  local listing=assert(snapshot.list[1])
+  check(listing.missionId=='DW-02' and listing.joinMissionId=='DW-01','recruitment previews both missions before joining')
+  local frame=Instance.new('Frame');frame.Size=UDim2.fromOffset(640,360)
+  local ui=require(game.StarterPlayer.StarterPlayerScripts.Client.ExpeditionView).create(frame,function()end)
+  ui.showTab('Party');ui.render(snapshot)
+  local row=assert(ui.panel.PartyList:FindFirstChild('Listing'..party.id))
+  local function caption(id)
+   for _,m in ipairs(snapshot.missions)do if m.id==id then return m.region..' · '..m.title end end
+  end
+  check(row.Destination.Text==caption('DW-02')..' · Easy' and row.JoinDestination.Text=='If you join: '..caption('DW-01'),'recruitment card shows the two server-authored destinations')
+  check(row:FindFirstChild('Join'..party.id).Active,'join button available before membership')
+  frame:Destroy()
+  service.qaCommand(actors[1],{action='Configure',missionId='DW-02',difficultyId='Easy'})
+  service.qaCommand(browser,{action='Join',id=party.id,missionId=listing.joinMissionId,difficultyId=listing.difficultyId})
+  check(browser.notice=='ListingChanged' and not service.qaParty(browser),'stale listing does not join a different mission')
+  check(service.qaBrowse(browser).list[1].joinMissionId=='DW-02','edited mission advertised immediately')
+  service.qaCommand(actors[1],{action='PartyMode',missionId='DW-02',difficultyId='Easy'})
+ end
  for i=2,size do service.qaCommand(actors[i],{action='Join',id=party.id});check(not actors[i].notice,'member joins selected party')end
  local function view()return Presentation.party(service.qaParty(actors[1]),function(m)return profiles[m.userId].heroes.hero end)end
  if advancedHost then
@@ -92,7 +120,7 @@ local function scenario(size,mixed,advancedHost)
   end
   for _,p in ipairs(actors)do check(prepared[p]==1 and not resumed[p]and p.attrs.TLTTravelLock,'each account prepared once and remains locked in transit')end
  end
- table.insert(report.cases,{size=size,mixed=mixed==true,error=actors[1].notice,teleports=#service.qaCalls()})
+ table.insert(report.cases,{size=size,mixed=mixed==true,advancedHost=advancedHost==true,error=actors[1].notice,teleports=#service.qaCalls()})
  module:Destroy()
 end
 for size=2,4 do scenario(size,false)end

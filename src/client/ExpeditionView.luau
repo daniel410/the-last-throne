@@ -174,7 +174,27 @@ function V.create(parent,send)
    else
     for n=2,4 do action('Create'..n,string.format(Text.Create,n),{action='Create',target=n})end
     line('Recruiting',Text.Recruiting,28,T.color.gold)
-    for _,p in ipairs(s.list or {})do action('Join'..p.id,string.format(Text.Join,p.host,p.count,p.target),{action='Join',id=p.id})end
+    local destinations={}
+    for _,m in ipairs(s.missions or {})do destinations[m.id]=m.region..' · '..m.title end
+    for _,p in ipairs(s.list or {})do
+     local destination=destinations[p.missionId] or p.missionId
+     local joinMission=p.joinMissionId or p.missionId
+     if destination and p.difficultyId then
+      local row=Instance.new('Frame')
+      row.Name='Listing'..p.id;row.BackgroundTransparency=1;row.Size=UDim2.new(1,-10,0,0)
+      row.AutomaticSize=Enum.AutomaticSize.Y;row.Parent=scroll;ordered(row)
+      local stack=Instance.new('UIListLayout')
+      stack.SortOrder=Enum.SortOrder.LayoutOrder;stack.Padding=UDim.new(0,3);stack.Parent=row
+      local title=T.label(row,'Destination',destination..' · '..p.difficultyId,UDim2.new(),UDim2.new(1,0,0,0),14,T.color.gold)
+      title.AutomaticSize=Enum.AutomaticSize.Y;title.LayoutOrder=1
+      if joinMission~=p.missionId then
+       local preview=T.label(row,'JoinDestination',string.format(Text.JoinDestination,destinations[joinMission] or joinMission),UDim2.new(),UDim2.new(1,0,0,0),13)
+       preview.AutomaticSize=Enum.AutomaticSize.Y;preview.LayoutOrder=2
+      end
+      local join=button(row,'Join'..p.id,string.format(Text.Join,p.host,p.count,p.target),{action='Join',id=p.id,missionId=joinMission,difficultyId=p.difficultyId},UDim2.new(),UDim2.new(1,0,0,44),false,true)
+      join.LayoutOrder=3
+     end
+    end
     if #(s.list or {})==0 then line('NoParties',Text.NoParties,44)end
    end
    action('Refresh',Text.Refresh,{action='GetState'})

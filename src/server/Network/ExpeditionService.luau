@@ -47,10 +47,24 @@ end
 local function publish(p,errorCode,open,requestId)
  if p.Parent~=Players or not remote then return end
  local localParty=parties[p];local party=localParty and store.readParty(localParty.id)
+ local hero=o.inventory.expeditionHero(p)
  local list={}
- if role=='Lobby' then
+ if role=='Lobby' and not party then
   local ok,rows=pcall(function() return index:GetRangeAsync(Enum.SortDirection.Descending,20) end)
-  if ok then for _,row in ipairs(rows) do local v=row.value;if Backend.isCurrent(v.id)and v.expiresAt>os.time() and v.count<v.target then table.insert(list,v) end end end
+  local routes
+  if ok then for _,row in ipairs(rows) do
+   local ad=row.value
+   if Backend.isCurrent(ad.id) and ad.expiresAt>os.time() and ad.count<ad.target then
+    if not ad.missionId then
+     local old=store.readParty(ad.id)
+     ad=old and old.status=='forming' and Store.advertisement(old,count(old.members))
+    end
+    if ad and ad.missionId and ad.count<ad.target then
+     if ad.route and hero and not routes then routes=Adventure.partyRoutes(hero) end
+     table.insert(list,Store.listing(ad,routes))
+    end
+   end
+  end end
  end
  -- Reserved destination IDs, membership fences and admission tickets stay server-only.
  local partyHeroes={}
@@ -65,7 +79,7 @@ local function publish(p,errorCode,open,requestId)
  end)
  local r,_,rejoinRun=offer(p)
  local choice=party and {missionId=party.missionId,difficultyId=party.difficultyId}or selection(p)
- local hero=o.inventory.expeditionHero(p);local missions=Presentation.missions(hero,clean and clean.target or 1)
+ local missions=Presentation.missions(hero,clean and clean.target or 1)
  if clean and clean.hostId==p.UserId then Presentation.partyMissions(missions,partyHeroes,clean.difficultyId) end
  local activeHero=o.heroSession.getActiveHero(p)
  local expedition=activeHero and o.inventory.expedition(p,activeHero.heroId)
@@ -82,8 +96,7 @@ end
 local function advertise(id)
  local p=store.readParty(id);if not p then return end
  if p.status~='forming' or count(p.members)==0 then pcall(function() index:RemoveAsync(id) end);return end
- local host=p.members[tostring(p.hostId)]
- pcall(function() index:SetAsync(id,{id=id,host=host and host.name or 'Adventurer',count=count(p.members),target=p.target,expiresAt=p.expiresAt},C.partyLease,os.time()) end)
+ pcall(function() index:SetAsync(id,Store.advertisement(p,count(p.members)),C.partyLease,os.time()) end)
 end
 local function unlock(p)
  if o.inventory.resumeTransfer(p) then p:SetAttribute('TLTTravelLock',false);o.heroSession.refresh(p);return true end
@@ -297,6 +310,7 @@ local function handle(p,c,...)
    if not Content.byId[c.missionId]or not Difficulty.modes[c.difficultyId]then return 'InvalidMission'end
    if mine then
     local _,why=store.configure(mine.id,p.UserId,c.missionId,c.difficultyId,c.action=='PartyMode');if why then return why end
+    advertise(mine.id)
    else selections[p]={missionId=c.missionId,difficultyId=c.difficultyId}end
   elseif c.action=='Create' or c.action=='Join' then
    if mine then return 'AlreadyParty' end
@@ -311,7 +325,7 @@ local function handle(p,c,...)
    else
     party,why=store.readParty(id)
     if party and party.jobId~=job then m.arrived=false end
-    if party then party,why=store.join(id,m) end
+    if party then party,why=store.join(id,m,c.missionId,c.difficultyId) end
    end
    if not party then store.remove(id,p.UserId,token);store.releaseMembership(p.UserId,id,token);return why or 'PartyFull' end
    parties[p]={id=id,token=token};advertise(id)

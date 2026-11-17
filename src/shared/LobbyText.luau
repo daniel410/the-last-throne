@@ -18,6 +18,7 @@ return {
  Configuration='Battle travel is not configured yet. Training is available in the lobby.',
  TravelFailed='Travel failed. Your progress is saved. Retry joining the same destination.',
  PartyRulesMismatch='Party heroes have unfinished adventures with different rules. Continue solo or choose another mission together.',
+ ListingChanged='The party destination changed. Check the updated listing and join again.',
  PartyFull='That party is full or no longer recruiting. Refresh the party list.',PartyChanged='The party changed. Check the roster and ready up again.',
  PartyRequired='Create or join a party first.',LeaderOnly='Only the party leader can start this adventure.',
  NotReady='Select a hero. Every party member must meet the selected mission conditions, gather in this lobby, and ready up.',

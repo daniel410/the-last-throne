@@ -27,7 +27,7 @@ return {
  RepeatHell='Hell can be replayed without a daily limit. Each new completed run earns repeat rewards.',
  Objective='First objective: %s',Rejoin='REJOIN',Leave='LEAVE PARTY',Refresh='REFRESH',
  NoParties='No open parties. Create one for other heroes to join.',Recruiting='RECRUITING PARTIES',
- Create='CREATE %d-HERO PARTY',Join='JOIN %s · %d/%d',
+ JoinDestination='If you join: %s',Create='CREATE %d-HERO PARTY',Join='JOIN %s · %d/%d',
  Unavailable='Entry is unavailable. Refresh or choose another mission.',PartyBlocked='Review the party entry conditions and Ready status.',
  Config='Battle travel is not configured. Choose training or try again later.',
  Studio='Studio preview · Cross-server travel and persistent saves are disabled.',

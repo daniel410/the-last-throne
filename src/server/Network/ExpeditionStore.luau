@@ -2,28 +2,51 @@
 -- atomic key update. Membership indexes are fenced tokens, not a multi-key transaction.
 local Content=game and require(game.ReplicatedStorage.Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local Store={}
+-- A recruiting row needs only the intersection of the roster's routes.
+local function commonRoute(p)
+ local common
+ for _,member in pairs(p.members) do
+  local route=member.routes and member.routes[p.difficultyId]
+  if not route then return nil end
+  if not common then
+   common={next=route.next,versions={}}
+   for i,version in ipairs(route.versions) do common.versions[i]=version end
+  else
+   common.next=math.min(common.next,route.next)
+   for i,version in ipairs(common.versions) do
+    if version~=route.versions[i] then common.versions[i]=0 end
+   end
+  end
+ end
+ return common
+end
+local function destination(common,viewer)
+ local earliest=viewer and math.min(common.next,viewer.next) or common.next
+ for i=earliest,1,-1 do
+  local version=common.versions[i]
+  if version and version>0 and (not viewer or viewer.versions[i]==version) then
+   return Content.mainChapters[i].id,true
+  end
+ end
+ return Content.mainChapters[earliest].id,false
+end
+function Store.advertisement(p,memberCount)
+ local host=p.members[tostring(p.hostId)]
+ return {id=p.id,host=host and host.name or 'Adventurer',count=memberCount,target=p.target,
+  missionId=p.missionId,difficultyId=p.difficultyId,route=p.autoMission and commonRoute(p) or nil,expiresAt=p.expiresAt}
+end
+function Store.listing(ad,routes)
+ local mission=ad.missionId
+ local viewer=routes and routes[ad.difficultyId]
+ if ad.route and viewer then mission=destination(ad.route,viewer) end
+ return {id=ad.id,host=ad.host,count=ad.count,target=ad.target,missionId=ad.missionId,difficultyId=ad.difficultyId,joinMissionId=mission}
+end
 local function syncMission(p)
  if not p.difficultyId or p.status~='forming' then return p end
- local routes={}
- local earliest=Content.mainCount
- for _,m in pairs(p.members) do
-  local route=m.routes and m.routes[p.difficultyId]
-  if not route then return p end
-  table.insert(routes,route)
-  earliest=math.min(earliest,route.next)
- end
- if #routes==0 then return p end
- local chosen
- for i=earliest,1,-1 do
-  local version=routes[1].versions[i]
-  local shared=version and version>0
-  for _,route in ipairs(routes) do
-   if route.versions[i]~=version then shared=false end
-  end
-  if shared then chosen=i;break end
- end
- p.recommendedMissionId=chosen and Content.mainChapters[chosen].id
- local id=p.recommendedMissionId or Content.mainChapters[earliest].id
+ local common=commonRoute(p)
+ if not common then return p end
+ local id,shared=destination(common)
+ p.recommendedMissionId=shared and id or nil
  if p.autoMission and id~=p.missionId then
   p.missionId=id
   for _,m in pairs(p.members) do m.ready=false end
@@ -86,14 +109,17 @@ function Store.new(map,clock,config)
    return {id=id,version=1,hostId=member.userId,jobId=job,placeId=place,target=target,status='forming',members={[tostring(member.userId)]=member},expiresAt=clock()+C.partyLease}
   end)
  end
- function S.join(id,member)
+ function S.join(id,member,expectedMission,expectedMode)
   return update('party:'..id,C.partyLease,function(p)
    if not p or p.status~='forming' then return nil,'PartyFull' end;prune(p)
    local old=p.members[tostring(member.userId)]
    if old then if old.token==member.token then return p end;return nil,'AlreadyParty' end
    if size(p.members)>=p.target then return nil,'PartyFull' end
    member.ready=false;member.expiresAt=clock()+(member.arrived and C.partyLease or C.claimSeconds)
-   p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease;return syncMission(p)
+   p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease
+   syncMission(p)
+   if expectedMission and (p.missionId~=expectedMission or p.difficultyId~=expectedMode) then return nil,'ListingChanged' end
+   return p
   end)
  end
  function S.arrive(id,uid,token,job,member)
