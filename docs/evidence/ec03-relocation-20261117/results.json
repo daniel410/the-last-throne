@@ -1,0 +1,27 @@
+{
+  "studio": "e9869915-9a8c-434e-8b6c-631e7daa6a4b",
+  "base": "e1f9360c6569e1422941b558c33341b79b2da620",
+  "mode": "Edit, disposable overlay",
+  "before": [
+    434.95001220703125,
+    141.595458984375,
+    -12519.80078125
+  ],
+  "after": [
+    434.95001220703125,
+    141.45474243164062,
+    -12531.1005859375
+  ],
+  "accepted": false,
+  "navigation": {
+    "chapters": 11,
+    "targets": 144,
+    "samples": 8396,
+    "connectors": 9,
+    "blockers": 0,
+    "floors": 0,
+    "corrections": 0,
+    "routeFailures": 0,
+    "lowSteps": 0
+  }
+}
