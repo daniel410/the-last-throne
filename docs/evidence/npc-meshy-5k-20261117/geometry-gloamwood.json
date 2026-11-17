@@ -1,0 +1,78 @@
+[
+  {
+    "id": "maeve",
+    "region": "gloamwood",
+    "sourceTriangles": 5228,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/maeve.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/maeve-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/maeve-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/maeve-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/maeve-back.png"
+    ]
+  },
+  {
+    "id": "finn",
+    "region": "gloamwood",
+    "sourceTriangles": 5034,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/finn.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/finn-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/finn-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/finn-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/finn-back.png"
+    ]
+  },
+  {
+    "id": "tali",
+    "region": "gloamwood",
+    "sourceTriangles": 4838,
+    "candidateTriangles": 4838,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/tali.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/tali-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/tali-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/tali-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/tali-back.png"
+    ]
+  },
+  {
+    "id": "wispkeeper",
+    "region": "gloamwood",
+    "sourceTriangles": 4873,
+    "candidateTriangles": 4873,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/wispkeeper.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/wispkeeper-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/wispkeeper-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/wispkeeper-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/wispkeeper-back.png"
+    ]
+  }
+]

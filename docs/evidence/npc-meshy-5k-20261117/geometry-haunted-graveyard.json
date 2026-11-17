@@ -1,0 +1,78 @@
+[
+  {
+    "id": "lumi",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 4401,
+    "candidateTriangles": 4401,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/lumi.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/lumi-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/lumi-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/lumi-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/lumi-back.png"
+    ]
+  },
+  {
+    "id": "garrick",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 5084,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/garrick.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/garrick-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/garrick-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/garrick-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/garrick-back.png"
+    ]
+  },
+  {
+    "id": "elowen",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 4887,
+    "candidateTriangles": 4887,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/elowen.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/elowen-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/elowen-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/elowen-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/elowen-back.png"
+    ]
+  },
+  {
+    "id": "rook",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 5268,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/rook.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/rook-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/rook-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/rook-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/rook-back.png"
+    ]
+  }
+]

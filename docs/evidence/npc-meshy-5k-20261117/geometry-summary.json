@@ -1,0 +1,582 @@
+[
+  {
+    "id": "aldric",
+    "region": "dawnspire",
+    "sourceTriangles": 5235,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/aldric.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/aldric-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/aldric-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/aldric-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/aldric-back.png"
+    ],
+    "name": "Aldric"
+  },
+  {
+    "id": "mira",
+    "region": "dawnspire",
+    "sourceTriangles": 5258,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/mira.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/mira-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/mira-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/mira-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/mira-back.png"
+    ],
+    "name": "Mira"
+  },
+  {
+    "id": "rowan",
+    "region": "dawnspire",
+    "sourceTriangles": 5250,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/rowan.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/rowan-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/rowan-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/rowan-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/rowan-back.png"
+    ],
+    "name": "Rowan"
+  },
+  {
+    "id": "tessa",
+    "region": "dawnspire",
+    "sourceTriangles": 5282,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/tessa.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/tessa-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/tessa-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/tessa-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/tessa-back.png"
+    ],
+    "name": "Tessa"
+  },
+  {
+    "id": "oren",
+    "region": "dawnspire",
+    "sourceTriangles": 5263,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/oren.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/oren-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/oren-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/oren-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/oren-back.png"
+    ],
+    "name": "Oren"
+  },
+  {
+    "id": "nia",
+    "region": "dawnspire",
+    "sourceTriangles": 5241,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/nia.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/nia-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/nia-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/nia-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/nia-back.png"
+    ],
+    "name": "Nia"
+  },
+  {
+    "id": "eryn",
+    "region": "deepwood",
+    "sourceTriangles": 5116,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/eryn.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/eryn-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/eryn-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/eryn-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/eryn-back.png"
+    ],
+    "name": "Eryn"
+  },
+  {
+    "id": "liora",
+    "region": "deepwood",
+    "sourceTriangles": 5131,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/liora.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/liora-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/liora-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/liora-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/liora-back.png"
+    ],
+    "name": "Liora"
+  },
+  {
+    "id": "tobin",
+    "region": "deepwood",
+    "sourceTriangles": 5292,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/tobin.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/tobin-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/tobin-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/tobin-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/tobin-back.png"
+    ],
+    "name": "Tobin"
+  },
+  {
+    "id": "pip",
+    "region": "deepwood",
+    "sourceTriangles": 5091,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/pip.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/pip-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/pip-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/pip-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/pip-back.png"
+    ],
+    "name": "Pip"
+  },
+  {
+    "id": "fen",
+    "region": "deepwood",
+    "sourceTriangles": 5153,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/fen.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/fen-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/fen-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/fen-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/fen-back.png"
+    ],
+    "name": "Fen"
+  },
+  {
+    "id": "freya",
+    "region": "frozen-vale",
+    "sourceTriangles": 5159,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/freya.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/freya-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/freya-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/freya-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/freya-back.png"
+    ],
+    "name": "Freya"
+  },
+  {
+    "id": "haldor",
+    "region": "frozen-vale",
+    "sourceTriangles": 5275,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/haldor.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/haldor-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/haldor-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/haldor-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/haldor-back.png"
+    ],
+    "name": "Haldor"
+  },
+  {
+    "id": "nessa",
+    "region": "frozen-vale",
+    "sourceTriangles": 4798,
+    "candidateTriangles": 4798,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/nessa.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/nessa-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/nessa-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/nessa-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/nessa-back.png"
+    ],
+    "name": "Nessa"
+  },
+  {
+    "id": "ivo",
+    "region": "frozen-vale",
+    "sourceTriangles": 5272,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/ivo.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/ivo-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/ivo-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/ivo-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/ivo-back.png"
+    ],
+    "name": "Ivo"
+  },
+  {
+    "id": "ylva",
+    "region": "frozen-vale",
+    "sourceTriangles": 5007,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/ylva.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/ylva-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/ylva-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/ylva-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/ylva-back.png"
+    ],
+    "name": "Ylva"
+  },
+  {
+    "id": "brann",
+    "region": "ember-caldera",
+    "sourceTriangles": 5244,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/brann.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/brann-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/brann-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/brann-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/brann-back.png"
+    ],
+    "name": "Brann"
+  },
+  {
+    "id": "dagna",
+    "region": "ember-caldera",
+    "sourceTriangles": 4805,
+    "candidateTriangles": 4805,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/dagna.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/dagna-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/dagna-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/dagna-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/dagna-back.png"
+    ],
+    "name": "Dagna"
+  },
+  {
+    "id": "orik",
+    "region": "ember-caldera",
+    "sourceTriangles": 5236,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/orik.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/orik-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/orik-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/orik-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/orik-back.png"
+    ],
+    "name": "Orik"
+  },
+  {
+    "id": "ketta",
+    "region": "ember-caldera",
+    "sourceTriangles": 5307,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/ketta.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/ketta-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/ketta-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/ketta-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/ketta-back.png"
+    ],
+    "name": "Ketta"
+  },
+  {
+    "id": "suri",
+    "region": "ember-caldera",
+    "sourceTriangles": 5213,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/suri.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/suri-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/suri-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/suri-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/suri-back.png"
+    ],
+    "name": "Suri"
+  },
+  {
+    "id": "maeve",
+    "region": "gloamwood",
+    "sourceTriangles": 5228,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/maeve.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/maeve-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/maeve-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/maeve-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/maeve-back.png"
+    ],
+    "name": "Maeve"
+  },
+  {
+    "id": "finn",
+    "region": "gloamwood",
+    "sourceTriangles": 5034,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/finn.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/finn-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/finn-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/finn-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/finn-back.png"
+    ],
+    "name": "Finn"
+  },
+  {
+    "id": "tali",
+    "region": "gloamwood",
+    "sourceTriangles": 4838,
+    "candidateTriangles": 4838,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/tali.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/tali-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/tali-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/tali-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/tali-back.png"
+    ],
+    "name": "Tali"
+  },
+  {
+    "id": "wispkeeper",
+    "region": "gloamwood",
+    "sourceTriangles": 4873,
+    "candidateTriangles": 4873,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/wispkeeper.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/wispkeeper-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/wispkeeper-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/wispkeeper-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/wispkeeper-back.png"
+    ],
+    "name": "Wispkeeper"
+  },
+  {
+    "id": "lumi",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 4401,
+    "candidateTriangles": 4401,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/lumi.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/lumi-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/lumi-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/lumi-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/lumi-back.png"
+    ],
+    "name": "Lumi"
+  },
+  {
+    "id": "garrick",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 5084,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/garrick.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/garrick-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/garrick-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/garrick-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/garrick-back.png"
+    ],
+    "name": "Garrick"
+  },
+  {
+    "id": "elowen",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 4887,
+    "candidateTriangles": 4887,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/elowen.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/elowen-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/elowen-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/elowen-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/elowen-back.png"
+    ],
+    "name": "Elowen"
+  },
+  {
+    "id": "rook",
+    "region": "haunted-graveyard",
+    "sourceTriangles": 5268,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/rook.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/rook-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/rook-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/rook-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/rook-back.png"
+    ],
+    "name": "Rook"
+  }
+]

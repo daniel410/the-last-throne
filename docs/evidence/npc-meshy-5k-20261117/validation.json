@@ -1,0 +1,14 @@
+{
+  "taskId": "NPC-5K-20261117",
+  "pngCount": 29,
+  "rawGlbCount": 29,
+  "candidateGlbCount": 29,
+  "renderCount": 87,
+  "exportedTrianglesMin": 4401,
+  "exportedTrianglesMax": 4995,
+  "allCandidatesAtMost5000": true,
+  "allTexturesEmbedded": true,
+  "noRigOrAnimation": true,
+  "seleneExcluded": true,
+  "consumedCredits": 435
+}

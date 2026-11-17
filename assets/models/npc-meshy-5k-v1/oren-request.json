@@ -1,0 +1,13 @@
+{
+  "file_path": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-17-npc-blocky-5k-v1/oren.png",
+  "ai_model": "meshy-t2.5",
+  "model_type": "smart-topology",
+  "target_polycount": 5000,
+  "topology": "triangle",
+  "texture_model": "meshy-n1",
+  "should_texture": true,
+  "target_formats": [
+    "glb"
+  ],
+  "response_format": "json"
+}

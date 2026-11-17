@@ -1,0 +1,97 @@
+[
+  {
+    "id": "brann",
+    "region": "ember-caldera",
+    "sourceTriangles": 5244,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/brann.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/brann-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/brann-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/brann-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/brann-back.png"
+    ]
+  },
+  {
+    "id": "dagna",
+    "region": "ember-caldera",
+    "sourceTriangles": 4805,
+    "candidateTriangles": 4805,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/dagna.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/dagna-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/dagna-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/dagna-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/dagna-back.png"
+    ]
+  },
+  {
+    "id": "orik",
+    "region": "ember-caldera",
+    "sourceTriangles": 5236,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/orik.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/orik-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/orik-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/orik-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/orik-back.png"
+    ]
+  },
+  {
+    "id": "ketta",
+    "region": "ember-caldera",
+    "sourceTriangles": 5307,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/ketta.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/ketta-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/ketta-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/ketta-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/ketta-back.png"
+    ]
+  },
+  {
+    "id": "suri",
+    "region": "ember-caldera",
+    "sourceTriangles": 5213,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/suri.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/suri-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/suri-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/suri-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/suri-back.png"
+    ]
+  }
+]

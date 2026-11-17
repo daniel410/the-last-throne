@@ -1,0 +1,19 @@
+{
+  "id": "tali",
+  "region": "gloamwood",
+  "sourceTriangles": 4838,
+  "candidateTriangles": 4838,
+  "meshCount": 1,
+  "uvPresent": true,
+  "finiteCoordinates": true,
+  "rigged": false,
+  "source": "assets/models/npc-meshy-5k-v1/tali.glb",
+  "candidate": "assets/models/npc-meshy-5k-v1/candidates/tali-5k.glb",
+  "blenderVersion": "5.2.0 LTS",
+  "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+  "renders": [
+    "docs/evidence/npc-meshy-5k-20261117/tali-front.png",
+    "docs/evidence/npc-meshy-5k-20261117/tali-three-quarter.png",
+    "docs/evidence/npc-meshy-5k-20261117/tali-back.png"
+  ]
+}

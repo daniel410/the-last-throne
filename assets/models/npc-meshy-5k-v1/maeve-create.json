@@ -1,0 +1,18 @@
+{
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"task_id\": \"01a1ebb9-5004-7474-9443-3a270b087577\",\n  \"status\": \"PENDING\",\n  \"message\": \"3D generation task created successfully. Task ID: 01a1ebb9-5004-7474-9443-3a270b087577\",\n  \"estimated_time\": \"2-3 minutes\"\n}"
+      }
+    ],
+    "structuredContent": {
+      "task_id": "01a1ebb9-5004-7474-9443-3a270b087577",
+      "status": "PENDING",
+      "message": "3D generation task created successfully. Task ID: 01a1ebb9-5004-7474-9443-3a270b087577",
+      "estimated_time": "2-3 minutes"
+    }
+  },
+  "jsonrpc": "2.0",
+  "id": 9
+}

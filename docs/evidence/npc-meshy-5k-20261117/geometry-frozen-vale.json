@@ -1,0 +1,97 @@
+[
+  {
+    "id": "freya",
+    "region": "frozen-vale",
+    "sourceTriangles": 5159,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/freya.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/freya-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/freya-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/freya-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/freya-back.png"
+    ]
+  },
+  {
+    "id": "haldor",
+    "region": "frozen-vale",
+    "sourceTriangles": 5275,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/haldor.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/haldor-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/haldor-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/haldor-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/haldor-back.png"
+    ]
+  },
+  {
+    "id": "nessa",
+    "region": "frozen-vale",
+    "sourceTriangles": 4798,
+    "candidateTriangles": 4798,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/nessa.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/nessa-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/nessa-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/nessa-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/nessa-back.png"
+    ]
+  },
+  {
+    "id": "ivo",
+    "region": "frozen-vale",
+    "sourceTriangles": 5272,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/ivo.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/ivo-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/ivo-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/ivo-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/ivo-back.png"
+    ]
+  },
+  {
+    "id": "ylva",
+    "region": "frozen-vale",
+    "sourceTriangles": 5007,
+    "candidateTriangles": 4994,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/ylva.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/ylva-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/ylva-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/ylva-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/ylva-back.png"
+    ]
+  }
+]

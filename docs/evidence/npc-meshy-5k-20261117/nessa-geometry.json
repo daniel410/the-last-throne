@@ -1,0 +1,19 @@
+{
+  "id": "nessa",
+  "region": "frozen-vale",
+  "sourceTriangles": 4798,
+  "candidateTriangles": 4798,
+  "meshCount": 1,
+  "uvPresent": true,
+  "finiteCoordinates": true,
+  "rigged": false,
+  "source": "assets/models/npc-meshy-5k-v1/nessa.glb",
+  "candidate": "assets/models/npc-meshy-5k-v1/candidates/nessa-5k.glb",
+  "blenderVersion": "5.2.0 LTS",
+  "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+  "renders": [
+    "docs/evidence/npc-meshy-5k-20261117/nessa-front.png",
+    "docs/evidence/npc-meshy-5k-20261117/nessa-three-quarter.png",
+    "docs/evidence/npc-meshy-5k-20261117/nessa-back.png"
+  ]
+}

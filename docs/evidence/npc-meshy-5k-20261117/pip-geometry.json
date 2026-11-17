@@ -1,0 +1,19 @@
+{
+  "id": "pip",
+  "region": "deepwood",
+  "sourceTriangles": 5091,
+  "candidateTriangles": 4995,
+  "meshCount": 1,
+  "uvPresent": true,
+  "finiteCoordinates": true,
+  "rigged": false,
+  "source": "assets/models/npc-meshy-5k-v1/pip.glb",
+  "candidate": "assets/models/npc-meshy-5k-v1/candidates/pip-5k.glb",
+  "blenderVersion": "5.2.0 LTS",
+  "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+  "renders": [
+    "docs/evidence/npc-meshy-5k-20261117/pip-front.png",
+    "docs/evidence/npc-meshy-5k-20261117/pip-three-quarter.png",
+    "docs/evidence/npc-meshy-5k-20261117/pip-back.png"
+  ]
+}

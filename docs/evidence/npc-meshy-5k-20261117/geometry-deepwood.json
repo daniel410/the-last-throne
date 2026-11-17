@@ -1,0 +1,97 @@
+[
+  {
+    "id": "eryn",
+    "region": "deepwood",
+    "sourceTriangles": 5116,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/eryn.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/eryn-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/eryn-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/eryn-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/eryn-back.png"
+    ]
+  },
+  {
+    "id": "liora",
+    "region": "deepwood",
+    "sourceTriangles": 5131,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/liora.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/liora-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/liora-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/liora-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/liora-back.png"
+    ]
+  },
+  {
+    "id": "tobin",
+    "region": "deepwood",
+    "sourceTriangles": 5292,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/tobin.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/tobin-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/tobin-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/tobin-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/tobin-back.png"
+    ]
+  },
+  {
+    "id": "pip",
+    "region": "deepwood",
+    "sourceTriangles": 5091,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/pip.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/pip-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/pip-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/pip-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/pip-back.png"
+    ]
+  },
+  {
+    "id": "fen",
+    "region": "deepwood",
+    "sourceTriangles": 5153,
+    "candidateTriangles": 4995,
+    "meshCount": 1,
+    "uvPresent": true,
+    "finiteCoordinates": true,
+    "rigged": false,
+    "source": "assets/models/npc-meshy-5k-v1/fen.glb",
+    "candidate": "assets/models/npc-meshy-5k-v1/candidates/fen-5k.glb",
+    "blenderVersion": "5.2.0 LTS",
+    "colorManagement": "Standard / sRGB / None / 0 / 1 / Curves Off",
+    "renders": [
+      "docs/evidence/npc-meshy-5k-20261117/fen-front.png",
+      "docs/evidence/npc-meshy-5k-20261117/fen-three-quarter.png",
+      "docs/evidence/npc-meshy-5k-20261117/fen-back.png"
+    ]
+  }
+]
