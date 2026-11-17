@@ -84,7 +84,7 @@ State.set({heroId="a",expedition={runId="second"},journal=p},nil)
 check(State.waypoint==nil,"new expedition clears the previous pin")
 local road
 for _,row in ipairs(list:GetChildren()) do
- if row:IsA("TextButton") and row.Kind.Text=="ROAD"then road=row;break end
+ if row:FindFirstChild("Kind") and row.Kind.Text=="ROAD"then road=row;break end
 end
 local n=tonumber(road.Name:match("%d+"))
 click(chart.Survey["SitePin"..n]);click(road.ViewArea)

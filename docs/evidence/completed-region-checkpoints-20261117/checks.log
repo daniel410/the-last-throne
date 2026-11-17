@@ -1,0 +1,14 @@
+Checkpoint travel: 8349 checks passed
+ATLAS_FALLBACK_PASS 3
+REGION_FIELD_MAP_PASS 332
+LOBBY_ATLAS_NATIVE 87 true
+CARTOGRAPHY_QA {"zones":44,"roads":5956,"footprints":2583,"checks":6617}
+EPIC_MAP_CONNECTIONS_QA {"zones":44,"roads":5956,"footprints":2583,"checks":3021}
+DEEPWOOD_ATLAS_NATIVE {"failures":[],"kind":"DEEPWOOD_ATLAS_NATIVE","pass":true,"checks":416}
+STORY_OBSTACLES_TRAVEL {"onwardRoutes":70,"roadblocks":10,"minDistance":193.4383544921875,"checks":1095}
+Checkpoint map layout: 36 checks passed
+Party map: 96 checks passed
+place-role: 10 checks PASS
+arrival-loading: 291 checks PASS
+single-build: project mounts and compatibility alias PASS
+single-build: actual artifact role/config/loading checks PASS
