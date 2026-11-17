@@ -1,0 +1,44 @@
+{
+  "version": "0.111.29",
+  "sourceCommit": "37bb62f470facc1212ad351a4afba8d6e3927b35",
+  "artifact": "builds/0.111.29/TheLastThrone-0.111.29.rbxlx",
+  "sha256": "2c36ea9543d266b6707095e9bae632593d5033e6d17bb1e5fa7e43f02fa3c98b",
+  "bytes": 20029830,
+  "published": true,
+  "diskHashUnchanged": true,
+  "universeId": 10773575153,
+  "method": "Roblox Studio Publish As; Creator Dashboard Show published only verification",
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 101,
+      "previousPublishedVersion": 100,
+      "localPublishedTime": "2026-11-16 20:23 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history",
+      "showPublishedOnlyVerified": true
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 29,
+      "previousPublishedVersion": 28,
+      "localPublishedTime": "2026-11-16 20:26 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history",
+      "showPublishedOnlyVerified": true
+    }
+  ],
+  "audience": "Private (unchanged)",
+  "assetPermissions": "Grant Permissions and Publish for destination TLT Experience at Lobby publication",
+  "releaseTag": "v0.111.29",
+  "unverified": [
+    "실제 게시 클라이언트 재입장/Teleport·저장·재접속",
+    "실기기·멀티플레이·사용자 수용",
+    "복구 리허설"
+  ],
+  "preservedLocalSessions": [
+    "builds/0.111.28/TheLastThrone-0.111.28-unsaved-session-20261116-2019.rbxl",
+    "/tmp/tlt-ec03-shoulder-after-unsaved-session-20261116-2021.rbxl",
+    "/tmp/tlt-ec03-apron-final-unsaved-session-20261116-2022.rbxl"
+  ]
+}
