@@ -5,6 +5,7 @@ local Run=game:GetService('RunService')
 local Teleport=game:GetService('TeleportService')
 local C=require(RS.Shared.ExpeditionConfig)
 local Store=require(script.Parent.ExpeditionStore)
+local Backend=require(script.Parent.ExpeditionBackend)
 local Departure=require(script.Parent.ExpeditionDeparture)
 local TravelAttempt=require(script.Parent.TravelAttempt)
 local Adventure=require(RS.Shared.AdventureRules)
@@ -13,7 +14,7 @@ local Content=require(RS.Shared.CampaignContent)
 local Presentation=require(RS.Shared.ExpeditionPresentation)
 local Service={}
 local selections={}
-local o,store,remote,index,role,job
+local o,store,currentStore,legacyStore,remote,index,role,job
 local parties,travel,arrivals,admitted,busy,last,leaving={},{},{},{},{},{},{}
 local battleRun,battleStarted,runHealthy=nil,nil,true
 local seats={};local seatCount=0
@@ -32,10 +33,10 @@ local function member(p,token)
  return {userId=p.UserId,name=p.DisplayName,heroId=h.heroId,classId=h.classId,main=s and s.main or 0,level=g and g.level or 1,token=token,arrived=true}
 end
 local function offer(p)
- local r,e=store.rejoin(p.UserId,function(heroId)
+ local r,e=Backend.rejoin(currentStore,legacyStore,p.UserId,function(heroId)
   local a=o.inventory.expedition(p,heroId);return a and a.runId
  end);if not r then return nil,e end
- local run,why=store.readRun(r.runId);if not run or run.closed then return nil,why or 'RejoinExpired' end
+ local run,why=Backend.select(currentStore,legacyStore,r.runId).readRun(r.runId);if not run or run.closed then return nil,why or 'RejoinExpired' end
  return r,nil,run
 end
 local function selection(p)
@@ -48,7 +49,7 @@ local function publish(p,errorCode,open,requestId)
  local list={}
  if role=='Lobby' then
   local ok,rows=pcall(function() return index:GetRangeAsync(Enum.SortDirection.Descending,20) end)
-  if ok then for _,row in ipairs(rows) do local v=row.value;if v.expiresAt>os.time() and v.count<v.target then table.insert(list,v) end end end
+  if ok then for _,row in ipairs(rows) do local v=row.value;if Backend.isCurrent(v.id)and v.expiresAt>os.time() and v.count<v.target then table.insert(list,v) end end end
  end
  -- Reserved destination IDs, membership fences and admission tickets stay server-only.
  local clean=Presentation.party(party,function(m)
@@ -148,10 +149,11 @@ function Service.admitArrival(p)
  end
  if studio then return nil end
  if game.PrivateServerId=='' or game.PrivateServerOwnerId~=0 or not sourceValid(data) or type(t)~='table' or type(t.runId)~='string' or #t.runId>64 or type(t.ticket)~='string' or #t.ticket>64 then return nil,'Join an adventure from the Dawnspire lobby.' end
- local r,e=store.admit(t.runId,p.UserId,t.ticket,job)
+ local arrivalStore=Backend.select(currentStore,legacyStore,t.runId)
+ local r,e=arrivalStore.admit(t.runId,p.UserId,t.ticket,job)
  if not r or r.placeId~=game.PlaceId or count(r.members)>4 or not Difficulty.compatible(r.rulesVersion) or not Content.byId[r.missionId]or not Difficulty.modes[r.difficultyId]then return nil,'Your expedition could not be verified. Return to the lobby and rejoin.' end
  if battleRun and battleRun.id~=r.id then return nil,'This battle server belongs to another expedition.' end
- battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
+ store=arrivalStore;battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
  p:SetAttribute('TLTTravelLock',true)
  local ready,loadError=xpcall(function()o.previewWorld(r.missionId)end,debug.traceback)
  if not ready then
@@ -224,7 +226,7 @@ local function startRun(p,party)
   -- Replicate progress before the first store/save yield, including to non-hosts.
   person:SetAttribute('TLTAdventureStarting',true)
  end
- local runId=guid();local ok,result,reason=xpcall(function()return startRunLocked(p,party,runId)end,debug.traceback)
+ local runId=Backend.newId(guid());local ok,result,reason=xpcall(function()return startRunLocked(p,party,runId)end,debug.traceback)
  for person,lock in pairs(locked) do
   busy[person]=lock.previous
   if not travel[person]then person:SetAttribute('TLTAdventureStarting',false)end
@@ -289,8 +291,9 @@ local function handle(p,c,...)
    else selections[p]={missionId=c.missionId,difficultyId=c.difficultyId}end
   elseif c.action=='Create' or c.action=='Join' then
    if mine then return 'AlreadyParty' end
-   local id=c.action=='Create' and guid() or c.id
+   local id=c.action=='Create' and Backend.newId(guid()) or c.id
    if not id then return 'InvalidRequest' end
+   if not Backend.isCurrent(id)then return 'PartyChanged'end
    local token=guid();local m=member(p,token);if not m then return 'NotReady' end
    local fence,why=store.claimMembership(p.UserId,id,token);if not fence then store.releaseMembership(p.UserId,id,token);return why end
    local party
@@ -324,7 +327,7 @@ local function handle(p,c,...)
   elseif c.action=='Rejoin' then
    if studio then return 'Configuration' end
    local r,why=offer(p);if not r then return why or 'RejoinExpired' end
-   local run=store.readRun(r.runId);if not run or not run.members[tostring(p.UserId)] then return 'RejoinExpired' end
+   local run=Backend.select(currentStore,legacyStore,r.runId).readRun(r.runId);if not run or not run.members[tostring(p.UserId)] then return 'RejoinExpired' end
    local ok,reason=send(p,{kind='battle',placeId=run.placeId,reservedId=run.reservedId,data={runId=run.id,ticket=r.ticket}});if not ok then return reason end
   else return 'InvalidRequest' end
  end)
@@ -343,9 +346,10 @@ function Service.start(options)
   local values={};map={GetAsync=function(_,key) return values[key] end,UpdateAsync=function(_,key,fn) local v=fn(values[key]);if v then values[key]=v end;return v end}
   local rows={};index={SetAsync=function(_,id,v) rows[id]=v end,RemoveAsync=function(_,id) rows[id]=nil end,GetRangeAsync=function() local a={};for id,v in pairs(rows) do table.insert(a,{key=id,value=v}) end;return a end}
  else
-  local memory=game:GetService('MemoryStoreService');map=memory:GetHashMap('TLT_Expedition_v1');index=memory:GetSortedMap('TLT_Parties_v1')
+  local memory=game:GetService('MemoryStoreService');map=memory:GetSortedMap(Backend.mapName);index=memory:GetSortedMap('TLT_Parties_v1')
+  legacyStore=Store.new(memory:GetHashMap('TLT_Expedition_v1'),os.time,C)
  end
- store=Store.new(map,os.time,C)
+ store=Store.new(map,os.time,C);currentStore=store
  remote=Instance.new('RemoteEvent');remote.Name='ExpeditionState';remote.Parent=RS.Remotes
  local request=Instance.new('RemoteEvent');request.Name='ExpeditionRequest';request.Parent=RS.Remotes;request.OnServerEvent:Connect(handle)
  workspace:SetAttribute('TLTServerRole',role)
@@ -379,7 +383,7 @@ function Service.start(options)
      if p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then
       local m=admitted[p]
       local verified=Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
-      if not verified and runHealthy and store.departure(p.UserId,battleRun.id,m.ticket)then
+      if not verified and runHealthy and Backend.isCurrent(battleRun.id)and store.departure(p.UserId,battleRun.id,m.ticket)then
        -- Only a server-staged departure may replace the old checkpoint. A rejoin
        -- can verify an existing run but cannot restart a superseded journal.
        local why=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id,battleRun.rulesVersion)

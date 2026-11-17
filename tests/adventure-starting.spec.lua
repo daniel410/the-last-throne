@@ -13,7 +13,7 @@ local function scenario(kind,solo)
   table.insert(players,p);parties[p]={id='party'}
  end
  local p=players[1];local observations=0
- local env=setmetatable({Players=players,busy=busy,travel=travel,parties=parties,guid=function()return 'run' end,
+ local env=setmetatable({Players=players,busy=busy,travel=travel,parties=parties,guid=function()return 'run' end,Backend=dofile('src/server/Network/ExpeditionBackend.luau'),
   unlock=function(person)person.unlocked=true end,store={launchStatus=function()end},
   startRunLocked=function()
    -- This represents the first yielding store/save operation.

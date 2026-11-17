@@ -1,0 +1,24 @@
+Creator Dashboard / TLT Lobby 70829337938054 / 2026-11-16
+142 Server Error, first 20:29 V101:
+MemoryStoreService: InternalError: Unknown Error. API: HashMap.Get, Data Structure: TLT_Expedition_v1.
+51 Server Error, first 20:29 V101:
+MemoryStoreService: InternalError: Unknown Error. API: HashMap.Update, Data Structure: TLT_Expedition_v1.
+13 Server Warning, first 20:55 V102:
+[Expedition] MemoryStore read failed (rejoin): InternalError: Unknown Error.
+3 Server Warning, first 20:55 V102:
+[Expedition] Departure blocked: createRun reason=NetworkUnavailable
+3 Server Warning, first 20:55 V102:
+[Expedition] MemoryStore update failed (run): InternalError: Unknown Error.
+
+Actual Studio API probes / TLT universe 10773575153, Edit mode:
+MEMORYSTORE_READ_PROBE CurrentHash false InternalError: Internal Error.
+MEMORYSTORE_READ_PROBE ProbeHash false InternalError: Internal Error.
+MEMORYSTORE_READ_PROBE PartyIndex true nil
+SORTED_BACKEND_PROBE true create/read/conditional-update/cleanup PASS
+SORTED_REAL_EXPEDITION_STORE_PROBE true manifest/stage/admit/forgery/owner-fence/cancel-fence PASS
+
+ProbeHash was a new empty HashMap name, TLT_Expedition_Diagnostic_v1.
+SortedMap was TLT_Expedition_v2; random QA keys and a negative synthetic UserId,
+15-second expiration; created records removed after the test.
+No real account/profile, balance, journal or existing run was read or modified.
+These probes prove the API/store adapter path, not published-player Teleport success.

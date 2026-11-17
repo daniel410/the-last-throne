@@ -14,7 +14,7 @@ def add(path):
     for name in re.findall(r"load\(['\"]([^'\"]+)['\"]\)", source):
         add('src/shared/' + name + '.luau')
 
-suites = ['expedition-resume-rules', 'expedition-departure', 'expedition-store', 'adventure-starting']
+suites = ['expedition-backend', 'expedition-resume-rules', 'expedition-departure', 'expedition-store', 'adventure-starting']
 for suite in suites:
     add('tests/' + suite + '.spec.lua')
 add('src/server/Network/ExpeditionService.luau')

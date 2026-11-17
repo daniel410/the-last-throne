@@ -168,7 +168,8 @@ function Store.new(map,clock,config)
   -- Recover a committed begin even if the destination lost the promotion reply.
   local pending=r.pending
   if pending and pending.expiresAt>clock()and activeRun and activeRun(pending.heroId)==pending.runId then return pending end
-  return r.runId and not r.finished and r or nil
+  if r.finished then return nil,'RejoinExpired'end
+  return r.runId and r or nil
  end
  function S.finish(uid,id,ticket)
   return update('rejoin:'..uid,C.rejoinSeconds,function(old)
