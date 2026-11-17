@@ -1,0 +1,9 @@
+{
+  "fixture": "/tmp/tlt-ec03-access-qa.rbxlx",
+  "fixtureSha256": "1da25cc541b7d9eb7efa6bd2feade5bdafd2aea9f7472759dea63339d98610f3",
+  "fixtureOrigin": "ec03-access-20261117 overlay; not a fresh build",
+  "sourceHead": "2486198d5fb60fb4283f3557be90bd701157167a",
+  "executedScriptSha256": "64fc522d894bf58158d7a4bda8c8db11cad99a58aecc3ef2c8cd8c90cd10edba",
+  "savedScriptSha256": "8ed791a0cac3889b2ff09ff973debf56aba1183c919ebba1a1f2b58d0a7d5fa1",
+  "difference": "post-run result assertions added; movement algorithm unchanged"
+}
