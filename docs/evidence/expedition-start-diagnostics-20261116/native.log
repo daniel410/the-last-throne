@@ -1,0 +1,31 @@
+Expedition resume rules: 183 checks passed
+[Expedition] MemoryStore update failed (run): tests/expedition-departure.spec.lua:13: outage
+[Expedition] Departure blocked: createRun reason=NetworkUnavailable
+[Expedition] Departure blocked: prepareTransfer
+[Expedition] MemoryStore update failed (rejoin): tests/expedition-departure.spec.lua:15: lost reply
+[Expedition] Departure blocked: stageOffer
+Expedition departure: 42 checks passed
+[Expedition] MemoryStore read failed (party): tests/expedition-store.spec.lua:5: unavailable
+Expedition store: 43 checks passed
+[Expedition] Departure exception: tests/adventure-starting.spec.lua:24: store unavailable
+tests/adventure-starting.spec.lua:24 function startRunLocked
+[string "departure boundary"]:15
+[string "departure boundary"]:15 function startRun
+tests/adventure-starting.spec.lua:31 function scenario
+tests/adventure-starting.spec.lua:45
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:77 function pure
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:82
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+[Expedition] Departure exception: tests/adventure-starting.spec.lua:24: store unavailable
+tests/adventure-starting.spec.lua:24 function startRunLocked
+[string "departure boundary"]:15
+[string "departure boundary"]:15 function startRun
+tests/adventure-starting.spec.lua:31 function scenario
+tests/adventure-starting.spec.lua:45
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:77 function pure
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:82
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Adventure starting: 94 checks passed
+EXPEDITION_RESUME_NATIVE_PASS compiled=61

@@ -224,12 +224,13 @@ local function startRun(p,party)
   -- Replicate progress before the first store/save yield, including to non-hosts.
   person:SetAttribute('TLTAdventureStarting',true)
  end
- local runId=guid();local ok,result,reason=pcall(startRunLocked,p,party,runId)
+ local runId=guid();local ok,result,reason=xpcall(function()return startRunLocked(p,party,runId)end,debug.traceback)
  for person,lock in pairs(locked) do
   busy[person]=lock.previous
   if not travel[person]then person:SetAttribute('TLTAdventureStarting',false)end
  end
  if not ok then
+  if warn then warn('[Expedition] Departure exception: '..tostring(result))end
   local moving=false;for person in pairs(locked) do if travel[person] then moving=true else unlock(person) end end
   if party then store.launchStatus(party.id,runId,moving and 'launched' or 'forming') end
   return nil,'NetworkUnavailable'

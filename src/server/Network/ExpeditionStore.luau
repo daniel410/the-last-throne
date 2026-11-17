@@ -7,7 +7,10 @@ function Store.new(map,clock,config)
  local S={};local C=config
  local function read(key)
   local ok,v=pcall(function() return map:GetAsync(key) end)
-  if not ok then return nil,'NetworkUnavailable' end
+  if not ok then
+   if warn then warn('[Expedition] MemoryStore read failed ('..key:match('^[^:]+')..'): '..tostring(v))end
+   return nil,'NetworkUnavailable'
+  end
   if v and v.expiresAt<=clock() then return nil end
   return v
  end
@@ -18,7 +21,10 @@ function Store.new(map,clock,config)
    if old and old.expiresAt<=clock() then old=nil end
    local n,e=fn(copy(old));reason=e;return n
   end,ttl) end)
-  if not ok then return nil,'NetworkUnavailable' end
+  if not ok then
+   if warn then warn('[Expedition] MemoryStore update failed ('..key:match('^[^:]+')..'): '..tostring(v))end
+   return nil,'NetworkUnavailable'
+  end
   return v,reason
  end
  local function prune(p)

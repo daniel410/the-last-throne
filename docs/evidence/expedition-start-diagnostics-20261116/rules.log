@@ -1,0 +1,8 @@
+$ lua tests/adventure-starting.spec.lua
+Adventure starting: 94 checks passed
+$ lua tests/expedition-store.spec.lua
+Expedition store: 43 checks passed
+$ lua tests/expedition-departure.spec.lua
+Expedition departure: 42 checks passed
+$ lua tests/expedition-resume-rules.spec.lua
+Expedition resume rules: 183 checks passed

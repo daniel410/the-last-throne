@@ -3,6 +3,8 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
+- 원정 출발 장애: 0.111.29 게시 후 사용자가 GW-06/DW-01 솔로 출발의 `NetworkUnavailable`을 보고했다. 실제 원인은 미확정이며 TLT-053에서 출발 예외/MemoryStore 실패를 구분하는 진단을 추가했다. [재현 범위·진단·수용 후속](../evidence/expedition-start-diagnostics-20261116/README.md).
+
 - 원정 재개: TLT-053의 출발 입장 기록을 영웅의 보존 규칙 버전과 맞춰 업데이트 후 재입장 추방 경로를 수정했다. 서로 다른 보존 버전 파티는 이동 전에 차단한다. [재현·회귀·격리 Studio·0.111.29 로비101/배틀29 게시·실제 이동 수용 후속](../evidence/expedition-resume-rules-20261116/README.md). G3 미완료.
 
 - 골드 경제: TLT-045의 승인된 감액안을 신규 원정19에 적용했다. 최신 정정으로 Studio 테스트 초기 재화는 복구했다. [지급·저장 호환 계약](gold-rewards-2026-11-16.md)·[보상 검증](../evidence/gold-reward-tuning-20261116/README.md)·[테스트 재화 복구 검증](../evidence/studio-test-currency-restore-20261116/README.md). 게시·실플레이 수용은 후속이다.
