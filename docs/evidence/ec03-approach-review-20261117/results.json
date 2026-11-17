@@ -1,0 +1,88 @@
+{
+  "miners": {
+    "viewportSize": [
+      1330,
+      908,
+      0
+    ],
+    "note": "Edit orbit approximation; no hero, input, HUD, NPC projection or combat acceptance",
+    "actualDistance": 24.00025749206543,
+    "requestedFocus": [
+      288.5094299316406,
+      144.5,
+      -12712.4375
+    ],
+    "desiredDistance": 24,
+    "observedFocus": [
+      287.01275634765625,
+      146.50010681152344,
+      -12715.5615234375
+    ],
+    "approach": [
+      288.5094299316406,
+      140,
+      -12712.4375
+    ],
+    "goal": "miners",
+    "camera": [
+      279.52984619140625,
+      156.5,
+      -12731.1826171875
+    ],
+    "target": [
+      297.1499938964844,
+      143,
+      -12694.400390625
+    ],
+    "viewport": [
+      665.0043334960938,
+      319.9080810546875,
+      42.07063293457031
+    ],
+    "cameraType": "Enum.CameraType.Scriptable",
+    "inFrame": true
+  },
+  "supports": {
+    "viewportSize": [
+      1330,
+      908,
+      0
+    ],
+    "note": "Edit orbit approximation; no hero, input, HUD, NPC projection or combat acceptance",
+    "actualDistance": 24.000144958496094,
+    "requestedFocus": [
+      144.95578002929688,
+      144.5,
+      -12588.5478515625
+    ],
+    "desiredDistance": 24,
+    "observedFocus": [
+      142.8436279296875,
+      146.50006103515625,
+      -12585.8017578125
+    ],
+    "approach": [
+      144.95578002929688,
+      140,
+      -12588.5478515625
+    ],
+    "goal": "supports",
+    "camera": [
+      132.283203125,
+      156.5,
+      -12572.0732421875
+    ],
+    "target": [
+      157.14999389648438,
+      143,
+      -12604.400390625
+    ],
+    "viewport": [
+      665.0086669921875,
+      319.907470703125,
+      42.071685791015625
+    ],
+    "cameraType": "Enum.CameraType.Scriptable",
+    "inFrame": true
+  }
+}
