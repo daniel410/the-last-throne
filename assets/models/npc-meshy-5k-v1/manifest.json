@@ -10,8 +10,8 @@
   "excluded": [
     "selene"
   ],
-  "gameApplied": false,
-  "stage": "preview-ready-awaiting-user-review",
+  "gameApplied": true,
+  "stage": "runtime-integrated-studio-verified",
   "permissionVerification": "Roblox upload and permission checks not performed",
   "assets": [
     {
@@ -31,7 +31,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false,
+      "userApproved": true,
       "request": "aldric-hammer-fix-request.json",
       "createResponse": "aldric-hammer-fix-create.json"
     },
@@ -52,7 +52,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "rowan",
@@ -71,7 +71,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "tessa",
@@ -90,7 +90,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "oren",
@@ -109,7 +109,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "nia",
@@ -128,7 +128,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "eryn",
@@ -147,7 +147,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "liora",
@@ -166,7 +166,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "tobin",
@@ -185,7 +185,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "pip",
@@ -204,7 +204,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "fen",
@@ -223,7 +223,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "freya",
@@ -242,7 +242,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "haldor",
@@ -261,7 +261,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "nessa",
@@ -280,7 +280,7 @@
       "candidateTriangles": 4798,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "ivo",
@@ -299,7 +299,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "ylva",
@@ -318,7 +318,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "brann",
@@ -337,7 +337,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false,
+      "userApproved": true,
       "request": "brann-hammer-fix-request.json",
       "createResponse": "brann-hammer-fix-create.json"
     },
@@ -358,7 +358,7 @@
       "candidateTriangles": 4805,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "orik",
@@ -377,7 +377,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "ketta",
@@ -396,7 +396,7 @@
       "candidateTriangles": 4995,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "suri",
@@ -415,7 +415,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "maeve",
@@ -434,7 +434,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "finn",
@@ -453,7 +453,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "tali",
@@ -472,7 +472,7 @@
       "candidateTriangles": 4838,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "wispkeeper",
@@ -491,7 +491,7 @@
       "candidateTriangles": 4873,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "lumi",
@@ -510,7 +510,7 @@
       "candidateTriangles": 4401,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "garrick",
@@ -529,7 +529,7 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "elowen",
@@ -548,7 +548,7 @@
       "candidateTriangles": 4887,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     },
     {
       "id": "rook",
@@ -567,8 +567,9 @@
       "candidateTriangles": 4994,
       "embeddedTextures": true,
       "rigged": false,
-      "userApproved": false
+      "userApproved": true
     }
   ],
-  "latestRevision": "NPC-HAMMER-20261117"
+  "latestRevision": "NPC-HAMMER-20261117",
+  "published": false
 }

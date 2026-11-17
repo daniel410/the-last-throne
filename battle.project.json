@@ -78,6 +78,9 @@
       "FourFamilyArmorModels": {
         "$path": "assets/models/four-family-armor-meshy-v1/runtime.rbxm"
       },
+      "NPCMeshyModels": {
+        "$path": "assets/models/npc-meshy-5k-v1/runtime.rbxm"
+      },
       "HeadgearHairModels": {
         "$path": "assets/models/headgear-hair-td-v1/runtime.rbxm"
       }

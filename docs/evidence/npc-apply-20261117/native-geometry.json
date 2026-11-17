@@ -1,0 +1,973 @@
+{
+  "assets": [
+    {
+      "id": "aldric",
+      "modelAssetId": "86091393990406",
+      "meshId": "rbxassetid://74177987452565",
+      "textureId": "rbxassetid://118330419551354",
+      "triangles": 4995,
+      "sourceSamplesMatched": 48,
+      "rotationToSource": 180,
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ]
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "mira",
+      "meshId": "rbxassetid://134766457420965",
+      "textureId": "rbxassetid://124038114707232",
+      "modelAssetId": "84073331427891",
+      "size": [
+        1.066666066646576,
+        1.9999998807907104,
+        0.698460727930069
+      ],
+      "center": [
+        -2.9802322387695312e-8,
+        0.9999999403953552,
+        1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "rowan",
+      "meshId": "rbxassetid://128843932280002",
+      "textureId": "rbxassetid://106645600170910",
+      "modelAssetId": "106842482966438",
+      "size": [
+        1.0584635138511658,
+        1.9999998807907104,
+        1.0482046008110046
+      ],
+      "center": [
+        -2.9802322387695312e-8,
+        0.9999999403953552,
+        -2.9802322387695312e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "tessa",
+      "meshId": "rbxassetid://103326617873641",
+      "textureId": "rbxassetid://136495718764492",
+      "modelAssetId": "87331166749430",
+      "size": [
+        0.9687030613422394,
+        1.9999998807907104,
+        0.7891242504119873
+      ],
+      "center": [
+        1.4901161193847656e-8,
+        0.9999999403953552,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "oren",
+      "meshId": "rbxassetid://113879917369955",
+      "textureId": "rbxassetid://134471511094379",
+      "modelAssetId": "104953077909858",
+      "size": [
+        1.1554651856422424,
+        1.9999998807907104,
+        0.7521804571151733
+      ],
+      "center": [
+        -2.9802322387695312e-8,
+        0.9999999403953552,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "nia",
+      "meshId": "rbxassetid://83987249563635",
+      "textureId": "rbxassetid://102109202199112",
+      "modelAssetId": "135329208375889",
+      "size": [
+        0.814358651638031,
+        1.9999998807907104,
+        1.0256409049034119
+      ],
+      "center": [
+        0,
+        0.9999999403953552,
+        -2.9802322387695312e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "eryn",
+      "meshId": "rbxassetid://118006565537219",
+      "textureId": "rbxassetid://88450066162145",
+      "modelAssetId": "134013261478294",
+      "size": [
+        1.1117956042289734,
+        1.9999998807907104,
+        0.9497430622577667
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        0.9999999403953552,
+        -1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "liora",
+      "meshId": "rbxassetid://123473373390155",
+      "textureId": "rbxassetid://75783430023258",
+      "modelAssetId": "133233558481045",
+      "size": [
+        1.052846610546112,
+        2.0000283122062683,
+        0.8291427493095398
+      ],
+      "center": [
+        -2.9802322387695312e-8,
+        0.9999857246875763,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "tobin",
+      "meshId": "rbxassetid://101137092448296",
+      "textureId": "rbxassetid://74895071916781",
+      "modelAssetId": "78964254966512",
+      "size": [
+        1.124102532863617,
+        2.0006043910980225,
+        0.7566209137439728
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        1.0003021955490112,
+        0.0006642192602157593
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "pip",
+      "meshId": "rbxassetid://110783103342036",
+      "textureId": "rbxassetid://123798778200581",
+      "modelAssetId": "127536750045053",
+      "size": [
+        1.2974368929862976,
+        1.9999998807907104,
+        0.8153837025165558
+      ],
+      "center": [
+        -2.9802322387695312e-8,
+        0.9999999403953552,
+        1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "fen",
+      "meshId": "rbxassetid://124247494530057",
+      "textureId": "rbxassetid://94379407324315",
+      "modelAssetId": "75673496228680",
+      "size": [
+        1.2235891222953796,
+        1.9999998807907104,
+        0.8687178194522858
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        0.9999999403953552,
+        1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "freya",
+      "meshId": "rbxassetid://137062609090514",
+      "textureId": "rbxassetid://114097536189834",
+      "modelAssetId": "121242445772058",
+      "size": [
+        1.237705409526825,
+        1.9999998807907104,
+        0.9682380855083466
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        0.9999999403953552,
+        -1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "haldor",
+      "meshId": "rbxassetid://96673401058066",
+      "textureId": "rbxassetid://85460009579433",
+      "modelAssetId": "99493390165078",
+      "size": [
+        1.4933192133903503,
+        2.000193476676941,
+        1.3627924919128418
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        0.9999032616615295,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "nessa",
+      "meshId": "rbxassetid://128896958445927",
+      "textureId": "rbxassetid://119111687331775",
+      "modelAssetId": "82800553485098",
+      "size": [
+        0.9594666063785553,
+        1.9999998807907104,
+        0.828117161989212
+      ],
+      "center": [
+        1.4901161193847656e-8,
+        0.9999999403953552,
+        -1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4798
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "ivo",
+      "meshId": "rbxassetid://85028640804860",
+      "textureId": "rbxassetid://87557030159167",
+      "modelAssetId": "130746269702218",
+      "size": [
+        1.199385643005371,
+        2,
+        0.9953874945640564
+      ],
+      "center": [
+        0,
+        1,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "ylva",
+      "meshId": "rbxassetid://138772870736733",
+      "textureId": "rbxassetid://83265705587351",
+      "modelAssetId": "119643205439859",
+      "size": [
+        1.1771325469017029,
+        2,
+        0.9453792870044708
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        1,
+        -1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "brann",
+      "meshId": "rbxassetid://93252654756252",
+      "textureId": "rbxassetid://136991182604330",
+      "modelAssetId": "80056321433074",
+      "size": [
+        1.6776167154312134,
+        2,
+        0.918889582157135
+      ],
+      "center": [
+        0,
+        1,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "dagna",
+      "meshId": "rbxassetid://83289900624957",
+      "textureId": "rbxassetid://107747180802722",
+      "modelAssetId": "127064707186043",
+      "size": [
+        1.0082045793533325,
+        1.9999998807907104,
+        0.8123085498809814
+      ],
+      "center": [
+        0,
+        0.9999999403953552,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4805
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "orik",
+      "meshId": "rbxassetid://99511582409695",
+      "textureId": "rbxassetid://90505320651367",
+      "modelAssetId": "75750596507355",
+      "size": [
+        1.4060405492782593,
+        1.9999998807907104,
+        0.6762317419052124
+      ],
+      "center": [
+        0,
+        0.9999999403953552,
+        0.0003376305103302002
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "ketta",
+      "meshId": "rbxassetid://72367987844044",
+      "textureId": "rbxassetid://77042708901247",
+      "modelAssetId": "91832008625932",
+      "size": [
+        1.3565937280654907,
+        1.9999998807907104,
+        1.1000503897666931
+      ],
+      "center": [
+        0,
+        0.9999999403953552,
+        -2.9802322387695312e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4995
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "suri",
+      "meshId": "rbxassetid://81707098464274",
+      "textureId": "rbxassetid://109168302147768",
+      "modelAssetId": "91220343494194",
+      "size": [
+        1.116922914981842,
+        1.9999998807907104,
+        0.7866675555706024
+      ],
+      "center": [
+        -2.9802322387695312e-8,
+        0.9999999403953552,
+        1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "maeve",
+      "meshId": "rbxassetid://130932412608948",
+      "textureId": "rbxassetid://100164709106455",
+      "modelAssetId": "102736592703418",
+      "size": [
+        1.0882068276405334,
+        1.9999998807907104,
+        0.6735184192657471
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        0.9999999403953552,
+        0.0003482699394226074
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "finn",
+      "meshId": "rbxassetid://115971301070545",
+      "textureId": "rbxassetid://91775515606906",
+      "modelAssetId": "101638796314119",
+      "size": [
+        1.0482046604156494,
+        1.9999998807907104,
+        0.5876922309398651
+      ],
+      "center": [
+        0,
+        0.9999999403953552,
+        1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "tali",
+      "meshId": "rbxassetid://91868369287151",
+      "textureId": "rbxassetid://112156916397303",
+      "modelAssetId": "97271475116665",
+      "size": [
+        1.0374545454978943,
+        1.9999998807907104,
+        0.5397641956806183
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        0.9999999403953552,
+        -1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4838
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "wispkeeper",
+      "meshId": "rbxassetid://140725131912223",
+      "textureId": "rbxassetid://92668970678990",
+      "modelAssetId": "107191855305347",
+      "size": [
+        1.0814968943595886,
+        2,
+        1.0732965469360352
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        1,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4873
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "lumi",
+      "meshId": "rbxassetid://96803876906585",
+      "textureId": "rbxassetid://135974486849940",
+      "modelAssetId": "84115136556192",
+      "size": [
+        1.1995901465415955,
+        1.9999998807907104,
+        0.879425436258316
+      ],
+      "center": [
+        2.9802322387695312e-8,
+        0.9999999403953552,
+        -1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4401
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "garrick",
+      "meshId": "rbxassetid://94027549880383",
+      "textureId": "rbxassetid://103936989484231",
+      "modelAssetId": "128746241272495",
+      "size": [
+        1.1624817848205566,
+        2,
+        0.8487963378429413
+      ],
+      "center": [
+        0,
+        1,
+        -1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "elowen",
+      "meshId": "rbxassetid://101226558046085",
+      "textureId": "rbxassetid://123056339267494",
+      "modelAssetId": "80850409794295",
+      "size": [
+        0.9748607277870178,
+        1.9999998807907104,
+        0.7275518476963043
+      ],
+      "center": [
+        0,
+        0.9999999403953552,
+        1.4901161193847656e-8
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4887
+    },
+    {
+      "colorMap": "",
+      "rotationToSource": 180,
+      "id": "rook",
+      "meshId": "rbxassetid://117763693997682",
+      "textureId": "rbxassetid://71095966104432",
+      "modelAssetId": "84485406107202",
+      "size": [
+        1.1200002431869507,
+        1.9999998807907104,
+        0.8553838133811951
+      ],
+      "center": [
+        0,
+        0.9999999403953552,
+        0
+      ],
+      "gameFacingAdjustment": 180,
+      "bones": [
+        "Body",
+        "LegL",
+        "FootL",
+        "LegR",
+        "FootR"
+      ],
+      "sourceSamplesMatched": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "triangles": 4994
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "models": 29,
+  "uploadedModelsVerified": true,
+  "checks": 1887,
+  "fixture": "uploaded-models",
+  "assets": [
+    {
+      "id": "aldric",
+      "feetOffset": -0.0002913475036621094,
+      "height": 5.456,
+      "triangles": 4995
+    },
+    {
+      "id": "mira",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "rowan",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "tessa",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "oren",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "nia",
+      "feetOffset": -2.384185791015625e-7,
+      "height": 4.588,
+      "triangles": 4995
+    },
+    {
+      "id": "eryn",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4995
+    },
+    {
+      "id": "liora",
+      "feetOffset": -0.00008821487426757812,
+      "height": 6.2,
+      "triangles": 4995
+    },
+    {
+      "id": "tobin",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4995
+    },
+    {
+      "id": "pip",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4995
+    },
+    {
+      "id": "fen",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4995
+    },
+    {
+      "id": "freya",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4995
+    },
+    {
+      "id": "haldor",
+      "feetOffset": -0.0005278587341308594,
+      "height": 5.456,
+      "triangles": 4994
+    },
+    {
+      "id": "nessa",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4798
+    },
+    {
+      "id": "ivo",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4995
+    },
+    {
+      "id": "ylva",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "brann",
+      "feetOffset": -2.384185791015625e-7,
+      "height": 5.456,
+      "triangles": 4994
+    },
+    {
+      "id": "dagna",
+      "feetOffset": -2.384185791015625e-7,
+      "height": 5.456,
+      "triangles": 4805
+    },
+    {
+      "id": "orik",
+      "feetOffset": -2.384185791015625e-7,
+      "height": 5.456,
+      "triangles": 4994
+    },
+    {
+      "id": "ketta",
+      "feetOffset": -2.384185791015625e-7,
+      "height": 5.456,
+      "triangles": 4995
+    },
+    {
+      "id": "suri",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "maeve",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "finn",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "tali",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4838
+    },
+    {
+      "id": "wispkeeper",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4873
+    },
+    {
+      "id": "lumi",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4401
+    },
+    {
+      "id": "garrick",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    },
+    {
+      "id": "elowen",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4887
+    },
+    {
+      "id": "rook",
+      "feetOffset": 4.76837158203125e-7,
+      "height": 6.2,
+      "triangles": 4994
+    }
+  ],
+  "pass": true
+}

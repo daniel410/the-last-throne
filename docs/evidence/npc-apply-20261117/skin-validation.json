@@ -1,0 +1,292 @@
+[
+  {
+    "id": "aldric",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": 1.7055336698490464e-08,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "aldric-walk.png"
+  },
+  {
+    "id": "mira",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 0.0020501131657510996,
+    "maxVertexDisplacement": 0.10295633834207507,
+    "render": "mira-walk.png"
+  },
+  {
+    "id": "rowan",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 0.0010250476188957691,
+    "maxVertexDisplacement": 0.10295634286497451,
+    "render": "rowan-walk.png"
+  },
+  {
+    "id": "tessa",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 3.613111587696949e-09,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "tessa-walk.png"
+  },
+  {
+    "id": "oren",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 9.639550491158388e-09,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "oren-walk.png"
+  },
+  {
+    "id": "nia",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": 1.1553477285985991e-08,
+    "maxVertexDisplacement": 0.10295633608062366,
+    "render": "nia-walk.png"
+  },
+  {
+    "id": "eryn",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": 3.842567153355958e-09,
+    "maxVertexDisplacement": 0.1029563236426459,
+    "render": "eryn-walk.png"
+  },
+  {
+    "id": "liora",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": -2.841465175151825e-05,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "liora-walk.png"
+  },
+  {
+    "id": "tobin",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": 2.1917035297747134e-08,
+    "maxVertexDisplacement": 0.1029563236426459,
+    "render": "tobin-walk.png"
+  },
+  {
+    "id": "pip",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": 6.4658269849360295e-09,
+    "maxVertexDisplacement": 0.10295632477337122,
+    "render": "pip-walk.png"
+  },
+  {
+    "id": "fen",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": 0.0010250849882140756,
+    "maxVertexDisplacement": 0.1029563236426459,
+    "render": "fen-walk.png"
+  },
+  {
+    "id": "freya",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": 6.058864521207852e-09,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "freya-walk.png"
+  },
+  {
+    "id": "haldor",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 1.0724676258178079e-08,
+    "maxVertexDisplacement": 0.10295632929627234,
+    "render": "haldor-walk.png"
+  },
+  {
+    "id": "nessa",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4798,
+    "minimumPosedZ": 1.2042873365203377e-08,
+    "maxVertexDisplacement": 0.1029563236426459,
+    "render": "nessa-walk.png"
+  },
+  {
+    "id": "ivo",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": -6.56836363077673e-10,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "ivo-walk.png"
+  },
+  {
+    "id": "ylva",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 7.810151636533647e-09,
+    "maxVertexDisplacement": 0.10295632929627234,
+    "render": "ylva-walk.png"
+  },
+  {
+    "id": "brann",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 1.4035965278935691e-08,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "brann-walk.png"
+  },
+  {
+    "id": "dagna",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4805,
+    "minimumPosedZ": 0.0010251011699438095,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "dagna-walk.png"
+  },
+  {
+    "id": "orik",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 6.332059321323413e-09,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "orik-walk.png"
+  },
+  {
+    "id": "ketta",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4995,
+    "minimumPosedZ": -1.4854784069484595e-11,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "ketta-walk.png"
+  },
+  {
+    "id": "suri",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 0.002050112932920456,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "suri-walk.png"
+  },
+  {
+    "id": "maeve",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 1.5944223719088768e-10,
+    "maxVertexDisplacement": 0.10295632590409652,
+    "render": "maeve-walk.png"
+  },
+  {
+    "id": "finn",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 1.8633873111184585e-08,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "finn-walk.png"
+  },
+  {
+    "id": "tali",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4838,
+    "minimumPosedZ": 0.0010255054803565145,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "tali-walk.png"
+  },
+  {
+    "id": "wispkeeper",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4873,
+    "minimumPosedZ": 8.434204445961768e-09,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "wispkeeper-walk.png"
+  },
+  {
+    "id": "lumi",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4401,
+    "minimumPosedZ": 1.1533894728188443e-08,
+    "maxVertexDisplacement": 0.10295632138119525,
+    "render": "lumi-walk.png"
+  },
+  {
+    "id": "garrick",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 0.0010246088495478034,
+    "maxVertexDisplacement": 0.10295634964932494,
+    "render": "garrick-walk.png"
+  },
+  {
+    "id": "elowen",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4887,
+    "minimumPosedZ": 0.0010255045490339398,
+    "maxVertexDisplacement": 0.10295633608062797,
+    "render": "elowen-walk.png"
+  },
+  {
+    "id": "rook",
+    "restSurfaceAndUVPreserved": true,
+    "float32Tolerance": 3e-06,
+    "bones": 5,
+    "triangles": 4994,
+    "minimumPosedZ": 0.0010250898776575923,
+    "maxVertexDisplacement": 0.10295635078004997,
+    "render": "rook-walk.png"
+  }
+]

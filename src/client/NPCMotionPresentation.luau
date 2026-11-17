@@ -3,6 +3,7 @@ local Tags=game:GetService('CollectionService')
 local Motion=require(game.ReplicatedStorage.Shared.NPCMotion)
 local View={}
 function View.bind(model)
+ if model:GetAttribute('NPCMeshySkinned') then return require(script.Parent.NPCMeshMotion).bind(model) end
  local root=model.PrimaryPart
  if not root or not model:GetAttribute('NPCArticulated') then return end
  local r={parts={},cf=root.CFrame,previous=root.Position,phase=0,weight=0,look=0,model=model,root=root}

@@ -1,0 +1,265 @@
+{
+  "taskId": "NPC-APPLY-20261117",
+  "creatorId": "9156786071",
+  "assets": [
+    {
+      "id": "aldric",
+      "operationId": "97554b07-7676-4f73-9904-498f3b5535ed",
+      "modelAssetId": "86091393990406",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "mira",
+      "path": "operations/ea5fc488-5023-4fa7-b298-36a98949defd",
+      "operationId": "ea5fc488-5023-4fa7-b298-36a98949defd",
+      "done": true,
+      "modelAssetId": "84073331427891",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "rowan",
+      "path": "operations/c38aa2c4-b278-4ef7-94c7-272ca9adb729",
+      "operationId": "c38aa2c4-b278-4ef7-94c7-272ca9adb729",
+      "done": true,
+      "modelAssetId": "106842482966438",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "tessa",
+      "path": "operations/a01c6711-b4e8-49b4-9c5d-af5d7149e861",
+      "operationId": "a01c6711-b4e8-49b4-9c5d-af5d7149e861",
+      "done": true,
+      "modelAssetId": "87331166749430",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "oren",
+      "path": "operations/c9253ca8-0b3e-4f75-bb3e-9c4489d78990",
+      "operationId": "c9253ca8-0b3e-4f75-bb3e-9c4489d78990",
+      "done": true,
+      "modelAssetId": "104953077909858",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "nia",
+      "path": "operations/30c4ce84-8b71-498d-b58d-aacf89f44fb1",
+      "operationId": "30c4ce84-8b71-498d-b58d-aacf89f44fb1",
+      "done": true,
+      "modelAssetId": "135329208375889",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "eryn",
+      "path": "operations/bc872120-432f-47d4-b078-f69bc523d6f7",
+      "operationId": "bc872120-432f-47d4-b078-f69bc523d6f7",
+      "done": true,
+      "modelAssetId": "134013261478294",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "liora",
+      "path": "operations/7e3cc1d8-ee7e-4ae3-b03c-dad0cf739833",
+      "operationId": "7e3cc1d8-ee7e-4ae3-b03c-dad0cf739833",
+      "done": true,
+      "modelAssetId": "133233558481045",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "tobin",
+      "path": "operations/93d38392-103a-457e-aaff-d834cf34a31c",
+      "operationId": "93d38392-103a-457e-aaff-d834cf34a31c",
+      "done": true,
+      "modelAssetId": "78964254966512",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "pip",
+      "path": "operations/05354662-8490-424b-86b3-7857428da3a6",
+      "operationId": "05354662-8490-424b-86b3-7857428da3a6",
+      "done": true,
+      "modelAssetId": "127536750045053",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "fen",
+      "path": "operations/e733b65c-fb5c-4895-a4e5-50f1f24cb594",
+      "operationId": "e733b65c-fb5c-4895-a4e5-50f1f24cb594",
+      "done": true,
+      "modelAssetId": "75673496228680",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "freya",
+      "path": "operations/8636ac26-4e1d-4236-850c-9c32c4915c17",
+      "operationId": "8636ac26-4e1d-4236-850c-9c32c4915c17",
+      "done": true,
+      "modelAssetId": "121242445772058",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "haldor",
+      "path": "operations/bd7b9a2c-8990-47ff-afd9-f1e7959df865",
+      "operationId": "bd7b9a2c-8990-47ff-afd9-f1e7959df865",
+      "done": true,
+      "modelAssetId": "99493390165078",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "nessa",
+      "path": "operations/9a9c9981-f949-4788-a33f-b587796243cf",
+      "operationId": "9a9c9981-f949-4788-a33f-b587796243cf",
+      "done": true,
+      "modelAssetId": "82800553485098",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "ivo",
+      "path": "operations/640a9b60-56d5-4b10-a98e-1bbf1e0e8cd2",
+      "operationId": "640a9b60-56d5-4b10-a98e-1bbf1e0e8cd2",
+      "done": true,
+      "modelAssetId": "130746269702218",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "ylva",
+      "path": "operations/b3bb9dd7-4801-4af1-8756-bd5d355f032b",
+      "operationId": "b3bb9dd7-4801-4af1-8756-bd5d355f032b",
+      "done": true,
+      "modelAssetId": "119643205439859",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "brann",
+      "path": "operations/4c1969ab-80c1-47ea-ab67-786c98d12192",
+      "operationId": "4c1969ab-80c1-47ea-ab67-786c98d12192",
+      "done": true,
+      "modelAssetId": "80056321433074",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "dagna",
+      "path": "operations/831c9431-dfed-441e-92f1-aa38a93ac186",
+      "operationId": "831c9431-dfed-441e-92f1-aa38a93ac186",
+      "done": true,
+      "modelAssetId": "127064707186043",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "orik",
+      "path": "operations/366a1798-4d05-4ead-9a1c-55c42875def4",
+      "operationId": "366a1798-4d05-4ead-9a1c-55c42875def4",
+      "done": true,
+      "modelAssetId": "75750596507355",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "ketta",
+      "path": "operations/d0538fbf-974c-4270-b771-06ff8a0e25eb",
+      "operationId": "d0538fbf-974c-4270-b771-06ff8a0e25eb",
+      "done": true,
+      "modelAssetId": "91832008625932",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "suri",
+      "path": "operations/6307d47c-7080-47d7-a670-0a67d5c1f5d1",
+      "operationId": "6307d47c-7080-47d7-a670-0a67d5c1f5d1",
+      "done": true,
+      "modelAssetId": "91220343494194",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "maeve",
+      "path": "operations/352a8e54-e91c-409c-b40d-21723d52f5a3",
+      "operationId": "352a8e54-e91c-409c-b40d-21723d52f5a3",
+      "done": true,
+      "modelAssetId": "102736592703418",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "finn",
+      "path": "operations/1b63a4ee-91be-46fa-8b1a-fe7fe8a6a67d",
+      "operationId": "1b63a4ee-91be-46fa-8b1a-fe7fe8a6a67d",
+      "done": true,
+      "modelAssetId": "101638796314119",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "tali",
+      "path": "operations/d06a017c-6b08-43ce-8373-dedf7a78a3a4",
+      "operationId": "d06a017c-6b08-43ce-8373-dedf7a78a3a4",
+      "done": true,
+      "modelAssetId": "97271475116665",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "wispkeeper",
+      "path": "operations/490c0c0b-ec86-407c-b922-0a2d2543921f",
+      "operationId": "490c0c0b-ec86-407c-b922-0a2d2543921f",
+      "done": true,
+      "modelAssetId": "107191855305347",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "lumi",
+      "path": "operations/05c4a607-856b-4bd7-8b57-5fccb9d78145",
+      "operationId": "05c4a607-856b-4bd7-8b57-5fccb9d78145",
+      "done": true,
+      "modelAssetId": "84115136556192",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "garrick",
+      "path": "operations/eafa51a7-6aaf-494e-9cc3-5ffa49d5d75c",
+      "operationId": "eafa51a7-6aaf-494e-9cc3-5ffa49d5d75c",
+      "done": true,
+      "modelAssetId": "128746241272495",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "elowen",
+      "path": "operations/6533ed39-d42c-459b-9b29-4aff5909313a",
+      "operationId": "6533ed39-d42c-459b-9b29-4aff5909313a",
+      "done": true,
+      "modelAssetId": "80850409794295",
+      "moderationState": "Approved",
+      "state": "Active"
+    },
+    {
+      "id": "rook",
+      "path": "operations/0dd9e66f-a6b5-4696-b7be-122313fc53ae",
+      "operationId": "0dd9e66f-a6b5-4696-b7be-122313fc53ae",
+      "done": true,
+      "modelAssetId": "84485406107202",
+      "moderationState": "Approved",
+      "state": "Active"
+    }
+  ]
+}
