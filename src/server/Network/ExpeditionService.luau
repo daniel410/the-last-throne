@@ -16,6 +16,7 @@ local Service={}
 local selections={}
 local o,store,currentStore,legacyStore,remote,index,role,job
 local parties,travel,arrivals,admitted,busy,last,leaving={},{},{},{},{},{},{}
+local lastRead={}
 local battleRun,battleStarted,runHealthy=nil,nil,true
 local seats={};local seatCount=0
 local studio=Run:IsStudio()
@@ -273,10 +274,14 @@ local function handle(p,c,...)
  if c.id~=nil and (type(c.id)~='string' or #c.id>64 or not c.id:match('^[%w_-]+$')) then return end
  if c.ready~=nil and type(c.ready)~='boolean' then return end
  if c.requestId~=nil and(type(c.requestId)~='string'or #c.requestId>64 or not c.requestId:match('^[%w_-]+$'))then return end
+ -- Status polling must not consume the action cooldown (Ready -> Launch).
+ if c.action=='GetState' then
+  if os.clock()-(lastRead[p] or -math.huge)<.35 then return end
+  lastRead[p]=os.clock();publish(p,nil,nil,c.requestId);return
+ end
  if os.clock()-(last[p] or -math.huge)<.35 then
   remote:FireClient(p,{ackOnly=true,requestId=c.requestId,error='Busy',retryAfter=.4});return
  end;last[p]=os.clock()
- if c.action=='GetState' then publish(p,nil,nil,c.requestId);return end
  if c.action=='Solo' then local why=Service.solo(p);publish(p,why,nil,c.requestId);return end
  if Service.isBusy(p) then publish(p,'Busy',nil,c.requestId);return end
  if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then publish(p,'ShopLobbyOnly',nil,c.requestId);return end
@@ -333,6 +338,7 @@ local function handle(p,c,...)
  end)
  busy[p]=nil
  local errorCode=not success and 'NetworkUnavailable'or e
+ if c.action=='Launch' and errorCode then warn('[Expedition] Party launch rejected: reason='..tostring(errorCode))end
  publish(p,errorCode,nil,c.requestId)
  local partyId=parties[p]and parties[p].id or previousParty
  if partyId then for person,mine in pairs(parties)do
@@ -369,7 +375,7 @@ function Service.start(options)
   if admitted[p] and battleRun and not leaving[p] then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end
   local mine=parties[p]
   if mine and not travel[p] then store.remove(mine.id,p.UserId,mine.token);store.releaseMembership(p.UserId,mine.id,mine.token);advertise(mine.id) end
-  parties[p]=nil;travel[p]=nil;arrivals[p]=nil;admitted[p]=nil;last[p]=nil;busy[p]=nil;leaving[p]=nil;selections[p]=nil
+  parties[p]=nil;travel[p]=nil;arrivals[p]=nil;admitted[p]=nil;last[p]=nil;lastRead[p]=nil;busy[p]=nil;leaving[p]=nil;selections[p]=nil
  end)
  task.spawn(function()
   local ticks=0

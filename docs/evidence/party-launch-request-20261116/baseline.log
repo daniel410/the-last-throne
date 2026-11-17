@@ -1,0 +1,6 @@
+lua: /tmp/tlt-party-request-baseline/regression.lua:9: exact rejected command retried once Ready
+stack traceback:
+	[C]: in global 'assert'
+	/tmp/tlt-party-request-baseline/regression.lua:9: in local 'check'
+	/tmp/tlt-party-request-baseline/regression.lua:35: in main chunk
+	[C]: in ?

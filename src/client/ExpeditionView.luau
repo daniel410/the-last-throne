@@ -32,6 +32,7 @@ function V.create(parent,send)
  local notice=T.label(panel,'Notice',Text.SelectHero,UDim2.new(0,18,1,-86),UDim2.new(1,-36,0,32),12,T.color.muted)
  local footer=Instance.new('Frame');footer.Name='Footer';footer.BackgroundTransparency=1;footer.Position=UDim2.new(0,16,1,-50);footer.Size=UDim2.new(1,-32,0,44);footer.Parent=panel
  local current,pending,latestRequestId,tab,order=nil,nil,nil,'Details',0
+ local feedback
  local render,draw
  local function resize()
   local short=panel.AbsoluteSize.Y<430
@@ -80,7 +81,7 @@ function V.create(parent,send)
  local function request(command)
   if pending then return end
   local id=game:GetService('HttpService'):GenerateGUID(false):gsub('%-','')
-  command.requestId=id;latestRequestId=id;pending={id=id,action=command.action};draw(Text.Applying)
+  command.requestId=id;latestRequestId=id;feedback=nil;pending={id=id,action=command.action,command=command};draw(Text.Applying)
   if command.action=='Solo' or command.action=='Launch' then Starting.setPending(true)end
   send(command)
   task.delay(8,function()if panel.Parent and pending and pending.id==id then draw(Text.Refreshing);recover(id)end end)
@@ -213,12 +214,20 @@ function V.create(parent,send)
  render=function(s,message)
   if s.requestId and latestRequestId and s.requestId~=latestRequestId then return end
   if s.ackOnly then
-   if pending and s.requestId==pending.id then draw(Text.Refreshing);recover(pending.id)end
+   -- ackOnly means the server rejected this command before executing it.
+   -- Retry that exact command; GetState alone would silently drop Launch.
+   if pending and s.requestId==pending.id and not pending.retryScheduled and not pending.polling then
+    local attempt=pending;attempt.retryScheduled=true;draw(Text.Applying)
+    task.delay(math.max(.4,math.min(tonumber(s.retryAfter)or .4,2)),function()
+     if panel.Parent and pending==attempt then attempt.retryScheduled=nil;send(attempt.command)end
+    end)
+   end
    return
   end
   if pending and s.requestId==pending.id then pending=nil end
+  if message then feedback=message elseif s.requestId and s.requestId==latestRequestId then feedback=nil end
   local position=scroll.CanvasPosition
-  current=s;draw(message);scroll.CanvasPosition=position
+  current=s;draw(feedback);scroll.CanvasPosition=position
   Starting.setPending(s.travelling==true or pending~=nil and (pending.action=='Solo' or pending.action=='Launch'))
  end
  panel:GetPropertyChangedSignal('Visible'):Connect(function()if panel.Visible then scroll.CanvasPosition=Vector2.zero end end)
