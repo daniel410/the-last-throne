@@ -1,0 +1,37 @@
+{
+  "version": "0.111.30",
+  "sourceCommit": "1f310e4df1650ea18dd617e299cf88d51706e38f",
+  "artifact": "builds/0.111.30/TheLastThrone-0.111.30.rbxlx",
+  "sha256": "aeb6ef618694980b44b04d167c97ef7908eee77eca35dea05b7858130a764b21",
+  "published": true,
+  "diskHashUnchanged": true,
+  "purpose": "원인 미확정 출발 장애의 서버 진단",
+  "universeId": 10773575153,
+  "method": "Studio Publish As; Creator Dashboard Show published only",
+  "audience": "Private (unchanged)",
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 102,
+      "previousPublishedVersion": 101,
+      "localPublishedTime": "2026-11-16 20:52 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 30,
+      "previousPublishedVersion": 29,
+      "localPublishedTime": "2026-11-16 20:53 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history"
+    }
+  ],
+  "releaseTag": "v0.111.30",
+  "unverified": [
+    "실제 실패 호출/근본 원인",
+    "새 게시 클라이언트 재현/성공",
+    "실기기/사용자 수용"
+  ],
+  "preservedLocalSession": "builds/0.111.29/TheLastThrone-0.111.29-unsaved-session-20261116-2045.rbxl"
+}
