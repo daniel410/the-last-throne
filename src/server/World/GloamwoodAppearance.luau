@@ -33,6 +33,19 @@ function G.attach(rig,kind,footOffset,multiplier)
   if o:IsA('BasePart')then o.Anchored=false;o.Massless=true;o.CanCollide=false;o.CanTouch=false;o.CanQuery=false end
  end
  assert(count==kinds[kind],'Incomplete Gloamwood skeleton')
+ -- Some TD templates contain an anchored skin without an internal body weld.
+ -- Once unanchored, that skin must share the gameplay root's assembly.
+ local linked=false
+ for _,o in visual:GetDescendants()do
+  if o:IsA('WeldConstraint') and o.Enabled and
+   ((o.Part0==visual.VisualRoot and o.Part1==visual.Body)or(o.Part1==visual.VisualRoot and o.Part0==visual.Body))then
+   linked=true;break
+  end
+ end
+ if not linked then
+  local bodyWeld=Instance.new('WeldConstraint');bodyWeld.Name='GloamwoodBodyWeld'
+  bodyWeld.Part0=visual.VisualRoot;bodyWeld.Part1=visual.Body;bodyWeld.Parent=visual.Body
+ end
  local weld=Instance.new('WeldConstraint');weld.Name='GloamwoodVisualWeld';weld.Part0=root;weld.Part1=visual.VisualRoot;weld.Parent=visual.VisualRoot
  for _,p in rig:GetChildren()do if p:IsA('BasePart')then p.Transparency=1 end end
  rig:SetAttribute('TdMonsterTemplate',kind)
