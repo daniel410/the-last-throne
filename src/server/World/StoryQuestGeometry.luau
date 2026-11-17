@@ -142,9 +142,28 @@ ring('LiftGearRim',{0,1.4,0},1.15,.23,iron)
 for i=0,7 do local a=i*math.pi/4;box('LiftGearTooth',{.45,.4,.4},{math.cos(a)*1.4,1.4+math.sin(a)*1.4,0},brass,'Metal',{0,0,a})end
 for i=0,3 do local a=i*math.pi/2;beam('GearSpoke',{0,1.4,0},{math.cos(a),1.4+math.sin(a),0},.18,iron)end
 finish('LiftGear','Recovered freight lift gear with toothed rim and spokes, not a sealed wooden case.')
-for _,x in ipairs({-1.5,1.5})do box('MineBraceFoot',{.7,.35,2},{x,.18,0});beam('MineBraceStrut',{x,.3,0},{x*.6,3.4,0},.4,wood,'Wood')end
-box('MineBraceCap',{4,.5,1},{0,3.5,0});box('BraceScrew',{.3,1,.3},{0,2.6,0},iron,'Metal');box('BraceHandle',{1.4,.16,.2},{0,2.6,0},brass,'Metal')
-finish('MineBrace','A compact screw brace propping up a cracked mine beam; no unrelated gate mechanism.')
+-- EC-03 rescue brace: broad bearing shoes, restrained timber and a split load beam.
+-- The authored 4 x 3.75 x 2 envelope and handle identifier remain unchanged.
+for _,x in ipairs({-1.5,1.5})do
+ box('MineBraceFoot',{.7,.35,2},{x,.175,0},iron,'Metal')
+ box('BraceTimberShoe',{.52,.28,1.5},{x,.49,0},pale,'Wood',{0,0,0},'Wedge')
+ beam('MineBraceStrut',{x,.35,0},{x*.6,3.15,0},.4,wood,'Wood')
+ for _,y in ipairs({.8,2.7})do
+  local t=(y-.35)/2.8;local xx=x+(x*.6-x)*t
+  box('BraceIronBinding',{.56,.18,.58},{xx,y,0},iron,'Metal')
+  box('BraceBindingRivet',{.12,.12,.08},{xx,y,.33},brass,'Metal')
+ end
+end
+box('MineBraceCap',{3.4,.3,1},{0,3.15,0},wood,'Wood')
+box('CrackedLoadBeamLeft',{1.97,.45,1},{-1.015,3.525,0},wood,'Wood')
+box('CrackedLoadBeamRight',{1.97,.45,1},{1.015,3.525,0},wood,'Wood')
+box('LoadBeamEndGrain',{.1,.3,.84},{-.065,3.525,0},pale,'Wood')
+box('LoadBeamEndGrain',{.1,.3,.84},{.065,3.525,0},pale,'Wood')
+box('BraceScrew',{.3,1,.3},{0,2.6,0},iron,'Metal')
+box('BracePressurePlate',{.85,.15,.8},{0,2.925,0},iron,'Metal')
+for i=0,4 do box('BraceScrewThread',{.4,.055,.4},{0,2.2+i*.14,0},iron,'Metal')end
+box('BraceHandle',{1.4,.16,.2},{0,2.6,0},brass,'Metal')
+finish('MineBrace','Iron-bound timber shores and a screw pressure plate support a split mine load beam on broad bearing shoes.')
 sled();box('OreHopper',{2.6,1.2,2.5},{0,1.3,0},iron,'Metal')
 for _,x in ipairs({-1.5,1.5})do ring('CarrierWheel',{x,.65,0},.55,.15,iron)end
 finish('OreCarrier','Empty low ore carrier on runners with a metal hopper and hauling wheels.')
