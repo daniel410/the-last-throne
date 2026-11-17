@@ -7,7 +7,7 @@ assert project==json.loads((root/'battle.project.json').read_text()), 'compatibi
 tree=project['tree']
 assert 'ServerRole' not in tree['ServerStorage']
 assert 'ServerRole' not in tree['ReplicatedFirst']
-for name in ('PlaceRole','ExpeditionConfig'):
+for name in ('PlaceRole','ExpeditionConfig','DeepwoodMusicPolicy'):
  assert tree['ReplicatedFirst'][name]['$path']==f'src/shared/{name}.luau'
 assert tree['ReplicatedStorage']['Shared']['$path']=='src/shared'
 print('single-build: project mounts and compatibility alias PASS')
@@ -26,14 +26,14 @@ if args.artifact:
   return item.findtext('./Properties/string[@name="Source"]')
  first=child(xml,'ReplicatedFirst')
  shared=child(child(xml,'ReplicatedStorage'),'Shared')
- for name in ('PlaceRole','ExpeditionConfig'):
+ for name in ('PlaceRole','ExpeditionConfig','DeepwoodMusicPolicy'):
   assert source(child(first,name))==source(child(shared,name)), name+' early/server bytes differ'
  for service in ('ReplicatedFirst','ServerStorage'):
   assert not any(i.findtext('./Properties/string[@name="Name"]')=='ServerRole' for i in child(xml,service).findall('./Item'))
  assert 'Shared.PlaceRole).resolve' in source(child(child(xml,'ServerScriptService'),'Server'))
  with tempfile.TemporaryDirectory(prefix='tlt-single-artifact-') as folder:
   frozen=Path(folder)
-  for name in ('PlaceRole','ExpeditionConfig'):
+  for name in ('PlaceRole','ExpeditionConfig','DeepwoodMusicPolicy'):
    path=frozen/f'src/shared/{name}.luau';path.parent.mkdir(parents=True,exist_ok=True);path.write_text(source(child(first,name)))
   path=frozen/'src/loading/ArrivalLoading.client.luau';path.parent.mkdir(parents=True,exist_ok=True);path.write_text(source(child(first,'ArrivalLoading')))
   for test in ('place-role.spec.lua','arrival-loading.spec.lua'):

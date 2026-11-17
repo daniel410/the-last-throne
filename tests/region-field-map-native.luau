@@ -84,4 +84,16 @@ for _,size in ipairs({Vector2.new(320,500),Vector2.new(643,221),Vector2.new(800,
  check(panel.Back.Caption.TextFits and panel.Title.TextFits,"header fits")
 end
 field.close();State.set(nil,nil);screen:Destroy()
+do
+local plateSource=client.AtlasPlate.Source:gsub("local assets = game:GetService%(\"AssetService\"%)", "local assets = {CreateEditableImage = function() return nil end}")
+local fn=assert(loadstring(plateSource));setfenv(fn,setmetatable({script=client.AtlasPlate},{__index=getfenv()}))
+local plates=fn();local parent=Instance.new("Frame")
+local art=plates.draw(parent,"GW-05",true)
+assert(art:IsA("Frame") and #art:GetChildren()==144)
+local relief=plates.draw(parent,"Relief_GW-05",false,true)
+assert(relief:IsA("Frame") and #relief:GetChildren()>0)
+assert(plates.draw(parent,"Relief_DW-01",false)==nil)
+parent:Destroy();print("ATLAS_FALLBACK_PASS",3)
+end
+
 print("REGION_FIELD_MAP_PASS "..checks)
