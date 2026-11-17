@@ -1,0 +1,35 @@
+diff --git a/src/server/World/RegionalConceptArt.luau b/src/server/World/RegionalConceptArt.luau
+index fd2ed8d5..0de412e8 100644
+--- a/src/server/World/RegionalConceptArt.luau
++++ b/src/server/World/RegionalConceptArt.luau
+@@ -7,7 +7,7 @@ local Collision=require(script.Parent.CampaignSceneryCollision)
+ local Profiles=require(script.Parent.RegionalConceptProfiles)
+ local V=Vector3.new
+ local C=Color3.fromRGB
+-local D={version=2}
++local D={version=3}
+ local palettes={
+  [2]={stone=C(102,116,135),light=C(153,168,186),moss=C(43,62,79),wood=C(58,54,65),path=C(89,103,122),trim=C(146,132,169)},
+  [3]={stone=C(149,174,193),light=C(218,233,239),moss=C(132,166,184),wood=C(105,80,64),path=C(160,183,197),trim=C(91,143,178)},
+@@ -173,7 +173,20 @@ function D.build(site,id,c,size,safe,ground,world)
+   task.wait()
+   return result
+  end
+- place(profile.kind,'Signature',1)
++ local signature=place(profile.kind,'Signature',1)
++ if id=='EC-03'and signature then
++  -- The authored entry faces +Z. Link its rail apron to the nearest actual
++  -- objective, rather than leaving the quarry as an isolated shoulder prop.
++  local entry=signature:GetPivot():PointToWorldSpace(V(0,0,12*signature:GetScale()))
++  local target=signature:GetAttribute('ApproachPosition')
++  local params=OverlapParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
++  params.FilterDescendantsInstances={signature};params.RespectCanCollide=true
++  local function clear(p)
++   return #workspace:GetPartBoundsInBox(CFrame.new(p+V(0,3.5,0)),V(6,5,4),params)==0
++  end
++  local trail,reason=require(script.Parent.MineAccessTrail).build(group,entry,target,ground,clear)
++  group:SetAttribute('MineAccessStatus',trail and 'Connected'or reason)
++ end
+  for i=1,3 do place(profile.kind,'Supporting',i+1)end
+  -- Low grouped vegetation, limestone and earth create depth without a new
+  -- canopy over the camera. Substantial stones retain collision off the routes.

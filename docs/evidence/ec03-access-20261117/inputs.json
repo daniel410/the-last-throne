@@ -1,0 +1,13 @@
+{
+  "base": "baf9ffff31aa1884dc2278d86e23e63e0a3d7bd2",
+  "qaFile": "/tmp/tlt-ec03-shoulder-after.rbxlx",
+  "qaSha256": "1da25cc541b7d9eb7efa6bd2feade5bdafd2aea9f7472759dea63339d98610f3",
+  "overlays": [
+    "RegionalArchitecture v9",
+    "RegionalConceptArt candidate v3",
+    "MineAccessTrail candidate v1"
+  ],
+  "moduleChecks": 16,
+  "candidateOutcome": "Distance; cloned module allowing 256stud then rejected Slope",
+  "productionApplied": false
+}
