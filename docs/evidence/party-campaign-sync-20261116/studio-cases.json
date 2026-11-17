@@ -1,0 +1,37 @@
+{
+  "kind": "PARTY_LAUNCH_NATIVE",
+  "cases": [
+    {
+      "teleports": 2,
+      "mixed": false,
+      "advancedHost": false,
+      "size": 2
+    },
+    {
+      "teleports": 3,
+      "mixed": false,
+      "advancedHost": false,
+      "size": 3
+    },
+    {
+      "teleports": 4,
+      "mixed": false,
+      "advancedHost": false,
+      "size": 4
+    },
+    {
+      "teleports": 0,
+      "mixed": true,
+      "advancedHost": false,
+      "error": "PartyRulesMismatch",
+      "size": 3
+    },
+    {
+      "teleports": 3,
+      "mixed": false,
+      "advancedHost": true,
+      "size": 3
+    }
+  ],
+  "checks": 183
+}

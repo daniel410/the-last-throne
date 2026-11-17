@@ -3,6 +3,8 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
+- TLT-053 파티 모집과 혼합 진도는 0.112.2로 빌드했다. 가입 전 현재 목적지와 합류 시 바뀔 임무를 확인할 수 있다. 실제 3계정 합류·입장은 게시 후 수용 항목이다. [빌드·Studio 검증](../evidence/party-campaign-sync-20261116/README.md).
+
 - 원정 출발 장애: TLT-053의3인 전원 Ready/Start 뒤 무반응 보고에서, Ready/자동 조회 직후 cooldown으로 거절된 Launch가 유실되는 경로를 재현·수정했다.0.111.33을 로비104·배틀32에 게시했다. [요청 유실 재현·426회귀·게시·실제3인 수용 후속](../evidence/party-launch-request-20261116/README.md). [SortedMap 전환](../evidence/expedition-sorted-backend-20261116/README.md)과 [기존 원정 규칙 보존](../evidence/expedition-resume-rules-20261116/README.md)은 유지한다. 사용자의 실제 장애 원인 확정·게시 클라이언트 전원 입장은 미검증이며 G3 미완료다.
 
 - 골드 경제: TLT-045의 승인된 감액안을 신규 원정19에 적용했다. 최신 정정으로 Studio 테스트 초기 재화는 복구했다. [지급·저장 호환 계약](gold-rewards-2026-11-16.md)·[보상 검증](../evidence/gold-reward-tuning-20261116/README.md)·[테스트 재화 복구 검증](../evidence/studio-test-currency-restore-20261116/README.md). 게시·실플레이 수용은 후속이다.
