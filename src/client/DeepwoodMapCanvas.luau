@@ -9,8 +9,10 @@ local Art=require(script.Parent.DeepwoodCartography)
 local Survey=require(Shared.CampaignCartography)
 local Bounds=require(Shared.CampaignBounds)
 local Areas=require(Shared.CampaignAreas)
+local Landmark=require(script.Parent.AtlasLandmark)
+local Plate=require(script.Parent.AtlasPlate)
 local Canvas={}
-function Canvas.create(parent,zoneId,compact,onSelect,onEpic)
+function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
  local minX,minZ,maxX,maxZ=math.huge,math.huge,-math.huge,-math.huge
  local ids={};for id in pairs(Content.zones) do if not zoneId or id==zoneId or type(zoneId)=='table' and zoneId[id] then table.insert(ids,id) end end;table.sort(ids)
  for _,id in ipairs(ids) do local z=Content.zones[id]
@@ -59,8 +61,18 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic)
   local center=point(area.center[1],area.center[3])
   Art.shape(parent,'IncidentSpace',center.X,center.Y,area.size[1]/width,area.size[2]/height,Color3.fromRGB(66,87,79),3,.3)
   line('IncidentWalk',point(area.entry[1],area.entry[3]),center,Theme.color.silver,3,4,nil,id,24)
-  if not compact then local t=label('IncidentName',area.name,center,UDim2.fromOffset(120,32),9,Theme.color.silver,5);t.TextWrapped=true end
+
  end end
+ if zoneId and not compact then
+  for _,id in ipairs(ids)do
+   local x0,z0,x1,z1=Areas.extent(Content.zones[id])
+   local relief=Plate.draw(parent,'Relief_'..id,false,type(zoneId)=='string')
+   if relief then
+    local at=point(x0,z0);relief.Position=UDim2.fromScale(at.X,at.Y)
+    relief.Size=UDim2.fromScale((x1-x0)/width,(z1-z0)/height);relief.ZIndex=3
+   end
+  end
+ end
  local included={};for _,id in ipairs(ids)do included[id]=true end
  if type(zoneId)~='string' then for _,edge in ipairs(Access.edges) do
   if included[edge[1]] and included[edge[2]] and Content.zones[edge[1]].epic==Content.zones[edge[2]].epic then
@@ -115,10 +127,17 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic)
   local hit
   if not compact then
    hit=Instance.new('TextButton');hit.Name='SelectRegion';hit.Text='';hit.BackgroundTransparency=1;hit.Position=caption.Position;hit.AnchorPoint=Vector2.new(.5,.5);hit.Size=UDim2.fromOffset(164,48);hit.ZIndex=9;hit.AutoLocalize=false;hit.Parent=parent
-   hit.Activated:Connect(function() selectRegion(id) end)
+   hit.Activated:Connect(function() selectRegion(id);if onInspect then onInspect(id)end end)
   end
-  rows[id]={cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark}
+  local portrait
+  if not compact and zoneId and survey.signature then
+   local at=type(zoneId)=='string' and point(table.unpack(survey.signature.anchor)) or center
+   portrait=Landmark.draw(parent,survey.signature,UDim2.fromScale(at.X,at.Y))
+  end
+  rows[id]={portrait=portrait,span=size,cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark}
  end
+ local waypoint=label('Waypoint',Text.PinSymbol,Vector2.zero,UDim2.fromOffset(22,22),15,Color3.fromRGB(235,176,255),15)
+ waypoint.Visible=false;waypoint.Font=Enum.Font.GothamBold;waypoint.TextStrokeTransparency=0
  local objective=label('Objective','◆',Vector2.zero,UDim2.fromOffset(26,26),23,Theme.color.gold,12);objective.Visible=false
  local pin=label('You','▲',Vector2.zero,UDim2.fromOffset(30,30),26,Color3.fromRGB(87,241,255),13);pin.TextStrokeTransparency=0;pin.Visible=false
  local youLabel
@@ -136,7 +155,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic)
   marker.Position=UDim2.fromScale(p.X,p.Y);marker.Visible=p.X>=0 and p.X<=1 and p.Y>=0 and p.Y<=1
  end
  local party=require(script.Parent.PartyMapMarkers).create(parent,point,compact)
- local function update(current,root,target,members)
+ local function update(current,root,target,members,marked)
   party.update(members)
   local journal=current and current.journal
   if journal~=lastJournal then
@@ -173,7 +192,6 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic)
   if parent.AbsoluteSize~=lastSize then
    lastSize=parent.AbsoluteSize
    for _,exit in ipairs(exits)do
-    exit.button.Size=UDim2.fromOffset(math.min(210,math.max(44,lastSize.X-8)),44)
     exit.status.Size=UDim2.fromOffset(math.min(250,math.max(44,lastSize.X-8)),30)
    end
    for _,r in ipairs(roads) do
@@ -188,8 +206,45 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic)
    -- Rotate only the heading arrow; keep the identity readable as it moves.
    youLabel.Position=pin.Position+UDim2.fromOffset(0,pin.Position.Y.Scale>.9 and -22 or 22)
   end
+  if marked then located(waypoint,marked.position)else waypoint.Visible=false end
   if target then located(objective,target) else objective.Visible=false end
  end
- return {exits=exits,party=party,pin=pin,youLabel=youLabel,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
+ -- At epic scale show a landmark and a short story number. Reveal full labels
+ -- only when the projected clearing can actually contain the nameplate.
+ local function present(pixelWidth,areaMap)
+  for id,row in pairs(rows)do
+   local w=row.span.X*pixelWidth
+   local h=row.span.Y*pixelWidth*height/width
+   local named=not areaMap and w>=120 and h>=85
+   local symbol=areaMap and math.clamp(math.min(w,h)*.45,54,160) or math.clamp(math.min(w,h)*.72,14,96)
+   if row.portrait then row.portrait.Size=UDim2.fromOffset(symbol,symbol)end
+   row.name.Visible=named;row.status.Visible=named and h>=125
+   row.landmark.Visible=false
+   row.badge.Visible=not areaMap and (not named or h>=120)
+   row.badge.Position=UDim2.fromScale(row.center.X,row.center.Y)+UDim2.fromOffset(0,named and -symbol*.48 or symbol*.37)
+   local chapter=Content.byId[id]
+   row.badge.Text=chapter and string.format('%02d',(chapter.number-1)%7+1) or Text.SideSymbol
+   row.badge.Size=UDim2.fromOffset(24,15);row.badge.TextSize=10
+   row.badge.BackgroundTransparency=.15;row.badge.BackgroundColor3=Theme.color.ink
+   row.name.Position=UDim2.fromScale(row.center.X,row.center.Y)+UDim2.fromOffset(0,symbol*.43)
+   local nameWidth=math.min(154,math.max(104,w-6))
+   row.name.Size=UDim2.fromOffset(nameWidth,28);row.name.TextSize=11
+   row.status.Position=row.name.Position+UDim2.fromOffset(0,22)
+   if row.hit then
+    row.hit.Visible=not areaMap
+    row.hit.Size=UDim2.fromOffset(named and nameWidth or 44,math.max(44,symbol))
+    row.hit.Position=UDim2.fromScale(row.center.X,row.center.Y)
+   end
+  end
+  for _,exit in ipairs(exits)do
+   local tight=pixelWidth<500
+   exit.button.Caption.Text=tight and string.format(Text.ShortExit,Content.epics[exit.link.epic].region) or
+    string.format(Text.OverlandDestination,exit.link.finish[3]<exit.link.start[3] and '↑' or '↓',Content.epics[exit.link.epic].region:upper())
+   exit.button.Size=UDim2.fromOffset(tight and 116 or 190,44)
+   exit.button.Caption.TextSize=tight and 9 or 11
+   exit.status.Visible=not tight
+  end
+ end
+ return {waypoint=waypoint,present=present,exits=exits,party=party,pin=pin,youLabel=youLabel,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
 end
 return Canvas

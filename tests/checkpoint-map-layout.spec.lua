@@ -1,6 +1,6 @@
 -- Execute the actual layout body with geometry adapters; no rendered-device claim.
 local f=assert(io.open('src/client/DeepwoodMap.luau'));local source=f:read('*a');f:close()
-local a=assert(source:find(' layout=function()',1,true));local b=assert(source:find(' area:GetPropertyChangedSignal',a,true))
+local a=assert(source:find(' layout=function()',1,true));local b=assert(source:find(' gui:GetPropertyChangedSignal',a,true))
 local layoutSource=source:sub(a,b-1)
 local U={new=function(xs,x,ys,y)return {xs=xs,x=x,ys=ys,y=y}end,fromOffset=function(x,y)return {xs=0,x=x,ys=0,y=y}end}
 local n=0;local function check(v,m)n=n+1;assert(v,m)end

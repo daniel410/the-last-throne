@@ -209,7 +209,7 @@ function Journal.start(hud)
     if summary and not completed[summary.key] then completed[summary.key]=true;closeDialogue();completionView:show(summary)end
    end
   end
-  render();local guidance=updateTracker();MapState.set(value,guidance and guidance.position)
+  render();local guidance=updateTracker();MapState.set(value,guidance and guidance.position,guidance and guidance.objective)
   if value.notice and hud.showFeedback then hud.showFeedback(value.notice,4) end
   if not event and value.message and value.message~=lastMessage then lastMessage=value.message;showDialogue(value.message,'message') end
   if value.questOffer then
@@ -241,7 +241,7 @@ function Journal.start(hud)
     dead=root.Parent:GetAttribute('K0State')=='Dead',nearObjective=guidance and (root.Position-guidance.position).Magnitude<=16})
    metricPosition=root.Position
   else metricPosition=nil end
-  navigation.setTarget(guidance and guidance.position);MapState.target=guidance and guidance.position
+  navigation.setTarget(guidance and guidance.position);MapState.target=guidance and guidance.position;MapState.targetTitle=guidance and guidance.objective
   marker.Adornee=guidance and anchor or nil
   if guidance and root then anchor.Position=guidance.position;waypoint.Text=(target.chapter.side and '◇ ' or '◆ ')..guidance.objective..'\n'..math.floor((root.Position-guidance.position).Magnitude)..' studs' end
   if promptsDirty then promptsDirty=false;updatePrompts() end

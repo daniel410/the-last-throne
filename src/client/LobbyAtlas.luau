@@ -7,6 +7,8 @@ local Modes=require(Shared.CampaignModeProgress)
 local T=require(script.Parent.TDInventoryTheme)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Survey=require(Shared.CampaignCartography)
+local Field=require(script.Parent.RegionFieldMap)
+local MapText=require(Shared.K0Text).Map
 local M={}
 local epics={}
 for _,epic in ipairs(Content.epics)do table.insert(epics,{epic.region,epic.hub:sub(1,3)})end
@@ -19,12 +21,13 @@ function M.create(parent)
  local fit=T.button(root,'Fit','FIT',UDim2.new(1,-150,0,50),UDim2.fromOffset(64,24))
  local zoomButton=T.button(root,'Zoom','ZOOM',UDim2.new(1,-80,0,50),UDim2.fromOffset(80,24))
  local detail=T.label(root,'RegionDetail','',UDim2.new(0,4,1,-70),UDim2.new(1,-8,0,46),12,T.color.gold)
- local hint=T.label(root,'Hint','Select a region for unlock details. Drag to explore the map.',UDim2.new(0,4,1,-23),UDim2.new(1,-8,0,22),10,T.color.muted)
+ local hint=T.label(root,'Hint',MapText.AreaHint,UDim2.new(0,4,1,-23),UDim2.new(1,-8,0,22),10,T.color.muted)
  local buttons,snapshot,atlas,selected={},nil,nil,nil
  local epic,zoom,overview=1,1,false
+ local render, field, index, activeJournal
  local resizeChrome
  local function hero()return snapshot and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]end
- local function journal()
+ local function readJournal()
   local h=hero();if not h then return {main=-1,explored={}}end
   local a=h.expeditions and h.expeditions.active
   local j=Modes.journal(h,a and a.difficultyId or 'Easy')
@@ -35,7 +38,7 @@ function M.create(parent)
   return j
  end
  local function describe(id)
-  selected=id;local z=Content.zones[id];local j=journal()
+  selected=id;local z=Content.zones[id];local j=activeJournal
   local status
   if not hero()then status='Select a hero to view unlock progress.'
   elseif not Access.allowed(j,id)then
@@ -44,7 +47,7 @@ function M.create(parent)
   elseif j.clears and j.clears[id]then status='COMPLETED · Enter an adventure to revisit.'
   else status='OPEN · Enter an adventure to explore.'end
   detail.Text=z.name..' / '..Survey.zones[id].landmark..' · '..status
-  if resizeChrome then resizeChrome()end
+
  end
  resizeChrome=function()
   local width,height=root.AbsoluteSize.X,root.AbsoluteSize.Y
@@ -77,20 +80,25 @@ function M.create(parent)
  end
  local function layout()
   resizeChrome()
+  index.arrange(area)
   if not atlas then return end
   local w,h=math.max(1,area.AbsoluteSize.X),math.max(1,area.AbsoluteSize.Y)
   local width=math.max(w,h*atlas.aspect)*zoom
   -- Region names remain legible; drag scrolls a large epic on small displays.
   width=overview and math.min(w,h*atlas.aspect)or math.max(width,900)
-  for _,row in pairs(atlas.rows)do row.name.Visible=not overview;row.status.Visible=not overview;row.landmark.Visible=not overview end
   scene.Size=UDim2.fromOffset(width,width/atlas.aspect);scene.Position=UDim2.fromOffset(math.max(0,(w-width)/2),math.max(0,(h-width/atlas.aspect)/2));area.CanvasSize=UDim2.fromOffset(math.max(w,width),math.max(h,width/atlas.aspect))
-  atlas.update({journal=journal()},nil,nil)
+  atlas.update({journal=activeJournal},nil,nil)
+  atlas.present(width,false)
  end
- local render
- render=function()
-  for _,v in ipairs(scene:GetChildren())do v:Destroy()end
-  atlas=nil;selected=nil;area.CanvasPosition=Vector2.zero
-  local spec=epics[epic];local j=journal();local ids={};local count,opened=0,0
+ local function inspect(id)field.open(id,activeJournal)end
+ index=require(script.Parent.EpicAtlasIndex).create(root,inspect)
+ field=Field.create(root,function(id)
+  local destination=Content.zones[id].epic
+  if epic~=destination then epic=destination;render()end
+  atlas.select(id)
+ end)
+ local function refreshProgress()
+  local spec=epics[epic];local j=activeJournal;local ids={};local count,opened=0,0
   for i,b in ipairs(buttons)do
    local prefix=epics[i][2];local available=false
    if prefix and hero()then for id in pairs(Content.zones)do if id:sub(1,3)==prefix and Access.allowed(j,id)then available=true;break end end end
@@ -102,21 +110,37 @@ function M.create(parent)
   for id in pairs(Content.zones)do if id:sub(1,3)==spec[2]then ids[id]=true;count+=1;if Access.allowed(j,id)then opened+=1 end end end
   local h=hero();local a=h and h.expeditions and h.expeditions.active
   summary.Text=string.format('%s · %s · %d / %d REGIONS OPEN',(a and a.difficultyId or 'Easy'):upper(),spec[1]:upper(),opened,count)
+  return ids
+ end
+ render=function()
+  for _,v in ipairs(scene:GetChildren())do v:Destroy()end
+  atlas=nil;selected=nil;area.CanvasPosition=Vector2.zero
+  index.show(epic)
+  local ids=refreshProgress()
+  if not ids then return end
   atlas=Canvas.create(scene,ids,false,describe,function(index,destination)
    epic=index;zoom=1;render();atlas.select(destination)
-  end);layout()
-  local first=spec[2]..'01';atlas.select(first)
+  end,inspect);layout()
+  atlas.select(epics[epic][2]..'01')
  end
  for i,spec in ipairs(epics)do
   local b=T.button(tabs,'Epic'..i,spec[1]:upper(),UDim2.fromOffset((i-1)*174,0),UDim2.fromOffset(168,44));b.Caption.TextSize=10;buttons[i]=b
-  b.Activated:Connect(function()epic=i;zoom=1;overview=root.AbsoluteSize.Y<360 or root.AbsoluteSize.X<600;render()end)
+  b.Activated:Connect(function()epic=i;zoom=1;overview=true;render()end)
  end
  root:GetPropertyChangedSignal('AbsoluteSize'):Connect(layout)
- area:GetPropertyChangedSignal('AbsoluteSize'):Connect(function()if atlas then layout()end end)
  fit.Activated:Connect(function()zoom=1;overview=true;layout();area.CanvasPosition=Vector2.zero end)
  zoomButton.Activated:Connect(function()overview=false;zoom=zoom==1 and 1.5 or 1;layout()end)
- return {root=root,show=function(s)snapshot=s;root.Visible=true;overview=root.AbsoluteSize.Y<360 or root.AbsoluteSize.X<600;render()end,update=function(s)snapshot=s;if root.Visible then render()end end,
-  selectEpic=function(i)if epics[i]then epic=i;zoom=1;overview=root.AbsoluteSize.Y<360 or root.AbsoluteSize.X<600;render()end end,
+ return {root=root,show=function(s)snapshot=s;activeJournal=readJournal();field.close();root.Visible=true;overview=true;render()end,update=function(s)
+   snapshot=s
+   if root.Visible then
+    activeJournal=readJournal()
+    refreshProgress()
+    if selected then describe(selected)end
+    layout()
+    field.update(activeJournal)
+   end
+  end,inspect=inspect,
+  selectEpic=function(i)if epics[i]then epic=i;zoom=1;overview=true;render()end end,
   selectRegion=function(id)if atlas and atlas.rows[id]then atlas.select(id)end end,
   rows=function()return atlas and atlas.rows or {}end}
 end

@@ -46,7 +46,7 @@ end
 markerRoot:Destroy()
 for _,size in ipairs({Vector2.new(1000,750),Vector2.new(667,317),Vector2.new(390,780)})do
  frame:ClearAllChildren();frame.Size=UDim2.fromOffset(size.X,size.Y)
- local lobby=require(Client.LobbyAtlas).create(frame);lobby.show({heroId='h',heroes={h={deepwood=journal}}});task.wait()
+ local lobby=require(Client.LobbyAtlas).create(frame);lobby.show({heroId='h',heroes={h={expeditions={modeJournals={Easy=journal}}}}});task.wait()
  for epic=1,5 do
   lobby.selectEpic(epic);task.wait()
   for id in pairs(lobby.rows())do check(C.zones[id].epic==epic,'lobby uses canonical campaign order')end

@@ -38,10 +38,40 @@ for _,id in ipairs(ids)do
    table.insert(roads,{a.X,a.Z,b.X,b.Z,p.Size.X})
   end
  end end
- local landmark,landmarkAnchor
+ local landmark,landmarkAnchor,signature
  local art=world.folder:FindFirstChild('EpicWorldArt')
  if art then for _,site in ipairs(art:GetDescendants())do if site.Name==id and site:GetAttribute('Landmark')then
   landmark=site:GetAttribute('Landmark')
+  local group=site:FindFirstChild('RegionalConcept') or site:FindFirstChild('DeepwoodConcept')
+  if group then
+   for _,model in ipairs(group:GetChildren())do
+    if model:IsA('Model') and (model:GetAttribute('RegionalConceptRole')=='Signature' or model:GetAttribute('DeepwoodConceptRole')=='Signature')then
+     local anchor=model:GetAttribute('GroundPosition')
+     local pivot=model:GetPivot()
+     local parts={}
+     for _,part in ipairs(model:GetDescendants())do
+      if part:IsA('BasePart') and part.Transparency<.5 then
+       local kind=part:IsA('WedgePart') and 'Wedge' or part:IsA('Part') and part.Shape.Name or 'Block'
+       if kind~='Block' and kind~='Wedge' and kind~='Cylinder' and kind~='Ball' then kind='Block' end
+       local cf=pivot:ToObjectSpace(part.CFrame)
+       local rx,ry,rz=cf:ToOrientation()
+       table.insert(parts,{kind,part.Size.X,part.Size.Y,part.Size.Z,cf.X,cf.Y,cf.Z,rx,ry,rz,
+        math.round(part.Color.R*255),math.round(part.Color.G*255),math.round(part.Color.B*255)})
+      end
+     end
+     -- Keep distant map miniatures inexpensive. Stable ties preserve repeatable builds.
+     table.sort(parts,function(a,b)
+      local function area(p)return p[2]*p[3]+p[2]*p[4]+p[3]*p[4]end
+      if area(a)~=area(b)then return area(a)>area(b)end
+      for i=1,#a do if a[i]~=b[i]then return a[i]<b[i]end end
+      return false
+     end)
+     while #parts>36 do table.remove(parts)end
+     signature={title=group:GetAttribute('ConceptTitle'),anchor={anchor.X,anchor.Z},parts=parts}
+     break
+    end
+   end
+  end
   local composition=site:FindFirstChild('TDScenicComposition')
   if composition then for _,m in ipairs(composition:GetChildren())do if m:IsA('Model')and m:GetAttribute('CompositionRole')=='Hero'then
    local cf=m:GetBoundingBox();landmarkAnchor={cf.X,cf.Z};break
@@ -49,7 +79,7 @@ for _,id in ipairs(ids)do
   break
  end end end
  local spawn=world.spawns[id].Position
- result.zones[id]={pixels=pixels,roads=roads,landmark=landmark,landmarkAnchor=landmarkAnchor,spawn={spawn.X,spawn.Z}}
+ result.zones[id]={pixels=pixels,roads=roads,signature=signature,landmark=landmark,landmarkAnchor=landmarkAnchor,spawn={spawn.X,spawn.Z}}
  print('CARTOGRAPHY_DATA_ZONE '..id..' '..game.HttpService:JSONEncode(result.zones[id]))
  task.wait()
 end

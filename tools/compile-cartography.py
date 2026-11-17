@@ -25,8 +25,10 @@ for key,z in sorted(data['zones'].items()):
             rects.append([x,y,w,h,c])
     def lua(v):
         if isinstance(v,str):return json.dumps(v)
+        if isinstance(v,dict):return '{'+','.join(k+'='+lua(x) for k,x in sorted(v.items()))+'}'
         if isinstance(v,(list,tuple)):return '{'+','.join(lua(x)for x in v)+'}'
         return str(round(v,3))
-    lines.append('['+lua(key)+']={landmark='+lua(z.get('landmark',key))+',landmarkAnchor='+lua(z.get('landmarkAnchor',z['spawn']))+',spawn='+lua(z['spawn'])+',rects='+lua(rects)+',roads='+lua(z['roads'])+'},')
+    signature=z['signature'];assert 1<=len(signature['parts'])<=36,key
+    lines.append('['+lua(key)+']={signature='+lua(signature)+',landmark='+lua(z.get('landmark',key))+',landmarkAnchor='+lua(z.get('landmarkAnchor',z['spawn']))+',spawn='+lua(z['spawn'])+',rects='+lua(rects)+',roads='+lua(z['roads'])+'},')
     stats[key]={'rectangles':len(rects),'roads':len(z['roads'])}
 lines.append('}}\n');a.output.write_text('\n'.join(lines));print(json.dumps({'zones':len(stats),'sourceSha256':hashlib.sha256(json.dumps(data,sort_keys=True).encode()).hexdigest(),'regions':stats},indent=2))

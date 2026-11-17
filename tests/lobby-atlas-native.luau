@@ -6,7 +6,12 @@ local function check(v,m)report.checks+=1;assert(v,m)end
 local gui=Instance.new('ScreenGui');gui.Name='LobbyAtlasQA';gui.Parent=game.CoreGui
 local host=Instance.new('Frame');host.Size=UDim2.fromOffset(1000,750);host.Parent=gui
 local view=require(client.LobbyAtlas).create(host)
-local function snap(main)return {heroId='h',heroes={h={deepwood={main=main,explored={},clears={}}}}}end
+local function snap(main)
+ local j=require(game.ReplicatedStorage.Shared.DeepwoodProgress).new()
+ j.main=main
+ for i=1,main do j.clears[require(game.ReplicatedStorage.Shared.CampaignContent).mainChapters[i].id]=true end
+ return {heroId='h',heroes={h={expeditions={modeJournals={Easy=j}}}}}
+end
 local function countRows(open)
  local n=0
  for _,row in pairs(view.rows())do n+=1;if open~=nil then check(row.name:GetAttribute('Accessible')==open,'real progression controls lock state')end end

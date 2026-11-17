@@ -11,6 +11,7 @@ local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Scope=require(Shared.CampaignMapScope)
 local Checkpoints=require(Shared.CheckpointTravel)
 local Survey=require(Shared.CampaignCartography)
+local Field=require(script.Parent.RegionFieldMap)
 local Map={}
 function Map.start(button)
  local player=Players.LocalPlayer
@@ -37,8 +38,14 @@ function Map.start(button)
  end
  local epic=1
  local atlas
+ local field=Field.create(panel,function(id)
+  local destination=Content.zones[id].epic
+  if epic~=destination then selectEpic(destination)end
+  atlas.select(id)
+ end,State)
+ local function inspect(id)field.open(id,State.current and State.current.journal)end
+ local regionIndex=require(script.Parent.EpicAtlasIndex).create(panel,inspect)
  local function followEpic(index,destination)selectEpic(index);atlas.select(destination)end
- atlas=Canvas.create(scene,Scope.ids(epic),false,describe,followEpic)
  local controller
  local epicTabs=Instance.new('ScrollingFrame');epicTabs.Name='EpicCategories';epicTabs.BackgroundTransparency=1;epicTabs.BorderSizePixel=0;epicTabs.ScrollBarThickness=3;epicTabs.ScrollingDirection=Enum.ScrollingDirection.X;epicTabs.CanvasSize=UDim2.fromOffset(#Content.epics*174,0);epicTabs.Parent=panel
  local epicButtons={}
@@ -56,7 +63,7 @@ function Map.start(button)
   item.Position=UDim2.fromOffset(10,70+(i-1)*66);item.Size=UDim2.new(1,-20,0,60);item.Parent=journey
   local name=Theme.label(item,'Name',string.format('%02d  %s',i,Content.zones[id].name),UDim2.fromOffset(10,2),UDim2.new(1,-20,.65,-2),11,Theme.color.text)
   local status=Theme.label(item,'Status','',UDim2.new(0,10,.65,0),UDim2.new(1,-20,.35,-2),9,Theme.color.muted)
-  item.Activated:Connect(function() atlas.select(id) end);chapters[i]={button=item,name=name,status=status}
+  item.Activated:Connect(function() atlas.select(id);inspect(id) end);chapters[i]={button=item,name=name,status=status}
  end
  local compass=Theme.label(panel,'Compass',Text.Map.North..'\n↑',UDim2.new(1,-270,0,150),UDim2.fromOffset(36,40),16,Theme.color.gold);compass.AnchorPoint=Vector2.new(.5,.5);compass.TextXAlignment=Enum.TextXAlignment.Center;compass.ZIndex=8
  local legend=Theme.label(panel,'Legend',Text.Map.Legend,UDim2.new(0,24,1,-94),UDim2.new(1,-48,0,20),11)
@@ -140,26 +147,16 @@ function Map.start(button)
   end
   local available=area.AbsoluteSize
   if available.X<=0 or available.Y<=0 then return end
+  regionIndex.arrange(area,journey);available=area.AbsoluteSize
   local baseWidth=math.min(available.X,available.Y*atlas.aspect)
   if not overview and (viewport.X<1000 or short) then baseWidth=math.max(680,baseWidth) end
   local w=baseWidth*zoom;local h=w/atlas.aspect
   scene.Size=UDim2.fromOffset(w,h);scene.Position=UDim2.fromOffset(math.max(0,(available.X-w)/2),math.max(0,(available.Y-h)/2))
   area.CanvasSize=UDim2.fromOffset(math.max(w,available.X),math.max(h,available.Y))
   scene:SetAttribute('MapAspect',atlas.aspect);scene:SetAttribute('Zoom',zoom)
-  -- Text stays readable while zooming. Fit is a geographic overview on phones.
-  local font=w<650 and 10 or 12;local labelWidth=w<650 and 118 or 156
-  local showNames=not short and not small
-  for id,row in pairs(atlas.rows) do
-   row.name.Visible=showNames;row.status.Visible=showNames;row.landmark.Visible=showNames and w/atlas.aspect>450;row.name.TextSize=font;row.name.Size=UDim2.fromOffset(labelWidth,32)
-   local number=Content.byId[id] and Content.byId[id].number
-   row.badge.Text=number and (w<550 and string.format('%02d',(number-1)%7+1) or string.format(Text.Map.Main,(number-1)%7+1)) or Text.Map.Side
-   if row.hit then
-   row.hit.Size=not showNames and UDim2.fromOffset(44,44) or UDim2.fromOffset(labelWidth+8,48)
-    row.hit.Position=not showNames and UDim2.fromScale(row.center.X,row.center.Y) or row.name.Position
-   end
-  end
+  atlas.present(w,false)
  end
- area:GetPropertyChangedSignal('AbsoluteSize'):Connect(function() if panel.Visible then task.defer(layout) end end)
+ gui:GetPropertyChangedSignal('AbsoluteSize'):Connect(function() if panel.Visible then task.defer(layout) end end)
  local function setZoom(value)
   local before=scene.AbsoluteSize;local view=area.AbsoluteSize;local old=area.CanvasPosition
   local center=Vector2.new((old.X+view.X/2-scene.Position.X.Offset)/math.max(1,before.X),(old.Y+view.Y/2-scene.Position.Y.Offset)/math.max(1,before.Y))
@@ -203,10 +200,10 @@ function Map.start(button)
   if not Content.epics[index] then return end
   categoriesOpen=false
   epic=index;selected=nil;scene:ClearAllChildren()
-  atlas=Canvas.create(scene,Scope.ids(epic),false,describe,followEpic)
+  atlas=Canvas.create(scene,Scope.ids(epic),false,describe,followEpic,inspect)
   if controller then controller.atlas=atlas end
   journey.CanvasPosition=Vector2.zero
-  atlas.update(State.current,nil,nil);refreshEpic();fitMap()
+  regionIndex.show(epic);atlas.update(State.current,nil,nil);refreshEpic();fitMap()
   local first,last=Scope.range(epic);local main=State.current and State.current.journal.main or 0;atlas.select(Content.mainChapters[math.clamp(main+1,first,last)].id)
   epicTabs.CanvasPosition=epicPicker.Visible and Vector2.new(0,math.max(0,(epic-1)*50-epicTabs.AbsoluteSize.Y/2+22)) or Vector2.new(math.max(0,(epic-1)*174-epicTabs.AbsoluteSize.X/2+84),0)
  end
@@ -236,7 +233,7 @@ function Map.start(button)
  player:GetAttributeChangedSignal('TLTNavigationEnabled'):Connect(refreshNavigation);refreshNavigation()
  local function open(value)
   value=value and State.current and not State.current.training and player:GetAttribute('K0SessionPhase')=='Tutorial'
-  panel.Visible=value==true;player:SetAttribute('TLTMapOpen',panel.Visible)
+  field.close();panel.Visible=value==true;player:SetAttribute('TLTMapOpen',panel.Visible)
   if panel.Visible then selectEpic(playerEpic());updateTravel();layout() end
  end
  if button then button.Activated:Connect(function() open(not panel.Visible) end) end
@@ -252,14 +249,17 @@ function Map.start(button)
   local camera=workspace.CurrentCamera;local size=camera and camera.ViewportSize
   if size~=previousSize then previousSize=size;layout() end
   local c=player.Character;local root=c and c:FindFirstChild('HumanoidRootPart');local human=c and c:FindFirstChildOfClass('Humanoid')
-  atlas.update(State.current,root and human and human.Health>0 and root or nil,State.target,State.party())
+  local living=root and human and human.Health>0 and root or nil
+  local party=State.party()
+  if field.panel.Visible then field.update(State.current.journal,living,State.target,party)
+  else atlas.update(State.current,living,State.target,party,State.waypoint)end
   if lastRevision~=State.revision then
    lastRevision=State.revision;refreshEpic()
    if selected then describe(selected) end
    updateTravel();layout()
   end
  end)
- controller={open=open,atlas=atlas,panel=panel,setZoom=setZoom,fit=fitMap,center=centerPlayer,selectEpic=selectEpic}
+ controller={inspect=inspect,open=open,atlas=atlas,panel=panel,setZoom=setZoom,fit=fitMap,center=centerPlayer,selectEpic=selectEpic}
  return controller
 end
 return Map
