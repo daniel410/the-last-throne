@@ -1,7 +1,7 @@
 -- Blender-authored primitives retain their exact local rotations and proportions.
 local Templates=require(script.Parent.RegionalArchitectureTemplates)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Architecture={version=8}
+local Architecture={version=9}
 function Architecture.build(kind)
  local rows=assert(Templates[kind],'Unknown regional architecture '..kind)
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
@@ -96,6 +96,20 @@ function Architecture.build(kind)
     fitting('MineIronCollar',Vector3.new(2.16,.55,2.16),Vector3.new(side*10,height,-2),Color3.fromRGB(62,65,68),Enum.Material.Metal)
    end
   end
+  -- A second bent and longitudinal bearers turn the flat facade into a
+  -- shallow working bay over the existing haul rails. Keep the center open:
+  -- this is permanent shoring, not a completed personal rescue state.
+  local timber=Color3.fromRGB(104,72,46)
+  local iron=Color3.fromRGB(62,65,68)
+  for _,side in ipairs({-1,1})do
+   fitting('MineBayFoot',Vector3.new(3.8,.6,3.8),Vector3.new(side*10,.3,10),Color3.fromRGB(83,79,77),Enum.Material.Basalt)
+   fitting('MineBayPost',Vector3.new(2,16,2),Vector3.new(side*10,8.6,10),timber,Enum.Material.Wood)
+   fitting('MineLongitudinalBearer',Vector3.new(2,2,12),Vector3.new(side*10,17,4),timber,Enum.Material.Wood)
+   for _,z in ipairs({-2,10})do
+    fitting('MineBearerStrap',Vector3.new(2.16,.55,2.16),Vector3.new(side*10,16.1,z),iron,Enum.Material.Metal)
+   end
+  end
+  fitting('MineBayLintel',Vector3.new(24,2.4,2.4),Vector3.new(0,17,10),timber,Enum.Material.Wood)
   -- Five sleepers connect the two original haul rails to the worked ground.
   for i=0,4 do
    fitting('MineRailSleeper',Vector3.new(14,.16,.65),Vector3.new(0,.08,4+i*2),Color3.fromRGB(82+(i%2)*6,61,44),Enum.Material.Wood)
