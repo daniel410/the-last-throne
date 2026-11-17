@@ -1,0 +1,12 @@
+GLOAMWOOD_VISUAL_ATTACHMENT {"models":[{"gravityOffsetError":64.07154846191406,"kind":"HollowbarkSovereign","multiplier":0.6,"welds":1}],"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13: HollowbarkSovereign x0.6 skin follows root under gravity\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:46\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","pass":false,"checks":11423}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:67: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13: HollowbarkSovereign x0.6 skin follows root under gravity
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:46
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:67
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

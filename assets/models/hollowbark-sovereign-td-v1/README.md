@@ -7,3 +7,5 @@
 TD 기존 모델러의 Standard/sRGB/None/Exposure0/Gamma1 비교 기록을 원천으로 사용했다. 이번 작업은 Blender 가져오기/편집/렌더를 하지 않았고 AgX 색 판정·재질/채도 보정을 하지 않았다. TLT 실제 Roblox 조명 비교는 별도 미검증이다.
 
 메시105839711981589·Image139387289433234는 Restricted를 유지하며 TLT10773575153에 사용 권한을 연결했다. 상세 UI 확인과 검증/남은 수용은 [작업 증거](../../../docs/evidence/hollowbark-sovereign-20261110/README.md). 게임 게시와 별개다.
+
+원본 XML에는 Body↔VisualRoot 용접이 없으므로 `GloamwoodAppearance.attach`가 복제본에 연결을 보완한다. 고정을 해제한 본체가 땅 아래로 떨어지던 문제를 수정했으며 원본 파일은 보존한다. [전후 물리 검증·미게시 범위](../../../docs/evidence/hollowbark-visibility-20261117/README.md).

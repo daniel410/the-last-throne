@@ -1,0 +1,359 @@
+{
+  "sourceCommit": "433799e0f5d985e9f0ea95353bea792c39a9d322",
+  "baselineVersion": "0.111.31",
+  "fixedVersion": "0.111.32",
+  "dateUTC": "2026-11-17",
+  "dateToronto": "2026-11-16",
+  "baselineExpectedFailure": true,
+  "published": false,
+  "before": {
+    "models": [
+      {
+        "gravityOffsetError": 64.07154846191406,
+        "kind": "HollowbarkSovereign",
+        "multiplier": 0.6,
+        "welds": 1
+      }
+    ],
+    "error": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13: HollowbarkSovereign x0.6 skin follows root under gravity\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:46\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n",
+    "pass": false,
+    "checks": 11423
+  },
+  "after": {
+    "models": [
+      {
+        "gravityOffsetError": 0,
+        "kind": "HollowbarkSovereign",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "HollowbarkSovereign",
+        "multiplier": 0.8571428571428571,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "HollowbarkSovereign",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "AncientHollowbark",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "AncientHollowbark",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "AncientHollowbark",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Webling",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Webling",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Webling",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Silkweaver",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Silkweaver",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Silkweaver",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Barkstalker",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Barkstalker",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Barkstalker",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Gloambat",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Gloambat",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "Gloambat",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "VenomcoilCentipede",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "VenomcoilCentipede",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "VenomcoilCentipede",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "VenomcoilKing",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "VenomcoilKing",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "VenomcoilKing",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "WidowQueen",
+        "multiplier": 0.6,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "WidowQueen",
+        "multiplier": 1,
+        "welds": 2
+      },
+      {
+        "gravityOffsetError": 0,
+        "kind": "WidowQueen",
+        "multiplier": 1.4,
+        "welds": 2
+      },
+      {
+        "height": 8.4,
+        "kind": "HollowbarkSovereign",
+        "multiplier": 0.6,
+        "bodyOffsetError": 1.9660499219753547e-06
+      },
+      {
+        "height": 12,
+        "kind": "HollowbarkSovereign",
+        "multiplier": 0.8571428571428571,
+        "bodyOffsetError": 2.9802322387695312e-08
+      },
+      {
+        "height": 19.599999999999998,
+        "kind": "HollowbarkSovereign",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 5.3999999999999995,
+        "kind": "AncientHollowbark",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 9,
+        "kind": "AncientHollowbark",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 12.6,
+        "kind": "AncientHollowbark",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.0431618189850507,
+        "kind": "Webling",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.7386030316417513,
+        "kind": "Webling",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 2.434044244298452,
+        "kind": "Webling",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.2181154115286517,
+        "kind": "Silkweaver",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 2.0301923525477528,
+        "kind": "Silkweaver",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 2.842269293566854,
+        "kind": "Silkweaver",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.4210667437210818,
+        "kind": "Barkstalker",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 2.3684445728684698,
+        "kind": "Barkstalker",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 3.3158224020158573,
+        "kind": "Barkstalker",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 2.3338818004589195,
+        "kind": "Gloambat",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 3.889803000764866,
+        "kind": "Gloambat",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 5.445724201070812,
+        "kind": "Gloambat",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 0.6516949314071417,
+        "kind": "VenomcoilCentipede",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.086158219011903,
+        "kind": "VenomcoilCentipede",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.5206215066166642,
+        "kind": "VenomcoilCentipede",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.9152459284510894,
+        "kind": "VenomcoilKing",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 3.1920765474184827,
+        "kind": "VenomcoilKing",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 4.4689071663858755,
+        "kind": "VenomcoilKing",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 1.7406144204185903,
+        "kind": "WidowQueen",
+        "multiplier": 0.6,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 2.901024034030984,
+        "kind": "WidowQueen",
+        "multiplier": 1,
+        "bodyOffsetError": 0
+      },
+      {
+        "height": 4.061433647643377,
+        "kind": "WidowQueen",
+        "multiplier": 1.4,
+        "bodyOffsetError": 0
+      }
+    ],
+    "pass": true,
+    "checks": 11556
+  },
+  "sha256": {
+    "src/server/World/GloamwoodAppearance.luau": "31eeacfd0fe98d9e47a481c16f3544f4abf41dd4fb00ac898596df69723d9a4d",
+    "tests/gloamwood-visual-attachment-native.luau": "508fb96b66350ea267efc6386bed1dd778e3003375ce115d1bde1e5be37c5999",
+    "builds/0.111.31/TheLastThrone-0.111.31.rbxlx": "3d4adee541ceab62254ec54c6c0181a37818a6942e73b07331ef93f071c1252c",
+    "builds/0.111.32/TheLastThrone-0.111.32.rbxlx": "d921352acb9d5f48af0103d47722e485c714634777b980af39ded4598d90c33a"
+  },
+  "fixedBuildModuleMatchesSource": true
+}
