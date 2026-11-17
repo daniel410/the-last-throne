@@ -1,0 +1,11 @@
+[string "production launch"]:17: attempt to call a nil value
+[string "production launch"]:17 function startRunLocked
+tests/expedition-resume-rules.spec.lua:40 function launch
+tests/expedition-resume-rules.spec.lua:65
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:77 function pure
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:79
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

@@ -162,6 +162,19 @@ local function resetJournal(base,c)
  assert(P.validate(s),'Invalid replay prefix')
  return s
 end
+local function pinnedRun(hero,missionId,mode)
+ local saved=hero.expeditions.runsByMode[mode]
+ local previous=currentMission(saved)
+ if saved and previous and previous.id==missionId and not saved.journal.clears[missionId]then return saved end
+end
+-- Match destination resume semantics without changing the source account.
+function A.departureVersion(hero,missionId,mode)
+ local h=P.copy(hero)
+ A.upgradeHero(h)
+ if h.expeditions.active then Modes.save(h,h.expeditions.active)end
+ local saved=pinnedRun(h,missionId,mode)
+ return saved and (saved.balanceVersion or 1)or D.version
+end
 function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned'end
  local old=hero.expeditions and hero.expeditions.active
@@ -180,7 +193,7 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  local previous=currentMission(saved)
  local resume=saved and saved.modeProgressVersion==1 and previous and previous.id==missionId and not saved.journal.clears[missionId]
  -- Resuming an unfinished run never changes its pinned reward/combat budget.
- local pinned=saved and previous and previous.id==missionId and not saved.journal.clears[missionId]
+ local pinned=pinnedRun(h,missionId,mode)
  if pinned then version=saved.balanceVersion or 1 end
  local base=Modes.journal(h,mode);local first=not Modes.claimed(h,missionId,mode)
  local journal=resume and P.copy(saved.journal)or base.clears[missionId]and resetJournal(base,c)or base

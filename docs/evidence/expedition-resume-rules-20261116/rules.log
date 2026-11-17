@@ -1,0 +1,22 @@
+$ lua tests/expedition-resume-rules.spec.lua
+Expedition resume rules: 183 checks passed
+$ lua tests/expedition-departure.spec.lua
+Expedition departure: 42 checks passed
+$ lua tests/expedition-store.spec.lua
+Expedition store: 43 checks passed
+$ lua tests/adventure-starting.spec.lua
+Adventure starting: 94 checks passed
+$ lua tests/campaign-mode-progress.spec.lua
+Completed mode campaign: Easy
+Completed mode campaign: Hard
+Completed mode campaign: Insane
+Completed mode campaign: Hell
+Campaign mode progress: 4621 checks passed
+$ lua tests/campaign-mode-migration.spec.lua
+CAMPAIGN_MODE_MIGRATION 88 checks passed
+$ lua tests/campaign-mode-legacy-replay.spec.lua
+Campaign mode legacy replay: 3723 checks passed
+$ lua tests/gold-reward-tuning.spec.lua
+Gold reward tuning: 8321 checks passed
+$ lua tests/arrival-loading.spec.lua
+arrival-loading: 291 checks PASS

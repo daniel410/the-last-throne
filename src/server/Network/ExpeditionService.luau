@@ -7,6 +7,7 @@ local C=require(RS.Shared.ExpeditionConfig)
 local Store=require(script.Parent.ExpeditionStore)
 local Departure=require(script.Parent.ExpeditionDeparture)
 local TravelAttempt=require(script.Parent.TravelAttempt)
+local Adventure=require(RS.Shared.AdventureRules)
 local Difficulty=require(RS.Shared.Difficulty)
 local Content=require(RS.Shared.CampaignContent)
 local Presentation=require(RS.Shared.ExpeditionPresentation)
@@ -177,9 +178,16 @@ local function startRunLocked(p,party,runId)
   local m=member(p,'solo');if not m then return nil,'NotReady' end
   participants={p};members[tostring(p.UserId)]={heroId=m.heroId,ticket=guid()}
  end
+ local rulesVersion
  for _,person in ipairs(participants)do
   local h=o.inventory.expeditionHero(person);local allowed,why=Difficulty.allowed(h,chosen.missionId,chosen.difficultyId)
   if not allowed then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
+  local version=Adventure.departureVersion(h,chosen.missionId,chosen.difficultyId)
+  if rulesVersion and rulesVersion~=version then
+   if party then store.launchStatus(party.id,runId,'forming')end
+   return nil,'PartyRulesMismatch'
+  end
+  rulesVersion=version
  end
  if studio then
   for _,person in ipairs(participants)do
@@ -191,7 +199,7 @@ local function startRunLocked(p,party,runId)
   for _,person in ipairs(participants) do o.heroSession.enterAdventure(person,members[tostring(person.UserId)].heroId) end
   return true
  end
- local r,e,prepared=Departure.prepare(store,o.inventory,participants,members,{id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=Difficulty.version},unlock)
+ local r,e,prepared=Departure.prepare(store,o.inventory,participants,members,{id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=rulesVersion},unlock)
  if not r then if party then store.launchStatus(party.id,runId,'forming')end;return nil,e end
  for _,person in ipairs(prepared)do person:SetAttribute('TLTTravelLock',true)end
  if party then store.launchStatus(party.id,runId,'launched');advertise(party.id) end
