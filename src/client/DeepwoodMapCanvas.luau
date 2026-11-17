@@ -9,7 +9,6 @@ local Art=require(script.Parent.DeepwoodCartography)
 local Survey=require(Shared.CampaignCartography)
 local Bounds=require(Shared.CampaignBounds)
 local Areas=require(Shared.CampaignAreas)
-local Landmark=require(script.Parent.AtlasLandmark)
 local Plate=require(script.Parent.AtlasPlate)
 local Canvas={}
 function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
@@ -31,6 +30,8 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
  if compact then
   local size=math.max(maxX-minX,maxZ-minZ);local cx,cz=(minX+maxX)/2,(minZ+maxZ)/2
   minX,maxX=cx-size/2,cx+size/2;minZ,maxZ=cz-size/2,cz+size/2
+ elseif type(zoneId)=='string' then
+  minX,minZ,maxX,maxZ=Areas.surveyExtent(Content.zones[zoneId])
  else
   local px,pz=(maxX-minX)*.075,(maxZ-minZ)*.075;minX-=px;maxX+=px;minZ-=pz;maxZ+=pz
  end
@@ -56,20 +57,21 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
   local f=Art.shape(parent,name,(a.X+b.X)/2,(a.Y+b.Y)/2,0,0,color,layer,.5)
   table.insert(roads,{part=f,a=a,b=b,thickness=thickness,edge=edge,zone=zone,worldWidth=worldWidth});return f
  end
- for _,id in ipairs(ids) do Art.region(parent,id,Content.zones[id],point,width,height,compact,line) end
- for _,id in ipairs(ids)do for _,area in ipairs(Content.zones[id].expansionAreas or {})do
-  local center=point(area.center[1],area.center[3])
-  Art.shape(parent,'IncidentSpace',center.X,center.Y,area.size[1]/width,area.size[2]/height,Color3.fromRGB(66,87,79),3,.3)
-  line('IncidentWalk',point(area.entry[1],area.entry[3]),center,Theme.color.silver,3,4,nil,id,24)
-
- end end
- if zoneId and not compact then
-  for _,id in ipairs(ids)do
-   local x0,z0,x1,z1=Areas.extent(Content.zones[id])
-   local relief=Plate.draw(parent,'Relief_'..id,false,type(zoneId)=='string')
-   if relief then
-    local at=point(x0,z0);relief.Position=UDim2.fromScale(at.X,at.Y)
-    relief.Size=UDim2.fromScale((x1-x0)/width,(z1-z0)/height);relief.ZIndex=3
+ for _,id in ipairs(ids) do
+  local zone=Content.zones[id]
+  if zoneId and not compact then
+   local x0,z0,x1,z1=Areas.surveyExtent(zone)
+   local at=point(x0,z0)
+   local relief=Plate.draw(parent,id,type(zoneId)=='string')
+   relief.Position=UDim2.fromScale(at.X,at.Y)
+   relief.Size=UDim2.fromScale((x1-x0)/width,(z1-z0)/height)
+   relief.ZIndex=3
+  else
+   Art.region(parent,id,zone,point,width,height,compact,line)
+   for _,area in ipairs(zone.expansionAreas or {}) do
+    local center=point(area.center[1],area.center[3])
+    Art.shape(parent,'IncidentSpace',center.X,center.Y,area.size[1]/width,area.size[2]/height,Color3.fromRGB(66,87,79),3,.3)
+    line('IncidentWalk',point(area.entry[1],area.entry[3]),center,Theme.color.silver,3,4,nil,id,24)
    end
   end
  end
@@ -129,12 +131,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
    hit=Instance.new('TextButton');hit.Name='SelectRegion';hit.Text='';hit.BackgroundTransparency=1;hit.Position=caption.Position;hit.AnchorPoint=Vector2.new(.5,.5);hit.Size=UDim2.fromOffset(164,48);hit.ZIndex=9;hit.AutoLocalize=false;hit.Parent=parent
    hit.Activated:Connect(function() selectRegion(id);if onInspect then onInspect(id)end end)
   end
-  local portrait
-  if not compact and zoneId and survey.signature then
-   local at=type(zoneId)=='string' and point(table.unpack(survey.signature.anchor)) or center
-   portrait=Landmark.draw(parent,survey.signature,UDim2.fromScale(at.X,at.Y))
-  end
-  rows[id]={portrait=portrait,span=size,cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark}
+  rows[id]={span=size,cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark}
  end
  local waypoint=label('Waypoint',Text.PinSymbol,Vector2.zero,UDim2.fromOffset(22,22),15,Color3.fromRGB(235,176,255),15)
  waypoint.Visible=false;waypoint.Font=Enum.Font.GothamBold;waypoint.TextStrokeTransparency=0
@@ -209,7 +206,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
   if marked then located(waypoint,marked.position)else waypoint.Visible=false end
   if target then located(objective,target) else objective.Visible=false end
  end
- -- At epic scale show a landmark and a short story number. Reveal full labels
+ -- At epic scale show a short story number over the surveyed ground. Reveal full labels
  -- only when the projected clearing can actually contain the nameplate.
  local function present(pixelWidth,areaMap)
   for id,row in pairs(rows)do
@@ -217,7 +214,6 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
    local h=row.span.Y*pixelWidth*height/width
    local named=not areaMap and w>=120 and h>=85
    local symbol=areaMap and math.clamp(math.min(w,h)*.45,54,160) or math.clamp(math.min(w,h)*.72,14,96)
-   if row.portrait then row.portrait.Size=UDim2.fromOffset(symbol,symbol)end
    row.name.Visible=named;row.status.Visible=named and h>=125
    row.landmark.Visible=false
    row.badge.Visible=not areaMap and (not named or h>=120)

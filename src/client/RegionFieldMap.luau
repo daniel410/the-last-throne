@@ -10,7 +10,6 @@ local Text = require(Shared.K0Text).Map
 local Theme = require(script.Parent.TDInventoryTheme)
 local Canvas = require(script.Parent.DeepwoodMapCanvas)
 
-local Plate = require(script.Parent.AtlasPlate)
 local Field = {}
 
 local function unlock(journal, id)
@@ -35,7 +34,7 @@ local function locations(id, journal)
   local done = journal and journal.flags and journal.flags[area.chapterId .. ":" .. area.goalId]
   table.insert(places, {
    category = done and Text.Complete or Text.Incident, title = area.name,
-   at = {area.center[1], area.center[3]}, note = goal.title,
+   at = {goal.position[1], goal.position[3]}, note = goal.title,
   })
  end
  for _, edge in ipairs(Access.edges) do
@@ -109,12 +108,6 @@ function Field.create(parent, onBack, mapState)
  list.AutomaticCanvasSize = Enum.AutomaticSize.Y
  list.CanvasSize = UDim2.new()
 
- local illustration = Instance.new("Frame")
- illustration.Name = "LocationArt"
- illustration.BorderSizePixel = 0
- illustration.ClipsDescendants = true
- illustration.LayoutOrder = 0
- illustration.Parent = list
  local atlas, id, places, journal
  local rows = {}
  local chosen
@@ -126,7 +119,7 @@ function Field.create(parent, onBack, mapState)
   local top = 56
   local horizontal = w >= 610 or w > h * 1.35
   if horizontal then
-   local guideWidth = math.clamp(math.floor(w * .34), 165, 340)
+   local guideWidth = math.clamp(math.floor(w * .29), 165, 290)
    chart.Position = UDim2.fromOffset(8, top)
    chart.Size = UDim2.new(1, -guideWidth - 20, 1, -top - 8)
    info.Position = UDim2.new(1, -guideWidth - 8, 0, top)
@@ -139,10 +132,9 @@ function Field.create(parent, onBack, mapState)
    info.Size = UDim2.new(1, -16, 1, -top - chartHeight - 13)
   end
   title.TextSize = w < 500 and 15 or 19
-  illustration.Size = UDim2.new(1,-5,0,math.clamp(math.floor(list.AbsoluteSize.X*.49),59,148))
   local available = chart.AbsoluteSize
   local width = math.max(1, math.min(available.X - 12, (available.Y - 12) * atlas.aspect))
-  scene.Size = UDim2.fromOffset(width, width / atlas.aspect)
+  scene.Size = UDim2.fromScale(width / math.max(1, available.X), width / atlas.aspect / math.max(1, available.Y))
   atlas.present(width, true)
   atlas.update({journal = journal})
  end
@@ -245,8 +237,6 @@ function Field.create(parent, onBack, mapState)
   if not Content.zones[region] then return end
   id, journal = region, snapshot
   tracked.Visible = false
-  illustration:ClearAllChildren()
-  Plate.draw(illustration, id, true)
   for _, row in ipairs(rows) do row.button:Destroy() end
   table.clear(rows)
   scene:ClearAllChildren()
@@ -261,7 +251,6 @@ function Field.create(parent, onBack, mapState)
  local function close()
   if not panel.Visible then return end
   panel.Visible = false
-  illustration:ClearAllChildren()
   scene:ClearAllChildren()
   for _, row in ipairs(rows) do row.button:Destroy() end
   table.clear(rows)

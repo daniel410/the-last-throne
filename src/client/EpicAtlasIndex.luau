@@ -1,6 +1,5 @@
 local Shared = game.ReplicatedStorage.Shared
 local Content = require(Shared.CampaignContent)
-local Plate = require(script.Parent.AtlasPlate)
 local Theme = require(script.Parent.TDInventoryTheme)
 local Index = {}
 
@@ -11,11 +10,6 @@ function Index.create(parent, inspect)
  frame.BorderSizePixel = 0
  frame.ClipsDescendants = true
  frame.Parent = parent
- local art = Instance.new("Frame")
- art.Name = "Landscape"
- art.ClipsDescendants = true
- art.BorderSizePixel = 0
- art.Parent = frame
  local title = Theme.label(frame,"Region","",UDim2.new(),UDim2.new(),16,Theme.color.gold)
  title.Font = Enum.Font.GothamBold
  local list = Instance.new("ScrollingFrame")
@@ -29,10 +23,8 @@ function Index.create(parent, inspect)
  local function show(index)
   if index == epic then return end
   epic = index
-  art:ClearAllChildren()
   list:ClearAllChildren()
   local e = Content.epics[epic]
-  Plate.draw(art,e.hub:sub(1,2).."-EPIC",true)
   title.Text = e.region
   local ids = {}
   for id,z in pairs(Content.zones) do if z.epic == epic then table.insert(ids,id) end end
@@ -58,18 +50,8 @@ function Index.create(parent, inspect)
  local function arrange(area,journey)
   -- Both map menus first assign their full chart rectangle in parent space.
   local besideJourney = journey and journey.Visible
-  list.Visible = not besideJourney
   if besideJourney then
-   local h = math.clamp(math.floor(journey.AbsoluteSize.Y*.32),67,136)
-   frame.Visible = true
-   frame.Position = journey.Position
-   frame.Size = UDim2.new(journey.Size.X.Scale,journey.Size.X.Offset,0,h)
-   art.Position = UDim2.new()
-   art.Size = UDim2.new(1,0,1,-26)
-   title.Position = UDim2.new(0,7,1,-26)
-   title.Size = UDim2.new(1,-14,0,26)
-   journey.Position += UDim2.fromOffset(0,h+4)
-   journey.Size -= UDim2.fromOffset(0,h+4)
+   frame.Visible = false
    return
   end
   local outer = parent.AbsoluteSize
@@ -85,19 +67,19 @@ function Index.create(parent, inspect)
    frame.Size = UDim2.fromOffset(width,h)
    area.Position = pos + UDim2.fromOffset(width+5,0)
    area.Size = size - UDim2.fromOffset(width+5,0)
-   local imageHeight = math.min(math.floor(width*.67), math.floor(h*.45))
-   art.Position = UDim2.new();art.Size = UDim2.fromOffset(width,imageHeight)
-   title.Position = UDim2.fromOffset(7,imageHeight);title.Size = UDim2.new(1,-12,0,30)
-   list.Position = UDim2.fromOffset(3,imageHeight+32);list.Size = UDim2.new(1,-6,1,-imageHeight-35)
+   title.Position = UDim2.fromOffset(7,0)
+   title.Size = UDim2.new(1,-12,0,30)
+   list.Position = UDim2.fromOffset(3,32)
+   list.Size = UDim2.new(1,-6,1,-35)
   else
    local height = math.clamp(math.floor(h*.24),68,105)
    frame.Size = UDim2.fromOffset(w,height)
    area.Position = pos + UDim2.fromOffset(0,height+4)
    area.Size = size - UDim2.fromOffset(0,height+4)
-   local width = math.floor(w*.42)
-   art.Position = UDim2.new();art.Size = UDim2.fromOffset(width,height)
-   title.Position = UDim2.fromOffset(width+7,0);title.Size = UDim2.new(1,-width-10,0,23)
-   list.Position = UDim2.fromOffset(width+4,24);list.Size = UDim2.new(1,-width-6,1,-24)
+   title.Position = UDim2.fromOffset(7,0)
+   title.Size = UDim2.new(1,-12,0,23)
+   list.Position = UDim2.fromOffset(3,24)
+   list.Size = UDim2.new(1,-6,1,-24)
   end
  end
  return {show=show,arrange=arrange}

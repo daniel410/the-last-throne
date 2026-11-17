@@ -32,4 +32,10 @@ function A.extent(zone)
  end
  return a,b,c,d
 end
+-- Survey neighbouring scenery through the same window used by the field map.
+function A.surveyExtent(zone)
+ local x0,z0,x1,z1=A.extent(zone)
+ local dx,dz=(x1-x0)*.075,(z1-z0)*.075
+ return x0-dx,z0-dz,x1+dx,z1+dz
+end
 return A

@@ -47,27 +47,7 @@ for _,id in ipairs(ids)do
    for _,model in ipairs(group:GetChildren())do
     if model:IsA('Model') and (model:GetAttribute('RegionalConceptRole')=='Signature' or model:GetAttribute('DeepwoodConceptRole')=='Signature')then
      local anchor=model:GetAttribute('GroundPosition')
-     local pivot=model:GetPivot()
-     local parts={}
-     for _,part in ipairs(model:GetDescendants())do
-      if part:IsA('BasePart') and part.Transparency<.5 then
-       local kind=part:IsA('WedgePart') and 'Wedge' or part:IsA('Part') and part.Shape.Name or 'Block'
-       if kind~='Block' and kind~='Wedge' and kind~='Cylinder' and kind~='Ball' then kind='Block' end
-       local cf=pivot:ToObjectSpace(part.CFrame)
-       local rx,ry,rz=cf:ToOrientation()
-       table.insert(parts,{kind,part.Size.X,part.Size.Y,part.Size.Z,cf.X,cf.Y,cf.Z,rx,ry,rz,
-        math.round(part.Color.R*255),math.round(part.Color.G*255),math.round(part.Color.B*255)})
-      end
-     end
-     -- Keep distant map miniatures inexpensive. Stable ties preserve repeatable builds.
-     table.sort(parts,function(a,b)
-      local function area(p)return p[2]*p[3]+p[2]*p[4]+p[3]*p[4]end
-      if area(a)~=area(b)then return area(a)>area(b)end
-      for i=1,#a do if a[i]~=b[i]then return a[i]<b[i]end end
-      return false
-     end)
-     while #parts>36 do table.remove(parts)end
-     signature={title=group:GetAttribute('ConceptTitle'),anchor={anchor.X,anchor.Z},parts=parts}
+     signature={title=group:GetAttribute('ConceptTitle'),anchor={anchor.X,anchor.Z}}
      break
     end
    end

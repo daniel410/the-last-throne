@@ -81,9 +81,17 @@ end
 -- HUD UIScale must not scale the road length a second time.
 frame:ClearAllChildren();frame.Size=UDim2.fromOffset(500,500)
 local scale=Instance.new('UIScale');scale.Scale=.6;scale.Parent=frame
-local atlas=Canvas.create(frame,'FV-02',false);task.wait();atlas.update({journal=journal});task.wait()
-local road=frame:FindFirstChild('SurveyTrail');local source=Survey.zones['FV-02'].roads[1]
-local a,b=atlas.project(source[1],source[2]),atlas.project(source[3],source[4])
+local access=require(game.ReplicatedStorage.Shared.CampaignAccess)
+local bounds=require(game.ReplicatedStorage.Shared.CampaignBounds)
+local ids=Scope.ids(3)
+local atlas=Canvas.create(frame,ids,false);task.wait();atlas.update({journal=journal});task.wait()
+local road=frame:FindFirstChild('Road')
+local edge
+for _,pair in ipairs(access.edges) do
+ if ids[pair[1]] and ids[pair[2]] then edge=pair;break end
+end
+local start,finish=bounds.ends(edge)
+local a,b=atlas.project(start[1],start[3]),atlas.project(finish[1],finish[3])
 local expected=Vector2.new((b.X-a.X)*frame.AbsoluteSize.X,(b.Y-a.Y)*frame.AbsoluteSize.Y).Magnitude
 check(math.abs(road.AbsoluteSize.X-expected)<1,'HUD scale preserves surveyed road length')
 character:Destroy();gui:Destroy()

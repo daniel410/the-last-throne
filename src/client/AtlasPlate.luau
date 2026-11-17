@@ -1,13 +1,12 @@
--- Local illustrations and shaded relief share a packed palette. No network fetch.
+-- Surveyed world surfaces, stored locally at build time.
 local assets = game:GetService("AssetService")
 local encoding = game:GetService("EncodingService")
 local plates = script.Parent.AtlasPlates
 local Plate = {}
 
-local function fallback(frame, data, width, height, relief)
- -- One visible illustration still works with DynamicGeneration disabled.
- -- Each row uses four short gradients; position both ends from the same bounds.
- local columns, rows, stops = 4, 36, 16
+local function fallback(frame, data, width, height, detail)
+ -- Bound the number of UI objects when several zones share the overview.
+ local columns, rows, stops = detail and 8 or 3, detail and 64 or 18, 16
  local colors = {}
  for i = 0, 254 do
   local p = 4 + i * 3
@@ -28,32 +27,32 @@ local function fallback(frame, data, width, height, relief)
     local pixel = math.floor((y+.5)/rows * height)*width + math.round(u*(width-1))
     local index = buffer.readu8(data,772+pixel)
     keys[i+1] = ColorSequenceKeypoint.new(i/(stops-1), colors[index])
-    if relief then alpha[i+1] = NumberSequenceKeypoint.new(i/(stops-1),index==255 and 1 or 0) end
+    alpha[i+1] = NumberSequenceKeypoint.new(i/(stops-1),index==255 and 1 or 0)
     if index~=255 then visible = true end
    end
    if not visible then band:Destroy();continue end
    local gradient = Instance.new("UIGradient")
    gradient.Color = ColorSequence.new(keys)
-   if relief then gradient.Transparency = NumberSequence.new(alpha) end
+   gradient.Transparency = NumberSequence.new(alpha)
    gradient.Parent = band
    band.Parent = frame
   end
  end
 end
 
-function Plate.draw(parent, key, illustration, fallbackRelief)
- local data = encoding:DecompressBuffer(encoding:Base64Decode(buffer.fromstring(plates[key].Value)), Enum.CompressionAlgorithm.Zstd)
+function Plate.draw(parent, zoneId, detail)
+ local data = encoding:DecompressBuffer(encoding:Base64Decode(buffer.fromstring(plates["Relief_"..zoneId].Value)), Enum.CompressionAlgorithm.Zstd)
  local width, height = buffer.readu16(data,0), buffer.readu16(data,2)
- local size = Vector2.new(width,height)
+ local scale = detail and 1 or math.min(1,160/math.max(width,height))
+ local size = Vector2.new(math.max(1,math.round(width*scale)),math.max(1,math.round(height*scale)))
  local ok, image = pcall(function() return assets:CreateEditableImage({Size=size}) end)
  if not ok or not image then
-  if not illustration and not fallbackRelief then return nil end
   local frame = Instance.new("Frame")
-  frame.Name = illustration and "Illustration" or "Relief"
+  frame.Name = "Relief"
   frame.BackgroundTransparency = 1
   frame.ClipsDescendants = true
   frame.Size = UDim2.fromScale(1,1)
-  fallback(frame,data,width,height,fallbackRelief)
+  fallback(frame,data,width,height,detail)
   frame.Parent = parent
   return frame
  end
@@ -63,15 +62,21 @@ function Plate.draw(parent, key, illustration, fallbackRelief)
   palette[i] = buffer.readu8(data,offset)+buffer.readu8(data,offset+1)*256+buffer.readu8(data,offset+2)*65536+0xFF000000
  end
  palette[255] = 0
- local pixels = buffer.create(width*height*4)
- for i = 0, width*height-1 do buffer.writeu32(pixels,i*4,palette[buffer.readu8(data,772+i)]) end
+ local pixels = buffer.create(size.X*size.Y*4)
+ for y = 0, size.Y-1 do
+  local row = math.floor((y+.5)*height/size.Y)*width
+  for x = 0, size.X-1 do
+   local source = row + math.floor((x+.5)*width/size.X)
+   buffer.writeu32(pixels,(y*size.X+x)*4,palette[buffer.readu8(data,772+source)])
+  end
+ end
  image:WritePixelsBuffer(Vector2.zero,size,pixels)
  local label = Instance.new("ImageLabel")
- label.Name = illustration and "Illustration" or "Relief"
+ label.Name = "Relief"
  label.ImageContent = Content.fromObject(image)
  label.BackgroundTransparency = 1
  label.Size = UDim2.fromScale(1,1)
- label.ScaleType = illustration and Enum.ScaleType.Crop or Enum.ScaleType.Stretch
+ label.ScaleType = Enum.ScaleType.Stretch
  label.Destroying:Connect(function() image:Destroy() end)
  label.Parent = parent
  return label

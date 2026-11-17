@@ -39,8 +39,13 @@ for id,z in pairs(C.zones) do
  local sites=panel.FieldGuide.Locations
  check(panel.Title.Text==z.name,id.." name")
  check(map:FindFirstChild("Relief")~=nil,id.." actual surveyed plate")
- check(sites.LocationArt:FindFirstChild("Illustration")~=nil,id.." original art")
- check(map.LandmarkPortrait.CurrentCamera~=nil and #Survey.zones[id].signature.parts<=36,id.." survey miniature")
+ check(not sites:FindFirstChild("LocationArt") and not map:FindFirstChild("LandmarkPortrait"),id.." field map uses only surveyed geography")
+ local anchorX,anchorZ=table.unpack(Survey.zones[id].signature.anchor)
+ local x0,z0,x1,z1=require(shared.CampaignAreas).surveyExtent(C.zones[id])
+ local relief=map.Relief
+ local u=relief.Position.X.Scale + (anchorX-x0)/(x1-x0)*relief.Size.X.Scale
+ local v=relief.Position.Y.Scale + (anchorZ-z0)/(z1-z0)*relief.Size.Y.Scale
+ check(math.abs(map.SitePin1.Position.X.Scale-u)<1e-5 and math.abs(map.SitePin1.Position.Y.Scale-v)<1e-5,id.." numbered pin aligns with surveyed pixels")
  check(sites.Site1.Title.Text==Survey.zones[id].signature.title,id.." signature")
  for i,area in ipairs(z.expansionAreas or {}) do
   check(sites["Site"..(i+1)].Title.Text==area.name and map["SitePin"..(i+1)]~=nil,id.." story site")
@@ -88,11 +93,11 @@ do
 local plateSource=client.AtlasPlate.Source:gsub("local assets = game:GetService%(\"AssetService\"%)", "local assets = {CreateEditableImage = function() return nil end}")
 local fn=assert(loadstring(plateSource));setfenv(fn,setmetatable({script=client.AtlasPlate},{__index=getfenv()}))
 local plates=fn();local parent=Instance.new("Frame")
-local art=plates.draw(parent,"GW-05",true)
-assert(art:IsA("Frame") and #art:GetChildren()==144)
-local relief=plates.draw(parent,"Relief_GW-05",false,true)
-assert(relief:IsA("Frame") and #relief:GetChildren()>0)
-assert(plates.draw(parent,"Relief_DW-01",false)==nil)
+local detail=plates.draw(parent,"GW-05",true)
+local overview=plates.draw(parent,"GW-05",false)
+assert(detail:IsA("Frame") and #detail:GetChildren()>0)
+assert(overview:IsA("Frame") and #overview:GetChildren()>0 and #overview:GetChildren()<#detail:GetChildren())
+assert(#client.AtlasPlates:GetChildren()==44)
 parent:Destroy();print("ATLAS_FALLBACK_PASS",3)
 end
 
