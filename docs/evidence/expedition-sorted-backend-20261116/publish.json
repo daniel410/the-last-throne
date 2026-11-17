@@ -1,0 +1,37 @@
+{
+  "version": "0.111.31",
+  "sourceCommit": "24c4b643325a4c50a6cb1d0a73fe789a95aa73dd",
+  "artifact": "builds/0.111.31/TheLastThrone-0.111.31.rbxlx",
+  "sha256": "3d4adee541ceab62254ec54c6c0181a37818a6942e73b07331ef93f071c1252c",
+  "published": true,
+  "diskHashUnchanged": true,
+  "universeId": 10773575153,
+  "method": "Studio Publish As; Creator Dashboard Show published only verification",
+  "audience": "Private (unchanged)",
+  "assetPermissions": "Grant Permissions and Publish for TLT at Lobby publication",
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 103,
+      "previousPublishedVersion": 102,
+      "localPublishedTime": "2026-11-16 21:17 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 31,
+      "previousPublishedVersion": 30,
+      "localPublishedTime": "2026-11-16 21:18 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history"
+    }
+  ],
+  "releaseTag": "v0.111.31",
+  "unverified": [
+    "사용자 새 로비의 실제 Solo→Teleport→배틀 진입 결과",
+    "게시2~4인·실기기·HashMap 복구 후 기존 원정 rejoin",
+    "신구 서버 혼재·복구 리허설"
+  ],
+  "preservedLocalSession": "builds/0.111.30/TheLastThrone-0.111.30-unsaved-session-20261116-2115.rbxl"
+}

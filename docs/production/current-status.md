@@ -3,7 +3,7 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 원정 출발 장애: TLT-053의 실제 로비 로그에서 HashMap.Get/Update InternalError와 createRun 중단을 확인했다. 신규 원정/파티를 고정 SortedMap/ID로 분리하고 기존 원정은 원래 권위로 검증하는0.111.31을 준비했다. [장애·실제 API·회귀·게시/수용 후속](../evidence/expedition-sorted-backend-20261116/README.md). 실제 게시 플레이 성공은 미검증이다.
+- 원정 출발 장애: TLT-053의 실제 로비 로그에서 HashMap.Get/Update InternalError와 createRun 중단을 확인했다. 신규 원정/파티를 고정 SortedMap/ID로 분리하고 기존 원정은 원래 권위로 검증하는0.111.31을 로비103·배틀31에 게시했다. [장애·실제 API·회귀·게시/수용 후속](../evidence/expedition-sorted-backend-20261116/README.md). 실제 게시 플레이 성공은 미검증이다.
 
 - 원정 재개: TLT-053의 출발 입장 기록을 영웅의 보존 규칙 버전과 맞춰 업데이트 후 재입장 추방 경로를 수정했다. 서로 다른 보존 버전 파티는 이동 전에 차단한다. [재현·회귀·격리 Studio·0.111.29 로비101/배틀29 게시·실제 이동 수용 후속](../evidence/expedition-resume-rules-20261116/README.md). G3 미완료.
 

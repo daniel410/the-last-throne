@@ -19,7 +19,7 @@ Studio의 실제 API 검사에서도 기존 HashMap과 새 이름의 빈 HashMap
 ## 검증
 
 - [Lua 회귀](rules.log): 고정 backend34·규칙 재개183·원정 준비42·스토어43·출발 안내94, 총396검사 PASS.
-- [격리 Studio Luau](native.log): 변경 모듈과 테스트를 컴파일하고 위396검사를 실행한다. 의도한 오류 주입 warning은 실제 장애 증거와 구분한다.
+- [격리 Studio Luau](native.log): 63소스를 컴파일하고 위396검사 PASS를 확인했다. 의도한 오류 주입 warning은 실제 장애 증거와 구분한다.
 - backend34검사는 HashMap 전체 장애 중 신규 출발/티켓 승인, 서버 소유 lease/다른 유저/위조 티켓, 기존 checkpoint 보존, 저장 성공 후 승격 응답 유실, 현재 조회/쓰기 불명 때 옛 저장소로 우회 금지, 취소된 신규 준비 후 기존 rejoin 보존, 종료 후 옛 권리 재노출 차단을 포함한다. 실제 Service의 도착 블록을 추출해 legacy staged 티켓이 journal을 덮지 않고 검증된 기존 원정은 재개하며 신규 staged 원정만 begin함을 확인한다.
 - [실제 API 검사](platform.log): TLT universe에서 임시 QA 키로 SortedMap 생성·읽기·조건부 갱신·정리 및 실제 ExpeditionStore의 생성/stage/admit/위조 거절/서버 소유 fence/잘못된 취소 거절을 확인했다. 만료15초를 사용하고 검사 후 QA 키를 제거했다. 사용자 계정/기존 원정은 수정하지 않았다. Studio Edit API 검사는 실제 Player/프로필 저장/게시 Teleport 검사가 아니다.
 - 실행: `python3 tools/prepare-expedition-resume-native.py`, 빈 로컬 Place에서 `run-in-roblox --place /tmp/tlt-adventure-starting-empty.rbxlx --script /tmp/tlt-expedition-resume-native.luau`.
@@ -29,3 +29,10 @@ Studio의 실제 API 검사에서도 기존 HashMap과 새 이름의 빈 HashMap
 0.111.31의 입력 커밋/단일 빌드는 build.json, 실제 게시 결과는 publish.json에 기록한다. 신규 Lobby/Battle 둘 다 동일 빌드를 사용해야 한다. 구 서버에서 생성된 원정ID는 새 저장소로 자동 복사하지 않는다.
 
 사용자/QA: 새 로비에서 DW-01 또는 GW-06 Solo→실제 로딩/배틀→목표 진행→복귀/재접속, 파티2~4인 재구성/출발과 다른 서버 소유 거절을 확인한다. 실제 게시 클라이언트·실기기·플랫폼 HashMap 복구 후 구 원정 REJOIN·신구 서버 혼재/복구 리허설은 미검증이다. TLT-053/G3 완료로 처리하지 않는다. 되돌릴 때 backend만 자동 전환하지 않는다. `sm2_` 원정이15분간 유지될 수 있으므로 구 빌드로의 일괄 복원은 진행 중 새 원정의 REJOIN을 일시 중단시킬 수 있다. 계정 journal은 남으며 Continue로 재개한다.
+
+
+## 0.111.31 게시와 후속
+
+입력 소스 `24c4b643325a4c50a6cb1d0a73fe789a95aa73dd`의 origin/main 일치 후 단일 빌드를 생성했다. [빌드](build.json)·[산출물3모듈/해시 일치](artifact-check.log). 동일 파일을 TLT 로비103(21:17)·배틀31(21:18 America/Toronto)에 게시했고 웹 Show published only에서 확인했다. [게시 기록](publish.json). 릴리스 주석 태그 v0.111.31은 실제 입력 소스를 가리킨다. Private·TD 유지, 파일 해시 불변. 기존0.111.30 Studio 세션은 별도 로컬 rbxl로 보존 후 닫았다.
+
+사용자에게 새 로비에서 START SOLO ADVENTURE를 재시도하도록 요청했다. 현재 이 증거는 API/격리 회귀/게시 성공이며 실제 사용자 배틀 입장 결과는 아직 미확인이다. 구 서버는 기존 HashMap 경로를 계속 사용하므로 재접속 때 게시 로비103 이상인지 구분해야 한다.
