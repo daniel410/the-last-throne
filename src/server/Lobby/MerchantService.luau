@@ -11,7 +11,9 @@ function S.start(options)
  end) end
  remote.OnServerEvent:Connect(function(p,c,...)
   if os.clock()-(last[p] or -math.huge)<.2 then
-   if type(c)=='table' and c.action~='GetState' and type(c.requestId)=='string' and #c.requestId<=64 and c.requestId:match('^[%w_-]+$') then publish(p,c.requestId,'Busy') end
+   if type(c)=='table' and c.action~='GetState' and type(c.requestId)=='string' and #c.requestId<=64 and c.requestId:match('^[%w_-]+$') then
+    update:FireClient(p,{requestId=c.requestId,error='Busy'})
+   end
    return
   end;last[p]=os.clock()
   if select('#',...)~=0 or type(c)~='table' then return end

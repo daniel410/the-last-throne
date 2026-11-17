@@ -24,8 +24,8 @@ local projectionEnv=setmetatable({settings={inventory=service},selectedHero=func
 local projection=body(read('src/server/Lobby/HeroSessionService.luau'),'local function changed(', 'local function validLife(')
 local changed=assert(load(projection..'return changed','projection','t',projectionEnv))()
 options.heroSession.refresh=function()refreshes=refreshes+1;changed(session)end
-local store={transact=function(_,_,fn) if fail then return nil,fail end;local n,e=fn(account.profile);return n,e end}
-local env=setmetatable({Service=service,options=options,accounts=accounts,Rules=R,Catalog=C,store=store,token='fixture',atStorage=function()return false end,publish=function(_,_,e)reply=e end},{__index=_G})
+account.store={token="fixture",transact=function(_,_,fn) if fail then return nil,fail end;local n,e=fn(account.profile);return n,e end}
+local env=setmetatable({Service=service,options=options,accounts=accounts,Rules=R,Catalog=C,atStorage=function()return false end,publish=function(_,_,e)reply=e end},{__index=_G})
 assert(load(body(source,'function Service.refreshCharacter(', 'local function validCommand('),'refresh','t',env))()
 local handle=assert(load(body(source,'local function validCommand(', 'function Service.addStorage(')..'return handle','handle','t',env))()
 changed(session)

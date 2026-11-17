@@ -46,7 +46,13 @@ local function selection(p)
 end
 local function publish(p,errorCode,open,requestId)
  if p.Parent~=Players or not remote then return end
- local localParty=parties[p];local party=localParty and store.readParty(localParty.id)
+ local localParty=parties[p]
+ local party
+ if localParty then
+  local value,reason=store.readParty(localParty.id)
+  if reason~='NetworkUnavailable' then localParty.lastConfirmed=value end
+  party=localParty.lastConfirmed
+ end
  local hero=o.inventory.expeditionHero(p)
  local list={}
  if role=='Lobby' and not party then
@@ -102,24 +108,47 @@ local function unlock(p)
  if o.inventory.resumeTransfer(p) then p:SetAttribute('TLTTravelLock',false);o.heroSession.refresh(p);return true end
  return false
 end
-local function retryTravel(p,attempt)
+local function recoverTravel(p,attempt)
  if travel[p]~=attempt or p.Parent~=Players then return end
+ local retry=false
+ if attempt.departure then
+  local run,reason=store.failTravel(attempt.data.runId,p.UserId,attempt.data.ticket)
+  local seat=run and run.members[tostring(p.UserId)]
+  if seat and seat.admitted then return end
+  retry=reason=='NetworkUnavailable'
+  local mine=parties[p]
+  if not retry and mine and attempt.partyId==mine.id then
+   local _,seatError=store.returnSeat(mine.id,p.UserId,mine.token,attempt.data.runId)
+   retry=seatError=='NetworkUnavailable'
+  end
+ end
+ if travel[p]~=attempt or p.Parent~=Players then return end
+ if retry or not unlock(p) then
+  task.delay(2,function()recoverTravel(p,attempt)end)
+  return
+ end
+ travel[p]=nil
+ p:SetAttribute('TLTAdventureStarting',false)
+ if attempt.kind=='gather' and parties[p] then
+  local party=parties[p];store.remove(party.id,p.UserId,party.token);store.releaseMembership(p.UserId,party.id,party.token);parties[p]=nil;advertise(party.id)
+ elseif attempt.kind=='return' then
+  leaving[p]=nil
+  if admitted[p] and battleRun then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,true)end
+ elseif attempt.kind=='defense' then
+  local notice=RS.Remotes:FindFirstChild('LobbyFacilityState')
+  if notice then notice:FireClient(p,{error='DefenseTravelFailed'}) end
+ elseif attempt.partyId then
+  advertise(attempt.partyId)
+ end
+ publish(p,'TravelFailed')
+end
+local function retryTravel(p,attempt)
+ if travel[p]~=attempt or attempt.recovering or p.Parent~=Players then return end
  attempt.tries+=1
  if attempt.tries>3 then
-  travel[p]=nil;local resumed=unlock(p)
-  p:SetAttribute('TLTAdventureStarting',false)
-  if attempt.kind=='gather' and parties[p] then
-   local party=parties[p];store.remove(party.id,p.UserId,party.token);store.releaseMembership(p.UserId,party.id,party.token);parties[p]=nil;advertise(party.id)
-  end
-  if attempt.kind=='return' then
-   leaving[p]=nil
-   if resumed and admitted[p] and battleRun then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,true) end
-  end
-  if attempt.kind=='defense' then
-   local notice=RS.Remotes:FindFirstChild('LobbyFacilityState')
-   if notice then notice:FireClient(p,{error=resumed and 'DefenseTravelFailed' or 'DefenseResumeFailed'}) end
-  end
-  publish(p,'TravelFailed');return
+  attempt.recovering=true
+  recoverTravel(p,attempt)
+  return
  end
  local options=Instance.new('TeleportOptions')
  if attempt.reservedId then options.ReservedServerId=attempt.reservedId elseif attempt.jobId then options.ServerInstanceId=attempt.jobId end
@@ -169,6 +198,11 @@ function Service.admitArrival(p)
  if game.PrivateServerId=='' or game.PrivateServerOwnerId~=0 or not sourceValid(data) or type(t)~='table' or type(t.runId)~='string' or #t.runId>64 or type(t.ticket)~='string' or #t.ticket>64 then return nil,'Join an adventure from the Dawnspire lobby.' end
  local arrivalStore=Backend.select(currentStore,legacyStore,t.runId)
  local r,e=arrivalStore.admit(t.runId,p.UserId,t.ticket,job)
+ while e=='NetworkUnavailable' and p.Parent==Players do
+  task.wait(2)
+  if p.Parent~=Players then return nil end
+  r,e=arrivalStore.admit(t.runId,p.UserId,t.ticket,job)
+ end
  if not r or r.placeId~=game.PlaceId or count(r.members)>4 or not Difficulty.compatible(r.rulesVersion) or not Content.byId[r.missionId]or not Difficulty.modes[r.difficultyId]then return nil,'Your expedition could not be verified. Return to the lobby and rejoin.' end
  if battleRun and battleRun.id~=r.id then return nil,'This battle server belongs to another expedition.' end
  store=arrivalStore;battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
@@ -226,7 +260,7 @@ local function startRunLocked(p,party,runId)
  -- Each server-created ticket belongs to one user. Separate TeleportData is
  -- required, while the same ReservedServerId gathers all users into one battle.
  for _,person in ipairs(prepared) do local m=members[tostring(person.UserId)]
-  send(person,{kind='battle',reservedId=r.reservedId,placeId=r.placeId,data={runId=r.id,ticket=m.ticket}},true)
+  send(person,{kind='battle',departure=true,partyId=party and party.id,reservedId=r.reservedId,placeId=r.placeId,data={runId=r.id,ticket=m.ticket}},true)
  end
  return true
 end
@@ -328,7 +362,7 @@ local function handle(p,c,...)
     if party then party,why=store.join(id,m,c.missionId,c.difficultyId) end
    end
    if not party then store.remove(id,p.UserId,token);store.releaseMembership(p.UserId,id,token);return why or 'PartyFull' end
-   parties[p]={id=id,token=token};advertise(id)
+   parties[p]={id=id,token=token,lastConfirmed=party};advertise(id)
    if party.jobId~=job then
     if studio then store.remove(id,p.UserId,token);store.releaseMembership(p.UserId,id,token);parties[p]=nil;return 'Configuration' end
     local ok,reason=send(p,{kind='gather',placeId=C.lobbyPlaceId,jobId=party.jobId,data={partyId=id,token=token}})
@@ -363,6 +397,64 @@ local function handle(p,c,...)
   if person~=p and mine.id==partyId and not travel[person]then publish(person)end
  end end
 end
+local function verifyBattleArrival(p,m)
+ local verified=Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
+ local staged,reason
+ if not verified and runHealthy and Backend.isCurrent(battleRun.id) then
+  staged,reason=store.departure(p.UserId,battleRun.id,m.ticket)
+ end
+ if staged then
+  -- Only a server-staged departure may replace the old checkpoint. A rejoin
+  -- can verify an existing run but cannot restart a superseded journal.
+  reason=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id,battleRun.rulesVersion,m.party==true)
+  verified=not reason and Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
+ end
+ if verified and runHealthy then
+  -- Keep the pending capability on unknown MemoryStore results; rejoin()
+  -- resolves it against the account's durable active run after reconnect.
+  if store.offer(p.UserId,battleRun,m.heroId,m.ticket,true)then o.heroSession.enterAdventure(p,m.heroId)end
+ elseif not verified and runHealthy and reason~='NetworkUnavailable' and reason~='Busy' and reason~='SaveUnknown' and o.inventory.ready(p)then
+  p:Kick('Your expedition could not be verified. Rejoin from the Dawnspire lobby.')
+ end
+end
+local function maintainParty(p,mine)
+ local m=member(p,mine.token)
+ if m then
+  local fence,reason=store.claimMembership(p.UserId,mine.id,mine.token)
+  local party
+  if fence then party,reason=store.touch(mine.id,m) end
+  if parties[p]==mine then
+   if party then mine.lastConfirmed=party;advertise(mine.id)
+   elseif reason=='PartyChanged' or reason=='AlreadyParty' then
+    store.releaseMembership(p.UserId,mine.id,mine.token)
+    if parties[p]==mine then parties[p]=nil end
+   end
+  end
+ end
+end
+local function confirmGatherArrival(p,arrival)
+ local party,reason=store.readParty(arrival.partyId)
+ if reason=='NetworkUnavailable' then return end
+ local m=party and party.members[tostring(p.UserId)]
+ local joined
+ if m then
+  o.heroSession.selectForArrival(p,m.heroId)
+  local current=member(p,arrival.token)
+  local fence
+  fence,reason=store.membership(p.UserId)
+  if current and fence and fence.id==arrival.partyId and fence.token==arrival.token then
+   joined,reason=store.arrive(arrival.partyId,p.UserId,arrival.token,job,current)
+  end
+ end
+ if reason=='NetworkUnavailable' or arrivals[p]~=arrival then return end
+ arrivals[p]=nil
+ if joined then
+  parties[p]={id=arrival.partyId,token=arrival.token,lastConfirmed=joined}
+  advertise(arrival.partyId)
+ else
+  publish(p,'PartyChanged')
+ end
+end
 function Service.start(options)
  o=options;role=options.role;job=game.JobId~='' and game.JobId or guid()
  local map
@@ -380,7 +472,7 @@ function Service.start(options)
  Teleport.TeleportInitFailed:Connect(function(p,_,_,place,options)
   local a=travel[p]
   local ok,data=pcall(function() return options:GetTeleportData() end)
-  if ok and TravelAttempt.matches(a,place,data) then
+  if ok and a and not a.recovering and TravelAttempt.matches(a,place,data) then
    local token=a.callbackToken;a.retrying=true
    task.delay(2,function()
     if travel[p]~=a or a.callbackToken~=token then return end
@@ -392,7 +484,7 @@ function Service.start(options)
   if seats[p] then seats[p]=nil;seatCount-=1 end
   if admitted[p] and battleRun and not leaving[p] then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end
   local mine=parties[p]
-  if mine and not travel[p] then store.remove(mine.id,p.UserId,mine.token);store.releaseMembership(p.UserId,mine.id,mine.token);advertise(mine.id) end
+  if mine and (not travel[p] or travel[p].partyId==mine.id) then store.remove(mine.id,p.UserId,mine.token);store.releaseMembership(p.UserId,mine.id,mine.token);advertise(mine.id) end
   parties[p]=nil;travel[p]=nil;arrivals[p]=nil;admitted[p]=nil;last[p]=nil;lastRead[p]=nil;busy[p]=nil;leaving[p]=nil;selections[p]=nil
  end)
  task.spawn(function()
@@ -405,39 +497,16 @@ function Service.start(options)
    for _,p in ipairs(Players:GetPlayers()) do
     if admitted[p] and not travel[p] then
      if p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then
-      local m=admitted[p]
-      local verified=Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
-      if not verified and runHealthy and Backend.isCurrent(battleRun.id)and store.departure(p.UserId,battleRun.id,m.ticket)then
-       -- Only a server-staged departure may replace the old checkpoint. A rejoin
-       -- can verify an existing run but cannot restart a superseded journal.
-       local why=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id,battleRun.rulesVersion,m.party==true)
-       verified=not why and Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
-      end
-      if verified and runHealthy then
-       -- Keep the pending capability on unknown MemoryStore results; rejoin()
-       -- resolves it against the account's durable active run after reconnect.
-       if store.offer(p.UserId,battleRun,m.heroId,m.ticket,true)then o.heroSession.enterAdventure(p,m.heroId)end
-      elseif not verified and runHealthy and o.inventory.ready(p)then
-       p:Kick('Your expedition could not be verified. Rejoin from the Dawnspire lobby.')
-      end
+      verifyBattleArrival(p,admitted[p])
      end
      local arrived=count(admitted);local complete=arrived>=count(battleRun.members) or os.clock()-battleStarted>=30
      p:SetAttribute('TLTTravelLock',not runHealthy or not complete or p:GetAttribute('K0SessionPhase')~='Tutorial')
      if ticks%10==0 and runHealthy then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end
     elseif arrivals[p] and o.inventory.ready(p) and p:GetAttribute('K0SessionPhase')=='Lobby' then
-     local a=arrivals[p];local party=store.readParty(a.partyId);local m=party and party.members[tostring(p.UserId)]
-     if m then o.heroSession.selectForArrival(p,m.heroId) end
-     local current=m and member(p,a.token);local fence=store.membership(p.UserId)
-     if current and fence and fence.id==a.partyId and fence.token==a.token and store.arrive(a.partyId,p.UserId,a.token,job,current) then parties[p]={id=a.partyId,token=a.token};advertise(a.partyId)
-     else publish(p,'PartyChanged') end
-     arrivals[p]=nil
+     confirmGatherArrival(p,arrivals[p])
     end
     if ticks%5==0 and parties[p] and not travel[p] and not busy[p] then
-     local mine=parties[p];local m=member(p,mine.token)
-     if m then
-      store.claimMembership(p.UserId,mine.id,mine.token)
-      local party=store.touch(mine.id,m);if not party then store.releaseMembership(p.UserId,mine.id,mine.token);parties[p]=nil else advertise(mine.id) end
-     end
+     maintainParty(p,parties[p])
     end
     if ticks%5==0 then publish(p) end
    end

@@ -7,7 +7,7 @@ local report={kind='SUPPORT_PASS_SERVICE_NATIVE',checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local original=Server.Inventory.InventoryService;local copy=original:Clone();copy.Name='SupportPassServiceQA'
 copy.Source=copy.Source:gsub('\nreturn Service%s*$', '\n'..[[
-Service.qa=function(player,state,adapter,settings)accounts[player]=state;store=adapter;options=settings end
+Service.qa=function(player,state,adapter,settings)state.store=adapter;accounts[player]=state;options=settings end
 return Service
 ]])
 copy.Parent=original.Parent;local service=require(copy)

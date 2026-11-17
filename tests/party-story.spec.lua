@@ -6,8 +6,9 @@ local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
 local players={1,2,3,4,5};local journals,runs,events={},{},{}
 for _,p in ipairs(players)do journals[p]=P.new();runs[p]={runId=p==5 and 'other' or 'party'}end
 local fail=false
+local reads=0
 local party=Party.create({players=function()return players end,active=function(p)return {heroId=tostring(p)}end,
- run=function(p)return runs[p]end,state=function(p)return journals[p]end,available=P.available,canAccept=P.canAccept,collected=P.collected,
+ run=function(p)return runs[p]end,state=function(p)reads=reads+1;return journals[p]end,available=P.available,canAccept=P.canAccept,collected=P.collected,
  enqueue=function(p,h,c,g,choice,step)
   if p==2 and fail then return end
   local nextState,err=P.apply(journals[p],c.id,g.id,choice,step);assert(nextState,err)
@@ -25,9 +26,30 @@ end end
 for p=1,4 do check(journals[p].clears[c.id],'one player completes entire story for all four members')end
 check(not journals[5].clears[c.id] and not next(journals[5].flags),'other run never receives progress')
 local paid=events[1];party.replay();check(events[1]==paid,'replay never repeats completed steps or rewards')
-journals[2]=P.new();fail=true;party.replay();check(journals[2].main==0,'failed save stays pending')
-fail=false;party.replay();check(journals[2].clears[c.id],'late/rejoined member catches up in event order')
+reads=0;party.replay();check(reads==0,'confirmed logs require no further journal snapshots')
+party.remove(2);journals[2]=P.new();fail=true;party.replay();check(journals[2].main==0,'failed save stays pending')
+fail=false
+for _=1,50 do
+ reads=0;party.replay()
+ check(reads<=1,'catch-up reads at most one journal per pending member and tick')
+ if journals[2].clears[c.id] then break end
+end
+check(journals[2].clears[c.id],'late/rejoined member catches up in event order')
 runs[2]={runId='different'};journals[2]=P.new();party.replay();check(journals[2].main==0,'changed run cannot consume old events')
+-- A completed 100-event history takes one initial snapshot per member and none on idle ticks.
+local roster={}
+local saved=P.new()
+local snapshots=0
+local archived=Party.create({players=function()return roster end,active=function()return {heroId='hero'}end,
+ run=function()return {runId='history'}end,state=function()snapshots=snapshots+1;return saved end,
+ enqueue=function()error('saved event enqueued twice')end})
+for i=1,100 do
+ local goal={id='step'..i}
+ saved.flags[c.id..':'..goal.id]=true
+ archived.enqueue(1,'hero',c,goal)
+end
+roster={1,2,3,4};archived.replay();check(snapshots==4,'four players and 100 saved events project four journals')
+archived.replay();check(snapshots==4,'idle 100-event history projects no journals')
 for _,chapter in ipairs(C.chapters)do for _,g in ipairs(chapter.goals)do
  local previous=0
  for size=1,4 do

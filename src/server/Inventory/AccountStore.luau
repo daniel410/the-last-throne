@@ -9,12 +9,11 @@ end
 function AccountStore:update(userId, transform)
 	local outcome, replayed
 	for attempt = 1, 3 do
-		local time = self.clock()
 		local ok, result = pcall(function()
 			return self.adapter:UpdateAsync("account:" .. userId, function(current)
 				outcome, replayed = nil, nil
 				if current ~= nil and (type(current) ~= "table" or current.userId ~= userId or (not self.rules.validate(current, self.catalog) or not Delivery.valid(current))) then outcome = "Incompatible"; return nil end
-				local nextProfile, errorCode, repeated = transform(current, time)
+				local nextProfile, errorCode, repeated = transform(current, self.clock())
 				outcome, replayed = errorCode, repeated
 				return nextProfile
 			end)
@@ -58,7 +57,17 @@ function AccountStore:transact(userId, transform)
 	end)
 end
 function AccountStore:renew(userId)
-	return self:transact(userId, function(profile) return profile end)
+	local known = self.profiles[userId]
+	if not known then return nil, "Unavailable" end
+	-- An expired lease can only be renewed if nobody released or replaced this exact owner.
+	return self:update(userId, function(current, time)
+		if not current or not current.lease or current.lease.token ~= self.token or current.epoch ~= known.epoch then
+			return nil, "AccountBusy"
+		end
+		local profile = self.rules.copy(current)
+		profile.lease.expiresAt = time + self.leaseSeconds
+		return profile
+	end)
 end
 function AccountStore:close(userId)
 	local profile = self.profiles[userId]

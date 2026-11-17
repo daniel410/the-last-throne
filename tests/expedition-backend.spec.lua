@@ -82,9 +82,9 @@ check(current3.createRun(unknown).id==unknown.id,'same ID/ticket retries origina
 check(hash.writes==writes,'lost replies never create an alternate authority')
 -- Execute the production arrival block: legacy tickets may resume only the saved run.
 local f=assert(io.open('src/server/Network/ExpeditionService.luau'));local service=f:read('*a');f:close()
-local first=assert(service:find("if p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then",1,true))
-local last=assert(service:find('local arrived=count(admitted)',first,true))
-local admission=service:sub(first,last-1)
+local first=assert(service:find('local function verifyBattleArrival',1,true))
+local last=assert(service:find('local function maintainParty',first,true))
+local admission=service:sub(first,last-1)..'return verifyBattleArrival'
 local function arrival(runId,alreadyVerified)
  local starts,entered,kicked=0,0,0
  local p={UserId=1,GetAttribute=function()return 'Lobby'end,Kick=function()kicked=kicked+1 end}
@@ -94,7 +94,8 @@ local function arrival(runId,alreadyVerified)
   o={inventory={ready=function()return true end,expeditionHero=function()return {}end,
    beginExpedition=function()starts=starts+1;bound=true end},heroSession={enterAdventure=function()entered=entered+1 end}}
  },{__index=_G})
- assert(load(admission,'production arrival','t',env))()
+ local verify=assert(load(admission,'production arrival','t',env))()
+ verify(p,env.admitted[p])
  return starts,entered,kicked
 end
 local starts,entered,kicked=arrival('historic',false)

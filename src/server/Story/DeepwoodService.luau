@@ -163,8 +163,11 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
  end)
 end
 local partyStory=require(script.Parent.PartyStory).create({
- players=function() return Players:GetPlayers() end,active=active,state=state,
- run=function(p,id) return options.inventory.expedition(p,id) end,enqueue=enqueuePersonal,
+ players=function() return Players:GetPlayers() end,state=state,
+ active=function(p)
+  if p:GetAttribute('K0SessionPhase')=='Tutorial' then return active(p) end
+ end,
+ run=function(p,id) return options.inventory.expedition(p,id,true) end,enqueue=enqueuePersonal,
  available=Progress.available,canAccept=Progress.canAccept,collected=Progress.collected,
 })
 local function enqueue(player,heroId,c,g,choice,stepId)
@@ -352,7 +355,6 @@ local function offerQuest(player,node,discovery)
 end
 function Service.acceptQuest(player,id)
  local offer=offers[player];local ctx,root=context(player)
- local admission=options.inventory.expedition(player,h.heroId)
  if not offer or offer.node.chapter.id~=id or not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16 then return false end
  local journal=state(player,ctx.heroId)
  if not journal or not Progress.canAccept(journal,offer.node.chapter) then return false end
@@ -542,7 +544,7 @@ function Service.start(settings)
   local run=options.inventory.expedition(player,heroId)
   return (run and run.runId or nil)==e.runId
  end)
- Players.PlayerRemoving:Connect(function(p) activities.remove(p);access.remove(p);companion.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
+ Players.PlayerRemoving:Connect(function(p) partyStory.remove(p);activities.remove(p);access.remove(p);companion.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
  local activityElapsed=0
  RunService.Heartbeat:Connect(function(dt)
   companion.stepMotion(dt)

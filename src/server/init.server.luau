@@ -10,7 +10,7 @@ local inventory=require(script.Inventory.InventoryService)
 local combat=require(script.Combat.DeferredCombat).new(function()return require(script.Combat.CombatService)end)
 local expedition=require(script.Network.ExpeditionService)
 local world,deepwood,lobby,storyStarted
-local sessionOptions
+local hubBounds = {}
 if role=='Lobby' then lobby=require(script.World.LobbyWorld).create()
 else
  -- A verified expedition chooses the epic after arrival. No campaign or combat
@@ -37,6 +37,15 @@ local function startCombat()
   workspace:SetAttribute('TLTCombatReady',true)
  end
 end
+local function addRegionalStorage(id)
+ local hub=Content.epics[id].hub
+ local offset=id==1 and Vector3.new(-55,0,-10)or Vector3.new(45,0,id==3 and 75 or 80)
+ local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[hub]+offset})
+ local center = deepwood.positions[hub]
+ -- Later regional chests sit at the outer edge of the camp. Include the full prompt radius.
+ hubBounds[hub] = {center = id == 1 and center or center:Lerp(chest.Position, .5), size = Vector3.new(220,24,200)}
+ chest.Parent.Name=hub..'AccountStorage';prompt.ObjectText=Content.zones[hub].name..' Storage';inventory.addStorage(chest,prompt)
+end
 local building=false
 local buildFailure
 local function previewWorld(missionId)
@@ -52,13 +61,7 @@ local function previewWorld(missionId)
   -- Returning to earlier unlocked epics remains possible after reconnecting.
   for id=1,epic do if not deepwood or not deepwood.loadedEpics[id]then
    deepwood=require(script.World.CampaignWorld).create(id,deepwood)
-   if deepwood.positions['DW-03']and sessionOptions then
-    sessionOptions.outpostBounds={center=deepwood.positions['DW-03'],size=Vector3.new(220,24,200)}
-   end
-   local hub=Content.epics[id].hub
-   local offset=id==1 and Vector3.new(-55,0,-10)or Vector3.new(45,0,id==3 and 75 or 80)
-   local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[hub]+offset})
-   chest.Parent.Name=hub..'AccountStorage';prompt.ObjectText=Content.zones[hub].name..' Storage';inventory.addStorage(chest,prompt)
+   addRegionalStorage(id)
   end end
   if not storyStarted then
    story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat,prepareStory=previewWorld});storyStarted=true
@@ -82,9 +85,9 @@ local function trainingDestination()
  return world.spawn
 end
 expedition.start({role=role,heroSession=heroSession,inventory=inventory,previewWorld=previewWorld})
-sessionOptions={inventory=inventory,combat=combat,lobbySpawn=lobby.spawn,tutorialSpawn=lobby.spawn,
+local sessionOptions={inventory=inventory,combat=combat,lobbySpawn=lobby.spawn,tutorialSpawn=lobby.spawn,
  trainingDestination=trainingDestination,tutorialDestination=function(p,id)return story.destination(p,id)end,
- lobbyBounds=lobby.bounds,requestSpawn=spawnService.requestSpawn,network=expedition}
+ lobbyBounds=lobby.bounds,hubBounds=hubBounds,requestSpawn=spawnService.requestSpawn,network=expedition}
 heroSession.start(sessionOptions)
 require(script.Cosmetics.KnightAppearance).start()
 require(script.Cosmetics.ArmorAppearance).start()

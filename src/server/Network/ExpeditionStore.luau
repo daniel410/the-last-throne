@@ -85,6 +85,15 @@ function Store.new(map,clock,config)
    local lowest;for uid,m in pairs(p.members) do if m.arrived and (not lowest or tonumber(uid)<lowest) then lowest=tonumber(uid) end end
    if lowest then p.hostId=lowest end
   end
+  if (p.status=='launching' or p.status=='launched') and next(p.members) then
+   -- Departed members are removed by the source. Reopen only once every remaining seat returned.
+   local allReturned=true
+   for _,m in pairs(p.members) do if m.returnedFrom~=p.runId then allReturned=false;break end end
+   if allReturned then
+    p.status='forming';p.runId=nil
+    for _,m in pairs(p.members) do m.returnedFrom=nil;m.ready=false end
+   end
+  end
   return syncMission(p)
  end
  function S.readParty(id) local p,e=read('party:'..id);return p and prune(p),e end
@@ -136,12 +145,25 @@ function Store.new(map,clock,config)
    if not p then return nil,'PartyChanged' end;prune(p)
    local m=p.members[tostring(member.userId)]
    if not m or m.token~=member.token or not m.arrived then return nil,'PartyChanged' end
-   if p.status~='forming' then return p end
+   if p.status~='forming' then
+    m.expiresAt=clock()+C.partyLease;p.expiresAt=m.expiresAt
+    return p
+   end
    if ready and missionId and (missionId~=p.missionId or mode~=p.difficultyId) then return nil,'PartyChanged' end
    local changed=m.heroId~=member.heroId or m.main~=member.main or m.level~=member.level
    if changed and p.missionId then for _,other in pairs(p.members)do other.ready=false end end
    member.arrived=true;member.ready=not changed and (ready==nil and m.ready or ready) or false
    member.expiresAt=clock()+C.partyLease;p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease;return syncMission(p)
+  end)
+ end
+ function S.returnSeat(id,uid,token,runId)
+  return update('party:'..id,C.partyLease,function(p)
+   local m=p and p.members[tostring(uid)]
+   if not m or m.token~=token then return nil,'PartyChanged' end
+   if p.runId~=runId then return p end
+   m.returnedFrom=runId;m.ready=false;m.expiresAt=clock()+C.partyLease
+   p.expiresAt=m.expiresAt
+   return prune(p)
   end)
  end
  function S.remove(id,uid,token)
@@ -181,7 +203,10 @@ function Store.new(map,clock,config)
   return update('party:'..id,C.partyLease,function(p)
    if not p or p.runId~=runId then return nil,'PartyChanged' end
    p.status=status;p.expiresAt=clock()+C.partyLease
-   if status=='forming' then for _,m in pairs(p.members) do m.ready=false end end
+   if status=='forming' then
+    p.runId=nil
+    for _,m in pairs(p.members) do m.ready=false;m.returnedFrom=nil end
+   end
    return p
   end)
  end
@@ -211,7 +236,8 @@ function Store.new(map,clock,config)
   local r,e=read('rejoin:'..uid);local p=r and r.pending
   if not p or p.expiresAt<=clock()or p.runId~=id or p.ticket~=ticket then return nil,e or 'RejoinExpired'end
   local run,why=S.readRun(id)
-  if not run or run.closed then return nil,why or 'RejoinExpired'end
+  local m=run and run.members[tostring(uid)]
+  if not m or m.cancelled or m.ticket~=ticket or run.closed then return nil,why or 'RejoinExpired'end
   return p
  end
  function S.offer(uid,run,heroId,ticket,replace)
@@ -241,14 +267,26 @@ function Store.new(map,clock,config)
   if not offer or offer.finished or offer.runId~=id or offer.ticket~=ticket then return nil,e or 'RejoinExpired' end
   return update('run:'..id,C.rejoinSeconds,function(run)
    local m=run and run.members[tostring(uid)]
-   if not m or m.ticket~=ticket or run.closed then return nil,'RejoinExpired' end
+   if not m or m.ticket~=ticket or m.cancelled or run.closed then return nil,'RejoinExpired' end
    if run.ownerJob~='' and run.ownerJob~=job and run.ownerUntil>clock() then return nil,'AccountBusy' end
-   run.ownerJob=job;run.ownerUntil=clock()+C.runLease;run.expiresAt=clock()+C.rejoinSeconds;return run
+   m.admitted=true;run.ownerJob=job;run.ownerUntil=clock()+C.runLease;run.expiresAt=clock()+C.rejoinSeconds;return run
+  end)
+ end
+ -- Fence delayed arrivals for a failed teleport without cancelling users already admitted.
+ function S.failTravel(id,uid,ticket)
+  return update('run:'..id,C.rejoinSeconds,function(run)
+   local m=run and run.members[tostring(uid)]
+   if not m or m.ticket~=ticket then return nil,'RejoinExpired' end
+   if m.admitted then return run end
+   m.cancelled=true
+   for _,other in pairs(run.members) do if not other.cancelled then return run end end
+   run.closed=true
+   return run
   end)
  end
  function S.renewRun(id,job)
   return update('run:'..id,C.rejoinSeconds,function(run)
-   if not run or run.ownerJob~=job or run.closed or run.ownerUntil<=clock() then return nil,'RejoinExpired' end
+   if not run or run.ownerJob~=job or run.closed then return nil,'RejoinExpired' end
    run.ownerUntil=clock()+C.runLease;run.expiresAt=clock()+C.rejoinSeconds;return run
   end)
  end

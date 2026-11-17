@@ -8,9 +8,8 @@ local Growth = require(ReplicatedStorage.Shared.HeroProgression)
 local Rules = require(script.Parent.InventoryRules)
 local Store = require(script.Parent.AccountStore)
 local Service = {}
-local accounts, options, store, stateRemote, openRemote
+local accounts, options, adapter, stateRemote, openRemote
 accounts = {}
-local token = HttpService:GenerateGUID(false)
 local sessionOnly = RunService:IsStudio()
 if sessionOnly then
 	Rules = require(script.Parent.StudioTestRules).wrap(Rules, Growth)
@@ -39,13 +38,19 @@ function Service.busy(player)
 	return state ~= nil and state.busy == true
 end
 function Service.open(player)
-	local state = {busy = true, valid = false, delivered = {}, tokens = 12, refillAt = os.clock()}
+	local previous = accounts[player]
+	if previous and (previous.busy or previous.closing) then return nil, "AccountBusy" end
+	local state = previous or {
+		store = Store.new(adapter, Rules, Catalog, os.time, task.wait, HttpService:GenerateGUID(false)),
+		delivered = {}, tokens = 12, refillAt = os.clock(),
+	}
+	state.busy, state.valid = true, false
 	accounts[player] = state
-	local profile, errorCode = store:open(player.UserId)
+	local profile, errorCode = state.store:open(player.UserId)
 	if accounts[player] ~= state or player.Parent ~= Players then
 		state.busy = false
 		if accounts[player] == state then accounts[player] = nil end
-		store:close(player.UserId)
+		state.store:close(player.UserId)
 		return nil, "Unavailable"
 	end
 	state.busy = false
@@ -55,7 +60,8 @@ function Service.open(player)
 end
 function Service.close(player)
 	local state = accounts[player]
-	if not state then return end
+	if not state or state.closeStarted then return end
+ state.closeStarted = true
  if state.transferPrepared then accounts[player]=nil;return end
 	state.closing = true
 	-- Freeze combat eligibility before reading its final authoritative resources.
@@ -67,7 +73,7 @@ function Service.close(player)
 		local deadline=os.clock()+10
         while accounts[player]==state and state.revealJobs and #state.revealJobs>0 and os.clock()<deadline do
             local job=state.revealJobs[1];state.busy=true
-            local profile,reason=store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
+            local profile,reason=state.store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
             if profile then state.profile,state.valid,state.errorCode=profile,true,nil;state.revealPending=nil;table.remove(state.revealJobs,1)
             elseif reason~='SaveUnknown' and reason~='AccountBusy' then break end
             state.busy=false;if reason then task.wait(.5) end
@@ -81,11 +87,11 @@ function Service.close(player)
 		if accounts[player] ~= state then return end
 		state.busy = true
 		if heroId and state.valid then
-			local p,e=store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
+			local p,e=state.store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
 			if not p then state.errorCode=e;accounts[player]=nil;return end
 			state.profile=p
 		end
-		store:close(player.UserId)
+		state.store:close(player.UserId)
 		accounts[player] = nil
 	end)
 end
@@ -93,7 +99,7 @@ function Service.createHero(player, heroId, classId)
 	local state = accounts[player]
 	if not Service.ready(player) or state.closing then return "Unavailable" end
 	state.busy = true
-	local profile, errorCode = store:transact(player.UserId, function(current) return Rules.addHero(current, heroId, classId, Catalog) end)
+	local profile, errorCode = state.store:transact(player.UserId, function(current) return Rules.addHero(current, heroId, classId, Catalog) end)
 	state.busy = false
 	if not profile then
 		if errorCode == "SaveUnknown" or errorCode == "AccountBusy" then state.valid = false end
@@ -110,7 +116,7 @@ function Service.selectHero(player, heroId)
  if type(heroId) ~= "string" or not state.profile.heroes[heroId] then return "HeroNotOwned" end
  if state.profile.lastSelectedHeroId == heroId then return nil end
  state.busy = true
- local profile, errorCode = store:transact(player.UserId, function(current) return Rules.selectHero(current, heroId) end)
+ local profile, errorCode = state.store:transact(player.UserId, function(current) return Rules.selectHero(current, heroId) end)
  state.busy = false
  if not profile then
   if errorCode == "SaveUnknown" or errorCode == "AccountBusy" then state.valid = false end
@@ -152,7 +158,7 @@ function Service.captureVitals(player)
  if options.combat.snapshotVitals then heroId,vitals=options.combat.snapshotVitals(player) end
  if not heroId then return nil end
  s.busy=true
- local p,e=store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
+ local p,e=s.store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
  s.busy=false
  if not p then s.valid=false;s.errorCode=e;return e end
  s.profile=p
@@ -185,7 +191,7 @@ function Service.progress(player, command, serverReward)
  end
 	state.busy=true
 	state.growthPending=Growth.copy(command)
-	local profile,errorCode=store:transact(player.UserId,function(current)
+	local profile,errorCode=state.store:transact(player.UserId,function(current)
 		local context={serverReward=serverReward==true}
 		if not serverReward then
 			local latest=options.heroSession.getInventoryContext(player)
@@ -235,9 +241,9 @@ function Service.awardXP(player,heroId,amount,defeat,coins,runId,killId)
 	state.rewards=state.rewards or {}
 	state.rewardSequences=state.rewardSequences or {}
 	local saved=state.profile.heroes[heroId].progression
-	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==token and saved.rewardSequence or 0))+1
+	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==state.store.token and saved.rewardSequence or 0))+1
 	state.rewardSequences[heroId]=sequence
-	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,coins=coins or 0,runId=runId,killId=killId,rewardKind=defeat and "Defeat" or nil,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
+	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,coins=coins or 0,runId=runId,killId=killId,rewardKind=defeat and "Defeat" or nil,stream=state.store.token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
  runGrowthQueue(player,state)
 end
 -- Called only by the server's validated death lifecycle, never a client remote.
@@ -280,7 +286,7 @@ function Service.supportPass(player,command)
   for _,k in ipairs({'action','heroId','offerId','revision','story','scope'})do if s.supportPending[k]~=command[k]then return 'RequestConflict' end end
  end
  s.busy=true;s.supportPending=Rules.copy(command)
- local p,e=store:transact(player.UserId,function(current)
+ local p,e=s.store:transact(player.UserId,function(current)
   local inv=options.heroSession.getInventoryContext(player)
   local combat=options.heroSession.getCombatContext(player,player.Character)
   local ctx={atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and player:GetAttribute('K0SessionPhase')=='Lobby' and inv and inv.heroId==command.heroId and inv.atHub,
@@ -322,7 +328,7 @@ function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId,runId)
  if state.storyPending and state.storyPending~=key then return 'Busy' end
  if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
  state.busy=true;state.storyPending=key
- local profile,reason=store:transact(player.UserId,function(current)
+ local profile,reason=state.store:transact(player.UserId,function(current)
   if goalId=='@accept' then
    if runId then return require(ReplicatedStorage.Shared.AdventureRules).accept(current,heroId,chapterId,choice==true,Rules,Catalog,runId)end
    return Rules.acceptQuest(current,heroId,chapterId,choice==true)
@@ -357,7 +363,7 @@ function Service.reveal(player,heroId,zone,x,z)
    if state.busy or not state.valid and state.revealPending~=job.key then task.wait(.25)
    else
     state.busy=true;state.revealPending=job.key
-    local profile,reason=store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
+    local profile,reason=state.store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
     if profile then
      state.profile,state.valid,state.errorCode=profile,true,nil;state.revealPending=nil
      state.revealKeys[job.key]=nil;table.remove(state.revealJobs,1)
@@ -455,7 +461,7 @@ local function handle(player, command, ...)
 	if not heroContext or heroContext.heroId ~= command.heroId or options.heroSession.isBusy(player) then publish(player, command.requestId, "Changed"); return end
 	if command.action == "Use" and heroContext.atHub then publish(player, command.requestId, "EnterTutorial"); return end
 	local context = {safe = heroContext.atHub or options.combat.isSafeForEquipment(player), atHub = heroContext.atHub, atStorage = atStorage(player) == true,
-		lifeToken = token .. ":" .. tostring(heroContext.generation)}
+		lifeToken = state.store.token .. ":" .. tostring(heroContext.generation)}
 	local item = state.profile.items[command.instanceId]
 	local definition = item and Catalog.items[item.definitionId]
 	local life, human
@@ -472,7 +478,7 @@ local function handle(player, command, ...)
 	state.busy = true
 	state.pending = Rules.copy(command)
 	state.pendingLife = life
-	local profile, errorCode = store:transact(player.UserId, function(current)
+	local profile, errorCode = state.store:transact(player.UserId, function(current)
 		-- A confirmed earlier result is reconciled even if this life has ended.
 		-- Its saved life token prevents an old use from healing a new life.
 		if current.operations[command.requestId] then return Rules.apply(current, command, context, Catalog) end
@@ -518,7 +524,6 @@ end
 function Service.start(settings)
 	assert(not started, "Inventory already started")
 	started, options = true, settings
-	local adapter
 	if sessionOnly then
 		local data = {}
 		adapter = {UpdateAsync = function(_, key, callback)
@@ -530,7 +535,6 @@ function Service.start(settings)
 		assert(game.GameId == 10773575153, "RPG account storage is restricted to The Last Throne test Experience")
 		adapter = game:GetService("DataStoreService"):GetDataStore("TLT_RPG_Accounts_v1_Test")
 	end
-	store = Store.new(adapter, Rules, Catalog, os.time, task.wait, token)
 	local remotes = ReplicatedStorage:FindFirstChild("Remotes")
 	if not remotes then remotes = Instance.new("Folder"); remotes.Name = "Remotes"; remotes.Parent = ReplicatedStorage end
 	local function remote(name)
@@ -565,13 +569,17 @@ function Service.start(settings)
 		while true do
 			task.wait(30)
 			for player, state in pairs(accounts) do
-				if state.valid and not state.busy and not state.closing then
+				if (state.valid or state.renewPending) and not state.busy and not state.closing then
 					state.busy = true
 					task.spawn(function()
-						local profile, errorCode = store:renew(player.UserId)
-						if profile then state.profile = profile else state.valid, state.errorCode = false, errorCode end
+						local recovering = state.renewPending
+						local profile, errorCode = state.store:renew(player.UserId)
+						state.valid = profile ~= nil
+						state.errorCode = errorCode
+						state.renewPending = errorCode == "SaveUnknown"
+						if profile then state.profile = profile end
 						state.busy = false
-						if errorCode then publish(player, nil, errorCode) end
+						if recovering or errorCode then publish(player, nil, errorCode) end
 					end)
 				end
 			end
@@ -596,17 +604,17 @@ function Service.prepareTransfer(player)
  end
  while s.revealJobs and #s.revealJobs>0 and os.clock()<deadline do
   local job=s.revealJobs[1];s.busy=true
-  local p,e=store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end);s.busy=false
+  local p,e=s.store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end);s.busy=false
   if not p then s.closing=false;s.valid=false;s.errorCode=e;return false end
   s.profile=p;table.remove(s.revealJobs,1)
  end
  if s.rewards and #s.rewards>0 or s.revealJobs and #s.revealJobs>0 or not s.valid then s.closing=false;return false end
  if Service.captureVitals(player) then s.closing=false;return false end
- s.busy=true;local p,e=store:close(player.UserId);s.busy=false
+ s.busy=true;local p,e=s.store:close(player.UserId);s.busy=false
  if not p then
   -- A release may have committed without acknowledgement. Reacquire only if
   -- no other server owns the account; never continue on the old cached fence.
-  local restored,reason=store:open(player.UserId)
+  local restored,reason=s.store:open(player.UserId)
   s.closing=false;s.profile=restored or s.profile;s.valid=restored~=nil;s.errorCode=reason or e;publish(player);return false
  end
  s.profile=p;s.valid=false;s.transferPrepared=true;publish(player);return true
@@ -614,7 +622,7 @@ end
 function Service.resumeTransfer(player)
  local s=accounts[player];if not s then return false end
  if not s.transferPrepared then s.closing=false;return s.valid end
- local p,e=store:open(player.UserId)
+ local p,e=s.store:open(player.UserId)
  if not p then s.errorCode=e;publish(player);return false end
  s.profile=p;s.valid=true;s.errorCode=nil;s.closing=false;s.transferPrepared=nil;publish(player);return true
 end
@@ -634,7 +642,7 @@ function Service.claimDaily(player,requestId)
  if s.dailyPending and s.dailyPending.requestId~=requestId then return 'Busy' end
  if not s.valid and not (s.dailyPending and s.dailyPending.requestId==requestId) then return s.errorCode or 'Unavailable' end
  local pending=s.dailyPending or {requestId=requestId,claimAt=os.time()};s.dailyPending=pending;s.busy=true
- local profile,reason,replayed=store:transact(player.UserId,function(current) return Rules.claimDaily(current,pending.claimAt,pending.requestId) end)
+ local profile,reason,replayed=s.store:transact(player.UserId,function(current) return Rules.claimDaily(current,pending.claimAt,pending.requestId) end)
  if profile then s.profile=profile;s.valid=true;s.errorCode=nil;s.dailyPending=nil
  elseif reason=='SaveUnknown' or reason=='AccountBusy' then s.valid=false;s.errorCode=reason
  else s.dailyPending=nil end
@@ -661,7 +669,7 @@ function Service.claimDelivery(player,command)
  if not s.valid and not pending then return s.errorCode or 'Unavailable'end
  pending=pending or {requestId=command.requestId,action=command.action,value=command.value,at=os.time()}
  s.deliveryPending=pending;s.busy=true
- local profile,reason,replayed=store:transact(player.UserId,function(current)
+ local profile,reason,replayed=s.store:transact(player.UserId,function(current)
   return Delivery.claim(current,pending.action,pending.value,pending.at,DeliveryCatalog,Rules,Catalog,pending.requestId)
  end)
  if profile then s.profile=profile;s.valid=true;s.errorCode=nil;s.deliveryPending=nil
@@ -681,7 +689,7 @@ function Service.shop(player,command)
   s.shopPending.enhancementRoll=Random.new():NextInteger(0,9999)
  end
  local enhancementRoll=s.shopPending.enhancementRoll
- local p,e=store:transact(player.UserId,function(current)
+ local p,e=s.store:transact(player.UserId,function(current)
   local ctx=options.heroSession.getInventoryContext(player)
   return Rules.shop(current,command,{enhancementRoll=enhancementRoll,atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and ctx and ctx.heroId==command.heroId and ctx.atHub and player:GetAttribute('K0SessionPhase')=='Lobby'},Catalog)
  end)
@@ -698,7 +706,7 @@ function Service.grantDiamondReceipt(player,receipt)
  if pending and (pending.PurchaseId~=receipt.PurchaseId or pending.ProductId~=receipt.ProductId or pending.PlayerId~=receipt.PlayerId)then return 'Busy'end
  if not s.valid and not pending then return s.errorCode or 'Unavailable'end
  s.diamondReceiptPending=Rules.copy(receipt);s.busy=true
- local profile,reason=store:transact(player.UserId,function(current)
+ local profile,reason=s.store:transact(player.UserId,function(current)
   return require(script.Parent.Parent.Lobby.DiamondReceiptRules).grant(current,receipt,Rules)
  end)
  if profile then s.profile=profile;s.valid=true;s.errorCode=nil;s.diamondReceiptPending=nil
@@ -712,9 +720,12 @@ function Service.expeditionHero(player)
  local s=accounts[player];local ctx=options.heroSession.getInventoryContext(player)
  return s and s.valid and ctx and Rules.copy(s.profile.heroes[ctx.heroId])or nil
 end
-function Service.expedition(player,heroId)
+function Service.expedition(player,heroId,identityOnly)
  local s=accounts[player];local h=s and s.profile and s.profile.heroes[heroId]
- return h and h.expeditions and Rules.copy(h.expeditions.active)or nil
+ local active=h and h.expeditions and h.expeditions.active
+ if not active then return nil end
+ if identityOnly then return {runId=active.runId} end
+ return Rules.copy(active)
 end
 function Service.beginExpedition(player,heroId,missionId,difficultyId,runId,rulesVersion,party)
  local s=accounts[player];if not s or s.busy or s.closing then return 'Busy'end
@@ -723,7 +734,7 @@ function Service.beginExpedition(player,heroId,missionId,difficultyId,runId,rule
  if not s.valid and not pending then return s.errorCode or 'Unavailable'end
  local cmd=pending or {heroId=heroId,missionId=missionId,difficultyId=difficultyId,runId=runId,revision=s.profile.revision,party=party==true,rulesVersion=rulesVersion or require(ReplicatedStorage.Shared.Difficulty).version}
  s.expeditionPending=cmd;s.busy=true
- local p,e=store:transact(player.UserId,function(current)
+ local p,e=s.store:transact(player.UserId,function(current)
   return require(ReplicatedStorage.Shared.AdventureRules).begin(current,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId,cmd.revision,Rules,Catalog,cmd.rulesVersion,cmd.party)
  end)
  if p then s.profile,s.valid,s.errorCode,s.expeditionPending=p,true,nil,nil
@@ -742,7 +753,7 @@ function Service.sideQuest(player,command)
  if not s.sideQuestPending and (not ctx or ctx.heroId~=command.heroId or player:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')~='Lobby' or player:GetAttribute('TLTTravelLock'))then return 'Unavailable'end
  if not s.valid and not s.sideQuestPending then return s.errorCode or 'Unavailable'end
  s.busy=true;s.sideQuestPending=fingerprint
- local p,e=store:transact(player.UserId,function(current)
+ local p,e=s.store:transact(player.UserId,function(current)
   return require(ReplicatedStorage.Shared.LobbySideQuests).apply(current,command,Rules,Catalog)
  end)
  if p then s.profile,s.valid,s.errorCode,s.sideQuestPending=p,true,nil,nil

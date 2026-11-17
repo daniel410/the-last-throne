@@ -13,6 +13,7 @@ local function scenario(size,mixed,advancedHost)
  local source=module.Source
  source="local task={spawn=function()end,delay=function()end}\n"..source
  source=source:gsub("local Players=game:GetService%('Players'%)",[[local Players={PlayerRemoving={Connect=function()end},list={}}
+ function Players.PlayerRemoving:Connect(fn)Players.onRemoving=fn end
  function Players:GetPlayers()return self.list end
  function Players:GetPlayerByUserId(uid)for _,p in ipairs(self.list)do if p.UserId==uid then return p end end end]],1)
  source=source:gsub("local Teleport=game:GetService%('TeleportService'%)",[[local Teleport={TeleportInitFailed={Connect=function()end},calls={}}
@@ -24,6 +25,14 @@ local function scenario(size,mixed,advancedHost)
  function Service.qaCommand(p,c)last[p]=-math.huge;return handle(p,c)end
  function Service.qaParty(p)return parties[p]and store.readParty(parties[p].id)end
  function Service.qaLive()studio=false end
+ function Service.qaTransportFailure(p)
+  local a=assert(travel[p])
+  for _=1,3 do retryTravel(p,a) end
+ end
+ function Service.qaAdmit(call)
+  return store.admit(call.data.runId,call.userId,call.data.ticket,'battle-job')
+ end
+ function Service.qaRemove(p)Players.onRemoving(p)end
  function Service.qaCalls()return Teleport.calls end
  function Service.qaBrowse(p)
   local original=remote
@@ -119,6 +128,29 @@ local function scenario(size,mixed,advancedHost)
    check(not tickets[call.data.ticket],'each member has its own capability');tickets[call.data.ticket]=true
   end
   for _,p in ipairs(actors)do check(prepared[p]==1 and not resumed[p]and p.attrs.TLTTravelLock,'each account prepared once and remains locked in transit')end
+  local calls=table.clone(service.qaCalls())
+  local arrived=size>2 and actors[1]
+  local arrivedCall
+  for _,call in ipairs(calls) do
+   if arrived and call.userId==arrived.UserId then arrivedCall=call;check(service.qaAdmit(call),'destination admits the successful member') end
+  end
+  if arrived then
+   service.qaTransportFailure(arrived)
+   check(not resumed[arrived] and arrived.attrs.TLTTravelLock,'late source timeout cannot reclaim an admitted account')
+  end
+  if arrived and advancedHost then service.qaRemove(arrived) end
+  for _,p in ipairs(actors) do if p~=arrived then
+   service.qaTransportFailure(p)
+   check(resumed[p]==1 and not p.attrs.TLTTravelLock and not service.isBusy(p),'failed transport unlocks and resumes exactly once')
+  end end
+  if arrived and not advancedHost then service.qaRemove(arrived) end
+  local remaining=assert(service.qaParty(actors[size]))
+  check(remaining.status=='forming' and not remaining.runId,'remaining lobby party can recruit and launch again')
+  for _,m in pairs(remaining.members)do check(not m.ready,'returned party must explicitly ready again') end
+  for _,call in ipairs(calls)do
+   if call==arrivedCall then check(service.qaAdmit(call),'partial failure preserves admitted ticket')
+   else check(not service.qaAdmit(call),'failed ticket cannot arrive late') end
+  end
  end
  table.insert(report.cases,{size=size,mixed=mixed==true,advancedHost=advancedHost==true,error=actors[1].notice,teleports=#service.qaCalls()})
  module:Destroy()

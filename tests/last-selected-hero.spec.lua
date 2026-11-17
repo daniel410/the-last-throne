@@ -35,7 +35,9 @@ local player={UserId=42};local players={};player.Parent=players
 function player:SetAttribute()end
 local accounts={}
 local service={ready=function(person)local s=accounts[person];return s and s.valid and not s.busy end}
-local env=setmetatable({Service=service,accounts=accounts,store=first,Rules=R,Players=players,sessionOnly=false,publish=function()end},{__index=_G})
+local currentStore=first
+local env=setmetatable({Service=service,accounts=accounts,Store={new=function()return currentStore end},
+ HttpService={GenerateGUID=function()return currentStore.token end},task={wait=function()end},Rules=R,Players=players,sessionOnly=false,publish=function()end},{__index=_G})
 assert(load(body('function Service.open(', 'function Service.close('),'open','t',env))()
 assert(load(body('function Service.selectHero(', 'function Service.stats('),'selectHero','t',env))()
 service.open(player)
@@ -45,7 +47,7 @@ check(service.selectHero(player,'hero-dwarf')==nil and writes==count,'unchanged 
 local _,reason=R.selectHero(data,'foreign')
 check(service.selectHero(player,'foreign')==reason and writes==count,'service rejects foreign hero before storage')
 assert(first:close(42))
-local second=store('second');env.store=second
+local second=store('second');currentStore=second;accounts[player]=nil
 local roster,err,id=service.open(player)
 check(roster['hero-dwarf'] and err==nil and id=='hero-dwarf','new server opens durable last hero')
 check(data.wallet.gold==original.wallet.gold and data.heroes['hero-mage'].baseClassId=='mage','selection preserves wallet and roster')
@@ -63,7 +65,7 @@ check(service.selectHero(player,'hero-knight')==nil and data.revision==revision,
 assert(second:close(42))
 -- Old accounts have no historical preference; opening must not invent one or erase progress.
 data.lastSelectedHeroId=nil
-local third=store('third');env.store=third
+local third=store('third');currentStore=third;accounts[player]=nil
 local legacy,legacyError,legacyId=service.open(player)
 check(legacy and not legacyError and legacyId==nil,'legacy profile without preference opens intact')
 print('Last selected hero: '..checks..' checks PASS')

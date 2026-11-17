@@ -288,10 +288,16 @@ local function bindPlayer(player)
 		task.spawn(function()
    local arrival,arrivalError
    if settings.network then arrival,arrivalError=settings.network.admitArrival(player) end
+   if not connected(state) then return end
    if arrivalError then player:Kick(arrivalError);return end
 			local roster, errorCode, lastSelectedHeroId = settings.inventory.open(player)
-   if not roster and errorCode=='AccountBusy' then
-    for _=1,20 do task.wait(.5);if not connected(state) then return end;roster,errorCode,lastSelectedHeroId=settings.inventory.open(player);if roster or errorCode~='AccountBusy' then break end end
+   -- A disconnected server can own the previous lease for up to two minutes.
+   local deadline, delay = os.clock() + 125, .5
+   while not roster and errorCode == 'AccountBusy' and os.clock() < deadline do
+    task.wait(delay)
+    if not connected(state) then return end
+    roster, errorCode, lastSelectedHeroId = settings.inventory.open(player)
+    delay = math.min(4, delay * 2)
    end
 			if not connected(state) then return end
 			if roster then
@@ -356,10 +362,16 @@ function HeroSessionService.getInventoryContext(player)
 	local half = settings.lobbyBounds.size / 2
 	local atHub = state.phase == "Lobby" and state.mode == "Lobby" and finite(delta.X) and finite(delta.Y) and finite(delta.Z)
 		and math.abs(delta.X) <= half.X and math.abs(delta.Y) <= half.Y and math.abs(delta.Z) <= half.Z
-	if state.mode=='Tutorial' and state.phase=='Tutorial' and settings.outpostBounds then
-  local b=settings.outpostBounds;local d=root.Position-b.center;local half=b.size/2
-  if math.abs(d.X)<=half.X and math.abs(d.Y)<=half.Y and math.abs(d.Z)<=half.Z then atHub=true end
- end
+	if state.mode == "Tutorial" and state.phase == "Tutorial" then
+		for _, bounds in pairs(settings.hubBounds or {}) do
+			local offset = root.Position - bounds.center
+			local extent = bounds.size / 2
+			if math.abs(offset.X) <= extent.X and math.abs(offset.Y) <= extent.Y and math.abs(offset.Z) <= extent.Z then
+				atHub = true
+				break
+			end
+		end
+	end
  return {heroId = hero.heroId, classId = hero.baseClassId, generation = state.generation, atHub = atHub}
 end
 
