@@ -8,6 +8,7 @@
 
 - [전체 비교 갤러리](index.html): 인물별 생성 PNG / 실제 메시 정면·사선·후면 / GLB / 지역 Blender 파일.
 - [29명 전체 보드](all-npcs-preview.jpg).
+- [Aldric·Brann 해머 수정 미리보기](hammer-fix-preview.png), [두 모델 Blender 파일](../../../assets/models/npc-meshy-5k-v1/npc-5k-review-hammer-fix.blend), [재생성 검증 기록](hammer-fix.json).
 - 지역별 보드: [Dawnspire](dawnspire-preview.png), [Deepwood](deepwood-preview.png), [Frozen Vale](frozen-vale-preview.png), [Ember Caldera](ember-caldera-preview.png), [Gloamwood](gloamwood-preview.png), [Haunted Graveyard](haunted-graveyard-preview.png).
 - [입력 이미지·정확한 생성 프롬프트·원본 해시](../../../assets/concepts/2026-11-17-npc-blocky-5k-v1/manifest.json).
 - [모델별 Meshy 작업ID·소비량·원본/후보 해시](../../../assets/models/npc-meshy-5k-v1/manifest.json).
@@ -19,13 +20,15 @@
 
 이미지는 내장 image_gen으로 인물별 생성했다. 처음 6명은 제작 중 잠시 지정된 10k 디테일 기준 PNG를 입력으로 보존했으며, 모든 실제 3D 요청은 사용자의 최종 지시인 5k를 사용했다. PNG에는 실제 삼각형 개념이 없으므로 디테일 가이드와 실측 메시 예산을 구분한다. Freya와 Orik은 도구 손잡이가 손 위·아래에서 같은 직선 축을 유지하도록 이미지를 추가 수정한 뒤 Meshy에 제출했다. 검의 곧은 중심선과 손잡이 정렬을 확인했고 활의 의도된 곡선은 유지했다.
 
-Codex에 설정된 공식 `@meshy-ai/meshy-mcp-server`의 이미지→3D 도구를 사용했다. `meshy-t2.5`, `smart-topology`, `target_polycount=5000`, `triangle`, `meshy-n1`, 2K 텍스처, GLB 형식이다. 29개 작업이 모두 성공했고 작업당15, 총435 Meshy 크레딧을 소비했다. API 키와 서명 다운로드 URL은 저장소에 기록하지 않았다.
+Codex에 설정된 공식 `@meshy-ai/meshy-mcp-server`의 이미지→3D 도구를 사용했다. `meshy-t2.5`, `smart-topology`, `target_polycount=5000`, `triangle`, `meshy-n1`, 2K 텍스처, GLB 형식이다. 최초 29개와 해머 수정 재생성 2개 작업이 모두 성공했고 작업당15, 총465 Meshy 크레딧을 소비했다. API 키와 서명 다운로드 URL은 저장소에 기록하지 않았다.
+
+`NPC-HAMMER-20261117`: 사용자 외형 검토에서 지적된 Aldric·Brann의 해머 정렬 오류를 수정했다. 개별 원본 PNG에서 어깨에 기울여 얹은 해머를 몸 옆에 세운 자세로 바꾸고, 직선 손잡이가 수평 머리 하단 중앙에 직각으로 연결되도록 image_gen으로 편집했다. 수정 PNG를 입력으로 Meshy 모델을 각각 다시 생성했다. Blender 정면·사선·후면 렌더에서 손잡이와 머리 정렬을 확인했고, Aldric 4,995 tris / Brann 4,994 tris를 GLB 인덱스 수로 검증했다. 두 지역 Blender 묶음과 기존 갤러리도 새 후보로 교체했다. 기존 PNG·모델은 Git 이력에 보존하며 이전 작업ID·해시는 `hammer-fix.json`에 기록했다. 다른 NPC와 Selene는 이번 수정 대상에서 제외했다.
 
 Blender의 원본 모델은 보존하고, 5,000을 초과한 모델만 작은 비율로 감면해 `candidates/`에 내보냈다. 이미 예산 안에 있는 모델에 불필요한 면을 추가하지 않았다. 후보는 검토용 전체 높이2m로 정규화했으며, 실제 게임 종족별 스케일과 소켓 계약을 확정한 것은 아니다.
 
 ## 검증 결과
 
-- 개별 입력 PNG29, Meshy 원본 GLB29, 최종 후보 GLB29, 지역 Blender 파일6, 실제 메시 렌더87.
+- 개별 입력 PNG29, Meshy 원본 GLB29, 최종 후보 GLB29, 지역 Blender 파일6 및 해머 수정 비교 파일1, 실제 메시 렌더87.
 - 후보 전체 **4,401~4,995 tris**, 모든 인물의 전체 소품 포함 합계가5,000 이하다.
 - Blender 메시의 유한 좌표·UV를 확인했고, 내보낸 GLB의 인덱스 수로 삼각형 합계를 별도로 확인했다. 29개 GLB 모두 텍스처를 파일 내부에 포함한다.
 - Blender 5.2.0 LTS의 `Standard / sRGB / Look None / Exposure 0 / Gamma 1 / Curves Off`로 정면·사선·후면을 렌더했다. 지역 보드로 외형을 검토했고, Freya·Orik은 라이브 Blender에서도 직선 손잡이를 확인했다.

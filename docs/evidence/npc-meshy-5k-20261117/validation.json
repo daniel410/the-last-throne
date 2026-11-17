@@ -10,5 +10,6 @@
   "allTexturesEmbedded": true,
   "noRigOrAnimation": true,
   "seleneExcluded": true,
-  "consumedCredits": 435
+  "consumedCredits": 465,
+  "latestRevision": "NPC-HAMMER-20261117"
 }

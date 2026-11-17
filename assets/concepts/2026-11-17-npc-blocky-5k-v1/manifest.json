@@ -1,7 +1,7 @@
 {
   "taskId": "NPC-5K-20261117",
   "generator": "built-in image_gen",
-  "modelProvider": "Meshy via Blender MCP",
+  "modelProvider": "Meshy MCP configured in Codex",
   "targetTriangles": 5000,
   "excluded": [
     "selene"
@@ -18,8 +18,11 @@
       "prompt": "aldric.prompt.txt",
       "png": "aldric.png",
       "status": "png-and-3d-preview-ready",
-      "imagePromptTriangleBudget": 10000,
-      "pngSha256": "df63c1f6c80c4d82750096e167ec48be2303e3728fc403dd43b8efc803356f1e"
+      "imagePromptTriangleBudget": 5000,
+      "pngSha256": "5066816923a2a5621f1bf3693938e30337823d37fe93031368b9991175502f9c",
+      "previousPngSha256": "df63c1f6c80c4d82750096e167ec48be2303e3728fc403dd43b8efc803356f1e",
+      "correctionPrompt": "aldric-hammer-fix.prompt.txt",
+      "correction": "Straight vertical hammer shaft; centered perpendicular horizontal head; upright side hold"
     },
     {
       "id": "mira",
@@ -213,7 +216,10 @@
       "png": "brann.png",
       "status": "png-and-3d-preview-ready",
       "imagePromptTriangleBudget": 5000,
-      "pngSha256": "96b06815fb1420c611005188eb898b81de11150ba4258060b70766e3155fd7ff"
+      "pngSha256": "5f5c753b44fa58a95fdf020636d9fc4966106baa5d54c10b26ee055db77f5b50",
+      "previousPngSha256": "96b06815fb1420c611005188eb898b81de11150ba4258060b70766e3155fd7ff",
+      "correctionPrompt": "brann-hammer-fix.prompt.txt",
+      "correction": "Straight vertical hammer shaft; centered perpendicular horizontal head; upright side hold"
     },
     {
       "id": "dagna",

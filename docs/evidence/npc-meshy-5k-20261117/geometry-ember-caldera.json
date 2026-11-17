@@ -2,7 +2,7 @@
   {
     "id": "brann",
     "region": "ember-caldera",
-    "sourceTriangles": 5244,
+    "sourceTriangles": 5222,
     "candidateTriangles": 4994,
     "meshCount": 1,
     "uvPresent": true,

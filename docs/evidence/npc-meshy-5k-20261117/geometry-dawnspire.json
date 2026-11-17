@@ -2,7 +2,7 @@
   {
     "id": "aldric",
     "region": "dawnspire",
-    "sourceTriangles": 5235,
+    "sourceTriangles": 5256,
     "candidateTriangles": 4995,
     "meshCount": 1,
     "uvPresent": true,

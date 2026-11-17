@@ -1,0 +1,72 @@
+{
+  "taskId": "NPC-HAMMER-20261117",
+  "parentTaskId": "NPC-5K-20261117",
+  "reason": "사용자가 지적한 Aldric/Brann 해머 머리와 손잡이 정렬 오류 수정",
+  "additionalConsumedCredits": 30,
+  "gameApplied": false,
+  "userApproved": false,
+  "assets": [
+    {
+      "id": "aldric",
+      "previous": {
+        "id": "aldric",
+        "name": "Aldric",
+        "region": "dawnspire",
+        "inputPng": "assets/concepts/2026-11-17-npc-blocky-5k-v1/aldric.png",
+        "inputPngSha256": "df63c1f6c80c4d82750096e167ec48be2303e3728fc403dd43b8efc803356f1e",
+        "taskId": "01a1ebb0-ad99-7393-b892-5d1b96d8c532",
+        "providerStatus": "SUCCEEDED",
+        "consumedCredits": 15,
+        "sourceGlb": "aldric.glb",
+        "sourceSha256": "685e11d3d6f0082962568e64cf00bdc8171582e6172b89c3637210978603157e",
+        "sourceTriangles": 5235,
+        "candidateGlb": "candidates/aldric-5k.glb",
+        "candidateSha256": "5970dbe2a9478b2ba582f01db21faa55dbcfd4bf8e0f066c063d15da52b70bdd",
+        "candidateTriangles": 4995,
+        "embeddedTextures": true,
+        "rigged": false,
+        "userApproved": false
+      },
+      "currentTaskId": "01a1ebc4-ad00-7624-9bb1-0fa37deeac03",
+      "inputPngSha256": "5066816923a2a5621f1bf3693938e30337823d37fe93031368b9991175502f9c",
+      "candidateSha256": "e90ef5d72096d47e40ef8b15a5e8bdfd1f9b95eeaef779fd226b092832aff44b",
+      "candidateTriangles": 4995,
+      "visualChecks": [
+        "straight-shaft",
+        "perpendicular-centered-head",
+        "front-three-quarter-back"
+      ]
+    },
+    {
+      "id": "brann",
+      "previous": {
+        "id": "brann",
+        "name": "Brann",
+        "region": "ember-caldera",
+        "inputPng": "assets/concepts/2026-11-17-npc-blocky-5k-v1/brann.png",
+        "inputPngSha256": "96b06815fb1420c611005188eb898b81de11150ba4258060b70766e3155fd7ff",
+        "taskId": "01a1ebb9-3cf7-72f2-984f-b0a8c06f41d9",
+        "providerStatus": "SUCCEEDED",
+        "consumedCredits": 15,
+        "sourceGlb": "brann.glb",
+        "sourceSha256": "6d0cad8a01a3ece6ec2c3bc5a5d732ae21a4e14c26ddb561395defe9784432d1",
+        "sourceTriangles": 5244,
+        "candidateGlb": "candidates/brann-5k.glb",
+        "candidateSha256": "a87ae7062299605a1089fab464c38809514e204334c9d80073204dfa1f6b0f17",
+        "candidateTriangles": 4994,
+        "embeddedTextures": true,
+        "rigged": false,
+        "userApproved": false
+      },
+      "currentTaskId": "01a1ebc4-b3c3-75be-b8ce-ee5793b087d6",
+      "inputPngSha256": "5f5c753b44fa58a95fdf020636d9fc4966106baa5d54c10b26ee055db77f5b50",
+      "candidateSha256": "e2e4a7b2d846fb9e7f6d841995f9b4d8921d2b1a7e9ff4f56e56d90e80688f22",
+      "candidateTriangles": 4994,
+      "visualChecks": [
+        "straight-shaft",
+        "perpendicular-centered-head",
+        "front-three-quarter-back"
+      ]
+    }
+  ]
+}
