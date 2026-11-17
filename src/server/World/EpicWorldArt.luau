@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=30}
+local Art={version=31}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -29,7 +29,7 @@ local function distance(p,a,b)
  local t=math.clamp(((p.X-a.X)*dx+(p.Z-a.Z)*dz)/math.max(.001,dx*dx+dz*dz),0,1)
  return math.sqrt((p.X-a.X-t*dx)^2+(p.Z-a.Z-t*dz)^2)
 end
-local function reservation(world,id)
+local function reservation(world,id,quarryFloor)
  local anchors={{p=world.spawns[id].Position,r=32}};local lanes={}
  local center=vec(Content.zones[id].center);local previous=world.spawns[id].Position
  -- Include every chapter using a shared optional area, not just the main ID.
@@ -60,6 +60,32 @@ local function reservation(world,id)
    table.insert(anchors,{p=root.Position,r=24})
   end
  end end
+ -- EC-03 relief is solid Terrain: reserve both difficulty routes, including
+ -- their guided bends, before adding any interior quarry floor spurs.
+ if id=='EC-03'and quarryFloor then
+  local Guide=require(game.ReplicatedStorage.Shared.CampaignNavigationRoute)
+  for _,chapter in ipairs(Content.chapters)do if chapter.zone==id then
+   for _,variant in ipairs({'points','worldPoints'})do
+    local previous=world.spawns[id].Position
+    for _,g in ipairs(chapter.goals)do
+     local route=chapter.combatRoutes and chapter.combatRoutes[g.id]
+     local points=route and (route[variant]or route.points)
+     local targets=points and #points>0 and points or {}
+     if #targets==0 then
+      for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do
+       if step.position then targets[#targets+1]=step.position end
+      end
+     end
+     for _,at in ipairs(targets)do
+      local q=vec(at);table.insert(anchors,{p=q,r=points and 52 or 32})
+      local path=Guide.route({previous.X,previous.Y,previous.Z},at)
+      for i=2,#path do table.insert(lanes,{vec(path[i-1]),vec(path[i])})end
+      previous=q
+     end
+    end
+   end
+  end end
+ end
  return function(p,r)
   for _,a in ipairs(anchors)do if distance(p,a.p,a.p)<a.r+r then return false end end
   for _,line in ipairs(lanes)do if distance(p,line[1],line[2])<24+r then return false end end
@@ -100,7 +126,7 @@ local function terrainSite(parent,c,size,pal,theme,safe,id)
   return
  end
  if id=='EC-03'then
-  require(script.Parent.CalderaMineLandforms).build(m,c,size)
+  require(script.Parent.CalderaMineLandforms).build(m,c,size,safe)
   range(m,900)
   return
  end
@@ -477,7 +503,7 @@ function Art.create(world,scope)
   local z=Content.zones[id];local c=vec(z.center);local theme=names[id:sub(1,2)];local pal=K.palette[theme];local index=tonumber(id:sub(4))or 2
   local site=Instance.new('Folder');site.Name=id;site:SetAttribute('Theme',theme);site:SetAttribute('Landmark',landmarkNames[id:sub(1,2)][index]);site.Parent=root
   local rng=Random.new(22000+order*139);local safe=reservation(world,id)
-  terrainSite(site,c,z.size,pal,theme,safe,id)
+  terrainSite(site,c,z.size,pal,theme,id=='EC-03'and reservation(world,id,true)or safe,id)
   table.insert(plans,{id=id,z=z,c=c,theme=theme,pal=pal,index=index,site=site,rng=rng,safe=safe})
   task.wait()
  end
