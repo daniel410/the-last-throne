@@ -485,6 +485,8 @@ function Service.start(settings)
   ready=function(p)return p:GetAttribute('K0SessionPhase')=='Tutorial' and p:GetAttribute('TLTTravelLock')~=true and (not options.inventory.available or options.inventory.available(p))end,
   pending=Service.hasPendingEvents,
   inEncounter=function(p,id)for _,e in pairs(encounters)do if not e.completed and e.participants[p]==id then return true end end;return false end,
+  loaded=function(target)return options.world.spawns[target.zone]~=nil end,
+  prepare=function(target)options.prepareStory(target.chapterId)end,
   destination=function(target,player,heroId)
    local spawn=options.world.spawns[target.zone];if not spawn then return nil end
    local chapter=target.exit and Content.byId[target.chapterId]
@@ -493,7 +495,8 @@ function Service.start(settings)
    local route=goal and Routes.plan(chapter,goal,admission and admission.balanceVersion)
    local position=route and entryPosition(chapter,goal,admission,admittedCount(player,admission))
     or target.position and Vector3.new(table.unpack(target.position))
-   return position and CFrame.new(position+Vector3.new(0,4,6))or spawn.CFrame+Vector3.new(0,4,0)
+   local pivot=position and CFrame.new(position+Vector3.new(0,4,6))or spawn.CFrame+Vector3.new(0,4,0)
+   if require(ReplicatedStorage.Shared.CampaignAreas).containsZone(Content.zones[target.zone],pivot.X,pivot.Z)then return pivot end
   end,relocate=function(p,pivot)return options.combat.relocateForStoryGate(p,pivot)end,
  })
  remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes

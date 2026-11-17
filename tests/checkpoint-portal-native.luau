@@ -4,7 +4,7 @@ return function(portalSource,environmentSource)
  local folder=Instance.new('Folder');folder.Name='CheckpointPortalQA';folder.Parent=game:GetService('ServerStorage')
  local ok,result=xpcall(function()
   local env=assert(loadstring(environmentSource,'DeepwoodEnvironmentQA'))()
-  local rules={text={portal='Return to Eryn',use='Travel to checkpoint'},report=function(s)return s.ready and {id='DW-07:restoration',zone='DW-03'}or nil end}
+  local rules={list=function()return {}end,text={portal='Return to Eryn',use='Travel to checkpoint'},report=function(s)return s.ready and {id='DW-07:restoration',zone='DW-03'}or nil end}
   local content={byId={['DW-07']={goals={{id='separate',activity={steps={{position={0,0,0}}}}}}}}}
   portalSource=portalSource:gsub('local Rules=require%(Shared.CheckpointTravel%)','local Rules=fixtureRules')
   portalSource=portalSource:gsub('local Content=require%(Shared.CampaignContent%)','local Content=fixtureContent')

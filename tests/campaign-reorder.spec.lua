@@ -97,7 +97,7 @@ check(Log.main(gaps).id=='HG-01','continue skips already cleared regions after g
 local oldPartial=P.copy(snapshots[8]);oldPartial=assert(P.apply(oldPartial,'FV-01','pathfinder',nil,'confirmed'))
 local migratedPartial=assert(P.upgrade(oldPartial));migratedPartial.expeditionMission='FV-01'
 check(Log.tracked(migratedPartial).chapter.id=='FV-01','old admitted mission has a visible objective')
-check(Travel.list(migratedPartial)['DW-01']==nil,'checkpoint list follows active region')
+check(Travel.list(migratedPartial)['DW-01']~=nil,'saved checkpoint survives an epic change')
 -- Upgrade through real account UpdateAsync, including a lost write response.
 local profile=assert(R.addHero(R.new(456),'hero','knight',Items));profile.heroes.hero.level=80;profile.heroes.hero.progression=G.new(80)
 profile.heroes.hero.deepwood=P.copy(oldPartial)

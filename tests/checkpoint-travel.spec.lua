@@ -21,15 +21,15 @@ for _,c in ipairs(Content.mainChapters)do
     check(T.allowed(s,id)~=nil,'every shown destination is authorized')
     if target.id~='DW-07:restoration'then
      check(s.clears[target.chapterId],'checkpoint requires the entire saved story')
-     check((Content.byId[target.chapterId].epic or 1)==(Content.mainChapters[math.min(35,s.main+1)].epic or 1),'travel stays in the current loaded epic')
+     check(T.completed(s,target.zone),'every destination zone has a saved clear')
     end
    end
   end
  end end
 end
-local s=A.projection(readySave.heroes.hero);local target=T.preferred(s,'DW-07')
+local s=A.projection(readySave.heroes.hero);local target=T.report(s)
 check(target.id=='DW-07:restoration'and target.zone=='DW-03','altar map offers Eryn report shortcut')
-check(T.preferred(s,'DW-03').id==target.id,'camp selection lands at Eryn, not a distant spawn')
+check(T.preferred(s,'DW-07')==nil and T.preferred(s,'DW-03').id=='DW-03','region selection returns only that cleared region checkpoint')
 local report=Content.byId['DW-07'].goals[#Content.byId['DW-07'].goals]
 check(target.position[1]==report.position[1]and target.position[2]==report.position[2]and target.position[3]==report.position[3],'report uses authoritative NPC objective coordinates')
 local old={revision=readySave.revision,gold=readySave.wallet.gold,main=s.main}
@@ -51,4 +51,49 @@ loaded=false;check(not travel(1,target.id),'missing destination cannot move into
 heroId='other';check(not travel(1,target.id),'hero switch cannot use stale entitlement');heroId='hero'
 s=A.projection(p.heroes.hero);check(not T.allowed(s,target.id),'finished report/epic removes the old report shortcut')
 check(R.validate(readySave,C),'travel source checkpoint remains a valid durable profile')
+-- Durable clears survive an earlier replay and are isolated by difficulty.
+local hero=p.heroes.hero
+local replay=R.copy(hero)
+replay.expeditions.active.journal.clears={}
+replay.expeditions.active.journal.clears['GW-01']=true
+replay.expeditions.modeJournals.Easy.clears['GW-01']=nil
+local view=A.projection(replay)
+check(T.allowed(view,'HG-07') and not T.allowed(view,'GW-01'),'real later clear survives replay, synthetic prefix cannot grant travel')
+replay.expeditions.active.difficultyId='Hard'
+check(not T.allowed(A.projection(replay),'HG-07'),'other difficulty cannot borrow Easy clear')
+local saved={main=0,flags={},clears={},checkpointClears={}}
+for _,chapter in ipairs(Content.chapters)do saved.checkpointClears[chapter.id]=true end
+for zone in pairs(Content.zones)do
+ local target=T.region(saved,zone)
+ check(target and target.id==zone,'each of the 44 completed story regions maps to its own spawn')
+ saved.checkpointClears[target.chapterId]=nil
+ check(not T.allowed(saved,zone),'incomplete owning story blocks '..zone)
+ saved.checkpointClears[target.chapterId]=true
+end
+-- Never move a different life/run, reward undecided work or accept a duplicate during a yield.
+local state={main=0,clears={},checkpointClears={['HG-07']=true},expeditionRunId='one'}
+local life={heroId='a',epoch=1,characterGeneration=1}
+local during,requests,relocations,hasWorld=nil,0,0,false
+local teleport
+teleport=S.create({rules=T,context=function()return life end,active=function()return {heroId='a'}end,
+ ready=function()return true end,pending=function()return false end,inEncounter=function()return false end,
+ state=function()return state end,loaded=function()return hasWorld end,
+ prepare=function()
+  requests=requests+1
+  check(not teleport(1,'HG-07'),'duplicate rejected while loading')
+  hasWorld=true
+  if during then during()end
+ end,
+ destination=function(target)return target.zone end,relocate=function()relocations=relocations+1;return true end})
+check(not teleport(1,'HG-06') and requests==0,'locked request cannot load terrain')
+during=function()state.expeditionRunId='two'end
+check(not teleport(1,'HG-07') and relocations==0,'run changed during preparation')
+hasWorld=false;during=function()life={heroId='a',epoch=1,characterGeneration=2}end
+check(not teleport(1,'HG-07') and relocations==0,'respawn while loading')
+hasWorld=false;during=function()state.checkpointClears={}end
+check(not teleport(1,'HG-07') and relocations==0,'entitlement rechecked after loading')
+hasWorld=false;state.checkpointClears['HG-07']=true;during=function()error('simulated world failure')end
+check(not teleport(1,'HG-07') and relocations==0,'failed load does not relocate')
+hasWorld=false;during=nil
+check(teleport(1,'HG-07') and relocations==1,'successful retry uses completed region')
 print('Checkpoint travel: '..checks..' checks passed')

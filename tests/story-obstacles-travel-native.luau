@@ -76,7 +76,8 @@ for _,c in ipairs(C.mainChapters)do
   s=finish(s,c,g)
   if g.expansion then
    local id='exit:'..c.id..':'..g.id
-   local target=assert(CP.allowed(s,id),'completed incident has an onward route')
+   local target=assert(E.list(s)[id],'authored onward route')
+   check(not CP.allowed(s,id),'incomplete destination rejects onward travel')
    local nextGoal
    for _,candidate in ipairs(c.goals)do if P.required(s,candidate)and P.available(s,c,candidate)then nextGoal=candidate;break end end
    check(nextGoal and target.goalId==nextGoal.id,'target is the next required saved objective')

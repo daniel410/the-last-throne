@@ -2,6 +2,7 @@
 local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local Access=require(Shared.CampaignAccess)
+local Checkpoints=require(Shared.CheckpointTravel)
 local Progress=require(Shared.DeepwoodProgress)
 local Modes=require(Shared.CampaignModeProgress)
 local T=require(script.Parent.TDInventoryTheme)
@@ -44,7 +45,7 @@ function M.create(parent)
   elseif not Access.allowed(j,id)then
    local previous=Content.mainChapters[z.requiresMain]
    status=previous and 'LOCKED · Complete '..previous.title..' to unlock.'or 'LOCKED'
-  elseif j.clears and j.clears[id]then status='COMPLETED · Enter an adventure to revisit.'
+  elseif Checkpoints.completed(j,id)then status='COMPLETED · Enter an adventure to revisit.'
   else status='OPEN · Enter an adventure to explore.'end
   detail.Text=z.name..' / '..Survey.zones[id].landmark..' · '..status
 

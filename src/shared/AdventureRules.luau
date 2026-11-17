@@ -112,6 +112,11 @@ function A.projection(hero)
   end
  end
  local nextChapter=A.continuation(a)
+ -- A replay can have synthetic clears and a party helper can be ahead of this run.
+ local journals=hero.expeditions.modeJournals
+ local saved=journals and journals[a.difficultyId]
+ view.checkpointClears=P.copy((saved or Modes.journal(hero,a.difficultyId)).clears)
+ view.expeditionRunId=a.runId
  view.expeditionMission=nextChapter and nextChapter.id or currentMission(a).id
  view.expeditionFirstClear=not Modes.claimed(hero,view.expeditionMission,a.difficultyId)
  view.expeditionBalanceVersion=a.balanceVersion or 1

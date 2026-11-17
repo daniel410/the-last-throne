@@ -106,9 +106,10 @@ for tick=1,800 do
  if tick%20==0 then task.wait()end
 end
 check(journal.flags[key],'Finn reaches every authored rescue marker')
-check(CP.allowed(journal,key)and CP.allowed(journal,'exit:'..key),'completed escort opens only its saved checkpoints')
+check(not CP.allowed(journal,key)and not CP.allowed(journal,'exit:'..key),'partial escort region is not a travel destination')
 require(World.StoryCheckpointPortal).ensure(world,journal,function()end)
-check(world.folder.ExpansionReturnPoints:FindFirstChild('exit:'..key)~=nil,'actual local return point constructed')
+local points=world.folder:FindFirstChild('ExpansionReturnPoints')
+check(not points or not points:FindFirstChild('exit:'..key),'no unusable return portal for partial region')
 engine.remove(fake);root:Destroy();enemies:Destroy()
 -- Personal before/after visuals and late stream-in use confirmed journal flags.
 local presentation=require(Client.CampaignExpansionPresentation)

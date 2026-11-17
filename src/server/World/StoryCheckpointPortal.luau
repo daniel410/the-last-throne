@@ -5,11 +5,12 @@ local Content=require(Shared.CampaignContent)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Portal={}
 function Portal.ensure(world,journal,onTravel)
-local expansion=require(Shared.CampaignExpansionCheckpoints).list(journal)
- local shortcuts=world.folder:FindFirstChild('ExpansionReturnPoints')or Instance.new('Folder');shortcuts.Name='ExpansionReturnPoints';shortcuts.Parent=world.folder
- for id,row in pairs(expansion)do if row.exit and not shortcuts:FindFirstChild(id)then
+ local expansion=Rules.list(journal)
+ local shortcuts=world.folder:FindFirstChild('ExpansionReturnPoints')
+ for id,row in pairs(expansion)do if row.exit and not (shortcuts and shortcuts:FindFirstChild(id))then
   local chapter=Content.byId[id:match('^exit:([^:]+):')];local goal=chapter and require(Shared.DeepwoodProgress).goal(chapter,id:match(':([^:]+)$'))
   if goal and world.spawns[row.zone]then
+   if not shortcuts then shortcuts=Instance.new('Folder');shortcuts.Name='ExpansionReturnPoints';shortcuts.Parent=world.folder end
    local model=Instance.new('Model');model.Name=id;model:SetAttribute('CheckpointTarget',id)
    local at=Vector3.new(table.unpack(goal.activity.steps[#goal.activity.steps].position))+Vector3.new(10,0,0)
    require(script.Parent.StoryProps).build(model,'RouteLantern',at,{theme='Deepwood'})

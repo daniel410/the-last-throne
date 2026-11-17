@@ -8,6 +8,7 @@ local Theme=require(script.Parent.TDInventoryTheme)
 local Art=require(script.Parent.DeepwoodCartography)
 local Survey=require(Shared.CampaignCartography)
 local Bounds=require(Shared.CampaignBounds)
+local Checkpoints=require(Shared.CheckpointTravel)
 local Areas=require(Shared.CampaignAreas)
 local Plate=require(script.Parent.AtlasPlate)
 local Canvas={}
@@ -167,10 +168,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
     row.name.TextColor3=allowed and Theme.color.text or Theme.color.muted
     row.status.Text=not allowed and Text.Locked or count==0 and Text.Available or string.format(Text.Explored,math.floor(count/144*100))
     row.status.TextColor3=allowed and Theme.color.green or Theme.color.muted
-    local z=Content.zones[id];local sp=Survey.zones[id].spawn
-    local cx=math.clamp(math.floor((sp[1]-z.center[1]+z.size[1]/2)/z.size[1]*12),0,11)
-    local cz=math.clamp(math.floor((sp[2]-z.center[3]+z.size[2]/2)/z.size[2]*12),0,11)
-    row.checkpoint.Visible=Progress.hasCell(cells,cz*12+cx+1)
+    row.checkpoint.Visible=Checkpoints.completed(journal,id)
     row.name:SetAttribute('ExploredPercent',math.floor(count/144*100));row.name:SetAttribute('Accessible',allowed==true)
    end
    for _,exit in ipairs(exits)do

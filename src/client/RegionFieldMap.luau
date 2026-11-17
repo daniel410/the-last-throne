@@ -3,6 +3,7 @@ local Shared = game.ReplicatedStorage.Shared
 local Content = require(Shared.CampaignContent)
 local Survey = require(Shared.CampaignCartography)
 local Access = require(Shared.CampaignAccess)
+local Checkpoints = require(Shared.CheckpointTravel)
 local Bounds = require(Shared.CampaignBounds)
 local Areas = require(Shared.CampaignAreas)
 local Progress = require(Shared.DeepwoodProgress)
@@ -54,7 +55,7 @@ local function locations(id, journal)
  return places
 end
 
-function Field.create(parent, onBack, mapState)
+function Field.create(parent, onBack, mapState, onTravel)
  local panel = Theme.frame(parent, "RegionFieldMap", UDim2.new(), UDim2.fromScale(1, 1))
  panel.ZIndex = 35
  panel.Active = true
@@ -112,6 +113,16 @@ function Field.create(parent, onBack, mapState)
  local rows = {}
  local chosen
  local open
+
+ local travel
+ if onTravel then
+  travel = Theme.button(list,"TravelCheckpoint","",UDim2.new(),UDim2.new(1,-5,0,44),true)
+  travel.LayoutOrder = 0
+  travel.Caption.TextSize = 11
+  travel.Activated:Connect(function()
+   if panel.Visible and Checkpoints.completed(journal,id) then onTravel(id) end
+  end)
+ end
 
  local function resize()
   if not atlas then return end
@@ -227,8 +238,13 @@ function Field.create(parent, onBack, mapState)
   local z = Content.zones[id]
   local row = atlas.rows[id]
   local percent = row.name:GetAttribute("ExploredPercent") or 0
+  local completed = Checkpoints.completed(journal,id)
+  if travel then
+   Theme.enabled(travel,completed)
+   travel.Caption.Text = completed and Checkpoints.text.checkpoint or Checkpoints.text.locked
+  end
   status.Text = unlock(journal, id) or string.format(Text.FieldSub,
-   journal.clears and journal.clears[id] and Text.Complete or Text.AreaOpen, string.format(Text.AreaExplore, percent))
+   completed and Text.Complete or Text.AreaOpen, string.format(Text.AreaExplore, percent))
   title.Text = z.name
   kicker.Text = string.format(Text.FieldTitle, Content.epics[z.epic].region:upper())
  end

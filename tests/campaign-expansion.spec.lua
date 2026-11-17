@@ -81,8 +81,8 @@ for _,c in ipairs(C.mainChapters)do
   end)
   if g.expansion then
    local journal=A.projection(p.heroes.hero);local checkpoint=CP.allowed(journal,c.id..':'..g.id)
-   check(checkpoint and checkpoint.position,'saved incident unlocks local checkpoint')
-   check(CP.allowed(journal,'exit:'..c.id..':'..g.id),'saved incident unlocks main-route return')
+   check(not checkpoint,'partial region blocks incident checkpoint')
+   check(not CP.allowed(journal,'exit:'..c.id..':'..g.id),'partial region blocks onward checkpoint')
   end
  end end
  check(p.heroes.hero.deepwood.clears[c.id],'expanded story completes '..c.id)

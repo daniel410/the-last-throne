@@ -1,40 +1,47 @@
--- Saved objective flags unlock travel; client coordinates never grant access.
+-- A saved clear belongs to one hero and difficulty. The main story owns a shared zone.
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local Content,Progress=load('CampaignContent'),load('DeepwoodProgress')
-local T={text={button='TRAVEL · %s',locked='COMPLETE THIS STORY TO UNLOCK TRAVEL',
- ready='Return portal ready. Use the portal or open MAP [M] to travel to Eryn.',
- arrived='Checkpoint reached: %s.',unavailable='Checkpoint travel is unavailable. Finish the current encounter and wait for progress to save.',
+local Expansion=load('CampaignExpansionCheckpoints')
+local Areas=load('CampaignAreas')
+local T={text={button='TRAVEL · %s',checkpoint='Travel to checkpoint',locked='Complete this region’s story to unlock travel.',
+ ready='Return portal ready. Use the portal to travel to Eryn.',
+ arrived='Checkpoint reached: %s.',unavailable='Checkpoint unavailable. Check story completion, combat, and save status.',
  portal='Return to Eryn',use='Travel to checkpoint'}}
+local owners={}
+for _,chapter in ipairs(Content.chapters)do
+ if not chapter.side or not owners[chapter.zone]then owners[chapter.zone]=chapter end
+end
+function T.completed(s,zone)
+ local owner=owners[zone]
+ local clears=s and (s.checkpointClears or s.clears)
+ return owner~=nil and clears~=nil and clears[owner.id]==true
+end
+function T.region(s,zone)
+ if not T.completed(s,zone)then return nil end
+ return {id=zone,zone=zone,chapterId=owners[zone].id,title=Content.zones[zone].name:upper()}
+end
 function T.report(s)
  local c=Content.byId['DW-07'];local g=Progress.goal(c,'restoration')
- if s and s.flags and s.flags['DW-07:separate'] and Progress.available(s,c,g)then
+ if T.completed(s,'DW-03') and s.flags and s.flags['DW-07:separate'] and Progress.available(s,c,g)then
   return {id='DW-07:restoration',zone='DW-03',chapterId=c.id,title='ERYN',position=g.position}
  end
 end
 function T.list(s)
  local result={};if not s then return result end
- local current=s.expeditionMission and Content.byId[s.expeditionMission]
- local epic=(current or Content.mainChapters[math.min(Content.mainCount,s.main+1)]).epic or 1
- for _,c in ipairs(Content.mainChapters)do
-  if (c.epic or 1)==epic and s.clears[c.id]then
-   result[c.zone]={id=c.zone,zone=c.zone,chapterId=c.id,title=c.title:upper()}
-  end
+ for zone in pairs(owners)do result[zone]=T.region(s,zone)end
+ for id,row in pairs(Expansion.list(s))do
+  if result[row.zone] and Areas.containsZone(Content.zones[row.zone],row.position[1],row.position[3])then result[id]=row end
  end
- for id,row in pairs(load('CampaignExpansionCheckpoints').list(s))do result[id]=row end
  local report=T.report(s);if report then result[report.id]=report end
  return result
 end
 function T.preferred(s,selected)
- local all=T.list(s);local report=all['DW-07:restoration']
- -- The report shortcut remains visible while the map opens on the uncleared altar.
- if report and (not selected or selected=='DW-03'or selected=='DW-07')then return report end
- if selected then
-  if all[selected]then return all[selected]end
-  local c=Content.byId[selected];if c then for i=#(c.expansionGoals or {}),1,-1 do local row=all[c.id..':'..c.expansionGoals[i].id];if row then return row end end end
-  return nil
- end
- local current=Content.mainChapters[s and s.main or 0]
- return current and all[current.zone]
+ local last=s and Content.mainChapters[s.main]
+ return T.region(s,selected or (last and last.zone))
 end
-function T.allowed(s,id)return type(id)=='string'and T.list(s)[id]or nil end
+function T.allowed(s,id)
+ if type(id)~='string' then return nil end
+ if owners[id]then return T.region(s,id)end
+ return T.list(s)[id]
+end
 return T

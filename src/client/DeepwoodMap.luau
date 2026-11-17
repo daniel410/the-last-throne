@@ -38,11 +38,17 @@ function Map.start(button)
  end
  local epic=1
  local atlas
+ local function requestTravel(id)
+  local current=State.current
+  if not panel.Visible or not current or current.training or not Checkpoints.region(current.journal,id)then return end
+  game:GetService('ReplicatedStorage'):WaitForChild('Remotes'):WaitForChild('DeepwoodRequest'):FireServer('TravelCheckpoint',id)
+  panel.Visible=false;player:SetAttribute('TLTMapOpen',false)
+ end
  local field=Field.create(panel,function(id)
   local destination=Content.zones[id].epic
   if epic~=destination then selectEpic(destination)end
   atlas.select(id)
- end,State)
+ end,State,requestTravel)
  local function inspect(id)field.open(id,State.current and State.current.journal)end
  local regionIndex=require(script.Parent.EpicAtlasIndex).create(panel,inspect)
  local function followEpic(index,destination)selectEpic(index);atlas.select(destination)end
@@ -82,9 +88,7 @@ function Map.start(button)
   travel.Caption.TextSize=11
  end
  travel.Activated:Connect(function()
-  if not travelTarget then return end
-  game:GetService('ReplicatedStorage'):WaitForChild('Remotes'):WaitForChild('DeepwoodRequest'):FireServer('TravelCheckpoint',travelTarget.id)
-  panel.Visible=false;player:SetAttribute('TLTMapOpen',false)
+  if travelTarget then requestTravel(travelTarget.id)end
  end)
  local zoom=1;local overview=false;local previousSize
  layout=function()

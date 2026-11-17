@@ -11,7 +11,8 @@ local report={checks=0,zones=0,footprints=0,roads=0}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local gui=Instance.new('ScreenGui');gui.Name='CartographyQA';gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=game.CoreGui
 local frame=Instance.new('Frame');frame.Size=UDim2.fromOffset(900,650);frame.Parent=gui
-local journal={main=35,version=2,explored={}}
+local journal={main=35,version=2,explored={},clears={}}
+for _,chapter in ipairs(C.chapters)do journal.clears[chapter.id]=true end
 for id,z in pairs(C.zones)do
  local s=Survey.zones[id];check(s~=nil,'survey exists '..id);report.zones+=1
  check(#s.rects>0 and #s.roads>0,'actual scenery and curved roads '..id)
@@ -43,7 +44,7 @@ for epic=1,5 do
    local at=atlas.project(anchor[1],anchor[2])
    check((Vector2.new(row.landmark.Position.X.Scale,row.landmark.Position.Y.Scale)-at).Magnitude<.00001,'landmark at actual TD hero mesh '..id)
   end
-  check(row.checkpoint.Visible,'discovered real spawn '..id)
+  check(row.checkpoint.Visible,'completed region spawn '..id)
   local p=atlas.project(table.unpack({Survey.zones[id].spawn[1],Survey.zones[id].spawn[2]}))
   check((Vector2.new(row.checkpoint.Position.X.Scale,row.checkpoint.Position.Y.Scale)-p).Magnitude<.00001,'checkpoint at actual spawn '..id)
   markerRoot.CFrame=CFrame.new(Vector3.new(table.unpack(C.zones[id].center)))*CFrame.Angles(0,math.pi/2,0)

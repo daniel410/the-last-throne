@@ -30,8 +30,8 @@ end
 local p=Progress.new()
 local state={heroId="a",expedition={runId="first"},journal=p}
 State.set(state,nil)
-local returned
-local field=createModule().create(host,function(id)returned=id end,State)
+local returned,travelled
+local field=createModule().create(host,function(id)returned=id end,State,function(id)travelled=id end)
 local panel=field.panel
 for id,z in pairs(C.zones) do
  field.open(id,p)
@@ -52,6 +52,16 @@ for id,z in pairs(C.zones) do
  end
 end
 field.open("DW-01",p);task.wait(.2)
+local travel=panel.FieldGuide.Locations.TravelCheckpoint
+check(not travel.Active and not travel.Selectable,"incomplete story has a disabled travel action")
+bindings[travel]()
+check(not travelled,"incomplete click emits no travel request")
+local cleared=Progress.copy(p);cleared.checkpointClears={["DW-01"]=true}
+field.update(cleared)
+check(travel.Active and travel.Selectable,"saved completion refreshes travel button")
+click(travel)
+check(travelled=="DW-01","detail requests the displayed checkpoint")
+field.update(p);check(not travel.Active,"new snapshot relocks travel")
 local chart=panel.Chart
 local list=panel.FieldGuide.Locations
 click(chart.Survey.SitePin2)
