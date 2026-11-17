@@ -1,0 +1,7 @@
+Artifact SHA-256 and byte count match original build record: PASS
+Source commit VERSION matches 0.111.28: PASS
+Packaged ReplicatedFirst/Shared PlaceRole and ExpeditionConfig match: PASS
+place-role: 10 checks PASS
+arrival-loading: 291 checks PASS (lifecycle simulation)
+Post-publish artifact SHA-256 unchanged: PASS
+Creator Dashboard Show published only: Lobby 100 / Battle 28
