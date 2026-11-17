@@ -1,4 +1,8 @@
 return {
+ IncompatibleCheckpoints='These checkpoints use different adventure rules. Choose another mission together.',
+ UsePartyMission='Play together: %s',
+ PartyReward='%s · %d XP · %d Gold',
+ StoryProgress='Story progress · First clear',ReplayProgress='Replay · Repeat rewards',
  Starting='ADVENTURE STARTING...',StartingDetail='Preparing your adventure. You will travel shortly.',
  LeaderBadge='LEADER · ',Title='ADVENTURES',Solo='START SOLO ADVENTURE',Launch='START PARTY ADVENTURE',Ready='READY',Unready='NOT READY',
  SoloParty='START SOLO ADVENTURE · LEAVE PARTY FIRST',

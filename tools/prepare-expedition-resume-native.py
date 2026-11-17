@@ -14,11 +14,13 @@ def add(path):
     for name in re.findall(r"load\(['\"]([^'\"]+)['\"]\)", source):
         add('src/shared/' + name + '.luau')
 
-suites = ['expedition-backend', 'expedition-resume-rules', 'expedition-departure', 'expedition-store', 'adventure-starting', 'expedition-request']
+suites = ['expedition-backend', 'expedition-resume-rules', 'expedition-departure', 'expedition-store', 'adventure-starting', 'expedition-request', 'party-campaign']
 for suite in suites:
     add('tests/' + suite + '.spec.lua')
 add('src/server/Network/ExpeditionService.luau')
 add('src/client/ExpeditionView.luau')
+add('src/server/Inventory/InventoryService.luau')
+add('src/shared/ExpeditionText.luau')
 code = 'local sources=' + '{\n' + ''.join(
     '[' + json.dumps(k) + ']=' + json.dumps(v, ensure_ascii=False) + ',\n'
     for k, v in sources.items()) + '}\n'

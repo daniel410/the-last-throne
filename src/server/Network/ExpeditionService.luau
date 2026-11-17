@@ -31,7 +31,7 @@ local function member(p,token)
  -- mode journal in Difficulty.allowed, not this historic roster checksum.
  local stored=o.inventory.expeditionHero and o.inventory.expeditionHero(p)
  if stored then s=stored.deepwood end
- return {userId=p.UserId,name=p.DisplayName,heroId=h.heroId,classId=h.classId,main=s and s.main or 0,level=g and g.level or 1,token=token,arrived=true}
+ return {routes=stored and Adventure.partyRoutes(stored),userId=p.UserId,name=p.DisplayName,heroId=h.heroId,classId=h.classId,main=s and s.main or 0,level=g and g.level or 1,token=token,arrived=true}
 end
 local function offer(p)
  local r,e=Backend.rejoin(currentStore,legacyStore,p.UserId,function(heroId)
@@ -53,16 +53,20 @@ local function publish(p,errorCode,open,requestId)
   if ok then for _,row in ipairs(rows) do local v=row.value;if Backend.isCurrent(v.id)and v.expiresAt>os.time() and v.count<v.target then table.insert(list,v) end end end
  end
  -- Reserved destination IDs, membership fences and admission tickets stay server-only.
+ local partyHeroes={}
  local clean=Presentation.party(party,function(m)
   local person=Players:GetPlayerByUserId(m.userId)
   local ctx=person and o.heroSession.getInventoryContext(person)
   local fence=person and parties[person]
   if not ctx or not ctx.atHub or ctx.heroId~=m.heroId or not fence or fence.id~=party.id or fence.token~=m.token or travel[person]then return nil end
-  return o.inventory.expeditionHero(person)
+  local hero=o.inventory.expeditionHero(person)
+  if hero then table.insert(partyHeroes,{name=m.name,hero=hero}) end
+  return hero
  end)
  local r,_,rejoinRun=offer(p)
  local choice=party and {missionId=party.missionId,difficultyId=party.difficultyId}or selection(p)
  local hero=o.inventory.expeditionHero(p);local missions=Presentation.missions(hero,clean and clean.target or 1)
+ if clean and clean.hostId==p.UserId then Presentation.partyMissions(missions,partyHeroes,clean.difficultyId) end
  local activeHero=o.heroSession.getActiveHero(p)
  local expedition=activeHero and o.inventory.expedition(p,activeHero.heroId)
  local difficultySelections={}
@@ -175,7 +179,7 @@ local function startRunLocked(p,party,runId)
    if not person or not known or known.id~=party.id or not current or current.heroId~=m.heroId or current.main~=m.main or current.level~=m.level or not fence or fence.id~=party.id or fence.token~=m.token or travel[person] then
     store.launchStatus(party.id,runId,'forming');return nil,'NotReady'
    end
-   table.insert(participants,person);members[uid]={heroId=m.heroId,ticket=guid()}
+   table.insert(participants,person);members[uid]={heroId=m.heroId,ticket=guid(),party=true}
   end
  else
   local m=member(p,'solo');if not m then return nil,'NotReady' end
@@ -194,7 +198,7 @@ local function startRunLocked(p,party,runId)
  end
  if studio then
   for _,person in ipairs(participants)do
-   local why=o.inventory.beginExpedition(person,members[tostring(person.UserId)].heroId,chosen.missionId,chosen.difficultyId,runId)
+   local why=o.inventory.beginExpedition(person,members[tostring(person.UserId)].heroId,chosen.missionId,chosen.difficultyId,runId,rulesVersion,party~=nil)
    if why then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
   end
   if party then store.launchStatus(party.id,runId,'forming') end
@@ -289,10 +293,10 @@ local function handle(p,c,...)
  busy[p]=true
  local success,e=pcall(function()
   local mine=parties[p]
-  if c.action=='Configure'then
+  if c.action=='Configure' or c.action=='PartyMode' then
    if not Content.byId[c.missionId]or not Difficulty.modes[c.difficultyId]then return 'InvalidMission'end
    if mine then
-    local _,why=store.configure(mine.id,p.UserId,c.missionId,c.difficultyId);if why then return why end
+    local _,why=store.configure(mine.id,p.UserId,c.missionId,c.difficultyId,c.action=='PartyMode');if why then return why end
    else selections[p]={missionId=c.missionId,difficultyId=c.difficultyId}end
   elseif c.action=='Create' or c.action=='Join' then
    if mine then return 'AlreadyParty' end
@@ -303,7 +307,7 @@ local function handle(p,c,...)
    local fence,why=store.claimMembership(p.UserId,id,token);if not fence then store.releaseMembership(p.UserId,id,token);return why end
    local party
    if c.action=='Create' then party,why=store.create(id,m,c.target,job,C.lobbyPlaceId)
-    if party then local chosen=selection(p);party,why=store.configure(id,p.UserId,chosen.missionId,chosen.difficultyId)end
+    if party then local chosen=selection(p);party,why=store.configure(id,p.UserId,chosen.missionId,chosen.difficultyId,true)end
    else
     party,why=store.readParty(id)
     if party and party.jobId~=job then m.arrived=false end
@@ -324,7 +328,7 @@ local function handle(p,c,...)
   elseif c.action=='Ready' then
    if not mine then return 'PartyRequired' end
    local m=member(p,mine.token);if not m then return 'NotReady' end
-   local value,why=store.touch(mine.id,m,c.ready==true);if not value then return why end
+   local value,why=store.touch(mine.id,m,c.ready==true,c.missionId,c.difficultyId);if not value then return why end
    advertise(mine.id)
   elseif c.action=='Launch' then
    if not mine then return 'PartyRequired' end
@@ -392,7 +396,7 @@ function Service.start(options)
       if not verified and runHealthy and Backend.isCurrent(battleRun.id)and store.departure(p.UserId,battleRun.id,m.ticket)then
        -- Only a server-staged departure may replace the old checkpoint. A rejoin
        -- can verify an existing run but cannot restart a superseded journal.
-       local why=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id,battleRun.rulesVersion)
+       local why=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id,battleRun.rulesVersion,m.party==true)
        verified=not why and Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
       end
       if verified and runHealthy then

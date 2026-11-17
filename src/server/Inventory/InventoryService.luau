@@ -716,21 +716,21 @@ function Service.expedition(player,heroId)
  local s=accounts[player];local h=s and s.profile and s.profile.heroes[heroId]
  return h and h.expeditions and Rules.copy(h.expeditions.active)or nil
 end
-function Service.beginExpedition(player,heroId,missionId,difficultyId,runId,rulesVersion)
+function Service.beginExpedition(player,heroId,missionId,difficultyId,runId,rulesVersion,party)
  local s=accounts[player];if not s or s.busy or s.closing then return 'Busy'end
  local pending=s.expeditionPending
  if pending and (pending.runId~=runId or pending.heroId~=heroId)then return 'Busy'end
  if not s.valid and not pending then return s.errorCode or 'Unavailable'end
- local cmd=pending or {heroId=heroId,missionId=missionId,difficultyId=difficultyId,runId=runId,revision=s.profile.revision,rulesVersion=rulesVersion or require(ReplicatedStorage.Shared.Difficulty).version}
+ local cmd=pending or {heroId=heroId,missionId=missionId,difficultyId=difficultyId,runId=runId,revision=s.profile.revision,party=party==true,rulesVersion=rulesVersion or require(ReplicatedStorage.Shared.Difficulty).version}
  s.expeditionPending=cmd;s.busy=true
  local p,e=store:transact(player.UserId,function(current)
-  return require(ReplicatedStorage.Shared.AdventureRules).begin(current,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId,cmd.revision,Rules,Catalog,cmd.rulesVersion)
+  return require(ReplicatedStorage.Shared.AdventureRules).begin(current,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId,cmd.revision,Rules,Catalog,cmd.rulesVersion,cmd.party)
  end)
  if p then s.profile,s.valid,s.errorCode,s.expeditionPending=p,true,nil,nil
  elseif e=='SaveUnknown'or e=='AccountBusy'then s.valid,s.errorCode=false,e
  else s.expeditionPending=nil end
  s.busy=false;publish(player,nil,e)
- if s.expeditionPending then task.delay(1,function()if accounts[player]==s and not s.closing then Service.beginExpedition(player,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId,cmd.rulesVersion)end end)end
+ if s.expeditionPending then task.delay(1,function()if accounts[player]==s and not s.closing then Service.beginExpedition(player,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId,cmd.rulesVersion,cmd.party)end end)end
  return e
 end
 -- Lobby guide uses the same account fence and existing story/run reward receipts.

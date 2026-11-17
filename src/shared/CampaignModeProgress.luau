@@ -159,6 +159,23 @@ function M.save(hero,active,chapterId)
  -- A replay journal contains a synthetic prefix for navigation. Admission and
  -- mode switches save its checkpoint only; events can merge their own chapter.
  if not active.replay or chapterId then e.modeJournals[mode]=M.merge(e.modeJournals[mode],active.journal,active.replay and chapterId or nil)end
- e.runsByMode[mode]=P.copy(active)
+ if not active.partyAssist then
+  e.runsByMode[mode]=P.copy(active)
+  return
+ end
+ -- A helper can reach their original chapter and defeat enemies before the next
+ -- objective save. Carry those receipts home even if they leave at that point.
+ local parked=e.runsByMode[mode]
+ if not parked then return end
+ local chapter=C.byId[parked.missionId]
+ if parked.completed and chapter and not chapter.side then chapter=C.mainChapters[parked.journal.main+1] end
+ if not chapter or chapter.id==active.missionId then return end
+ local prefix=chapter.id..':'
+ for key in pairs(active.kills) do
+  if key:sub(1,#prefix)==prefix then
+   local originalKey=parked.missionId==chapter.id and key:sub(#prefix+1) or key
+   parked.kills[originalKey]=true
+  end
+ end
 end
 return M

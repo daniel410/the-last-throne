@@ -1,6 +1,35 @@
 -- Adapter-driven, server-only matchmaking. Every roster/seat transition is one
 -- atomic key update. Membership indexes are fenced tokens, not a multi-key transaction.
+local Content=game and require(game.ReplicatedStorage.Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local Store={}
+local function syncMission(p)
+ if not p.difficultyId or p.status~='forming' then return p end
+ local routes={}
+ local earliest=Content.mainCount
+ for _,m in pairs(p.members) do
+  local route=m.routes and m.routes[p.difficultyId]
+  if not route then return p end
+  table.insert(routes,route)
+  earliest=math.min(earliest,route.next)
+ end
+ if #routes==0 then return p end
+ local chosen
+ for i=earliest,1,-1 do
+  local version=routes[1].versions[i]
+  local shared=version and version>0
+  for _,route in ipairs(routes) do
+   if route.versions[i]~=version then shared=false end
+  end
+  if shared then chosen=i;break end
+ end
+ p.recommendedMissionId=chosen and Content.mainChapters[chosen].id
+ local id=p.recommendedMissionId or Content.mainChapters[earliest].id
+ if p.autoMission and id~=p.missionId then
+  p.missionId=id
+  for _,m in pairs(p.members) do m.ready=false end
+ end
+ return p
+end
 local function copy(v) if type(v)~='table' then return v end;local n={};for k,x in pairs(v) do n[k]=copy(x) end;return n end
 local function size(t) local n=0;for _ in pairs(t) do n=n+1 end;return n end
 function Store.new(map,clock,config)
@@ -33,7 +62,7 @@ function Store.new(map,clock,config)
    local lowest;for uid,m in pairs(p.members) do if m.arrived and (not lowest or tonumber(uid)<lowest) then lowest=tonumber(uid) end end
    if lowest then p.hostId=lowest end
   end
-  return p
+  return syncMission(p)
  end
  function S.readParty(id) local p,e=read('party:'..id);return p and prune(p),e end
  function S.membership(uid) return read('member:'..uid) end
@@ -64,7 +93,7 @@ function Store.new(map,clock,config)
    if old then if old.token==member.token then return p end;return nil,'AlreadyParty' end
    if size(p.members)>=p.target then return nil,'PartyFull' end
    member.ready=false;member.expiresAt=clock()+(member.arrived and C.partyLease or C.claimSeconds)
-   p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease;return p
+   p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease;return syncMission(p)
   end)
  end
  function S.arrive(id,uid,token,job,member)
@@ -73,19 +102,20 @@ function Store.new(map,clock,config)
    local m=p.members[tostring(uid)]
    if not m or m.token~=token or m.expiresAt<=clock() or m.heroId~=member.heroId then return nil,'PartyChanged' end
    member.token=token;member.arrived=true;member.ready=false;member.expiresAt=clock()+C.partyLease
-   p.members[tostring(uid)]=member;p.expiresAt=clock()+C.partyLease;return p
+   p.members[tostring(uid)]=member;p.expiresAt=clock()+C.partyLease;return syncMission(p)
   end)
  end
- function S.touch(id,member,ready)
+ function S.touch(id,member,ready,missionId,mode)
   return update('party:'..id,C.partyLease,function(p)
    if not p then return nil,'PartyChanged' end;prune(p)
    local m=p.members[tostring(member.userId)]
    if not m or m.token~=member.token or not m.arrived then return nil,'PartyChanged' end
    if p.status~='forming' then return p end
+   if ready and missionId and (missionId~=p.missionId or mode~=p.difficultyId) then return nil,'PartyChanged' end
    local changed=m.heroId~=member.heroId or m.main~=member.main or m.level~=member.level
    if changed and p.missionId then for _,other in pairs(p.members)do other.ready=false end end
    member.arrived=true;member.ready=not changed and (ready==nil and m.ready or ready) or false
-   member.expiresAt=clock()+C.partyLease;p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease;return p
+   member.expiresAt=clock()+C.partyLease;p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease;return syncMission(p)
   end)
  end
  function S.remove(id,uid,token)
@@ -96,15 +126,16 @@ function Store.new(map,clock,config)
    if size(p.members)==0 then p.status='closed' end;p.expiresAt=clock()+C.partyLease;return p
   end)
  end
- function S.configure(id,leader,missionId,difficultyId)
+ function S.configure(id,leader,missionId,difficultyId,autoMission)
   return update('party:'..id,C.partyLease,function(p)
    if not p or p.hostId~=leader then return nil,'LeaderOnly'end
    if p.status~='forming'then return nil,'PartyChanged'end
+   p.autoMission=autoMission==true
    if p.missionId~=missionId or p.difficultyId~=difficultyId then
     p.missionId=missionId;p.difficultyId=difficultyId
     for _,m in pairs(p.members)do m.ready=false end
    end
-   p.expiresAt=clock()+C.partyLease;return p
+   p.expiresAt=clock()+C.partyLease;return syncMission(p)
   end)
  end
  function S.freeze(id,leader,runId)

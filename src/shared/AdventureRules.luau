@@ -24,7 +24,7 @@ function A.selection(hero,mode)
  local e=hero and hero.expeditions
  local a=e and e.active
  mode=mode or a and a.difficultyId or 'Easy'
- if a and a.difficultyId~=mode then a=e.runsByMode and e.runsByMode[mode]end
+ if a and (a.difficultyId~=mode or a.partyAssist) then a=e.runsByMode and e.runsByMode[mode]end
  local current=currentMission(a)
  local journal=Modes.journal(hero,mode)
  local frontier=Content.mainChapters[math.min(Content.mainCount,journal.main+1)]
@@ -80,6 +80,7 @@ function A.valid(hero)
  if a~=nil then
   if type(a)~='table'then return false end
   if a.modeProgressVersion~=nil and a.modeProgressVersion~=1 then return false end
+  if a.partyAssist~=nil and (a.partyAssist~=true or not a.replay)then return false end
   if a.replay~=nil and type(a.replay)~='boolean'then return false end
   if a.growthCycle~=nil and(not integer(a.growthCycle,1,1e9)or not GrowthBudget.enabled(a.balanceVersion))then return false end
   if GrowthBudget.enabled(a.balanceVersion)and a.growthCycle==nil then return false end
@@ -167,6 +168,29 @@ local function pinnedRun(hero,missionId,mode)
  local previous=currentMission(saved)
  if saved and previous and previous.id==missionId and not saved.journal.clears[missionId]then return saved end
 end
+-- Store only compact, server-derived chapter eligibility in the lobby roster.
+function A.partyRoutes(hero)
+ local routes={}
+ for _,mode in ipairs(D.order) do
+  local journal=Modes.journal(hero,mode)
+  local expedition=hero.expeditions
+  local saved=expedition and expedition.runsByMode and expedition.runsByMode[mode]
+  local active=expedition and expedition.active
+  if active and active.difficultyId==mode and not active.partyAssist then saved=active end
+  local checkpoint=currentMission(saved)
+  local versions={}
+  for i,chapter in ipairs(Content.mainChapters) do
+   local version=0
+   if D.allowed(hero,chapter.id,mode,journal) then
+    version=D.version
+    if checkpoint==chapter and not saved.journal.clears[chapter.id] then version=saved.balanceVersion or 1 end
+   end
+   versions[i]=version
+  end
+  routes[mode]={next=math.min(journal.main+1,Content.mainCount),versions=versions}
+ end
+ return routes
+end
 -- Match destination resume semantics without changing the source account.
 function A.departureVersion(hero,missionId,mode)
  local h=P.copy(hero)
@@ -175,7 +199,7 @@ function A.departureVersion(hero,missionId,mode)
  local saved=pinnedRun(h,missionId,mode)
  return saved and (saved.balanceVersion or 1)or D.version
 end
-function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
+function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version,party)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned'end
  local old=hero.expeditions and hero.expeditions.active
  if old and old.runId==runId then
@@ -206,6 +230,17 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  end end
  h.expeditions.active={version=1,modeProgressVersion=1,replay=resume and saved.replay==true or base.clears[missionId]==true,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills=kills,completedChapters={}}
  local active=h.expeditions.active
+ if party and base.clears[missionId] then
+  active.partyAssist=true
+  -- Keep receipts for the helper's unfinished chapter if the party reaches it.
+  if saved and previous and not saved.journal.clears[previous.id] and previous.id~=missionId then
+   for key,value in pairs(saved.kills) do
+    local prefix=previous.id..':'
+    if saved.missionId==previous.id and not key:find(':',1,true) then active.kills[prefix..key]=value
+    elseif key:sub(1,#prefix)==prefix then active.kills[key]=value end
+   end
+  end
+ end
  if GrowthBudget.enabled(version)then active.growthCycle=pinned and saved.growthCycle or GrowthBudget.cycle(h,mode)end
  Modes.save(h,active)
  p.revision=p.revision+1
@@ -267,6 +302,18 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
    F.grant(p,R,C,heroId,'equipment_cache_'..tier,caches,prefix..'-cache')
   end
   if GrowthBudget.enabled(a.balanceVersion)then GrowthBudget.record(h,c.id,a.difficultyId,a.growthCycle)end
+ end
+ if a.partyAssist and journal.clears[chapterId] then
+  local nextChapter=A.continuation(a)
+  local personal=Modes.journal(h,a.difficultyId)
+  if nextChapter and nextChapter.number==personal.main+1 then
+   a.journal=Modes.merge(a.journal,personal,nextChapter.id)
+  end
+ end
+ if a.partyAssist and firstClear and not c.side then
+  local parked=e.runsByMode[a.difficultyId]
+  local checkpoint=currentMission(parked)
+  if not checkpoint or not checkpoint.side then a.partyAssist=nil end
  end
  Modes.save(h,a,chapterId)
  if not R.validate(p,C)then return nil,'Incompatible'end

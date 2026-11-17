@@ -126,7 +126,7 @@ function V.create(parent,send)
    local info=modeMission and modeMission.modes[mode];local locked=not info or not info.allowed
    local required=info and info.level or D.entryLevels[mode]
    local caption=mode..(required>0 and ' · Lv'..required or '')..(locked and '\n'..Text.Locked or '')
-   local b=button(modeHost,'Mode'..mode,caption,{action='Configure',missionId=checkpoint and checkpoint.missionId or selected.missionId,difficultyId=mode},UDim2.new((i-1)/4,3,0,0),UDim2.new(.25,-6,1,0),false,canConfigure)
+   local b=button(modeHost,'Mode'..mode,caption,{action=party and 'PartyMode' or 'Configure',missionId=checkpoint and checkpoint.missionId or selected.missionId,difficultyId=mode},UDim2.new((i-1)/4,3,0,0),UDim2.new(.25,-6,1,0),false,canConfigure)
    b.Caption.TextSize=13;mark(b,mode==selected.difficultyId,locked)
   end
   for i,item in ipairs({{'Details',Text.MissionTab},{'Missions',Text.MissionsTab},{'Party',Text.PartyTab}})do
@@ -148,16 +148,25 @@ function V.create(parent,send)
    for _,m in ipairs(s.missions or {})do
     if m.region~=region then region=m.region;line('Region'..m.id,region or '',28,T.color.gold)end
     local a=m.modes[selected.difficultyId]
-    local b=action('Mission'..m.id,m.title..(a and a.completed and ' · '..Text.Completed or a and not a.allowed and ' · '..Text.Locked or ''),{action='Configure',missionId=m.id,difficultyId=selected.difficultyId},canConfigure)
+    local groupBlock=a and a.blockedMember and (' · '..a.blockedMember..' · '..reason({reason=a.partyReason,level=a.level,storyMain=a.storyMain,previous=a.previous},m.id)) or ''
+    local b=action('Mission'..m.id,m.title..groupBlock..(a and a.completed and ' · '..Text.Completed or a and not a.allowed and ' · '..Text.Locked or ''),{action='Configure',missionId=m.id,difficultyId=selected.difficultyId},canConfigure)
     mark(b,m.id==selected.missionId,not a or not a.allowed)
    end
   elseif tab=='Party'then
    if party then
+    if party.recommendedMissionId and party.recommendedMissionId~=selected.missionId and canConfigure then
+     local title=party.recommendedMissionId
+     for _,candidate in ipairs(s.missions or {})do
+      if candidate.id==party.recommendedMissionId then title=candidate.title;break end
+     end
+     action('PartyRecommendation',string.format(Text.UsePartyMission,title),{action='PartyMode',missionId=party.recommendedMissionId,difficultyId=selected.difficultyId})
+    end
     line('PartyTitle',string.format('PARTY · %d/%d',#party.members,party.target),28,T.color.gold)
     for _,m in ipairs(party.members)do
      local row=ordered(T.frame(scroll,'Member'..m.userId,UDim2.new(),UDim2.new(1,-10,0,66)));heroArt(row,m.classId)
      T.label(row,'Hero',(m.userId==party.hostId and Text.LeaderBadge or '')..m.name..' · '..string.format(Text.Hero,Text.Class[m.classId]or m.classId,m.level),UDim2.fromOffset(52,2),UDim2.new(1,-60,0,28),13)
      local why=not m.eligible and reason(m,selected.missionId)or not m.ready and Text.WaitingReady or Text.Eligible
+     if m.eligible then why=(m.firstClear and Text.StoryProgress or Text.ReplayProgress)..' · '..why end
      T.label(row,'Entry',why,UDim2.fromOffset(52,28),UDim2.new(1,-60,0,34),12,m.eligible and(m.ready and T.color.green or T.color.gold)or T.color.error)
     end
     action('Leave',Text.Leave,{action='Leave'})
@@ -173,6 +182,12 @@ function V.create(parent,send)
    T.icon(card,'maps',UDim2.fromOffset(8,5),UDim2.fromOffset(42,46))
    T.label(card,'Objective',string.format(Text.Objective,mission and mission.objective or ''),UDim2.fromOffset(60,4),UDim2.new(1,-70,1,-8),14)
    if access then
+    if party then
+     local label=access.firstClear and Text.StoryProgress or Text.ReplayProgress
+     local xp=access.firstClear and access.firstXP or access.repeatXP
+     local gold=access.firstClear and access.firstGold or access.repeatGold
+     line('PersonalRewardType',string.format(Text.PartyReward,label,access.xpCapped and 0 or xp,gold),30,T.color.gold)
+    end
     if blocked then line('Blocked',blocked,36,T.color.error)end
     local encounter=access.encounter
     if encounter then
@@ -199,8 +214,12 @@ function V.create(parent,send)
   if party then
    local me;for _,m in ipairs(party.members)do if m.userId==player.UserId then me=m end end
    local forming=party.status=='forming'
-   button(footer,'Ready',me and me.ready and Text.Unready or Text.Ready,{action='Ready',ready=not(me and me.ready)},UDim2.new(),UDim2.new(.42,-4,1,0),false,available and forming and me and(me.ready or me.eligible))
+   button(footer,'Ready',me and me.ready and Text.Unready or Text.Ready,{action='Ready',ready=not(me and me.ready),missionId=selected.missionId,difficultyId=selected.difficultyId},UDim2.new(),UDim2.new(.42,-4,1,0),false,available and forming and me and(me.ready or me.eligible))
    button(footer,'Launch',Text.Launch,{action='Launch'},UDim2.new(.42,4,0,0),UDim2.new(.58,-4,1,0),true,available and party.hostId==player.UserId and party.launchAllowed==true)
+   if party.rulesMismatch then info=info or Text.IncompatibleCheckpoints end
+   for _,m in ipairs(party.members) do
+    if not m.eligible then info=info or (m.name..' · '..reason(m,selected.missionId));break end
+   end
    info=info or(not party.launchAllowed and Text.PartyBlocked or Text.Eligible)
   else
    if s.rejoin then button(footer,'Rejoin',Text.Rejoin,{action='Rejoin'},UDim2.new(),UDim2.new(.3,-4,1,0),false,available)end

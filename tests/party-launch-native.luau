@@ -8,7 +8,7 @@ local Presentation=require(RS.Shared.ExpeditionPresentation)
 local report={kind='PARTY_LAUNCH_NATIVE',checks=0,cases={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 if not RS:FindFirstChild('Remotes')then local f=Instance.new('Folder');f.Name='Remotes';f.Parent=RS end
-local function scenario(size,mixed)
+local function scenario(size,mixed,advancedHost)
  local original=SSS.Server.Network.ExpeditionService;local module=original:Clone();module.Name='PartyLaunchQA'
  local source=module.Source
  source="local task={spawn=function()end,delay=function()end}\n"..source
@@ -34,6 +34,22 @@ local function scenario(size,mixed)
   actors[i]=p;profiles[i]=assert(R.addHero(R.new(i),'hero','knight',Items))
   if mixed then profiles[i]=assert(A.begin(profiles[i],'hero','DW-01','Easy','old'..i,profiles[i].revision,R,Items,i==size and 19 or 17))end
  end
+ if advancedHost then
+  local c=require(RS.Shared.CampaignContent).byId['DW-01']
+  local progress=require(RS.Shared.DeepwoodProgress)
+  local p=profiles[1]
+  p.heroes.hero.level=10;p.heroes.hero.progression=require(RS.Shared.HeroProgression).new(10)
+  p=assert(A.begin(p,'hero',c.id,'Easy','original',p.revision,R,Items))
+  for _,g in ipairs(c.goals) do
+   if progress.required(A.projection(p.heroes.hero),g) then
+    for _,step in ipairs(g.activity and g.activity.steps or {false})do
+     local choice=step and step.choices and (step.solution or step.choices[1].id) or g.choice and 'shared' or nil
+     p=assert(A.event(p,'hero',c.id,g.id,choice,step and step.id or nil,R,Items,'original'))
+    end
+   end
+  end
+  profiles[1]=p
+ end
  service.qaActors(actors)
  local inv={ready=function()return true end,storyState=function(p)return profiles[p.UserId].heroes.hero.deepwood end,
   growth=function(p)return {level=profiles[p.UserId].heroes.hero.level}end,
@@ -46,15 +62,20 @@ local function scenario(size,mixed)
  local heroes={getActiveHero=function()return {heroId='hero',classId='knight'}end,getInventoryContext=function()return {heroId='hero',atHub=true}end,refresh=function()end}
  service.start({role='Lobby',inventory=inv,heroSession=heroes})
  service.qaCommand(actors[1],{action='Create',target=size});local party=assert(service.qaParty(actors[1]))
+ if advancedHost then check(party.missionId=='DW-02','advanced leader starts at own frontier')end
  for i=2,size do service.qaCommand(actors[i],{action='Join',id=party.id});check(not actors[i].notice,'member joins selected party')end
  local function view()return Presentation.party(service.qaParty(actors[1]),function(m)return profiles[m.userId].heroes.hero end)end
+ if advancedHost then
+  local entry=view()
+  check(entry.missionId=='DW-01' and not entry.members[1].firstClear and entry.members[2].firstClear,'join automatically selects shared story and individual rewards')
+ end
  check(#view().members==size,'all members present in authoritative projection')
  for i=1,size-1 do service.qaCommand(actors[i],{action='Ready',ready=true})end
  check(not view().launchAllowed,'one unready member blocks launch')
  service.qaCommand(actors[1],{action='Launch'})
  check(actors[1].notice=='NotReady'and #service.qaCalls()==0 and next(prepared)==nil,'server rejects unready party before saving or travel')
  service.qaCommand(actors[size],{action='Ready',ready=true})
- check(view().launchAllowed,'whole ready eligible party can press Launch')
+ check(view().launchAllowed==not mixed,'eligible party can launch only with compatible checkpoints')
  service.qaCommand(actors[2],{action='Launch'})
  check(actors[2].notice=='LeaderOnly'and #service.qaCalls()==0,'non-leader cannot launch')
  service.qaLive();service.qaCommand(actors[1],{action='Launch'})
@@ -76,4 +97,5 @@ local function scenario(size,mixed)
 end
 for size=2,4 do scenario(size,false)end
 scenario(3,true)
+scenario(3,false,true)
 print('PARTY_LAUNCH_NATIVE '..game.HttpService:JSONEncode(report))

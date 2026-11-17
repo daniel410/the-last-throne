@@ -134,11 +134,11 @@ function D.requiredMain(c,legacy)
  end
  return main
 end
-function D.allowed(hero,id,mode)
+function D.allowed(hero,id,mode,journal)
  local c,m=Content.byId[id],D.modes[mode]
  if not hero or not c or not m then return false,'InvalidMission' end
  if hero.level<D.requiredLevel(c,mode)then return false,'DifficultyLevel' end
- local s=ModeProgress.journal(hero,mode)
+ local s=journal or ModeProgress.journal(hero,mode)
  if not Content.accessible(s,D.requiredMain(c),D.requiredMain(c,true))then return false,'StoryLocked'end
  if m.previous then
   local clears=hero.expeditions and hero.expeditions.clears or {}
