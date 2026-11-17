@@ -33,6 +33,7 @@
 - 난이도별 캠페인: 0.110.7에서 로비 퀘스트·지도는 활성 난이도의 실제 진도로 표시하고, 숨긴 로비 갱신이 필드의 미완료 장면을 공통 완료 모습으로 덮지 않도록 수정했다. [고정 빌드·9,319개 엔진 검사·미게시/일반 입력 수용 후속](../evidence/campaign-mode-consumer-fix-20261115/README.md).
 
 - 몬스터 동작은 50종 146개 공격의 [기본 동작과 추격 보행](../evidence/monster-actions-20261116/README.md)을 사용한다. [무장 보스의 무기 손과 관절](../evidence/monster-weapon-hands-20261116/README.md)에 이어, 0.111.28에서 Veyr가 오른손 대검을 든 채 대기하고 오른쪽 위에서 몸 왼쪽까지 벤다. [같은 속도의 전후 영상·검끝과 손의 실측](../evidence/veyr-sword-swing-20261116/README.md).
+- 몬스터 본체 소실: Sovereign의 누락 연결을 보완한0.111.33에서50종·분열체153모델의 연결/중력/이동/공격 재생23,759검사와 자산218개 Studio 로딩을 통과했다. 추가 분리 결함은 발견하지 않았으며 게시 클라이언트·기기 표시는 별도 수용이다. [전수 범위·증거·미검증](../evidence/all-monster-visibility-20261117/README.md).
 - 몬스터 전투: 0.110.11에서 Hard/Insane/Hell 일반·정예·보스 공격력을25%/35%/50% 상향하고, 시선 회전이 추적 이동을 끊던 결함을 수정했다. 50종 개별 공략·23보스3단계·공격권은 유지한다. [현행 사양](monster-combat-design-2026-11-15.md)·[변경 전후 실제 R15·고정 빌드 엔진 검증/미게시·다인·실기기 수용 후속](../evidence/advanced-monster-combat-20261115/README.md).
 
 - GW-01 조사 흔적: 0.110.8에서 정찰대 발자국을 밝은 압착 토양으로 표현해 밤에 화물 바퀴와 구분했다. [밤 조명/게임 범위 카메라 비교·11,213검사·두 동선 회귀·남은 실제 클라이언트/기기 수용](../evidence/gw01-night-readability-20261115/README.md). [앞선 둥근 형태/렌더 실패 수정](../evidence/gw-rounded-traces-20261115/README.md). [0.110.9 로컬 Play 보행·조사·회피/줌 검증 및 지역명 수정, 실제 마우스 회전 미검증](../evidence/gw01-play-camera-20261115/README.md).
