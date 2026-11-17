@@ -16,6 +16,41 @@ for _,c in ipairs(C.chapters)do
  end end
 end
 local gui=Instance.new('ScreenGui');gui.Name='ReviewedStoryCardsQA';gui.Parent=game.CoreGui
+local journal=require(Client.DeepwoodJournal)
+for _,chapter in ipairs(C.mainChapters)do
+ local saved=P.new();saved.main=chapter.number-1;saved.expeditionMission=chapter.id
+ for _,goal in ipairs(chapter.goals)do
+  if goal.approach then
+   local hint=journal.guidance({journal=saved},{chapter=chapter,goal=goal})
+   check(hint and hint.note==goal.approach and hint.objective==goal.title,'pre-interaction HUD explains the contact '..chapter.id..':'..goal.id)
+   check(hint.position==Vector3.new(table.unpack(goal.position)),'waypoint points at the contact')
+   local bounds=game.TextService:GetTextSize(hint.note,13,Enum.Font.GothamBold,Vector2.new(224,1000))
+   check(bounds.Y<=34,'approach fits the tracker at its authored width')
+  end
+  saved.flags[chapter.id..':'..goal.id]=true
+ end
+end
+local host=Instance.new('Frame');host.Parent=gui
+local expedition=require(Client.ExpeditionView).create(host,function()error('reading a brief cannot launch a mission')end)
+expedition.panel.Visible=true
+local c=C.byId['GW-02']
+local mission={id=c.id,title=c.quest.title,objective=c.goals[1].title,region='Gloamwood',modes={Easy={allowed=true}}}
+local selection={selection={missionId=c.id,difficultyId='Easy'},missions={mission},role='Lobby'}
+local lobby=require(Client.LobbyQuestJournal).create(host)
+local saved=P.new();saved.main=c.number-1
+local snapshot={heroId='h',heroes={h={expeditions={modeJournals={Easy=saved}}}}}
+for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,510)})do
+ host.Size=UDim2.fromOffset(size.X,size.Y);task.wait()
+ expedition.render(selection);lobby.show(snapshot);lobby.selectEpic(2);task.wait()
+ local brief=expedition.panel.PartyList.StoryBrief
+ check(brief.Text==c.quest.brief and brief.TextFits,'departure brief fits at '..tostring(size))
+ local row=lobby.root.Quests['Quest_GW-02']
+ check(row.Hint.Text==c.quest.brief and row.Hint.TextFits,'lobby journal includes the complete search directions')
+ check(row.Reward.AbsolutePosition.Y>=row.Hint.AbsolutePosition.Y+row.Hint.AbsoluteSize.Y,'directions end before rewards')
+end
+mission.modes.Easy.allowed=false;expedition.render(selection)
+check(not expedition.panel.PartyList:FindFirstChild('StoryBrief'),'locked mission hides the story brief')
+host:Destroy()
 local view=require(Client.StoryCompletionView).create(gui,function()error('reading a summary cannot grant progress')end)
 for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,510)})do
  for _,index in ipairs({7,14,21,28,35})do

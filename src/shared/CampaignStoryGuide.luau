@@ -32,6 +32,7 @@ local records={
   {keys={'DW-02:exp_1'},text='You kept the medicine dry. Selene used it to help the injured traveler speak about the missing driver.'}},
   conversation={'Selene: A rescued traveler is more than a name on a list. Someone is waiting for them to come home.','Selene: I will keep a place ready while you look for the others.'}},
  {id='finn',kind='people',epic=2,title='Finn · One light for a friend',stages={
+  {keys={'GW-01:maeve'},text="Finn is Maeve's lantern scout. When Tali was caught, he stayed with her. Maeve told you to look for three gold bars on the lanterns by the broken cart."},
   {keys={'GW-02:exp_1'},text='Finn was frightened of the webs, but Tali needed a light. He held his three-bar lantern where she could see it.'},
   {keys={'GW-06:rear_guard'},text='Finn led the scouts out. You held the rearguard so every friend could leave safely.'},
   {keys={'HG-04:exp_2'},text='The same three-bar signal guided your allies through Brann\'s gate. Finn and Tali kept their promise.'}}},

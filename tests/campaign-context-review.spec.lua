@@ -10,7 +10,7 @@ local C=dofile('src/shared/CampaignContent.luau')
 local P=dofile('src/shared/DeepwoodProgress.luau')
 local Guide=dofile('src/shared/CampaignStoryGuide.luau')
 local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
-local prose={title=true,text=true,brief=true,outcome=true,clue=true,promise=true}
+local prose={approach=true,title=true,text=true,brief=true,outcome=true,clue=true,promise=true}
 local function same(a,b)
  if type(a)~=type(b)then return false end
  if type(a)~='table'then return a==b end
@@ -34,6 +34,15 @@ for _,c in ipairs(C.chapters)do
 end
 check(not C.epics[4].promise:find('Veyr',1,true),'the regional summary does not reveal the villain before the evidence')
 local function goal(id,key)for _,g in ipairs(C.byId[id].goals)do if g.id==key then return g end end end
+local referral=goal('GW-01','maeve').activity.steps[1].text
+for _,clue in ipairs({'lantern scout','Tali','broken cart','three gold bars'})do
+ check(referral:find(clue,1,true),'Maeve introduces Finn and the search trail before the player sets out')
+end
+local searching=P.new()
+searching.flags['GW-01:maeve']=true
+local people=Guide.discoveries(searching,'people',2)
+check(#people==1 and people[1].id=='finn' and #people[1].lines==1,'the referral is readable before the rescue without revealing its outcome')
+check(C.byId['GW-01'].quest.outcome:find('outer webs',1,true) and C.byId['GW-02'].quest.brief:find('outer webs',1,true),'handoff and resumed brief both locate Finn')
 check(goal('DW-07','core_record').text:find('Gloamwood',1,true),'parent objective no longer points directly to Frozen Vale')
 check(goal('DW-07','core_record').activity.steps[1].text:find('food-and-medicine',1,true),'stolen Crownheart cargo is distinguished from the local supply convoy')
 check(not C.byId['DW-03'].quest.outcome:find('free companion',1,true),'recruitment does not promise unlimited free combat support')

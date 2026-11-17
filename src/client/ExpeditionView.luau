@@ -5,6 +5,7 @@ local RS=game:GetService('ReplicatedStorage')
 local Text=require(RS.Shared.ExpeditionText)
 local AT=require(RS.Shared.AdventureText)
 local D=require(RS.Shared.Difficulty)
+local Content=require(RS.Shared.CampaignContent)
 local V={}
 local Starting=require(script.Parent.AdventureStartingNotice)
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
@@ -178,6 +179,11 @@ function V.create(parent,send)
    end
    action('Refresh',Text.Refresh,{action='GetState'})
   else
+   local chapter=mission and Content.byId[mission.id]
+   if access and access.allowed and chapter and not chapter.side then
+    local brief=line('StoryBrief',chapter.quest.brief,0)
+    brief.AutomaticSize=Enum.AutomaticSize.Y
+   end
    local card=ordered(T.frame(scroll,'MissionCard',UDim2.new(),UDim2.new(1,-10,0,56)))
    T.icon(card,'maps',UDim2.fromOffset(8,5),UDim2.fromOffset(42,46))
    T.label(card,'Objective',string.format(Text.Objective,mission and mission.objective or ''),UDim2.fromOffset(60,4),UDim2.new(1,-70,1,-8),14)
