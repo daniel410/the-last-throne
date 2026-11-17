@@ -1,0 +1,192 @@
+{
+  "status": {
+    "ok": true,
+    "error": "nil"
+  },
+  "geometry": {
+    "supportParts": 13,
+    "compiled": 530,
+    "minePivot": "380.5, 141.999985, -12485.9004, -0.753371179, 0, -0.657595515, 0, 1, 0, 0.657595515, 0, -0.753371179",
+    "writes": 9,
+    "spurs": [
+      {
+        "height": 19.5860595703125,
+        "radius": 64,
+        "position": [
+          478.5099792480469,
+          140,
+          -12501.720703125
+        ]
+      }
+    ],
+    "rimCount": 2
+  },
+  "navigation": {
+    "worldPoints": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [
+        {
+          "chapter": "EC-Q1",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q1:report",
+          "epic": 4,
+          "from": [
+            -1021.1762084960938,
+            127,
+            -12006.5341796875
+          ]
+        },
+        {
+          "chapter": "EC-Q2",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q2:report",
+          "epic": 4,
+          "from": [
+            -783.3861083984375,
+            143,
+            -12732.84375
+          ]
+        },
+        {
+          "chapter": "EC-Q3",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q3:report",
+          "epic": 4,
+          "from": [
+            1465.877197265625,
+            151,
+            -13439.2890625
+          ]
+        },
+        {
+          "chapter": "EC-Q4",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q4:report",
+          "epic": 4,
+          "from": [
+            -1977.529296875,
+            185,
+            -14555.1005859375
+          ]
+        }
+      ],
+      "epics": {
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8223,
+          "samples": 8526,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    },
+    "points": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [
+        {
+          "chapter": "EC-Q1",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q1:report",
+          "epic": 4,
+          "from": [
+            -1021.1762084960938,
+            127,
+            -12006.5341796875
+          ]
+        },
+        {
+          "chapter": "EC-Q2",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q2:report",
+          "epic": 4,
+          "from": [
+            -783.3861083984375,
+            143,
+            -12732.84375
+          ]
+        },
+        {
+          "chapter": "EC-Q3",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q3:report",
+          "epic": 4,
+          "from": [
+            1465.877197265625,
+            151,
+            -13439.2890625
+          ]
+        },
+        {
+          "chapter": "EC-Q4",
+          "to": [
+            -362.85000000000014,
+            132,
+            -12134.4
+          ],
+          "label": "EC-Q4:report",
+          "epic": 4,
+          "from": [
+            -1977.529296875,
+            185,
+            -14555.1005859375
+          ]
+        }
+      ],
+      "epics": {
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8093,
+          "samples": 8396,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    }
+  }
+}

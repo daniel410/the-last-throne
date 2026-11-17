@@ -1,0 +1,5 @@
+{
+  "src/server/World/CalderaMineLandforms.luau": "e8716a19c479d59edde9414374c6695f60ed3bd438b8d62863210ea571db8b7b",
+  "src/server/World/EpicWorldArt.luau": "29496403b2db35aea449c139f48ebce6bb70bf6cae062cba5f469d9ec7eccca4",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6"
+}
