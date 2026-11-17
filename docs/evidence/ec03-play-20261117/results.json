@@ -1,0 +1,294 @@
+{
+  "admission": {
+    "views": [],
+    "heading": [
+      "EMBER CALDERA",
+      "THE GREAT FURNACE"
+    ],
+    "done": true,
+    "position": [
+      76.0827865600586,
+      143.13632202148438,
+      -12541.9921875
+    ],
+    "phase": "Tutorial",
+    "kind": "EC03_PLAY",
+    "pass": true,
+    "walk": []
+  },
+  "activity": 1,
+  "final": {
+    "worm": false,
+    "supports": true
+  },
+  "wormApproach": {
+    "jumps": 0,
+    "arrived": true,
+    "position": [
+      238.31277465820312,
+      143.09629821777344,
+      -12642.5498046875
+    ],
+    "elapsed": 5.827508291695267,
+    "done": true,
+    "discontinuities": 0
+  },
+  "pieces": [
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceIronBinding",
+      "collide": false
+    },
+    {
+      "color": [
+        0.47843137383461,
+        0.3450980484485626,
+        0.20392157137393951
+      ],
+      "name": "MineBraceCap",
+      "collide": false
+    },
+    {
+      "color": [
+        0.686274528503418,
+        0.545098066329956,
+        0.33725491166114807
+      ],
+      "name": "LoadBeamEndGrain",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceScrewThread",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceScrewThread",
+      "collide": false
+    },
+    {
+      "color": [
+        0.47843137383461,
+        0.3450980484485626,
+        0.20392157137393951
+      ],
+      "name": "MineBraceStrut",
+      "collide": false
+    },
+    {
+      "color": [
+        0.6392157077789307,
+        0.49803921580314636,
+        0.27450981736183167
+      ],
+      "name": "BraceBindingRivet",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "MineBraceFoot",
+      "collide": false
+    },
+    {
+      "color": [
+        0.6392157077789307,
+        0.49803921580314636,
+        0.27450981736183167
+      ],
+      "name": "BraceBindingRivet",
+      "collide": false
+    },
+    {
+      "color": [
+        0.47843137383461,
+        0.3450980484485626,
+        0.20392157137393951
+      ],
+      "name": "CrackedLoadBeamLeft",
+      "collide": false
+    },
+    {
+      "color": [
+        0.686274528503418,
+        0.545098066329956,
+        0.33725491166114807
+      ],
+      "name": "LoadBeamEndGrain",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceScrewThread",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3333333432674408,
+        0.7921568751335144,
+        0.7686274647712708
+      ],
+      "name": "BraceHandle",
+      "collide": false
+    },
+    {
+      "color": [
+        0.686274528503418,
+        0.545098066329956,
+        0.33725491166114807
+      ],
+      "name": "BraceTimberShoe",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceIronBinding",
+      "collide": false
+    },
+    {
+      "color": [
+        0.686274528503418,
+        0.545098066329956,
+        0.33725491166114807
+      ],
+      "name": "BraceTimberShoe",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceIronBinding",
+      "collide": false
+    },
+    {
+      "color": [
+        0.47843137383461,
+        0.3450980484485626,
+        0.20392157137393951
+      ],
+      "name": "CrackedLoadBeamRight",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceScrew",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceScrewThread",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "MineBraceFoot",
+      "collide": false
+    },
+    {
+      "color": [
+        0.6392157077789307,
+        0.49803921580314636,
+        0.27450981736183167
+      ],
+      "name": "BraceBindingRivet",
+      "collide": false
+    },
+    {
+      "color": [
+        0.47843137383461,
+        0.3450980484485626,
+        0.20392157137393951
+      ],
+      "name": "MineBraceStrut",
+      "collide": false
+    },
+    {
+      "color": [
+        0.6392157077789307,
+        0.49803921580314636,
+        0.27450981736183167
+      ],
+      "name": "BraceBindingRivet",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BracePressurePlate",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceScrewThread",
+      "collide": false
+    },
+    {
+      "color": [
+        0.3490196168422699,
+        0.3529411852359772,
+        0.3529411852359772
+      ],
+      "name": "BraceIronBinding",
+      "collide": false
+    }
+  ],
+  "supportsCompleted": true,
+  "walk": {
+    "jumps": 0,
+    "arrived": true,
+    "position": [
+      154.2259521484375,
+      143.09629821777344,
+      -12602.1513671875
+    ],
+    "elapsed": 6.134440791676752,
+    "done": true,
+    "discontinuities": 0
+  }
+}
