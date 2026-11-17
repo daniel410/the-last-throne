@@ -1,0 +1,1 @@
+PARTY_LAUNCH_NATIVE {"kind":"PARTY_LAUNCH_NATIVE","cases":[{"mixed":false,"teleports":2,"size":2},{"mixed":false,"teleports":3,"size":3},{"mixed":false,"teleports":4,"size":4},{"mixed":true,"teleports":0,"error":"PartyRulesMismatch","size":3}],"checks":135}
