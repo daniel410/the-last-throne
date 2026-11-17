@@ -1,0 +1,30 @@
+{
+  "version": "0.111.33",
+  "sourceCommit": "35f903d576eb6cdfd6591edb3e9d0527d65ed588",
+  "artifact": "builds/0.111.33/TheLastThrone-0.111.33.rbxlx",
+  "sha256": "d2d8696dcecdc865a9f2bdc54c67fab6148d22aee1ec034f3fe7dbfb83b0111e",
+  "universeId": 10773575153,
+  "attempts": [
+    {
+      "placeId": 70829337938054,
+      "result": "failed",
+      "message": "Save failed: Server is busy and unable to process your upload request. Please try again in a couple minutes."
+    },
+    {
+      "placeId": 70829337938054,
+      "result": "success",
+      "placeVersion": 104,
+      "localTime": "2026-11-16 22:14 America/Toronto"
+    },
+    {
+      "placeId": 129388473517823,
+      "result": "success",
+      "placeVersion": 32,
+      "localTime": "2026-11-16 22:15 America/Toronto"
+    }
+  ],
+  "published": true,
+  "actualThreePlayerTravel": "unverified",
+  "webVerification": "Both current versions visible with Show published only enabled; no Restore on current row.",
+  "releaseTag": "v0.111.33"
+}
