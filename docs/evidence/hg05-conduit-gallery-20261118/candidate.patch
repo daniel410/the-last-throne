@@ -1,0 +1,25 @@
+diff --git a/src/server/World/CampaignIncidentScenes.luau b/src/server/World/CampaignIncidentScenes.luau
+index c8babf7b..1381c17b 100644
+--- a/src/server/World/CampaignIncidentScenes.luau
++++ b/src/server/World/CampaignIncidentScenes.luau
+@@ -187,8 +187,19 @@ function S.create(scene,c,g,area)
+     for i=-3,3 do part(m,'RaisedGateBar',V(.5,12,.5),gate+V(i*2,6,0),pal.rock,Enum.Material.Metal)end
+    end,{[0]=CFrame.new(gate),[1]=CFrame.new(gate+V(0,4,0)),[2]=CFrame.new(gate+V(0,8,0)),[3]=CFrame.new(gate+V(0,13,0))},key)
+   elseif c.id=='HG-05'then
++   -- Wall-side power gallery: physical housings survive when the line goes quiet.
++   -- Keep the central approach clear at combat-camera height.
++   local z=-depth*.4;local violet=Color3.fromRGB(174,105,211)
++   model('ThroneConduitHousing',0,3,function(m)
++    beam(m,'ShieldConduitSleeve',center+V(-width*.35,1.8,z),center+V(width*.35,1.8,z),1.2,pal.rock,Enum.Material.Metal)
++    for _,x in ipairs({-width*.35,0,width*.35})do
++     part(m,'ConduitStoneFoot',V(4,.8,4),center+V(x,.4,z),pal.rock,Enum.Material.Slate)
++     part(m,'ConduitSupport',V(1,1.6,1.8),center+V(x,1.2,z),pal.trim,Enum.Material.Metal)
++     part(m,'ConduitBindingCollar',V(.7,2,2),center+V(x,1.8,z),pal.trim,Enum.Material.Metal)
++    end
++   end,c.id..':'..g.before)
+    model('ActiveThroneConduit',0,2,function(m)
+-    beam(m,'ShieldBeam',center+V(-width*.35,4,0),center+V(width*.35,4,0),.6,Color3.fromRGB(174,105,211),Enum.Material.Neon)
++    beam(m,'ShieldBeam',center+V(-width*.35,2.48,z),center+V(width*.35,2.48,z),.18,violet,Enum.Material.Neon)
+    end,c.id..':'..g.before)
+    model('BrokenThroneConduit',3,3,function(m)
+     part(m,'QuietShieldRelay',V(3,3,3),result+V(0,1.5,0),pal.rock,Enum.Material.Slate)
