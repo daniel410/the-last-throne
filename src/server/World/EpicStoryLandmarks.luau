@@ -6,6 +6,8 @@ local Areas = require(Shared.CampaignAreas)
 local Bounds = require(Shared.CampaignBounds)
 local Route = require(Shared.CampaignNavigationRoute)
 local Kit = require(script.Parent.EpicEnvironmentKit)
+local ArchiveAndCanal = require(script.Parent.ArchiveAndCanalLandmarks)
+local ForestAndGraveyard = require(script.Parent.ForestAndGraveyardLandmarks)
 
 local Landmarks = {version = 1}
 local V = Vector3.new
@@ -25,7 +27,7 @@ local roadNames = {
 	ExpansionWalkingLine = true,
 }
 
-local function compose(model, id, palette)
+local function compose(model, id, profile, palette, builder)
 	local function part(name, size, at, color, material, solid, angles, shape)
 		local cf = CFrame.new(at)
 		if angles then cf = cf * CFrame.Angles(angles.X, angles.Y, angles.Z) end
@@ -39,7 +41,9 @@ local function compose(model, id, palette)
 		p:SetAttribute('EpicDetailSolid', solid == true)
 		p:SetAttribute('TLTSceneryDistance', 480)
 	end
-	if id == 'DW-02' then
+	if builder then
+		builder(profile, palette, part, beam)
+	elseif id == 'DW-02' then
 		local linen = Color3.fromRGB(143, 183, 200)
 		for _, x in ipairs({-10, 10}) do
 			for _, z in ipairs({-5, 5}) do
@@ -187,28 +191,28 @@ local function distance(point, a, b)
 	return (offset - line * t).Magnitude
 end
 
-local function approaches(id, world)
+local function approachFor(id, goalId, world)
 	local spawn = world.spawns[id].Position
 	for _, goal in ipairs(Content.byId[id].goals) do
-		if goal.id == profiles[id].goal then return vec(goal.position) end
+		if goal.id == goalId then return vec(goal.position) end
 	end
 	return spawn
 end
 
-local function offsets()
+local function offsets(decorative)
 	local result = {}
-	for radius = 68, 212, 18 do
-		for i = 0, 15 do
-			local yaw = (i + radius / 36) * math.pi / 8
+	local first, last, stride, slots = 68, 212, 18, 16
+	if decorative then first, last, stride, slots = 26, 152, 6, 32 end
+	for radius = first, last, stride do
+		for i = 0, slots - 1 do
+			local yaw = (i + radius / 36) * 2 * math.pi / slots
 			table.insert(result, V(math.cos(yaw) * radius, 0, math.sin(yaw) * radius))
 		end
 	end
 	return result
 end
 
-function Landmarks.build(site, id, center, size, palette, safe, ground, world)
-	local profile = profiles[id]
-	if not profile then return nil end
+local function buildModel(site, id, center, size, palette, safe, ground, world, profile, builder)
 	local existing = site:FindFirstChild(profile.name)
 	if existing then return existing end
 
@@ -216,12 +220,14 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 	model.Name = profile.name
 	model.WorldPivot = CFrame.identity
 	model.ModelStreamingMode = Enum.ModelStreamingMode.Atomic
-	compose(model, id, palette)
+	compose(model, id, profile, palette, builder)
 	local bounds, span = model:GetBoundingBox()
 	local radius = V(span.X / 2 + math.abs(bounds.X), 0, span.Z / 2 + math.abs(bounds.Z)).Magnitude
-	local pad = radius + 5
-	local approach = approaches(id, world)
-	local lanes = lanesFor(id, world.spawns[id].Position)
+	local decorativeOnly = builder ~= nil
+	local pad = radius + (decorativeOnly and 2 or 5)
+	local spawn = world.spawns[id].Position
+	local approach = approachFor(id, profile.goal, world)
+	local lanes = lanesFor(id, spawn)
 
 	local roads = {}
 	for _, p in ipairs(world.folder:GetDescendants()) do
@@ -244,12 +250,18 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 
 	local function eligible(at)
 		if math.abs(at.X - center.X) > size[1] / 2 - pad or math.abs(at.Z - center.Z) > size[2] / 2 - pad
-			or not safe(at, pad) or Bounds.region(at.X, at.Z, pad, id) or Bounds.connection(at.X, at.Z, pad) then return nil end
+			or Bounds.region(at.X, at.Z, pad, id) or Bounds.connection(at.X, at.Z, pad) then return nil end
+		-- Low visual-only works can sit closer to a route than solid structures.
+		if decorativeOnly then
+			if distance(at, spawn, spawn) < pad + 24 then return nil end
+		elseif not safe(at, pad) then
+			return nil
+		end
 		for _, area in ipairs(Content.zones[id].expansionAreas or {}) do
 			if Areas.contains(area, at.X, at.Z, pad + 8) or Areas.contains(area.connector, at.X, at.Z, pad + 8) then return nil end
 		end
 		for _, lane in ipairs(lanes) do
-			if distance(at, lane[1], lane[2]) < pad + 16 then return nil end
+			if distance(at, lane[1], lane[2]) < pad + (decorativeOnly and 8 or 16) then return nil end
 		end
 		for _, road in ipairs(roads) do
 			local rel = road.CFrame:PointToObjectSpace(at)
@@ -273,19 +285,27 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 		end
 		-- Non-queryable scene dressing also needs an unobstructed silhouette.
 		for _, p in ipairs(decorative) do
-			local rel = test:PointToObjectSpace(p.Position)
+			local rel = test:ToObjectSpace(p.CFrame)
 			local width = V(p.Size.X, 0, p.Size.Z).Magnitude / 2
-			if math.abs(rel.X) < span.X / 2 + width + 2 and math.abs(rel.Z) < span.Z / 2 + width + 2
-				and math.abs(rel.Y) < (span.Y + p.Size.Y) / 2 then return nil end
+			local halfX, halfY, halfZ = width, p.Size.Y / 2, width
+			if decorativeOnly then
+				local s = p.Size / 2
+				local right, up, back = rel.RightVector, rel.UpVector, rel.ZVector
+				halfX = math.abs(right.X) * s.X + math.abs(up.X) * s.Y + math.abs(back.X) * s.Z
+				halfY = math.abs(right.Y) * s.X + math.abs(up.Y) * s.Y + math.abs(back.Y) * s.Z
+				halfZ = math.abs(right.Z) * s.X + math.abs(up.Z) * s.Y + math.abs(back.Z) * s.Z
+			end
+			if math.abs(rel.X) < span.X / 2 + halfX + 2 and math.abs(rel.Z) < span.Z / 2 + halfZ + 2
+				and math.abs(rel.Y) < span.Y / 2 + halfY then return nil end
 		end
 		return pivot
 	end
 
-	for _, offset in ipairs(offsets()) do
+	for _, offset in ipairs(offsets(decorativeOnly)) do
 		local pivot = eligible(V(approach.X, center.Y, approach.Z) + offset)
 		if not pivot then continue end
 		model:PivotTo(pivot)
-		model:SetAttribute('LandmarkVersion', Landmarks.version)
+		model:SetAttribute('LandmarkVersion', builder and 2 or Landmarks.version)
 		model:SetAttribute('SourceKind', 'NewNativeGeometry')
 		model:SetAttribute('StoryZone', id)
 		model:SetAttribute('StoryGoal', profile.goal)
@@ -299,6 +319,25 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 
 	model:Destroy()
 	return nil
+end
+
+function Landmarks.build(site, id, center, size, palette, safe, ground, world)
+	local original = profiles[id]
+	if original then
+		return buildModel(site, id, center, size, palette, safe, ground, world, original)
+	end
+
+	local forest = ForestAndGraveyard.profiles[id]
+	if forest then
+		return buildModel(site, id, center, size, palette, safe, ground, world, forest,
+			function(profile, colors, part, beam)
+				ForestAndGraveyard.compose(id, colors, part, beam)
+			end)
+	end
+
+	for _, profile in ipairs(ArchiveAndCanal.profiles[id] or {}) do
+		buildModel(site, id, center, size, palette, safe, ground, world, profile, ArchiveAndCanal.compose)
+	end
 end
 
 return Landmarks

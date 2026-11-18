@@ -12,7 +12,7 @@ local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local StoryLandmarks=require(script.Parent.EpicStoryLandmarks)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=32}
+local Art={version=33}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
