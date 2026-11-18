@@ -1,0 +1,36 @@
+{
+  "taskId": "NPC-APPLY-20261117",
+  "version": "0.113.6",
+  "sourceCommit": "667051af2db426af2895e0d3b53f7661bea96982",
+  "artifact": "builds/0.113.6/TheLastThrone-0.113.6.rbxlx",
+  "sha256": "debcb9616562f98ff56af7d0c238c3a4c50fb9b7e1c26c4ad07e00a20755c112",
+  "diskHashUnchanged": true,
+  "published": true,
+  "method": "Roblox Studio Publish As; Creator Dashboard Show published only verification",
+  "universeId": 10773575153,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 109,
+      "previousPublishedVersion": 104,
+      "localPublishedTime": "2026-11-17 20:20 America/Toronto"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 34,
+      "previousPublishedVersion": 32,
+      "localPublishedTime": "2026-11-17 20:21 America/Toronto"
+    }
+  ],
+  "audience": "Private (unchanged)",
+  "assetPermissions": "Grant Permissions and Publish for The Last Throne Experience",
+  "releaseTag": "v0.113.6",
+  "unverified": [
+    "게시된 실제 Roblox 클라이언트 플레이·Place 이동·재접속",
+    "실기기·다인 성능·사용자 수용",
+    "기존 Selene 캠프 표시 회귀 검사 기대값 불일치"
+  ],
+  "studioSessionCleanup": "이전 클라우드 로비 작업을 게시 없이 저장(version108) 후 닫고 이전 검증 창을 닫았다. 새 0.113.6 파일에서 게시했다."
+}
