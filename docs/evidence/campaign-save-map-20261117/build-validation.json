@@ -1,0 +1,15 @@
+{
+  "version": "0.113.8",
+  "sourceCommit": "bbf47ac5f0e12dbe91b555a4ff1d162dd1d7ba1f",
+  "xmlParse": "passed",
+  "artifactSha256": "412d173e16692979d50489e6f8104a9cf4a48ed0ec54c5643e5bdbf48c0be3aa",
+  "matchedSourceFiles": [
+    "src/server/Inventory/InventoryService.luau",
+    "src/server/Inventory/ExplorationSaveBuffer.luau",
+    "src/client/AtlasPlate.luau",
+    "src/client/DeepwoodMapCanvas.luau"
+  ],
+  "compiledScripts": 548,
+  "compileErrors": 0,
+  "published": false
+}

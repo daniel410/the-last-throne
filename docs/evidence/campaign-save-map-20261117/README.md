@@ -37,6 +37,10 @@
 - 격리 PlaceId=0의 실제 LocalScript에서 지도 데이터를 잠시 제거해도 로비 메뉴·실측 도식을 생성했고,2초 후 데이터 복원/메뉴 재생성 뒤 촬영본과 EC-03 상세를 확인했다. `MissingDataMenuReady`, `RecoveredImageMenuReady`, `DetailReady` 모두 true, 상세 ImageLabel의 `IsLoaded=true`였다. 운영 저장 접근과 원본 Studio 소스 편집은 없었다.
 - `src`의543 Luau 파일 컴파일 오류0. 기존 사용자 자산 변경·삭제는 보존했다.
 
+## 후보 빌드
+
+소스 `bbf47ac5f0e12dbe91b555a4ff1d162dd1d7ba1f`에서 `builds/0.113.8/TheLastThrone-0.113.8.rbxlx`를 생성했다. [빌드 기록](build.json)·[산출물 검증](build-validation.json): LFS 입력 검증, XML 파싱, 변경4모듈의 소스 일치, 빌드 내548스크립트 컴파일 오류0. SHA-256은 `412d173e16692979d50489e6f8104a9cf4a48ed0ec54c5643e5bdbf48c0be3aa`다. Roblox 게시·릴리스 태그는 만들지 않았다.
+
 ## 미검증·다음 담당
 
 게시된 실제 클라이언트에서 사용자가 겪은 두 현상의 정확한 원인, 네트워크 복제 순서, 실제 저장 응답시간/P95, 모바일·4인 부하·원정 전체 진행·시각 수용은 미검증이다. 이번 격리 시험은 일반 계정의 실제 메뉴 조작/Teleport를 대신하지 않는다. 다음 담당은 릴리스/QA이며 후보 게시 후 입장→첫 목표→연속 처치→다음 목표, 로비/배틀 지도 최초 열기·재열기를 확인한다. TLT 티켓과 G7 전체 완료로 처리하지 않는다.
