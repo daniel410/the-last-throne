@@ -11,17 +11,17 @@ local last=assert(source:find('local function trainingDestination',first,true))
 local code=source:sub(first,last-1)..'\nreturn previewWorld'
 local function fixture(failure)
  local loaded,calls={},{}
- local world={loadedEpics=loaded}
+ local world={loadedEpics=loaded,readyEpics={},folder={SetAttribute=function()end}}
  local starts,refreshes=0,0
  local story={start=function()starts+=1 end,refreshWorld=function()refreshes+=1 end}
- local create={create=function(epic,prior)
+ local create={new=function()return world end,prepare=function(epic,prior)
   calls[#calls+1]=epic;task.wait()
-  if failure then error('injected builder failure')end
+  if failure then failure=false;error('injected builder failure')end
   check(prior==nil or prior==world,'world identity retained')
   loaded[epic]=true;return world
  end}
  local env=setmetatable({Content=C,script=Server,workspace={SetAttribute=function()end},
-  require=function(module)check(module==Server.World.CampaignWorld,'only campaign builder required');return create end,
+  require=function(module)check(module==Server.World.CampaignPreparation,'only campaign builder required');return create end,
   world={enemies={}},story=story,startCombat=function()end,addRegionalStorage=function(id)check(loaded[id],'storage after destination ready')end,
   print=function()end},{__index=getfenv()})
  local fn=assert(loadstring(code));setfenv(fn,env)
@@ -44,7 +44,7 @@ check(finished==4 and #calls==2 and w.loadedEpics[5]and w.loadedEpics[4],'concur
 local starts,refreshes=counts();check(starts==1 and refreshes==1,'refresh existing story after extra epic')
 local failed,failureCalls=fixture(true)
 check(not pcall(failed,'HG-01'),'builder failure rejects admission')
-check(not pcall(failed,'HG-01')and #failureCalls==1,'partial failed geometry never treated as ready')
+check(pcall(failed,'HG-01')and #failureCalls==2,'failed region retries without poisoning server')
 -- Actual region gate: missing geometry and unfinished roads cannot be entered.
 local Gate=require(Server.Story.DeepwoodRegionAccess)
 local B=require(game.ReplicatedStorage.Shared.CampaignBounds)

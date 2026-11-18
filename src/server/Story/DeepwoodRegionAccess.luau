@@ -6,7 +6,7 @@ function Gate.create(o)
  local safe,lastNotice,lastReveal,regions={},{},{},{}
  local function readyAt(id,pos)
   if not o.world.spawns[id]then return false end
-  if o.world.loadedEpics and not o.world.loadedEpics[Content.zones[id].epic or 1]then return false end
+  if o.world.loadedEpics and not (o.world.readyEpics or o.world.loadedEpics)[Content.zones[id].epic or 1]then return false end
   -- Mathematical road bounds exist even before its geometry is constructed.
   if o.world.loadedEpics then for _,edge in ipairs(Content.overlandLinks)do
    local a,b=Bounds.ends(edge);local dx,dz=b[1]-a[1],b[3]-a[3]

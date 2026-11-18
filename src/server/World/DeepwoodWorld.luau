@@ -67,7 +67,7 @@ cart=dressed(cart,'CartWreck')
 arch=dressed(arch,'RuinedArch')
 local function npc(parent,p,name,_goblin,role)
  local world=parent
- while world.Parent and world.Name~='DeepwoodCampaign' do world=world.Parent end
+ while world.Parent and world.Name~='DeepwoodCampaign' and world.Name~='CampaignPreparing' do world=world.Parent end
  return require(script.Parent.NPCActors).acquire(world,name,p,{role=role or 'scene'})
 end
 -- EpicWorldArt replaces the watchtower visually. Its retired pillars must not
@@ -113,7 +113,7 @@ function World.create(world)
   require(script.Parent.DeepwoodPlaces).create(result)
   World.current=result;return result
  end
- local root=world and world.folder or Instance.new('Model');root.Name='DeepwoodCampaign';root.Parent=Workspace
+ local root=world and world.folder or Instance.new('Model');root.Name=world and world.staging and 'CampaignPreparing' or 'DeepwoodCampaign';root.Parent=Workspace
  local terrain=world and world.terrain or Instance.new('Folder');terrain.Name='TerrainBlockout';terrain.Parent=root
  local nodes=root:FindFirstChild('Objectives') or Instance.new('Folder');nodes.Name='Objectives';nodes.Parent=root
  local spawns,positions=world and world.spawns or {},world and world.positions or {}

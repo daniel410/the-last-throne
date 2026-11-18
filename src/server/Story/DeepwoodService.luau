@@ -481,11 +481,18 @@ function Service.refreshWorld()
 end
 function Service.start(settings)
  options=settings
+ local checkpointLoading=Instance.new('RemoteEvent');checkpointLoading.Name='CheckpointTravelState';checkpointLoading.Parent=ReplicatedStorage.Remotes
  travelCheckpoint=require(script.Parent.CheckpointTravelService).create({rules=Checkpoints,context=context,active=active,state=state,
+  loading=function(p,stage,request,pivot)
+   if p.Parent==Players then checkpointLoading:FireClient(p,stage,request,pivot and pivot.Position)end
+  end,
   ready=function(p)return p:GetAttribute('K0SessionPhase')=='Tutorial' and p:GetAttribute('TLTTravelLock')~=true and (not options.inventory.available or options.inventory.available(p))end,
   pending=Service.hasPendingEvents,
   inEncounter=function(p,id)for _,e in pairs(encounters)do if not e.completed and e.participants[p]==id then return true end end;return false end,
-  loaded=function(target)return options.world.spawns[target.zone]~=nil end,
+  loaded=function(target)
+   local ready=options.world.readyEpics or options.world.loadedEpics
+   return ready and ready[Content.zones[target.zone].epic or 1]==true and options.world.spawns[target.zone]~=nil
+  end,
   prepare=function(target)options.prepareStory(target.chapterId)end,
   destination=function(target,player,heroId)
    local spawn=options.world.spawns[target.zone];if not spawn then return nil end

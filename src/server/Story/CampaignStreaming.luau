@@ -9,7 +9,7 @@ function M.create(o)
  local pending,failedAt={},{}
  local previous=setmetatable({},{__mode='k'})
  local function loaded(id)
-  return o.world.loadedEpics[Content.zones[id].epic or 1]==true
+  return (o.world.readyEpics or o.world.loadedEpics)[Content.zones[id].epic or 1]==true
  end
  local function schedule(target)
   local epic=Content.zones[target].epic or 1

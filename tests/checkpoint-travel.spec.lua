@@ -96,4 +96,28 @@ hasWorld=false;state.checkpointClears['HG-07']=true;during=function()error('simu
 check(not teleport(1,'HG-07') and relocations==0,'failed load does not relocate')
 hasWorld=false;during=nil
 check(teleport(1,'HG-07') and relocations==1,'successful retry uses completed region')
+-- A partially-created spawn cannot satisfy the real service readiness predicate.
+local f=assert(io.open('src/server/Story/DeepwoodService.luau'));local source=f:read('*a');f:close()
+local predicate=assert(source:match('loaded=(function%(target%).-end),'))
+local world={spawns={['HG-07']={}},loadedEpics={[5]=true},readyEpics={}}
+local loaded=assert(load('return '..predicate,'checkpoint-readiness','t',{options={world=world},Content=Content}))()
+local messages={};local moves,prepares=0,0
+local state={main=0,clears={},checkpointClears={['HG-07']=true},expeditionRunId='cold'}
+local cold=S.create({rules=T,context=function()return {heroId='qa',epoch=1,characterGeneration=1}end,
+ active=function()return {heroId='qa'}end,ready=function()return true end,pending=function()return false end,inEncounter=function()return false end,
+ state=function()return state end,loaded=loaded,loading=function(_,stage,id,pivot)messages[#messages+1]={stage,id,pivot}end,
+ prepare=function()prepares=prepares+1;check(#messages==1 and messages[1][1]=='Begin','cover starts before load');world.readyEpics[5]=true end,
+ destination=function()return 'destination'end,relocate=function()moves=moves+1;return true end})
+check(cold(1,'HG-07')and prepares==1 and moves==1,'partial geometry waits for services and readiness')
+check(messages[2][1]=='Arrived'and messages[1][2]==messages[2][2]and messages[2][3]=='destination','matching completion supplies destination')
+check(cold(1,'HG-07')and prepares==1 and #messages==2,'warm checkpoint never shows cover')
+for _,reason in ipairs({'error','revoked','incomplete'})do
+ messages={};world.readyEpics[5]=nil;state.checkpointClears['HG-07']=true
+ local interrupted=S.create({rules=T,context=function()return {heroId='qa'}end,active=function()return {heroId='qa'}end,
+  ready=function()return true end,pending=function()return false end,inEncounter=function()return false end,state=function()return state end,
+  loaded=loaded,loading=function(_,stage)messages[#messages+1]=stage end,
+  prepare=function()if reason=='error'then error('load failure')end;if reason=='revoked'then state.checkpointClears={}end end,
+  destination=function()error('unfinished travel must not reach destination')end,relocate=function()error('must not move')end})
+ check(not interrupted(1,'HG-07')and table.concat(messages,',')=='Begin,Cancelled','failure closes cover: '..reason)
+end
 print('Checkpoint travel: '..checks..' checks passed')

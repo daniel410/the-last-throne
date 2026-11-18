@@ -1,6 +1,7 @@
 local Service={}
 function Service.create(o)
  local preparing={}
+ local serial=0
  local function authorize(player,id)
   local ctx=o.context(player);local hero=o.active(player)
   if not ctx or ctx.inventoryLocked or not hero or hero.training or ctx.heroId~=hero.heroId or not o.ready(player) then return end
@@ -13,19 +14,25 @@ function Service.create(o)
   if preparing[player]then return false end
   local target,ctx,run=authorize(player,id)
   if not target then return false end
-  if o.loaded and not o.loaded(target)then
-   preparing[player]=true
-   local ok=pcall(o.prepare,target)
-   preparing[player]=nil
-   if not ok then return false end
-   local fresh,life,currentRun=authorize(player,id)
-   if not fresh or fresh.zone~=target.zone or fresh.goalId~=target.goalId or currentRun~=run or life.heroId~=ctx.heroId or life.epoch~=ctx.epoch
-    or life.characterGeneration~=ctx.characterGeneration or not o.loaded(fresh)then return false end
-   target=fresh
-  end
-  local pivot=o.destination(target,player,ctx.heroId)
-  if not pivot then return false end
-  return o.relocate(player,pivot)==true,target
+  local loading=o.loaded and not o.loaded(target)
+  preparing[player]=true;serial=serial+1;local request=serial
+  local ok,moved,destination,pivot=pcall(function()
+   if loading then
+    if o.loading then o.loading(player,'Begin',request)end
+    o.prepare(target)
+    local fresh,life,currentRun=authorize(player,id)
+    if not fresh or fresh.zone~=target.zone or fresh.goalId~=target.goalId or currentRun~=run or life.heroId~=ctx.heroId or life.epoch~=ctx.epoch
+     or life.characterGeneration~=ctx.characterGeneration or not o.loaded(fresh)then return false end
+    target=fresh
+   end
+   local at=o.destination(target,player,ctx.heroId)
+   if not at then return false end
+   return o.relocate(player,at)==true,target,at
+  end)
+  preparing[player]=nil
+  if loading and o.loading then o.loading(player,ok and moved and 'Arrived'or 'Cancelled',request,ok and moved and pivot or nil)end
+  if not ok then return false end
+  return moved,destination
  end
 end
 return Service

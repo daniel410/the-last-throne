@@ -38,6 +38,7 @@ local function startCombat()
  end
 end
 local function addRegionalStorage(id)
+ if deepwood.storageReady and deepwood.storageReady[id]then return end
  local hub=Content.epics[id].hub
  local offset=id==1 and Vector3.new(-55,0,-10)or Vector3.new(45,0,id==3 and 75 or 80)
  local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[hub]+offset})
@@ -45,16 +46,18 @@ local function addRegionalStorage(id)
  -- Later regional chests sit at the outer edge of the camp. Include the full prompt radius.
  hubBounds[hub] = {center = id == 1 and center or center:Lerp(chest.Position, .5), size = Vector3.new(220,24,200)}
  chest.Parent.Name=hub..'AccountStorage';prompt.ObjectText=Content.zones[hub].name..' Storage';inventory.addStorage(chest,prompt)
+ deepwood.storageReady=deepwood.storageReady or {};deepwood.storageReady[id]=true
 end
 local building=false
-local buildFailure
 local function previewWorld(missionId)
  local chapter=assert(Content.byId[missionId],'Battle entry needs a verified mission')
  local epic=chapter.epic or 1
  -- Serialise different arrivals and Studio party requests across terrain yields.
- while building do task.wait()end
- if buildFailure then error(buildFailure)end
- if deepwood and deepwood.loadedEpics[epic]then return end
+ if deepwood and deepwood.readyEpics[epic]then return end
+ while building do
+  task.wait()
+  if deepwood and deepwood.readyEpics[epic]then return end
+ end
  building=true
  local ok,err=xpcall(function()
   startCombat()
@@ -62,18 +65,27 @@ local function previewWorld(missionId)
   -- prepare other unlocked epics on demand, retaining the same world tables.
   local started=os.clock()
   workspace:SetAttribute('TLTWorldBuildEpic',epic)
-  deepwood=require(script.World.CampaignWorld).create(epic,deepwood)
+  local preparation=require(script.World.CampaignPreparation)
+  deepwood=deepwood or preparation.new()
+  preparation.prepare(epic,deepwood)
   addRegionalStorage(epic)
   if not storyStarted then
    story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat,prepareStory=previewWorld});storyStarted=true
   else story.refreshWorld()end
+  deepwood.readyEpics[epic]=true
+  deepwood.folder:SetAttribute('Epic'..epic..'Ready',true)
+  workspace:SetAttribute('TLTEpic'..epic..'BuildError',nil)
   local seconds=os.clock()-started
   workspace:SetAttribute('TLTEpic'..epic..'BuildSeconds',seconds)
   workspace:SetAttribute('TLTWorldBuildEpic',nil)
   print(string.format('[CampaignLoading] epic=%d buildSeconds=%.3f',epic,seconds))
  end,debug.traceback)
  building=false
- if not ok then buildFailure=tostring(err);error(err)end
+ if not ok then
+  workspace:SetAttribute('TLTWorldBuildEpic',nil)
+  workspace:SetAttribute('TLTEpic'..epic..'BuildError',tostring(err))
+  error(err)
+ end
 end
 local function trainingDestination()
  if not world or not world.spawn then

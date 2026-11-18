@@ -542,6 +542,8 @@ function Art.connectOverland(world)
  parent.Name='OverlandRoads';parent.Parent=world.folder
  for index,edge in ipairs(Content.overlandLinks)do
   local name=edge[1]..'_'..edge[2]
+  local unfinished=parent:FindFirstChild(name)
+  if unfinished and unfinished:GetAttribute('BuildComplete')~=true then unfinished:Destroy()end
   if world.spawns[edge[1]]and world.spawns[edge[2]]and not parent:FindFirstChild(name)then
    local root=model(parent,name);root.ModelStreamingMode=Enum.ModelStreamingMode.Persistent
    local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb)

@@ -1,0 +1,50 @@
+{
+  "taskId": "TLT-040/087/battle-loading",
+  "sourceBase": "8fe8f209f4d425b70498c182463564173a24ec1e",
+  "published": false,
+  "lua": {
+    "preparationCoordinator": 9,
+    "checkpointLoadingController": 17,
+    "checkpointTravel": 8356,
+    "storyPrefetch": 64,
+    "arrivalLoading": 326
+  },
+  "studio": {
+    "compiled": 547,
+    "actualPreviewWithStubBuilders": 49,
+    "actualGeometryFailureInjection": 20,
+    "initialStageCacheCleanup": 2,
+    "geometry": {
+      "epic5Seconds": 3.577075583394617,
+      "finalInstances": 70956,
+      "npcActors": 32,
+      "overlandRoads": 4
+    },
+    "battleServices": {
+      "pass": true,
+      "steps": [
+        "initial epic5 ready",
+        "epic4 failure observed",
+        "epic5 reusable",
+        "epic4 retry ready with services"
+      ]
+    },
+    "clientUI": {
+      "beginCoverVisible": true,
+      "label": "LOADING...",
+      "heldForAppearance": true,
+      "arrivedClosedAfterReady": true,
+      "cancelledClosed": true,
+      "movementBindingReleased": true,
+      "unexpectedErrors": 0,
+      "screenshot": "checkpoint-loading.jpg"
+    },
+    "qaHooksRemoved": true
+  },
+  "limitations": [
+    "Isolated PlaceId=0; no production account or published teleport acceptance",
+    "Geometry remains on shared Terrain; deterministic writes are reapplied on retry; failed attempt model and node ownership is isolated",
+    "UI tested with actual RemoteEvents and controlled readiness, not full map-click progression",
+    "Physical traversal, multi-player network conditions, device performance and published client acceptance not run"
+  ]
+}
