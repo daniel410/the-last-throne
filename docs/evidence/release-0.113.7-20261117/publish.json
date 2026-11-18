@@ -1,0 +1,42 @@
+{
+  "workId": "TLT-040/087/battle-loading-release",
+  "version": "0.113.7",
+  "sourceCommit": "d1b730a0ac3b9dd0f7117856aeccc3b7c2e6c41d",
+  "artifact": "builds/0.113.7/TheLastThrone-0.113.7.rbxlx",
+  "sha256": "b1fd24c461b31d91c5ff5a35661faf4e0836da13ff0e5b7522c3661f01c4d5ee",
+  "published": true,
+  "method": "Roblox Studio Publish As",
+  "universeId": 10773575153,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": null,
+      "observation": "기존 The Last Throne 선택 후 게시. Manage audience의 The Last Throne is ready to test! 확인. Studio DataModel PlaceId 확인.",
+      "timeLocal": "2026-11-17 21:26 America/Toronto"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": null,
+      "observation": "기존 The Last Throne Battles 선택 후 Successfully published! 및 Private 확인. Studio DataModel PlaceId 확인.",
+      "timeLocal": "2026-11-17 21:27 America/Toronto"
+    }
+  ],
+  "visibility": "Private 유지",
+  "rollbackCandidates": {
+    "Lobby": 109,
+    "Battle": 34
+  },
+  "releaseTag": "v0.113.7",
+  "limitations": [
+    "Creator Dashboard 게시 전용 버전 번호 미조회. 로컬 Studio PlaceVersion=0은 게시 버전으로 사용하지 않음.",
+    "게시 클라이언트 실제 입장·재접속·맵 이동·부활·4인·모바일 미검증."
+  ],
+  "studioCleanup": "이전 0.113.6 창 3개를 별도 rbxl 사본으로 보존하고 종료. 게시용 0.113.7 창만 사용.",
+  "preservedSessions": [
+    "builds/0.113.6/:tmp:tlt-preserved-session-before-01137.rbxl",
+    "builds/0.113.6/tlt-preserved-session-2-before-01137.rbxl",
+    "builds/0.113.6/tlt-preserved-session-3-before-01137.rbxl"
+  ]
+}

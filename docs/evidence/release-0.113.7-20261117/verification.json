@@ -1,0 +1,11 @@
+{
+  "xmlParsed": true,
+  "sourceCount": 547,
+  "checkpointStreamFence": true,
+  "spawnPreparationRetry": true,
+  "destinationReady": true,
+  "sameProject": true,
+  "sha256": "b1fd24c461b31d91c5ff5a35661faf4e0836da13ff0e5b7522c3661f01c4d5ee",
+  "bytes": 26569688,
+  "studioCompiledSources": 547
+}
