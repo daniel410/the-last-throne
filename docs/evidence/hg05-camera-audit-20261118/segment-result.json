@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"origin\":\"-270, 197, -17330\",\"target\":\"-285, 190, -17359\",\"art\":[{\"query\":false,\"path\":\"Workspace.DeepwoodCampaign.CampaignExpansion.Epic5.HG-05_exp_1.ActiveThroneConduit.ShieldBeam\",\"size\":\"0.6000000238418579, 0.6000000238418579, 117.59999084472656\",\"position\":\"-254.85000610351562, 192, -17309.400390625\"},{\"query\":false,\"path\":\"Workspace.DeepwoodCampaign.CampaignExpansion.Epic5.HG-05_exp_1.BrokenThroneConduit.QuietShieldRelay\",\"size\":\"3, 3, 3\",\"position\":\"-204.4499969482422, 189.5, -17271.599609375\"}],\"hits\":[],\"parts\":9450}"
+    }
+  ],
+  "isError": false
+}

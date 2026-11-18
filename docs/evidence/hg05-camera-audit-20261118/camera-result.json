@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "[{\"correctedOrigin\":\"-239.85000610351562, 201, -17280.400390625\",\"oldCenterInFront\":false,\"scene\":\"HG-05_exp_1\",\"correctedAim\":\"-254.85000610351562, 192, -17309.400390625\",\"oldDepth\":-23.647809982299806,\"canQuery\":false,\"beam\":\"-254.85000610351562, 192, -17309.400390625\"},{\"correctedOrigin\":\"704.1500244140625, 191, -17280.400390625\",\"oldCenterInFront\":false,\"scene\":\"HG-05_exp_2\",\"correctedAim\":\"689.1500244140625, 182, -17309.400390625\",\"oldDepth\":-445.6100158691406,\"canQuery\":false,\"beam\":\"689.1500244140625, 182, -17309.400390625\"}]"
+    }
+  ],
+  "isError": false
+}
