@@ -1,0 +1,90 @@
+{
+  "baseline": "44052ce1b1c00230776b868f94a33b46de46608d",
+  "workId": "TLT-040/087/battle-loading-review",
+  "baselineReproductions": [
+    {
+      "suite": "k0-spawn",
+      "exitCode": 1,
+      "output": "lua: ...tm0000gn/T/tlt-loading-review-251bxfoh/k0-spawn.spec.lua:36: ...tm0000gn/T/tlt-loading-review-251bxfoh/k0-spawn.spec.lua:261: injected region preparation failure\nstack traceback:\n\t[C]: in global 'assert'\n\t...tm0000gn/T/tlt-loading-review-251bxfoh/k0-spawn.spec.lua:36: in local 'runFor'\n\t...tm0000gn/T/tlt-loading-review-251bxfoh/k0-spawn.spec.lua:265: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "suite": "story-respawn",
+      "exitCode": 1,
+      "output": "Story respawn: 28 checks passed\nExpanded story respawn: 82 checkpoint fixtures; total 685 checks passed\nlua: ...0gn/T/tlt-loading-review-251bxfoh/story-respawn.spec.lua:15: ordinary respawn waits for services despite existing spawn\nstack traceback:\n\t[C]: in global 'assert'\n\t...0gn/T/tlt-loading-review-251bxfoh/story-respawn.spec.lua:15: in local 'check'\n\t...0gn/T/tlt-loading-review-251bxfoh/story-respawn.spec.lua:104: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "suite": "checkpoint-loading",
+      "exitCode": 1,
+      "output": "lua: .../tlt-loading-review-251bxfoh/checkpoint-loading.spec.lua:2: new warm destination releases an older cold cover\nstack traceback:\n\t[C]: in global 'assert'\n\t.../tlt-loading-review-251bxfoh/checkpoint-loading.spec.lua:2: in local 'check'\n\t.../tlt-loading-review-251bxfoh/checkpoint-loading.spec.lua:62: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "tests": [
+    {
+      "command": "lua tests/k0-spawn.spec.lua",
+      "exitCode": 0,
+      "output": "K0 spawn lifecycle: 47 checks passed (retry/backoff, region failures, concurrent routes, respawn and departure)\n"
+    },
+    {
+      "command": "lua tests/story-respawn.spec.lua",
+      "exitCode": 0,
+      "output": "Story respawn: 28 checks passed\nExpanded story respawn: 82 checkpoint fixtures; total 685 checks passed\nRegion readiness respawn: total 688 checks passed\n"
+    },
+    {
+      "command": "lua tests/checkpoint-loading.spec.lua",
+      "exitCode": 0,
+      "output": "checkpoint-loading: 23 checks PASS\n"
+    },
+    {
+      "command": "lua tests/checkpoint-travel.spec.lua",
+      "exitCode": 0,
+      "output": "Checkpoint travel: 8356 checks passed\n"
+    },
+    {
+      "command": "lua tests/campaign-preparation.spec.lua",
+      "exitCode": 0,
+      "output": "campaign-preparation: 9 checks PASS\n"
+    },
+    {
+      "command": "lua tests/campaign-streaming.spec.lua",
+      "exitCode": 0,
+      "output": "campaign-streaming: 64 checks PASS\n"
+    },
+    {
+      "command": "lua tests/arrival-loading.spec.lua",
+      "exitCode": 0,
+      "output": "arrival-loading: 326 checks PASS\n"
+    },
+    {
+      "command": "lua tests/campaign-navigation-route.spec.lua",
+      "exitCode": 0,
+      "output": "CAMPAIGN_NAVIGATION_ROUTE 8791 checks PASS; old rejected 70; returns 10; live steps 525; walking distance 3132\n"
+    },
+    {
+      "command": "lua tests/story-region-handoff.spec.lua",
+      "exitCode": 0,
+      "output": "Story region handoff: 44 checks passed\n"
+    }
+  ],
+  "compile": {
+    "tool": "/tmp/td233-luau/luau-compile",
+    "sources": 542,
+    "errors": []
+  },
+  "studio": {
+    "placeId": 0,
+    "mode": "Edit",
+    "sceneModified": false,
+    "compiledChangedSourcesAndFixtures": 6,
+    "deterministicLuauChecks": {
+      "spawnLifecycle": 47,
+      "checkpointLoading": 23
+    },
+    "scope": "Luau VM에서 실제 서비스/컨트롤러를 대역 스케줄러로 실행. 실제 렌더/물리/스트리밍/계정 입장 시험 아님. 기존 사용자 Studio 세션은 변경·종료하지 않음."
+  },
+  "sourceSha256": {
+    "src/server/Spawn/SpawnService.luau": "a1ad88cb185f161b91f0e0ebd30858117f61ce3dcc45136041d2a0108256237d",
+    "src/server/Story/DeepwoodService.luau": "91d5f2031a3d19c180d7fee098251095ee237baa5e60b83b2fbb0b3ef024251e",
+    "src/server/Story/CheckpointTravelService.luau": "dd4c3015f620f81ada9ad2833cd0b4001ee668371cc61fb4e772b306ebcdcb11",
+    "src/client/CheckpointLoading.luau": "4e11e74d272dd5774a5169adad28f1d349dd6c159ff4559a17ba2279f5746f8a"
+  }
+}

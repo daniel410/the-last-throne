@@ -7,7 +7,7 @@ local last=assert(source:find('    local run=options.inventory.expedition',first
 local transition=assert(load('return function(Checkpoints) return function(player,e,after,complete,Content,options,context,publish,Vector3,Text)\n'..source:sub(first,last-1)..'\nreturn transitionNotice end end'))()(dofile('src/shared/CheckpointTravel.luau'))
 local firstDestination=assert(source:find('function Service.destination',1,true))
 local lastDestination=assert(source:find('local function enqueue',firstDestination,true))
-local makeDestination=assert(load('return function(options,state,Content) local Service={}\n'..source:sub(firstDestination,lastDestination-1)..'return Service end'))()
+local makeDestination=assert(load('return function(options,state,Content) local Service={} local encounters={}\n'..source:sub(firstDestination,lastDestination-1)..'return Service end'))()
 local n=0;local function check(v,m)n=n+1;assert(v,m)end
 local vectors={new=function(x,y,z)check(x==0 and y==4 and z==0,'arrival is above the safe spawn');return y end}
 for _,number in ipairs({7,14,21,28})do
@@ -24,7 +24,7 @@ for _,number in ipairs({7,14,21,28})do
  local function ctx()return {heroId='hero'}end
  local function publish(_,message)messages[#messages+1]=message end
  local notice=transition(player,e,after,true,Content,options,ctx,publish,vectors,Text)
- check(prepared==1 and moved==1 and notice==nil,'epic handoff prepares and moves without lobby return')
+ check(prepared==1 and moved==0 and notice:find('on foot',1,true),'epic handoff prepares the road and keeps the hero in place')
  check(messages[1]==Text.StoryPreparingRegion,'preparation explains that progress is already saved')
  prepared,moved=0,0
  transition(player,e,after,false,Content,options,ctx,publish,vectors,Text)

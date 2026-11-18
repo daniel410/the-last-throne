@@ -136,7 +136,9 @@ local function player(name, options)
 	return result
 end
 
+local checks = 0
 local function check(condition, message)
+ checks = checks + 1
 	assert(condition, message)
 end
 local first = player("First")
@@ -147,7 +149,12 @@ players.list = { first, second, third, fourth }
 local SpawnService = dofile("src/server/Spawn/SpawnService.luau")
 local readyEvents = {}
 local endEvents = {}
+local resolveOverride
 SpawnService.start(spawn, {
+ resolveDestination = function(person, previous)
+  if resolveOverride then return resolveOverride(person, previous) end
+  return previous
+ end,
 	onReady = function(person, actor, generation, requestId)
 		table.insert(readyEvents, { player = person, actor = actor, generation = generation, requestId = requestId })
 	end,
@@ -247,5 +254,36 @@ runFor(7)
 check(swapping.loads == 5 and swapping.Character == finalLife and finalLife:GetAttribute("K0SpawnReady"), "stale death cannot replace returned lobby life")
 players.PlayerRemoving:Fire(swapping)
 swapping.Parent = nil
+-- Region preparation can fail or yield before LoadCharacterAsync starts.
+local attempts = 0
+resolveOverride = function(_, previous)
+ attempts = attempts + 1
+ if attempts == 1 then error("injected region preparation failure") end
+ return previous
+end
+local recovering = player("RegionRecovery")
+players.PlayerAdded:Fire(recovering);runFor(.1)
+check(recovering.loads == 0 and recovering.attributes.K0SpawnStatus == "Retrying", "failed region preparation schedules spawn retry")
+runFor(3)
+check(attempts == 2 and recovering.loads == 1 and recovering.Character:GetAttribute("K0SpawnReady"), "region retry produces one ready life")
+local concurrent, peak = 0, 0
+resolveOverride = function(_, previous)
+ concurrent = concurrent + 1;peak = math.max(peak, concurrent)
+ task.wait(2)
+ concurrent = concurrent - 1
+ return previous
+end
+local resolving = player("RegionRouteRace")
+players.PlayerAdded:Fire(resolving);runFor(.1)
+check(SpawnService.requestSpawn(resolving, tutorialSpawn, 1), "new route can supersede pending region resolution")
+runFor(2.1)
+check(resolving.loads == 0 and peak == 1, "superseded region result cannot spawn and resolution is serialized")
+runFor(7)
+check(resolving.loads == 1 and resolving.RespawnLocation == tutorialSpawn and resolving.Character:GetAttribute("K0SpawnReady"), "latest route owns the only resulting life")
+local departing = player("LeavingDuringRegion")
+players.PlayerAdded:Fire(departing);runFor(.1)
+players.PlayerRemoving:Fire(departing);departing.Parent = nil;runFor(3)
+check(departing.loads == 0, "departure during region preparation never loads a character")
+resolveOverride = nil
 os.clock = originalClock
-print("K0 spawn lifecycle: 4 players, retry/backoff, late Humanoid, per-player routes, load races, stale lives, respawn and leave passed")
+print("K0 spawn lifecycle: " .. checks .. " checks passed (retry/backoff, region failures, concurrent routes, respawn and departure)")

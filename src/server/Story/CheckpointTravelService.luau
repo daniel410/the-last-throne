@@ -30,7 +30,8 @@ function Service.create(o)
    return o.relocate(player,at)==true,target,at
   end)
   preparing[player]=nil
-  if loading and o.loading then o.loading(player,ok and moved and 'Arrived'or 'Cancelled',request,ok and moved and pivot or nil)end
+  -- Even a warm move supersedes any older cover still awaiting replication.
+  if o.loading and (loading or ok and moved)then o.loading(player,ok and moved and 'Arrived'or 'Cancelled',request,ok and moved and pivot or nil)end
   if not ok then return false end
   return moved,destination
  end

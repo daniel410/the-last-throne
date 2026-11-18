@@ -110,7 +110,7 @@ local cold=S.create({rules=T,context=function()return {heroId='qa',epoch=1,chara
  destination=function()return 'destination'end,relocate=function()moves=moves+1;return true end})
 check(cold(1,'HG-07')and prepares==1 and moves==1,'partial geometry waits for services and readiness')
 check(messages[2][1]=='Arrived'and messages[1][2]==messages[2][2]and messages[2][3]=='destination','matching completion supplies destination')
-check(cold(1,'HG-07')and prepares==1 and #messages==2,'warm checkpoint never shows cover')
+check(cold(1,'HG-07')and prepares==1 and #messages==3 and messages[3][1]=='Arrived' and messages[3][2]>messages[2][2],'warm checkpoint supersedes a prior arrival without Begin')
 for _,reason in ipairs({'error','revoked','incomplete'})do
  messages={};world.readyEpics[5]=nil;state.checkpointClears['HG-07']=true
  local interrupted=S.create({rules=T,context=function()return {heroId='qa'}end,active=function()return {heroId='qa'}end,

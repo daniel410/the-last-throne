@@ -9,7 +9,7 @@ local function body(path,first,last)
  local start=assert(s:find(first,1,true));return s:sub(start,assert(s:find(last,start,true))-1)
 end
 local makeState=assert(load('return function(accounts,Rules,ReplicatedStorage,require) local Service={}\n'..body('src/server/Inventory/InventoryService.luau','function Service.storyState','-- All support Gold')..'return Service.storyState end'))()
-local makeDestination=assert(load('return function(options,state,Content,ReplicatedStorage,require,Instance,Vector3) local Service={}\n'..body('src/server/Story/DeepwoodService.luau','function Service.destination','local function enqueue')..'return Service.destination end'))()
+local makeDestination=assert(load('return function(options,state,Content,ReplicatedStorage,require,Instance,Vector3) local Service={} local encounters={}\n'..body('src/server/Story/DeepwoodService.luau','function Service.destination','local function enqueue')..'return Service.destination end'))()
 local resolver=body('src/server/init.server.luau',' resolveDestination=function(player,previous)',' end,onLifeStarted')..' end'
 local makeResolver=assert(load('return function(heroSession,world,story) local '..resolver..' return resolveDestination end'))()
 local n=0;local function check(v,m)n=n+1;assert(v,m)end
@@ -27,8 +27,11 @@ apply(Content.byId['DW-04'],Content.byId['DW-04'].goals[1])
 check(profile.heroes.hero.expeditions.active.missionId=='DW-01','fixture entered through story 1')
 check(A.projection(profile.heroes.hero).expeditionMission=='DW-04','fixture advanced to story 4')
 local account={profile=profile};local accounts={[player]=account}
-local shared={AdventureRules={}}
-local storyState=makeState(accounts,R,{Shared=shared},function(module)check(module==shared.AdventureRules,'real projection dependency');return A end)
+local shared={AdventureRules={},CampaignModeProgress={}}
+local storyState=makeState(accounts,R,{Shared=shared},function(module)
+ if module==shared.CampaignModeProgress then return dofile('src/shared/CampaignModeProgress.luau')end
+ check(module==shared.AdventureRules,'real projection dependency');return A
+end)
 local spawns={};for id in pairs(Content.zones)do spawns[id]={id=id}end
 local inventory={storyState=storyState,expedition=function()return account.profile.heroes.hero.expeditions.active end}
 local destination=makeDestination({inventory=inventory,world={spawns=spawns}},storyState,Content)
@@ -89,3 +92,19 @@ for _,chapter in ipairs(Content.chapters)do
 end
 check(checkpointCount>0,'expanded checkpoint fixtures were exercised')
 print('Expanded story respawn: '..checkpointCount..' checkpoint fixtures; total '..n..' checks passed')
+
+-- A published spawn is insufficient while the region's services are unfinished.
+local readyWorld={spawns=spawns,folder=folder,readyEpics={}}
+local prepared=0
+local settings={inventory=inventory,world=readyWorld,prepareStory=function(id)
+ prepared=prepared+1;readyWorld.readyEpics[Content.byId[id].epic or 1]=true
+end}
+local regional=makeDestination(settings,function()return saved end,Content,checkpointShared,function()return Checkpoints end,instance,vectors)
+saved={main=7,expeditionMission='GW-01'}
+check(regional(player,'hero')==spawns['GW-01'] and prepared==1,'ordinary respawn waits for services despite existing spawn')
+saved={expansionVersion=1,expeditionMission='GW-01',clears={},flags={['GW-01:'..Content.byId['GW-01'].expansionGoals[1].id]=true},activities={}}
+readyWorld.readyEpics[2]=nil
+check(regional(player,'hero') and prepared==2,'expanded respawn waits for services despite existing spawn')
+readyWorld.readyEpics[2]=nil;settings.prepareStory=function()end
+check(regional(player,'hero')==nil,'unfinished preparation cannot expose expanded respawn')
+print('Region readiness respawn: total '..n..' checks passed')

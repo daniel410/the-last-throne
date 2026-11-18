@@ -75,7 +75,7 @@ requestLoad = function(state, generation)
 	if not connected(state) or state.generation ~= generation then
 		return
 	end
-	if state.loading then
+	if state.loading or state.resolving then
 		scheduleLoad(state, 1, generation)
 		return
 	end
@@ -102,7 +102,23 @@ requestLoad = function(state, generation)
 		end
 	end
 	local request = state.desiredRequest
- if lifecycle.resolveDestination then request.destination=lifecycle.resolveDestination(state.player,request.destination) end
+	if lifecycle.resolveDestination then
+		state.resolving = true
+		local ok, destination = pcall(lifecycle.resolveDestination, state.player, request.destination)
+		state.resolving = false
+		-- Region construction can yield, fail, or outlive this route/player.
+		if not connected(state) or state.generation ~= generation then return end
+		if state.desiredRequest ~= request then
+			scheduleLoad(state, 0, state.generation)
+			return
+		end
+		if not ok then
+			warn("K0 destination preparation failed; retrying: " .. tostring(destination))
+			scheduleRetry(state, generation)
+			return
+		end
+		request.destination = destination
+	end
 	if not isSafeSpawnAvailable(request.destination) then
 		warn("K0 safe spawn is unavailable; character loading will retry.")
 		scheduleRetry(state, generation)

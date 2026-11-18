@@ -10,8 +10,12 @@ local player={Character=character,GameplayPaused=false}
 function player:GetAttribute(k)return attrs[k]end
 function player:SetAttribute(k,v)attrs[k]=v end
 function player:WaitForChild()return {}end
-local streamCalls,failStream=0,false
-function player:RequestStreamAroundAsync()streamCalls=streamCalls+1;if failStream then failStream=false;error('network failure')end end
+local streamCalls,failStream,streamWaits=0,false,0
+function player:RequestStreamAroundAsync()
+ streamCalls=streamCalls+1
+ local waits=streamWaits;for _=1,waits do coroutine.yield()end
+ if failStream then failStream=false;error('network failure')end
+end
 local created,destroyed,bound=0,0,false
 local cover={create=function()created=created+1;return {Destroy=function()destroyed=destroyed+1 end}end}
 local queue={}
@@ -52,4 +56,16 @@ pump();frames(3);check(destroyed==6 and streamCalls==3,'stream retries then reve
 event('Begin',7);event('Arrived',7,V(100));event('Cancelled',7);event('Begin',8);pump();frames(4)
 check(destroyed==7 and attrs.TLTCheckpointLoading,'late stream result cannot reveal newer request')
 event('Cancelled',8);event('Begin',8);check(created==8 and destroyed==8 and not bound,'duplicate begin is ignored')
+-- A subsequent warm checkpoint can complete while the first cover is still up.
+event('Begin',9);event('Arrived',9,V(200));pump();frames(4)
+event('Arrived',10,V(300));root.Position=V(300);camera.Focus.Position=V(300);pump();frames(3)
+check(destroyed==9 and not bound,'new warm destination releases an older cold cover')
+event('Arrived',11,V(400));check(created==9,'warm travel without a pending cover creates none')
+event('Begin',12);streamWaits=1;event('Arrived',12,V(500));pump()
+streamWaits=3;event('Arrived',13,V(600));root.Position=V(600);camera.Focus.Position=V(600);pump();frames(4)
+check(destroyed==9 and bound,'old in-flight stream cannot mark a newer destination ready')
+event('Cancelled',12);event('Arrived',12,V(500));frames(4)
+check(destroyed==9 and bound,'superseded request cannot cancel or redirect the new arrival')
+pump();pump();frames(3);check(destroyed==9,'new destination still waits for its own stream')
+pump();frames(3);check(destroyed==10 and not bound,'new destination closes only after its own stream')
 print('checkpoint-loading: '..checks..' checks PASS')

@@ -14,25 +14,29 @@ function M.start(player)
  task.spawn(function()
   local remote=game.ReplicatedStorage:WaitForChild('Remotes'):WaitForChild('CheckpointTravelState')
   remote.OnClientEvent:Connect(function(stage,id,position)
+   if type(id)~='number'or id<latest then return end
    if stage=='Begin' then
-    if type(id)~='number'or id<=latest then return end
+    if id==latest then return end
     latest=id;close()
     local gui=Cover.create(1);gui.Name='CheckpointLoadingScreen';gui.Parent=player:WaitForChild('PlayerGui')
     active={id=id,gui=gui,character=player.Character,frames=0}
     player:SetAttribute('TLTCheckpointLoading',true)
     Actions:BindActionAtPriority('TLTCheckpointLoading',function()return Enum.ContextActionResult.Sink end,false,
      Enum.ContextActionPriority.High.Value,table.unpack(Enum.PlayerActions:GetEnumItems()))
-   elseif active and active.id==id then
-    if stage=='Cancelled'then close()
-    elseif stage=='Arrived'and typeof(position)=='Vector3' then
-     local state=active;state.position=position
-     task.spawn(function()
-      while active==state and not state.streamed do
-       state.streamed=not workspace.StreamingEnabled or pcall(function()player:RequestStreamAroundAsync(position,5)end)
-       if not state.streamed then task.wait(.5)end
-      end
-     end)
-    end
+   elseif stage=='Cancelled'and active and active.id==id then close()
+   elseif stage=='Arrived'and typeof(position)=='Vector3' then
+    latest=id
+    if not active then return end
+    local state=active;local arrival={}
+    state.id=id;state.position=position;state.streamed=false;state.frames=0;state.arrival=arrival
+    task.spawn(function()
+     while active==state and state.arrival==arrival and not state.streamed do
+      local streamed=not workspace.StreamingEnabled or pcall(function()player:RequestStreamAroundAsync(position,5)end)
+      if active~=state or state.arrival~=arrival then return end
+      state.streamed=streamed
+      if not streamed then task.wait(.5)end
+     end
+    end)
    end
   end)
  end)

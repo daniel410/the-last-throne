@@ -68,8 +68,17 @@ local function publish(player,message,notice,completion)
  remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),routePartySize=admittedCount(player,admission),heroId=h.heroId,training=h.training,gold=options.inventory.goldBalance and options.inventory.goldBalance(player),journal=s,expedition=admission,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
+ local function prepared(chapter)
+  local function ready()
+   local epics=options.world.readyEpics or options.world.loadedEpics
+   return options.world.spawns[chapter.zone]~=nil and (not epics or epics[chapter.epic or 1]==true)
+  end
+  if not ready()and options.prepareStory then options.prepareStory(chapter.id)end
+  return ready()
+ end
  local run=options.inventory.expedition(player,heroId)
  for _,e in pairs(encounters)do if e.routePoints and not e.completed and e.participants[player]==heroId and run and run.runId==e.runId then
+  if not prepared(e.chapter)then return nil end
   local cleared=e.waiting and e.wave or e.wave-1
   local at=Vector3.new(table.unpack(e.routePoints[math.max(1,cleared)]))
   if cleared<1 then at=at+Vector3.new(-38,0,0)end
@@ -86,7 +95,7 @@ function Service.destination(player,heroId)
   local chapter=admitted or QuestLog.main(s)
   local checkpoint=chapter and require(ReplicatedStorage.Shared.CampaignExpansionCheckpoints).respawn(s,chapter)
   if checkpoint then
-   if not options.world.spawns[chapter.zone]and options.prepareStory then options.prepareStory(chapter.id)end
+   if not prepared(chapter)then return nil end
    local anchor=options.world.folder:FindFirstChild('ExpansionRespawn_'..chapter.id)
    if not anchor then anchor=Instance.new('SpawnLocation');anchor.Neutral=true;anchor.Enabled=true;anchor.Duration=0;anchor.Name='ExpansionRespawn_'..chapter.id;anchor.Size=Vector3.new(1,1,1);anchor.Anchored=true;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanQuery=false;anchor.CanTouch=false;anchor.Parent=options.world.folder end
    anchor.Position=Vector3.new(table.unpack(checkpoint.position));return anchor
@@ -96,7 +105,7 @@ function Service.destination(player,heroId)
  local c=a and Content.byId[s and s.expeditionMission or a.missionId]or Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
  if not a and s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
  if not a and s and s.main==Content.mainCount then return options.world.spawns[Content.epics[#Content.epics].hub] end
- if not options.world.spawns[c.zone]and options.prepareStory then options.prepareStory(c.id)end
+ if not prepared(c)then return nil end
  return options.world.spawns[c.zone]
 end
 local function enqueuePersonal(player,heroId,c,g,choice,stepId)
