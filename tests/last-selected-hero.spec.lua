@@ -37,6 +37,7 @@ local accounts={}
 local service={ready=function(person)local s=accounts[person];return s and s.valid and not s.busy end}
 local currentStore=first
 local env=setmetatable({Service=service,accounts=accounts,Store={new=function()return currentStore end},
+ script={Parent={ExplorationSaveBuffer=dofile('src/server/Inventory/ExplorationSaveBuffer.luau')}},require=function(module)return module end,
  HttpService={GenerateGUID=function()return currentStore.token end},task={wait=function()end},Rules=R,Players=players,sessionOnly=false,publish=function()end},{__index=_G})
 assert(load(body('function Service.open(', 'function Service.close('),'open','t',env))()
 assert(load(body('function Service.selectHero(', 'function Service.stats('),'selectHero','t',env))()

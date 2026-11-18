@@ -44,6 +44,7 @@ function Service.open(player)
 		store = Store.new(adapter, Rules, Catalog, os.time, task.wait, HttpService:GenerateGUID(false)),
 		delivered = {}, tokens = 12, refillAt = os.clock(),
 	}
+ if not previous then require(script.Parent.ExplorationSaveBuffer).attach(state,Rules) end
 	state.busy, state.valid = true, false
 	accounts[player] = state
 	local profile, errorCode = state.store:open(player.UserId)
@@ -72,16 +73,16 @@ function Service.close(player)
 		while state.busy do task.wait(0.1) end
 		local deadline=os.clock()+10
         while accounts[player]==state and state.revealJobs and #state.revealJobs>0 and os.clock()<deadline do
-            local job=state.revealJobs[1];state.busy=true
-            local profile,reason=state.store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
-            if profile then state.profile,state.valid,state.errorCode=profile,true,nil;state.revealPending=nil;table.remove(state.revealJobs,1)
+            state.busy=true
+            local profile,reason=state.store:transact(player.UserId,function(current) return current end)
+            if profile then state.profile,state.valid,state.errorCode=profile,true,nil
             elseif reason~='SaveUnknown' and reason~='AccountBusy' then break end
             state.busy=false;if reason then task.wait(.5) end
         end
         state.busy=false
 		while accounts[player]==state and state.rewards and #state.rewards>0 and os.clock()<deadline do
-			local reason=Service.progress(player,state.rewards[1],true)
-			if not reason then table.remove(state.rewards,1)
+			local reason,count=Service.progress(player,state.rewards[1],true)
+			if not reason then for _=1,count do table.remove(state.rewards,1)end
 			elseif reason=="SaveUnknown" or reason=="Busy" then task.wait(.5) else break end
 		end
 		if accounts[player] ~= state then return end
@@ -191,6 +192,15 @@ function Service.progress(player, command, serverReward)
  end
 	state.busy=true
 	state.growthPending=Growth.copy(command)
+ local batch=state.growthBatch or {Growth.copy(command)}
+ if not state.growthBatch and serverReward and command.action=='AwardXP' and state.rewards and state.rewards[1]==command then
+  for index=2,math.min(#state.rewards,32)do
+   local nextCommand=state.rewards[index]
+   if nextCommand.action~='AwardXP' then break end
+   table.insert(batch,Growth.copy(nextCommand))
+  end
+ end
+ state.growthBatch=batch
 	local profile,errorCode=state.store:transact(player.UserId,function(current)
 		local context={serverReward=serverReward==true}
 		if not serverReward then
@@ -200,11 +210,16 @@ function Service.progress(player, command, serverReward)
    context.atHub=sameLife and latest.atHub
    context.canInvest=sameLife and investment and options.combat.isSafeForEquipment(player)
 		end
-		return Rules.progress(current,command,context,Catalog)
+  for _,entry in ipairs(batch)do
+   local nextProfile,reason=Rules.progress(current,entry,context,Catalog)
+   if not nextProfile then return nil,reason end
+   current=nextProfile
+  end
+  return current
 	end)
 	if profile then
 		state.profile,state.valid,state.errorCode=profile,true,nil
-		state.growthPending=nil
+		state.growthPending=nil;state.growthBatch=nil
   if command.action=='DeathPenalty' then
    local receipt=profile.operations[command.requestId]
    if receipt and state.latestDeathId==command.requestId then deathNotice(player,command.requestId,'Saved',receipt.xpLost or 0) end
@@ -213,19 +228,21 @@ function Service.progress(player, command, serverReward)
 		options.heroSession.refresh(player)
 	elseif errorCode=="SaveUnknown" or errorCode=="AccountBusy" then
 		state.valid,state.errorCode=false,errorCode
-	else state.growthPending=nil end
+	else state.growthPending=nil;state.growthBatch=nil end
 	state.busy=false
 	publish(player,command.requestId,errorCode)
-	return errorCode
+	return errorCode,#batch
 end
 local function runGrowthQueue(player,state)
 	if state.rewardWorker then return end
 	state.rewardWorker=true
 	task.spawn(function()
+  -- Coalesce kills from the same combat tick before taking the account fence.
+  task.wait()
 		while accounts[player]==state and #state.rewards>0 and not state.closing do
 			local command=state.rewards[1]
-			local reason=Service.progress(player,command,true)
-			if not reason then table.remove(state.rewards,1)
+			local reason,count=Service.progress(player,command,true)
+			if not reason then for _=1,count do table.remove(state.rewards,1)end
 			elseif reason=="Busy" or reason=="SaveUnknown" or state.pending and state.errorCode=="SaveUnknown" then task.wait(1)
 			else
     if command.action=='DeathPenalty' then deathNotice(player,command.requestId,'Unavailable',nil) end
@@ -324,6 +341,9 @@ end
 function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId,runId)
  local state=accounts[player]
  if not state or state.busy or state.closing then return 'Busy' end
+ -- Keep earned kill receipts ahead of the objective they completed, even
+ -- during the one-frame reward coalescing window.
+ if not state.storyPending and state.rewards and #state.rewards>0 then return 'Busy' end
  local key=heroId..':'..chapterId..':'..goalId..':'..tostring(choice)..':'..tostring(stepId)..':'..tostring(runId)
  if state.storyPending and state.storyPending~=key then return 'Busy' end
  if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
@@ -358,20 +378,23 @@ function Service.reveal(player,heroId,zone,x,z)
  state.revealKeys[key]=true;table.insert(state.revealJobs,{key=key,heroId=heroId,zone=zone,x=x,z=z})
  if state.revealRunning then return end;state.revealRunning=true
  task.spawn(function()
+  -- Map discovery is monotonic and can ride the next gameplay save. Never
+  -- drain one UpdateAsync per cell ahead of story events or kill rewards.
+  task.wait(5)
   while accounts[player]==state and #state.revealJobs>0 and not state.closing do
    local job=state.revealJobs[1]
-   if state.busy or not state.valid and state.revealPending~=job.key then task.wait(.25)
+   local gameplayPending=state.rewards and #state.rewards>0 or options.storyPending and options.storyPending(player)
+   if state.busy or not state.valid and state.revealPending~=job.key or state.valid and gameplayPending then task.wait(.25)
    else
     state.busy=true;state.revealPending=job.key
-    local profile,reason=state.store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
+    local profile,reason=state.store:transact(player.UserId,function(current) return current end)
     if profile then
      state.profile,state.valid,state.errorCode=profile,true,nil;state.revealPending=nil
-     state.revealKeys[job.key]=nil;table.remove(state.revealJobs,1)
     elseif reason=='SaveUnknown' or reason=='AccountBusy' then state.valid,state.errorCode=false,reason
     else state.revealPending=nil;state.revealKeys[job.key]=nil;table.remove(state.revealJobs,1) end
     state.busy=false
     if profile then publish(player) end
-    if reason then task.wait(1) end
+    task.wait(reason and 1 or 5)
    end
   end
   state.revealRunning=false
@@ -599,14 +622,14 @@ function Service.prepareTransfer(player)
  while s.busy and os.clock()<deadline do task.wait(.1) end
  if s.busy or s.pending or s.growthPending or s.storyPending or s.shopPending or s.expeditionPending or s.sideQuestPending or options.storyPending and options.storyPending(player) then s.closing=false;return false end
  while s.rewards and #s.rewards>0 and os.clock()<deadline do
-  local reason=Service.progress(player,s.rewards[1],true)
-  if not reason then table.remove(s.rewards,1) else s.closing=false;return false end
+  local reason,count=Service.progress(player,s.rewards[1],true)
+  if not reason then for _=1,count do table.remove(s.rewards,1)end else s.closing=false;return false end
  end
  while s.revealJobs and #s.revealJobs>0 and os.clock()<deadline do
-  local job=s.revealJobs[1];s.busy=true
-  local p,e=s.store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end);s.busy=false
+  s.busy=true
+  local p,e=s.store:transact(player.UserId,function(current) return current end);s.busy=false
   if not p then s.closing=false;s.valid=false;s.errorCode=e;return false end
-  s.profile=p;table.remove(s.revealJobs,1)
+  s.profile=p
  end
  if s.rewards and #s.rewards>0 or s.revealJobs and #s.revealJobs>0 or not s.valid then s.closing=false;return false end
  if Service.captureVitals(player) then s.closing=false;return false end
@@ -729,6 +752,7 @@ function Service.expedition(player,heroId,identityOnly)
 end
 function Service.beginExpedition(player,heroId,missionId,difficultyId,runId,rulesVersion,party)
  local s=accounts[player];if not s or s.busy or s.closing then return 'Busy'end
+ if not s.expeditionPending and s.rewards and #s.rewards>0 then return 'Busy'end
  local pending=s.expeditionPending
  if pending and (pending.runId~=runId or pending.heroId~=heroId)then return 'Busy'end
  if not s.valid and not pending then return s.errorCode or 'Unavailable'end

@@ -1,7 +1,6 @@
 -- Surveyed world surfaces, stored locally at build time.
 local assets = game:GetService("AssetService")
 local encoding = game:GetService("EncodingService")
-local plates = script.Parent.AtlasPlates
 local Plate = {}
 
 local function fallback(frame, data, width, height, detail)
@@ -41,21 +40,23 @@ local function fallback(frame, data, width, height, detail)
 end
 
 function Plate.draw(parent, zoneId, detail)
- local data = encoding:DecompressBuffer(encoding:Base64Decode(buffer.fromstring(plates["Relief_"..zoneId].Value)), Enum.CompressionAlgorithm.Zstd)
+ -- A replicated sibling is not guaranteed to be available when the
+ -- menu first opens. Let the canvas use its surveyed geometry until it is.
+ local plates = script.Parent:FindFirstChild("AtlasPlates")
+ local entry = plates and plates:FindFirstChild("Relief_"..zoneId)
+ if not entry or not entry:IsA("StringValue") or entry.Value == "" then return nil end
+ local decoded, data = pcall(function()
+  return encoding:DecompressBuffer(encoding:Base64Decode(buffer.fromstring(entry.Value)), Enum.CompressionAlgorithm.Zstd)
+ end)
+ if not decoded or buffer.len(data)<772 then return nil end
  local width, height = buffer.readu16(data,0), buffer.readu16(data,2)
+ if width<1 or height<1 or width>1024 or height>1024 or buffer.len(data)~=772+width*height then return nil end
  local scale = detail and 1 or math.min(1,160/math.max(width,height))
  local size = Vector2.new(math.max(1,math.round(width*scale)),math.max(1,math.round(height*scale)))
- local ok, image = pcall(function() return assets:CreateEditableImage({Size=size}) end)
- if not ok or not image then
-  local frame = Instance.new("Frame")
-  frame.Name = "Relief"
-  frame.BackgroundTransparency = 1
-  frame.ClipsDescendants = true
-  frame.Size = UDim2.fromScale(1,1)
-  fallback(frame,data,width,height,detail)
-  frame.Parent = parent
-  return frame
- end
+ local image, label
+ local ok = pcall(function()
+ image = assets:CreateEditableImage({Size=size})
+ if not image then error("Editable image unavailable") end
  local palette = {}
  for i = 0, 254 do
   local offset = 4+i*3
@@ -71,7 +72,7 @@ function Plate.draw(parent, zoneId, detail)
   end
  end
  image:WritePixelsBuffer(Vector2.zero,size,pixels)
- local label = Instance.new("ImageLabel")
+ label = Instance.new("ImageLabel")
  label.Name = "Relief"
  label.ImageContent = Content.fromObject(image)
  label.BackgroundTransparency = 1
@@ -79,7 +80,20 @@ function Plate.draw(parent, zoneId, detail)
  label.ScaleType = Enum.ScaleType.Stretch
  label.Destroying:Connect(function() image:Destroy() end)
  label.Parent = parent
- return label
+ end)
+ if ok then return label end
+ -- Creating the image is only the first fallible step. Pixel upload and
+ -- Content binding must also fall back without aborting the whole map menu.
+ if label then label:Destroy() end
+ if image then pcall(function()image:Destroy()end) end
+ local frame = Instance.new("Frame")
+ frame.Name = "Relief"
+ frame.BackgroundTransparency = 1
+ frame.ClipsDescendants = true
+ frame.Size = UDim2.fromScale(1,1)
+ fallback(frame,data,width,height,detail)
+ frame.Parent = parent
+ return frame
 end
 
 return Plate

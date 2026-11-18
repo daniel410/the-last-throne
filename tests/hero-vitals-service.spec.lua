@@ -18,7 +18,7 @@ local players={}
 local tasks={}
 local now,serial=100,0
 local environment=setmetatable({
- script={Parent={InventoryRules=R,AccountStore=Store,Parent={Lobby={DeliveryRules=dofile('src/server/Lobby/DeliveryRules.luau'),DeliveryCatalog=dofile('src/server/Lobby/DeliveryCatalog.luau')}}}},
+ script={Parent={InventoryRules=R,AccountStore=Store,ExplorationSaveBuffer=dofile('src/server/Inventory/ExplorationSaveBuffer.luau'),Parent={Lobby={DeliveryRules=dofile('src/server/Lobby/DeliveryRules.luau'),DeliveryCatalog=dofile('src/server/Lobby/DeliveryCatalog.luau')}}}},
  os={clock=os.clock,time=function()return now end},
  require=function(module)return module end,
  Instance={new=function()return {OnServerEvent=signal(),FireClient=function()end}end},

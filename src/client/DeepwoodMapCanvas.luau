@@ -60,14 +60,18 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
  end
  for _,id in ipairs(ids) do
   local zone=Content.zones[id]
+  local relief
   if zoneId and not compact then
    local x0,z0,x1,z1=Areas.surveyExtent(zone)
    local at=point(x0,z0)
-   local relief=Plate.draw(parent,id,type(zoneId)=='string')
-   relief.Position=UDim2.fromScale(at.X,at.Y)
-   relief.Size=UDim2.fromScale((x1-x0)/width,(z1-z0)/height)
-   relief.ZIndex=3
-  else
+   relief=Plate.draw(parent,id,type(zoneId)=='string')
+   if relief then
+    relief.Position=UDim2.fromScale(at.X,at.Y)
+    relief.Size=UDim2.fromScale((x1-x0)/width,(z1-z0)/height)
+    relief.ZIndex=3
+   end
+  end
+  if not relief then
    Art.region(parent,id,zone,point,width,height,compact,line)
    for _,area in ipairs(zone.expansionAreas or {}) do
     local center=point(area.center[1],area.center[3])

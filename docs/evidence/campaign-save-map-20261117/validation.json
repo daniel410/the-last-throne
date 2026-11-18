@@ -1,0 +1,115 @@
+{
+  "baseline": "0d14b36b",
+  "luaTests": [
+    {
+      "command": "lua tests/campaign-save-latency.spec.lua",
+      "checks": 49,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/hero-vitals-service.spec.lua",
+      "checks": 29,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/last-selected-hero.spec.lua",
+      "checks": 21,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/inventory.spec.lua",
+      "checks": 276,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/hero-progression.spec.lua",
+      "checks": 3710,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/death-xp-penalty.spec.lua",
+      "checks": 3575,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/economy.spec.lua",
+      "checks": 38,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/arrival-loading.spec.lua",
+      "checks": 326,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/campaign-streaming.spec.lua",
+      "checks": 64,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/campaign-preparation.spec.lua",
+      "checks": 9,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/story-respawn.spec.lua",
+      "checks": 688,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/equipment-lobby-refresh.spec.lua",
+      "checks": 35,
+      "status": "passed"
+    },
+    {
+      "command": "lua tests/hero-vitals.spec.lua",
+      "checks": 25,
+      "status": "passed"
+    }
+  ],
+  "luaCheckTotal": 8845,
+  "compile": {
+    "command": "/tmp/td233-luau/luau-compile <src/**/*.luau>",
+    "files": 543,
+    "errors": 0
+  },
+  "studio": {
+    "saveFixture": 49,
+    "atlasFixture": 56,
+    "localScript": {
+      "MissingDataMenuReady": true,
+      "RecoveredImageMenuReady": true,
+      "DetailReady": true,
+      "ImageLabelIsLoaded": true
+    }
+  },
+  "simulation": {
+    "storageRoundTripSeconds": 1.5,
+    "mapAndStory": {
+      "beforeSeconds": 10.5,
+      "beforeWrites": 7,
+      "afterSeconds": 1.5,
+      "afterWrites": 1
+    },
+    "killPackAndStory": {
+      "beforeSeconds": 10.5,
+      "beforeWrites": 7,
+      "afterSeconds": 3.5,
+      "afterWrites": 2
+    },
+    "staggeredKillsAndStory": {
+      "afterSeconds": 5.1,
+      "afterWrites": 3
+    }
+  },
+  "sha256": {
+    "src/server/Inventory/InventoryService.luau": "12e1017d86da2673f8b00e672ac899b45cc29cdd45a2102c6bbba7c9f63a4c76",
+    "src/server/Inventory/ExplorationSaveBuffer.luau": "ca8c956ae0ccb4ab6560a9d932b2d76860e3abbef6d739fdbb93cbe7ac1c061d",
+    "src/client/AtlasPlate.luau": "31a9578de89c6f09b1fa4ad46a4a0280be4ce3dc434458ddf5d2bdff6594d49a",
+    "src/client/DeepwoodMapCanvas.luau": "f42ffdd6790ed90928867755398f7beb7573c1e76603f4dba4e42e9b0ba832dc",
+    "tests/campaign-save-latency.spec.lua": "b2945f5419f297f672d56a4791e84a6f9b68785b6c0630ea497b9459f2bc23c1",
+    "tests/atlas-availability-native.luau": "497009ab1b488dec4ea8805ef7e9fad6f30beb2ad84b0a3322d7bfbefc7c72be"
+  },
+  "published": false,
+  "liveSymptomRootCauseConfirmed": false
+}
