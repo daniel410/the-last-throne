@@ -28,6 +28,7 @@ local function run(role, incoming, failStream, demandStream, slowGates)
  local attrs = {K0SessionPhase='Lobby',TLTTravelLock=true}
  local player = {Character=character,GameplayPaused=false}
  function player:GetAttribute(key) return attrs[key] end
+ function player:SetAttribute(key,value) attrs[key]=value end
  function player:WaitForChild() return parent end
  function player:RequestStreamAroundAsync()
   requests=requests+1
@@ -87,6 +88,8 @@ local function run(role, incoming, failStream, demandStream, slowGates)
   check(removed and destroyedAt>=28,'wait through readiness regression and rendered frames')
   check(created==(incoming and 0 or 1),'reuse arriving artwork or use approved fallback')
   check(requests==(failStream and 2 or 1),'stream request errors retry without exposing platform')
+  for _,name in ipairs({'Destination','Appearance','Streamed','Ready'})do check(type(attrs['TLTArrival'..name..'Seconds'])=='number','arrival milestone recorded: '..name)end
+  check(attrs.TLTArrivalReadySeconds>=attrs.TLTArrivalDestinationSeconds and attrs.TLTArrivalReadySeconds>=attrs.TLTArrivalStreamedSeconds,'ready timing follows destination and streaming')
  end
 end
 run('Lobby',false,false)

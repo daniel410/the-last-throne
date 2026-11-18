@@ -58,14 +58,19 @@ local function previewWorld(missionId)
  building=true
  local ok,err=xpcall(function()
   startCombat()
-  -- Returning to earlier unlocked epics remains possible after reconnecting.
-  for id=1,epic do if not deepwood or not deepwood.loadedEpics[id]then
-   deepwood=require(script.World.CampaignWorld).create(id,deepwood)
-   addRegionalStorage(id)
-  end end
+  -- Admission builds only its destination. Checkpoints and overland approaches
+  -- prepare other unlocked epics on demand, retaining the same world tables.
+  local started=os.clock()
+  workspace:SetAttribute('TLTWorldBuildEpic',epic)
+  deepwood=require(script.World.CampaignWorld).create(epic,deepwood)
+  addRegionalStorage(epic)
   if not storyStarted then
    story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat,prepareStory=previewWorld});storyStarted=true
   else story.refreshWorld()end
+  local seconds=os.clock()-started
+  workspace:SetAttribute('TLTEpic'..epic..'BuildSeconds',seconds)
+  workspace:SetAttribute('TLTWorldBuildEpic',nil)
+  print(string.format('[CampaignLoading] epic=%d buildSeconds=%.3f',epic,seconds))
  end,debug.traceback)
  building=false
  if not ok then buildFailure=tostring(err);error(err)end

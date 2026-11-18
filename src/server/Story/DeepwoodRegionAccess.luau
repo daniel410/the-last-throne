@@ -4,6 +4,22 @@ local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
 local Gate={}
 function Gate.create(o)
  local safe,lastNotice,lastReveal,regions={},{},{},{}
+ local function readyAt(id,pos)
+  if not o.world.spawns[id]then return false end
+  if o.world.loadedEpics and not o.world.loadedEpics[Content.zones[id].epic or 1]then return false end
+  -- Mathematical road bounds exist even before its geometry is constructed.
+  if o.world.loadedEpics then for _,edge in ipairs(Content.overlandLinks)do
+   local a,b=Bounds.ends(edge);local dx,dz=b[1]-a[1],b[3]-a[3]
+   local length=dx*dx+dz*dz
+   local t=length>0 and ((pos.X-a[1])*dx+(pos.Z-a[3])*dz)/length or -1
+   if t>=0 and t<=1 and (pos.X-a[1]-t*dx)^2+(pos.Z-a[3]-t*dz)^2<=Bounds.trailHalfWidth^2 then
+    local roads=o.world.folder:FindFirstChild('OverlandRoads')
+    local road=roads and roads:FindFirstChild(edge[1]..'_'..edge[2])
+    if not road or road:GetAttribute('BuildComplete')~=true then return false end
+   end
+  end end
+  return true
+ end
  local function fallback(player,hero,s)
   local run=o.inventory.expedition(player,hero.heroId)
   local chapter=run and Content.byId[s.expeditionMission or run.missionId]or Content.mainChapters[math.min(Content.mainCount,s.main+1)]
@@ -17,7 +33,8 @@ function Gate.create(o)
   local saved=safe[player]
   if saved and saved.heroId==hero.heroId and saved.character==player.Character then
    local p=saved.position;local supported,floor=Bounds.supported(p.X,p.Y,p.Z)
-   if supported and p.Y>=floor+saved.height-.3 and Access.allowed(s,Access.region(p.X,p.Z))then return saved.pivot end
+   local id=Access.region(p.X,p.Z)
+   if supported and p.Y>=floor+saved.height-.3 and Access.allowed(s,id)and readyAt(id,p)then return saved.pivot end
   end
   safe[player]=nil
   return fallback(player,hero,s).CFrame+Vector3.new(0,4,0)
@@ -33,12 +50,13 @@ function Gate.create(o)
   local s=o.inventory.storyState(player,hero.heroId)
   if not root or not human or human.Health<=0 or not s then clearRegion(player);return end
   local pos=root.Position
+  if o.prepareNearby then o.prepareNearby(player,hero,s,pos)end
   local supported,floor=Bounds.supported(pos.X,pos.Y,pos.Z)
   local height=standingHeight(player.Character,root,human)
   -- A root can still be above the mathematical floor while its legs are buried.
   supported=supported and pos.Y>=floor+height-.75
   local id=Access.region(root.Position.X,root.Position.Z)
-  if not supported or not o.world.spawns[id]then
+  if not supported or not readyAt(id,pos)then
    if regions[player] then regions[player].candidate=nil end
    local pivot=returnPivot(player,hero,s)
    o.combat.relocateForStoryGate(player,pivot)

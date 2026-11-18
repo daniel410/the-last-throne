@@ -519,7 +519,8 @@ function Service.start(settings)
  activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
  companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,activate=options.inventory.activateSupport,passState=options.inventory.supportState,phase=function(p)return p:GetAttribute('K0SessionPhase')end,notice=function(p,message)publish(p,nil,message)end,
   select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})
- access=require(script.Parent.DeepwoodRegionAccess).create({heroSession=options.heroSession,inventory=options.inventory,world=options.world,combat=options.combat,notice=function(p,required,name) publish(p,nil,string.format('Complete Story %d before entering %s.',required,name)) end,boundaryNotice=function(p) publish(p,nil,Text.ForestBoundaryReturn) end,regionChanged=function(p,id) p:SetAttribute('TLTStoryRegion',id) end})
+ local prepareNearby=options.prepareStory and require(script.Parent.CampaignStreaming).create(options)
+ access=require(script.Parent.DeepwoodRegionAccess).create({prepareNearby=prepareNearby,heroSession=options.heroSession,inventory=options.inventory,world=options.world,combat=options.combat,notice=function(p,required,name) publish(p,nil,string.format('Complete Story %d before entering %s.',required,name)) end,boundaryNotice=function(p) publish(p,nil,Text.ForestBoundaryReturn) end,regionChanged=function(p,id) p:SetAttribute('TLTStoryRegion',id) end})
  Service.refreshWorld()
  local request=Instance.new('RemoteEvent');request.Name='DeepwoodRequest';request.Parent=ReplicatedStorage.Remotes
  request.OnServerEvent:Connect(function(player,action,argument,...)

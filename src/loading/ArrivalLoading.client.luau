@@ -30,6 +30,14 @@ gui.Enabled = true
 gui.Parent = player:WaitForChild('PlayerGui')
 -- Install our opaque cover before removing Roblox's loading screen.
 First:RemoveDefaultLoadingScreen()
+-- Local cumulative timings from cover installation, not server/teleport latency.
+local started=os.clock()
+local milestones={}
+local function mark(name)
+ if milestones[name]then return end
+ milestones[name]=true
+ player:SetAttribute('TLTArrival'..name..'Seconds',os.clock()-started)
+end
 
 local function destination()
  local phase = player:GetAttribute('K0SessionPhase')
@@ -78,6 +86,8 @@ while gui.Parent do
  local label=gui:FindFirstChild('Loading',true)
  if label then label.Text=character and character:GetAttribute('TLTLocalAppearanceError') and 'Equipment could not load. Retrying...' or 'LOADING...' end
  if character then
+  mark('Destination')
+  if character:GetAttribute('TLTLocalAppearanceReady')==true then mark('Appearance')end
   if character ~= streamingCharacter or (root.Position - streamingPosition).Magnitude > 16 then
    streamingCharacter, streamingPosition, streamingComplete = character, root.Position, false
    local position = streamingPosition
@@ -88,6 +98,7 @@ while gui.Parent do
     end
     if streamingCharacter == character and streamingPosition == position then
      streamingComplete = streamed
+     if streamed then mark('Streamed')end
      if not streamed then streamingCharacter = nil end
     end
    end)
@@ -96,7 +107,7 @@ while gui.Parent do
    stableFrames = stableFrames + 1
    -- Allow camera and destination geometry to render behind the cover, and
    -- recheck every frame so death/replacement/late admission cannot reveal it.
-   if stableFrames >= 3 then gui:Destroy(); break end
+   if stableFrames >= 3 then mark('Ready');gui:Destroy(); break end
   else
    stableFrames = 0
   end

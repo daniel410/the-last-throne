@@ -1,0 +1,121 @@
+{
+  "taskId": "TLT-040/087/battle-loading",
+  "sourceBase": "82cb6e22995775931b81f81bbdc627bb6741727f",
+  "environment": "Roblox Studio isolated Edit, separate fresh .6 copies, sequential single samples; server geometry only",
+  "baseline": {
+    "ok": true,
+    "seconds": 32.098742624977604,
+    "epics": [
+      {
+        "epic": 1,
+        "seconds": 8.397463416680694,
+        "instances": 27005
+      },
+      {
+        "epic": 2,
+        "seconds": 4.747090041637421,
+        "instances": 39507
+      },
+      {
+        "epic": 3,
+        "seconds": 6.251048791687936,
+        "instances": 50830
+      },
+      {
+        "epic": 4,
+        "seconds": 6.781130916671827,
+        "instances": 60318
+      },
+      {
+        "epic": 5,
+        "seconds": 5.905539541505277,
+        "instances": 70954
+      }
+    ]
+  },
+  "candidate": {
+    "ok": true,
+    "seconds": 3.425004666671157,
+    "loaded": {
+      "5": true
+    },
+    "instances": 10570
+  },
+  "reverse": {
+    "ok": true,
+    "epics": [
+      {
+        "epic": 4,
+        "seconds": 5.137754291528836,
+        "instances": 20090
+      },
+      {
+        "epic": 3,
+        "seconds": 5.837913499912247,
+        "instances": 31400
+      },
+      {
+        "epic": 2,
+        "seconds": 5.418561416678131,
+        "instances": 43901
+      },
+      {
+        "epic": 1,
+        "seconds": 12.112682041479275,
+        "instances": 70954
+      }
+    ]
+  },
+  "contracts": {
+    "ok": true,
+    "result": {
+      "pass": true,
+      "checks": 70
+    }
+  },
+  "play": {
+    "storyReady": true,
+    "errors": [],
+    "epic5Seconds": 3.2958215831313282,
+    "result": "{\"ok\":true,\"seconds\":3.3118483333382757,\"role\":\"Battle\"}",
+    "storageReady": true
+  },
+  "finalNative": {
+    "ok": true,
+    "result": {
+      "geometry": {
+        "finalInstances": 70954,
+        "epic5Seconds": 3.478559458395466,
+        "reverse": [
+          {
+            "epic": 4,
+            "seconds": 5.177825124934316
+          },
+          {
+            "epic": 3,
+            "seconds": 5.933013374917209
+          },
+          {
+            "epic": 2,
+            "seconds": 5.75122420839034
+          },
+          {
+            "epic": 1,
+            "seconds": 12.437658958369866
+          }
+        ],
+        "epic5Instances": 10570
+      },
+      "pass": true,
+      "checks": 82
+    }
+  },
+  "compiled": 545,
+  "lua": {
+    "approachPolicy": 67,
+    "arrival": 326,
+    "checkpointTravel": 8349,
+    "navigation": 8791
+  },
+  "published": false
+}
