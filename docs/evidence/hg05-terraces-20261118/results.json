@@ -1,0 +1,992 @@
+{
+  "geometry": {
+    "chapter": {
+      "number": 33,
+      "zone": "HG-05",
+      "legacyMinMain": 32,
+      "legacyNumber": 33,
+      "legacyEpic": 5,
+      "combatRoutes": {
+        "lich": {
+          "worldPoints": [
+            [
+              209.14999999999986,
+              188,
+              -17355.4
+            ],
+            [
+              152.14999999999986,
+              188,
+              -17295.4
+            ]
+          ],
+          "easyPoints": [
+            [
+              209.14999999999986,
+              188,
+              -17355.4
+            ],
+            [
+              152.14999999999986,
+              188,
+              -17295.4
+            ]
+          ],
+          "title": "Royal gate approach",
+          "chapterId": "HG-05",
+          "easyCounts": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "points": [
+            [
+              209.14999999999986,
+              188,
+              -17355.4
+            ],
+            [
+              152.14999999999986,
+              188,
+              -17295.4
+            ]
+          ],
+          "counts": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "goalId": "lich"
+        },
+        "hellhounds": {
+          "worldPoints": [
+            [
+              152.14999999999986,
+              188,
+              -17199.4
+            ],
+            [
+              133.14999999999986,
+              188,
+              -17079.4
+            ],
+            [
+              225.14999999999986,
+              188,
+              -17079.4
+            ],
+            [
+              317.14999999999986,
+              188,
+              -17079.4
+            ]
+          ],
+          "easyPoints": [
+            [
+              152.14999999999986,
+              188,
+              -17199.4
+            ],
+            [
+              133.14999999999986,
+              188,
+              -17079.4
+            ],
+            [
+              225.14999999999986,
+              188,
+              -17079.4
+            ],
+            [
+              317.14999999999986,
+              188,
+              -17079.4
+            ]
+          ],
+          "title": "Royal gate approach",
+          "chapterId": "HG-05",
+          "easyCounts": [
+            3,
+            3,
+            4,
+            4
+          ],
+          "points": [
+            [
+              152.14999999999986,
+              188,
+              -17199.4
+            ],
+            [
+              133.14999999999986,
+              188,
+              -17079.4
+            ],
+            [
+              225.14999999999986,
+              188,
+              -17079.4
+            ]
+          ],
+          "counts": [
+            2,
+            3,
+            3,
+            3
+          ],
+          "goalId": "hellhounds"
+        },
+        "device_patrol": {
+          "worldPoints": [
+            [
+              387.14999999999986,
+              188,
+              -17309.4
+            ],
+            [
+              317.14999999999986,
+              188,
+              -17263.4
+            ],
+            [
+              301.14999999999986,
+              188,
+              -17171.4
+            ],
+            [
+              393.14999999999986,
+              188,
+              -17171.4
+            ]
+          ],
+          "easyPoints": [
+            [
+              387.14999999999986,
+              188,
+              -17309.4
+            ],
+            [
+              317.14999999999986,
+              188,
+              -17263.4
+            ],
+            [
+              301.14999999999986,
+              188,
+              -17171.4
+            ],
+            [
+              393.14999999999986,
+              188,
+              -17171.4
+            ]
+          ],
+          "title": "Royal gate approach",
+          "chapterId": "HG-05",
+          "easyCounts": [
+            3,
+            3,
+            4,
+            4
+          ],
+          "points": [
+            [
+              387.14999999999986,
+              188,
+              -17309.4
+            ],
+            [
+              317.14999999999986,
+              188,
+              -17263.4
+            ],
+            [
+              301.14999999999986,
+              188,
+              -17171.4
+            ]
+          ],
+          "counts": [
+            2,
+            3,
+            3,
+            3
+          ],
+          "goalId": "device_patrol"
+        }
+      },
+      "quest": {
+        "title": "The Black Throne Devices",
+        "phases": [
+          {
+            "title": "Clear the throne approach",
+            "goals": [
+              "hellhounds"
+            ]
+          },
+          {
+            "title": "Break the western throne device",
+            "goals": [
+              "exp_1",
+              "west"
+            ]
+          },
+          {
+            "title": "Defeat the device keeper",
+            "goals": [
+              "lich"
+            ]
+          },
+          {
+            "title": "Break the eastern throne device",
+            "goals": [
+              "exp_2",
+              "device_patrol",
+              "east"
+            ]
+          }
+        ],
+        "outcome": "Both outer links are broken. The tomb approach is exposed, but Veyr still holds the Crownheart inside.",
+        "brief": "Your allies are holding the gate for the return trip. Two devices still shield the throne. Break their links so you can reach the royal tomb."
+      },
+      "coreGoals": [
+        {
+          "activity": {
+            "intro": "Protect your friends. Watch enemy attack warnings and keep moving.",
+            "mode": "battle"
+          },
+          "title": "Clear the throne approach",
+          "position": [
+            152.14999999999986,
+            188,
+            -17199.4
+          ],
+          "id": "hellhounds",
+          "text": "",
+          "requires": [],
+          "enemies": [
+            {
+              "legacyLevel": 37,
+              "kind": "Hellhound",
+              "count": 3,
+              "level": 41
+            }
+          ]
+        },
+        {
+          "requires": [
+            "hellhounds"
+          ],
+          "title": "Break the western throne device",
+          "position": [
+            282.14999999999986,
+            188,
+            -17247.4
+          ],
+          "id": "west",
+          "text": "One shield link is broken. Keep moving toward the eastern device.",
+          "activity": {
+            "steps": [
+              {
+                "title": "Break the western throne device",
+                "position": [
+                  282.14999999999986,
+                  188,
+                  -17247.4
+                ],
+                "id": "confirmed",
+                "text": "One shield link is broken. Keep moving toward the eastern device.",
+                "kind": "rune"
+              }
+            ],
+            "mode": "mechanism"
+          },
+          "enemies": []
+        },
+        {
+          "activity": {
+            "intro": "Protect your friends. Watch enemy attack warnings and keep moving.",
+            "mode": "battle"
+          },
+          "title": "Defeat the device keeper",
+          "position": [
+            152.14999999999986,
+            188,
+            -17295.4
+          ],
+          "id": "lich",
+          "text": "",
+          "requires": [
+            "west"
+          ],
+          "enemies": [
+            {
+              "legacyLevel": 38,
+              "kind": "Lich",
+              "count": 1,
+              "level": 42
+            }
+          ]
+        },
+        {
+          "requires": [
+            "lich"
+          ],
+          "title": "Break the eastern throne device",
+          "position": [
+            282.14999999999986,
+            188,
+            -17343.4
+          ],
+          "id": "east",
+          "text": "Both outer shield links are broken. The path to the royal tomb is open.",
+          "activity": {
+            "steps": [
+              {
+                "title": "Break the eastern throne device",
+                "position": [
+                  282.14999999999986,
+                  188,
+                  -17343.4
+                ],
+                "id": "confirmed",
+                "text": "Both outer shield links are broken. The path to the royal tomb is open.",
+                "kind": "rune"
+              }
+            ],
+            "mode": "mechanism"
+          },
+          "enemies": []
+        }
+      ],
+      "id": "HG-05",
+      "expansionGoals": [
+        {
+          "choice": false,
+          "activity": {
+            "steps": [
+              {
+                "title": "Inspect the western shield conduit",
+                "position": [
+                  -194.37000000000015,
+                  188,
+                  -17347.199999999997
+                ],
+                "id": "step1",
+                "text": "One line carries power to the throne.",
+                "kind": "rune"
+              },
+              {
+                "title": "Trace the conduit through the wall",
+                "position": [
+                  -301.89000000000016,
+                  188,
+                  -17309.4
+                ],
+                "id": "step2",
+                "text": "The device ahead controls this line.",
+                "kind": "tracks"
+              },
+              {
+                "title": "Mark the safe return arch",
+                "position": [
+                  -204.45000000000013,
+                  188,
+                  -17271.6
+                ],
+                "id": "step3",
+                "text": "There is a clear route back after the device is broken.",
+                "kind": "lantern"
+              }
+            ],
+            "mode": "investigate",
+            "clue": "Find the first connection protecting the black throne"
+          },
+          "id": "exp_1",
+          "text": "The western device powers one part of Veyr's defense. Breaking it will expose the next approach.",
+          "result": "signal",
+          "enemies": [],
+          "before": "west",
+          "optional": true,
+          "title": "Find the first connection protecting the black throne",
+          "position": [
+            -194.37000000000015,
+            188,
+            -17347.199999999997
+          ],
+          "requires": [
+            "hellhounds"
+          ],
+          "expansion": true,
+          "restoration": "Throne Shield Connection",
+          "area": "HG-05:wing1"
+        },
+        {
+          "choice": false,
+          "activity": {
+            "steps": [
+              {
+                "title": "Follow the fading western light",
+                "position": [
+                  643.7899999999998,
+                  178,
+                  -17259
+                ],
+                "id": "step1",
+                "text": "The first defense line is failing.",
+                "kind": "tracks"
+              },
+              {
+                "title": "Cross the quiet service gallery",
+                "position": [
+                  724.4299999999998,
+                  178,
+                  -17309.4
+                ],
+                "id": "step2",
+                "text": "The path avoids the middle of the throne court.",
+                "kind": "tracks"
+              },
+              {
+                "title": "Reach the eastern device landing",
+                "position": [
+                  651.3499999999999,
+                  178,
+                  -17359.800000000003
+                ],
+                "id": "step3",
+                "text": "The second line guards the royal tomb entrance.",
+                "kind": "tracks"
+              }
+            ],
+            "mode": "trail",
+            "clue": "Reach the second throne connection"
+          },
+          "id": "exp_2",
+          "text": "The western shield line has failed. Reach the eastern control to remove the remaining outer link; Veyr still controls the heart inside.",
+          "result": "signal",
+          "enemies": [],
+          "before": "east",
+          "optional": true,
+          "title": "Reach the second throne connection",
+          "position": [
+            643.7899999999998,
+            178,
+            -17259
+          ],
+          "requires": [
+            "lich"
+          ],
+          "expansion": true,
+          "restoration": "Eastern Shield Gallery",
+          "area": "HG-05:wing2"
+        }
+      ],
+      "pacingGoals": [
+        {
+          "optional": true,
+          "activity": {
+            "intro": "Clear the hunters ahead, then continue along the marked route.",
+            "mode": "battle"
+          },
+          "id": "device_patrol",
+          "text": "The route is secure. Continue toward your friends.",
+          "enemies": [
+            {
+              "legacyLevel": 37,
+              "kind": "Hellhound",
+              "count": 3,
+              "level": 41
+            }
+          ],
+          "before": "east",
+          "title": "Clear the eastern device approach",
+          "position": [
+            387.14999999999986,
+            188,
+            -17309.4
+          ],
+          "pacing": true,
+          "requires": [
+            "exp_2"
+          ]
+        }
+      ],
+      "goals": [
+        {
+          "activity": {
+            "intro": "Protect your friends. Watch enemy attack warnings and keep moving.",
+            "mode": "battle"
+          },
+          "title": "Clear the throne approach",
+          "position": [
+            152.14999999999986,
+            188,
+            -17199.4
+          ],
+          "id": "hellhounds",
+          "text": "",
+          "requires": [],
+          "enemies": [
+            {
+              "legacyLevel": 37,
+              "kind": "Hellhound",
+              "count": 3,
+              "level": 41
+            }
+          ]
+        },
+        {
+          "choice": false,
+          "activity": {
+            "steps": [
+              {
+                "title": "Inspect the western shield conduit",
+                "position": [
+                  -194.37000000000015,
+                  188,
+                  -17347.199999999997
+                ],
+                "id": "step1",
+                "text": "One line carries power to the throne.",
+                "kind": "rune"
+              },
+              {
+                "title": "Trace the conduit through the wall",
+                "position": [
+                  -301.89000000000016,
+                  188,
+                  -17309.4
+                ],
+                "id": "step2",
+                "text": "The device ahead controls this line.",
+                "kind": "tracks"
+              },
+              {
+                "title": "Mark the safe return arch",
+                "position": [
+                  -204.45000000000013,
+                  188,
+                  -17271.6
+                ],
+                "id": "step3",
+                "text": "There is a clear route back after the device is broken.",
+                "kind": "lantern"
+              }
+            ],
+            "mode": "investigate",
+            "clue": "Find the first connection protecting the black throne"
+          },
+          "id": "exp_1",
+          "text": "The western device powers one part of Veyr's defense. Breaking it will expose the next approach.",
+          "result": "signal",
+          "enemies": [],
+          "before": "west",
+          "optional": true,
+          "title": "Find the first connection protecting the black throne",
+          "position": [
+            -194.37000000000015,
+            188,
+            -17347.199999999997
+          ],
+          "requires": [
+            "hellhounds"
+          ],
+          "expansion": true,
+          "restoration": "Throne Shield Connection",
+          "area": "HG-05:wing1"
+        },
+        {
+          "expansionRequires": [
+            "exp_1"
+          ],
+          "requires": [
+            "hellhounds"
+          ],
+          "title": "Break the western throne device",
+          "position": [
+            282.14999999999986,
+            188,
+            -17247.4
+          ],
+          "id": "west",
+          "text": "One shield link is broken. Keep moving toward the eastern device.",
+          "activity": {
+            "steps": [
+              {
+                "title": "Break the western throne device",
+                "position": [
+                  282.14999999999986,
+                  188,
+                  -17247.4
+                ],
+                "id": "confirmed",
+                "text": "One shield link is broken. Keep moving toward the eastern device.",
+                "kind": "rune"
+              }
+            ],
+            "mode": "mechanism"
+          },
+          "enemies": []
+        },
+        {
+          "activity": {
+            "intro": "Protect your friends. Watch enemy attack warnings and keep moving.",
+            "mode": "battle"
+          },
+          "title": "Defeat the device keeper",
+          "position": [
+            152.14999999999986,
+            188,
+            -17295.4
+          ],
+          "id": "lich",
+          "text": "",
+          "requires": [
+            "west"
+          ],
+          "enemies": [
+            {
+              "legacyLevel": 38,
+              "kind": "Lich",
+              "count": 1,
+              "level": 42
+            }
+          ]
+        },
+        {
+          "choice": false,
+          "activity": {
+            "steps": [
+              {
+                "title": "Follow the fading western light",
+                "position": [
+                  643.7899999999998,
+                  178,
+                  -17259
+                ],
+                "id": "step1",
+                "text": "The first defense line is failing.",
+                "kind": "tracks"
+              },
+              {
+                "title": "Cross the quiet service gallery",
+                "position": [
+                  724.4299999999998,
+                  178,
+                  -17309.4
+                ],
+                "id": "step2",
+                "text": "The path avoids the middle of the throne court.",
+                "kind": "tracks"
+              },
+              {
+                "title": "Reach the eastern device landing",
+                "position": [
+                  651.3499999999999,
+                  178,
+                  -17359.800000000003
+                ],
+                "id": "step3",
+                "text": "The second line guards the royal tomb entrance.",
+                "kind": "tracks"
+              }
+            ],
+            "mode": "trail",
+            "clue": "Reach the second throne connection"
+          },
+          "id": "exp_2",
+          "text": "The western shield line has failed. Reach the eastern control to remove the remaining outer link; Veyr still controls the heart inside.",
+          "result": "signal",
+          "enemies": [],
+          "before": "east",
+          "optional": true,
+          "title": "Reach the second throne connection",
+          "position": [
+            643.7899999999998,
+            178,
+            -17259
+          ],
+          "requires": [
+            "lich"
+          ],
+          "expansion": true,
+          "restoration": "Eastern Shield Gallery",
+          "area": "HG-05:wing2"
+        },
+        {
+          "optional": true,
+          "activity": {
+            "intro": "Clear the hunters ahead, then continue along the marked route.",
+            "mode": "battle"
+          },
+          "id": "device_patrol",
+          "text": "The route is secure. Continue toward your friends.",
+          "enemies": [
+            {
+              "legacyLevel": 37,
+              "kind": "Hellhound",
+              "count": 3,
+              "level": 41
+            }
+          ],
+          "before": "east",
+          "title": "Clear the eastern device approach",
+          "position": [
+            387.14999999999986,
+            188,
+            -17309.4
+          ],
+          "pacing": true,
+          "requires": [
+            "exp_2"
+          ]
+        },
+        {
+          "activity": {
+            "steps": [
+              {
+                "title": "Break the eastern throne device",
+                "position": [
+                  282.14999999999986,
+                  188,
+                  -17343.4
+                ],
+                "id": "confirmed",
+                "text": "Both outer shield links are broken. The path to the royal tomb is open.",
+                "kind": "rune"
+              }
+            ],
+            "mode": "mechanism"
+          },
+          "id": "east",
+          "text": "Both outer shield links are broken. The path to the royal tomb is open.",
+          "enemies": [],
+          "expansionRequires": [
+            "exp_2"
+          ],
+          "pacingRequires": [
+            "device_patrol"
+          ],
+          "title": "Break the eastern throne device",
+          "position": [
+            282.14999999999986,
+            188,
+            -17343.4
+          ],
+          "requires": [
+            "lich"
+          ]
+        }
+      ],
+      "minMain": 32,
+      "epic": 5,
+      "side": false,
+      "title": "The Black Throne Devices",
+      "reward": {
+        "xp": 855,
+        "coins": 980
+      }
+    },
+    "zone": {
+      "originalCenter": [
+        217.14999999999986,
+        188,
+        -17309.4
+      ],
+      "originalSize": [
+        440,
+        400
+      ],
+      "requiresMain": 32,
+      "legacyRequiresMain": 32,
+      "center": [
+        217.14999999999986,
+        188,
+        -17309.4
+      ],
+      "expansionAreas": [
+        {
+          "outcome": "The western device powers one part of Veyr's defense. Breaking it will expose the next approach.",
+          "side": -1,
+          "zone": "HG-05",
+          "id": "HG-05:wing1",
+          "layout": "conduits",
+          "name": "Throne Shield Connection",
+          "axis": "x",
+          "entry": [
+            -114.85000000000014,
+            188,
+            -17309.4
+          ],
+          "goalId": "exp_1",
+          "center": [
+            -254.85000000000014,
+            188,
+            -17309.4
+          ],
+          "chapterId": "HG-05",
+          "connector": {
+            "rampEnd": [
+              -170.85000000000014,
+              188,
+              -17309.4
+            ],
+            "rampStart": [
+              -134.85000000000014,
+              188,
+              -17309.4
+            ],
+            "center": [
+              -184.85000000000014,
+              188,
+              -17309.4
+            ],
+            "size": [
+              172,
+              32
+            ]
+          },
+          "mode": "investigate",
+          "result": "signal",
+          "size": [
+            168,
+            126
+          ]
+        },
+        {
+          "outcome": "Both defense lines can now be reached. Shut down the eastern device to expose the tomb.",
+          "side": 1,
+          "zone": "HG-05",
+          "id": "HG-05:wing2",
+          "layout": "conduits",
+          "name": "Eastern Shield Gallery",
+          "axis": "x",
+          "entry": [
+            549.1499999999999,
+            188,
+            -17309.4
+          ],
+          "goalId": "exp_2",
+          "center": [
+            689.1499999999999,
+            178,
+            -17309.4
+          ],
+          "chapterId": "HG-05",
+          "connector": {
+            "rampEnd": [
+              626.1499999999999,
+              178,
+              -17309.4
+            ],
+            "rampStart": [
+              569.1499999999999,
+              188,
+              -17309.4
+            ],
+            "center": [
+              619.1499999999999,
+              188,
+              -17309.4
+            ],
+            "size": [
+              172,
+              32
+            ]
+          },
+          "mode": "trail",
+          "result": "signal",
+          "size": [
+            126,
+            168
+          ]
+        }
+      ],
+      "epic": 5,
+      "name": "The Black Throne Devices",
+      "routeFootprintVersion": 1,
+      "size": [
+        704,
+        600
+      ]
+    },
+    "solids": 42,
+    "parts": 90,
+    "externalOverlapsBeforeDuplicateMemorialCleanup": [
+      {
+        "part": "RetainingCourse",
+        "other": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-05.RegionalConcept.KeeperMemorialCluster.KeeperMemorialFoot"
+      },
+      {
+        "part": "RetainingCourse",
+        "other": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-05.RegionalConcept.KeeperMemorialCluster.KeeperMemorialSlab"
+      },
+      {
+        "part": "RetainingCourse",
+        "other": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-05.RegionalConcept.KeeperMemorialCluster.KeeperMemorialFoot"
+      },
+      {
+        "part": "RetainingCourse",
+        "other": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-05.RegionalConcept.KeeperMemorialCluster.KeeperMemorialSlab"
+      },
+      {
+        "part": "WeatheredCoping",
+        "other": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-05.RegionalConcept.KeeperMemorialCluster.KeeperMemorialSlab"
+      },
+      {
+        "part": "WeatheredCoping",
+        "other": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_5.HG-05.RegionalConcept.KeeperMemorialCluster.KeeperMemorialSlab"
+      }
+    ]
+  },
+  "final": {
+    "externalOverlapCount": 0,
+    "easy": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    },
+    "navigation": {
+      "lowSteps": [],
+      "floors": [],
+      "corrections": [],
+      "returns": [],
+      "epics": {
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      },
+      "routeFailures": [],
+      "blockers": []
+    }
+  }
+}
