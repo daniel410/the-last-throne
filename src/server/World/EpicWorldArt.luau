@@ -10,8 +10,9 @@ local Architecture=require(script.Parent.EpicArchitecture)
 local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
+local StoryLandmarks=require(script.Parent.EpicStoryLandmarks)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=31}
+local Art={version=32}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -534,6 +535,9 @@ function Art.create(world,scope)
   end end
  end
  require(script.Parent.CampaignRouteClearance).apply(world,root)
+ for _,p in ipairs(plans)do
+  StoryLandmarks.build(p.site,p.id,p.c,p.z.size,p.pal,p.safe,ground,world)
+ end
  root:SetAttribute('BuildComplete',true);world.folder:SetAttribute('EpicWorldArtVersion',Art.version);return world
 end
 -- Joined only after both regions exist. No prompts, touch handlers or relocation.
