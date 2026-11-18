@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "chapters": 7,
+    "targets": 105,
+    "samples": 4749,
+    "steps": 4560,
+    "connectors": 6,
+    "blockers": 0,
+    "floors": 0,
+    "corrections": 0,
+    "routeFailures": 0,
+    "lowSteps": 0
+  },
+  "candidate": {
+    "chapters": 7,
+    "targets": 105,
+    "samples": 4749,
+    "steps": 4560,
+    "connectors": 6,
+    "blockers": 0,
+    "floors": 0,
+    "corrections": 0,
+    "routeFailures": 0,
+    "lowSteps": 0
+  },
+  "partsBefore": 80,
+  "partsAfter": 86,
+  "solidBefore": 33,
+  "solidAfter": 39,
+  "anchored": true
+}
