@@ -2,15 +2,16 @@
 local C=dofile('src/shared/CampaignContent.luau')
 local A=dofile('src/shared/CampaignAccess.luau')
 local B=dofile('src/shared/CampaignBounds.luau')
+local Areas=dofile('src/shared/CampaignAreas.luau')
 local count=0
 local function check(v,m)count=count+1;assert(v,m)end
 local queued,clock={},10
-local env=setmetatable({game={GetService=function()return {Shared={CampaignContent=C,CampaignAccess=A,CampaignBounds=B}}end},
+local env=setmetatable({game={GetService=function()return {Shared={CampaignContent=C,CampaignAccess=A,CampaignBounds=B,CampaignAreas=Areas}}end},
  require=function(x)return x end,workspace={StreamingTargetRadius=384},
  task={spawn=function(fn)queued[#queued+1]=fn end},os={clock=function()return clock end},warn=function()end},{__index=_G})
 local Streaming=assert(loadfile('src/server/Story/CampaignStreaming.luau','t',env))()
 local function point(a)return {X=a[1],Y=a[2]+4,Z=a[3]}end
-for _,edge in ipairs(C.overlandLinks)do for side=1,2 do
+for _,edge in ipairs(C.overlandLinks)do for side=2,2 do
  queued={}
  local source,target=edge[side],edge[3-side]
  local epic=C.zones[target].epic
@@ -33,6 +34,37 @@ for _,edge in ipairs(C.overlandLinks)do for side=1,2 do
  queued[1]();check(calls==1 and w.loadedEpics[epic],'region becomes reusable')
  update(player,hero,journal,point(mouth));check(#queued==1,'loaded region never rebuilt')
 end end
+-- Enter each outgoing story before completing it: prepare only the next epic.
+for index,edge in ipairs(C.overlandLinks)do
+ queued={};local source,target=edge[1],edge[2]
+ local w={loadedEpics={[C.zones[source].epic]=true}}
+ local journal={main=index*7-1,flags={},clears={}}
+ local savedMain=journal.main
+ local p,h={Character={}},{heroId='qa'}
+ local calls=0
+ local update=Streaming.create({world=w,prepareStory=function(id)
+  calls=calls+1;check(id==target,'only immediate next epic requested')
+  w.loadedEpics[C.zones[id].epic]=true
+ end})
+ local center=point(C.zones[source].center)
+ local first=C.mainChapters[(index-1)*7+1].zone
+ update(p,h,journal,point(C.zones[first].center));check(#queued==0,'early story does not preload next epic')
+ update(p,h,{main=0,flags={},clears={}},center);check(#queued==0,'unauthorized outgoing story cannot preload')
+ update(p,h,journal,center)
+ check(#queued==1 and calls==0,'story entry starts asynchronous prefetch without movement')
+ for i=1,4 do update({Character={}},h,journal,center)end
+ check(#queued==1,'party entries deduplicated')
+ queued[1]()
+ check(calls==1 and not A.allowed(journal,target) and journal.main==savedMain,'prepared geometry does not unlock story or change progress')
+ update(p,h,journal,center);check(#queued==1,'prepared next epic reused without chaining')
+end
+queued={}
+do
+ local w={loadedEpics={[5]=true}}
+ local update=Streaming.create({world=w,prepareStory=function()error('no epic after final story')end})
+ update({Character={}},{heroId='qa'},{main=34,flags={},clears={}},point(C.zones['HG-07'].center))
+ check(#queued==0,'final epic never requests nonexistent next epic')
+end
 queued={}
 local edge=C.overlandLinks[4];local _,mouth=B.ends(edge)
 local attempts=0

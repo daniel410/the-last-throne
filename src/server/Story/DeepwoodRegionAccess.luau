@@ -50,7 +50,6 @@ function Gate.create(o)
   local s=o.inventory.storyState(player,hero.heroId)
   if not root or not human or human.Health<=0 or not s then clearRegion(player);return end
   local pos=root.Position
-  if o.prepareNearby then o.prepareNearby(player,hero,s,pos)end
   local supported,floor=Bounds.supported(pos.X,pos.Y,pos.Z)
   local height=standingHeight(player.Character,root,human)
   -- A root can still be above the mathematical floor while its legs are buried.
@@ -64,6 +63,10 @@ function Gate.create(o)
    return
   end
   if Access.allowed(s,id) then
+   -- Admission/spawn stays focused on its destination; prefetch never blocks
+   -- this update and only starts from a supported, authorized story region.
+   if o.prepareNearby and player:GetAttribute('TLTTravelLock')~=true
+    and player.Character:GetAttribute('K0SpawnReady')==true then o.prepareNearby(player,hero,s,pos)end
    local entry=regions[player]
    if not entry or entry.heroId~=hero.heroId or entry.character~=player.Character then
     clearRegion(player);entry={heroId=hero.heroId,character=player.Character};regions[player]=entry

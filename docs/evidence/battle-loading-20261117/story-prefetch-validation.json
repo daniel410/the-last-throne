@@ -1,0 +1,24 @@
+{
+  "taskId": "TLT-040/087/battle-loading",
+  "sourceBase": "b9a00504b62d485489a695f637e7a5508e0a319b",
+  "change": "Prefetch immediate next epic on authorized outgoing story entry; preserve completion access gate",
+  "lua": {
+    "policy": 64,
+    "arrival": 326,
+    "checkpointTravel": 8349
+  },
+  "studio": {
+    "result": {
+      "coverage": "actual region gate and scheduler; stub geometry builder; four epic transitions",
+      "pass": true,
+      "checks": 36
+    },
+    "ok": true
+  },
+  "published": false,
+  "limitations": [
+    "Geometry builder stubbed for this policy integration test",
+    "No new full loading time measurement",
+    "Published client, multiplayer and device acceptance not run"
+  ]
+}
