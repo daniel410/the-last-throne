@@ -1,0 +1,581 @@
+{
+  "baselineVersion": "0.113.9",
+  "candidateVersion": "0.113.10",
+  "EPIC_STORY_LANDMARK_COMPILE": 541,
+  "EPIC_STORY_LANDMARKS": {
+    "DW-02": {
+      "approach": [
+        -891,
+        6,
+        -1131
+      ],
+      "name": "ConvoyRecoveryShelter",
+      "solids": 13,
+      "size": [
+        24.00006103515625,
+        14.378472328186035,
+        14
+      ],
+      "ground": [
+        -883.322998046875,
+        8.015625,
+        -955.16748046875
+      ],
+      "parts": 23,
+      "changedPixelsOver16": 27763
+    },
+    "EC-03": {
+      "approach": [
+        157.14999389648438,
+        140,
+        -12604.400390625
+      ],
+      "name": "OreSortingBay",
+      "solids": 9,
+      "size": [
+        20.9990234375,
+        10.160100936889648,
+        15.776327133178711
+      ],
+      "ground": [
+        313.4527893066406,
+        141.7344512939453,
+        -12461.1748046875
+      ],
+      "parts": 22,
+      "changedPixelsOver16": 26197
+    },
+    "HG-03": {
+      "approach": [
+        282.1499938964844,
+        180,
+        -16247.400390625
+      ],
+      "name": "KeeperDrainCulvert",
+      "solids": 13,
+      "size": [
+        21.000001907348633,
+        10.075003623962402,
+        13
+      ],
+      "ground": [
+        413.70697021484375,
+        181.46389770507812,
+        -16199.517578125
+      ],
+      "parts": 16,
+      "changedPixelsOver16": 37365
+    },
+    "GW-01": {
+      "approach": [
+        -829.8499755859375,
+        54,
+        -4031.39990234375
+      ],
+      "name": "SplitTrailRootButtress",
+      "solids": 12,
+      "size": [
+        25.441020965576172,
+        17.42623519897461,
+        16.32750129699707
+      ],
+      "ground": [
+        -959.6107788085938,
+        56.015625,
+        -4150.3037109375
+      ],
+      "parts": 18,
+      "changedPixelsOver16": 19423
+    },
+    "FV-03": {
+      "approach": [
+        152.14999389648438,
+        92,
+        -8787.900390625
+      ],
+      "name": "AvalancheSnowFence",
+      "solids": 19,
+      "size": [
+        28.5,
+        10.951839447021484,
+        13.844653129577637
+      ],
+      "ground": [
+        189.70436096191406,
+        94,
+        -8634.4287109375
+      ],
+      "parts": 21,
+      "changedPixelsOver16": 25110
+    }
+  },
+  "EPIC_STORY_LANDMARK_DIRECT_ENTRY": {
+    "DW-02": [
+      -883.322998046875,
+      8.015625,
+      -955.16748046875
+    ],
+    "EC-03": [
+      313.4527893066406,
+      141.7344512939453,
+      -12461.1748046875
+    ],
+    "HG-03": [
+      413.70697021484375,
+      181.46389770507812,
+      -16199.517578125
+    ],
+    "GW-01": [
+      -959.6107788085938,
+      56.015625,
+      -4150.3037109375
+    ],
+    "FV-03": [
+      189.70436096191406,
+      94,
+      -8634.4287109375
+    ]
+  },
+  "EPIC_STORY_NAV_ORIGINAL": {
+    "blockers": [
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision",
+        "at": "-1071.429443359375, 6.079999923706055, -1214.00439453125",
+        "position": "-1072.2286376953125, 16.399999618530273, -1210.07470703125",
+        "label": "DW-02:survivors:shelter"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TreeCollision",
+        "at": "-1515.971923828125, 0.07999981194734573, -1133.8199462890625",
+        "position": "-1514.2764892578125, 9.199999809265137, -1132.7186279296875",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchFoot",
+        "at": "-1504.49560546875, 0.07999981194734573, -1130.314208984375",
+        "position": "-1498.75, 1.5, -1122",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchPier",
+        "at": "-1496.8447265625, 3, -1127.97705078125",
+        "position": "-1498.75, 9.100000381469727, -1122",
+        "label": "DW-Q1:marsh_report"
+      }
+    ],
+    "epics": {
+      "1": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 13309,
+        "samples": 13723,
+        "targets": 243,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 4,
+        "routeFailures": 0
+      },
+      "3": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 5808,
+        "samples": 6177,
+        "targets": 142,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "2": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 4980,
+        "samples": 5196,
+        "targets": 105,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "5": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 4560,
+        "samples": 4749,
+        "targets": 105,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "4": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 8093,
+        "samples": 8396,
+        "targets": 144,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      }
+    }
+  },
+  "EPIC_STORY_NAV_EASY": {
+    "blockers": [
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision",
+        "at": "-1071.429443359375, 6.079999923706055, -1214.00439453125",
+        "position": "-1072.2286376953125, 16.399999618530273, -1210.07470703125",
+        "label": "DW-02:survivors:shelter"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TreeCollision",
+        "at": "-1515.971923828125, 0.07999981194734573, -1133.8199462890625",
+        "position": "-1514.2764892578125, 9.199999809265137, -1132.7186279296875",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchFoot",
+        "at": "-1504.49560546875, 0.07999981194734573, -1130.314208984375",
+        "position": "-1498.75, 1.5, -1122",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchPier",
+        "at": "-1496.8447265625, 3, -1127.97705078125",
+        "position": "-1498.75, 9.100000381469727, -1122",
+        "label": "DW-Q1:marsh_report"
+      }
+    ],
+    "epics": {
+      "1": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 13699,
+        "samples": 14113,
+        "targets": 253,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 4,
+        "routeFailures": 0
+      },
+      "3": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 5849,
+        "samples": 6218,
+        "targets": 143,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "2": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 5275,
+        "samples": 5491,
+        "targets": 117,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "5": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 5003,
+        "samples": 5192,
+        "targets": 119,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "4": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 8223,
+        "samples": 8526,
+        "targets": 150,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      }
+    }
+  },
+  "LANDMARK_CAMERA": [
+    {
+      "story": "DW-02",
+      "origin": [
+        -870.5140380859375,
+        18.015625,
+        -982.75244140625
+      ],
+      "fov": 55,
+      "centerDepth": 30.610015869140625,
+      "theme": "Deepwood",
+      "aim": [
+        -883.322998046875,
+        14.554861068725586,
+        -955.16748046875
+      ]
+    },
+    {
+      "story": "GW-01",
+      "origin": [
+        -949.2871704101562,
+        67.86546325683594,
+        -4121.6953125
+      ],
+      "fov": 55,
+      "centerDepth": 31.71795654296875,
+      "theme": "Gloamwood",
+      "aim": [
+        -959.6452026367188,
+        63.678741455078125,
+        -4151.38037109375
+      ]
+    },
+    {
+      "story": "FV-03",
+      "origin": [
+        196.800048828125,
+        104,
+        -8664.33203125
+      ],
+      "fov": 55,
+      "centerDepth": 32.61693572998047,
+      "theme": "FrozenVale",
+      "aim": [
+        190.0763702392578,
+        98.41761779785156,
+        -8632.908203125
+      ]
+    },
+    {
+      "story": "EC-03",
+      "origin": [
+        303.0046691894531,
+        151.7344512939453,
+        -12489.73828125
+      ],
+      "fov": 55,
+      "centerDepth": 30.021621704101562,
+      "theme": "EmberCaldera",
+      "aim": [
+        312.7061767578125,
+        146.26449584960938,
+        -12461.8583984375
+      ]
+    },
+    {
+      "story": "HG-03",
+      "origin": [
+        393.12353515625,
+        191.46389770507812,
+        -16221.9072265625
+      ],
+      "fov": 55,
+      "centerDepth": 31.36431884765625,
+      "theme": "HauntedGraveyard",
+      "aim": [
+        414.17681884765625,
+        185.8513946533203,
+        -16199.3466796875
+      ]
+    }
+  ],
+  "EPIC_STORY_NAV_ORIGINAL_BASELINE": {
+    "blockers": [
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision",
+        "at": "-1071.429443359375, 6.079999923706055, -1214.00439453125",
+        "position": "-1072.2286376953125, 16.399999618530273, -1210.07470703125",
+        "label": "DW-02:survivors:shelter"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TreeCollision",
+        "at": "-1515.971923828125, 0.07999981194734573, -1133.8199462890625",
+        "position": "-1514.2764892578125, 9.199999809265137, -1132.7186279296875",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchFoot",
+        "at": "-1504.49560546875, 0.07999981194734573, -1130.314208984375",
+        "position": "-1498.75, 1.5, -1122",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchPier",
+        "at": "-1496.8447265625, 3, -1127.97705078125",
+        "position": "-1498.75, 9.100000381469727, -1122",
+        "label": "DW-Q1:marsh_report"
+      }
+    ],
+    "epics": {
+      "1": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 13309,
+        "samples": 13723,
+        "targets": 243,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 4,
+        "routeFailures": 0
+      },
+      "3": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 5808,
+        "samples": 6177,
+        "targets": 142,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "2": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 4980,
+        "samples": 5196,
+        "targets": 105,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "5": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 4560,
+        "samples": 4749,
+        "targets": 105,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "4": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 8093,
+        "samples": 8396,
+        "targets": 144,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      }
+    }
+  },
+  "EPIC_STORY_NAV_EASY_BASELINE": {
+    "blockers": [
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision",
+        "at": "-1071.429443359375, 6.079999923706055, -1214.00439453125",
+        "position": "-1072.2286376953125, 16.399999618530273, -1210.07470703125",
+        "label": "DW-02:survivors:shelter"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TreeCollision",
+        "at": "-1515.971923828125, 0.07999981194734573, -1133.8199462890625",
+        "position": "-1514.2764892578125, 9.199999809265137, -1132.7186279296875",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchFoot",
+        "at": "-1504.49560546875, 0.07999981194734573, -1130.314208984375",
+        "position": "-1498.75, 1.5, -1122",
+        "label": "DW-Q1:marsh_report"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.IncidentEntranceArch.ArchPier",
+        "at": "-1496.8447265625, 3, -1127.97705078125",
+        "position": "-1498.75, 9.100000381469727, -1122",
+        "label": "DW-Q1:marsh_report"
+      }
+    ],
+    "epics": {
+      "1": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 13699,
+        "samples": 14113,
+        "targets": 253,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 4,
+        "routeFailures": 0
+      },
+      "3": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 5849,
+        "samples": 6218,
+        "targets": 143,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "2": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 5275,
+        "samples": 5491,
+        "targets": 117,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "5": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 5003,
+        "samples": 5192,
+        "targets": 119,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "4": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 8223,
+        "samples": 8526,
+        "targets": 150,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      }
+    }
+  }
+}
