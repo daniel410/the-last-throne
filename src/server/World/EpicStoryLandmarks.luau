@@ -113,6 +113,13 @@ local function compose(model, id, profile, palette, builder)
 			part('WindbreakExposedRailEnd', V(5.2, 1.14, .88), V(x * 1.55, 8.18, 3.18),
 				exposedTimber, M.Wood, false, V(.11, 0, 0))
 		end
+		-- Wrap the outer face so the fence has a visible profile from the ravine bend.
+		for _, x in ipairs({-11.85, 11.85}) do
+			for _, height in ipairs({5.08, 7.73}) do
+				part('WindbreakReturnBoard', V(.62, 1.52, 4.25), V(x, height, 1.55),
+					exposedTimber, M.WoodPlanks, false, V(-.035, 0, 0))
+			end
+		end
 		part('WindPackedSnow', V(12.6, 3.7, 10), V(-5.7, 1.02, 3), palette.ground, M.Snow, true,
 			V(0, math.pi + .08, 0), 'Wedge')
 		part('BrokenDriftEdge', V(12.2, 2.75, 7.8), V(5.2, .68, 3.2), palette.ground, M.Snow, true,

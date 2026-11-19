@@ -61,6 +61,14 @@ function S.create(scene,c,g,area)
   part(m,'WorkPlan',V(2,.08,1.4),result+V(0,1.7,0),pal.trim)
  end)
  model('RestoredIncident',3,3,function(m)lantern(m,result,'ConfirmedRouteSignal')end)
+ local function stationFrame(index,from)
+  local steps=g.activity.steps
+  local at=V(table.unpack(steps[index].position))
+  local previous=V(table.unpack(steps[from].position))
+  local approach=V(previous.X-at.X,0,previous.Z-at.Z).Unit
+  local face=CFrame.lookAlong(at,approach)
+  return face*CFrame.new(6,0,-1.8)
+ end
  local prefix=c.id:sub(1,2)
  if prefix=='DW'then
   -- Creek timber, shelters, watchtower galleries and prison yards frame different lanes.
@@ -76,7 +84,18 @@ function S.create(scene,c,g,area)
    for i=-2,2 do part(scene,'EmptyPrisonFence',V(.5,8,.5),center+V(i*8,4,-depth*.43),pal.rock,Enum.Material.Metal)end
   else
   end
-  if c.id=='DW-02'and g.id=='exp_1'then
+  if c.id=='DW-Q1'and g.id=='exp_1'then
+   local frame=stationFrame(2,1)
+   model('MarshDryPackShelf',0,3,function(m)
+    local stone=pal.rock:Lerp(pal.trim,.32)
+    for _,x in ipairs({-2.65,2.65})do
+     part(m,'MudEmbeddedFoot',V(2.8,1.15,4.2),frame*CFrame.new(x,.35,0),stone,Enum.Material.Slate)
+     part(m,'RaisedDryShelfPier',V(1.4,1.55,2.85),frame*CFrame.new(x,1.38,0),pal.rock,Enum.Material.Cobblestone)
+    end
+    part(m,'DryPackDeck',V(7.2,.46,3.45),frame*CFrame.new(0,2.28,0),pal.wood,Enum.Material.WoodPlanks)
+    part(m,'DryPackBackRail',V(7.2,.65,.38),frame*CFrame.new(0,2.77,1.48),pal.wood)
+   end)
+  elseif c.id=='DW-02'and g.id=='exp_1'then
    actor('Selene',result+V(-5,0,-8),result+V(-5,0,-8),0,3)
    actor('Convoy Survivor',result+V(-12,0,-8),result+V(-12,0,-8),0,3)
    model('PreparedMedicine',1,3,function(m)part(m,'MedicineCase',V(2.5,1.5,2),result+V(-16,.75,-4),pal.trim)end)
@@ -98,7 +117,22 @@ function S.create(scene,c,g,area)
   model('SafeLanternTrail',2,3,function(m)
    for _,step in ipairs(g.activity.steps)do lantern(m,V(table.unpack(step.position))+V(5,0,0))end
   end)
-  if c.id=='GW-06'and g.id=='exp_2'then
+  if c.id=='GW-03'and g.id=='exp_1'then
+   local frame=stationFrame(2,1)
+   model('RefugeScoutShelter',0,3,function(m)
+    local roof=Color3.fromRGB(111,130,92)
+    for _,x in ipairs({-3.25,3.25})do
+     part(m,'RefugeFieldstoneFoot',V(2.4,1.45,4.7),frame*CFrame.new(x,.46,0),pal.rock,Enum.Material.Slate)
+     beam(m,'RefugeForkPost',frame*V(x,1,1.4),frame*V(x,7.3,1.4),.75)
+     beam(m,'RefugeRoofBrace',frame*V(x,3.8,1.4),frame*V(x,6.2,-2.15),.62)
+    end
+    part(m,'RefugeCanopy',V(8.4,.38,5.7),frame*CFrame.new(0,6.55,0)*CFrame.Angles(-.34,0,0),roof,Enum.Material.Fabric)
+    part(m,'RefugeMapBench',V(6.1,.58,2.45),frame*CFrame.new(0,2.07,.75),pal.wood,Enum.Material.WoodPlanks)
+    for _,x in ipairs({-2.3,2.3})do
+     part(m,'RefugeBenchLeg',V(.7,1.82,1.65),frame*CFrame.new(x,.91,.75),pal.wood)
+    end
+   end)
+  elseif c.id=='GW-06'and g.id=='exp_2'then
    for i,name in ipairs({'Tali','Freed Scout','Scout Lantern Keeper'})do
     local start=V(table.unpack(g.activity.steps[1].position))+V(i*3,0,7)
     local finish=V(table.unpack(g.activity.steps[3].position))+V(i*3,0,7)
@@ -149,7 +183,26 @@ function S.create(scene,c,g,area)
   for i=1,3 do model('ConfirmedCircuitLeg'..i,i,3,function(m)
    local nextPoint=points[i%3+1];beam(m,'BlueCoolant',points[i]+V(0,.85,0),nextPoint+V(0,.85,0),.3,Color3.fromRGB(86,210,224),Enum.Material.Neon)
   end)end
-  if c.id=='EC-05'and g.id=='exp_2'then
+  if c.id=='EC-06'and g.id=='exp_2'then
+   local frame=stationFrame(2,1)
+   model('HeatworksProtectionManifold',0,3,function(m)
+    local cold=Color3.fromRGB(97,143,146)
+    local returned=Color3.fromRGB(153,105,76)
+    local basalt=pal.rock:Lerp(pal.trim,.24)
+    for _,x in ipairs({-3.25,3.25})do
+     part(m,'ManifoldBasaltFoot',V(2.9,1.4,5.15),frame*CFrame.new(x,.48,0),basalt,Enum.Material.Basalt)
+     part(m,'ManifoldCastSaddle',V(1.44,1.85,4.6),frame*CFrame.new(x,1.79,0),pal.wood,Enum.Material.Metal)
+    end
+    for _,pipe in ipairs({{z=-1.15,y=2.7,diameter=1.05,color=cold},{z=1.15,y=3.08,diameter=1.78,color=returned}})do
+     part(m,'ProtectionPipe',V(8.7,pipe.diameter,pipe.diameter),frame*CFrame.new(0,pipe.y,pipe.z),pipe.color,Enum.Material.Metal).Shape=Enum.PartType.Cylinder
+     for _,x in ipairs({-3.25,3.25})do
+      local diameter=pipe.diameter+.6
+      part(m,'ProtectionFlange',V(.62,diameter,diameter),frame*CFrame.new(x,pipe.y,pipe.z),pal.trim,Enum.Material.Metal).Shape=Enum.PartType.Cylinder
+     end
+    end
+    part(m,'ProtectionGaugeCase',V(2.45,2.3,3.8),frame*CFrame.new(0,3.7,0),pal.wood,Enum.Material.Metal)
+   end)
+  elseif c.id=='EC-05'and g.id=='exp_2'then
    for i,step in ipairs(g.activity.steps)do
     local at=V(table.unpack(step.position))
     moving('CircuitControl'..i,at,function(m)
@@ -193,7 +246,24 @@ function S.create(scene,c,g,area)
    model('BrokenThroneConduit',3,3,function(m)
     part(m,'QuietShieldRelay',V(3,3,3),result+V(0,1.5,0),pal.rock,Enum.Material.Slate)
    end,c.id..':'..g.before)
-  elseif c.id=='HG-03'then actor('Lumi',result+V(-18,0,0),result+V(-4,0,0),0,3)
+  elseif c.id=='HG-03'then
+   actor('Lumi',result+V(-18,0,0),result+V(-4,0,0),0,3)
+   if g.id=='exp_2' then
+    local frame=stationFrame(1,2)
+    local stone=pal.rock:Lerp(pal.trim,.31)
+    local coping=pal.rock:Lerp(pal.trim,.56)
+    model('PassageDrainInspectionBox',0,3,function(m)
+     m.WorldPivot=frame
+     part(m,'InspectionBoxFooting',V(3.8,.46,5.8),frame*CFrame.new(0,.09,0),stone,Enum.Material.Cobblestone)
+     part(m,'CoveredRunoffChannel',V(3.25,1.66,4.45),frame*CFrame.new(0,1.12,0),pal.rock,Enum.Material.Slate)
+     for _,x in ipairs({-1.33,1.33}) do
+      part(m,'InspectionBoxQuoin',V(.85,2.78,4.8),frame*CFrame.new(x,1.67,0),stone,Enum.Material.Cobblestone)
+     end
+     part(m,'FixedInspectionPlate',V(1.92,.32,4.2),frame*CFrame.new(0,2.11,0),pal.wood,Enum.Material.CorrodedMetal)
+     part(m,'RunoffLip',V(2.05,.45,1.4),frame*CFrame.new(0,.45,-2.45),coping,Enum.Material.Slate)
+     part(m,'WeatheredSideCoping',V(1.05,.46,5),frame*CFrame.new(1.33,3.22,0),coping,Enum.Material.Slate)
+    end)
+   end
   elseif c.id=='HG-07'and g.id=='exp_2'then
    actor('Elven Route Guide',result+V(-20,0,-5),result+V(-7,0,-5),0,3)
    model('ProtectedCrownheart',3,3,function(m)

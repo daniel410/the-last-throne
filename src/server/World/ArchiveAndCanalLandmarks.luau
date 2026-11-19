@@ -50,8 +50,10 @@ local function archiveTerminal(palette, part)
 			Color3.fromRGB(87, 70, 51), M.CorrodedMetal)
 		part('BuriedSignalLead', V(.46, .33, 7.75), V(side * .61, .99, -1.15), palette.wood, M.Metal)
 	end
-	part('RelayStoneSaddle', V(6.6, 1.55, 2.1), V(0, 1.51, 3.75), palette.rock, M.Slate)
-	part('SaddleFrostCap', V(6.2, .22, 1.93), V(0, 2.35, 3.75), palette.ground, M.Snow)
+	part('RelayStoneSaddle', V(6.6, 1.55, 2.35), V(0, 1.51, 3.6), palette.rock, M.Slate)
+	part('RaisedSignalHousing', V(4.9, 3.16, 2.32), V(0, 3.52, 3.6), stone, M.Slate)
+	part('TerminalCopperFace', V(3.36, 1.84, .23), V(0, 3.48, 2.36), Color3.fromRGB(87, 70, 51), M.CorrodedMetal)
+	part('SaddleFrostCap', V(5.34, .46, 2.86), V(0, 5.17, 3.6), palette.ground, M.Snow)
 end
 
 local function intake(palette, part)
