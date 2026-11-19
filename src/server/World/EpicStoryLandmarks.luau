@@ -10,6 +10,7 @@ local ArchiveAndCanal = require(script.Parent.ArchiveAndCanalLandmarks)
 local ForestAndGraveyard = require(script.Parent.ForestAndGraveyardLandmarks)
 
 local RescueRoute = require(script.Parent.RescueRouteLandmarks)
+local Finale = require(script.Parent.EpicFinaleScenery)
 
 local Landmarks = {version = 1}
 local V = Vector3.new
@@ -372,6 +373,13 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 
 	for _, profile in ipairs(ArchiveAndCanal.profiles[id] or {}) do
 		buildModel(site, id, center, size, palette, safe, ground, world, profile, ArchiveAndCanal.compose)
+	end
+	local finale = Finale.profiles[id]
+	if finale then
+		buildModel(site, id, center, size, palette, safe, ground, world, finale,
+			function(_, colors, part, beam)
+				Finale.compose(id, colors, part, beam)
+			end)
 	end
 end
 
