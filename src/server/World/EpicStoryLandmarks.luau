@@ -9,6 +9,8 @@ local Kit = require(script.Parent.EpicEnvironmentKit)
 local ArchiveAndCanal = require(script.Parent.ArchiveAndCanalLandmarks)
 local ForestAndGraveyard = require(script.Parent.ForestAndGraveyardLandmarks)
 
+local RescueRoute = require(script.Parent.RescueRouteLandmarks)
+
 local Landmarks = {version = 1}
 local V = Vector3.new
 local M = Enum.Material
@@ -93,10 +95,12 @@ local function compose(model, id, profile, palette, builder)
 			beam('RootTail', run[2], run[3], .85, root, M.Wood)
 		end
 	elseif id == 'FV-03' then
+		local iron = palette.wood:Lerp(palette.rock, .48)
 		for _, x in ipairs({-12, 0, 12}) do
 			part('WindbreakFoot', V(4.5, 2.5, 4.5), V(x, .55, 2.2), palette.rock, M.Glacier, true)
 			beam('WindbreakUpright', V(x, .9, 2.2), V(x, 9.8, 3.4), 1.4, palette.wood, M.Wood, true)
 			beam('WindbreakSillBrace', V(x, 0, -3.9), V(x, 6.25, 2.8), .92, palette.wood, M.Wood, true)
+			part('WindbreakIronCollar', V(1.58, .68, 1.58), V(x, 7.15, 3.04), iron, M.CorrodedMetal)
 		end
 		for _, x in ipairs({-6, 6}) do
 			for i = 1, 4 do
@@ -111,6 +115,7 @@ local function compose(model, id, profile, palette, builder)
 			V(0, math.pi - .17, .06), 'Corner')
 		part('ExposedIceLip', V(14.5, 1.3, 5), V(-4, .25, -1.6), palette.trim, M.Glacier, false, V(0, -.18, 0), 'Wedge')
 		part('FenceSnowCrust', V(12, .4, 1.1), V(-6, 8.83, 3.15), palette.ground, M.Snow)
+		part('FenceSnowCrust', V(8.2, .36, 1.1), V(5, 8.8, 3.15), palette.ground, M.Snow)
 	elseif id == 'EC-03' then
 		local timber = palette.wood:Lerp(Color3.fromRGB(132, 94, 66), .45)
 		local ore = palette.rock:Lerp(Color3.fromRGB(125, 96, 75), .37)
@@ -138,6 +143,13 @@ local function compose(model, id, profile, palette, builder)
 		local cutStone = palette.trim:Lerp(Color3.fromRGB(174, 177, 154), .4)
 		part('CulvertFootCourse', V(21, 2.2, 10), V(0, .45, 2), palette.rock, M.Cobblestone, true)
 		part('CulvertClosedBack', V(15, 6.3, 2), V(0, 3.25, 5.8), palette.rock, M.Slate, true)
+		-- The downstream face shows a narrow service drain within the closed masonry.
+		part('CulvertRearWeepSlot', V(6.4, .84, .08), V(0, 1.92, 6.83), palette.wood, M.Slate)
+		part('CulvertRearDripStone', V(8.4, .46, .52), V(0, 2.63, 6.72), cutStone, M.Slate)
+		part('CulvertRearSill', V(8.8, .34, .55), V(0, 1.32, 6.72), cutStone, M.Cobblestone)
+		for _, x in ipairs({-4.18, 4.18}) do
+			part('CulvertRearQuoin', V(.85, 1.55, .36), V(x, 1.99, 6.79), moss, M.Cobblestone)
+		end
 		part('CulvertRunoff', V(6.2, .25, 6), V(0, .04, -3), moss, M.Mud)
 		part('CulvertRunoffInvert', V(3.8, .18, 5.8), V(0, .21, -3.02), palette.wood, M.Slate)
 		for _, x in ipairs({-1, 1}) do
@@ -331,11 +343,12 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 		return buildModel(site, id, center, size, palette, safe, ground, world, original)
 	end
 
-	local forest = ForestAndGraveyard.profiles[id]
-	if forest then
-		return buildModel(site, id, center, size, palette, safe, ground, world, forest,
-			function(profile, colors, part, beam)
-				ForestAndGraveyard.compose(id, colors, part, beam)
+	local models = ForestAndGraveyard.profiles[id] and ForestAndGraveyard or RescueRoute
+	local profile = models.profiles[id]
+	if profile then
+		return buildModel(site, id, center, size, palette, safe, ground, world, profile,
+			function(_, colors, part, beam)
+				models.compose(id, colors, part, beam)
 			end)
 	end
 
