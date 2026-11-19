@@ -13,7 +13,9 @@ for i=1,5 do
  local char=Instance.new('Model');char.Parent=parent
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Position=Vector3.new(table.unpack(points[1]));root.Parent=char;char.PrimaryPart=root
  local h=Instance.new('Humanoid');h.Parent=char;if i==3 then h.Health=0 end
- players[i]={UserId=i,Parent=game.Players,Character=char}
+ players[i]={UserId=i,Parent=game.Players,Character=char,GetAttribute=function(_,name)
+  if name=='K0SessionPhase' then return 'Tutorial' end
+ end}
  journals[players[i]]={version=2,main=c.number-1,flags={},clears={},expansionVersion=1}
  for _,goal in ipairs(c.goals)do if goal~=g then journals[players[i]].flags[c.id..':'..goal.id]=true end end
  runs[players[i]]={runId=i==5 and 'other' or 'route-qa',missionId=c.id,balanceVersion=14,difficultyId='Easy',kills={}}
@@ -40,7 +42,7 @@ local inventory={storyState=function(p)return journals[p]end,expedition=function
  awardXP=function(p,_,_,_,_,run,id)check(run==runs[p].runId,'exact admitted reward run');check(not runs[p].kills[id],'no duplicate kill reward');runs[p].kills[id]=true;awards[p]+=1 end}
 local enemies=Instance.new('Folder');enemies.Parent=parent
 local marker=Instance.new('Part');marker.Position=Vector3.new(table.unpack(g.position));marker.Parent=parent
-local settings={world={folder=parent,nodes={[c.id..':'..g.id]={chapter=c,goal=g,part=marker}}},enemies=enemies,inventory=inventory,
+local settings={world={folder=parent,spawns={[c.zone]=marker},nodes={[c.id..':'..g.id]={chapter=c,goal=g,part=marker}}},enemies=enemies,inventory=inventory,
  heroSession={getActiveHero=function(p)return {heroId=tostring(p.UserId)}end,getCombatContext=function(p)return {heroId=tostring(p.UserId)}end},
  combat={addStoryEnemy=function(m)local h=m:FindFirstChildOfClass('Humanoid');h.MaxHealth=m:GetAttribute('StoryHealth');h.Health=h.MaxHealth end}}
 local function create()
