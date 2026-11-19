@@ -11,6 +11,7 @@ PRIOR = EVIDENCE.parent / 'epic-return-readability-20261119'
 CAPTURE = EVIDENCE.parent / 'epic-approach-readability-20261118' / 'capture-approaches.luau'
 
 parser = argparse.ArgumentParser()
+parser.add_argument('--extra-cameras', type=Path)
 parser.add_argument('--audit', action='store_true')
 parser.add_argument('--output', type=Path, required=True)
 args = parser.parse_args()
@@ -38,9 +39,11 @@ if args.audit:
         'local extraCameras = {}\n' + stations + '\nend\n'
     )
 
-cameras = (EVIDENCE / 'cameras.json').read_text()
+cameras = json.loads((EVIDENCE / 'cameras.json').read_text())
+if args.extra_cameras:
+    cameras.extend(json.loads(args.extra_cameras.read_text()))
 world = 'reviewWorld' if args.audit else 'nil'
 args.output.write_text(
-    program + f'\ndo\nlocal existingWorld = {world}\nlocal cameraPlan = {json.dumps(cameras)}\n'
+    program + f'\ndo\nlocal existingWorld = {world}\nlocal cameraPlan = {json.dumps(json.dumps(cameras))}\n'
     + CAPTURE.read_text() + '\nend\n'
 )

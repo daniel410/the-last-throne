@@ -12,6 +12,9 @@ PRIOR = EVIDENCE.parent / 'epic-return-readability-20261119'
 parser = argparse.ArgumentParser()
 parser.add_argument('baseline', type=Path)
 parser.add_argument('candidate', type=Path)
+parser.add_argument('--extra-cameras', type=Path)
+parser.add_argument('--output-dir', type=Path, default=EVIDENCE)
+parser.add_argument('--versions', metavar=('BASELINE', 'CANDIDATE'), nargs=2, default=('0.113.22', '0.113.23'))
 args = parser.parse_args()
 before, after = (path.read_text() for path in (args.baseline, args.candidate))
 
@@ -25,7 +28,10 @@ def frames(log):
     shots = {}
     for name, scanline, pixels in re.findall(r'^TLT_APPROACH_FRAME (\S+) (\d+) ([a-f0-9]+)$', log, re.M):
         shots.setdefault(name, {})[int(scanline)] = bytes.fromhex(pixels)
-    expected = [shot['id'] for shot in json.loads((EVIDENCE / 'cameras.json').read_text())]
+    cameras = json.loads((EVIDENCE / 'cameras.json').read_text())
+    if args.extra_cameras:
+        cameras.extend(json.loads(args.extra_cameras.read_text()))
+    expected = [shot['id'] for shot in cameras]
     assert list(shots) == expected, list(shots)
     images = {}
     for name, scanlines in shots.items():
@@ -61,7 +67,8 @@ for current in solids:
     current['shapeSHA256'] = hashlib.sha256(json.dumps(shapes, sort_keys=True).encode()).hexdigest()
     assert current == previous
 
-(EVIDENCE / 'studio-results.json').write_text(json.dumps({
+args.output_dir.mkdir(parents=True, exist_ok=True)
+(args.output_dir / 'studio-results.json').write_text(json.dumps({
     'compileCount': compile_count,
     'navigation': navigation,
     'walks': walks,
@@ -74,10 +81,10 @@ for current in solids:
 original, candidate = frames(before), frames(after)
 board = Image.new('RGB', (836, 30 + 250 * len(original)), '#171c20')
 draw = ImageDraw.Draw(board)
-for x, label, images in ((12, '0.113.22', original), (424, '0.113.23', candidate)):
+for x, label, images in ((12, args.versions[0], original), (424, args.versions[1], candidate)):
     draw.text((x, 8), label, fill='white')
     for index, (name, image) in enumerate(images.items()):
         y = 30 + 250 * index
         board.paste(image, (x, y))
         draw.text((x, y + 229), name, fill='white')
-board.save(EVIDENCE / 'comparison.jpg', quality=92, optimize=True)
+board.save(args.output_dir / 'comparison.jpg', quality=92, optimize=True)
