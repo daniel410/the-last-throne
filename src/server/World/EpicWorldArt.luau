@@ -30,7 +30,7 @@ local function distance(p,a,b)
  local t=math.clamp(((p.X-a.X)*dx+(p.Z-a.Z)*dz)/math.max(.001,dx*dx+dz*dz),0,1)
  return math.sqrt((p.X-a.X-t*dx)^2+(p.Z-a.Z-t*dz)^2)
 end
-local function reservation(world,id)
+local function reservation(world,id,returnTrails)
  local anchors={{p=world.spawns[id].Position,r=32}};local lanes={}
  local center=vec(Content.zones[id].center);local previous=world.spawns[id].Position
  -- Include every chapter using a shared optional area, not just the main ID.
@@ -49,8 +49,8 @@ local function reservation(world,id)
   end
  end end
  for _,edge in ipairs(Access.edges)do if edge[1]==id or edge[2]==id then table.insert(lanes,{center,vec(Content.zones[edge[1]==id and edge[2] or edge[1]].center)})end end
- for _,trail in ipairs(world.folder:GetDescendants())do
-  if trail:IsA('BasePart')and trail.Name=='RegionalReturnTrail'and math.abs(trail.Position.Y-center.Y)<24 then
+ for _,trail in ipairs(returnTrails)do
+  if math.abs(trail.Position.Y-center.Y)<24 then
    table.insert(lanes,{trail.Position-trail.CFrame.LookVector*trail.Size.Z/2,trail.Position+trail.CFrame.LookVector*trail.Size.Z/2})
   end
  end
@@ -133,7 +133,7 @@ local function terrainSite(parent,c,size,pal,theme,safe,id)
  range(m,900)
 end
 local terrainRay=RaycastParams.new();terrainRay.FilterType=Enum.RaycastFilterType.Include
-local surfaceOverlap=OverlapParams.new();surfaceOverlap.FilterType=Enum.RaycastFilterType.Include;surfaceOverlap.RespectCanCollide=true
+local surfaceOverlap=OverlapParams.new();surfaceOverlap.FilterType=Enum.RaycastFilterType.Include;surfaceOverlap.RespectCanCollide=true;surfaceOverlap.MaxParts=1
 local function ground(p)
  local hit=workspace:Raycast(p+V(0,180,0),V(0,-480,0),terrainRay)
  return hit and V(p.X,hit.Position.Y,p.Z) or p,hit~=nil
@@ -195,6 +195,16 @@ local function vegetation(parent,c,size,pal,theme,safe,rng,id,world)
  end
  range(m,650)
 end
+local function hasTrailSupport(cf,width,length)
+ -- One obstruction or unsupported sample is sufficient to reject a segment.
+ if #workspace:GetPartBoundsInBox(cf+V(0,3.7,0),V(width+4,5,length+4),surfaceOverlap)>0 then return false end
+ local nx,nz=math.max(1,math.ceil((width+2)/2)),math.max(1,math.ceil(length/2))
+ for ix=0,nx do for iz=0,nz do
+  local sample=cf:PointToWorldSpace(V((ix/nx-.5)*(width+2),0,(iz/nz-.5)*length));local floor=ground(sample)
+  if math.abs(sample.Y-.04-floor.Y)>.4 then return false end
+ end end
+ return true
+end
 local function route(parent,a,b,width,pal,theme)
  local d=b-a;if d.Magnitude<.1 then return end
  local forward=V(d.X,0,d.Z).Unit;local normal=V(-forward.Z,0,forward.X);local prev=ground(a)
@@ -205,15 +215,7 @@ local function route(parent,a,b,width,pal,theme)
   local length=(q-prev).Magnitude
   -- Do not bridge carved cliffs with a paper-thin decorative ramp. The full
   -- width must follow real ground, including both verges and the segment ends.
-  local supported=math.abs(q.Y-prev.Y)<=length*.35
-  local nx,nz=math.max(1,math.ceil((width+2)/2)),math.max(1,math.ceil(length/2))
-  for ix=0,nx do for iz=0,nz do
-   local sample=cf:PointToWorldSpace(V((ix/nx-.5)*(width+2),0,(iz/nz-.5)*length));local floor=ground(sample)
-   if math.abs(sample.Y-.04-floor.Y)>.4 then supported=false end
-  end end
-  -- A foot can be on flat ground while the body clips the side of a ramp.
-  if #workspace:GetPartBoundsInBox(cf+V(0,3.7,0),V(width+4,5,length+4),surfaceOverlap)>0 then supported=false end
-  if supported then
+  if math.abs(q.Y-prev.Y)<=length*.35 and hasTrailSupport(cf,width,length) then
    local p=K.part(parent,'WornCurvedRoute',V(width,.06,length),cf,pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone)
    p.CastShadow=false
   end
@@ -450,9 +452,8 @@ local function cutScenicWater(plans)
      workspace.Terrain:FillBlock(CFrame.new(q),V(34,400,53),Enum.Material.Air)
     end
    end end
-
+   task.wait()
   end
-  task.wait()
  end
 end
 function Art.create(world,scope)
@@ -472,12 +473,16 @@ function Art.create(world,scope)
  if previous then previous:Destroy()end
  local root=Instance.new('Folder');root.Name=artName;root:SetAttribute('ArtVersion',Art.version);root.Parent=parent
  local ids={};for id in pairs(Content.zones)do table.insert(ids,id)end;table.sort(ids)
+ local returnTrails={}
+ for _,part in ipairs(world.folder:GetDescendants())do
+  if part:IsA('BasePart')and part.Name=='RegionalReturnTrail'then table.insert(returnTrails,part)end
+ end
  local plans={}
  -- Finish every overlapping height field before grounding a single tree/building.
  for order,id in ipairs(ids)do
   local z=Content.zones[id];local c=vec(z.center);local theme=names[id:sub(1,2)];local pal=K.palette[theme];local index=tonumber(id:sub(4))or 2
   local site=Instance.new('Folder');site.Name=id;site:SetAttribute('Theme',theme);site:SetAttribute('Landmark',landmarkNames[id:sub(1,2)][index]);site.Parent=root
-  local rng=Random.new(22000+order*139);local safe=reservation(world,id)
+  local rng=Random.new(22000+order*139);local safe=reservation(world,id,returnTrails)
   terrainSite(site,c,z.size,pal,theme,safe,id)
   table.insert(plans,{id=id,z=z,c=c,theme=theme,pal=pal,index=index,site=site,rng=rng,safe=safe})
   task.wait()

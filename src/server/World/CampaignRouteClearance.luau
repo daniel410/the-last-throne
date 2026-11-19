@@ -35,27 +35,39 @@ function Safety.apply(world,art)
   end
  end
  local anchors,lanes={},{}
+ local seenAnchors,seenLanes={},{}
+ local function addAnchor(at)
+  if seenAnchors[at]then return end
+  seenAnchors[at]=true;table.insert(anchors,at)
+ end
+ local function addLane(a,b)
+  local ends=seenLanes[a]
+  if not ends then ends={};seenLanes[a]=ends end
+  if ends[b]then return end
+  ends[b]=true
+  table.insert(lanes,{a,b,minX=math.min(a.X,b.X),maxX=math.max(a.X,b.X),minZ=math.min(a.Z,b.Z),maxZ=math.max(a.Z,b.Z)})
+ end
  local Guide=require(Shared.CampaignNavigationRoute)
  for _,c in ipairs(Content.chapters)do
   -- Keep both Easy's added packs and the original difficulty route clear.
   for _,variant in ipairs({'worldPoints','points'})do
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   for _,g in ipairs(c.goals)do
-   table.insert(anchors,V(table.unpack(g.position)))
+   addAnchor(V(table.unpack(g.position)))
    local targets={};local points=c.combatRoutes and c.combatRoutes[g.id]and (c.combatRoutes[g.id][variant] or c.combatRoutes[g.id].points)
    if points and #points>0 then for _,p in ipairs(points)do targets[#targets+1]=p end
    else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do if step.position then targets[#targets+1]=step.position end end end
    for _,p in ipairs(targets)do
-    local at=V(table.unpack(p));table.insert(anchors,at)
+    local at=V(table.unpack(p));addAnchor(at)
     if previous then local path=Guide.route({previous.X,previous.Y,previous.Z},p)
-     for i=2,#path do table.insert(lanes,{V(table.unpack(path[i-1])),V(table.unpack(path[i]))})end
+     for i=2,#path do addLane(V(table.unpack(path[i-1])),V(table.unpack(path[i])))end
      -- Once a walker rejoins the main rectangle, live guidance can
      -- turn toward the next region before reaching the incident's entry.
      for _,area in ipairs(Content.zones[c.zone].expansionAreas or {})do
       if Areas.contains(area,previous.X,previous.Z)then
        local mouth=area.connector.rampStart
        local rejoin=Guide.route(mouth,p)
-       if rejoin[2]then table.insert(lanes,{V(table.unpack(mouth)),V(table.unpack(rejoin[2]))})end
+       if rejoin[2]then addLane(V(table.unpack(mouth)),V(table.unpack(rejoin[2])))end
        break
       end
      end
@@ -65,7 +77,7 @@ function Safety.apply(world,art)
   end
   end
  end
- for _,s in pairs(world.spawns)do table.insert(anchors,s.Position)end
+ for _,s in pairs(world.spawns)do addAnchor(s.Position)end
  -- Expanded combat trails live beside the art root. Reserve their arrival
  -- clearings too, including the invisible simple colliders of legacy TD trees.
  for _,at in ipairs(anchors)do
@@ -89,15 +101,24 @@ function Safety.apply(world,art)
   end
   -- Clear the diagonal of the 48-stud arrival probe as well as the prop radius,
   -- so reusing the scene does not collect and move the same tree again.
-  for _,p in ipairs(anchors)do if math.abs(at.Y-p.Y)<24 and distance(at,p,p)<r+38 then return false end end
-  for _,lane in ipairs(lanes)do if math.abs(at.Y-lane[1].Y)<1 and distance(at,lane[1],lane[2])<r+8 then return false end end
+  local anchorMargin=r+38
+  for _,p in ipairs(anchors)do
+   if math.abs(at.X-p.X)<=anchorMargin and math.abs(at.Z-p.Z)<=anchorMargin and math.abs(at.Y-p.Y)<24
+    and distance(at,p,p)<anchorMargin then return false end
+  end
+  local laneMargin=r+8
+  for _,lane in ipairs(lanes)do
+   if at.X>=lane.minX-laneMargin and at.X<=lane.maxX+laneMargin and at.Z>=lane.minZ-laneMargin and at.Z<=lane.maxZ+laneMargin
+    and math.abs(at.Y-lane[1].Y)<1 and distance(at,lane[1],lane[2])<laneMargin then return false end
+  end
   return true
  end
  local floorRay=RaycastParams.new();floorRay.FilterType=Enum.RaycastFilterType.Include;floorRay.FilterDescendantsInstances={world.terrain,workspace.Terrain};floorRay.RespectCanCollide=true
- local ordered={};for p in pairs(candidates)do table.insert(ordered,p)end
- table.sort(ordered,function(a,b)return a:GetFullName()..tostring(a.Position)<b:GetFullName()..tostring(b.Position)end)
+ local ordered={};for p in pairs(candidates)do table.insert(ordered,{part=p,key=p:GetFullName()..tostring(p.Position)})end
+ table.sort(ordered,function(a,b)return a.key<b.key end)
  local moved=0
- for _,p in ipairs(ordered)do
+ for _,entry in ipairs(ordered)do
+  local p=entry.part
   local at=p.Position;local _,zone=Bounds.region(at.X,at.Z);local floor=zone and Content.zones[zone].center[2]
   local r=math.max(p.Size.X,p.Size.Z)/2;local destination
   if floor then for ring=1,8 do

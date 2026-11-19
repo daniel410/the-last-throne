@@ -113,7 +113,7 @@ function D.build(site,id,c,size,safe,ground,world)
   if p:IsA('BasePart')and p.Transparency<.5 and(p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ReturnLoop'or p.Name=='RegionalReturnTrail')
    and math.abs(p.Position.Y-c.Y)<18 and math.abs(p.Position.X-c.X)<size[1]+p.Size.Z/2 and math.abs(p.Position.Z-c.Z)<size[2]+p.Size.Z/2 then roads[#roads+1]=p end
  end
- local overlap=OverlapParams.new();overlap.FilterType=Enum.RaycastFilterType.Exclude;overlap.FilterDescendantsInstances={group};overlap.RespectCanCollide=true
+ local overlap=OverlapParams.new();overlap.FilterType=Enum.RaycastFilterType.Exclude;overlap.FilterDescendantsInstances={group};overlap.RespectCanCollide=true;overlap.MaxParts=1
  local function eligible(p,r)
   if not safe(p,r+5)then return reject('Reserved')end
   if math.abs(p.X-c.X)>size[1]/2-r-5 or math.abs(p.Z-c.Z)>size[2]/2-r-5 then return reject('Boundary')end
@@ -132,6 +132,7 @@ function D.build(site,id,c,size,safe,ground,world)
   if #workspace:GetPartBoundsInBox(CFrame.new(q+V(0,9,0)),V(r*2+6,16,r*2+6),overlap)>0 then return reject('Occupied')end
   return q
  end
+ local sliceStarted=os.clock()
  local function place(kind,role,index)
   local m=assembly(kind,role)
   -- Side pockets and the convoy clearing have tighter existing encounter
@@ -172,7 +173,11 @@ function D.build(site,id,c,size,safe,ground,world)
    end
   end
   if not result then m:Destroy();rejected+=1 end
-  task.wait()
+  -- Small assemblies can share a frame; bigger placement searches still yield.
+  if os.clock()-sliceStarted>=.006 then
+   task.wait()
+   sliceStarted=os.clock()
+  end
   return result
  end
  place(profile[2],'Signature',1)

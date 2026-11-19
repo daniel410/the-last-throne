@@ -33,7 +33,15 @@ local fakeRig={makeEnemy=function(folder,kind,x,z)
  local h=Instance.new('Humanoid');h.Parent=m;m:SetAttribute('EnemyKind',kind);m.Parent=folder;return m
 end}
 local verifyFinalRewards=true
-local inventory={storyState=function(p)return journals[p]end,expedition=function(p)return runs[p]end,
+local identityReads=0
+local inventory={storyState=function(p)return journals[p]end,expedition=function(p,_,identityOnly)
+  local run=runs[p]
+  if identityOnly then
+   identityReads+=1
+   return run and {runId=run.runId}
+  end
+  return run
+ end,
  storyEvent=function(p,_,cid,gid)
   if verifyFinalRewards then
    local expected=0;for _,batch in ipairs(batches)do expected+=#batch end
@@ -56,7 +64,10 @@ local function living()local result={};for _,m in ipairs(enemies:GetChildren())d
 local service=create();service.interact(players[1],c.id,g.id)
 check(#living()==0,'admission alone does not produce a remote pack')
 local function projection()return service.encounterState(players[1],'1')[c.id..':'..g.id]end
-check(projection().waiting and projection().route,'next clearing and route projected')
+local reads=identityReads
+local currentProjection=projection()
+check(currentProjection.waiting and currentProjection.route,'next clearing and route projected')
+check(identityReads==reads+1,'encounter projection reads only the run identity')
 local total,boss=0,0
 for index,batch in ipairs(batches)do
  local at=Vector3.new(table.unpack(points[index]));players[1].Character.PrimaryPart.Position=at

@@ -32,7 +32,7 @@ local function active(player) return options.heroSession.getActiveHero(player) e
 local function admittedCount(player,run)
  local count=1
  if run then for _,p in ipairs(Players:GetPlayers())do if p~=player then
-  local h=active(p);local a=h and not h.training and options.inventory.expedition(p,h.heroId)
+  local h=active(p);local a=h and not h.training and options.inventory.expedition(p,h.heroId,true)
   if a and a.runId==run.runId then count=math.min(4,count+1)end
  end end end
  return count
@@ -45,7 +45,7 @@ end
 -- but cannot declare a kill or complete an objective from this data.
 function Service.encounterState(player,heroId)
  local result={}
- local run=options.inventory.expedition(player,heroId)
+ local run=options.inventory.expedition(player,heroId,true)
  for key,e in pairs(encounters) do
   -- A replay keeps the same hero while the old encounter awaits cleanup.
   -- Its waypoint must not replace the current run's first clearing.
@@ -78,7 +78,7 @@ function Service.destination(player,heroId)
   if not ready()and options.prepareStory then options.prepareStory(chapter.id)end
   return ready()
  end
- local run=options.inventory.expedition(player,heroId)
+ local run=options.inventory.expedition(player,heroId,true)
  for _,e in pairs(encounters)do if e.routePoints and not e.completed and e.participants[player]==heroId and run and run.runId==e.runId then
   if not prepared(e.chapter)then return nil end
   local cleared=e.waiting and e.wave or e.wave-1
@@ -125,11 +125,11 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
  queues[player]=queues[player] or {events={},keys={}}
  local q=queues[player];local key=heroId..':'..c.id..':'..g.id..':'..tostring(stepId)..':'..tostring(choice)
  if q.keys[key] then return end
- q.keys[key]=true;table.insert(q.events,{heroId=heroId,c=c,g=g,choice=choice,stepId=stepId,key=key,runId=(options.inventory.expedition(player,heroId)or {}).runId})
+ q.keys[key]=true;table.insert(q.events,{heroId=heroId,c=c,g=g,choice=choice,stepId=stepId,key=key,runId=(options.inventory.expedition(player,heroId,true)or {}).runId})
  if q.running then return end;q.running=true
  task.spawn(function()
   while player.Parent==Players and #q.events>0 do
-   local e=q.events[1];local before=state(player,e.heroId);local growthBefore=options.inventory.growth and options.inventory.growth(player,e.heroId);local currentRun=options.inventory.expedition(player,e.heroId)
+   local e=q.events[1];local before=state(player,e.heroId);local growthBefore=options.inventory.growth and options.inventory.growth(player,e.heroId);local currentRun=options.inventory.expedition(player,e.heroId,true)
    local reason
    if (currentRun and currentRun.runId)~=e.runId then reason='AdventureChanged'
    else reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId,e.runId) end
@@ -363,7 +363,7 @@ local function begin(player,node,automatic)
  local count=1
  for _,p in ipairs(Players:GetPlayers()) do if p~=player then
   local h=active(p)
-  local other=h and options.inventory.expedition(p,h.heroId)
+  local other=h and options.inventory.expedition(p,h.heroId,true)
   local ally=other and e.runId and other.runId==e.runId and not h.training and h or eligible(p,c,g,65,position)
   if ally and count<4 and (other and other.runId or nil)==e.runId then e.participants[p]=ally.heroId;count=count+1 end
  end end
@@ -513,14 +513,14 @@ function Service.stepEncounters()
  for _,e in pairs(encounters)do if e.routePoints and not e.completed then
   local count=0;for _ in pairs(e.participants)do count=count+1 end
   for _,p in ipairs(Players:GetPlayers())do if not e.participants[p]and count<4 then
-   local h=active(p);local run=h and not h.training and options.inventory.expedition(p,h.heroId)
-   local journal=h and state(p,h.heroId)
-   if run and run.runId==e.runId and journal and Progress.available(journal,e.chapter,e.goal)then
+   local h=active(p);local run=h and not h.training and options.inventory.expedition(p,h.heroId,true)
+   local journal=run and run.runId==e.runId and state(p,h.heroId)
+   if journal and Progress.available(journal,e.chapter,e.goal)then
     e.participants[p]=h.heroId;count=count+1;publish(p,'Join your party on the current stretch of the route.')
    end
   end end
   if e.waiting then for p,heroId in pairs(e.participants)do
-   local ctx,root=context(p);local run=ctx and options.inventory.expedition(p,heroId)
+   local ctx,root=context(p);local run=ctx and options.inventory.expedition(p,heroId,true)
    if ctx and ctx.heroId==heroId and run and run.runId==e.runId and root and (root.Position-e.position).Magnitude<=Routes.approach then
     activateRouteWave(e)
     break
@@ -582,7 +582,7 @@ function Service.start(settings)
  local partyRemote=Instance.new('RemoteEvent');partyRemote.Name='DeepwoodPartyState';partyRemote.Parent=ReplicatedStorage.Remotes
  local partySnapshot=require(script.Parent.PartyMapRoster).create({active=active,
   players=function()return Players:GetPlayers()end,
-  run=function(p,id)return options.inventory.expedition(p,id)end,
+  run=function(p,id)return options.inventory.expedition(p,id,true)end,
   inAdventure=function(p)return p:GetAttribute('K0SessionPhase')=='Tutorial'end,
   position=function(p)
    local character=p.Character;local root=character and character:FindFirstChild('HumanoidRootPart');local human=character and character:FindFirstChildOfClass('Humanoid')
@@ -624,7 +624,7 @@ function Service.start(settings)
  options.combat.setStoryTargetValidator(function(model,player,heroId)
   local e=encounters[model:GetAttribute('DeepwoodEncounter')]
   if not e or e.completed or e.participants[player]~=heroId then return false end
-  local run=options.inventory.expedition(player,heroId)
+  local run=options.inventory.expedition(player,heroId,true)
   return (run and run.runId or nil)==e.runId
  end)
  Players.PlayerRemoving:Connect(function(p) partyStory.remove(p);activities.remove(p);access.remove(p);companion.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
@@ -653,7 +653,7 @@ function Service.start(settings)
    if e.routePoints then
     -- Walking onward, being downed, or reading clues must not reset a cleared
     -- stretch. Retain it while any member is still admitted to this exact run.
-    for p,id in pairs(e.participants)do local h=active(p);local run=h and h.heroId==id and options.inventory.expedition(p,id)
+    for p,id in pairs(e.participants)do local h=active(p);local run=h and h.heroId==id and options.inventory.expedition(p,id,true)
      if run and run.runId==e.runId then e.lastPresent=os.clock();break end
     end
    end
