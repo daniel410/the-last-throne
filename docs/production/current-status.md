@@ -3,7 +3,7 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 다섯 에픽 환경 0.113.17 후보에 Deepwood 포로 수용 구역, Gloamwood 사냥터 둑, Ember Caldera 시험 회로를 배치하고 Frozen Vale 방풍 울타리와 Haunted Graveyard 배수구 후면을 보강했다. [고정 빌드·Studio 비교와 남은 수용](../evidence/epic-rescue-infrastructure-20261119/README.md). G5 진행 중.
+- 다섯 에픽 환경 0.113.18 후보에서 점령 시설·사냥터 둑·방풍 울타리·시험 회로·배수구의 재질과 접합을 보강했다. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-landmark-visibility-20261119/README.md). G5 진행 중.
 
 - 지역 생성·전투 반복 작업: 0.113.15 후보는 중복 경로 검사와 불필요한 프레임 대기를 줄였으며, 교전 검증은 원정 ID만 조회한다. [지역 생성 전후·지형 대조·미검증](../evidence/world-runtime-optimization-20261118/README.md). 후보 미게시. [선행 출현·페이즈 개선](../evidence/story-phase-speed-20261118/README.md) · [저장 대기 개선](../evidence/monster-spawn-latency-20261118/README.md) · [지도 복구](../evidence/campaign-save-map-20261117/README.md).
 

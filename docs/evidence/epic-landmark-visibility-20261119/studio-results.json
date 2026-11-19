@@ -1,0 +1,1515 @@
+{
+  "COMPILE": [
+    544
+  ],
+  "DIRECT": [
+    {
+      "story": "FV-04",
+      "buriedDepth": 0.3600040674209595,
+      "approach": [
+        842.1500244140625,
+        100,
+        -9337.900390625
+      ],
+      "goal": "relay_east",
+      "name": "EastArchiveConduitBed",
+      "bounds": [
+        6.599999904632568,
+        2.8199989795684814,
+        11
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        814.7632446289062,
+        100,
+        -9400.1416015625
+      ],
+      "parts": 10
+    },
+    {
+      "story": "EC-04",
+      "buriedDepth": 0.38999414443969727,
+      "approach": [
+        882.1500244140625,
+        148,
+        -13179.400390625
+      ],
+      "goal": "east_valve",
+      "name": "EasternReturnRace",
+      "bounds": [
+        19.443378448486328,
+        4.0800065994262695,
+        21
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        866.5481567382812,
+        148,
+        -13200.19921875
+      ],
+      "parts": 12
+    },
+    {
+      "story": "HG-01",
+      "buriedDepth": 0.6749939918518066,
+      "approach": [
+        -917.8499755859375,
+        172,
+        -15343.400390625
+      ],
+      "goal": "shelter",
+      "name": "KeeperLanternRevetment",
+      "bounds": [
+        23.36865997314453,
+        6.300000190734863,
+        10.58157730102539
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -891.0362548828125,
+        172,
+        -15287.498046875
+      ],
+      "parts": 12
+    },
+    {
+      "story": "GW-04",
+      "buriedDepth": 1.9134197235107422,
+      "approach": [
+        840.1500244140625,
+        66,
+        -5579.39990234375
+      ],
+      "goal": "lantern",
+      "name": "RootwayBankCut",
+      "bounds": [
+        27.503772735595703,
+        8.19607162475586,
+        16.58812713623047
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        782.7994384765625,
+        68.015625,
+        -5615.93603515625
+      ],
+      "parts": 14
+    },
+    {
+      "story": "DW-05",
+      "buriedDepth": 0.6399974822998047,
+      "approach": [
+        693,
+        38,
+        -2583
+      ],
+      "goal": "prisoners",
+      "name": "RuinedPrisonPalisade",
+      "bounds": [
+        16.600000381469727,
+        8.719348907470703,
+        6.209448337554932
+      ],
+      "footprintHeightDeltas": [
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06
+      ],
+      "ground": [
+        685.1804809570312,
+        38.07999801635742,
+        -2545.813232421875
+      ],
+      "parts": 16
+    },
+    {
+      "story": "EC-05",
+      "buriedDepth": 0.6499924659729004,
+      "approach": [
+        222.14999389648438,
+        156,
+        -13619.400390625
+      ],
+      "goal": "crew",
+      "name": "VaultCircuitPrototype",
+      "bounds": [
+        14.800002098083496,
+        5.434994697570801,
+        9.000000953674316
+      ],
+      "footprintHeightDeltas": [
+        -1.52587890625e-05,
+        0.2866058349609375,
+        0.2755279541015625,
+        0.1010284423828125,
+        0.4130706787109375
+      ],
+      "ground": [
+        248.16761779785156,
+        157.5333709716797,
+        -13654.8837890625
+      ],
+      "parts": 14
+    },
+    {
+      "story": "GW-05",
+      "buriedDepth": 0.5999994277954102,
+      "approach": [
+        240.14999389648438,
+        70,
+        -6079.39990234375
+      ],
+      "goal": "rope",
+      "name": "VenomcoilScouredBank",
+      "bounds": [
+        17.359634399414062,
+        5.51182746887207,
+        11.750776290893555
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        255.75184631347656,
+        70,
+        -6058.60107421875
+      ],
+      "parts": 8
+    },
+    {
+      "story": "DW-04",
+      "buriedDepth": 1.007979393005371,
+      "approach": [
+        550,
+        30,
+        -1989
+      ],
+      "goal": "link_record",
+      "name": "WatchtowerSignalFooting",
+      "bounds": [
+        22.665958404541016,
+        7.372983932495117,
+        10.507862091064453
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        -0.1295623779296875,
+        0
+      ],
+      "ground": [
+        485.48443603515625,
+        32.015625,
+        -2036.3048095703125
+      ],
+      "parts": 18
+    },
+    {
+      "story": "FV-04",
+      "buriedDepth": 0.3600025177001953,
+      "approach": [
+        682.1500244140625,
+        100,
+        -9277.900390625
+      ],
+      "goal": "relay_west",
+      "name": "WestArchiveConduitBed",
+      "bounds": [
+        11.262555122375488,
+        3.920001983642578,
+        17.999998092651367
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        649.5947265625,
+        100,
+        -9315.849609375
+      ],
+      "parts": 12
+    },
+    {
+      "story": "EC-04",
+      "buriedDepth": 0.4200000762939453,
+      "approach": [
+        727.1500244140625,
+        148,
+        -13124.400390625
+      ],
+      "goal": "west_valve",
+      "name": "WesternIntakeSluice",
+      "bounds": [
+        11.301172256469727,
+        4.369998931884766,
+        20.999998092651367
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        689.9632568359375,
+        148,
+        -13132.2197265625
+      ],
+      "parts": 18
+    }
+  ],
+  "MODEL": [
+    {
+      "story": "FV-04",
+      "buriedDepth": 0.3600040674209595,
+      "approach": [
+        842.1500244140625,
+        100,
+        -9337.900390625
+      ],
+      "goal": "relay_east",
+      "name": "EastArchiveConduitBed",
+      "bounds": [
+        6.599999904632568,
+        2.8199989795684814,
+        11
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        814.7632446289062,
+        100,
+        -9400.1416015625
+      ],
+      "parts": 10
+    },
+    {
+      "story": "EC-04",
+      "buriedDepth": 0.38999414443969727,
+      "approach": [
+        882.1500244140625,
+        148,
+        -13179.400390625
+      ],
+      "goal": "east_valve",
+      "name": "EasternReturnRace",
+      "bounds": [
+        19.443378448486328,
+        4.0800065994262695,
+        21
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        866.5481567382812,
+        148,
+        -13200.19921875
+      ],
+      "parts": 12
+    },
+    {
+      "story": "HG-01",
+      "buriedDepth": 0.6749939918518066,
+      "approach": [
+        -917.8499755859375,
+        172,
+        -15343.400390625
+      ],
+      "goal": "shelter",
+      "name": "KeeperLanternRevetment",
+      "bounds": [
+        23.36865997314453,
+        6.300000190734863,
+        10.58157730102539
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -891.0362548828125,
+        172,
+        -15287.498046875
+      ],
+      "parts": 12
+    },
+    {
+      "story": "GW-04",
+      "buriedDepth": 1.9134197235107422,
+      "approach": [
+        840.1500244140625,
+        66,
+        -5579.39990234375
+      ],
+      "goal": "lantern",
+      "name": "RootwayBankCut",
+      "bounds": [
+        27.503772735595703,
+        8.19607162475586,
+        16.58812713623047
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        782.7994384765625,
+        68.015625,
+        -5615.93603515625
+      ],
+      "parts": 14
+    },
+    {
+      "story": "DW-05",
+      "buriedDepth": 0.6399974822998047,
+      "approach": [
+        693,
+        38,
+        -2583
+      ],
+      "goal": "prisoners",
+      "name": "RuinedPrisonPalisade",
+      "bounds": [
+        16.600000381469727,
+        8.719348907470703,
+        6.209448337554932
+      ],
+      "footprintHeightDeltas": [
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06
+      ],
+      "ground": [
+        685.1804809570312,
+        38.07999801635742,
+        -2545.813232421875
+      ],
+      "parts": 16
+    },
+    {
+      "story": "EC-05",
+      "buriedDepth": 0.6499924659729004,
+      "approach": [
+        222.14999389648438,
+        156,
+        -13619.400390625
+      ],
+      "goal": "crew",
+      "name": "VaultCircuitPrototype",
+      "bounds": [
+        14.800002098083496,
+        5.434994697570801,
+        9.000000953674316
+      ],
+      "footprintHeightDeltas": [
+        -1.52587890625e-05,
+        0.2866058349609375,
+        0.2755279541015625,
+        0.1010284423828125,
+        0.4130706787109375
+      ],
+      "ground": [
+        248.16761779785156,
+        157.5333709716797,
+        -13654.8837890625
+      ],
+      "parts": 14
+    },
+    {
+      "story": "GW-05",
+      "buriedDepth": 0.5999994277954102,
+      "approach": [
+        240.14999389648438,
+        70,
+        -6079.39990234375
+      ],
+      "goal": "rope",
+      "name": "VenomcoilScouredBank",
+      "bounds": [
+        17.359634399414062,
+        5.51182746887207,
+        11.750776290893555
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        255.75184631347656,
+        70,
+        -6058.60107421875
+      ],
+      "parts": 8
+    },
+    {
+      "story": "DW-04",
+      "buriedDepth": 1.007979393005371,
+      "approach": [
+        550,
+        30,
+        -1989
+      ],
+      "goal": "link_record",
+      "name": "WatchtowerSignalFooting",
+      "bounds": [
+        22.665958404541016,
+        7.372983932495117,
+        10.507862091064453
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        -0.1295623779296875,
+        0
+      ],
+      "ground": [
+        485.48443603515625,
+        32.015625,
+        -2036.3048095703125
+      ],
+      "parts": 18
+    },
+    {
+      "story": "FV-04",
+      "buriedDepth": 0.3600025177001953,
+      "approach": [
+        682.1500244140625,
+        100,
+        -9277.900390625
+      ],
+      "goal": "relay_west",
+      "name": "WestArchiveConduitBed",
+      "bounds": [
+        11.262555122375488,
+        3.920001983642578,
+        17.999998092651367
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        649.5947265625,
+        100,
+        -9315.849609375
+      ],
+      "parts": 12
+    },
+    {
+      "story": "EC-04",
+      "buriedDepth": 0.4200000762939453,
+      "approach": [
+        727.1500244140625,
+        148,
+        -13124.400390625
+      ],
+      "goal": "west_valve",
+      "name": "WesternIntakeSluice",
+      "bounds": [
+        11.301172256469727,
+        4.369998931884766,
+        20.999998092651367
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        689.9632568359375,
+        148,
+        -13132.2197265625
+      ],
+      "parts": 18
+    }
+  ],
+  "NAV_ORIGINAL": [
+    {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13309,
+          "samples": 13723,
+          "targets": 243,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8093,
+          "samples": 8396,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    }
+  ],
+  "NAV_EASY": [
+    {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13699,
+          "samples": 14113,
+          "targets": 253,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8223,
+          "samples": 8526,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    }
+  ],
+  "ARCH": [
+    {
+      "pivot": [
+        -1542.75,
+        0,
+        -1151.199951171875
+      ],
+      "feet": [
+        [
+          -1554.25,
+          -0.25,
+          -1151.199951171875
+        ],
+        [
+          -1531.25,
+          -0.25,
+          -1151.199951171875
+        ]
+      ]
+    }
+  ],
+  "PLACEMENT": [
+    {
+      "approach": [
+        550,
+        30,
+        -1989
+      ],
+      "name": "WatchtowerSignalFooting",
+      "center": [
+        485.180908203125,
+        34.69413757324219,
+        -2036.362548828125
+      ],
+      "bounds": [
+        22.665958404541016,
+        7.372983932495117,
+        10.507862091064453
+      ],
+      "distance": 80.02540588378906,
+      "ground": [
+        485.48443603515625,
+        32.015625,
+        -2036.3048095703125
+      ],
+      "parts": 18
+    },
+    {
+      "approach": [
+        840.1500244140625,
+        66,
+        -5579.39990234375
+      ],
+      "name": "RootwayBankCut",
+      "center": [
+        781.3269653320312,
+        70.20024108886719,
+        -5616.64990234375
+      ],
+      "bounds": [
+        27.503772735595703,
+        8.19607162475586,
+        16.58812713623047
+      ],
+      "distance": 68.02970886230469,
+      "ground": [
+        782.7994384765625,
+        68.015625,
+        -5615.93603515625
+      ],
+      "parts": 14
+    },
+    {
+      "approach": [
+        682.1500244140625,
+        100,
+        -9277.900390625
+      ],
+      "name": "WestArchiveConduitBed",
+      "center": [
+        649.5949096679688,
+        101.5999984741211,
+        -9315.849609375
+      ],
+      "bounds": [
+        11.262555122375488,
+        3.920001983642578,
+        17.999998092651367
+      ],
+      "distance": 49.999908447265625,
+      "ground": [
+        649.5947265625,
+        100,
+        -9315.849609375
+      ],
+      "parts": 12
+    },
+    {
+      "approach": [
+        842.1500244140625,
+        100,
+        -9337.900390625
+      ],
+      "name": "EastArchiveConduitBed",
+      "center": [
+        814.7632446289062,
+        101.04999542236328,
+        -9400.1416015625
+      ],
+      "bounds": [
+        6.599999904632568,
+        2.8199989795684814,
+        11
+      ],
+      "distance": 68.00003051757812,
+      "ground": [
+        814.7632446289062,
+        100,
+        -9400.1416015625
+      ],
+      "parts": 10
+    },
+    {
+      "approach": [
+        727.1500244140625,
+        148,
+        -13124.400390625
+      ],
+      "name": "WesternIntakeSluice",
+      "center": [
+        689.9632568359375,
+        149.76499938964844,
+        -13132.2197265625
+      ],
+      "bounds": [
+        11.301172256469727,
+        4.369998931884766,
+        20.999998092651367
+      ],
+      "distance": 37.999969482421875,
+      "ground": [
+        689.9632568359375,
+        148,
+        -13132.2197265625
+      ],
+      "parts": 18
+    },
+    {
+      "approach": [
+        882.1500244140625,
+        148,
+        -13179.400390625
+      ],
+      "name": "EasternReturnRace",
+      "center": [
+        866.5477905273438,
+        149.65000915527344,
+        -13200.19921875
+      ],
+      "bounds": [
+        19.443378448486328,
+        4.0800065994262695,
+        21
+      ],
+      "distance": 26.00018310546875,
+      "ground": [
+        866.5481567382812,
+        148,
+        -13200.19921875
+      ],
+      "parts": 12
+    },
+    {
+      "approach": [
+        -917.8499755859375,
+        172,
+        -15343.400390625
+      ],
+      "name": "KeeperLanternRevetment",
+      "center": [
+        -890.3814697265625,
+        174.47500610351562,
+        -15287.4853515625
+      ],
+      "bounds": [
+        23.36865997314453,
+        6.300000190734863,
+        10.58157730102539
+      ],
+      "distance": 62.00038528442383,
+      "ground": [
+        -891.0362548828125,
+        172,
+        -15287.498046875
+      ],
+      "parts": 12
+    },
+    {
+      "approach": [
+        693,
+        38,
+        -2583
+      ],
+      "name": "RuinedPrisonPalisade",
+      "center": [
+        685.2020263671875,
+        41.79967498779297,
+        -2545.915771484375
+      ],
+      "bounds": [
+        16.600000381469727,
+        8.719348907470703,
+        6.209448337554932
+      ],
+      "distance": 38.000091552734375,
+      "ground": [
+        685.1804809570312,
+        38.07999801635742,
+        -2545.813232421875
+      ],
+      "parts": 16
+    },
+    {
+      "approach": [
+        240.14999389648438,
+        70,
+        -6079.39990234375
+      ],
+      "name": "VenomcoilScouredBank",
+      "center": [
+        256.07769775390625,
+        72.15591430664062,
+        -6058.46630859375
+      ],
+      "bounds": [
+        17.359634399414062,
+        5.51182746887207,
+        11.750776290893555
+      ],
+      "distance": 26.000173568725586,
+      "ground": [
+        255.75184631347656,
+        70,
+        -6058.60107421875
+      ],
+      "parts": 8
+    },
+    {
+      "approach": [
+        222.14999389648438,
+        156,
+        -13619.400390625
+      ],
+      "name": "VaultCircuitPrototype",
+      "center": [
+        248.16761779785156,
+        159.6008758544922,
+        -13654.8837890625
+      ],
+      "bounds": [
+        14.800002098083496,
+        5.434994697570801,
+        9.000000953674316
+      ],
+      "distance": 44.02657699584961,
+      "ground": [
+        248.16761779785156,
+        157.5333709716797,
+        -13654.8837890625
+      ],
+      "parts": 14
+    },
+    {
+      "approach": [
+        152.14999389648438,
+        92,
+        -8787.900390625
+      ],
+      "name": "AvalancheSnowFence",
+      "center": [
+        190.0763702392578,
+        98.41761779785156,
+        -8632.908203125
+      ],
+      "bounds": [
+        28.5,
+        10.951839447021484,
+        13.844653129577637
+      ],
+      "distance": 158.01229858398438,
+      "ground": [
+        189.70436096191406,
+        94,
+        -8634.4287109375
+      ],
+      "parts": 27
+    },
+    {
+      "approach": [
+        282.1499938964844,
+        180,
+        -16247.400390625
+      ],
+      "name": "KeeperDrainCulvert",
+      "center": [
+        414.24725341796875,
+        185.8513946533203,
+        -16199.3212890625
+      ],
+      "bounds": [
+        21.000001907348633,
+        10.075003623962402,
+        13.149941444396973
+      ],
+      "distance": 140.00765991210938,
+      "ground": [
+        413.70697021484375,
+        181.46389770507812,
+        -16199.517578125
+      ],
+      "parts": 26
+    }
+  ],
+  "WALK": [
+    {
+      "story": "FV-03",
+      "name": "AvalancheSnowFence",
+      "from": [
+        180.58950805664062,
+        92,
+        -8845.234375
+      ],
+      "target": [
+        152.14999389648438,
+        92,
+        -8787.900390625
+      ],
+      "retreat": {
+        "elapsed": 3.487731749890372,
+        "arrived": true,
+        "gap": 4.615037441253662,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7333174999803305,
+        "arrived": true,
+        "gap": 4.531291484832764,
+        "closestToContacts": []
+      },
+      "goal": "west_beacon"
+    },
+    {
+      "story": "DW-Q1",
+      "name": "DeepwoodMarshConnector",
+      "from": [
+        -1542.75,
+        0.07999981194734573,
+        -1127
+      ],
+      "target": [
+        -1542.75,
+        0,
+        -1188
+      ],
+      "retreat": {
+        "elapsed": 3.1997189584653825,
+        "arrived": true,
+        "gap": 4.5859375,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.466794249834493,
+        "arrived": true,
+        "gap": 5.625732421875,
+        "closestToContacts": []
+      },
+      "goal": "exp_1"
+    },
+    {
+      "story": "DW-Q1",
+      "name": "DeepwoodMarshPriorOverlap",
+      "from": [
+        -1535.09912109375,
+        0.07999981194734573,
+        -1139.662841796875
+      ],
+      "target": [
+        -1477.717529296875,
+        3.0799999237060547,
+        -1122.1341552734375
+      ],
+      "retreat": {
+        "elapsed": 3.20200362498872,
+        "arrived": true,
+        "gap": 4.581895351409912,
+        "closestToContacts": [
+          0.4837660789489746,
+          0.32036757469177246,
+          0.8564566373825073
+        ]
+      },
+      "approach": {
+        "elapsed": 3.466796000022441,
+        "arrived": true,
+        "gap": 4.607115268707275,
+        "closestToContacts": [
+          0.8729883432388306,
+          0.06911475956439972,
+          0.46635979413986206
+        ]
+      },
+      "goal": "marsh_report"
+    },
+    {
+      "story": "DW-02",
+      "name": "DeepwoodShelterPriorOverlap",
+      "from": [
+        -1085.7147216796875,
+        6.079999923706055,
+        -1228.002197265625
+      ],
+      "target": [
+        -1057.1441650390625,
+        9.079999923706055,
+        -1200.006591796875
+      ],
+      "retreat": {
+        "elapsed": 1.8666161249857396,
+        "arrived": true,
+        "gap": 4.557757377624512,
+        "closestToContacts": [
+          0.5114634037017822
+        ]
+      },
+      "approach": {
+        "elapsed": 2.133403374813497,
+        "arrived": true,
+        "gap": 5.9818830490112305,
+        "closestToContacts": [
+          0.9126637578010559
+        ]
+      },
+      "goal": "survivors"
+    },
+    {
+      "story": "FV-04",
+      "name": "EastArchiveConduitBed",
+      "from": [
+        886.7679443359375,
+        100,
+        -9292.017578125
+      ],
+      "target": [
+        842.1500244140625,
+        100,
+        -9337.900390625
+      ],
+      "retreat": {
+        "elapsed": 3.475664041703567,
+        "arrived": true,
+        "gap": 4.671396732330322,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7333777917083353,
+        "arrived": true,
+        "gap": 4.3049445152282715,
+        "closestToContacts": []
+      },
+      "goal": "relay_east"
+    },
+    {
+      "story": "EC-04",
+      "name": "EasternReturnRace",
+      "from": [
+        946.1388549804688,
+        148,
+        -13180.5966796875
+      ],
+      "target": [
+        882.1500244140625,
+        148,
+        -13179.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.478968291543424,
+        "arrived": true,
+        "gap": 4.544660568237305,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733360458398238,
+        "arrived": true,
+        "gap": 4.337164878845215,
+        "closestToContacts": []
+      },
+      "goal": "east_valve"
+    },
+    {
+      "story": "HG-03",
+      "name": "KeeperDrainCulvert",
+      "from": [
+        222.11181640625,
+        180,
+        -16225.232421875
+      ],
+      "target": [
+        282.1499938964844,
+        180,
+        -16247.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.486252750037238,
+        "arrived": true,
+        "gap": 4.580089569091797,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7333195416722447,
+        "arrived": true,
+        "gap": 4.3746657371521,
+        "closestToContacts": []
+      },
+      "goal": "crypt"
+    },
+    {
+      "story": "HG-01",
+      "name": "KeeperLanternRevetment",
+      "from": [
+        -868.3341064453125,
+        172,
+        -15383.94921875
+      ],
+      "target": [
+        -917.8499755859375,
+        172,
+        -15343.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.480533416615799,
+        "arrived": true,
+        "gap": 4.5581865310668945,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7333583750296384,
+        "arrived": true,
+        "gap": 4.378365993499756,
+        "closestToContacts": []
+      },
+      "goal": "shelter"
+    },
+    {
+      "story": "GW-04",
+      "name": "RootwayBankCut",
+      "from": [
+        900.3765258789062,
+        66,
+        -5601.05078125
+      ],
+      "target": [
+        840.1500244140625,
+        66,
+        -5579.39990234375
+      ],
+      "retreat": {
+        "elapsed": 3.470446875086054,
+        "arrived": true,
+        "gap": 4.586038112640381,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7333898334763944,
+        "arrived": true,
+        "gap": 4.361596584320068,
+        "closestToContacts": []
+      },
+      "goal": "lantern"
+    },
+    {
+      "story": "DW-05",
+      "name": "RuinedPrisonPalisade",
+      "from": [
+        678.728515625,
+        38.08000183105469,
+        -2597.367919921875
+      ],
+      "target": [
+        638,
+        38,
+        -2548
+      ],
+      "retreat": {
+        "elapsed": 3.4820681251585484,
+        "arrived": true,
+        "gap": 4.557384014129639,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733340666629374,
+        "arrived": true,
+        "gap": 4.395514011383057,
+        "closestToContacts": []
+      },
+      "goal": "prisoners"
+    },
+    {
+      "story": "EC-05",
+      "name": "VaultCircuitPrototype",
+      "from": [
+        158.15377807617188,
+        156,
+        -13618.705078125
+      ],
+      "target": [
+        222.14999389648438,
+        156,
+        -13619.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.4849882915150374,
+        "arrived": true,
+        "gap": 4.545088291168213,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7333264583721757,
+        "arrived": true,
+        "gap": 4.330575942993164,
+        "closestToContacts": []
+      },
+      "goal": "crew"
+    },
+    {
+      "story": "GW-05",
+      "name": "VenomcoilScouredBank",
+      "from": [
+        298.1016540527344,
+        70.7865982055664,
+        -6106.55859375
+      ],
+      "target": [
+        240.14999389648438,
+        70,
+        -6079.39990234375
+      ],
+      "retreat": {
+        "elapsed": 3.4835128334816545,
+        "arrived": true,
+        "gap": 4.52785062789917,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733338291523978,
+        "arrived": true,
+        "gap": 4.557102680206299,
+        "closestToContacts": []
+      },
+      "goal": "rope"
+    },
+    {
+      "story": "DW-04",
+      "name": "WatchtowerSignalFooting",
+      "from": [
+        552.8073120117188,
+        30.079998016357422,
+        -1912.36083984375
+      ],
+      "target": [
+        515,
+        30,
+        -1964
+      ],
+      "retreat": {
+        "elapsed": 3.4669197916518897,
+        "arrived": true,
+        "gap": 4.581787109375,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733388458378613,
+        "arrived": true,
+        "gap": 4.366354942321777,
+        "closestToContacts": []
+      },
+      "goal": "link_record"
+    },
+    {
+      "story": "FV-04",
+      "name": "WestArchiveConduitBed",
+      "from": [
+        696.8970336914062,
+        100,
+        -9340.177734375
+      ],
+      "target": [
+        682.1500244140625,
+        100,
+        -9277.900390625
+      ],
+      "retreat": {
+        "elapsed": 3.4735794581938535,
+        "arrived": true,
+        "gap": 4.6286725997924805,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733384041581303,
+        "arrived": true,
+        "gap": 4.3557233810424805,
+        "closestToContacts": []
+      },
+      "goal": "relay_west"
+    },
+    {
+      "story": "EC-04",
+      "name": "WesternIntakeSluice",
+      "from": [
+        746.7982177734375,
+        148,
+        -13185.3095703125
+      ],
+      "target": [
+        727.1500244140625,
+        148,
+        -13124.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.4773539998568594,
+        "arrived": true,
+        "gap": 4.520975589752197,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7333636248949915,
+        "arrived": true,
+        "gap": 4.3315911293029785,
+        "closestToContacts": []
+      },
+      "goal": "west_valve"
+    }
+  ],
+  "FINAL": [
+    true
+  ],
+  "SOLID": [
+    {
+      "solid": 19,
+      "radius": 16.58612823486328,
+      "name": "AvalancheSnowFence",
+      "pivot": [
+        189.70436096191406,
+        94,
+        -8634.4287109375,
+        0.9713420271873474,
+        0,
+        0.2376863956451416,
+        0,
+        1,
+        0,
+        -0.237686425447464,
+        0,
+        0.9713419079780579
+      ]
+    },
+    {
+      "solid": 13,
+      "radius": 12.7032470703125,
+      "name": "KeeperDrainCulvert",
+      "pivot": [
+        413.70697021484375,
+        181.46389770507812,
+        -16199.517578125,
+        0.34202009439468384,
+        0,
+        0.9396926760673523,
+        0,
+        1,
+        0,
+        -0.9396926760673523,
+        0,
+        0.34202009439468384
+      ]
+    }
+  ],
+  "DONE": [
+    true
+  ],
+  "SOLID_SHAPE_SHA256": {
+    "AvalancheSnowFence": "fbd3eefcc667a59a4914a602645b6f36122c5987262dea685f5dcb8610fac4b5",
+    "KeeperDrainCulvert": "7e93ee19afe66d7f0eed5241f00e63e4896fe1e508bd0f90208a4281f5b0aa12"
+  }
+}
