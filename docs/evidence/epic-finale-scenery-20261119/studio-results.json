@@ -1,0 +1,1106 @@
+{
+  "compileCount": 546,
+  "navigation": {
+    "NAV_ORIGINAL": {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13309,
+          "samples": 13723,
+          "targets": 243,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8093,
+          "samples": 8396,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    },
+    "NAV_EASY": {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13699,
+          "samples": 14113,
+          "targets": 253,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8223,
+          "samples": 8526,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    }
+  },
+  "walks": [
+    {
+      "story": "DW-02",
+      "name": "DeepwoodShelterPriorOverlap",
+      "from": [
+        -1085.7147216796875,
+        6.079999923706055,
+        -1228.002197265625
+      ],
+      "target": [
+        -1057.1441650390625,
+        9.079999923706055,
+        -1200.006591796875
+      ],
+      "retreat": {
+        "elapsed": 1.8659575418569148,
+        "arrived": true,
+        "gap": 4.62448263168335,
+        "closestToContacts": [
+          0.4447381794452667
+        ]
+      },
+      "approach": {
+        "elapsed": 2.132327500032261,
+        "arrived": true,
+        "gap": 5.9818830490112305,
+        "closestToContacts": [
+          0.9126637578010559
+        ]
+      },
+      "goal": "survivors"
+    },
+    {
+      "story": "DW-Q1",
+      "name": "DeepwoodMarshConnector",
+      "from": [
+        -1542.75,
+        0.07999981194734573,
+        -1127
+      ],
+      "target": [
+        -1542.75,
+        0,
+        -1188
+      ],
+      "retreat": {
+        "elapsed": 3.200076875044033,
+        "arrived": true,
+        "gap": 4.652587890625,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.4663622917141765,
+        "arrived": true,
+        "gap": 5.625732421875,
+        "closestToContacts": []
+      },
+      "goal": "exp_1"
+    },
+    {
+      "story": "DW-Q1",
+      "name": "DeepwoodMarshPriorOverlap",
+      "from": [
+        -1535.09912109375,
+        0.07999981194734573,
+        -1139.662841796875
+      ],
+      "target": [
+        -1477.717529296875,
+        3.0799999237060547,
+        -1122.1341552734375
+      ],
+      "retreat": {
+        "elapsed": 3.202423500129953,
+        "arrived": true,
+        "gap": 4.648623466491699,
+        "closestToContacts": [
+          0.41711997985839844,
+          0.3870140314102173,
+          0.9231029748916626
+        ]
+      },
+      "approach": {
+        "elapsed": 3.466320958454162,
+        "arrived": true,
+        "gap": 4.607115268707275,
+        "closestToContacts": [
+          0.8729883432388306,
+          0.06911475956439972,
+          0.46635979413986206
+        ]
+      },
+      "goal": "marsh_report"
+    },
+    {
+      "story": "DW-04",
+      "name": "WatchtowerSignalFooting",
+      "from": [
+        552.8073120117188,
+        30.079998016357422,
+        -1912.36083984375
+      ],
+      "target": [
+        515,
+        30,
+        -1964
+      ],
+      "retreat": {
+        "elapsed": 3.46652291668579,
+        "arrived": true,
+        "gap": 4.648550510406494,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332929582335055,
+        "arrived": true,
+        "gap": 4.366354942321777,
+        "closestToContacts": []
+      },
+      "goal": "link_record"
+    },
+    {
+      "story": "GW-04",
+      "name": "RootwayBankCut",
+      "from": [
+        900.3765258789062,
+        66,
+        -5601.05078125
+      ],
+      "target": [
+        840.1500244140625,
+        66,
+        -5579.39990234375
+      ],
+      "retreat": {
+        "elapsed": 3.4688703333958983,
+        "arrived": true,
+        "gap": 4.652846813201904,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332884583156556,
+        "arrived": true,
+        "gap": 4.361596584320068,
+        "closestToContacts": []
+      },
+      "goal": "lantern"
+    },
+    {
+      "story": "FV-04",
+      "name": "WestArchiveConduitBed",
+      "from": [
+        696.8970336914062,
+        100,
+        -9340.177734375
+      ],
+      "target": [
+        682.1500244140625,
+        100,
+        -9277.900390625
+      ],
+      "retreat": {
+        "elapsed": 3.4705898750107735,
+        "arrived": true,
+        "gap": 4.694921016693115,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733288499992341,
+        "arrived": true,
+        "gap": 4.3557233810424805,
+        "closestToContacts": []
+      },
+      "goal": "relay_west"
+    },
+    {
+      "story": "FV-04",
+      "name": "EastArchiveConduitBed",
+      "from": [
+        886.7679443359375,
+        100,
+        -9292.017578125
+      ],
+      "target": [
+        842.1500244140625,
+        100,
+        -9337.900390625
+      ],
+      "retreat": {
+        "elapsed": 3.4721253332681954,
+        "arrived": true,
+        "gap": 4.738168716430664,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332882082555443,
+        "arrived": true,
+        "gap": 4.3049445152282715,
+        "closestToContacts": []
+      },
+      "goal": "relay_east"
+    },
+    {
+      "story": "EC-04",
+      "name": "WesternIntakeSluice",
+      "from": [
+        746.7982177734375,
+        148,
+        -13185.3095703125
+      ],
+      "target": [
+        727.1500244140625,
+        148,
+        -13124.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.473611250054091,
+        "arrived": true,
+        "gap": 4.5876641273498535,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332740833517164,
+        "arrived": true,
+        "gap": 4.3315911293029785,
+        "closestToContacts": []
+      },
+      "goal": "west_valve"
+    },
+    {
+      "story": "EC-04",
+      "name": "EasternReturnRace",
+      "from": [
+        946.1388549804688,
+        148,
+        -13180.5966796875
+      ],
+      "target": [
+        882.1500244140625,
+        148,
+        -13179.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.4751102917362005,
+        "arrived": true,
+        "gap": 4.611317157745361,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733276749961078,
+        "arrived": true,
+        "gap": 4.337164878845215,
+        "closestToContacts": []
+      },
+      "goal": "east_valve"
+    },
+    {
+      "story": "HG-01",
+      "name": "KeeperLanternRevetment",
+      "from": [
+        -868.3341064453125,
+        172,
+        -15383.94921875
+      ],
+      "target": [
+        -917.8499755859375,
+        172,
+        -15343.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.476482916623354,
+        "arrived": true,
+        "gap": 4.624693870544434,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733278916683048,
+        "arrived": true,
+        "gap": 4.378365993499756,
+        "closestToContacts": []
+      },
+      "goal": "shelter"
+    },
+    {
+      "story": "DW-05",
+      "name": "RuinedPrisonPalisade",
+      "from": [
+        678.728515625,
+        38.08000183105469,
+        -2597.367919921875
+      ],
+      "target": [
+        638,
+        38,
+        -2548
+      ],
+      "retreat": {
+        "elapsed": 3.477841541636735,
+        "arrived": true,
+        "gap": 4.624115467071533,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733280416810885,
+        "arrived": true,
+        "gap": 4.395514011383057,
+        "closestToContacts": []
+      },
+      "goal": "prisoners"
+    },
+    {
+      "story": "GW-05",
+      "name": "VenomcoilScouredBank",
+      "from": [
+        298.1016540527344,
+        70.7865982055664,
+        -6106.55859375
+      ],
+      "target": [
+        240.14999389648438,
+        70,
+        -6079.39990234375
+      ],
+      "retreat": {
+        "elapsed": 3.4791741666849703,
+        "arrived": true,
+        "gap": 4.569468021392822,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332812501117587,
+        "arrived": true,
+        "gap": 4.557102680206299,
+        "closestToContacts": []
+      },
+      "goal": "rope"
+    },
+    {
+      "story": "EC-05",
+      "name": "VaultCircuitPrototype",
+      "from": [
+        158.15377807617188,
+        156,
+        -13618.705078125
+      ],
+      "target": [
+        222.14999389648438,
+        156,
+        -13619.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.480467125074938,
+        "arrived": true,
+        "gap": 4.611760139465332,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332822915632278,
+        "arrived": true,
+        "gap": 4.330575942993164,
+        "closestToContacts": []
+      },
+      "goal": "crew"
+    },
+    {
+      "story": "DW-07",
+      "name": "ConvoyRoadLoadingSill",
+      "from": [
+        -834.0363159179688,
+        54.08000183105469,
+        -3258.387939453125
+      ],
+      "target": [
+        -827,
+        54,
+        -3322
+      ],
+      "retreat": {
+        "elapsed": 3.481650916626677,
+        "arrived": true,
+        "gap": 4.661391735076904,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332815832924098,
+        "arrived": true,
+        "gap": 4.326349258422852,
+        "closestToContacts": []
+      },
+      "goal": "core_record"
+    },
+    {
+      "story": "GW-07",
+      "name": "NorthernWindgapStrata",
+      "from": [
+        -985.1547241210938,
+        78,
+        -7138.18505859375
+      ],
+      "target": [
+        -959.8499755859375,
+        78,
+        -7079.39990234375
+      ],
+      "retreat": {
+        "elapsed": 3.48297195835039,
+        "arrived": true,
+        "gap": 4.628255844116211,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332829164806753,
+        "arrived": true,
+        "gap": 4.345712184906006,
+        "closestToContacts": []
+      },
+      "goal": "exit"
+    },
+    {
+      "story": "FV-07",
+      "name": "FreightSledLanding",
+      "from": [
+        -890.7034301757812,
+        124,
+        -10832.609375
+      ],
+      "target": [
+        -952.8499755859375,
+        124,
+        -10847.900390625
+      ],
+      "retreat": {
+        "elapsed": 3.4841869166120887,
+        "arrived": true,
+        "gap": 4.727182865142822,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332838750444353,
+        "arrived": true,
+        "gap": 4.3443756103515625,
+        "closestToContacts": []
+      },
+      "goal": "reunion"
+    },
+    {
+      "story": "EC-07",
+      "name": "DispatchCarrierCradle",
+      "from": [
+        -943.623291015625,
+        172,
+        -14623.2841796875
+      ],
+      "target": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.4853795000817627,
+        "arrived": true,
+        "gap": 4.623467445373535,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332868333905935,
+        "arrived": true,
+        "gap": 4.205109119415283,
+        "closestToContacts": []
+      },
+      "goal": "courier"
+    },
+    {
+      "story": "HG-07",
+      "name": "AlliedReturnParapet",
+      "from": [
+        -855.7879638671875,
+        196,
+        -18327.76953125
+      ],
+      "target": [
+        -917.8499755859375,
+        196,
+        -18343.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.4864991665817797,
+        "arrived": true,
+        "gap": 4.663600444793701,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332835833076388,
+        "arrived": true,
+        "gap": 4.30885648727417,
+        "closestToContacts": []
+      },
+      "goal": "portal"
+    },
+    {
+      "story": "HG-03",
+      "name": "KeeperDrainCulvert",
+      "from": [
+        222.11181640625,
+        180,
+        -16225.232421875
+      ],
+      "target": [
+        282.1499938964844,
+        180,
+        -16247.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.487526333425194,
+        "arrived": true,
+        "gap": 4.6470537185668945,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332839998416603,
+        "arrived": true,
+        "gap": 4.3746657371521,
+        "closestToContacts": []
+      },
+      "goal": "crypt"
+    },
+    {
+      "story": "FV-03",
+      "name": "AvalancheSnowFence",
+      "from": [
+        180.58950805664062,
+        92,
+        -8845.234375
+      ],
+      "target": [
+        152.14999389648438,
+        92,
+        -8787.900390625
+      ],
+      "retreat": {
+        "elapsed": 3.488619999960065,
+        "arrived": true,
+        "gap": 4.681482315063477,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332870000973344,
+        "arrived": true,
+        "gap": 4.531291484832764,
+        "closestToContacts": []
+      },
+      "goal": "west_beacon"
+    },
+    {
+      "story": "DW-Q1",
+      "name": "MarshDryPackShelf",
+      "from": [
+        -1571.6480712890625,
+        0,
+        -1245.8250732421875
+      ],
+      "target": [
+        -1579.3499755859375,
+        0,
+        -1309.3599853515625
+      ],
+      "retreat": {
+        "elapsed": 3.4895461667329073,
+        "arrived": true,
+        "gap": 4.652484893798828,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.7332875416614115,
+        "arrived": true,
+        "gap": 4.363638877868652,
+        "closestToContacts": []
+      },
+      "goal": "exp_1"
+    },
+    {
+      "story": "GW-03",
+      "name": "RefugeScoutShelter",
+      "from": [
+        -163.7189483642578,
+        62,
+        -5104.4375
+      ],
+      "target": [
+        -222.64999389648438,
+        62,
+        -5129.39990234375
+      ],
+      "retreat": {
+        "elapsed": 3.4906462500803173,
+        "arrived": true,
+        "gap": 4.653606414794922,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733288166578859,
+        "arrived": true,
+        "gap": 4.3461594581604,
+        "closestToContacts": []
+      },
+      "goal": "exp_1"
+    },
+    {
+      "story": "EC-06",
+      "name": "HeatworksProtectionManifold",
+      "from": [
+        57.94337463378906,
+        164,
+        -14064.0693359375
+      ],
+      "target": [
+        113.75,
+        164,
+        -14095.400390625
+      ],
+      "retreat": {
+        "elapsed": 3.491730166831985,
+        "arrived": true,
+        "gap": 4.635033130645752,
+        "closestToContacts": []
+      },
+      "approach": {
+        "elapsed": 3.733291458338499,
+        "arrived": true,
+        "gap": 4.287884712219238,
+        "closestToContacts": []
+      },
+      "goal": "exp_2"
+    }
+  ],
+  "standaloneFinaleModels": [
+    {
+      "story": "DW-07",
+      "buriedDepth": 0.4799994230270386,
+      "approach": [
+        -792,
+        54,
+        -3342
+      ],
+      "goal": "core_record",
+      "name": "ConvoyRoadLoadingSill",
+      "bounds": [
+        16.000001907348633,
+        2.8199994564056396,
+        10.235204696655273
+      ],
+      "footprintHeightDeltas": [
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06
+      ],
+      "ground": [
+        -807.0488891601562,
+        54.07999801635742,
+        -3383.346435546875
+      ],
+      "parts": 9
+    },
+    {
+      "story": "GW-07",
+      "buriedDepth": 0.3500032424926758,
+      "approach": [
+        -959.8499755859375,
+        78,
+        -7079.39990234375
+      ],
+      "goal": "exit",
+      "name": "NorthernWindgapStrata",
+      "bounds": [
+        17.644550323486328,
+        4.090005874633789,
+        9.903594017028809
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -944.2481079101562,
+        78,
+        -7058.60107421875
+      ],
+      "parts": 6
+    },
+    {
+      "story": "FV-07",
+      "buriedDepth": 0.38999783992767334,
+      "approach": [
+        -952.8499755859375,
+        124,
+        -10847.900390625
+      ],
+      "goal": "reunion",
+      "name": "FreightSledLanding",
+      "bounds": [
+        17.5,
+        3.020001173019409,
+        9.75
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -1014.2276000976562,
+        124,
+        -10856.6630859375
+      ],
+      "parts": 8
+    },
+    {
+      "story": "EC-07",
+      "buriedDepth": 0.46000099182128906,
+      "approach": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "goal": "courier",
+      "name": "DispatchCarrierCradle",
+      "bounds": [
+        15.699999809265137,
+        4.325000762939453,
+        9.279999732971191
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -887.1109619140625,
+        172,
+        -14675.7255859375
+      ],
+      "parts": 9
+    },
+    {
+      "story": "HG-07",
+      "buriedDepth": 0.3950014114379883,
+      "approach": [
+        -917.8499755859375,
+        196,
+        -18343.400390625
+      ],
+      "goal": "portal",
+      "name": "AlliedReturnParapet",
+      "bounds": [
+        16.750003814697266,
+        4.575006484985352,
+        6.305273532867432
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -931.0947875976562,
+        196,
+        -18321.02734375
+      ],
+      "parts": 10
+    }
+  ],
+  "fullFinaleModels": [
+    {
+      "story": "DW-07",
+      "buriedDepth": 0.4799994230270386,
+      "approach": [
+        -792,
+        54,
+        -3342
+      ],
+      "goal": "core_record",
+      "name": "ConvoyRoadLoadingSill",
+      "bounds": [
+        16.000001907348633,
+        2.8199994564056396,
+        10.235204696655273
+      ],
+      "footprintHeightDeltas": [
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06
+      ],
+      "ground": [
+        -807.0488891601562,
+        54.07999801635742,
+        -3383.346435546875
+      ],
+      "parts": 9
+    },
+    {
+      "story": "GW-07",
+      "buriedDepth": 0.3500032424926758,
+      "approach": [
+        -959.8499755859375,
+        78,
+        -7079.39990234375
+      ],
+      "goal": "exit",
+      "name": "NorthernWindgapStrata",
+      "bounds": [
+        17.644550323486328,
+        4.090005874633789,
+        9.903594017028809
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -944.2481079101562,
+        78,
+        -7058.60107421875
+      ],
+      "parts": 6
+    },
+    {
+      "story": "FV-07",
+      "buriedDepth": 0.38999783992767334,
+      "approach": [
+        -952.8499755859375,
+        124,
+        -10847.900390625
+      ],
+      "goal": "reunion",
+      "name": "FreightSledLanding",
+      "bounds": [
+        17.5,
+        3.020001173019409,
+        9.75
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -1014.2276000976562,
+        124,
+        -10856.6630859375
+      ],
+      "parts": 8
+    },
+    {
+      "story": "EC-07",
+      "buriedDepth": 0.46000099182128906,
+      "approach": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "goal": "courier",
+      "name": "DispatchCarrierCradle",
+      "bounds": [
+        15.699999809265137,
+        4.325000762939453,
+        9.279999732971191
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -887.1109619140625,
+        172,
+        -14675.7255859375
+      ],
+      "parts": 9
+    },
+    {
+      "story": "HG-07",
+      "buriedDepth": 0.3950014114379883,
+      "approach": [
+        -917.8499755859375,
+        196,
+        -18343.400390625
+      ],
+      "goal": "portal",
+      "name": "AlliedReturnParapet",
+      "bounds": [
+        16.750003814697266,
+        4.575006484985352,
+        6.305273532867432
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -931.0947875976562,
+        196,
+        -18321.02734375
+      ],
+      "parts": 10
+    }
+  ],
+  "collisionModels": [
+    {
+      "solid": 19,
+      "radius": 16.749258041381836,
+      "name": "AvalancheSnowFence",
+      "pivot": [
+        189.70436096191406,
+        94,
+        -8634.4287109375,
+        0.9713420271873474,
+        0,
+        0.2376863956451416,
+        0,
+        1,
+        0,
+        -0.237686425447464,
+        0,
+        0.9713419079780579
+      ],
+      "shapeSHA256": "fbd3eefcc667a59a4914a602645b6f36122c5987262dea685f5dcb8610fac4b5"
+    },
+    {
+      "solid": 13,
+      "radius": 13.005983352661133,
+      "name": "KeeperDrainCulvert",
+      "pivot": [
+        413.70697021484375,
+        181.46389770507812,
+        -16199.517578125,
+        0.34202009439468384,
+        0,
+        0.9396926760673523,
+        0,
+        1,
+        0,
+        -0.9396926760673523,
+        0,
+        0.34202009439468384
+      ],
+      "shapeSHA256": "7e93ee19afe66d7f0eed5241f00e63e4896fe1e508bd0f90208a4281f5b0aa12"
+    }
+  ]
+}
