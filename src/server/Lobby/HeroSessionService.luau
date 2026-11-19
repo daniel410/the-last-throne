@@ -77,6 +77,7 @@ local function changed(state)
 	state.revision = state.revision + 1
 	state.player:SetAttribute("K0SessionPhase", state.phase)
  state.player:SetAttribute("TLTRoute", state.route or "Deepwood")
+ if state.profileReady and settings.network and settings.network.sessionChanged then settings.network.sessionChanged(state.player) end
 	publish(state)
 end
 

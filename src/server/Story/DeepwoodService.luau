@@ -662,4 +662,9 @@ function Service.start(settings)
  end)
 end
 function Service.hasPendingEvents(player) local q=queues[player];return q and #q.events>0 or false end
+function Service.onBattleReady(player)
+ if player.Parent~=Players or player:GetAttribute('TLTTravelLock') or player:GetAttribute('K0SessionPhase')~='Tutorial' then return end
+ startNearbyEncounters(player)
+ publish(player)
+end
 return Service

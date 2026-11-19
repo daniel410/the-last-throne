@@ -318,8 +318,10 @@ task = {spawn=function(fn) fn() end}
 local roster = {['a-elf']={baseClassId='elf'}, ['b-dwarf']={baseClassId='dwarf'},
  ['c-knight']={baseClassId='knight'}, ['d-mage']={baseClassId='mage'}}
 local incoming
+local confirmedSelections={}
 sessionOptions.inventory = {open=function() return roster end, available=function() return true end}
-sessionOptions.network = {admitArrival=function() return incoming end,beforeHeroAction=function() return false end}
+sessionOptions.network = {admitArrival=function() return incoming end,beforeHeroAction=function() return false end,
+ sessionChanged=function(p)confirmedSelections[p]=Service.getActiveHero(p)end}
 for _, id in ipairs({'a-elf','b-dwarf','c-knight','d-mage'}) do
  incoming = {lobbyHeroId=id}
  local returning = player('Returning-'..id)
@@ -337,10 +339,12 @@ end
 incoming={heroId='b-dwarf'}
 local battle=player('Battle');players.PlayerAdded:Fire(battle)
 check(Service.getActiveHero(battle).heroId=='b-dwarf', 'verified battle admission still selects its mandatory hero')
+check(confirmedSelections[battle] and confirmedSelections[battle].heroId=='b-dwarf','network receives the confirmed owned selection immediately')
 incoming={heroId='not-owned'}
 local invalid=player('InvalidBattle');function invalid:Kick(message) self.kicked=message end
 players.PlayerAdded:Fire(invalid)
 check(invalid.kicked~=nil, 'unowned battle admission still rejects entry')
+check(confirmedSelections[invalid]==nil,'unowned arrival never signals profile readiness')
 -- Ordinary logins use the durable selection; arrival hints take precedence.
 local savedId, saveFailure, selectionWrites = 'b-dwarf', nil, 0
 sessionOptions.inventory = {

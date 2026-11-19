@@ -24,7 +24,11 @@ local root=Instance.new('Part')
 root.Name='HumanoidRootPart'
 root.Parent=character
 Instance.new('Humanoid',character)
-local player={Parent=game.Players,Character=character,GetAttribute=function()return 'Tutorial'end}
+local locked=false
+local player={Parent=game.Players,Character=character,GetAttribute=function(_,name)
+ if name=='K0SessionPhase' then return 'Tutorial' end
+ if name=='TLTTravelLock' then return locked end
+end}
 local notices,completion={},nil
 local journal,run,save,prepare
 local function makeService(world)
@@ -78,6 +82,14 @@ for _,model in ipairs(pack)do
  check(model:FindFirstChild('TdMonsterVisual')~=nil,'cloned story enemy preserves the real visual')
  model:Destroy()
 end
+local arrivalService=makeService(world)
+locked=true
+arrivalService.onBattleReady(player)
+check(#enemies:GetChildren()==0,'the arrival callback cannot bypass the travel lock')
+locked=false
+arrivalService.onBattleReady(player)
+check(#enemies:GetChildren()>0,'the first eligible pack starts on arrival without a polling cycle')
+for _,model in ipairs(enemies:GetChildren())do model:Destroy()end
 
 -- Completing the last chapter publishes its receipt while the next region
 -- is still loading. A stale completion must not notify a replacement run.

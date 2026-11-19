@@ -17,11 +17,53 @@ local selections={}
 local o,store,currentStore,legacyStore,remote,index,role,job
 local parties,travel,arrivals,admitted,busy,last,leaving={},{},{},{},{},{},{}
 local lastRead={}
+local preparedArrivals,verifying={},{}
 local battleRun,battleStarted,runHealthy=nil,nil,true
+local battleOpened,renewing,nextRenewal=false,false,0
+local queueBattleArrival
 local seats={};local seatCount=0
 local studio=Run:IsStudio()
 local function guid() return Http:GenerateGUID(false):gsub('%-','') end
 local function count(t) local n=0;for _ in pairs(t or {}) do n+=1 end;return n end
+local function hasBattleLease()
+ return runHealthy and battleRun and battleRun.ownerJob==job and battleRun.ownerUntil>os.time()
+end
+local function updateBattleLock(p)
+ if admitted[p] and not travel[p] and p.Parent==Players then
+  local locked=not battleOpened or not hasBattleLease() or p:GetAttribute('K0SessionPhase')~='Tutorial'
+  if p:GetAttribute('TLTTravelLock')==locked then return end
+  p:SetAttribute('TLTTravelLock',locked)
+  if not locked and o.onBattleReady then task.defer(o.onBattleReady,p)end
+ end
+end
+local function refreshBattleLocks()
+ if not battleRun then return end
+ if not battleOpened and (count(admitted)>=count(battleRun.members) or os.clock()-battleStarted>=30)then
+  battleOpened=true
+ end
+ for p in pairs(admitted)do updateBattleLock(p)end
+end
+local function acceptBattleLease(run)
+ if battleRun and run.ownerUntil<battleRun.ownerUntil then return end
+ battleRun,runHealthy=run,true
+ -- Stop using a confirmed fence at expiry even if another MemoryStore call is yielding.
+ task.delay(math.max(0,run.ownerUntil-os.time()),function()
+  if battleRun==run then refreshBattleLocks()end
+ end)
+end
+local function renewBattleLease()
+ if not battleRun or renewing or os.clock()<nextRenewal then return end
+ local previous=battleRun
+ renewing=true
+ task.spawn(function()
+  local run,reason=store.renewRun(previous.id,job)
+  if run then acceptBattleLease(run)
+  elseif battleRun==previous and reason~='NetworkUnavailable' then runHealthy=false end
+  nextRenewal=os.clock()+(run and 20 or 2)
+  renewing=false
+  refreshBattleLocks()
+ end)
+end
 local function sourceValid(data) return data.SourceGameId==game.GameId and (data.SourcePlaceId==C.lobbyPlaceId or data.SourcePlaceId==C.battlePlaceId) end
 local function member(p,token)
  local h=o.heroSession.getActiveHero(p);local ctx=o.heroSession.getInventoryContext(p)
@@ -203,15 +245,19 @@ function Service.admitArrival(p)
   if p.Parent~=Players then return nil end
   r,e=arrivalStore.admit(t.runId,p.UserId,t.ticket,job)
  end
+ if p.Parent~=Players then return nil end
  if not r or r.placeId~=game.PlaceId or count(r.members)>4 or not Difficulty.compatible(r.rulesVersion) or not Content.byId[r.missionId]or not Difficulty.modes[r.difficultyId]then return nil,'Your expedition could not be verified. Return to the lobby and rejoin.' end
  if battleRun and battleRun.id~=r.id then return nil,'This battle server belongs to another expedition.' end
- store=arrivalStore;battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
- p:SetAttribute('TLTTravelLock',true)
- local ready,loadError=xpcall(function()o.previewWorld(r.missionId)end,debug.traceback)
- if not ready then
-  warn(string.format('[Expedition] World load failed: mission=%s place=%s\n%s',r.missionId,tostring(game.PlaceId),tostring(loadError)))
-  return nil,'The adventure could not load. Return to the lobby and rejoin.'
+ store=arrivalStore
+ if not battleStarted then
+  battleStarted=os.clock()
+  nextRenewal=battleStarted+20
+  task.delay(30,refreshBattleLocks)
  end
+ acceptBattleLease(r)
+ admitted[p]=r.members[tostring(p.UserId)]
+ p:SetAttribute('TLTTravelLock',true)
+ refreshBattleLocks()
  return {heroId=admitted[p].heroId}
 end
 local function startRunLocked(p,party,runId)
@@ -397,25 +443,74 @@ local function handle(p,c,...)
   if person~=p and mine.id==partyId and not travel[person]then publish(person)end
  end end
 end
+local function prepareBattleArrival(p,m,chapterId)
+ local prepared=preparedArrivals[p]
+ if prepared and prepared.chapterId==chapterId and prepared.member==m then return prepared end
+ prepared={chapterId=chapterId,member=m}
+ preparedArrivals[p]=prepared
+ task.defer(function()
+  if admitted[p]~=m or p.Parent~=Players then return end
+  local ready,loadError=xpcall(function()o.previewWorld(chapterId)end,debug.traceback)
+  if preparedArrivals[p]~=prepared or admitted[p]~=m or p.Parent~=Players then return end
+  if not ready then
+   prepared.failed=true
+   warn(string.format('[Expedition] World load failed: mission=%s place=%s\n%s',chapterId,tostring(game.PlaceId),tostring(loadError)))
+   p:Kick('The adventure could not load. Return to the lobby and rejoin.')
+   return
+  end
+  prepared.ready=true
+  queueBattleArrival(p)
+ end)
+ return prepared
+end
 local function verifyBattleArrival(p,m)
- local verified=Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
+ local run=battleRun
+ local hero=o.inventory.expeditionHero(p)
+ local verified=Difficulty.verifyRun(hero,run)
  local staged,reason
- if not verified and runHealthy and Backend.isCurrent(battleRun.id) then
-  staged,reason=store.departure(p.UserId,battleRun.id,m.ticket)
+ if not verified and hasBattleLease() and Backend.isCurrent(run.id) then
+  staged,reason=store.departure(p.UserId,run.id,m.ticket)
  end
- if staged then
+ if staged and admitted[p]==m and hasBattleLease() then
   -- Only a server-staged departure may replace the old checkpoint. A rejoin
   -- can verify an existing run but cannot restart a superseded journal.
-  reason=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id,battleRun.rulesVersion,m.party==true)
-  verified=not reason and Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
+  reason=o.inventory.beginExpedition(p,m.heroId,run.missionId,run.difficultyId,run.id,run.rulesVersion,m.party==true)
+  hero=not reason and o.inventory.expeditionHero(p)
+  verified=not reason and Difficulty.verifyRun(hero,run)
  end
- if verified and runHealthy then
+ if admitted[p]~=m or not hasBattleLease() then return end
+ if verified then
+  local view=Adventure.projection(hero)
+  local prepared=prepareBattleArrival(p,m,view and view.expeditionMission or run.missionId)
+  if prepared.failed then return end
   -- Keep the pending capability on unknown MemoryStore results; rejoin()
   -- resolves it against the account's durable active run after reconnect.
-  if store.offer(p.UserId,battleRun,m.heroId,m.ticket,true)then o.heroSession.enterAdventure(p,m.heroId)end
- elseif not verified and runHealthy and reason~='NetworkUnavailable' and reason~='Busy' and reason~='SaveUnknown' and o.inventory.ready(p)then
+  if not prepared.promoted then prepared.promoted=store.offer(p.UserId,run,m.heroId,m.ticket,true)end
+  if prepared.ready and prepared.promoted and admitted[p]==m and not travel[p] and hasBattleLease()then
+   o.heroSession.enterAdventure(p,m.heroId)
+  end
+ elseif reason~='NetworkUnavailable' and reason~='Busy' and reason~='SaveUnknown' and o.inventory.ready(p)then
   p:Kick('Your expedition could not be verified. Rejoin from the Dawnspire lobby.')
  end
+end
+queueBattleArrival=function(p)
+ local m=admitted[p]
+ if not m or verifying[p] or travel[p] or not hasBattleLease() or p.Parent~=Players
+  or p:GetAttribute('K0SessionPhase')~='Lobby' or not o.inventory.ready(p) then return end
+ verifying[p]=true
+ task.defer(function()
+  if admitted[p]==m and p.Parent==Players and not travel[p] and hasBattleLease()
+   and p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then
+   local ok,err=xpcall(function()verifyBattleArrival(p,m)end,debug.traceback)
+   if not ok then warn('[Expedition] Arrival verification failed: '..tostring(err))end
+  end
+  verifying[p]=nil
+ end)
+end
+function Service.sessionChanged(p)
+ if not admitted[p] then return end
+ updateBattleLock(p)
+ queueBattleArrival(p)
 end
 local function maintainParty(p,mine)
  local m=member(p,mine.token)
@@ -482,7 +577,11 @@ function Service.start(options)
  end)
  Players.PlayerRemoving:Connect(function(p)
   if seats[p] then seats[p]=nil;seatCount-=1 end
-  if admitted[p] and battleRun and not leaving[p] then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end
+  local departingRun,departingMember=battleRun,not leaving[p] and admitted[p]
+  admitted[p],preparedArrivals[p],verifying[p]=nil,nil,nil
+  if departingMember and departingRun then
+   store.offer(p.UserId,departingRun,departingMember.heroId,departingMember.ticket,false)
+  end
   local mine=parties[p]
   if mine and (not travel[p] or travel[p].partyId==mine.id) then store.remove(mine.id,p.UserId,mine.token);store.releaseMembership(p.UserId,mine.id,mine.token);advertise(mine.id) end
   parties[p]=nil;travel[p]=nil;arrivals[p]=nil;admitted[p]=nil;last[p]=nil;lastRead[p]=nil;busy[p]=nil;leaving[p]=nil;selections[p]=nil
@@ -490,18 +589,16 @@ function Service.start(options)
  task.spawn(function()
   local ticks=0
   while true do task.wait(2);ticks+=1
-   if role=='Battle' and battleRun and ticks%10==0 then
-    local r=store.renewRun(battleRun.id,job);runHealthy=r~=nil
-    if r then battleRun=r end
-   end
+   if role=='Battle' then renewBattleLease();refreshBattleLocks()end
    for _,p in ipairs(Players:GetPlayers()) do
     if admitted[p] and not travel[p] then
-     if p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then
-      verifyBattleArrival(p,admitted[p])
+     queueBattleArrival(p)
+     if ticks%10==0 and hasBattleLease() and p:GetAttribute('K0SessionPhase')=='Tutorial'then
+      local m,run=admitted[p],battleRun
+      task.defer(function()
+       if admitted[p]==m and not travel[p] and hasBattleLease() then store.offer(p.UserId,run,m.heroId,m.ticket,false)end
+      end)
      end
-     local arrived=count(admitted);local complete=arrived>=count(battleRun.members) or os.clock()-battleStarted>=30
-     p:SetAttribute('TLTTravelLock',not runHealthy or not complete or p:GetAttribute('K0SessionPhase')~='Tutorial')
-     if ticks%10==0 and runHealthy then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end
     elseif arrivals[p] and o.inventory.ready(p) and p:GetAttribute('K0SessionPhase')=='Lobby' then
      confirmGatherArrival(p,arrivals[p])
     end

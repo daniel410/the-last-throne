@@ -3,7 +3,7 @@ local f=assert(io.open('src/server/Network/ExpeditionService.luau'))
 local source=f:read('*a');f:close()
 local first=assert(source:find('local function verifyBattleArrival',1,true))
 local last=assert(source:find('function Service.start(options)',first,true))
-local env=setmetatable({},{__index=_G})
+local env=setmetatable({Service={}},{__index=_G})
 local verify,maintain,gather=assert(load(source:sub(first,last-1)..'return verifyBattleArrival,maintainParty,confirmGatherArrival','heartbeat','t',env))()
 local kicked,entered,begun,promoted,verified=0,0,0,false,false
 local p={UserId=1,Kick=function()kicked=kicked+1 end}
@@ -22,6 +22,11 @@ env.store={
  arrive=function()return reason==nil,reason end,
 }
 env.runHealthy=true;env.battleRun={id='run'}
+env.admitted={[p]=m};env.travel={}
+env.hasBattleLease=function()return env.runHealthy end
+env.Adventure={projection=function()end}
+local prepared={ready=true}
+env.prepareBattleArrival=function()return prepared end
 env.Backend={isCurrent=function()return true end}
 env.Difficulty={verifyRun=function()return verified end}
 env.o={inventory={expeditionHero=function()return {}end,beginExpedition=function()begun=begun+1;verified=true end,ready=function()return true end},

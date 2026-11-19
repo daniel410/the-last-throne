@@ -101,7 +101,7 @@ local function trainingDestination()
  end
  return world.spawn
 end
-expedition.start({role=role,heroSession=heroSession,inventory=inventory,previewWorld=previewWorld})
+expedition.start({role=role,heroSession=heroSession,inventory=inventory,previewWorld=previewWorld,onBattleReady=story.onBattleReady})
 local sessionOptions={inventory=inventory,combat=combat,lobbySpawn=lobby.spawn,tutorialSpawn=lobby.spawn,
  trainingDestination=trainingDestination,tutorialDestination=function(p,id)return story.destination(p,id)end,
  lobbyBounds=lobby.bounds,hubBounds=hubBounds,requestSpawn=spawnService.requestSpawn,network=expedition}

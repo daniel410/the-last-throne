@@ -89,7 +89,8 @@ local function arrival(runId,alreadyVerified)
  local starts,entered,kicked=0,0,0
  local p={UserId=1,GetAttribute=function()return 'Lobby'end,Kick=function()kicked=kicked+1 end}
  local bound=alreadyVerified
- local env=setmetatable({p=p,Backend=B,runHealthy=true,battleRun={id=runId},admitted={[p]={heroId='hero',ticket='ticket'}},
+ local env=setmetatable({Service={},p=p,Backend=B,battleRun={id=runId},admitted={[p]={heroId='hero',ticket='ticket'}},travel={},
+  hasBattleLease=function()return true end,Adventure={projection=function()end},prepareBattleArrival=function()return {ready=true}end,
   Difficulty={verifyRun=function()return bound end},store={departure=function()return true end,offer=function()return true end},
   o={inventory={ready=function()return true end,expeditionHero=function()return {}end,
    beginExpedition=function()starts=starts+1;bound=true end},heroSession={enterAdventure=function()entered=entered+1 end}}
