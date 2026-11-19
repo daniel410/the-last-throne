@@ -1,0 +1,184 @@
+[
+  {
+    "id": "DW-Q1_Dryground_enter",
+    "theme": "Deepwood",
+    "origin": [
+      -1548.5,
+      6,
+      -1112
+    ],
+    "aim": [
+      -1542.75,
+      5,
+      -1151.2
+    ]
+  },
+  {
+    "id": "DW-Q1_Marsh_return",
+    "theme": "Deepwood",
+    "origin": [
+      -1551,
+      5.5,
+      -1176
+    ],
+    "aim": [
+      -1542.75,
+      5,
+      -1143
+    ]
+  },
+  {
+    "id": "GW-04_Rootway_approach",
+    "theme": "Gloamwood",
+    "origin": [
+      798.586,
+      74.766,
+      -5590.465
+    ],
+    "aim": [
+      784.233,
+      70.416,
+      -5615.023
+    ]
+  },
+  {
+    "id": "GW-04_Rootway_return",
+    "theme": "Gloamwood",
+    "origin": [
+      769.774,
+      74.766,
+      -5642.019
+    ],
+    "aim": [
+      784.233,
+      70.416,
+      -5615.023
+    ]
+  },
+  {
+    "id": "EC-04_Intake_approach",
+    "theme": "EmberCaldera",
+    "origin": [
+      711.186,
+      154.75,
+      -13116.517
+    ],
+    "aim": [
+      691.627,
+      150.4,
+      -13131.87
+    ]
+  },
+  {
+    "id": "EC-04_Intake_return",
+    "theme": "EmberCaldera",
+    "origin": [
+      669.307,
+      154.75,
+      -13145.76
+    ],
+    "aim": [
+      691.627,
+      150.4,
+      -13131.87
+    ]
+  },
+  {
+    "id": "EC-04_Recovery_approach",
+    "theme": "EmberCaldera",
+    "origin": [
+      872.15,
+      154.75,
+      -13174.4
+    ],
+    "aim": [
+      867.568,
+      150.4,
+      -13198.839
+    ]
+  },
+  {
+    "id": "EC-04_Recovery_return",
+    "theme": "EmberCaldera",
+    "origin": [
+      859.946,
+      154.75,
+      -13223.999
+    ],
+    "aim": [
+      867.568,
+      150.4,
+      -13198.839
+    ]
+  },
+  {
+    "id": "HG-03_Culvert_approach",
+    "theme": "HauntedGraveyard",
+    "origin": [
+      394.319,
+      188.214,
+      -16219.344
+    ],
+    "aim": [
+      412.109,
+      183.864,
+      -16200.099
+    ]
+  },
+  {
+    "id": "HG-03_Culvert_return",
+    "theme": "HauntedGraveyard",
+    "origin": [
+      427.968,
+      188.214,
+      -16177.3
+    ],
+    "aim": [
+      412.109,
+      183.864,
+      -16200.099
+    ]
+  },
+  {
+    "id": "FV-04_Relay_west_view",
+    "theme": "FrozenVale",
+    "origin": [
+      758.893,
+      109,
+      -9338.412
+    ],
+    "aim": [
+      828.457,
+      103,
+      -9369.021
+    ]
+  },
+  {
+    "id": "FV-04_Relay_east_view",
+    "theme": "FrozenVale",
+    "origin": [
+      898.02,
+      109,
+      -9399.63
+    ],
+    "aim": [
+      828.457,
+      103,
+      -9369.021
+    ]
+  },
+  {
+    "id": "FV-04_Conduit_detail",
+    "theme": "FrozenVale",
+    "origin": [
+      826.763,
+      106.2,
+      -9389.142
+    ],
+    "aim": [
+      814.763,
+      101.3,
+      -9400.142
+    ]
+  }
+]
