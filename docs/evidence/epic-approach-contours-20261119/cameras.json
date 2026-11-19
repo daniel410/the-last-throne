@@ -1,0 +1,86 @@
+[
+  {
+    "id": "DW-Q1_floodcut",
+    "theme": "Deepwood",
+    "origin": [
+      -1555,
+      6,
+      -1276
+    ],
+    "aim": [
+      -1583,
+      1.9,
+      -1314
+    ]
+  },
+  {
+    "id": "GW-03_root_shelf",
+    "theme": "Gloamwood",
+    "origin": [
+      -195,
+      68,
+      -5110
+    ],
+    "aim": [
+      -226,
+      64,
+      -5128
+    ]
+  },
+  {
+    "id": "FV-03_windcut",
+    "theme": "FrozenVale",
+    "origin": [
+      159,
+      99,
+      -8787
+    ],
+    "aim": [
+      132,
+      95,
+      -8752
+    ]
+  },
+  {
+    "id": "EC-06_cutbank",
+    "theme": "EmberCaldera",
+    "origin": [
+      80,
+      170,
+      -14073
+    ],
+    "aim": [
+      119,
+      166,
+      -14102
+    ]
+  },
+  {
+    "id": "HG-03_retaining_ruin",
+    "theme": "HauntedGraveyard",
+    "origin": [
+      697,
+      186,
+      -16261
+    ],
+    "aim": [
+      646,
+      182,
+      -16248
+    ]
+  },
+  {
+    "id": "FV-03_bend",
+    "theme": "FrozenVale",
+    "origin": [
+      173.5104217529297,
+      97,
+      -8830.962890625
+    ],
+    "aim": [
+      159.7350311279297,
+      95,
+      -8803.19140625
+    ]
+  }
+]
