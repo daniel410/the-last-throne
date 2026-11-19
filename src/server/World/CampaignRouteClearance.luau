@@ -4,7 +4,7 @@ local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local Bounds=require(Shared.CampaignBounds)
 local Areas=require(Shared.CampaignAreas)
-local Safety={version=3}
+local Safety={version=4}
 local V=Vector3.new
 local retired={ForestBoundary=true,OccupiedRuins=true,RavineIceWall=true,IceCitadelPillar=true,IceCitadelLintel=true,CoolantPipe=true,EmergencyCoolantPipe=true,WatchtowerPillar=true,AncientTrunk=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
 local movable={BracedMineSupport=true,TestworksHeatTower=true,TreeCollision=true,GroveTrunk=true,OccupiedRuins=true,AltarObelisk=true,FrozenRouteMonument=true,CampBoard=true,BlueprintTable=true}
@@ -49,6 +49,16 @@ function Safety.apply(world,art)
     local at=V(table.unpack(p));table.insert(anchors,at)
     if previous then local path=Guide.route({previous.X,previous.Y,previous.Z},p)
      for i=2,#path do table.insert(lanes,{V(table.unpack(path[i-1])),V(table.unpack(path[i]))})end
+     -- Once a walker rejoins the main rectangle, live guidance can
+     -- turn toward the next region before reaching the incident's entry.
+     for _,area in ipairs(Content.zones[c.zone].expansionAreas or {})do
+      if Areas.contains(area,previous.X,previous.Z)then
+       local mouth=area.connector.rampStart
+       local rejoin=Guide.route(mouth,p)
+       if rejoin[2]then table.insert(lanes,{V(table.unpack(mouth)),V(table.unpack(rejoin[2]))})end
+       break
+      end
+     end
     end
     previous=at
    end

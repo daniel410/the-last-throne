@@ -56,6 +56,18 @@ function W.openEntrances(world,scope)
  world.folder:SetAttribute('ExpansionBoundaryOpenings',(world.folder:GetAttribute('ExpansionBoundaryOpenings')or 0)+opened)
  world.folder:SetAttribute('ExpansionRelocatedTrees',(world.folder:GetAttribute('ExpansionRelocatedTrees')or 0)+moved)
 end
+-- The marsh arch stands on the narrow dry approach beyond the fork to the convoy.
+local function marshArch(arch, threshold, pal)
+ local footing=pal.rock:Lerp(pal.trim,.35)
+ for _,side in ipairs({-1,1})do
+  local x=11.5*side
+  K.part(arch,'ArchFoot',V(4.4,2.3,6.4),threshold+V(x,.9,0),footing,Enum.Material.Cobblestone)
+  K.part(arch,'ArchPier',V(3.5,8.1,4.6),threshold+V(x,5.7,0),pal.rock,Enum.Material.Brick)
+  K.part(arch,'ArchCapital',V(4.8,1.4,5.3),threshold+V(x,9.55,0),pal.trim,Enum.Material.Slate)
+  K.beam(arch,'ArchVoussoir',threshold+V(x,9.9,0),threshold+V(4.5*side,13,0),3.85,footing,Enum.Material.Slate)
+ end
+ K.part(arch,'ArchKeystone',V(9.4,3.4,4.5),threshold+V(0,13,0),pal.trim,Enum.Material.Slate)
+end
 function W.create(world,scope)
  local container=world.folder:FindFirstChild('CampaignExpansion')or Instance.new('Folder');container.Name='CampaignExpansion';container.Parent=world.folder
  local key='Epic'..scope.epic;if container:FindFirstChild(key)then return end
@@ -74,11 +86,16 @@ function W.create(world,scope)
    local scene=Instance.new('Model');scene.Name=c.id..'_'..g.id;scene.ModelStreamingMode=Enum.ModelStreamingMode.Atomic;scene:SetAttribute('Theme',theme);scene:SetAttribute('IncidentSpace',area.name);scene.Parent=site
    for _,pair in ipairs({{entry,edge},{edge,vec(area.connector.rampEnd)},{vec(area.connector.rampEnd),center}})do local path=K.beam(scene,'ExpansionWalkingLine',pair[1]+V(0,.05,0),pair[2]+V(0,.05,0),5,pal.trim,Enum.Material.Ground);path.Size=V(12,.08,path.Size.Z)end
    local arch=Instance.new('Model');arch.Name='IncidentEntranceArch';arch.Parent=scene
-   local threshold=entry
-   K.arch(arch,threshold,80,26,pal)
-   -- The default arch opens along Z; east/west connectors need a quarter turn.
-   arch.WorldPivot=CFrame.new(threshold)
-   if area.axis=='x'then arch:PivotTo(CFrame.new(threshold)*CFrame.Angles(0,math.pi/2,0))end
+   if c.id=='DW-Q1' then
+    local threshold=edge:Lerp(vec(area.connector.rampEnd),.2)
+    arch.WorldPivot=CFrame.new(threshold)
+    marshArch(arch,threshold,pal)
+   else
+    K.arch(arch,entry,80,26,pal)
+    -- The default arch opens along Z; east/west connectors need a quarter turn.
+    arch.WorldPivot=CFrame.new(entry)
+    if area.axis=='x'then arch:PivotTo(CFrame.new(entry)*CFrame.Angles(0,math.pi/2,0))end
+   end
    local post=K.part(scene,'IncidentBoard',V(5,4,.5),CFrame.new(entry+V(12,3,0)),pal.wood,Enum.Material.Wood);label(post,area.name)
    require(script.Parent.CampaignIncidentScenes).create(scene,c,g,area)
    -- Deepwood's original builder still consumes its archived raw content.

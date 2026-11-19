@@ -135,13 +135,17 @@ local function compose(model, id, profile, palette, builder)
 		end
 	else
 		local moss = palette.rock:Lerp(palette.ground, .55)
+		local cutStone = palette.trim:Lerp(Color3.fromRGB(174, 177, 154), .4)
 		part('CulvertFootCourse', V(21, 2.2, 10), V(0, .45, 2), palette.rock, M.Cobblestone, true)
 		part('CulvertClosedBack', V(15, 6.3, 2), V(0, 3.25, 5.8), palette.rock, M.Slate, true)
 		part('CulvertRunoff', V(6.2, .25, 6), V(0, .04, -3), moss, M.Mud)
+		part('CulvertRunoffInvert', V(3.8, .18, 5.8), V(0, .21, -3.02), palette.wood, M.Slate)
 		for _, x in ipairs({-1, 1}) do
+			part('CulvertWingWall', V(2.5, 2.6, 4.45), V(x * 5.25, 1.05, -3.12), cutStone, M.Slate,
+				false, V(0, -x * .34, 0), 'Wedge')
 			part('CulvertAshlarPier', V(5.1, 6.1, 8), V(x * 6, 3, 2), palette.rock, M.Cobblestone, true)
-			part('CulvertSpringCourse', V(5.1, 1.4, 9), V(x * 5.6, 6, 2), palette.trim, M.Slate, true)
-			beam('CulvertVaultStone', V(x * 5.3, 6.5, -1.3), V(x * 2, 8.2, -1.3), 2.35, palette.trim, M.Slate, true)
+			part('CulvertSpringCourse', V(5.1, 1.4, 9), V(x * 5.6, 6, 2), cutStone, M.Slate, true)
+			beam('CulvertVaultStone', V(x * 5.3, 6.5, -1.3), V(x * 2, 8.2, -1.3), 2.35, cutStone, M.Slate, true)
 			part('CulvertMossCapping', V(7, .35, 6.4), V(x * 6, 6.9, 2), moss, M.Ground)
 		end
 		part('CulvertVaultCap', V(5.5, 2.35, 8.6), V(0, 8.25, 2.2), palette.rock, M.Slate, true)

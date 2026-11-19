@@ -41,9 +41,9 @@ end
 local function rootwayBank(palette, part, beam)
 	local earth = palette.ground:Lerp(palette.wood, .42)
 	local slate = palette.rock:Lerp(palette.trim, .20)
-	local root = palette.wood:Lerp(Color3.fromRGB(131, 110, 103), .58)
-	local bark = root:Lerp(palette.trim, .16)
-	local heartwood = root:Lerp(Color3.fromRGB(183, 160, 127), .68)
+	local root = palette.wood:Lerp(Color3.fromRGB(160, 128, 103), .76)
+	local bark = root:Lerp(Color3.fromRGB(178, 147, 118), .34)
+	local heartwood = Color3.fromRGB(206, 179, 139)
 
 	part('BuriedShaleRib', V(22.2, 3.6, 11.4), V(-.5, .72, .72), slate, M.Slate,
 		false, V(0, .15, -.05), 'Wedge')
@@ -67,7 +67,8 @@ local function rootwayBank(palette, part, beam)
 	beam('BankRootReturn', sideElbow, V(10.25, .04, -1.75), 1.42, root, M.Wood)
 	beam('FineRootTaper', fork, V(-3.13, -.38, -6.25), .90, bark, M.Wood)
 	beam('BarkRidge', V(-2.38, 5.77, 5.25), V(-6.24, 4.05, -.42), .66, bark, M.Wood)
-	part('StormSplitHeartwood', V(1.20, .42, 3.1), V(-8.31, 3.29, -2.48), heartwood, M.Wood,
+	beam('ExposedForkGrain', V(-6.3, 4.04, -.65), V(-9.5, 2.79, -3.7), .78, heartwood, M.Wood)
+	part('StormSplitHeartwood', V(1.65, .5, 3.35), V(-8.31, 3.29, -2.48), heartwood, M.Wood,
 		false, V(-.32, .78, .14), 'Wedge')
 end
 
