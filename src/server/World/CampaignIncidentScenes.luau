@@ -94,6 +94,13 @@ function S.create(scene,c,g,area)
     end
     part(m,'DryPackDeck',V(7.2,.46,3.45),frame*CFrame.new(0,2.28,0),pal.wood,Enum.Material.WoodPlanks)
     part(m,'DryPackBackRail',V(7.2,.65,.38),frame*CFrame.new(0,2.77,1.48),pal.wood)
+    m.WorldPivot=m:GetPivot()
+    local waxedCanvas=Color3.fromRGB(151,133,92)
+    local pack=frame*CFrame.new(1.42,3.18,.12)*CFrame.Angles(0,.12,0)
+    part(m,'WaxedConvoyPack',V(2.78,1.34,2.14),pack,waxedCanvas,Enum.Material.Fabric)
+    for _,x in ipairs({-.82,.82})do
+     part(m,'PackLashing',V(.27,1.41,2.22),pack*CFrame.new(x,0,0),pal.wood,Enum.Material.Fabric)
+    end
    end)
   elseif c.id=='DW-02'and g.id=='exp_1'then
    actor('Selene',result+V(-5,0,-8),result+V(-5,0,-8),0,3)
@@ -120,7 +127,7 @@ function S.create(scene,c,g,area)
   if c.id=='GW-03'and g.id=='exp_1'then
    local frame=stationFrame(2,1)
    model('RefugeScoutShelter',0,3,function(m)
-    local roof=Color3.fromRGB(111,130,92)
+    local roof=Color3.fromRGB(132,146,102)
     for _,x in ipairs({-3.25,3.25})do
      part(m,'RefugeFieldstoneFoot',V(2.4,1.45,4.7),frame*CFrame.new(x,.46,0),pal.rock,Enum.Material.Slate)
      beam(m,'RefugeForkPost',frame*V(x,1,1.4),frame*V(x,7.3,1.4),.75)
@@ -131,6 +138,13 @@ function S.create(scene,c,g,area)
     for _,x in ipairs({-2.3,2.3})do
      part(m,'RefugeBenchLeg',V(.7,1.82,1.65),frame*CFrame.new(x,.91,.75),pal.wood)
     end
+    m.WorldPivot=m:GetPivot()
+    local rawTimber=Color3.fromRGB(147,125,83)
+    part(m,'RefugeCanopyHem',V(8.1,.36,.22),
+     frame*CFrame.new(0,6.55,0)*CFrame.Angles(-.34,0,0)*CFrame.new(0,-.12,-2.84),rawTimber,Enum.Material.Fabric)
+    local board=frame*CFrame.new(0,2.67,.55)*CFrame.Angles(-.20,0,0)
+    part(m,'RefugeRaisedMapBoard',V(3.7,.32,1.65),board,rawTimber,Enum.Material.WoodPlanks)
+    part(m,'RefugeScoutMap',V(2.97,.05,1.26),board*CFrame.new(0,.18,0),Color3.fromRGB(173,153,108),Enum.Material.Fabric)
    end)
   elseif c.id=='GW-06'and g.id=='exp_2'then
    for i,name in ipairs({'Tali','Freed Scout','Scout Lantern Keeper'})do
@@ -201,6 +215,15 @@ function S.create(scene,c,g,area)
      end
     end
     part(m,'ProtectionGaugeCase',V(2.45,2.3,3.8),frame*CFrame.new(0,3.7,0),pal.wood,Enum.Material.Metal)
+    m.WorldPivot=m:GetPivot()
+    local dial=frame*CFrame.new(0,3.78,-2.04)
+    local cylinderAxis=CFrame.Angles(0,math.pi/2,0)
+    part(m,'PressureDialRim',V(.38,2.06,2.06),dial*cylinderAxis,
+     Color3.fromRGB(171,110,64),Enum.Material.CorrodedMetal).Shape=Enum.PartType.Cylinder
+    part(m,'PressureDialFace',V(.08,1.73,1.73),dial*CFrame.new(0,0,-.205)*cylinderAxis,
+     Color3.fromRGB(177,158,111),Enum.Material.SmoothPlastic).Shape=Enum.PartType.Cylinder
+    part(m,'PressureDialNeedle',V(.13,.73,.09),
+     dial*CFrame.new(.2,.22,-.275)*CFrame.Angles(0,0,-.69),basalt,Enum.Material.Metal)
    end)
   elseif c.id=='EC-05'and g.id=='exp_2'then
    for i,step in ipairs(g.activity.steps)do
@@ -250,18 +273,22 @@ function S.create(scene,c,g,area)
    actor('Lumi',result+V(-18,0,0),result+V(-4,0,0),0,3)
    if g.id=='exp_2' then
     local frame=stationFrame(1,2)
-    local stone=pal.rock:Lerp(pal.trim,.31)
-    local coping=pal.rock:Lerp(pal.trim,.56)
+    local stone=pal.rock:Lerp(pal.trim,.43)
+    local coping=pal.rock:Lerp(Color3.fromRGB(161,149,126),.62)
+    local iron=Color3.fromRGB(78,74,69)
     model('PassageDrainInspectionBox',0,3,function(m)
      m.WorldPivot=frame
-     part(m,'InspectionBoxFooting',V(3.8,.46,5.8),frame*CFrame.new(0,.09,0),stone,Enum.Material.Cobblestone)
-     part(m,'CoveredRunoffChannel',V(3.25,1.66,4.45),frame*CFrame.new(0,1.12,0),pal.rock,Enum.Material.Slate)
-     for _,x in ipairs({-1.33,1.33}) do
-      part(m,'InspectionBoxQuoin',V(.85,2.78,4.8),frame*CFrame.new(x,1.67,0),stone,Enum.Material.Cobblestone)
+     part(m,'InspectionBoxFooting',V(4.8,.52,6.1),frame*CFrame.new(0,.1,0),stone,Enum.Material.Cobblestone)
+     part(m,'RecessedChannelBack',V(2.64,2.6,.85),frame*CFrame.new(0,1.62,.92),pal.rock,Enum.Material.Slate)
+     for _,x in ipairs({-1.7,1.7}) do
+      part(m,'InspectionBoxQuoin',V(1,3.25,4.8),frame*CFrame.new(x,1.91,0),stone,Enum.Material.Cobblestone)
      end
-     part(m,'FixedInspectionPlate',V(1.92,.32,4.2),frame*CFrame.new(0,2.11,0),pal.wood,Enum.Material.CorrodedMetal)
-     part(m,'RunoffLip',V(2.05,.45,1.4),frame*CFrame.new(0,.45,-2.45),coping,Enum.Material.Slate)
-     part(m,'WeatheredSideCoping',V(1.05,.46,5),frame*CFrame.new(1.33,3.22,0),coping,Enum.Material.Slate)
+     part(m,'FixedInspectionPlate',V(2.5,.4,3.9),frame*CFrame.new(0,2.87,-.2),iron,Enum.Material.CorrodedMetal)
+     part(m,'RunoffLip',V(2.42,.5,2.2),frame*CFrame.new(0,.47,-2.1),stone,Enum.Material.Slate)
+     part(m,'WeatheredDrainLintel',V(4.92,.8,1.32),frame*CFrame.new(0,3.84,-1.89),coping,Enum.Material.Slate)
+     for _,x in ipairs({-.54,.54}) do
+      part(m,'InspectionGrateBar',V(.2,1.7,.25),frame*CFrame.new(x,1.56,-1.57),iron,Enum.Material.CorrodedMetal)
+     end
     end)
    end
   elseif c.id=='HG-07'and g.id=='exp_2'then

@@ -96,7 +96,7 @@ local function compose(model, id, profile, palette, builder)
 		end
 	elseif id == 'FV-03' then
 		local iron = palette.wood:Lerp(palette.rock, .48)
-		local exposedTimber = Color3.fromRGB(99, 76, 56)
+		local exposedTimber = Color3.fromRGB(90, 66, 48)
 		for _, x in ipairs({-12, 0, 12}) do
 			part('WindbreakFoot', V(4.5, 2.5, 4.5), V(x, .55, 2.2), palette.rock, M.Glacier, true)
 			beam('WindbreakUpright', V(x, .9, 2.2), V(x, 9.8, 3.4), 1.4, palette.wood, M.Wood, true)
@@ -113,11 +113,11 @@ local function compose(model, id, profile, palette, builder)
 			part('WindbreakExposedRailEnd', V(5.2, 1.14, .88), V(x * 1.55, 8.18, 3.18),
 				exposedTimber, M.Wood, false, V(.11, 0, 0))
 		end
-		-- Wrap the outer face so the fence has a visible profile from the ravine bend.
-		for _, x in ipairs({-11.85, 11.85}) do
-			for _, height in ipairs({5.08, 7.73}) do
-				part('WindbreakReturnBoard', V(.62, 1.52, 4.25), V(x, height, 1.55),
-					exposedTimber, M.WoodPlanks, false, V(-.035, 0, 0))
+		-- Splay the end screens toward the approach so the slat gaps read at the bend.
+		for _, side in ipairs({-1, 1}) do
+			for _, height in ipairs({5.25, 8.05}) do
+				part('WindbreakReturnBoard', V(.63, 1.75, 5.65), V(side * 13, height, .2),
+					exposedTimber, M.WoodPlanks, false, V(-.06, -side * .42, 0))
 			end
 		end
 		part('WindPackedSnow', V(12.6, 3.7, 10), V(-5.7, 1.02, 3), palette.ground, M.Snow, true,
