@@ -1,4 +1,4 @@
--- Real generated terrain/objects/GUI and escort motion in an isolated edit engine.
+-- Real generated terrain, activity controls and GUI in an isolated edit engine.
 assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated local place only')
 local Shared=game.ReplicatedStorage.Shared
 local C=require(Shared.CampaignContent)
@@ -8,7 +8,7 @@ local Access=require(Shared.CampaignAccess)
 local CP=require(Shared.CheckpointTravel)
 local World=game.ServerScriptService.Server.World
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
-local report={checks=0,samples=0,parts=0,incidents=0,steps=0,blockers={},scope='isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance'}
+local report={checks=0,samples=0,parts=0,incidents=0,steps=0,blockers={},scope='isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance'}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local world;local generationStart=os.clock()
 for epic=1,5 do world=require(World.CampaignWorld).create(epic,world);print('EXPANSION_NATIVE_EPIC',epic)end
@@ -137,9 +137,14 @@ local lobby={folder=Instance.new('Folder'),origin=Vector3.new(0,96,512)};lobby.f
 local function prompt()local p=Instance.new('Part');p.Parent=lobby.folder;local x=Instance.new('ProximityPrompt');x.Parent=p;return x end
 local residents=require(World.LobbyResidents).create(lobby,{training={prompt=prompt()},portal={prompt=prompt()}},nil)
 local reunion=lobby.folder.HomecomingReunion
-presentation.update({journal=P.new()});check(reunion:FindFirstChild('Torso',true).Transparency==1,'reunion locked before final clear')
+local reunionBody
+for _,part in ipairs(reunion:GetDescendants())do
+ if part:IsA('BasePart') and (part:GetAttribute('ExpansionTransparency')or 1)<1 then reunionBody=part;break end
+end
+check(reunionBody~=nil,'current reunion assets have a visible body part')
+presentation.update({journal=P.new()});check(reunionBody.Transparency==1,'reunion locked before final clear')
 local all=P.new();for _,c in ipairs(C.mainChapters)do all=finish(all,c)end
-presentation.update({journal=all});check(reunion:FindFirstChild('Torso',true).Transparency<1,'old completed hero sees reunion without replay')
+presentation.update({journal=all});check(reunionBody.Transparency<1,'old completed hero sees reunion without replay')
 for i=1,5 do check(residents['homecoming'..i]and residents['homecoming'..i].text~='','five actual reunion dialogues')end
 lobby.folder:Destroy()
 -- Saved mechanical stages and two-option circuit UI through the real server engine.
@@ -196,7 +201,7 @@ circuitEngine.remove(player);puzzleRoot:Destroy()
 local allies,ac,ag=reach('HG-04','exp_2')
 local brann=world.folder.CampaignExpansion.Epic5['HG-04_exp_2'].BrannStoryAction
 presentation.update({journal=allies});presentation.tick(1);local waiting=brann:GetPivot().Position
-allies=assert(P.apply(allies,ac.id,ag.id,nil,'step1'));presentation.update({journal=allies});presentation.tick(1)
+allies=assert(P.apply(allies,ac.id,ag.id,nil,ag.activity.finish.id));presentation.update({journal=allies});presentation.tick(1)
 check((brann:GetPivot().Position-waiting).Magnitude>2,'Brann moves to the operating rig after confirmed work')
 local gate=world.folder.CampaignExpansion.Epic5['HG-04_exp_2'].AllianceSideGate
 check(gate:GetPivot().Position.Y>gate:GetAttribute('ExpansionPose0').Position.Y,'alliance gate physically changes visual pose')
@@ -219,7 +224,7 @@ local medicine,mc,mg=reach('DW-02','exp_1')
 local survivorNode=world.nodes['DW-02:survivors']
 check(survivorNode.chapter==mc and survivorNode.goal==P.goal(mc,'survivors'),'actual archived Deepwood nodes bind canonical narrative and prerequisite data')
 check(not P.available(medicine,survivorNode.chapter,survivorNode.goal),'live core marker cannot bypass the new medicine incident')
-medicine=applyGoal(medicine,mc,mg)
+medicine=assert(P.apply(medicine,mc.id,mg.id,nil,mg.activity.finish.id))
 check(P.available(medicine,survivorNode.chapter,survivorNode.goal),'saved medicine completion unlocks the original survivor objective')
 check(world.nodes['DW-Q2:'..C.byId['DW-Q2'].quest.turnIn].chapter.quest.outcome==C.byId['DW-Q2'].quest.outcome,'actual field report uses the same updated story outcome as Tessa and the journal')
 local investigation,ic,ig=reach('FV-04','exp_1')
@@ -254,15 +259,23 @@ local controlEngine=require(game.ServerScriptService.Server.Story.DeepwoodActivi
  world=world,enemies=Instance.new('Folder'),publish=function(_,message)table.insert(feedback,message)end,
  enqueue=function(_,_,c,g,choice,id)enqueues+=1;controlsState=assert(P.apply(controlsState,c.id,g.id,choice,id))end})
 local callbacks={};local fakeWorld={activityChoices={},activityNodes={},nodes={}};local binds=0
+local function trigger(id)
+ return {Triggered={Connect=function(_,fn)binds+=1;callbacks[id]=fn end}}
+end
 for id,node in pairs(world.activityChoices)do
  local record={part=node.part,chapter=node.chapter,goal=node.goal,step=node.step,choice=node.choice}
- record.prompt={Triggered={Connect=function(_,fn)binds+=1;callbacks[id]=fn end}};fakeWorld.activityChoices[id]=record
+ record.prompt=trigger(id);fakeWorld.activityChoices[id]=record
+end
+for id,node in pairs(world.activityNodes)do
+ if node.prompt and node.step==node.goal.activity.finish then
+  fakeWorld.activityNodes[id]={prompt=trigger(id),chapter=node.chapter,goal=node.goal,step=node.step}
+ end
 end
 local serviceSource=game.ServerScriptService.Server.Story.DeepwoodService.Source
 local binding=assert(serviceSource:match('(function Service.refreshWorld%(%)'..'.-)'..'\nfunction Service.start'))
 local env={Service={interactStep=function(p,cid,gid,sid,choice)controlEngine.interactStep(p,cid,gid,sid,choice)end},options={world=fakeWorld},boundNodes={}}
 setmetatable(env,{__index=getfenv()});local fn=assert(loadstring(binding..'\nreturn Service.refreshWorld'));setfenv(fn,env);local refresh=fn();refresh();refresh()
-check(binds==6,'each physical control binds once to the actual server interaction path')
+check(binds==12,'each physical control and field action binds once to the actual server interaction path')
 local journalSource=Client.DeepwoodJournal.Source
 local promptBody=assert(journalSource:match('(local function updatePrompts%(%)'..'.-)'..'\n workspace.DescendantAdded:Connect'))
 local updatePrompts=assert(loadstring('return function(workspace,current,Content,Progress,Checkpoints,Log)\n'..promptBody..'\nupdatePrompts() end'))()
@@ -304,7 +317,7 @@ controlRoot.Position=signalNode.part.Position
 controlEngine.interactStep(cp,fc.id,fg.id,'step1')
 controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
 check(enqueues==count,'old markers and answers without an open control cannot advance the archive')
-controlEngine.interactStep(cp,fc.id,fg.id,signal.id)
+callbacks['FV-04:exp_2:resolve'](cp)
 controlEngine.answer(cp,'FV-04:exp_2:resolve:warning')
 local _,feedbackDialog=controlEngine.projection(cp,'hero')
 check(enqueues==count and feedbackDialog.text==signal.failure,'wrong archive answer provides a hint without writing progress')
@@ -312,7 +325,7 @@ controlRoot.Position=signalNode.part.Position+Vector3.new(80,0,0)
 controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
 check(enqueues==count and not select(2,controlEngine.projection(cp,'hero')),'walking away clears the dialogue and rejects an answer from a distance')
 controlRoot.Position=signalNode.part.Position
-controlEngine.interactStep(cp,fc.id,fg.id,signal.id)
+callbacks['FV-04:exp_2:resolve'](cp)
 controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
 controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
 check(enqueues==count+1 and controlsState.flags['FV-04:exp_2'],'the intended answer saves and replays at most once')
@@ -338,11 +351,14 @@ require(World.LobbyResidents).create(lobbyStory,{training={prompt=lobbyPrompt()}
 check(#lobbyStory.folder.SideStoryHomecomings:GetChildren()==3,'actual lobby resident creation mounts all three existing side homecomings')
 local lobbyJournal=assert(P.enableExpansion(all));lobbyJournal=assert(P.accept(lobbyJournal,'FV-Q1'));lobbyJournal=applyGoal(lobbyJournal,C.byId['FV-Q1'],C.byId['FV-Q1'].goals[1])
 for _,g in ipairs(C.byId['FV-Q1'].goals)do if P.required(lobbyJournal,g)and not lobbyJournal.flags['FV-Q1:'..g.id]then lobbyJournal=applyGoal(lobbyJournal,C.byId['FV-Q1'],g)end end
-require(Client.DawnspireHomecoming).update({heroId='nell-hero',heroes={['nell-hero']={deepwood=lobbyJournal}}});presentation.tick(1)
+local role=workspace:GetAttribute('TLTServerRole')
+workspace:SetAttribute('TLTServerRole','Lobby')
+require(Client.DawnspireHomecoming).update({atHub=true,heroId='nell-hero',heroes={['nell-hero']={deepwood=lobbyJournal}}});presentation.tick(1)
 local nell=lobbyStory.folder.SideStoryHomecomings:FindFirstChild('ReturnStory_FV-Q1')
-check(nell:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'actual selected hero snapshot reveals Nell in the lobby after the report')
-require(Client.DawnspireHomecoming).update({heroId='new-hero',heroes={['new-hero']={deepwood=P.new()}}});presentation.tick(1)
-check(nell:FindFirstChildWhichIsA('BasePart',true).Transparency==1,'actual hero snapshot switch removes the unearned return scene')
+check(nell.NamedReturnBoard.Transparency<1,'actual selected hero snapshot reveals Nell in the lobby after the report')
+require(Client.DawnspireHomecoming).update({atHub=true,heroId='new-hero',heroes={['new-hero']={deepwood=P.new()}}});presentation.tick(1)
+check(nell.NamedReturnBoard.Transparency==1,'actual hero snapshot switch removes the unearned return scene')
+workspace:SetAttribute('TLTServerRole',role)
 lobbyStory.folder:Destroy()
 print('CAMPAIGN_EXPANSION_NATIVE '..game.HttpService:JSONEncode(report))
 return report

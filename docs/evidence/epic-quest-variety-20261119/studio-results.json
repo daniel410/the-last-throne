@@ -1,0 +1,12 @@
+{
+  "blockers": [],
+  "buildVersion": "0.114.0",
+  "checks": 9193,
+  "engineExitCode": 0,
+  "generationSeconds": 31.605299041606486,
+  "incidents": 82,
+  "parts": 55353,
+  "samples": 3968,
+  "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+  "steps": 246
+}

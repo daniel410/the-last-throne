@@ -29,7 +29,9 @@ local function apply(p,c,g,step,run)
 end
 local function finish(p,c,run)
  for _,g in ipairs(c.goals)do if P.required(A.projection(p.heroes.hero),g)then
-  for _,step in ipairs(g.activity and g.activity.steps or {false})do p=apply(p,c,g,step,run)end
+  local activity=g.activity
+  local steps=activity and activity.finish and {activity.finish} or activity and activity.steps or {false}
+  for _,step in ipairs(steps)do p=apply(p,c,g,step,run)end
  end end
  check(A.projection(p.heroes.hero).clears[c.id],'quest actually completes '..c.id)
  return p
