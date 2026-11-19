@@ -31,9 +31,11 @@ src/shared/CampaignBounds.luau
 src/shared/CampaignContent.luau
 src/shared/CampaignExpansion.luau
 src/shared/CampaignExpansionContent.luau
+src/shared/CampaignQuestActions.luau
 src/shared/CampaignExpansionCheckpoints.luau
 src/shared/CheckpointTravel.luau
 src/shared/DeepwoodProgress.luau
+src/shared/LateEpicContent.luau
 src/shared/DeepwoodQuestLog.luau
 src/shared/Difficulty.luau
 src/shared/StoryEventText.luau

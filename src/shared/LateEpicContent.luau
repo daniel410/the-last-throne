@@ -85,7 +85,7 @@ story('HG-04','The Alliance Opens the Gate',32,{1100,196,-16800},{1373,900},'Pro
  fight('wall','Clear the fortress wall','SkeletonKnight',36,3),
  act('winch','Operate the gate winch with Brann crew','Brann: The gate is moving! Keep the commander away from the crew.',nil,nil,'lever'),
  fight('commander','Defeat Dread Commander','DreadCommander',37),
- act('allies','Signal the allied scouts','Rook: The gate is secure. We will guide everyone through while you stop the throne devices.',nil,nil,'lantern'),
+ act('allies','Confirm the allied foothold','Rook: Everyone is through, and we have your way back. Go on to the throne devices.',nil,nil,'lantern'),
 })
 story('HG-05','The Black Throne Devices',33,{500,200,-17300},{855,980},'Break the devices that protect the black throne. Any hero can operate them.','The outer throne shield is gone. Veyr last guards wait in the royal tomb.',{
  fight('hellhounds','Clear the throne approach','Hellhound',37,3),

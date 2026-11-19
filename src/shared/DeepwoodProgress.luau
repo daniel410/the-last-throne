@@ -57,6 +57,7 @@ function P.collected(s,c,g,index)
 end
 function P.nextStep(s,c,g)
  if not P.available(s,c,g) or not g.activity or not g.activity.steps then return nil end
+ if g.activity.finish then return g.activity.finish end
  for index,step in ipairs(g.activity.steps) do if not P.collected(s,c,g,index) then return step end end
 end
 function P.validate(s)
@@ -171,24 +172,31 @@ function P.apply(s,chapterId,goalId,choice,stepId)
  if g.activity and g.activity.steps then
   n.activities=n.activities or {};n.decisions=n.decisions or {}
   local key=chapterId..':'..goalId;local count=n.activities[key] or 0
-  local expected=g.activity.steps[count+1]
+  local finish=g.activity.finish
+  local resolves=finish and finish.id==stepId
+  local expected=resolves and finish or g.activity.steps[count+1]
   local index
   for i,step in ipairs(g.activity.steps) do if step.id==stepId then index=i end end
   if index and P.collected(s,c,g,index) then return n,nil,{xp=0,coins=0,repeated=true} end
-  if not expected or not index or g.activity.mode~='investigate' and expected.id~=stepId then return nil,'ActivityIncomplete' end
-  if g.activity.mode=='investigate' then
-   n.clues=n.clues or {};n.clues[key]=n.clues[key] or {}
-   if not (s.clues or {})[key] then for i=1,count do n.clues[key][g.activity.steps[i].id]=true end end
-   n.clues[key][stepId]=true
-  end
+  if not resolves and (not expected or not index or g.activity.mode~='investigate' and expected.id~=stepId) then return nil,'ActivityIncomplete' end
   if expected.choices then
    local valid=false;for _,answer in ipairs(expected.choices) do if answer.id==choice then valid=true end end
    if not valid then return nil,'ChooseAnswer' end
    if expected.solution and choice~=expected.solution then return nil,'WrongCircuit' end
-   n.decisions[key..':'..stepId]=choice
+   -- The field check has one solution. It needs no new decision in older journals.
+   if not resolves then n.decisions[key..':'..stepId]=choice end
   end
-  n.activities[key]=count+1
-  if count+1<#g.activity.steps then return n,nil,{xp=0,coins=0,step=stepId} end
+  if g.activity.mode=='investigate' then
+   n.clues=n.clues or {};n.clues[key]=n.clues[key] or {}
+   if resolves then
+    for _,step in ipairs(g.activity.steps) do n.clues[key][step.id]=true end
+   else
+    if not (s.clues or {})[key] then for i=1,count do n.clues[key][g.activity.steps[i].id]=true end end
+    n.clues[key][stepId]=true
+   end
+  end
+  n.activities[key]=resolves and #g.activity.steps or count+1
+  if n.activities[key]<#g.activity.steps then return n,nil,{xp=0,coins=0,step=stepId} end
  elseif stepId~=nil then return nil,'InvalidRequest' end
  if g.choice and choice~='sanctuary' and choice~='shared' then return nil,'ChooseRestoration' end
  n.flags[chapterId..':'..goalId]=true

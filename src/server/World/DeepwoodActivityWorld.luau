@@ -38,19 +38,27 @@ function W.create(world)
   if a and node and not node.activityBuilt then
    node.activityBuilt=true
    node.part.Transparency=1;local gem=node.part:FindFirstChild('ObjectiveGem');if gem then gem.Transparency=1 end
-   node.prompt.Enabled=a.mode=='dialogue' or a.mode=='escort'
+   node.prompt.Enabled=not a.finish and (a.mode=='dialogue' or a.mode=='escort')
    if (c.id=='DW-04'and g.id=='spirit')or(c.id=='DW-05'and g.id=='prisoners')or(c.id=='DW-07'and g.id=='rescue_captives')then node.prompt.ActionText='Unlock cage';node.prompt.ObjectText='Captive resident' end
    if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue',scope=(c.id:sub(1,2)=='GW'or c.id:sub(1,2)=='HG')and c.zone or nil}) end
    if a.steps then
-    for _,step in ipairs(a.steps) do
+    local steps=table.clone(a.steps)
+    if a.finish then table.insert(steps,a.finish) end
+    for _,step in ipairs(steps) do
      local p=Vector3.new(table.unpack(step.position));local anchor=part(folder,c.id..'_'..g.id..'_'..step.id,Vector3.new(1,1,1),p+Vector3.new(0,1,0),Color3.new());anchor.Transparency=1
      anchor:SetAttribute('ChapterId',c.id);anchor:SetAttribute('GoalId',g.id);anchor:SetAttribute('StepId',step.id)
      local prompt
-     if a.mode~='dialogue' and a.mode~='escort' then
+     local fieldProps=step~=a.finish and a.mode~='dialogue' and a.mode~='escort'
+     if fieldProps then
       prop(folder,c.id,g.id,step,p)
-      if a.mode~='travel' and a.mode~='trail' then
-       prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.ObjectText=step.title;prompt.ActionText=require(script.Parent.StoryPropAssignments).actions[c.id..':'..g.id] or a.mode=='sequence' and 'Activate rune' or a.mode=='mechanism' and 'Operate' or 'Examine';prompt.HoldDuration=.45;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.Parent=anchor
-      end
+     elseif step==a.finish and step.rearguard then
+      local at=p+Vector3.new(0,0,-4)
+      local lantern=require(script.Parent.ScoutLantern).create(folder,CFrame.new(at+Vector3.new(0,3.3,0)))
+      lantern.Name='RearguardScoutLantern'
+      part(lantern,'LanternPost',Vector3.new(.45,2.5,.45),at+Vector3.new(0,1.25,0),Color3.fromRGB(86,65,46))
+     end
+     if step.prompt or (not a.finish and fieldProps and a.mode~='travel' and a.mode~='trail') then
+      prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.ObjectText=step.title;prompt.ActionText=step.prompt or require(script.Parent.StoryPropAssignments).actions[c.id..':'..g.id] or a.mode=='sequence' and 'Activate rune' or a.mode=='mechanism' and 'Operate' or 'Examine';prompt.HoldDuration=.45;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.Parent=anchor
      end
      if step.circuitControls then require(script.Parent.CampaignCircuitWorld).create(world,folder,c,g,step)end
      nodes[c.id..':'..g.id..':'..step.id]={part=anchor,prompt=prompt,chapter=c,goal=g,step=step}

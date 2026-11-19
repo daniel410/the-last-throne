@@ -70,5 +70,6 @@ load('CampaignStoryBeats').install(C)
 load('CampaignStoryText').install(C)
 load('CampaignCombatPacing').install(C)
 load('CampaignCombatRoutes').install(C)
+load('CampaignQuestActions').install(C)
 load('CampaignOverland').install(C)
 return C

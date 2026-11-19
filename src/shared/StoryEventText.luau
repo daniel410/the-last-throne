@@ -8,6 +8,8 @@ function M.resolve(g,stepId,choice,before,after,chapterId)
  end end
  local key=chapterId..':'..g.id
  if g.expansion and after and after.flags[key] and not (before and before.flags[key])then return g.text end
+ local finish=g.activity and g.activity.finish
+ if finish and stepId==finish.id then return '' end
  return text
 end
 return M

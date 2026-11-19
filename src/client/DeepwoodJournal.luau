@@ -37,7 +37,10 @@ function Journal.guidance(current,target,origin)
  local plan=Routes.plan(chapter,goal,current.expedition and current.expedition.balanceVersion)
  if plan then destination=Vector3.new(table.unpack(Routes.entry(chapter,goal,current.expedition,current.routePartySize or 1)))end
  local hint=#goal.enemies>0 and (a and a.mode=='battle' and 'Approach the ambush area. Stay alert for the raiders.' or Text.StoryBeginEncounter) or goal.id==chapter.quest.turnIn and 'Talk to '..chapter.quest.giver..' to report your findings.' or Text.StoryInteract
- if step then
+ if step and a.finish then
+  destination=Vector3.new(table.unpack(step.position))
+  hint=step.hint
+ elseif step then
   local count=(current.journal.activities or {})[chapter.id..':'..goal.id] or 0
   hint=string.format('%d / %d · %s',count+1,#a.steps,step.title)
   if a.mode=='investigate' then
@@ -165,7 +168,7 @@ function Journal.start(hud)
      prompt.ObjectText=c.quest.giver..' · '..Log.status(s,c)
     elseif c.side and g==c.goals[1] and Progress.canAccept(s,c) then prompt.Enabled=true;prompt.ActionText='Read clue';prompt.ObjectText='Optional discovery · '..c.title
     elseif c.side and g.id==c.quest.turnIn and c.quest.offerPosition and not c.quest.discoveryOnly then prompt.Enabled=false
-    else prompt.Enabled=Progress.available(s,c,g) and (not g.activity or g.activity.mode=='dialogue' or g.activity.mode=='escort');if c.side and g.id==c.quest.turnIn then prompt.ActionText='Report';prompt.ObjectText=c.quest.giver end end
+    else prompt.Enabled=Progress.available(s,c,g) and (not g.activity or not g.activity.finish and (g.activity.mode=='dialogue' or g.activity.mode=='escort'));if c.side and g.id==c.quest.turnIn then prompt.ActionText='Report';prompt.ObjectText=c.quest.giver end end
    end
   end
   for _,folderName in ipairs({'StoryCheckpointPortals','ExpansionReturnPoints'})do
@@ -183,7 +186,7 @@ function Journal.start(hud)
    local c=Content.byId[p:GetAttribute('ChapterId')];local g=c and Progress.goal(c,p:GetAttribute('GoalId'));local prompt=p:FindFirstChildOfClass('ProximityPrompt');local step=g and Progress.nextStep(s,c,g)
    if prompt then
     local available=step~=nil and (g.activity.mode=='sequence' or step.id==p:GetAttribute('StepId'))
-    if step and g.activity.mode=='investigate' then for index,candidate in ipairs(g.activity.steps) do if candidate.id==p:GetAttribute('StepId') then available=not Progress.collected(s,c,g,index) end end end
+    if step and not g.activity.finish and g.activity.mode=='investigate' then for index,candidate in ipairs(g.activity.steps) do if candidate.id==p:GetAttribute('StepId') then available=not Progress.collected(s,c,g,index) end end end
     prompt.Enabled=available
    end
   end end

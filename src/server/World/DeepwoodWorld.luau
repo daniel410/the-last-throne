@@ -108,6 +108,10 @@ function World.create(world)
   local activityFolder=existing:FindFirstChild('AdventureActivities')
   if activityFolder then for _,p in ipairs(activityFolder:GetChildren()) do if p:IsA('BasePart') and p:GetAttribute('StepId') then
    local c=Content.byId[p:GetAttribute('ChapterId')];local g=c and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress).goal(c,p:GetAttribute('GoalId'))
+   local finish=g and g.activity and g.activity.finish
+   if finish and finish.id==p:GetAttribute('StepId') then
+    result.activityNodes[c.id..':'..g.id..':'..finish.id]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g,step=finish}
+   end
    for _,step in ipairs(g and g.activity and g.activity.steps or {}) do if step.id==p:GetAttribute('StepId') then result.activityNodes[c.id..':'..g.id..':'..step.id]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g,step=step} end end
   end end else require(script.Parent.DeepwoodActivityWorld).create(result) end
   require(script.Parent.DeepwoodPlaces).create(result)

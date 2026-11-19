@@ -33,11 +33,12 @@ function Engine.create(o)
   local confirmed=d and ctx and ctx.heroId==d.heroId and o.state(player,ctx.heroId)
   local expected=confirmed and Progress.nextStep(confirmed,d.c,d.g)
   if d and (not expected or expected.id~=d.step.id or not ctx or ctx.heroId~=d.heroId or not root or (root.Position-(d.position or Vector3.new(table.unpack(d.g.position)))).Magnitude>16) then dialogs[player]=nil;d=nil end
-  return result,d and d.heroId==heroId and {chapter=d.c.id,goal=d.g.id,step=d.step.id,text=d.step.text,choices=require(game.ReplicatedStorage.Shared.CampaignCircuit).display(d.step)} or nil
+  return result,d and d.heroId==heroId and {chapter=d.c.id,goal=d.g.id,step=d.step.id,text=d.feedback or d.step.text,choices=require(game.ReplicatedStorage.Shared.CampaignCircuit).display(d.step)} or nil
  end
  function api.interact(player,node)
   local c,g=node.chapter,node.goal;local a=g.activity
   if not a or not a.steps then return false end
+  if a.finish then return true end
   local ctx,s=current(player,c,g,node.part.Position)
   if not ctx then return true end
   local step=Progress.nextStep(s,c,g);if not step then return true end
@@ -55,15 +56,23 @@ function Engine.create(o)
   local ctx,s=current(player,c,g,control and control.part.Position or node.part.Position)
   if not ctx then return end
   local step=Progress.nextStep(s,c,g)
-  if not step or g.activity.mode~='investigate' and step.id~=sid then o.publish(player,g.activity.clue or 'Follow the evidence in order.');return end
-  if g.activity.mode=='escort' then return end
+  local a=g.activity
+  if a.finish then
+   if step~=a.finish or not step.prompt or sid~=step.id then return end
+  elseif not step or a.mode~='investigate' and step.id~=sid then
+   o.publish(player,a.clue or 'Follow the evidence in order.');return
+  elseif a.mode=='escort' then return end
   if step.choices then
    if choice==nil then
     dialogs[player]={heroId=ctx.heroId,c=c,g=g,step=step,position=node.part.Position};o.publish(player,step.text);return
    end
-   if step.solution and choice~=step.solution then o.publish(player,step.failure);return end
    local valid=false;for _,v in ipairs(step.choices) do if v.id==choice then valid=true end end
    if not valid then return end
+   if step.solution and choice~=step.solution then
+    local dialog=dialogs[player]
+    if dialog and dialog.step==step then dialog.feedback=step.failure end
+    o.publish(player,step.failure);return
+   end
   end
   dialogs[player]=nil;o.enqueue(player,ctx.heroId,c,g,choice,sid)
  end
@@ -81,7 +90,12 @@ function Engine.create(o)
     if s then for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
      local a=g.activity;local step=Progress.nextStep(s,c,g)
      if a and step then
-      if (a.mode=='trail' or a.mode=='travel') and (root.Position-Vector3.new(table.unpack(step.position))).Magnitude<=10 then o.enqueue(p,ctx.heroId,c,g,nil,step.id)
+      if a.finish then
+       if not step.prompt and o.world.activityNodes[c.id..':'..g.id..':'..step.id]
+        and (root.Position-Vector3.new(table.unpack(step.position))).Magnitude<=10 then
+        o.enqueue(p,ctx.heroId,c,g,nil,step.id)
+       end
+      elseif (a.mode=='trail' or a.mode=='travel') and (root.Position-Vector3.new(table.unpack(step.position))).Magnitude<=10 then o.enqueue(p,ctx.heroId,c,g,nil,step.id)
       elseif a.mode=='escort' and not attempts[p] then
        local count=(s.activities or {})[c.id..':'..g.id] or 0
        if count>0 and (root.Position-Vector3.new(table.unpack(a.steps[count].position))).Magnitude<=16 then escort(p,c,g,ctx,s) end
@@ -129,7 +143,7 @@ function Engine.create(o)
  end
  api.remove=remove
  -- Exposed for deterministic native fixtures; production calls update() with real players.
- function api.startEscort(player,c,g) local ctx,s=current(player,c,g,Vector3.new(table.unpack(g.position)));if ctx then escort(player,c,g,ctx,s) end end
+ function api.startEscort(player,c,g) local ctx,s=current(player,c,g,Vector3.new(table.unpack(g.position)));if ctx and not g.activity.finish then escort(player,c,g,ctx,s) end end
  return api
 end
 return Engine

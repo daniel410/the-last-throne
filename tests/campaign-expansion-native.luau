@@ -51,6 +51,7 @@ for _,c in ipairs(C.chapters)do
    report.steps+=1;check(world.activityNodes[c.id..':'..g.id..':'..step.id]~=nil,'actual activity step exists')
    sample(c,g,Vector3.new(table.unpack(step.position)))
   end
+  if g.activity.finish then sample(c,g,Vector3.new(table.unpack(g.activity.finish.position))) end
  end
  task.wait()
 end
@@ -58,7 +59,7 @@ for _,v in ipairs(world.folder:GetDescendants())do if v:IsA('BasePart')then repo
 bodyProbe:Destroy()
 print('EXPANSION_NATIVE_GEOMETRY '..game.HttpService:JSONEncode({samples=report.samples,parts=report.parts,blockerCount=#report.blockers,blockers={table.unpack(report.blockers,1,math.min(80,#report.blockers))}}))
 check(#report.blockers==0,'new wings and connectors have no holes or body blockers')
--- A genuine story actor walks Finn's new route, saves steps, and resumes after removal.
+-- Gloamwood uses two main-trail arrivals and keeps the rearguard encounter.
 local function finish(s,c)
  for _,g in ipairs(c.goals)do if P.required(s,g)then for _,step in ipairs(g.activity and g.activity.steps or {false})do
   s=assert(P.apply(s,c.id,g.id,step and step.choices and step.choices[1].id or g.choice and 'shared',step and step.id or nil))
@@ -68,48 +69,40 @@ end
 local journal=P.new()
 for i=1,12 do journal=finish(journal,C.mainChapters[i])end
 journal=assert(P.enableExpansion(journal))
-local chapter=C.byId['GW-06'];local escort=chapter.expansionGoals[2]
-for _,g in ipairs(chapter.goals)do
- if g==escort then break end
- if P.required(journal,g)then for _,step in ipairs(g.activity and g.activity.steps or {false})do journal=assert(P.apply(journal,chapter.id,g.id,step and step.choices and step.choices[1].id or nil,step and step.id or nil))end end
-end
-check(escort.activity.mode=='escort'and escort.activity.actor=='Finn','Finn participates as a real moving escort')
-local root=Instance.new('Part');root.Anchored=true;root.Position=Vector3.new(table.unpack(escort.position));root.Parent=workspace
+local chapter=C.byId['GW-06']
+local root=Instance.new('Part');root.Anchored=true;root.Parent=workspace
 local fake={UserId=194};local enemies=Instance.new('Folder');enemies.Parent=workspace
 local engine=require(game.ServerScriptService.Server.Story.DeepwoodActivities).create({players=function()return {fake}end,
  active=function()return {heroId='hero'}end,context=function()return {heroId='hero'},root end,state=function()return journal end,
  world=world,enemies=enemies,publish=function()end,enqueue=function(_,_,c,g,choice,id)journal=assert(P.apply(journal,c.id,g.id,choice,id))end})
-engine.startEscort(fake,chapter,escort)
-local key=chapter.id..':'..escort.id
-local data=engine.projection(fake,'hero');check(data[key]~=nil,'live escort created')
-local initial=data[key].actorPosition
-local carried
-for _,model in ipairs(world.folder:GetDescendants())do if model:IsA('Model')and model:GetAttribute('NPCPrivateOwnerUserId')==194 then carried=model:FindFirstChild('ThreeBarScoutLantern')end end
-check(carried and carried:GetAttribute('StoryMotif')=='FinnThreeBarLight','real moving Finn carries the recurring scout lantern')
-local bars=0;for _,part in ipairs(carried:GetChildren())do if part.Name=='RecognizableGoldBar'then bars+=1 end end
-check(bars==3,'Finn carries the same readable three-bar shape used by his allies')
-local restarted=false
-for tick=1,800 do
- local view=engine.projection(fake,'hero');local state=view[key]
- if not state then break end
- root.Position=state.actorPosition
- engine.update(.25)
- if tick==5 then local moved=engine.projection(fake,'hero');check(moved[key]and (moved[key].actorPosition-initial).Magnitude>1,'Finn walks rather than teleporting')end
- local count=(journal.activities or {})[key]or 0
- if count==1 and not restarted then
-  restarted=true
-  engine.remove(fake)
-  local saved=Vector3.new(table.unpack(escort.activity.steps[count].position));root.Position=saved
-  engine.update(.25)
-  local restored=engine.projection(fake,'hero');check(restored[key]and (restored[key].actorPosition-saved).Magnitude<3,'escort resumes from the saved substep')
+for _,g in ipairs(chapter.goals)do
+ if g.id=='rear_guard' then break end
+ if P.required(journal,g)then
+  local waypoint=g.activity and g.activity.finish
+  if waypoint then
+   local key=chapter.id..':'..g.id
+   local at=Vector3.new(table.unpack(waypoint.position))
+   check(waypoint.onMainRoute and not world.activityNodes[key..':'..waypoint.id].prompt,'scout handoff uses a main-trail arrival rather than a prompt')
+   journal=assert(P.apply(journal,chapter.id,g.id,nil,'step1'))
+   check(P.nextStep(journal,chapter,g)==waypoint,'old partial escort leads to the new handoff')
+   local respawn=require(Shared.CampaignExpansionCheckpoints).respawn(journal,chapter)
+   check(respawn.position==waypoint.position,'legacy partial escort resumes on the supported main trail')
+   root.Position=Vector3.new(table.unpack(g.activity.steps[1].position));engine.update(.25)
+   check(next(engine.projection(fake,'hero'))==nil and not journal.flags[key],'the previous escort location cannot spawn a second follower or advance the handoff')
+   root.Position=at+Vector3.new(30,0,0);engine.update(.25)
+   check(not journal.flags[key],'arrival needs server proximity')
+   root.Position=at+Vector3.new(0,3,0);engine.update(.25)
+   check(journal.flags[key] and journal.activities[key]==3,'one nearby arrival commits the remaining stages')
+   check(not CP.allowed(journal,key) and not CP.allowed(journal,'exit:'..key),'the former escort wing is no longer a checkpoint destination')
+  else
+   for _,step in ipairs(g.activity and g.activity.steps or {false})do journal=assert(P.apply(journal,chapter.id,g.id,nil,step and step.id or nil))end
+  end
  end
- if tick%20==0 then task.wait()end
 end
-check(journal.flags[key],'Finn reaches every authored rescue marker')
-check(not CP.allowed(journal,key)and not CP.allowed(journal,'exit:'..key),'partial escort region is not a travel destination')
-require(World.StoryCheckpointPortal).ensure(world,journal,function()end)
-local points=world.folder:FindFirstChild('ExpansionReturnPoints')
-check(not points or not points:FindFirstChild('exit:'..key),'no unusable return portal for partial region')
+check(P.available(journal,chapter,P.goal(chapter,'rear_guard')),'taking position unlocks the existing rearguard combat')
+local lantern=world.folder.AdventureActivities.RearguardScoutLantern
+local bars=0;for _,part in ipairs(lantern:GetChildren())do if part.Name=='RecognizableGoldBar'then bars+=1 end end
+check(bars==3 and lantern.LanternPost.Anchored,'a grounded three-bar lantern marks the rearguard on the main trail')
 engine.remove(fake);root:Destroy();enemies:Destroy()
 -- Personal before/after visuals and late stream-in use confirmed journal flags.
 local presentation=require(Client.CampaignExpansionPresentation)
@@ -300,6 +293,29 @@ local _,staleChoice=controlEngine.projection(cp,'hero');check(staleChoice==nil,'
 controlRoot.Position=Vector3.new(table.unpack(cg.activity.steps[2].position));controlEngine.interactStep(cp,cc.id,cg.id,'step2')
 controlsState=assert(P.apply(controlsState,cc.id,cg.id,'return','step2'));controlsState=assert(P.apply(controlsState,cc.id,cg.id,'protect','step3'))
 local _,completedChoice=controlEngine.projection(cp,'hero');check(completedChoice==nil,'incident completion closes any remaining choice')
+-- The archive question uses the same production prompt and choice verification.
+controlsState=select(1,reach('FV-04','exp_2'))
+local signal=fg.activity.finish
+local signalNode=world.activityNodes['FV-04:exp_2:'..signal.id]
+updatePrompts(workspace,{journal=controlsState},C,P,CP,require(Shared.DeepwoodQuestLog))
+check(signalNode.prompt.Enabled and not world.activityNodes['FV-04:exp_2:step1'].prompt,'archive offers one control in place of three rune prompts')
+local count=enqueues
+controlRoot.Position=signalNode.part.Position
+controlEngine.interactStep(cp,fc.id,fg.id,'step1')
+controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
+check(enqueues==count,'old markers and answers without an open control cannot advance the archive')
+controlEngine.interactStep(cp,fc.id,fg.id,signal.id)
+controlEngine.answer(cp,'FV-04:exp_2:resolve:warning')
+local _,feedbackDialog=controlEngine.projection(cp,'hero')
+check(enqueues==count and feedbackDialog.text==signal.failure,'wrong archive answer provides a hint without writing progress')
+controlRoot.Position=signalNode.part.Position+Vector3.new(80,0,0)
+controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
+check(enqueues==count and not select(2,controlEngine.projection(cp,'hero')),'walking away clears the dialogue and rejects an answer from a distance')
+controlRoot.Position=signalNode.part.Position
+controlEngine.interactStep(cp,fc.id,fg.id,signal.id)
+controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
+controlEngine.answer(cp,'FV-04:exp_2:resolve:shelter')
+check(enqueues==count+1 and controlsState.flags['FV-04:exp_2'],'the intended answer saves and replays at most once')
 controlEngine.remove(cp);controlRoot:Destroy()
 local returnFolder=Instance.new('Folder');returnFolder.Parent=workspace
 for _,id in ipairs({'DW-Q2','FV-Q1','EC-Q1'})do

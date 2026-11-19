@@ -56,7 +56,9 @@ function Book.create(parent,track)
     local target=Log.target(s,c);local g=target and target.goal
     local lesson=Guide.lesson(g)
     if #lesson>0 then card('READ THE NEXT ATTACK',lesson)end
-    if g and g.activity and g.activity.steps then
+    if g and g.activity and g.activity.finish then
+     card(g.title,{g.activity.finish.hint})
+    elseif g and g.activity and g.activity.steps then
      local lines={g.activity.mode=='investigate' and 'Gather the evidence in any order.' or g.activity.mode=='sequence' and g.activity.clue or 'Each confirmed step is saved.'}
      for i,step in ipairs(g.activity.steps) do table.insert(lines,(P.collected(s,c,g,i) and '✓ ' or '□ ')..step.title) end
      card(g.title,lines)

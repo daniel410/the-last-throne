@@ -75,6 +75,13 @@ function N.create(scene,c,g,area,k)
    for n=0,2 do arriving:SetAttribute('ExpansionPose'..n,CFrame.new(start))end
    arriving:SetAttribute('ExpansionTransitionSeconds',8)
   end
+ elseif c.id=='EC-05'and g.id=='exp_1'then
+  local at=V(table.unpack(g.activity.finish.position))
+  k.part(scene,'CrewPlanWorktable',V(12,.55,4),at+V(0,2.2,6),pal.wood,Enum.Material.WoodPlanks)
+  for _,x in ipairs({-5,5})do
+   k.part(scene,'CrewPlanTableLeg',V(.7,2,.7),at+V(x,1,6),pal.wood)
+  end
+  board(scene,'CrewCircuitPlan',at+V(0,1,7),'TRIANGLE: INLET   ·   RING: RETURN\nSHIELD: CITY PROTECTION')
  elseif c.id=='EC-05'and g.id=='exp_2'then
   local inlet=V(table.unpack(g.activity.steps[1].position));local back=V(table.unpack(g.activity.steps[2].position))
   k.actor('Dagna',inlet+V(0,0,10),inlet+V(0,0,5),0,3)

@@ -2,9 +2,10 @@ local function module(n)return dofile('src/shared/'..n..'.luau')end
 local C,P,Text,State,Route,Areas,Log=module('CampaignContent'),module('DeepwoodProgress'),module('StoryEventText'),module('CampaignSceneState'),module('CampaignIncidentRoute'),module('CampaignAreas'),module('DeepwoodQuestLog')
 local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
 local function copy(v)return P.copy(v)end
-local outcomes=0;local sizes,layouts={},{}
+local outcomes,focused=0,0;local sizes,layouts={},{}
 local function complete(s,c)
  for _,g in ipairs(c.goals)do if P.required(s,g)then
+  local starting=s
   for _,step in ipairs(g.activity and g.activity.steps or {false})do
    local before=copy(s)
    if step and step.solution then
@@ -23,6 +24,26 @@ local function complete(s,c)
     end
    end
   end
+  local action=g.activity and g.activity.finish
+  if action then
+   focused=focused+1
+   local key=c.id..':'..g.id
+   local partial=assert(P.apply(starting,c.id,g.id,nil,g.activity.mode=='investigate' and 'step2' or 'step1'))
+   for _,before in ipairs({starting,partial})do
+    check(P.nextStep(before,c,g)==action,'new and legacy partial journals point to the same field action')
+    if action.solution then
+     local declined,why=P.apply(before,c.id,g.id,'warning',action.id)
+     check(not declined and why=='WrongCircuit' and not before.flags[key],'bad signal does not write a stage')
+    end
+    local after,_,reward=P.apply(before,c.id,g.id,action.solution,action.id)
+    check(after and P.validate(after) and after.flags[key] and after.activities[key]==s.activities[key],'one field action produces the prior valid completion shape')
+    check(after.main==s.main and after.coins==s.coins and reward.xp==0 and reward.coins==0,'field action does not change chapter rewards')
+    check(next(after.decisions)==next(s.decisions),'field action introduces no persistent decision')
+    for i in ipairs(g.activity.steps)do check(P.collected(after,c,g,i),'prior step receipts stay readable')end
+    local retry,_,duplicate=P.apply(after,c.id,g.id,action.solution,action.id)
+    check(retry and duplicate.repeated and Text.resolve(g,action.id,action.solution,after,retry,c.id)=='','confirmed action retry is silent and idempotent')
+   end
+  end
  end end
  return s
 end
@@ -35,7 +56,7 @@ for _,c in ipairs(C.mainChapters)do
  s=complete(s,c)
 end
 for _,c in ipairs(C.chapters)do if c.side then s=assert(P.accept(s,c.id));s=complete(s,c)end end
-check(P.validate(s)and outcomes==82,'all incidents finish through confirmed message resolver')
+check(P.validate(s)and outcomes==82 and focused==8,'all incidents and eight focused actions complete')
 for _,c in ipairs(C.chapters)do for _,g in ipairs(c.expansionGoals)do
  local area;for _,a in ipairs(C.zones[c.zone].expansionAreas)do if a.id==g.area then area=a end end
  layouts[area.layout]=true;sizes[table.concat(area.size,':')]=true
