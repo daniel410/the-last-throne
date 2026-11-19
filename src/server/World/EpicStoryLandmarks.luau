@@ -96,7 +96,7 @@ local function compose(model, id, profile, palette, builder)
 		end
 	elseif id == 'FV-03' then
 		local iron = palette.wood:Lerp(palette.rock, .48)
-		local exposedTimber = Color3.fromRGB(121, 97, 75)
+		local exposedTimber = Color3.fromRGB(99, 76, 56)
 		for _, x in ipairs({-12, 0, 12}) do
 			part('WindbreakFoot', V(4.5, 2.5, 4.5), V(x, .55, 2.2), palette.rock, M.Glacier, true)
 			beam('WindbreakUpright', V(x, .9, 2.2), V(x, 9.8, 3.4), 1.4, palette.wood, M.Wood, true)
@@ -109,8 +109,8 @@ local function compose(model, id, profile, palette, builder)
 				part('WindbreakSlat', V(12, 1.08, .7), V(x, h, 2.2 + h * .12), palette.wood:Lerp(palette.trim, .12 + i * .035),
 					M.WoodPlanks, true, V(.11, 0, 0))
 			end
-			-- Exposed end grain wraps the upper rail where the snow crust breaks.
-			part('WindbreakExposedRailEnd', V(2.8, 1.12, .83), V(x * 1.67, 8.18, 3.18),
+			-- Dark exposed timber traces the upper rail beyond the broken snow crust.
+			part('WindbreakExposedRailEnd', V(5.2, 1.14, .88), V(x * 1.55, 8.18, 3.18),
 				exposedTimber, M.Wood, false, V(.11, 0, 0))
 		end
 		part('WindPackedSnow', V(12.6, 3.7, 10), V(-5.7, 1.02, 3), palette.ground, M.Snow, true,
@@ -152,7 +152,7 @@ local function compose(model, id, profile, palette, builder)
 		for _, x in ipairs({-1.66, 1.66}) do
 			part('CulvertRearWeepSlot', V(2.6, .58, .08), V(x, 1.76, 6.86), wetStone, M.Slate)
 		end
-		part('CulvertRearDripStone', V(8.4, .5, .66), V(0, 2.24, 6.72), cutStone, M.Slate)
+		part('CulvertRearDripStone', V(8.4, .38, .66), V(0, 2.19, 6.72), moss, M.Slate)
 		part('CulvertRearSill', V(8.8, .34, 1.45), V(0, 1.32, 6.95), cutStone, M.Cobblestone)
 		for _, x in ipairs({-4.18, 4.18}) do
 			part('CulvertRearQuoin', V(.85, 1.55, .36), V(x, 1.99, 6.79), moss, M.Cobblestone)
@@ -167,6 +167,8 @@ local function compose(model, id, profile, palette, builder)
 			part('CulvertAshlarPier', V(5.1, 6.1, 8), V(x * 6, 3, 2), palette.rock, M.Cobblestone, true)
 			part('CulvertSpringCourse', V(5.1, 1.4, 9), V(x * 5.6, 6, 2), cutStone, M.Slate, true)
 			beam('CulvertVaultStone', V(x * 5.3, 6.5, -1.3), V(x * 2, 8.2, -1.3), 2.35, cutStone, M.Slate, true)
+			part('CulvertVaultFacing', V(3.45, .78, .31), V(x * 3.75, 7.4, -2.44),
+				cutStone:Lerp(palette.trim, .35), M.Slate, false, V(0, 0, -x * .47))
 			part('CulvertMossCapping', V(7, .35, 6.4), V(x * 6, 6.9, 2), moss, M.Ground)
 		end
 		part('CulvertVaultCap', V(5.5, 2.35, 8.6), V(0, 8.25, 2.2), palette.rock, M.Slate, true)

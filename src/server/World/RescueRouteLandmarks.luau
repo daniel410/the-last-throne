@@ -13,6 +13,7 @@ local function prisonPalisade(palette, part, beam)
 	local cutStone = palette.rock:Lerp(palette.trim, .52)
 	local timber = palette.wood:Lerp(Color3.fromRGB(124, 81, 53), .51)
 	local iron = Color3.fromRGB(127, 113, 99)
+	local endGrain = Color3.fromRGB(150, 111, 77)
 	part('BuriedRuinSill', V(16.6, 2, 6), V(0, .36, 0), palette.rock, M.Cobblestone)
 	for i, x in ipairs({-6, -2, 2, 6}) do
 		local height = i % 2 == 0 and 1.28 or 1.48
@@ -24,6 +25,8 @@ local function prisonPalisade(palette, part, beam)
 		local lean = i % 2 == 0 and -.39 or .47
 		beam('RaiderPalisadeStake', V(x, 2.05, .56), V(x + lean, top, .86), 1.24,
 			timber:Lerp(palette.wood, i * .042), M.Wood)
+		beam('PalisadeCutEnd', V(x + lean * .88, top - .55, .83), V(x + lean, top, .86), 1.26,
+			endGrain:Lerp(timber, (i % 3) * .12), M.Wood)
 	end
 	beam('ReusedCrossRail', V(-7.65, 4.9, -.18), V(7.65, 4.6, -.18), .84, timber, M.Wood)
 	beam('PalisadeKickBrace', V(-5.45, .83, -2.9), V(-4.22, 4.62, .13), .82, timber, M.Wood)
@@ -52,17 +55,17 @@ local function scouredBank(palette, part, beam)
 	fit('SlumpedBankFace', V(15.8, rise, rearToe - crest), crown * CFrame.new(0, 0, (rearToe + crest) / 2)
 		* CFrame.Angles(0, math.pi, 0), earth:Lerp(slate, .21), M.Ground, 'Wedge')
 
-	-- The thin, joined soil exposures follow the two slopes over the same crest.
+	-- Exposed sediment follows both slopes over the crest and reads against the darker earth.
 	local function scarFace(toePoint, crestPoint, toe, width, color)
 		local normal = crown:VectorToWorldSpace(V(0, 1, -rise / (crest - toe)).Unit)
 		local a = crown:PointToWorldSpace(toePoint)
 		local b = crown:PointToWorldSpace(crestPoint)
 		local cf = CFrame.lookAlong((a + b) / 2 - normal * .055, b - a, normal)
-		fit('PaleScouredSoil', V(width, .25, (b - a).Magnitude), cf, color, M.Ground)
+		fit('PaleScouredSoil', V(width, .25, (b - a).Magnitude), cf, color, M.Sand)
 	end
 	for _, scar in ipairs({
-		{ridgeX = -3.55, frontX = -5.6, rearX = -2.85, width = .88, color = exposedSoil},
-		{ridgeX = -.38, frontX = -1.9, rearX = .83, width = .72, color = exposedSoil:Lerp(earth, .2)},
+		{ridgeX = -3.55, frontX = -5.6, rearX = -2.85, width = 1.12, color = exposedSoil},
+		{ridgeX = -.38, frontX = -1.9, rearX = .83, width = .91, color = exposedSoil:Lerp(earth, .14)},
 	}) do
 		local ridge = V(scar.ridgeX, rise / 2, crest)
 		for _, side in ipairs({
@@ -99,8 +102,8 @@ local function circuitPrototype(palette, part)
 	}) do
 		pipe(run.name .. 'CircuitPipe', 9.7, run.width, V(0, run.y, run.z), run.color)
 		for _, x in ipairs({-4.85, 4.85}) do
-			pipe(run.name .. 'ManifoldFlange', 1.6, run.width + .38, V(x, run.y, run.z),
-				run.color:Lerp(Color3.fromRGB(189, 173, 159), .32))
+			pipe(run.name .. 'ManifoldFlange', 1.86, run.width + .48, V(x, run.y, run.z),
+				run.color:Lerp(Color3.fromRGB(189, 173, 159), .44))
 		end
 	end
 	part('SampleChamber', V(3.25, 2.62, 3.45), V(0, 3.17, 0), palette.rock, M.Basalt)

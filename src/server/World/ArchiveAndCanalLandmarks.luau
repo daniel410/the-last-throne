@@ -46,8 +46,8 @@ local function archiveTerminal(palette, part)
 	for _, side in ipairs({-1, 1}) do
 		part('DressedArchiveCurb', V(1.55, .82, 10.6), V(side * 2.25, 1, 0), stone, M.Slate)
 		part('CurbFrostSeam', V(1.3, .22, 5.3), V(side * 2.25, 1.48, 1.6), palette.trim, M.Glacier)
-		part('ExposedTerminalCollar', V(1.66, .46, 1.12), V(side * 2.25, 1.48, -2.05),
-			Color3.fromRGB(110, 96, 75), M.CorrodedMetal)
+		part('ExposedTerminalCollar', V(1.66, .5, 2.08), V(side * 2.25, 1.5, -2.05),
+			Color3.fromRGB(87, 70, 51), M.CorrodedMetal)
 		part('BuriedSignalLead', V(.46, .33, 7.75), V(side * .61, .99, -1.15), palette.wood, M.Metal)
 	end
 	part('RelayStoneSaddle', V(6.6, 1.55, 2.1), V(0, 1.51, 3.75), palette.rock, M.Slate)
