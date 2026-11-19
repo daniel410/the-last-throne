@@ -96,7 +96,7 @@ local function compose(model, id, profile, palette, builder)
 		end
 	elseif id == 'FV-03' then
 		local iron = palette.wood:Lerp(palette.rock, .48)
-		local weatheredGrain = Color3.fromRGB(126, 109, 94)
+		local exposedTimber = Color3.fromRGB(121, 97, 75)
 		for _, x in ipairs({-12, 0, 12}) do
 			part('WindbreakFoot', V(4.5, 2.5, 4.5), V(x, .55, 2.2), palette.rock, M.Glacier, true)
 			beam('WindbreakUpright', V(x, .9, 2.2), V(x, 9.8, 3.4), 1.4, palette.wood, M.Wood, true)
@@ -109,17 +109,17 @@ local function compose(model, id, profile, palette, builder)
 				part('WindbreakSlat', V(12, 1.08, .7), V(x, h, 2.2 + h * .12), palette.wood:Lerp(palette.trim, .12 + i * .035),
 					M.WoodPlanks, true, V(.11, 0, 0))
 			end
-			-- Exposed grain on the upper rail stays readable against the bright drift.
-			part('WindbreakWeatheredRailFace', V(11.5, .56, .1), V(x, 8.23, 2.81),
-				weatheredGrain, M.WoodPlanks, false, V(.11, 0, 0))
+			-- Exposed end grain wraps the upper rail where the snow crust breaks.
+			part('WindbreakExposedRailEnd', V(2.8, 1.12, .83), V(x * 1.67, 8.18, 3.18),
+				exposedTimber, M.Wood, false, V(.11, 0, 0))
 		end
 		part('WindPackedSnow', V(12.6, 3.7, 10), V(-5.7, 1.02, 3), palette.ground, M.Snow, true,
 			V(0, math.pi + .08, 0), 'Wedge')
 		part('BrokenDriftEdge', V(12.2, 2.75, 7.8), V(5.2, .68, 3.2), palette.ground, M.Snow, true,
 			V(0, math.pi - .17, .06), 'Corner')
 		part('ExposedIceLip', V(14.5, 1.3, 5), V(-4, .25, -1.6), palette.trim, M.Glacier, false, V(0, -.18, 0), 'Wedge')
-		part('FenceSnowCrust', V(12, .4, 1.1), V(-6, 8.83, 3.15), palette.ground, M.Snow)
-		part('FenceSnowCrust', V(8.2, .36, 1.1), V(5, 8.8, 3.15), palette.ground, M.Snow)
+		part('FenceSnowCrust', V(9.1, .4, 1.1), V(-4.7, 8.83, 3.15), palette.ground, M.Snow)
+		part('FenceSnowCrust', V(8.2, .36, 1.1), V(4.6, 8.8, 3.15), palette.ground, M.Snow)
 	elseif id == 'EC-03' then
 		local timber = palette.wood:Lerp(Color3.fromRGB(132, 94, 66), .45)
 		local ore = palette.rock:Lerp(Color3.fromRGB(125, 96, 75), .37)
@@ -149,9 +149,11 @@ local function compose(model, id, profile, palette, builder)
 		part('CulvertFootCourse', V(21, 2.2, 10), V(0, .45, 2), palette.rock, M.Cobblestone, true)
 		part('CulvertClosedBack', V(15, 6.3, 2), V(0, 3.25, 5.8), palette.rock, M.Slate, true)
 		-- The downstream face shows a narrow service drain within the closed masonry.
-		part('CulvertRearWeepSlot', V(6.4, .84, .08), V(0, 1.92, 6.86), wetStone, M.Slate)
-		part('CulvertRearDripStone', V(8.4, .46, .52), V(0, 2.63, 6.72), cutStone, M.Slate)
-		part('CulvertRearSill', V(8.8, .34, .92), V(0, 1.32, 6.69), cutStone, M.Cobblestone)
+		for _, x in ipairs({-1.66, 1.66}) do
+			part('CulvertRearWeepSlot', V(2.6, .58, .08), V(x, 1.76, 6.86), wetStone, M.Slate)
+		end
+		part('CulvertRearDripStone', V(8.4, .5, .66), V(0, 2.24, 6.72), cutStone, M.Slate)
+		part('CulvertRearSill', V(8.8, .34, 1.45), V(0, 1.32, 6.95), cutStone, M.Cobblestone)
 		for _, x in ipairs({-4.18, 4.18}) do
 			part('CulvertRearQuoin', V(.85, 1.55, .36), V(x, 1.99, 6.79), moss, M.Cobblestone)
 			part('CulvertSillReturn', V(1.05, .38, 1.65), V(x, 1.33, 6.08), cutStone, M.Slate,
