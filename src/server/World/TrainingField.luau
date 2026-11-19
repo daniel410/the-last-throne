@@ -153,8 +153,10 @@ local function makeEnemy(parent, kind, x, z, scale, visualMultiplier)
 	humanoid.JumpPower = 0
 	humanoid.Parent = model
 	TdMonsterAppearance.attach(model, kind, 3 * scale, visualMultiplier)
-	model.Parent = parent
-	root:SetNetworkOwner(nil)
+	if parent then
+		model.Parent = parent
+		root:SetNetworkOwner(nil)
+	end
 	return model
 end
 

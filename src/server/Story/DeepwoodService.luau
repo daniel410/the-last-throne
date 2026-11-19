@@ -14,8 +14,10 @@ local Difficulty=require(ReplicatedStorage.Shared.Difficulty)
 local Gold=require(ReplicatedStorage.Shared.GoldRewardTuning)
 local Checkpoints=require(ReplicatedStorage.Shared.CheckpointTravel)
 local travelCheckpoint
+local startNearbyEncounters
 local Service={}
 local offers={}
+local enemyTemplates={}
 local activities,access,companion
 local options,remote,encounters,queues,lastRequest={},{},{},{},{}
 local function context(player)
@@ -108,6 +110,17 @@ function Service.destination(player,heroId)
  if not prepared(c)then return nil end
  return options.world.spawns[c.zone]
 end
+local function notifyRegionReady(player,heroId,runId,chapter)
+ local prepared=pcall(options.prepareStory,chapter.id)
+ local hero=active(player)
+ local run=hero and hero.heroId==heroId and options.inventory.expedition(player,heroId,true)
+ if player.Parent~=Players or player:GetAttribute('K0SessionPhase')~='Tutorial' or not run or run.runId~=runId then return end
+ local ready=options.world.readyEpics or options.world.loadedEpics or {}
+ local notice=prepared and ready[chapter.epic or 1] and options.world.spawns[chapter.zone]
+  and 'The road to '..Content.epics[chapter.epic].region..' is open. Follow the gold trail on foot.'
+  or Text.StoryRegionLoadFailed
+ publish(player,nil,notice)
+end
 local function enqueuePersonal(player,heroId,c,g,choice,stepId)
  queues[player]=queues[player] or {events={},keys={}}
  local q=queues[player];local key=heroId..':'..c.id..':'..g.id..':'..tostring(stepId)..':'..tostring(choice)
@@ -148,15 +161,18 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
     end
     local complete=after and after.clears[e.c.id] and before and not before.clears[e.c.id]
     local transitionNotice
+    local preparingChapter
     if Checkpoints.report(after) and not Checkpoints.report(before)then transitionNotice=Checkpoints.text.ready end
     local nextChapter=after and Content.mainChapters[after.main+1]
     if complete and not e.c.side and nextChapter and (nextChapter.epic or 1)~=(e.c.epic or 1)
      and after.expeditionMission==nextChapter.id and options.prepareStory then
-     publish(player,Text.StoryPreparingRegion)
-     local prepared=pcall(options.prepareStory,nextChapter.id)
-     if prepared and options.world.spawns[nextChapter.zone]then
+     local ready=options.world.readyEpics or options.world.loadedEpics or {}
+     if ready[nextChapter.epic or 1] and options.world.spawns[nextChapter.zone]then
       transitionNotice='The road to '..Content.epics[nextChapter.epic].region..' is open. Follow the gold trail on foot.'
-     else transitionNotice=Text.StoryRegionLoadFailed end
+     else
+      transitionNotice=Text.StoryPreparingRegion
+      preparingChapter=nextChapter
+     end
     end
     local run=options.inventory.expedition(player,e.heroId)
     local firstClear=before and before.expeditionFirstClear
@@ -168,7 +184,9 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
     end
     local xp=growthBefore and growthBefore.level>=99 and 0 or reward.xp
     publish(player,text~='' and text or nil,transitionNotice,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=xp,coins=reward.gold,ore=firstClear and e.c.reward.ore or 0,gems=firstClear and e.c.reward.gems or 0,outcome=e.c.quest.outcome} or nil)
+    if preparingChapter then task.defer(notifyRegionReady,player,e.heroId,e.runId,preparingChapter)end
     end
+    task.defer(startNearbyEncounters,player)
    end
   end
   q.running=false
@@ -305,18 +323,28 @@ spawnWave=function(e)
   local a=index*math.pi*2/#batch
   local p=e.position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
   local kind=spec.kind;local boss=Balance.isBoss(kind)
-  local scale,visual=Sizing.forStory(kind,boss)
-  local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,visual)
+  local template=enemyTemplates[kind]
+  if not template then
+   local scale,visual=Sizing.forStory(kind,boss)
+   template=Rig.makeEnemy(nil,kind,0,0,scale,visual)
+   enemyTemplates[kind]=template
+  end
+  local m=template:Clone()
   e.unitSpecs=e.unitSpecs or {};e.unitSpecs[m]=spec
-  m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
+  m:PivotTo(m:GetPivot()+p);m:SetAttribute('DeepwoodEncounter',e.key)
   e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',(e.launchMission and e.chapter.id~=e.launchMission and e.chapter.id..':' or '')..e.goal.id..'_'..(spec.killIndex or e.spawnCount))
   m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize,e.difficultyId,e.rulesVersion,index)
   m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or Text.Enemy[kind] or kind
   table.insert(e.models,m);e.remaining=e.remaining+1
   if boss then e.boss=m else e.guardsRemaining=e.guardsRemaining+1 end
+  m.Parent=options.enemies
   options.combat.addStoryEnemy(m)
  end
+end
+local function activateRouteWave(e)
+ spawnWave(e)
+ for ally in pairs(e.participants)do publish(ally,'Enemies ahead. Clear this stretch of the route.')end
 end
 local function begin(player,node,automatic)
  local c,g=node.chapter,node.goal;local position=node.part.Position
@@ -357,6 +385,36 @@ local function begin(player,node,automatic)
   end
  else spawnWave(e)end
  for ally in pairs(e.participants) do publish(ally,g.activity and g.activity.intro or 'Encounter started. Watch enemy attack warnings and use the open ground.') end
+end
+startNearbyEncounters=function(player)
+ local hero=active(player);local ctx,root=context(player)
+ if not hero or hero.training or not ctx or not root then return end
+ local s=state(player,ctx.heroId)
+ local admission=options.inventory.expedition(player,ctx.heroId)
+ local rules=admission and admission.balanceVersion
+ -- Admitted runs can only activate objectives from the current chapter.
+ local chapter=s and s.expeditionMission and Content.byId[s.expeditionMission]
+ if not s or s.expeditionMission and not chapter then return end
+ local chapters=chapter and {chapter} or Content.chapters
+ local runId=admission and admission.runId or 'legacy'
+ local ready=options.world.readyEpics or options.world.loadedEpics
+ for _,c in ipairs(chapters)do if not ready or ready[c.epic or 1]then for _,g in ipairs(c.goals)do
+  if #g.enemies>0 and (g.activity and g.activity.mode=='battle' or Routes.enabled(rules)) and not encounters[c.id..':'..g.id..':'..runId] then
+   local node=options.world.nodes[c.id..':'..g.id]
+   if node and Progress.available(s,c,g)then
+    local plan=Routes.plan(c,g,rules)
+    local at=plan and entryPosition(c,g,admission,admittedCount(player,admission))or node.part.Position
+    if (root.Position-at).Magnitude<32 then
+     begin(player,node,true)
+     local encounter=encounters[c.id..':'..g.id..':'..runId]
+     -- The newly admitted living hero is already inside the first approach radius.
+     if encounter and encounter.waiting and (root.Position-encounter.position).Magnitude<=Routes.approach then
+      activateRouteWave(encounter)
+     end
+    end
+   end
+  end
+ end end end
 end
 local function offerQuest(player,node,discovery)
  local ctx,root=context(player);local hero=active(player)
@@ -464,8 +522,7 @@ function Service.stepEncounters()
   if e.waiting then for p,heroId in pairs(e.participants)do
    local ctx,root=context(p);local run=ctx and options.inventory.expedition(p,heroId)
    if ctx and ctx.heroId==heroId and run and run.runId==e.runId and root and (root.Position-e.position).Magnitude<=Routes.approach then
-    spawnWave(e)
-    for ally in pairs(e.participants)do publish(ally,'Enemies ahead. Clear this stretch of the route.')end
+    activateRouteWave(e)
     break
    end
   end
@@ -578,22 +635,7 @@ function Service.start(settings)
   local tick=activityElapsed;activityElapsed=0
   for _,p in ipairs(Players:GetPlayers()) do
    access.update(p)
-   local hero=active(p);local ctx,root=context(p)
-   if hero and not hero.training and ctx and root then
-    local s=state(p,ctx.heroId)
-    local admission=options.inventory.expedition(p,ctx.heroId)
-    local rules=admission and admission.balanceVersion
-    -- Battle markers hide their prompts; accepted side quests need the same proximity entry.
-    -- Progress.available retains acceptance, prerequisites and expedition mission gates.
-    if s then for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
-     if #g.enemies>0 and (g.activity and g.activity.mode=='battle' or Routes.enabled(rules)) and Progress.available(s,c,g) and not encounters[c.id..':'..g.id..':'..(admission and admission.runId or 'legacy')] then
-      local node=options.world.nodes[c.id..':'..g.id]
-      local plan=Routes.plan(c,g,rules)
-      local at=plan and entryPosition(c,g,admission,admittedCount(p,admission))or node and node.part.Position
-      if node and at and (root.Position-at).Magnitude<32 then begin(p,node,true) end
-     end
-    end end end
-   end
+   startNearbyEncounters(p)
   end
   Service.stepEncounters()
   partyStory.replay()

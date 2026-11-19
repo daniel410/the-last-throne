@@ -26,7 +26,9 @@ local source=SSS.Server.Story.DeepwoodService.Source
 local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.destination',first,true))
 source=source:sub(1,first-1)..'local function publish()end\n'..source:sub(last)
 source=source:gsub('Players:GetPlayers%(%)','fixturePlayers '):gsub('return Service\n','function Service.qa(o)options=o end\nreturn Service\n')
+local rigBuilds={}
 local fakeRig={makeEnemy=function(folder,kind,x,z)
+ rigBuilds[kind]=(rigBuilds[kind] or 0)+1
  local m=Instance.new('Model');m.Name=kind;local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Position=Vector3.new(x,0,z);root.Parent=m;m.PrimaryPart=root
  local h=Instance.new('Humanoid');h.Parent=m;m:SetAttribute('EnemyKind',kind);m.Parent=folder;return m
 end}
@@ -61,6 +63,7 @@ for index,batch in ipairs(batches)do
  service.stepEncounters();local pack=living();check(#pack==#batch,'preserved pack population at clearing '..index)
  for _,m in ipairs(pack)do
   check((m.PrimaryPart.Position-at).Magnitude<16,'exact production clearing position')
+  check(rigBuilds[m.Name]==1,'each enemy kind is assembled once per service')
   if m:GetAttribute('StoryBoss')then boss+=1;check(index==#batches,'boss only at final clearing')end
   total+=1;m:FindFirstChildOfClass('Humanoid').Health=0;service.defeated(m);service.defeated(m)
  end

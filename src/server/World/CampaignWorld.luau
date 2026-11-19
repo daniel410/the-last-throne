@@ -57,9 +57,12 @@ function W.create(epic,world)
  require(script.Parent.CampaignSceneryPlacement).apply(world,world.folder.EpicWorldArt['EpicWorldArt_'..epic])
  require(script.Parent.CampaignCombatRouteWorld).finish(world,scope)
  if epic==1 then require(script.Parent.DeepwoodConceptArt).finish(world)end
- require(script.Parent.EpicWorldArt).connectOverland(world)
- require(script.Parent.RegionalConceptArt).finish(world)
- require(script.Parent.CampaignSurfaceFinish).apply(world)
+ -- A staged epic gets these passes after it joins the active campaign.
+ if not world.staging then
+  require(script.Parent.EpicWorldArt).connectOverland(world)
+  require(script.Parent.RegionalConceptArt).finish(world)
+  require(script.Parent.CampaignSurfaceFinish).apply(world)
+ end
  require(script.Parent.CampaignQuestSetpieces).create(world,epic)
  world.loadedEpics[epic]=true
  world.folder:SetAttribute('Epic'..epic..'Ready',true)
