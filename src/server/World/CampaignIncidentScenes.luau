@@ -299,6 +299,7 @@ function S.create(scene,c,g,area)
    end)
   end
  end
+ require(script.Parent.EpicApproachContours).buildIncident(scene,c,g,area)
  require(script.Parent.CampaignNarrativeScenes).create(scene,c,g,area,{center=center,result=result,pal=pal,part=part,beam=beam,model=model,moving=moving,actor=actor})
  if c.id=='DW-Q2'or c.id=='FV-Q1'or c.id=='EC-Q1'then require(script.Parent.CampaignReturnScenes).create(scene,result,c.id)end
  scene:SetAttribute('IncidentLayout',area.layout)
