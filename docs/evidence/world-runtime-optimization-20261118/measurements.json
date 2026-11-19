@@ -1,0 +1,202 @@
+{
+  "0.113.14": {
+    "cold_profile": {
+      "long": 11,
+      "total": 10.645289875101298,
+      "peak": 1.6858803033828735,
+      "breakdown": {
+        "CampaignRouteClearance.retireBlockouts": {
+          "calls": 1,
+          "seconds": 0.007784249959513545
+        },
+        "CampaignSceneryCollision.apply": {
+          "calls": 77,
+          "seconds": 0.02374029252678156
+        },
+        "EpicWorldArt.connectOverland": {
+          "calls": 1,
+          "seconds": 3.1624920666217804e-05
+        },
+        "CampaignSceneryPlacement.openGalleries": {
+          "calls": 1,
+          "seconds": 0.12593920854851604
+        },
+        "StoryGateTemplates.prepare": {
+          "calls": 1,
+          "seconds": 0.00016895821318030357
+        },
+        "DeepwoodActivityWorld.create": {
+          "calls": 2,
+          "seconds": 0.017178291687741876
+        },
+        "CampaignCombatRouteWorld.create": {
+          "calls": 1,
+          "seconds": 0.03629116667434573
+        },
+        "CampaignRouteClearance.apply": {
+          "calls": 1,
+          "seconds": 1.3680895417928696
+        },
+        "EpicWorldArt.create": {
+          "calls": 1,
+          "seconds": 6.986004458274692
+        },
+        "DeepwoodConceptArt.finish": {
+          "calls": 1,
+          "seconds": 0.0794787083286792
+        },
+        "CampaignSurfaceFinish.apply": {
+          "calls": 1,
+          "seconds": 0.23807645845226943
+        },
+        "RegionalConceptArt.finish": {
+          "calls": 1,
+          "seconds": 9.791692718863487e-06
+        },
+        "DeepwoodGroundedWorld.create": {
+          "calls": 1,
+          "seconds": 1.722314708167687
+        },
+        "CampaignExpansionWorld.create": {
+          "calls": 1,
+          "seconds": 0.19641941669397056
+        },
+        "DeepwoodWorld.create": {
+          "calls": 1,
+          "seconds": 2.444073708495125
+        },
+        "CampaignCombatRouteWorld.finish": {
+          "calls": 1,
+          "seconds": 0.08428799989633262
+        },
+        "CampaignSceneryPlacement.apply": {
+          "calls": 1,
+          "seconds": 0.4235184998251498
+        },
+        "DeepwoodPlaces.create": {
+          "calls": 1,
+          "seconds": 0.6707582916133106
+        },
+        "CampaignExpansionWorld.openEntrances": {
+          "calls": 1,
+          "seconds": 0.00048183323815464973
+        },
+        "CampaignQuestSetpieces.create": {
+          "calls": 1,
+          "seconds": 0.0037218332290649414
+        }
+      },
+      "frames": 273,
+      "instances": 27046
+    },
+    "cold_fingerprint": {
+      "hash": 1250275000,
+      "relocated": 159,
+      "parts": 18241
+    },
+    "terrain_fingerprint": {
+      "hash": 3247816681,
+      "cells": 47145
+    }
+  },
+  "0.113.15": {
+    "cold_profile": {
+      "long": 11,
+      "total": 9.565559375099838,
+      "peak": 1.5940630435943604,
+      "breakdown": {
+        "CampaignRouteClearance.retireBlockouts": {
+          "calls": 1,
+          "seconds": 0.007788791554048657
+        },
+        "CampaignSceneryCollision.apply": {
+          "calls": 77,
+          "seconds": 0.023202125448733568
+        },
+        "EpicWorldArt.connectOverland": {
+          "calls": 1,
+          "seconds": 2.004159614443779e-05
+        },
+        "CampaignSceneryPlacement.openGalleries": {
+          "calls": 1,
+          "seconds": 0.11972304154187441
+        },
+        "StoryGateTemplates.prepare": {
+          "calls": 1,
+          "seconds": 0.00018416671082377434
+        },
+        "DeepwoodActivityWorld.create": {
+          "calls": 2,
+          "seconds": 0.019975583534687757
+        },
+        "CampaignCombatRouteWorld.create": {
+          "calls": 1,
+          "seconds": 0.044337375089526176
+        },
+        "CampaignRouteClearance.apply": {
+          "calls": 1,
+          "seconds": 1.2921449167188257
+        },
+        "EpicWorldArt.create": {
+          "calls": 1,
+          "seconds": 6.026252750074491
+        },
+        "DeepwoodConceptArt.finish": {
+          "calls": 1,
+          "seconds": 0.07307899999432266
+        },
+        "CampaignSurfaceFinish.apply": {
+          "calls": 1,
+          "seconds": 0.20664437511004508
+        },
+        "RegionalConceptArt.finish": {
+          "calls": 1,
+          "seconds": 1.00000761449337e-05
+        },
+        "DeepwoodGroundedWorld.create": {
+          "calls": 1,
+          "seconds": 1.6441231667995453
+        },
+        "CampaignExpansionWorld.create": {
+          "calls": 1,
+          "seconds": 0.1989060416817665
+        },
+        "DeepwoodWorld.create": {
+          "calls": 1,
+          "seconds": 2.3655471249949187
+        },
+        "CampaignCombatRouteWorld.finish": {
+          "calls": 1,
+          "seconds": 0.0885195832233876
+        },
+        "CampaignSceneryPlacement.apply": {
+          "calls": 1,
+          "seconds": 0.4100558334030211
+        },
+        "DeepwoodPlaces.create": {
+          "calls": 1,
+          "seconds": 0.6688477916177362
+        },
+        "CampaignExpansionWorld.openEntrances": {
+          "calls": 1,
+          "seconds": 0.00042083323933184147
+        },
+        "CampaignQuestSetpieces.create": {
+          "calls": 1,
+          "seconds": 0.0034202083479613066
+        }
+      },
+      "frames": 217,
+      "instances": 27046
+    },
+    "cold_fingerprint": {
+      "hash": 1250275000,
+      "relocated": 159,
+      "parts": 18241
+    },
+    "terrain_fingerprint": {
+      "hash": 3247816681,
+      "cells": 47145
+    }
+  }
+}

@@ -5,7 +5,7 @@
 
 - 다섯 에픽 환경 0.113.12 후보는 습지 보고 길목, 야간 뿌리, 동쪽 중계기 도관, 공급·회수 수로, 묘역 배수구를 개선했다. [고정 빌드·보행·비교 화면과 남은 수용](../evidence/epic-approach-readability-20261118/README.md). G5 진행 중.
 
-- 몬스터 출현·스토리 전환: 0.113.14 후보는 목표 저장 직후 근처 교전을 확인하고, 에픽 완료를 다음 지역 준비보다 먼저 전달한다. 동일 종의 스토리 몬스터는 준비된 리그를 복제하며 지역 마감 중복 실행을 제거했다. [전환 순서·리그·지역 계측과 남은 수용](../evidence/story-phase-speed-20261118/README.md). 후보 미게시. [선행 저장 개선](../evidence/monster-spawn-latency-20261118/README.md)과 [지도 복구](../evidence/campaign-save-map-20261117/README.md).
+- 지역 생성·전투 반복 작업: 0.113.15 후보는 중복 경로 검사와 불필요한 프레임 대기를 줄였으며, 교전 검증은 원정 ID만 조회한다. [지역 생성 전후·지형 대조·미검증](../evidence/world-runtime-optimization-20261118/README.md). 후보 미게시. [선행 출현·페이즈 개선](../evidence/story-phase-speed-20261118/README.md) · [저장 대기 개선](../evidence/monster-spawn-latency-20261118/README.md) · [지도 복구](../evidence/campaign-save-map-20261117/README.md).
 
 - 배틀 로딩: 입장 에픽만 먼저 생성하고, 인접한 마지막 스토리 진입 시 다음 에픽을 백그라운드 준비하도록 소스를 개선했다. 이전 지역은 해금된 왕복 경계 접근 시 준비하며 실제 통행 조건은 유지한다. 준비 실패 복구와 미준비 지역 체크포인트의 로딩 화면도 반영했다. [0.113.7 로비·배틀 게시](../evidence/release-0.113.7-20261117/README.md)를 완료했다. [후속 리뷰](../evidence/battle-loading-review-20261117/README.md)에서 부활 준비/재시도와 연속 이동 시 화면 고착을 수정했다. [격리 Studio 비교·회귀·계측/실제 입장 미검증](../evidence/battle-loading-20261117/README.md). TLT-040/087, G7 수용 후속.
 
