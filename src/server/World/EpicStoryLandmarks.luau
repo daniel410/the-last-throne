@@ -96,6 +96,7 @@ local function compose(model, id, profile, palette, builder)
 		end
 	elseif id == 'FV-03' then
 		local iron = palette.wood:Lerp(palette.rock, .48)
+		local weatheredGrain = Color3.fromRGB(126, 109, 94)
 		for _, x in ipairs({-12, 0, 12}) do
 			part('WindbreakFoot', V(4.5, 2.5, 4.5), V(x, .55, 2.2), palette.rock, M.Glacier, true)
 			beam('WindbreakUpright', V(x, .9, 2.2), V(x, 9.8, 3.4), 1.4, palette.wood, M.Wood, true)
@@ -108,6 +109,9 @@ local function compose(model, id, profile, palette, builder)
 				part('WindbreakSlat', V(12, 1.08, .7), V(x, h, 2.2 + h * .12), palette.wood:Lerp(palette.trim, .12 + i * .035),
 					M.WoodPlanks, true, V(.11, 0, 0))
 			end
+			-- Exposed grain on the upper rail stays readable against the bright drift.
+			part('WindbreakWeatheredRailFace', V(11.5, .56, .1), V(x, 8.23, 2.81),
+				weatheredGrain, M.WoodPlanks, false, V(.11, 0, 0))
 		end
 		part('WindPackedSnow', V(12.6, 3.7, 10), V(-5.7, 1.02, 3), palette.ground, M.Snow, true,
 			V(0, math.pi + .08, 0), 'Wedge')
@@ -141,14 +145,17 @@ local function compose(model, id, profile, palette, builder)
 	else
 		local moss = palette.rock:Lerp(palette.ground, .55)
 		local cutStone = palette.trim:Lerp(Color3.fromRGB(174, 177, 154), .4)
+		local wetStone = Color3.fromRGB(49, 56, 62)
 		part('CulvertFootCourse', V(21, 2.2, 10), V(0, .45, 2), palette.rock, M.Cobblestone, true)
 		part('CulvertClosedBack', V(15, 6.3, 2), V(0, 3.25, 5.8), palette.rock, M.Slate, true)
 		-- The downstream face shows a narrow service drain within the closed masonry.
-		part('CulvertRearWeepSlot', V(6.4, .84, .08), V(0, 1.92, 6.83), palette.wood, M.Slate)
+		part('CulvertRearWeepSlot', V(6.4, .84, .08), V(0, 1.92, 6.86), wetStone, M.Slate)
 		part('CulvertRearDripStone', V(8.4, .46, .52), V(0, 2.63, 6.72), cutStone, M.Slate)
-		part('CulvertRearSill', V(8.8, .34, .55), V(0, 1.32, 6.72), cutStone, M.Cobblestone)
+		part('CulvertRearSill', V(8.8, .34, .92), V(0, 1.32, 6.69), cutStone, M.Cobblestone)
 		for _, x in ipairs({-4.18, 4.18}) do
 			part('CulvertRearQuoin', V(.85, 1.55, .36), V(x, 1.99, 6.79), moss, M.Cobblestone)
+			part('CulvertSillReturn', V(1.05, .38, 1.65), V(x, 1.33, 6.08), cutStone, M.Slate,
+				false, V(0, 0, 0), 'Wedge')
 		end
 		part('CulvertRunoff', V(6.2, .25, 6), V(0, .04, -3), moss, M.Mud)
 		part('CulvertRunoffInvert', V(3.8, .18, 5.8), V(0, .21, -3.02), palette.wood, M.Slate)
