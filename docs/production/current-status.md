@@ -88,7 +88,7 @@
 - 본편: Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. 35본편·12선택, 반복 웨이브를 경로 교전으로 분산. 0.104.3에서 GW/HG·EC-05의 길목 전투13개와 기존 부분 저장 호환을 보강하고 전투 HUD 초기화를 연출 시작과 분리했다. [검증/미게시·남은 수용](../evidence/story-combat-pacing-20261111/README.md).
 - 마법사 모자:사용자 지정 최대 MP +10/+20/+30/+60으로 변경했다. 지력안을 대체하고 기존 서버 MP 집계/강화/메뉴 표시를 사용한다. [소스 회귀·엔진 미검증](../evidence/mage-hat-mp-20261111/README.md). PNG·신규 Traveler 지급은 기존0.101.0 기준이며 최대MP 변경의 전용 엔진·게시·실기기 수용은 후속이다.
 - 최근 장비: Tempered/Veteran/Sentinel 부위별 재지정과 선택형 특수 효과. [수치 검증](../evidence/equipment-values-20261110/README.md), [효과 계약](equipment-special-effects-2026-11-10.md). 기존 장비 효과 자동 배정 없음.
-- 최근 게시: **0.113.7**, 로비·배틀에 같은 단일 빌드를 게시했다. Private 유지·원본 해시 일치를 확인했으며 게시 버전 번호 조회와 실제 클라이언트 수용은 후속이다. [빌드·게시 기록](../evidence/release-0.113.7-20261117/README.md).
+- 최근 게시: **0.113.12**, 기존 Private 로비·배틀에 같은 단일 빌드를 게시했다. Studio 게시 성공과 원본 해시를 확인했다. 게시 클라이언트 수용은 후속이다. [빌드·게시 기록](../evidence/release-0.113.12-20261118/README.md).
 - 남은 수용: 게시 클라이언트/실계정 저장·재접속, 각 Experience 실제 이동, 1~4인+AI, 모바일/실기기 성능·전투 밸런스·사용자 미술 수용. 상세 범위는 해당 증거와 [QA 계획](qa-and-release-plan.md)을 따른다.
 
 - GW-01 숲 가장자리: 0.110.5에서 반복 수목을 높이·깊이가 다른6군집으로 구성했다. [고정 빌드·110검사·지역 경로 감사·전후 화면·남은 수용](../evidence/gw01-verge-20261115/README.md). 실제 게임 카메라/실기기·미술 수용은 미검증이다.
