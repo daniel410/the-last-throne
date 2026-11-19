@@ -1926,8 +1926,9 @@ end
 
 registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	local kind = model:GetAttribute("EnemyKind")
+	local storyEnemy = model:GetAttribute("DeepwoodEncounter") ~= nil
 	local config = Config.Enemy[kind]
- if model:GetAttribute('DeepwoodEncounter') then
+ if storyEnemy then
   config=table.clone(config or Config.Enemy.Orc)
   config.health=model:GetAttribute('StoryHealth') or config.health
   config.walkSpeed=9;config.aggroRange=32;config.leashRange=65
@@ -1952,7 +1953,8 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	end
 	EnemyDeathFall.prepare(humanoid,kind)
 	local spawnPivot = savedPivot or model:GetPivot()
-	local template = savedTemplate or model:Clone()
+	local template = savedTemplate
+	if not template and not storyEnemy then template = model:Clone() end
 	if not savedId then
 		nextEnemyId = nextEnemyId + 1
 		savedId = nextEnemyId

@@ -28,8 +28,15 @@ local fakeRig={makeEnemy=function(folder,kind,x,z)
  local m=Instance.new('Model');m.Name=kind;local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Position=Vector3.new(x,0,z);root.Parent=m;m.PrimaryPart=root
  local h=Instance.new('Humanoid');h.Parent=m;m:SetAttribute('EnemyKind',kind);m.Parent=folder;return m
 end}
+local verifyFinalRewards=true
 local inventory={storyState=function(p)return journals[p]end,expedition=function(p)return runs[p]end,
- storyEvent=function(p,_,cid,gid)journals[p].flags[cid..':'..gid]=true end,
+ storyEvent=function(p,_,cid,gid)
+  if verifyFinalRewards then
+   local expected=0;for _,batch in ipairs(batches)do expected+=#batch end
+   for index=1,4 do check(awards[players[index]]==expected,'all party kills are queued before the first objective write')end
+  end
+  journals[p].flags[cid..':'..gid]=true
+ end,
  awardXP=function(p,_,_,_,_,run,id)check(run==runs[p].runId,'exact admitted reward run');check(not runs[p].kills[id],'no duplicate kill reward');runs[p].kills[id]=true;awards[p]+=1 end}
 local enemies=Instance.new('Folder');enemies.Parent=parent
 local marker=Instance.new('Part');marker.Position=Vector3.new(table.unpack(g.position));marker.Parent=parent
@@ -67,6 +74,7 @@ for index,batch in ipairs(batches)do
  end
 end
 task.wait(.1)
+verifyFinalRewards=false
 local expected=0;for _,batch in ipairs(batches)do expected+=#batch end
 check(total==expected and boss==1,'entire encounter retained, final boss once')
 for i=1,4 do check(journals[players[i]].flags[c.id..':'..g.id],'party shared completion, including far and downed members')end

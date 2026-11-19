@@ -7,6 +7,7 @@ local Store=dofile('src/server/Inventory/AccountStore.luau')
 local Buffer=dofile('src/server/Inventory/ExplorationSaveBuffer.luau')
 local source=arg[1] or 'src/server/Inventory/InventoryService.luau'
 local baseline=arg[2]=='baseline'
+local previous=arg[2]=='previous'
 local checks=0
 local function check(value,message)checks=checks+1;assert(value,message)end
 local function fixture()
@@ -68,7 +69,7 @@ local function fixture()
     local reason=S.storyEvent(p,'hero','DW-01','trail_guards')
     if not reason then f.storyAt=f.now;f.storyPending=false;break end
     assert(reason=='Busy' or reason=='SaveUnknown',reason)
-    coroutine.yield(1)
+    coroutine.yield((baseline or previous or reason=='SaveUnknown') and 1 or .1)
    end
   end)
  end
@@ -91,14 +92,19 @@ for _=1,6 do f.reward()end
 f.story();f.advance(14)
 print(string.format('kills + story: %.2fs, %d writes',assert(f.storyAt),f.writes))
 check(f.data.wallet.gold==gold+12 and f.data.heroes.hero.progression.rewardSequence==6,'six exact rewards')
-if not baseline then check(f.storyAt<4 and f.writes==2,'pack and story need only two writes')end
+if previous then check(f.storyAt<4 and f.writes==2,'previous behavior requires separate writes')
+elseif not baseline then check(f.storyAt<=1.5 and f.writes==1,'unsent pack and story use one write')end
 if baseline then print('baseline reproduced');return end
 
 f=fixture();f.delay=1.5;gold=f.data.wallet.gold
 for _=1,6 do f.reward();f.advance(.1)end
 f.story();f.advance(10)
 print(string.format('staggered kills + story: %.2fs, %d writes',assert(f.storyAt),f.writes))
-check(f.storyAt<6 and f.writes==3 and f.data.wallet.gold==gold+12,'kills arriving during a save form one subsequent batch')
+if previous then
+ check(f.storyAt<6 and f.writes==3 and f.data.wallet.gold==gold+12,'previous behavior serializes all three writes')
+ print('previous behavior reproduced');return
+end
+check(f.storyAt<3.2 and f.writes==2 and f.data.wallet.gold==gold+12,'objective includes rewards that arrived during the first batch')
 
 f=fixture();f.replay=true;gold=f.data.wallet.gold
 for x=1,6 do f.reveal(x);f.reward()end
@@ -135,6 +141,28 @@ check(not f.S.available(f.player),'in-flight story acknowledgement is unknown')
 f.unknown=false;f.advance(4)
 check(f.storyAt and f.S.available(f.player),'pending story recovers ahead of newly queued rewards')
 check(f.data.heroes.hero.progression.rewardSequence==1,'reward queued during story save survives')
+
+-- A combined write retries its original snapshot and preserves arrivals after it started.
+f=fixture();f.delay=.1;f.unknown=true;gold=f.data.wallet.gold
+f.reward();f.story();f.reward();f.advance(1.6)
+check(not f.S.available(f.player) and f.data.wallet.gold==gold+2,'unknown combined write applies the original reward at most once')
+check(f.data.heroes.hero.deepwood.flags['DW-01:trail_guards'],'objective committed with its captured reward')
+f.unknown=false;f.advance(3)
+check(f.storyAt and f.S.available(f.player) and f.data.wallet.gold==gold+4,'combined recovery preserves the next reward')
+check(f.data.heroes.hero.progression.rewardSequence==2,'combined retry preserves the reward sequence')
+
+-- An invalid objective cannot consume its captured rewards.
+f=fixture();gold=f.data.wallet.gold;f.reward()
+check(f.S.storyEvent(f.player,'hero','DW-01','missing_goal')~=nil,'invalid objective is rejected')
+check(f.data.wallet.gold==gold,'rejected transaction does not pay its captured batch')
+f.advance(.1)
+check(f.data.wallet.gold==gold+2,'reward worker still pays the earned reward exactly once')
+
+-- Closing retries a pending combined save before releasing the account fence.
+f=fixture();gold=f.data.wallet.gold;f.offline=true;f.reward();f.story();f.advance(1.3)
+check(not f.S.storyState(f.player,'hero').flags['DW-01:trail_guards'] and f.data.wallet.gold==gold,'failed combined write leaves the objective and reward uncommitted')
+f.offline=false;f.S.close(f.player);f.advance(1.5)
+check(not f.data.lease and f.data.wallet.gold==gold+2 and f.data.heroes.hero.deepwood.flags['DW-01:trail_guards'],'close recovers a combined write before release')
 
 -- The batch freezes before the yielding request; arrivals during it are retained.
 f=fixture();f.delay=1;gold=f.data.wallet.gold

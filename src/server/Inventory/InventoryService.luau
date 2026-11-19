@@ -22,6 +22,21 @@ local function deathNotice(player,id,status,lost)
  -- Commit the notification last so clients never combine an old amount with a new death.
  player:SetAttribute('TLTDeathXPNotice',id..':'..status)
 end
+local function commitStory(player,state,transform)
+ state.busy=true
+ local profile,reason=state.store:transact(player.UserId,transform)
+ if profile then
+  state.profile,state.valid,state.errorCode=profile,true,nil
+  local pending=state.storyRewardTransaction
+  if pending then for _=1,#pending.batch do table.remove(state.rewards,1)end end
+ elseif reason=='SaveUnknown' or reason=='AccountBusy' then
+  state.valid,state.errorCode=false,reason
+ end
+ if reason~='SaveUnknown' and reason~='AccountBusy' then
+  state.storyPending,state.storyRewardTransaction=nil,nil
+ end
+ return profile,reason
+end
 local function publish(player, requestId, errorCode)
 	if stateRemote and player.Parent == Players then stateRemote:FireClient(player, Service.snapshot(player), requestId, errorCode) end
 end
@@ -72,6 +87,12 @@ function Service.close(player)
 	task.spawn(function()
 		while state.busy do task.wait(0.1) end
 		local deadline=os.clock()+10
+		while state.storyRewardTransaction and os.clock()<deadline do
+			local _,reason=commitStory(player,state,state.storyRewardTransaction.transform)
+			state.busy=false
+			if reason~='SaveUnknown' then break end
+			task.wait(.5)
+		end
         while accounts[player]==state and state.revealJobs and #state.revealJobs>0 and os.clock()<deadline do
             state.busy=true
             local profile,reason=state.store:transact(player.UserId,function(current) return current end)
@@ -170,6 +191,7 @@ end
 function Service.progress(player, command, serverReward)
 	local state=accounts[player]
 	if not state or state.busy or state.closing and not serverReward then return "Busy" end
+	if state.storyRewardTransaction then return "Busy" end
 	local pending=state.growthPending
 	if not state.valid and not (pending and pending.requestId==command.requestId) then return state.errorCode or "Unavailable" end
 	if pending then
@@ -242,7 +264,10 @@ local function runGrowthQueue(player,state)
 		while accounts[player]==state and #state.rewards>0 and not state.closing do
 			local command=state.rewards[1]
 			local reason,count=Service.progress(player,command,true)
-			if not reason then for _=1,count do table.remove(state.rewards,1)end
+			if not reason then
+				for _=1,count do table.remove(state.rewards,1)end
+				-- Let a waiting objective capture the next unsent rewards.
+				if #state.rewards>0 and options.storyPending and options.storyPending(player) then task.wait(.15)end
 			elseif reason=="Busy" or reason=="SaveUnknown" or state.pending and state.errorCode=="SaveUnknown" then task.wait(1)
 			else
     if command.action=='DeathPenalty' then deathNotice(player,command.requestId,'Unavailable',nil) end
@@ -341,14 +366,25 @@ end
 function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId,runId)
  local state=accounts[player]
  if not state or state.busy or state.closing then return 'Busy' end
- -- Keep earned kill receipts ahead of the objective they completed, even
- -- during the one-frame reward coalescing window.
- if not state.storyPending and state.rewards and #state.rewards>0 then return 'Busy' end
  local key=heroId..':'..chapterId..':'..goalId..':'..tostring(choice)..':'..tostring(stepId)..':'..tostring(runId)
  if state.storyPending and state.storyPending~=key then return 'Busy' end
  if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
- state.busy=true;state.storyPending=key
- local profile,reason=state.store:transact(player.UserId,function(current)
+ local pending=state.storyRewardTransaction
+ local batch
+ if not state.storyPending and state.rewards and #state.rewards>0 then
+  -- A submitted batch or death penalty must settle in its original order.
+  if state.growthPending or goalId=='@selene' or goalId=='@accept' or #state.rewards>32 then return 'Busy' end
+  for _,command in ipairs(state.rewards)do
+   if command.action~='AwardXP' then return 'Busy' end
+  end
+  batch=Growth.copy(state.rewards)
+ end
+ local function transform(current)
+  for _,command in ipairs(batch or {})do
+   local nextProfile,errorCode=Rules.progress(current,command,{serverReward=true},Catalog)
+   if not nextProfile then return nil,errorCode end
+   current=nextProfile
+  end
   if goalId=='@accept' then
    if runId then return require(ReplicatedStorage.Shared.AdventureRules).accept(current,heroId,chapterId,choice==true,Rules,Catalog,runId)end
    return Rules.acceptQuest(current,heroId,chapterId,choice==true)
@@ -356,12 +392,16 @@ function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId,runId)
   if goalId=='@selene' then return Rules.selectSelene(current,heroId,choice) end
   if runId then return require(ReplicatedStorage.Shared.AdventureRules).event(current,heroId,chapterId,goalId,choice,stepId,Rules,Catalog,runId)end
   return Rules.story(current,heroId,chapterId,goalId,choice,Catalog,stepId)
- end)
+ end
+ if batch then
+  pending={batch=batch,transform=transform}
+  state.storyRewardTransaction=pending
+ end
+ state.storyPending=key
+ local profile,reason=commitStory(player,state,pending and pending.transform or transform)
  if profile then
-  state.profile,state.valid,state.errorCode=profile,true,nil;state.storyPending=nil
   Service.refreshCharacter(player);options.heroSession.refresh(player)
- elseif reason=='SaveUnknown' or reason=='AccountBusy' then state.valid,state.errorCode=false,reason
- else state.storyPending=nil end
+ end
  state.busy=false;publish(player,nil,reason);return reason
 end
 -- Monotonic fog discovery. Server positions enqueue cells; unknown writes retry

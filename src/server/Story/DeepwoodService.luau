@@ -121,7 +121,10 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
    if (currentRun and currentRun.runId)~=e.runId then reason='AdventureChanged'
    else reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId,e.runId) end
    if reason=='Busy' or reason=='SaveUnknown' then
-    publish(player,'Saving progress. Please wait; the same event will retry.');task.wait(1)
+    if not e.saving then
+     e.saving=true;publish(player,'Saving progress. Please wait; the same event will retry.')
+    end
+    task.wait(reason=='Busy' and .1 or 1)
    elseif reason then
     publish(player,'Progress could not be saved. Return to the checkpoint or rejoin to retry.')
     q.keys[e.key]=nil;table.remove(q.events,1)
@@ -415,6 +418,7 @@ function Service.defeated(model,_winner)
  e.dead=e.dead or {};e.dead[model]=true;e.remaining=e.remaining-1
  if model~=e.boss then e.guardsRemaining=e.guardsRemaining-1 end
  local complete=e.remaining==0 and e.nextWave>#e.batches and e.wave==e.waveCount
+ local completedHeroes={}
  -- Per-attempt kill XP is a server reward, distinct from the quest's fixed XP.
  for p,heroId in pairs(e.participants) do
   local h=active(p);local run=h and options.inventory.expedition(p,h.heroId)
@@ -427,11 +431,13 @@ function Service.defeated(model,_winner)
    local spec=e.unitSpecs and e.unitSpecs[model]
    local xp=spec and Balance.rewards(spec,e.difficultyId,e.rulesVersion,run and run.growthCycle)or model:GetAttribute('StoryRewardXP')or(8+2*level)*multiplier
    options.inventory.awardXP(p,heroId,xp,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1),e.runId,model:GetAttribute('StoryKillId'))
-   if complete then enqueue(p,heroId,e.chapter,e.goal) end
+   if complete then completedHeroes[p]=heroId end
   end
  end
  if complete then
   e.completed=true
+  -- The first enqueue may immediately replay the objective for every member.
+  for p,heroId in pairs(completedHeroes)do enqueue(p,heroId,e.chapter,e.goal)end
   for p in pairs(e.participants) do publish(p,'The encounter is clear.') end
   task.delay(3,function() destroyEncounter(e) end)
  elseif e.remaining==0 and e.nextWave<=#e.batches then
