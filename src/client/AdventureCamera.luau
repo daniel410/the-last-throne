@@ -1,6 +1,7 @@
 -- Keep Roblox orbit/zoom controls, then constrain the final living adventure
 -- camera. Death/cutscene cameras keep their own authority.
 local Run=game:GetService('RunService')
+local Input=game:GetService('UserInputService')
 local Workspace=game:GetService('Workspace')
 local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
 local Camera={min=6,lobbyMin=24,max=32,lobbyMax=32,minPitch=0,maxPitch=math.rad(72),radius=.6}
@@ -44,7 +45,34 @@ function Camera.update(character,enabled)
  camera.CFrame=Camera.constrain(focus,camera.CFrame.Position,geometry)
  camera.Focus=CFrame.new(focus)
 end
-function Camera.start()
+local function lobbyView(camera, character, playTop)
+ if not camera or camera.CameraType ~= Enum.CameraType.Custom or not character or not playTop then return end
+ local humanoid = character:FindFirstChildOfClass('Humanoid')
+ local root = humanoid and humanoid.RootPart
+ if not root or humanoid.Health <= 0 or camera.CameraSubject ~= humanoid then return end
+
+ local footHeight = humanoid.HipHeight + root.Size.Y / 2
+ if humanoid.RigType == Enum.HumanoidRigType.R6 then
+  local leg = character:FindFirstChild('Left Leg')
+  if leg and leg:IsA('BasePart') then footHeight += leg.Size.Y end
+ end
+
+ -- Frame below the feet with room for the walking pose and the button border.
+ local feet = root.Position - Vector3.new(0, footHeight + .5, 0)
+ local projected = camera:WorldToScreenPoint(feet)
+ local clearY = playTop - math.max(10, camera.ViewportSize.Y * .03)
+ if projected.Z <= 0 or projected.Y <= clearY then return end
+
+ local view = camera.CFrame
+ local feetDirection = view:PointToObjectSpace(feet)
+ local clearRay = camera:ScreenPointToRay(projected.X, clearY, 0)
+ local clearDirection = view:VectorToObjectSpace(clearRay.Direction)
+ local feetAngle = math.atan2(feetDirection.Y, -feetDirection.Z)
+ local clearAngle = math.atan2(clearDirection.Y, -clearDirection.Z)
+ return view * CFrame.Angles(feetAngle - clearAngle, 0, 0)
+end
+
+function Camera.start(getLobbyPlayTop)
  local p=game:GetService('Players').LocalPlayer
  local function apply()
   local minimum=Camera.minimum(p:GetAttribute('K0SessionPhase'))
@@ -56,8 +84,28 @@ function Camera.start()
  p:GetPropertyChangedSignal('CameraMinZoomDistance'):Connect(apply)
  p:GetPropertyChangedSignal('CameraMaxZoomDistance'):Connect(apply)
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(apply)
- Run:BindToRenderStep('DeepwoodGroundedCamera',Enum.RenderPriority.Camera.Value+2,function()
-  Camera.update(p.Character,p:GetAttribute('K0SessionPhase')=='Tutorial' and p:GetAttribute('TLTRoute')~='Training')
+ local framedCamera, originalView, framedView
+ Run:BindToRenderStep('RestoreLobbyCamera', Enum.RenderPriority.Input.Value - 1, function()
+  -- Roblox uses the previous view for movement and orbit. Give it the native view back first.
+  if framedCamera and framedCamera == Workspace.CurrentCamera
+   and framedCamera.CameraType == Enum.CameraType.Custom and framedCamera.CFrame == framedView then
+   framedCamera.CFrame = originalView
+  end
+  framedCamera, originalView, framedView = nil, nil, nil
+ end)
+ Run:BindToRenderStep('DeepwoodGroundedCamera', Enum.RenderPriority.Camera.Value + 2, function()
+  local phase = p:GetAttribute('K0SessionPhase')
+  if phase == 'Lobby' and Input.TouchEnabled and getLobbyPlayTop then
+   local camera = Workspace.CurrentCamera
+   local view = lobbyView(camera, p.Character, getLobbyPlayTop())
+   if view then
+    framedCamera, originalView = camera, camera.CFrame
+    camera.CFrame = view
+    framedView = camera.CFrame
+   end
+  elseif phase == 'Tutorial' and p:GetAttribute('TLTRoute') ~= 'Training' then
+   Camera.update(p.Character, true)
+  end
  end)
 end
 return Camera
