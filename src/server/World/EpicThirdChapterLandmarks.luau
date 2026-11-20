@@ -109,9 +109,9 @@ local function keeperServiceDoorJamb(pal, part)
 end
 
 return {
-	['DW-03'] = {goal = 'exp_1', step = 2, name = 'ReliefRosterStand', side = 10, compose = reliefRosterStand},
+	['DW-03'] = {goal = 'exp_1', step = 2, name = 'ReliefRosterStand', side = 12, compose = reliefRosterStand},
 	['GW-03'] = {goal = 'exp_2', step = 2, name = 'RefugeReturnRootMarker', side = 10, compose = refugeReturnRootMarker},
-	['FV-03'] = {goal = 'exp_2', step = 2, name = 'RavineWalkRailAnchor', side = 12, compose = ravineWalkRailAnchor},
-	['EC-03'] = {goal = 'exp_2', step = 2, name = 'BelowRailCoolantInspectionHead', side = 10, compose = belowRailCoolantInspectionHead},
+	['FV-03'] = {goal = 'exp_2', step = 2, name = 'RavineWalkRailAnchor', side = -12, compose = ravineWalkRailAnchor},
+	['EC-03'] = {goal = 'exp_2', step = 2, name = 'BelowRailCoolantInspectionHead', side = -10, compose = belowRailCoolantInspectionHead},
 	['HG-03'] = {goal = 'exp_1', step = 2, name = 'KeeperServiceDoorJamb', side = -10, compose = keeperServiceDoorJamb},
 }
