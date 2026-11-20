@@ -83,7 +83,11 @@ function W.create(world)
   local prompt=Instance.new('ProximityPrompt');prompt.Name='StoryInteract';prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText=#g.enemies>0 and 'Begin encounter' or 'Interact';prompt.ObjectText=g.title
   prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
   world.nodes[c.id..':'..g.id]={part=p,prompt=prompt,chapter=c,goal=g}
-  if #g.enemies==0 and not (g.activity and g.activity.actor) then beacon(terrain,v(g.position)+Vector3.new(-6,0,0))end
+  if #g.enemies==0 and not (g.activity and g.activity.actor) then
+   -- Keep the reunion lantern at the terrace edge, clear of the sled landing sightline.
+   local sideOffset=c.id=='FV-07' and g.id=='reunion' and 4.5 or 0
+   beacon(terrain,v(g.position)+Vector3.new(-6,0,sideOffset))
+  end
  end
  end
 
