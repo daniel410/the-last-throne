@@ -50,7 +50,7 @@ function Poses.bow(pose,d,age,since,betweenShots)
     local s = bowStance(d)
     local phase = age/d.windup
     local load = smooth(phase/.55)*(1-smooth((phase-.55)/.45))
-    if d.advanced and d.windup>=.55 and d.form~="ground" then
+    if d.id=="elf.marksman.heavy_draw" then
         load = smooth(phase/.42)*(1-.6*smooth((phase-.48)/.52))
         load *= 1-smooth((age-d.windup)/.09)
     end

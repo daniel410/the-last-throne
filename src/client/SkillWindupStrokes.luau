@@ -30,16 +30,16 @@ function Windup.stroke(style,i,u,scale)
  local side=i%2==0 and -1 or 1
  local a,b
  if style=="ShieldBrace" then
-  local x=side*(.83-.43*u)
-  local y=i<=2 and .6 or -.6
-  a=v(x,y,-.24)
-  b=v(x*.42,y+(i<=2 and -.24 or .24),-.25)
+  local x=side*(1.12-.33*u)
+  local y=i<=2 and .72 or -.72
+  a=v(x,y,-.42)
+  b=v(x*.54,y+(i<=2 and -.24 or .24),-.42)
  elseif style=="SwordPoint" or style=="SightDraw" or style=="HighDraw"
   or style=="BoreBrackets" or style=="MortarBrace" then
   local spread=side*((style=="MortarBrace" and .83 or .6)-.35*u)
   local climb=style=="HighDraw" and u*.54 or 0
-  local length=style=="BoreBrackets" and .38 or .65
-  a=v(spread,climb,.28)
+  local length=style=="BoreBrackets" and .38 or style=="SightDraw" and 1.1 or .65
+  a=v(spread,climb,style=="SightDraw" and -.32 or .28)
   b=v(spread*.48,climb+.12,-length)
  elseif style=="RisingGrit" then
   local x=(i-2)*(.73-.45*u)

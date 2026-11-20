@@ -155,7 +155,7 @@ function Motion.forCharacter(character,now)
   local draw=math.clamp(age/release,0,1)
   -- Long, deliberate shots reach near full draw early. The hand still
   -- reaches the authored anchor at the same release timestamp.
-  if d.advanced and d.windup>=.55 and d.form~="ground" then draw=1-(1-draw)^2.2 end
+  if d.id=="elf.marksman.heavy_draw" then draw=1-(1-draw)^2.2 end
   t=.8*draw
  elseif age<release+.04 then t=.8+.1*(age-release)/.04
  else t=.9+.1*math.clamp((age-release-.04)/math.max(.01,total-release-.04),0,1) end
