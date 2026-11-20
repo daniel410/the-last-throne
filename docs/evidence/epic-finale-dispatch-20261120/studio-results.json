@@ -1,0 +1,323 @@
+{
+  "compiled": 554,
+  "navigation": {
+    "ROUTE_NAV_ORIGINAL": {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13309,
+          "samples": 13723,
+          "targets": 243,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8057,
+          "samples": 8360,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    },
+    "ROUTE_NAV_EASY": {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13699,
+          "samples": 14113,
+          "targets": 253,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8187,
+          "samples": 8490,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    }
+  },
+  "matchingLandmarks": 14,
+  "dispatchCradle": {
+    "baseline": {
+      "story": "EC-07",
+      "buriedDepth": 0.4600095748901367,
+      "approach": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "goal": "courier",
+      "name": "DispatchCarrierCradle",
+      "bounds": [
+        15.699999809265137,
+        4.690008163452148,
+        9.279999732971191
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -887.1109619140625,
+        172,
+        -14675.7255859375
+      ],
+      "parts": 11
+    },
+    "candidate": {
+      "story": "EC-07",
+      "buriedDepth": 0.4600095748901367,
+      "approach": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "goal": "courier",
+      "name": "DispatchCarrierCradle",
+      "bounds": [
+        15.699999809265137,
+        4.690008163452148,
+        9.279999732971191
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -887.1109619140625,
+        172,
+        -14675.7255859375
+      ],
+      "parts": 15
+    }
+  },
+  "roundTripsPerBuild": [
+    23,
+    23
+  ],
+  "auditedViews": [
+    "DW-07_detail",
+    "DW-07_goal_side",
+    "GW-07_detail",
+    "GW-07_goal_side",
+    "FV-07_detail",
+    "FV-07_goal_side",
+    "EC-07_detail",
+    "EC-07_goal_side",
+    "HG-07_detail",
+    "HG-07_goal_side",
+    "FV-07_mid_approach",
+    "EC-07_mid_approach",
+    "HG-07_oblique_approach"
+  ],
+  "comparedViews": [
+    "EC-07_detail",
+    "EC-07_mid_approach",
+    "EC-07_goal_side"
+  ],
+  "sightlines": {
+    "baseline": [
+      {
+        "view": "rightOfSuri",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      },
+      {
+        "view": "goal",
+        "samples": 27,
+        "blockers": {
+          "Workspace.DeepwoodCampaign.NPCActors.Suri.BodyMesh": {
+            "size": "3.462460994720459, 6.199999809265137, 2.4386696815490723",
+            "count": 27,
+            "position": "-912.8499755859375, 175.10000610351562, -14679.400390625"
+          }
+        },
+        "visible": 0
+      },
+      {
+        "view": "leftOfSuri",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      },
+      {
+        "view": "overShoulder",
+        "samples": 27,
+        "blockers": {
+          "Workspace.DeepwoodCampaign.NPCActors.Suri.BodyMesh": {
+            "size": "3.462460994720459, 6.199999809265137, 2.4386696815490723",
+            "count": 3,
+            "position": "-912.8499755859375, 175.10000610351562, -14679.400390625"
+          }
+        },
+        "visible": 24
+      },
+      {
+        "view": "middle",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      },
+      {
+        "view": "detail",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      }
+    ],
+    "candidate": [
+      {
+        "view": "rightOfSuri",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      },
+      {
+        "view": "goal",
+        "samples": 27,
+        "blockers": {
+          "Workspace.DeepwoodCampaign.NPCActors.Suri.BodyMesh": {
+            "size": "3.462460994720459, 6.199999809265137, 2.4386696815490723",
+            "count": 27,
+            "position": "-912.8499755859375, 175.10000610351562, -14679.400390625"
+          }
+        },
+        "visible": 0
+      },
+      {
+        "view": "leftOfSuri",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      },
+      {
+        "view": "overShoulder",
+        "samples": 27,
+        "blockers": {
+          "Workspace.DeepwoodCampaign.NPCActors.Suri.BodyMesh": {
+            "size": "3.462460994720459, 6.199999809265137, 2.4386696815490723",
+            "count": 3,
+            "position": "-912.8499755859375, 175.10000610351562, -14679.400390625"
+          }
+        },
+        "visible": 24
+      },
+      {
+        "view": "middle",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      },
+      {
+        "view": "detail",
+        "samples": 27,
+        "blockers": [],
+        "visible": 27
+      }
+    ]
+  },
+  "rollerCount": 6
+}

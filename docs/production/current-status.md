@@ -4,7 +4,7 @@
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
 - 에픽 퀘스트 0.114.1 후보는 DW-02, GW-06, FV-04, EC-05, HG-04의 대표 행동에 현장 지형과 시설을 연결했다. [모델·접근 화면·Studio 검증](../evidence/epic-quest-landmarks-20261119/README.md) · [0.114.0 퀘스트 진행과 저장 검증](../evidence/epic-quest-variety-20261119/README.md). 후보 미게시·G5 진행 중.
-- 다섯 에픽 환경 0.114.20 후보에서 재회 등불의 차폐를 해소하고 화물 고임목·선적 받침·왕릉 보호턱을 다듬었다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 검증·남은 수용](../evidence/epic-finale-sightlines-20261120/README.md)
+- 다섯 에픽 결말 환경을 0.114.22에서 다시 점검하고 EC-07 선적 받침을 가로축 철제 롤러로 개선했다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-finale-dispatch-20261120/README.md)
 
 - 지역 생성·전투 반복 작업: 0.113.15 후보는 중복 경로 검사와 불필요한 프레임 대기를 줄였으며, 교전 검증은 원정 ID만 조회한다. [지역 생성 전후·지형 대조·미검증](../evidence/world-runtime-optimization-20261118/README.md). 후보 미게시. [선행 출현·페이즈 개선](../evidence/story-phase-speed-20261118/README.md) · [저장 대기 개선](../evidence/monster-spawn-latency-20261118/README.md) · [지도 복구](../evidence/campaign-save-map-20261117/README.md).
 
