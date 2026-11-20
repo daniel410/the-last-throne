@@ -16,7 +16,11 @@ local function dryShelf(pal, part, beam)
 		part('GravelDrainLip', V(3.4, .3, 1.6), V(x, .07, -2.6), fieldstone, M.Pebble)
 	end
 	part('RunoffApron', V(1.9, .21, 1.5), V(0, .04, -2.63), wetEarth:Lerp(fieldstone, .44), M.Ground, 'Wedge')
+	-- The hood drains onto a shallow stone run across the top of the wet bank.
+	part('DripBed', V(7.8, .55, .66), V(0, .25, -1.38), wetEarth, M.Pebble)
 	for _, x in ipairs({-3.5, 3.5}) do
+		part('DripSplashStone', V(.83, .20, .92), V(x, .50, -1.49), fieldstone, M.Slate,
+			'Wedge', V(0, math.pi, 0))
 		part('FieldstoneFoot', V(2.25, .92, 3.7), V(x, .26, .44), fieldstone, M.Cobblestone)
 		part('ShelfTrestle', V(.72, 1.7, 2.7), V(x, 1.23, .44), pal.wood, M.Wood)
 		beam('RainHoodPost', V(x, 1.7, 1.65), V(x, 4.28, 1.65), .48, pal.wood, M.Wood)
@@ -43,8 +47,11 @@ local function rearguardBank(pal, part, beam)
 	-- The split follows the root across the trail-facing and return-facing sides.
 	beam('SplitHeartwood', V(-1.65, .99, -.81), V(-.10, 1.88, .59), .38, heartwood, M.Wood)
 	beam('SplitHeartwood', V(.48, 1.93, 1.79), V(2.18, .95, 1.16), .34, heartwood, M.Wood)
-	part('ShaleShoulder', V(2.5, .67, 2.1), V(-3.52, .20, 1.41), shale:Lerp(pal.trim, .31), M.Slate,
+	local shaleFace = shale:Lerp(pal.trim, .4)
+	part('ShaleShoulder', V(3.45, .75, 2.4), V(-3.28, .24, 1.41), shaleFace, M.Slate,
 		'Wedge', V(0, .37, 0))
+	part('ShaleToe', V(2.7, .48, 1.62), V(2.78, .14, -.59), shaleFace, M.Slate,
+		'Wedge', V(0, -2.71, 0))
 	for _, x in ipairs({-3.65, 3.65}) do
 		beam('RetreatRopePeg', V(x, .12, .6), V(x * .94, 2.48, 1.15), .37, exposedRoot, M.Wood)
 	end
@@ -60,8 +67,10 @@ local function signalSill(pal, part, beam)
 	part('BrokenSnowShelf', V(3.45, .65, 2.4), V(2.15, .22, 1.15), pal.ground, M.Snow, 'Wedge',
 		V(0, .48, 0))
 	part('ChiseledRelaySill', V(5.9, .55, 2.9), V(.64, 1.04, .82), pal.trim, M.Glacier)
+	part('ExposedCradleSeat', V(5.65, .18, 1.74), V(.64, 1.36, .80), iron:Lerp(pal.rock, .4), M.Metal)
 	for _, x in ipairs({-1.52, 2.75}) do
-		part('CradleFoot', V(1.05, .41, 2.05), V(x, 1.52, .80), iron, M.Metal)
+		part('CradleFoot', V(1.05, .32, 2.05), V(x, 1.61, .80), iron, M.Metal)
+		part('CradleFootBolt', V(.22, .14, .22), V(x, 1.82, .02), pal.trim, M.Metal)
 		beam('SightingCradleUpright', V(x, 1.65, 1.18), V(x, 3.27, .89), .43, iron, M.Metal)
 	end
 	part('RelayObservationCrosshead', V(4.9, .39, 1.12), V(.61, 3.13, .91), iron, M.Metal)
@@ -80,11 +89,17 @@ local function planFootings(pal, part, beam)
 		part('RefractoryBearingTile', V(1.94, .23, 2.75), V(x, .55, .02), firebrick, M.Brick)
 		beam('IronTrestleBrace', V(x, .64, .65), V(x * .65, 1.88, .33), .33, soot, M.CorrodedMetal)
 	end
-	-- The dry channel meets the aisle at its open end, outside the table shadow.
-	part('DryRecoveryBed', V(8.6, .24, 1.86), V(0, .05, -2.47), firebrick:Lerp(soot, .6), M.Basalt)
-	for _, z in ipairs({-1.71, -3.23}) do
-		part('RecoveryChannelLip', V(8.9, .38, .32), V(0, .13, z), firebrick, M.Brick)
-		part('WornRecoveryMouthTile', V(1.65, .17, .43), V(-3.56, .35, z), wornFirebrick, M.Brick)
+	-- Short returns expose the dry trough on either side of the taller drafting table.
+	local dryBed = firebrick:Lerp(soot, .6)
+	part('DryRecoveryBed', V(13.1, .24, 1.86), V(0, .05, -2.47), dryBed, M.Basalt)
+	part('RecoveryOuterLip', V(14.72, .38, .32), V(0, .13, -3.23), firebrick, M.Brick)
+	part('RecoveryInnerLip', V(12.22, .38, .32), V(0, .13, -1.71), firebrick, M.Brick)
+	for _, side in ipairs({-1, 1}) do
+		part('DryRecoveryReturn', V(1.57, .24, 5.42), V(side * 6.57, .05, -.52), dryBed, M.Basalt)
+		part('RecoveryReturnOuterLip', V(.32, .38, 5.42), V(side * 7.36, .13, -.52), firebrick, M.Brick)
+		part('RecoveryReturnInnerLip', V(.32, .38, 3.73), V(side * 5.95, .13, .33), firebrick, M.Brick)
+		part('WornRecoveryMouthTile', V(.42, .21, 1.28), V(side * 7.36, .40, 1.53), wornFirebrick, M.Brick)
+		part('WornRecoveryMouthTile', V(.42, .21, 1.28), V(side * 5.95, .40, 1.53), wornFirebrick, M.Brick)
 	end
 	for _, x in ipairs({-2.2, -.15, 2.0}) do
 		part('DryCrucibleSweepings', V(1.2, .12, .49), V(x, .21, -2.44), pal.trim:Lerp(wornFirebrick, .37),
@@ -101,7 +116,12 @@ local function gateAnchor(pal, part, beam)
 		part('ChamferedCopingApron', V(2.55, .28, 1.1), V(x, .59, -1.40),
 			limestone:Lerp(pal.rock, .24), M.Slate, 'Wedge')
 	end
-	part('CentralWinchBearing', V(1.04, 1.55, 1.04), V(0, 1.47, 0), iron, M.Metal)
+	part('WinchBearingSeat', V(2.64, .32, 2.04), V(0, .88, 0), limestone, M.Slate)
+	for _, side in ipairs({-1, 1}) do
+		part('BearingSeatButtress', V(.75, .50, 1.65), V(side * 1.12, .83, .13), limestone:Lerp(pal.rock, .24),
+			M.Slate, 'Wedge', V(0, side * math.pi / 2, 0))
+	end
+	part('CentralWinchBearing', V(1.04, 1.55, 1.04), V(0, 1.72, 0), iron, M.Metal)
 	part('AxleBearingCollar', V(.64, 1.56, 1.56), V(0, 2.43, 0), iron, M.CorrodedMetal,
 		'Cylinder', V(0, 0, math.pi / 2))
 	for _, x in ipairs({-3.25, 3.25}) do
@@ -164,7 +184,7 @@ function Assemblies.create(scene, chapter, goal, context)
 	end
 
 	model:SetAttribute('SourceKind', 'NewNativeGeometry')
-	model:SetAttribute('QuestLandmarkVersion', 2)
+	model:SetAttribute('QuestLandmarkVersion', 3)
 	model:SetAttribute('StoryZone', chapter.id)
 	model:SetAttribute('StoryGoal', goal.id)
 	model:SetAttribute('GroundPosition', origin)
