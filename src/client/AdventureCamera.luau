@@ -48,28 +48,30 @@ end
 local function lobbyView(camera, character, playTop)
  if not camera or camera.CameraType ~= Enum.CameraType.Custom or not character or not playTop then return end
  local humanoid = character:FindFirstChildOfClass('Humanoid')
- local root = humanoid and humanoid.RootPart
- if not root or humanoid.Health <= 0 or camera.CameraSubject ~= humanoid then return end
-
- local footHeight = humanoid.HipHeight + root.Size.Y / 2
- if humanoid.RigType == Enum.HumanoidRigType.R6 then
-  local leg = character:FindFirstChild('Left Leg')
-  if leg and leg:IsA('BasePart') then footHeight += leg.Size.Y end
- end
-
- -- Frame below the feet with room for the walking pose and the button border.
- local feet = root.Position - Vector3.new(0, footHeight + .5, 0)
- local projected = camera:WorldToScreenPoint(feet)
- local clearY = playTop - math.max(10, camera.ViewportSize.Y * .03)
- if projected.Z <= 0 or projected.Y <= clearY then return end
+ if not humanoid or not humanoid.RootPart or humanoid.Health <= 0 or camera.CameraSubject ~= humanoid then return end
 
  local view = camera.CFrame
- local feetDirection = view:PointToObjectSpace(feet)
- local clearRay = camera:ScreenPointToRay(projected.X, clearY, 0)
+ local bounds, size = character:GetBoundingBox()
+ local localBounds = view:ToObjectSpace(bounds)
+ local half = size / 2
+ -- At steep orbit angles the lowest point on screen can be a robe or a weapon.
+ local lowestSlope = math.huge
+ for x = -1, 1, 2 do
+  for y = -1, 1, 2 do
+   for z = -1, 1, 2 do
+    local corner = localBounds:PointToWorldSpace(Vector3.new(x * half.X, y * half.Y, z * half.Z))
+    if corner.Z >= 0 then return end
+    lowestSlope = math.min(lowestSlope, corner.Y / -corner.Z)
+   end
+  end
+ end
+
+ local clearY = playTop - math.max(10, camera.ViewportSize.Y * .03)
+ local clearRay = camera:ScreenPointToRay(0, clearY, 0)
  local clearDirection = view:VectorToObjectSpace(clearRay.Direction)
- local feetAngle = math.atan2(feetDirection.Y, -feetDirection.Z)
- local clearAngle = math.atan2(clearDirection.Y, -clearDirection.Z)
- return view * CFrame.Angles(feetAngle - clearAngle, 0, 0)
+ local clearSlope = clearDirection.Y / -clearDirection.Z
+ if lowestSlope >= clearSlope then return end
+ return view * CFrame.Angles(math.atan(lowestSlope) - math.atan(clearSlope), 0, 0)
 end
 
 function Camera.start(getLobbyPlayTop)
@@ -93,7 +95,7 @@ function Camera.start(getLobbyPlayTop)
   end
   framedCamera, originalView, framedView = nil, nil, nil
  end)
- Run:BindToRenderStep('DeepwoodGroundedCamera', Enum.RenderPriority.Camera.Value + 2, function()
+ Run:BindToRenderStep('AdventureCameraPresentation', Enum.RenderPriority.Camera.Value + 2, function()
   local phase = p:GetAttribute('K0SessionPhase')
   if phase == 'Lobby' and Input.TouchEnabled and getLobbyPlayTop then
    local camera = Workspace.CurrentCamera
