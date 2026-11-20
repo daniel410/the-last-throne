@@ -165,23 +165,26 @@ function Motifs.draw(r,id,c,line,curve)
     stroke('LightningProng',elbow,elbow+right*side*.4-UP*.12,.04)
    end end
   end
- elseif cue=='rain' or cue=='ash' or cue=='hail'then
-  -- Falling accents do not introduce extra damage pulses or hit markers.
+ elseif cue=='rain' or cue=='ash' or cue=='hail' or cue=='barrage'then
+  -- These ground casts already show the payload before the confirmed pulse.
+  -- Keep the icon accents close to the terrain as the impact disperses.
   for lane=1,n do
-   local a=lane*2.39996;local pos=floor+(flat*math.cos(a)+right*math.sin(a))*math.min(radius,3)*math.sqrt(lane/n)
-   path('FallingFeather',function(t,u)
-    local height=3.5*(1-u*u)+t*.7
-    return pos+UP*height+right*math.sin(t*math.pi)*.12
-   end,2)
+   local a=lane*2.39996
+   local radial=flat*math.cos(a)+right*math.sin(a)
+   local pos=floor+radial*math.min(radius,3)*math.sqrt(lane/n)
+   boundedLine(r,'IconLandingSpark',function(u)
+    local spread=radial*u*.9+UP*(math.sin(u*math.pi)*.35+.12)
+    return pos+spread,pos+spread+radial*.48+UP*.2
+   end,width,r.hot)
   end
  else
   -- Directional feathers, chevrons, projectile echoes and explosive flight cues.
   local from,to=first,last
   if cue=='returning' and c.definition.returning and c.pulse%2==0 then from,to=last,first end
   local axis=(to-from).Magnitude>.01 and (to-from).Unit or flat
-  if cue=='lob' or cue=='bounce' or cue=='roll' or cue=='barrage'then
+  if cue=='lob' or cue=='bounce' or cue=='roll'then
    for lane=1,n do path('BallisticEcho',function(t,u)
-    local height=cue=='roll' and .12 or math.abs(math.sin(t*math.pi*(cue=='bounce' and 2 or 1)))*(cue=='barrage' and 3 or 1.6)
+    local height=cue=='roll' and .12 or math.abs(math.sin(t*math.pi*(cue=='bounce' and 2 or 1)))*1.6
     return from+(to-from)*t+UP*height+right*(lane-(n+1)/2)*.18
    end,6)end
   elseif cue=='cross' or cue=='pair'then

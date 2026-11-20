@@ -72,7 +72,7 @@ local ok,err=xpcall(function()
    FX.step(contact+.001)
    check(not incoming.Parent,"Descent expires on the shared clock "..id)
    local impact=assert(FX.skill(character,id,origin,target,1,{}))
-   for _,name in ipairs({"FallingShardVolume","SpiritCanopyLeaf","MortarShellBody","AshDescent","HailDescent","ArrowRain"}) do
+   for _,name in ipairs({"FallingShardVolume","SpiritCanopyLeaf","MortarShellBody","AshDescent","HailDescent","ArrowRain","IconFallingFeather","IconBallisticEcho"}) do
     check(not impact:FindFirstChild(name,true),"Impact never repeats a fall "..id)
    end
   end
