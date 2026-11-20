@@ -1,0 +1,234 @@
+{
+  "placedModels": [
+    {
+      "chapter": "DW-02",
+      "maxFloorError": 0,
+      "clearance": 6.029795169830322,
+      "step": "step2",
+      "version": 3,
+      "bounds": [
+        6.570191383361816,
+        1.7800002098083496,
+        10.368919372558594
+      ],
+      "goal": "exp_2",
+      "model": "StragglerBendDrainageShoulder",
+      "anchor": [
+        -460.1199951171875,
+        6,
+        -1122.199951171875
+      ],
+      "height": 1.7800002098083496,
+      "ground": [
+        -467.0787353515625,
+        6,
+        -1116.492431640625
+      ],
+      "parts": 9
+    },
+    {
+      "chapter": "EC-02",
+      "maxFloorError": 0,
+      "clearance": 6.174718379974365,
+      "step": "step2",
+      "version": 3,
+      "bounds": [
+        5.65000057220459,
+        1.5949933528900146,
+        9.519999504089355
+      ],
+      "goal": "exp_2",
+      "model": "MineFreightLineSeat",
+      "anchor": [
+        154.47000122070312,
+        142,
+        -12148.2001953125
+      ],
+      "height": 1.5949933528900146,
+      "ground": [
+        155.99322509765625,
+        142,
+        -12139.330078125
+      ],
+      "parts": 14
+    },
+    {
+      "chapter": "FV-02",
+      "maxFloorError": 0,
+      "clearance": 4.702680587768555,
+      "step": "step1",
+      "version": 3,
+      "bounds": [
+        7.986952304840088,
+        1.2950037717819214,
+        5.35495138168335
+      ],
+      "goal": "exp_2",
+      "model": "TwinBeaconTerraceSill",
+      "anchor": [
+        50.90999984741211,
+        94,
+        -8335.4296875
+      ],
+      "height": 1.2950037717819214,
+      "ground": [
+        47.89786911010742,
+        94,
+        -8326.9482421875
+      ],
+      "parts": 10
+    },
+    {
+      "chapter": "GW-02",
+      "maxFloorError": 0,
+      "clearance": 6.069812297821045,
+      "step": "step2",
+      "version": 3,
+      "bounds": [
+        5.974705696105957,
+        2.935971260070801,
+        10.100000381469727
+      ],
+      "goal": "exp_1",
+      "model": "OuterWebRootShelf",
+      "anchor": [
+        -814.0499877929688,
+        58,
+        -4585.16015625
+      ],
+      "height": 2.935971260070801,
+      "ground": [
+        -820.8776245117188,
+        58,
+        -4591.02392578125
+      ],
+      "parts": 8
+    },
+    {
+      "chapter": "HG-02",
+      "maxFloorError": 0,
+      "clearance": 5.660192966461182,
+      "step": "step3",
+      "version": 3,
+      "bounds": [
+        6.680001258850098,
+        4.064993381500244,
+        4.480001449584961
+      ],
+      "goal": "exp_2",
+      "model": "KeeperReturnLanternNiche",
+      "anchor": [
+        54.43000030517578,
+        176,
+        -15847.48046875
+      ],
+      "height": 4.064993381500244,
+      "ground": [
+        58.81761169433594,
+        176,
+        -15855.3388671875
+      ],
+      "parts": 10
+    }
+  ],
+  "unchangedModels": [
+    "ArchiveSignalObservationSill",
+    "CreekCargoSill",
+    "CrewPlanWorktableFootings",
+    "FreightCarrierWheelSeat",
+    "GateWinchAnchorPlinth",
+    "RearguardLanternRootBank",
+    "RecoveryRainShelf",
+    "ScoutApproachStoneFooting",
+    "WheeltrackForkRootCut",
+    "WindbreakAscentBank"
+  ],
+  "walks": {
+    "baseline": [
+      {
+        "chapter": "DW-02",
+        "inbound": 0.8391536474227905,
+        "distance": 32.00004196166992,
+        "outbound": 2.4920079708099365
+      },
+      {
+        "chapter": "EC-02",
+        "inbound": 0.8727956414222717,
+        "distance": 32.000022888183594,
+        "outbound": 1.335573434829712
+      },
+      {
+        "chapter": "FV-02",
+        "inbound": 0.8249728083610535,
+        "distance": 31.999744415283203,
+        "outbound": 2.2913010120391846
+      },
+      {
+        "chapter": "GW-02",
+        "inbound": 0.8468289971351624,
+        "distance": 32.00015640258789,
+        "outbound": 2.489854335784912
+      },
+      {
+        "chapter": "HG-02",
+        "inbound": 0.8706448078155518,
+        "distance": 32.00009536743164,
+        "outbound": 1.3899482488632202
+      }
+    ],
+    "candidate": [
+      {
+        "chapter": "DW-02",
+        "inbound": 1.972470998764038,
+        "distance": 32.00004196166992,
+        "outbound": 1.1585599184036255
+      },
+      {
+        "chapter": "EC-02",
+        "inbound": 1.9392671585083008,
+        "distance": 32.000022888183594,
+        "outbound": 1.136195421218872
+      },
+      {
+        "chapter": "FV-02",
+        "inbound": 1.9578200578689575,
+        "distance": 31.999744415283203,
+        "outbound": 1.2276910543441772
+      },
+      {
+        "chapter": "GW-02",
+        "inbound": 1.9793447256088257,
+        "distance": 32.00015640258789,
+        "outbound": 1.157845139503479
+      },
+      {
+        "chapter": "HG-02",
+        "inbound": 1.9375065565109253,
+        "distance": 32.00009536743164,
+        "outbound": 1.1901373863220215
+      }
+    ]
+  },
+  "framePairs": [
+    "DW-02-approach",
+    "DW-02-side",
+    "GW-02-approach",
+    "GW-02-side",
+    "FV-02-approach",
+    "FV-02-side",
+    "EC-02-approach",
+    "EC-02-side",
+    "HG-02-approach",
+    "HG-02-side"
+  ],
+  "expansionRegression": {
+    "generationSeconds": 29.872509124921635,
+    "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+    "blockers": [],
+    "checks": 9193,
+    "steps": 246,
+    "samples": 3968,
+    "incidents": 82,
+    "parts": 55534
+  }
+}
