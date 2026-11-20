@@ -18,7 +18,7 @@
 | 에픽 · 위치 | 제작 방향 | 플레이 확인 조건 |
 | --- | --- | --- |
 | Deepwood · DW-03 · Outpost Supply Yard · `exp_1:2` | 돌 받침과 현지 목재로 구조 명부 작업대 `ReliefRosterStand`를 구성한다. 낮은 주춧돌과 밝게 닳은 목재 상판으로 종이와 도구가 놓였던 면을 드러낸다. | 캠프에서 다가올 때 작업대가 그늘에서 드러나고 기존 명부 조사 위치를 찾을 수 있다. |
-| Gloamwood · GW-03 · Northern Root Overlook · `exp_2:2` | 묵은 방향석과 지면에 드러난 갈라진 뿌리를 묶어 귀환 지물 `RefugeReturnRootMarker`를 구성한다. | 전망대에 도착할 때와 피난처로 돌아설 때 기존 귀환 표식과 받침 단면이 구분된다. |
+| Gloamwood · GW-03 · Northern Root Overlook · `exp_2:2` | 갈라진 뿌리와 셰일 위에 닳은 목재 방향 표식을 세워 귀환 지물 `RefugeReturnRootMarker`를 구성한다. | 전망대에 도착할 때와 피난처로 돌아설 때 기존 귀환 표식과 받침 단면이 구분된다. |
 | Frozen Vale · FV-03 · Eastern Lift Walk · `exp_2:2` | 암빙·압설 바닥 위에 `RavineWalkRailAnchor`를 조형한다. 가동 다리 바깥에 체결판과 짧은 난간 버팀대를 배치한다. | 설면과 받침이 분리되어 보이고, 기존 난간 결속 프롬프트와 통행 폭이 확보된다. |
 | Ember Caldera · EC-03 · Miners Return Landing · `exp_2:2` | 광차선 옆의 낮은 `BelowRailCoolantInspectionHead`에 식은 현무암의 홈과 철제 점검구를 사용한다. | 운반 동선을 따라 접근할 때 점검구가 바닥과 연결되어 보이고 기존 화물 번호 조사에 접근할 수 있다. |
 | Haunted Graveyard · HG-03 · Quiet Crypt Gallery · `exp_1:2` | 풍화된 문턱, 남은 한쪽 문설주 `KeeperServiceDoorJamb`, 철제 고정구로 옛 관리용 통로를 드러낸다. | 접근과 귀환에서 문틀 윤곽과 기존 문양 조사가 구분되고 다음 표식으로 향할 통로가 보인다. |
