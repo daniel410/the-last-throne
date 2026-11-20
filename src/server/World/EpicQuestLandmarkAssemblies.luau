@@ -1,4 +1,4 @@
--- Terrain-side fixtures for the five representative quest actions.
+-- Terrain-side fixtures for authored quest actions.
 local Bounds = require(game.ReplicatedStorage.Shared.CampaignBounds)
 local Kit = require(script.Parent.EpicEnvironmentKit)
 
@@ -130,7 +130,82 @@ local function gateAnchor(pal, part, beam)
 	end
 end
 
+local function creekCargoSill(pal, part)
+	local silt = pal.ground:Lerp(C(110, 83, 59), .64)
+	local gravel = pal.rock:Lerp(pal.trim, .45)
+	local washedWood = pal.wood:Lerp(C(157, 118, 76), .58)
+	part('ScouredSiltFoot', V(9.6, .65, 5.9), V(0, .15, .25), silt, M.Ground, 'Wedge',
+		V(0, math.pi / 2, 0))
+	part('WashedStoneApron', V(9.1, .53, 2.4), V(-1.98, .20, .3), gravel, M.Pebble, 'Wedge',
+		V(0, math.pi / 2, 0))
+	for _, z in ipairs({-3.05, .07, 3.27}) do
+		part('DryCargoFieldstone', V(3.31, .82, 2.72), V(.55, .31, z), pal.rock, M.Cobblestone)
+	end
+	for _, x in ipairs({-.53, 1.57}) do
+		part('RaisedCargoRunner', V(.65, .36, 8.4), V(x, .9, .12), washedWood, M.Wood)
+	end
+end
+
+local function wheeltrackFork(pal, part, beam)
+	local loam = pal.ground:Lerp(C(128, 100, 76), .44)
+	local root = pal.wood:Lerp(C(143, 119, 92), .48)
+	local heartwood = C(151, 122, 88)
+	part('WheelCutLoamShoulder', V(12.8, .83, 4.7), V(.14, .19, -.35), loam, M.Ground, 'Wedge',
+		V(0, -math.pi / 2, 0))
+	part('CollapsedBankToe', V(2.07, .46, 5.18), V(-1.36, .09, 3.35), pal.rock, M.Slate, 'Corner',
+		V(0, .28, 0))
+	beam('ExposedShoulderRoot', V(.91, .21, -5.58), V(.83, 1.27, .91), .8, root, M.Wood)
+	beam('TurningRootFork', V(.83, 1.27, .91), V(-1.69, .29, 4.29), .63, root, M.Wood)
+	beam('BuriedRootFork', V(.83, 1.27, .91), V(1.95, .31, 5.02), .64, pal.wood, M.Wood)
+	part('SplitRootEndGrain', V(.22, .59, .59), V(-1.72, .29, 4.33), heartwood, M.Wood, 'Cylinder',
+		V(0, -.93, -.23))
+end
+
+local function windbreakAscent(pal, part)
+	local snow = pal.ground:Lerp(pal.trim, .28)
+	local compactSnow = pal.ground:Lerp(pal.rock, .32)
+	local bankTurn = V(0, math.pi / 2, 0)
+	part('WindcutShaleFoot', V(13.1, 1.12, 5.1), V(.18, .38, .05), pal.rock, M.Slate, 'Wedge', bankTurn)
+	part('LeewardSnowShoulder', V(11.7, 1.12, 3.82), V(-.06, .68, -.48), snow, M.Snow, 'Wedge', bankTurn)
+	part('PackedAscentSnowToe', V(8.74, .56, 2.28), V(1.38, .19, .66), compactSnow, M.Snow, 'Wedge', bankTurn)
+	part('ScouredBlueIce', V(6.6, .30, 1.09), V(.91, .29, .23), pal.trim:Lerp(pal.rock, .42), M.Glacier,
+		'Wedge', bankTurn)
+	part('WindcutBankEnd', V(2.6, .91, 2.95), V(-.73, .38, -5.23), snow, M.Snow, 'Corner', V(0, -.6, 0))
+end
+
+local function freightWheelSeat(pal, part)
+	local basalt = pal.rock:Lerp(C(92, 80, 78), .44)
+	local wornStone = basalt:Lerp(C(153, 115, 93), .48)
+	local iron = C(108, 99, 96)
+	part('AshBedUnderFreight', V(6.1, .64, 10.7), V(0, .13, .13), pal.ground, M.Ground, 'Wedge')
+	for _, x in ipairs({-1.44, 1.44}) do
+		part('FreightWheelBasaltRunner', V(2.05, .66, 8.85), V(x, .36, .12), basalt, M.Basalt)
+		part('WornWheelContact', V(.76, .10, 7.6), V(x, .72, .28), wornStone, M.Basalt)
+		part('ForgedWheelChock', V(1.26, .62, 1.68), V(x, 1.02, -1.98), iron, M.CorrodedMetal, 'Wedge')
+		part('ChockRetainingPin', V(.20, .45, .45), V(x + .7, .84, -1.58), iron, M.Metal, 'Cylinder')
+	end
+end
+
+local function scoutStoneFooting(pal, part)
+	local slate = pal.rock:Lerp(C(146, 143, 133), .43)
+	local coping = slate:Lerp(C(166, 157, 138), .53)
+	part('RouteStoneMossApron', V(6.44, .46, 7.7), V(-.37, .13, .51), pal.ground, M.Ground, 'Corner',
+		V(0, .69, 0))
+	for _, x in ipairs({-1.67, 1.67}) do
+		part('RouteStoneFoundationCourse', V(3.28, .72, 4.43), V(x, .28, .12), pal.rock, M.Cobblestone)
+	end
+	part('RouteStoneSocket', V(3.8, .53, 3.24), V(-.14, .71, .3), slate, M.Slate)
+	part('WornRouteStone', V(2.42, 1.16, 1.23), V(-.14, 1.39, .23), coping, M.Slate, 'Wedge', V(0, math.pi, 0))
+	part('ChippedApproachCoping', V(3.36, .34, 1.22), V(2.39, .55, -.43), slate, M.Slate, 'Wedge',
+		V(0, math.pi / 2, 0))
+end
+
 local profiles = {
+	['DW-01'] = {goal = 'exp_1', step = 2, name = 'CreekCargoSill', side = -9, compose = creekCargoSill},
+	['GW-01'] = {goal = 'exp_1', step = 1, name = 'WheeltrackForkRootCut', side = 10, compose = wheeltrackFork},
+	['FV-01'] = {goal = 'exp_1', step = 3, name = 'WindbreakAscentBank', side = 9, compose = windbreakAscent},
+	['EC-01'] = {goal = 'exp_1', step = 1, name = 'FreightCarrierWheelSeat', side = -9, compose = freightWheelSeat},
+	['HG-01'] = {goal = 'exp_1', step = 2, name = 'ScoutApproachStoneFooting', side = -9, compose = scoutStoneFooting},
 	['DW-02'] = {goal = 'exp_1', name = 'RecoveryRainShelf', offset = V(0, 0, 11), compose = dryShelf},
 	['GW-06'] = {goal = 'exp_2', name = 'RearguardLanternRootBank', offset = V(-1.8, 0, -8.1), compose = rearguardBank},
 	['FV-04'] = {goal = 'exp_1', name = 'ArchiveSignalObservationSill', offset = V(10, 0, 0), compose = signalSill},
@@ -138,24 +213,44 @@ local profiles = {
 	['HG-04'] = {goal = 'exp_1', name = 'GateWinchAnchorPlinth', offset = V(-3, 0, -1), compose = gateAnchor, useResult = true},
 }
 
-function Assemblies.create(scene, chapter, goal, context)
+function Assemblies.create(scene, chapter, goal, context, area)
 	local profile = profiles[chapter.id]
-	if not profile or goal.id ~= profile.goal or not goal.activity.finish then return end
+	if not profile or goal.id ~= profile.goal then return end
 
-	local finish = goal.activity.finish
-	local target = V(table.unpack(finish.position))
+	local activity = goal.activity
+	local step = profile.step and activity.steps[profile.step]
+	local finish = activity.finish
+	local approach = step or finish
+	if not approach then return end
+
+	local target = V(table.unpack(approach.position))
 	local anchor = profile.useResult and context.result or target
-	local at = anchor + profile.offset
+	local at, facing
+	if step then
+		local previous = activity.steps[profile.step - 1]
+		local from = V(table.unpack(previous and previous.position or area.entry))
+		local delta = from - target
+		facing = V(delta.X, 0, delta.Z)
+		if facing.Magnitude < .01 then return end
+		local right = V(-facing.Z, 0, facing.X).Unit
+		at = anchor + right * profile.side
+	else
+		at = anchor + profile.offset
+	end
 	local y = Bounds.surface(at.X, at.Z)
 	if not y or math.abs(y - anchor.Y) > .5 then return end
 
 	-- Attach the main-route rearguard separately from its distant incident wing.
-	local parent = finish.rearguard and scene.Parent or scene
+	local parent = finish and finish.rearguard and scene.Parent or scene
 	if parent:FindFirstChild(profile.name) then return end
 
 	local origin = V(at.X, y, at.Z)
 	local frame = CFrame.new(origin)
-	if chapter.id == 'FV-04' then frame = CFrame.lookAt(origin, V(target.X, y, target.Z)) end
+	if facing then
+		frame = CFrame.lookAlong(origin, facing)
+	elseif chapter.id == 'FV-04' then
+		frame = CFrame.lookAt(origin, V(target.X, y, target.Z))
+	end
 
 	local model = Instance.new('Model')
 	model.Name = profile.name
@@ -187,6 +282,7 @@ function Assemblies.create(scene, chapter, goal, context)
 	model:SetAttribute('QuestLandmarkVersion', 3)
 	model:SetAttribute('StoryZone', chapter.id)
 	model:SetAttribute('StoryGoal', goal.id)
+	if step then model:SetAttribute('StoryStep', step.id) end
 	model:SetAttribute('GroundPosition', origin)
 	model:SetAttribute('ApproachPosition', target)
 	model:SetAttribute('PartCount', #model:GetChildren())
