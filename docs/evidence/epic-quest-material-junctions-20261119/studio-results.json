@@ -1,0 +1,111 @@
+{
+  "models": [
+    {
+      "approach": [
+        -1176.43994140625,
+        6,
+        -1215.3199462890625
+      ],
+      "model": "RecoveryRainShelf",
+      "id": "DW-02",
+      "floorError": 0,
+      "ground": [
+        -1176.43994140625,
+        6,
+        -1204.3199462890625
+      ],
+      "parts": 21
+    },
+    {
+      "approach": [
+        -332.8500061035156,
+        74,
+        -6721.39990234375
+      ],
+      "model": "RearguardLanternRootBank",
+      "id": "GW-06",
+      "floorError": 0,
+      "ground": [
+        -334.6499938964844,
+        74,
+        -6729.5
+      ],
+      "parts": 13
+    },
+    {
+      "approach": [
+        784.3499755859375,
+        90,
+        -9648.16015625
+      ],
+      "model": "ArchiveSignalObservationSill",
+      "id": "FV-04",
+      "floorError": 0,
+      "ground": [
+        794.3499755859375,
+        90,
+        -9648.16015625
+      ],
+      "parts": 15
+    },
+    {
+      "approach": [
+        -245.52999877929688,
+        146,
+        -13572.7998046875
+      ],
+      "model": "CrewPlanWorktableFootings",
+      "id": "EC-05",
+      "floorError": 0,
+      "ground": [
+        -245.52999877929688,
+        146,
+        -13566.7998046875
+      ],
+      "parts": 22
+    },
+    {
+      "approach": [
+        521.3900146484375,
+        184,
+        -16766.19921875
+      ],
+      "model": "GateWinchAnchorPlinth",
+      "id": "HG-04",
+      "floorError": 0,
+      "ground": [
+        518.3900146484375,
+        184,
+        -16767.19921875
+      ],
+      "parts": 18
+    }
+  ],
+  "partsBefore": 71,
+  "partsAfter": 89,
+  "framePairs": [
+    "DW-02-approach",
+    "DW-02-side",
+    "GW-06-approach",
+    "GW-06-side",
+    "GW-06-return",
+    "FV-04-approach",
+    "FV-04-side",
+    "EC-05-approach",
+    "EC-05-side",
+    "EC-05-channel",
+    "HG-04-approach",
+    "HG-04-side",
+    "HG-04-alliance"
+  ],
+  "expansionRegression": {
+    "generationSeconds": 31.920995708322152,
+    "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+    "blockers": [],
+    "checks": 9193,
+    "steps": 246,
+    "samples": 3968,
+    "incidents": 82,
+    "parts": 55442
+  }
+}
