@@ -57,7 +57,8 @@ function Poses.bow(pose,d,age,since,betweenShots)
     local support = smooth(phase/.64)*(1-smooth((age-d.windup-d.active)/d.recovery))
     local recoil, redraw = 0,0
     if since then
-        local span = math.min(.22, d.interval or d.shotInterval or .22)
+        local recoilTime = s == bow.heavy and .29 or s == bow.sky and .26 or s == bow.snap and .15 or .22
+        local span = math.min(recoilTime, d.interval or d.shotInterval or recoilTime)
         recoil = smooth(since/(span*.23))*(1-smooth((since/span-.23)/.77))
         if betweenShots then
             local cycle = since/(d.interval or d.shotInterval)
@@ -69,7 +70,8 @@ function Poses.bow(pose,d,age,since,betweenShots)
     recoil *= settle
     -- The bow hand stays on the sight line while the release elbow travels
     -- behind the cheek. Rotation about the arrow axis changes cant, not aim.
-    add(pose,"torso",s.chest*(coil-.36*recoil))
+    local releaseLift = s == bow.sky and -9 or s == bow.canopy and -13 or s == bow.heavy and 5 or 0
+    add(pose,"torso",s.chest*(coil-.36*recoil)+v(releaseLift*recoil,0,0))
     add(pose,"neck",s.chest*(-.58*coil+.18*recoil))
     add(pose,"left",v(-12*coil+4*recoil,4*coil,s.cant*.45*coil))
     add(pose,"right",v(13*coil-9*recoil,-15*coil+s.elbow*recoil,12*coil+9*recoil))
@@ -145,7 +147,12 @@ function Poses.mage(pose,d,profile,age)
     guide *= recovery
     follow *= recovery
     add(pose,"right",s.staff*(wind-.43*follow))
-    add(pose,"left",s.palm*wind+s.openPalm*guide)
+    local palmRelease = s == spells.iceRing and v(0,-9,-20)
+        or s == spells.cinder and v(17,0,8)
+        or s == spells.storm and v(-10,14,0)
+        or (s == spells.earth or s == spells.caldera) and v(-16,0,7)
+        or Vector3.zero
+    add(pose,"left",s.palm*wind+s.openPalm*guide+palmRelease*follow)
     add(pose,"torso",s.chest*(wind-.48*follow))
     add(pose,"neck",s.chest*(-.45*wind+.21*follow))
     add(pose,"elbow",v(-16*wind+11*follow,0,0))

@@ -155,6 +155,11 @@ local function shieldPose(d,age,rigType,contact,ending)
    pose.angles[ch]=v(math.deg(x),math.deg(y),math.deg(z))
   end
  end
+ if d.id=="knight.paladin.shield_verdict" then
+  local recoil=smooth((age-contact)/.04)*(1-smooth((age-contact-.04)/.16))
+  offset(pose,"torso",v(-7*recoil,-4*recoil,0))
+  offset(pose,"leftKnee",v(10*recoil))
+ end
  return age>=ending and mix(pose,resting("knight"),smooth((age-ending)/d.recovery)) or pose
 end
 local function axeCatch(d,age,contact,ending,base,sample,classId)
@@ -243,6 +248,12 @@ function Motion.sample(classId,d,age,rigType)
   else turns=smooth((age-contact+.06)/math.max(.1,d.active+.06)) end
   pose.root=CFrame.Angles(0,-math.pi*2*turns,0)
   pose.torso=rot(v(0,0,0));pose.angles.torso=v()
+ end
+ if d.id=="dwarf.iron_axe.armor_splitter" then
+  local weight=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))
+  offset(pose,"torso",v(12*weight,0,4*weight))
+  offset(pose,"leftKnee",v(13*weight))
+  offset(pose,"rightKnee",v(16*weight))
  end
  if d.id=="dwarf.iron_axe.stonebound_leap" then
   local phase=math.clamp(age/math.max(.01,contact),0,1)

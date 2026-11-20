@@ -2,6 +2,7 @@
 -- Existing geometry retains range information when this optional layer is culled.
 local RS=game:GetService("ReplicatedStorage")
 local Run=game:GetService("RunService")
+local Players=game:GetService("Players")
 local Input=game:GetService("UserInputService")
 local Debris=game:GetService("Debris")
 local Catalog=require(RS.Shared.PixelFXCatalog)
@@ -33,6 +34,7 @@ local function erase(i)
  local r=table.remove(active,i);if r.light then lightCount-=1 end;beams-=#r.lines;chips-=#r.chips;glowCount-=#r.glows;particleCount-=r.particles;Surfaces.release(r);r.model:Destroy()
 end
 local function atmosphere(r,name,at,flame,count,scale)
+ if r.compact then return end
  count=math.min(count,(Input.TouchEnabled and 96 or 192)-particleCount);if count<=0 then return end
  local a=Instance.new('Attachment');a.Name=name..'Origin';a.Parent=r.carrier;a.WorldPosition=at
  local e=Instance.new('ParticleEmitter');e.Name=name;e.Texture=flame and'rbxasset://textures/particles/fire_main.dds'or'rbxasset://textures/particles/smoke_main.dds'
@@ -56,13 +58,18 @@ local function visible(first,last)
  local t=delta.Magnitude>.01 and math.clamp((camera.CFrame.Position-first):Dot(delta)/delta:Dot(delta),0,1)or 0
  return(camera.CFrame.Position-(first+delta*t)).Magnitude<=100
 end
-local function make(first,last,life,key,id)
- if not vector(first)or not vector(last)or not visible(first,last)or #active>=(Input.TouchEnabled and 8 or 12)then return end
+function FX.isOtherHero(character)
+ local player=Players.LocalPlayer
+ return player~=nil and character~=nil and character~=player.Character
+end
+local function make(first,last,life,key,id,compact)
+ local limit=Input.TouchEnabled and 8 or 12
+ if not vector(first)or not vector(last)or not visible(first,last)or #active>=limit-(compact and 2 or 0)then return end
  local m=Instance.new("Model");m.Name="HeroVFX";m:SetAttribute("SkillId",id or "");m:SetAttribute("Style",key)
  local carrier=Instance.new("Part");carrier.Name="VFXCarrier";carrier.Size=Vector3.one*.05;carrier.Transparency=1
  carrier.Anchored=true;carrier.CanCollide=false;carrier.CanTouch=false;carrier.CanQuery=false;carrier.CastShadow=false
  carrier.Position=first;carrier.Parent=m;m.Parent=workspace;Debris:AddItem(m,life+.2)
- local r={model=m,carrier=carrier,at=workspace:GetServerTimeNow(),life=life,lines={},chips={},glows={},flares={},faces={},particles=0,color=palette[key]or palette.steel,key=key,hot=key=="holy"and Color3.fromRGB(255,226,128)or WHITE}
+ local r={model=m,carrier=carrier,at=workspace:GetServerTimeNow(),life=life,lines={},chips={},glows={},flares={},faces={},particles=0,color=palette[key]or palette.steel,key=key,hot=key=="holy"and Color3.fromRGB(255,226,128)or WHITE,compact=compact}
  table.insert(active,r)
  if not connection and Run:IsClient()then connection=Run.RenderStepped:Connect(function()FX.step(workspace:GetServerTimeNow())end)end
  return r
@@ -78,7 +85,7 @@ local function line(r,name,path,width,color,endWidth)
  beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(primary,r.color:Lerp(r.hot,r.key=='lightning'and .7 or .35))
  beam.LightEmission=1;beam.LightInfluence=0;beam.Transparency=NumberSequence.new(.18);beam.Parent=r.carrier
  local glow
- if glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
+ if not r.compact and glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
   glow=beam:Clone();glow.Name="SoftGlow";glow.Width0=width*2.6;glow.Width1=endWidth*2.6
   glow.Color=ColorSequence.new(r.color);glow.Texture="rbxasset://textures/particles/smoke_main.dds";glow.TextureMode=Enum.TextureMode.Stretch;glow.Transparency=NumberSequence.new(.62);glow.Parent=r.carrier
   table.insert(r.glows,glow);glowCount+=1
@@ -106,6 +113,7 @@ local function ring(r,name,center,radius,width,vertical,inward,color,basis,segme
  end,segments or 12,width,color)
 end
 local function debris(r,center,count,kind,scale)
+ count=r.compact and math.min(count,2) or count
  for i=1,count do
   if chips>=48 then break end
   local p=Instance.new((kind=="IceShard"or kind=="RockChip")and"WedgePart"or"Part");p.Name=kind;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
@@ -119,6 +127,7 @@ local function debris(r,center,count,kind,scale)
 end
 -- Engine-bundled textures avoid a new asset upload/permission dependency.
 local function flourish(r,position,scale,key,strong)
+ if r.compact then return end
  local a=Instance.new("Attachment");a.Name="FlourishOrigin";a.Parent=r.carrier;a.WorldPosition=position
  local gui=Instance.new("BillboardGui");gui.Name="ImpactFlare";gui.Adornee=a;gui.AlwaysOnTop=false
  gui.LightInfluence=0;gui.MaxDistance=100;gui.Size=UDim2.fromScale(scale,scale);gui.Parent=r.carrier
@@ -257,7 +266,7 @@ function FX.windup(character,d,motion,effect,origin,seq,startedAt,socket)
  end
  local alive,frame=refresh()
  if not alive then return end
- local r=make(origin,origin,remaining,key,d.id)
+ local r=make(origin,origin,remaining,key,d.id,FX.isOtherHero(character))
  if not r then return end
  r.at=startedAt;r.life=duration;r.color=color;r.hot=hot
  r.model.Name="HeroSkillWindup"
@@ -466,7 +475,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local d=row.definition
  -- The dedicated Wind Lance renderer owns its release; no empty duplicate model.
  if profile.shape=="wind"then return end
- local r=make(first,last,profile.life,row.key,id);if not r then return end
+ local r=make(first,last,profile.life,row.key,id,FX.isOtherHero(character));if not r then return end
  r.color,r.hot=Palette.get(row.key,row.classId)
  r.model:SetAttribute("Silhouette",profile.shape);r.model:SetAttribute("Pulse",pulse)
  local dir=forward(first,last)
@@ -1039,9 +1048,39 @@ local function impactStar(r,at,dir,size,classId)
  end
  r.model:SetAttribute('ContactStyle',pierce and 'ArcadePierce'or classId=='dwarf'and'ArcadeChop'or'ArcadeCut')
 end
-function FX.contact(at,classId,id,direction,scale)
+local function elementalContact(r,at,cf,size)
+ local up,right,dir=cf.UpVector,cf.RightVector,cf.LookVector
+ local key=r.key
+ if key=="lightning" then
+  local function fork(t,u)
+   local side=(math.floor(t*4+.5)%2==1 and .38 or -.2)*math.sin(t*math.pi)
+   return at+(right*side+up*(t-.2)+dir*(t*.55+u*.8))*size
+  end
+  for i=0,2 do
+   line(r,"LightningContactFork",function(u)return fork(i/3,u),fork((i+1)/3,u)end,.08,r.hot)
+  end
+  return
+ end
+ local count=r.compact and 2 or 4
+ for i=1,count do
+  local side=(i-(count+1)*.5)*.32
+  local offset=right*side
+  if key=="fire"or key=="bomb"then
+   local lift=up*(.75+.12*i)+dir*.45+offset
+   line(r,"HeatContactRise",function(u)return at+lift*u*.55*size,at+lift*(.45+u*.9)*size end,.09,r.hot)
+  elseif key=="frost"or key=="earth"then
+   local spread=offset*1.8+(key=="frost" and up*.74 or -up*.35)+dir*.4
+   line(r,key=="frost" and "FrostContactFacet" or "EarthContactFracture",
+    function(u)return at+spread*u*.35*size,at+spread*(.62+u*.75)*size end,.095,r.color)
+  else
+   local spread=offset+(up*.24+dir*.68)*(i%2==0 and 1 or -1)
+   line(r,"ContactSplinter",function(u)return at+spread*u*.6*size,at+spread*(.62+u)*size end,.065,r.hot)
+  end
+ end
+end
+function FX.contact(at,classId,id,direction,scale,compact)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
- local r=make(at,at,.3,row.key,id);if not r then return end
+ local r=make(at,at,compact and .16 or .3,row.key,id,compact);if not r then return end
  r.color,r.hot=Palette.get(row.key,row.classId)
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)
@@ -1058,6 +1097,15 @@ function FX.contact(at,classId,id,direction,scale)
     local center=at+dir*(u*.75)
     return center+outward*(.15+u*.5),center+outward*(.78+u*.95)
    end,.14,r.hot)
+  end
+ elseif physical and compact then
+  local pierce=row.key=="arrow"or row.key=="gun"
+  local axis=pierce and dir or classId=="dwarf" and cf.UpVector or cf.RightVector+cf.UpVector*.35
+  for side=-1,1,2 do
+   line(r,"AllyWeaponContact",function(u)
+    local shift=cf.RightVector*side*.14*size+dir*u*.5
+    return at+shift-axis*.4*size,at+shift+axis*(.35+u*.6)*size
+   end,.085,r.hot)
   end
  elseif physical then
   impactStar(r,at,dir,size,classId)
@@ -1078,25 +1126,22 @@ function FX.contact(at,classId,id,direction,scale)
    for side=-1,1,2 do line(r,'PiercingContactWake',function(u)local offset=cf.RightVector*side*.12*size;return at-dir*(.8-u*.3)*size+offset,at+dir*(.25+u*.65)*size+offset end,.055,r.color)end
   end
  elseif row.key=="water"or row.key=="gravity"then
-  ring(r,row.key=="water"and"WaterContact"or"GravityContact",at,1.3*size,.12,true,row.key=="gravity",nil,cf)
+  ring(r,row.key=="water"and"WaterContact"or"GravityContact",at,1.3*size,.12,true,row.key=="gravity",nil,cf,compact and 5 or nil)
  elseif row.key=='arcane'then
   for i=1,4 do local a=i*math.pi*.5;local offset=(cf.RightVector*math.cos(a)+cf.UpVector*math.sin(a))*size
    line(r,'ArcaneContactRay',function(u)return at+offset*(.12+u*.35),at+offset*(.45+u*.6)end,.055,r.color)
   end
  else
-  for i=1,5 do
-   local angle=i*2.39996;local offset=(cf.RightVector*math.cos(angle)+cf.UpVector*math.sin(angle))*size
-   line(r,"ContactSplinter",function(u)return at+offset*(.15+u*.7),at+offset*(.4+u*1.5)end,classId=="dwarf"and .12 or .065,i%2==0 and WHITE or r.color)
-  end
+  elementalContact(r,at,cf,size)
  end
- if row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb"then
+ if not compact and (row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb")then
   debris(r,at,3,row.key=="frost"and"IceShard"or row.key=="earth"and"RockChip"or"Ember",size)
  end
  local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*.65*size,r.hot,.25,"ball")
  if flash then r.faces[#r.faces].fadeDuration=.08 end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
- if not physical and not shieldStrike and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
+ if not compact and not physical and not shieldStrike and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
   local start=#r.faces
   local basis=CFrame.lookAt(at,at+dir)*CFrame.Angles(math.pi/2,0,0)
   Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)

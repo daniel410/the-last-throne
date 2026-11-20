@@ -189,7 +189,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local direction=CFrame.Angles(0,math.rad(18),0):VectorToWorldSpace(center-origin)
   center=origin+direction
  end
- if pulse~=0 then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
+ if pulse~=0 and not HeroVFX.isOtherHero(character) then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
  local direction=center-origin

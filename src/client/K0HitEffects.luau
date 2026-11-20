@@ -10,6 +10,7 @@ local CombatAudio = require(script.Parent.K0CombatAudio)
 local HitStop = require(script.Parent.K0HitStop)
 local HeroVFX = require(script.Parent.HeroVFX)
 local Palette = require(ReplicatedStorage.Shared.CombatVFXPalette)
+local Catalog = require(ReplicatedStorage.Shared.PixelFXCatalog)
 
 local HitEffects = {}
 local started = false
@@ -109,14 +110,16 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local scale = enemyKind == "Ogre" and 1.3 or 1
 	if model and model:GetAttribute("SlimeSplitGeneration") == 1 then scale = 0.7 end
 	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
-	HitReaction.record(model, flat)
-	PixelFX.hit(position, classId, skillId, scale, flat)
-	local contact = HeroVFX.contact(position, classId, skillId, flat, scale)
+	local attacker = type(impact) == "table" and impact.attacker or nil
+	local compact = HeroVFX.isOtherHero(attacker)
+	HitReaction.record(model, flat, nil, Catalog.get(classId, skill and skillId or nil))
+	if not compact then PixelFX.hit(position, classId, skillId, scale, flat) end
+	local contact = HeroVFX.contact(position, classId, skillId, flat, scale, compact)
 	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
 	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)
 	TweenService:Create(flash, TweenInfo.new(0.09, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 		{ Size = Vector3.one * .8 * scale * impactScale, Transparency = 1 }):Play()
-	if model and model:IsDescendantOf(workspace) then
+	if not compact and model and model:IsDescendantOf(workspace) then
 		local highlight = Instance.new("Highlight")
 		highlight.Name, highlight.Adornee = "K0HitFlash", model
 		highlight.FillColor, highlight.FillTransparency, highlight.OutlineTransparency = profile.color, 0.78, 0.55
@@ -124,14 +127,14 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		highlight.DepthMode, highlight.Parent = Enum.HighlightDepthMode.Occluded, holder
 		TweenService:Create(highlight, TweenInfo.new(0.12), { FillTransparency = 1, OutlineTransparency = 1 }):Play()
 	end
-	for index = 1, sharpContact and 0 or 2 do
+	for index = 1, (compact or sharpContact) and 0 or 2 do
 		local ray = part(holder, "K0ContactRay", position, Vector3.new(.08, 1.5, .08) * scale, profile.secondary)
 		ray.Size=Vector3.new(.045,skill and skill.shape=='chop'and 1.2 or .8,.045)*scale;ray.Transparency=.35
 		ray.Shape = Enum.PartType.Block
 		ray.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(index == 1 and 35 or -55))
 		TweenService:Create(ray, TweenInfo.new(.17), {Size = ray.Size * 1.4, Transparency = 1}):Play()
 	end
-	if skill then
+	if skill and not compact then
 		local accent = part(holder, "K0SkillImpact", position, Vector3.new(0.12, 0.45, 0.45) * scale, skill.color)
 		accent.Transparency=.3
 		accent:SetAttribute("Style", skill.shape)
@@ -172,7 +175,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	end
 	local slime = enemyKind == "Slime"
 	local particleColor = slime and Color3.fromRGB(130, 224, 155) or profile.color
-	if not sharpContact and not slime and (classId == "knight" or classId == "elf") then
+	if not compact and not sharpContact and not slime and (classId == "knight" or classId == "elf") then
 		local flat = typeof(direction) == "Vector3" and finite(direction.X) and finite(direction.Z)
 			and Vector3.new(direction.X, 0, direction.Z) or Vector3.new(0, 0, -1)
 		if flat.Magnitude < 0.001 then flat = Vector3.new(0, 0, -1) end
@@ -181,7 +184,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		streak.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(classId == "knight" and 45 or -35))
 		TweenService:Create(streak, TweenInfo.new(0.18), { Transparency = 1, Size = streak.Size * 1.2 }):Play()
 	end
-	for index = 1, 3 do
+	for index = 1, compact and 0 or 3 do
 		local angle = (index - 1) * (math.pi * 2 / 5) + 0.35
 		local offset = Vector3.new(math.cos(angle), 0.45 + (index % 2) * 0.4, math.sin(angle)) * scale
 		local particle = part(holder, slime and "K0GelDroplet" or "K0ImpactSpark", position,
@@ -217,7 +220,6 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		{ StudsOffsetWorldSpace = Vector3.new(0, numberHeight + 0.7, 0) }):Play()
 	TweenService:Create(label, TweenInfo.new(0.65), { TextTransparency = 1, TextStrokeTransparency = 1 }):Play()
 	if type(impact) == "table" then HitStop.record(impact.attacker, impact, workspace:GetServerTimeNow()) end
-	local attacker = type(impact) == "table" and impact.attacker or nil
 	CombatAudio.play("impact", position, classId, skillId, attacker,
 		Players.LocalPlayer ~= nil and Players.LocalPlayer.Character == attacker)
 	return true
