@@ -45,6 +45,7 @@ src/shared/CampaignSceneState.luau
 src/shared/CampaignIncidentRoute.luau
 src/server/World/CampaignIncidentProps.luau
 src/server/World/CampaignIncidentScenes.luau
+src/server/World/EpicQuestLandmarkAssemblies.luau
 src/shared/DeepwoodQuestLog.luau
 src/shared/CampaignStoryBeats.luau
 src/server/World/CampaignCircuitWorld.luau
