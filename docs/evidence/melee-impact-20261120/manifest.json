@@ -1,0 +1,62 @@
+[
+  {
+    "clockTime": 12,
+    "index": 1,
+    "id": "knight.paladin.sunward_cross",
+    "age": 0.1,
+    "extent": 11,
+    "name": "SUNWARD CROSS",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "001-knight.paladin.sunward_cross.png",
+    "sha256": "72edfcf81e9cd4f5dbb5c3f08bd20cf3841c54691b6ab9e4d847367fff58a1b0",
+    "iconSha256": "b66fcfa89cc41828aaec26d58c4c86b3707f1bb442acca0afcc6750c84f92928"
+  },
+  {
+    "clockTime": 12,
+    "index": 2,
+    "id": "knight.paladin.sunward_cross",
+    "age": 0.1,
+    "extent": 11,
+    "name": "SUNWARD CROSS",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 2,
+    "file": "002-knight.paladin.sunward_cross.png",
+    "sha256": "fc641071dc8b4d0c2163f5d4dfed0913c80fb21fc36ce1a950ce83e0dfa44675",
+    "iconSha256": "b66fcfa89cc41828aaec26d58c4c86b3707f1bb442acca0afcc6750c84f92928"
+  },
+  {
+    "clockTime": 12,
+    "index": 3,
+    "id": "dwarf.iron_axe.armor_splitter",
+    "age": 0.1,
+    "extent": 11,
+    "name": "ARMOR SPLITTER",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "003-dwarf.iron_axe.armor_splitter.png",
+    "sha256": "bd2e28a645ddcb0ab56b7c2aea3e10140ec075f0f7624f30436786775130641f",
+    "iconSha256": "deedffa74723f8a2b106641a04330cb1359befd351483d8524eb248707979ad4"
+  },
+  {
+    "clockTime": 12,
+    "index": 4,
+    "id": "dwarf.iron_axe.crag_cleave",
+    "age": 0.1,
+    "extent": 11,
+    "name": "CRAG CLEAVE",
+    "variant": 2,
+    "height": 320,
+    "width": 480,
+    "pulse": 1,
+    "file": "004-dwarf.iron_axe.crag_cleave.png",
+    "sha256": "24e7dae5413dd75c151db050280110ce454ebe6229d2f883bce7122532592172",
+    "iconSha256": "7648d3fb40c1dab838d32e6ad6d6b9633f5d6ebccbf08b5a0d405cb8c7de1faa"
+  }
+]

@@ -1,0 +1,17 @@
+MELEE_ACTION_BEATS_NATIVE {"rigActions":140,"contacts":204,"pass":true,"checks":2146}
+PASS melee-action-beats
+HERO_SKILL_SOCKETS_NATIVE {"checks":12,"samples":[{"id":"knight_driving_thrust","forwardDot":1.0000001192092896,"tipHeight":0.794403076171875,"rig":"R6"},{"id":"dwarf.gunner.gunner_shot","forwardDot":0.9948293566703796,"rig":"R6"},{"id":"knight_driving_thrust","forwardDot":1,"tipHeight":0.770477294921875,"rig":"R15"},{"id":"dwarf.gunner.gunner_shot","forwardDot":0.9948294758796692,"rig":"R15"}],"failures":[],"pass":true,"kind":"HERO_SKILL_SOCKETS_NATIVE"}
+PASS hero-skill-sockets
+HERO_SKILLS_NATIVE {"failures":[],"checks":244520,"rigs":["R6/knight","R6/dwarf","R6/elf","R6/mage","R15/knight","R15/dwarf","R15/elf","R15/mage"],"kind":"HERO_SKILLS_NATIVE","pass":true,"skills":256}
+PASS hero-skills
+SKILL_VFX_INDIVIDUAL_NATIVE {"failures":[],"skills":128,"pass":true,"checks":298}
+PASS skill-vfx-individual
+RPG_VFX_GAP_NATIVE {"failures":[],"pass":true,"checks":21}
+PASS rpg-vfx-gap
+SKILL_VFX_ART_NATIVE {"failures":[],"pass":true,"checks":43}
+PASS skill-vfx-art
+HERO_VFX_NATIVE {"failures":[],"skills":128,"pass":true,"checks":10485}
+PASS hero-vfx
+PROJECTILE_VFX_TIMING_NATIVE {"pass":true,"checks":192}
+PASS projectile-vfx-timing
+MELEE_AND_VFX_ALL_PASS

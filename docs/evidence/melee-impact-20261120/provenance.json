@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "7a4b516fc4defe0e9d28c19ff10d3f7c3de3aa94",
+  "buildSha256": "a1d363e84c56e69b082616f5458fe9468f0b9019ae98f7f03ff43159d3453e48",
+  "modules": {
+    "AdvancedSkills": "910cc2d9cd08c7eb760675237525a80fcf7d1113e7e5fe5855687d7431493842",
+    "K0Config": "babc1cb51128b78b188104973ff21f19d5ba238c09be411305980d61336fa22d",
+    "SkillPresentation": "4a7e2e2832331abddc466d1896d4a62db1ecb0ce58b58b77878b8a0490f4f861",
+    "AdvancedSkillMotion": "f708eaa185ea34f4429fdd0818672a39f88bf3d6cf2e325d9da7c2a4702af418",
+    "HeroVFX": "b0558b78c504e89d5252e03bd68976d845bfb79df3db7baf36d410632cd9d4a1",
+    "MeleeWeightShift": "f3d59e1beb637e1a901d46390f4125d13b2ce39f8ec59b628599bd3786516ef5"
+  },
+  "nativeSuites": 8,
+  "tests": {
+    "melee-action-beats": "39aa4720493fd4eb7714d9ce9a95d3ebb91b221087da5b2200b18f458478c935",
+    "hero-skill-sockets": "4c215ee5a388bf85c3a313960b9b189bd3040123b85e61c36da02be14e313dc9",
+    "hero-skills": "cf0c2c647b27ead94f377333ec55a43846ce5aa6b33c433e06e983c96807fff3",
+    "skill-vfx-individual": "f13ad1dedfd73d1e57548d6486a9175cccc9bf362506cf4ea9ce52a4e29114b5",
+    "rpg-vfx-gap": "5c266eee0d28d7a1dc1069208d75b96c123709949b2b89ce6ea39ccbab4ad5e2",
+    "skill-vfx-art": "3935b4f9a3594a95ebb296194c880c8c3a249290241acf612ef887c050fbb482",
+    "hero-vfx": "9e19da0f3489497eaee4eea99a0c735bdf6d72fd18c2e5f02f62640e4c5f74d6",
+    "projectile-vfx-timing": "e11c1da1cb14aa85d6ede3378eb68c7c52b321c83f198ea9c6d745dc540f84e4"
+  }
+}
