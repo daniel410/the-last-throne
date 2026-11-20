@@ -61,12 +61,23 @@ local function source(classId,kind,pulse,rigType,skillId)
   or skillId=="dwarf_hooking_chop" and "dwarf.mixamo.backhand" or base.id
  return base,function(age) return Melee.sample("dwarf",1,age,nil,nil,clipId,rigType) end
 end
+-- Recoil gain and settling time distinguish a burst, a long rifle shot
+-- and a braced cannon while the release pose keeps the bore on axis.
+local gunRecoil={
+ ["dwarf.gunner.quickfire"]={gain=.75,settle=.12},
+ ["dwarf.gunner.scatter_shot"]={gain=1.45,settle=.22},
+ ["dwarf.gunner.piercing_round"]={gain=1.20,settle=.23},
+ ["dwarf.gunner.blast_step"]={gain=1.30,settle=.23},
+ ["dwarf.gunner.siege_barrage"]={gain=1.25,settle=.30},
+}
 local function gunner(d,kind,age)
  local pulse,since=Presentation.beat(d,age)
  local phase=age/d.windup
  local ready=smooth(phase/.76)*(1-smooth((age-d.windup-d.active)/d.recovery))
- local span=math.min(d.interval or .3,.24)
- local kick=pulse>0 and smooth(since/(span*.20))*(1-smooth((since/span-.20)/.80)) or 0
+ local recoil=gunRecoil[d.id]
+ local span=math.min(d.interval or .3,recoil and recoil.settle or .24)
+ local gain=recoil and recoil.gain or 1
+ local kick=pulse>0 and gain*smooth(since/(span*.18))*(1-smooth((since/span-.18)/.82)) or 0
  local load=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
  local right,left,elbow,torso
  if kind=="lob" then
@@ -144,6 +155,7 @@ function Motion.sample(classId,d,age,rigType)
  local profile=Presentation.get(d);if not profile then return nil end
  local kind=profile.motion
  if d.branch=="gunner" then return gunner(d,kind,age) end
+ if kind=="slash" and classId=="knight" and (d.pulses or 1)>1 then kind="cross" end
  local contact=d.windup+(d.hitDelay or 0)
  local ending=d.windup+d.active
  if d.id=="knight.common.provoke" then return challenge(d,age) end

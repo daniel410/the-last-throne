@@ -42,8 +42,14 @@ local ok,err=xpcall(function()
  check(math.abs((sum/#list).X)<.01,'Ember Step remains at server departure center')
  m=cast(A.branches.pyro.skills[7].id)
  check(#beams(m,'StoneLanceAxis')==1 and #beams(m,'EarthFissure')==0,'Stone Lance is airborne rather than a ground earthquake')
- m=cast(A.branches.paladin.skills[11].id)
- check(#beams(m,'SunwardCross')==2,'Sunward Cross has actual crossing blades')
+ local cross=A.branches.paladin.skills[11].id
+ for pulse=1,2 do
+  m=cast(cross,nil,nil,pulse)
+  local spans=beams(m,'SunwardCross')
+  check(#spans==8,'one continuous Sunward Cross edge per pulse')
+  local rise=spans[#spans].Attachment1.WorldPosition.Y-spans[1].Attachment0.WorldPosition.Y
+  check(pulse==1 and rise<-1 or pulse==2 and rise>1,'confirmed Sunward Cross beats descend then rise')
+ end
  m=cast('dwarf_low_sweep')
  for _,v in ipairs(beams(m,'LowSweep'))do check(v.Attachment0.WorldPosition.Y<.7,'Low Sweep stays at ankle height')end
  m=cast(A.branches.gunner.skills[7].id)

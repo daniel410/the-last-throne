@@ -73,4 +73,20 @@ for _, pair in {
     end
     check(delta(shoulders[pair[2]],shoulders[pair[3]])>18,"Distinct anticipation: "..pair[2])
 end
+local skills = require(game.ReplicatedStorage.Shared.AdvancedSkills).branches
+local rig = Enum.HumanoidRigType.R15
+for _, index in {1,12} do
+    local d = skills.paladin.skills[index]
+    local first = advanced.sample("knight",d,d.windup+.04,rig)
+    local second = advanced.sample("knight",d,d.windup+d.interval+.04,rig)
+    check(delta(first.right,second.right)>15,"Alternating follow-through: "..d.id)
+end
+local single = skills.gunner.skills[1]
+local scatter = skills.gunner.skills[7]
+local function kick(d)
+    local aim = advanced.sample("dwarf",d,d.windup,rig)
+    local recoil = advanced.sample("dwarf",d,d.windup+.04,rig)
+    return delta(aim.elbow,recoil.elbow)
+end
+check(kick(scatter)>kick(single)+3,"Scatter Shot shoulder absorbs a heavier recoil")
 print("MELEE_ACTION_BEATS_NATIVE "..game.HttpService:JSONEncode({pass=true,checks=checks,rigActions=actions,contacts=seams}))

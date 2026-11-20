@@ -82,7 +82,7 @@ local function line(r,name,path,width,color,endWidth)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, RadiantOpeningFan=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -452,6 +452,19 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    return at+v*rad+Vector3.yAxis*(low and .12 or math.sin(t*math.pi)*.35+(lane-1)*.22)
   end,12,width*(1-(lane-1)*.12))
  end
+ local function crossPath(t)
+  local side=pulse%2==0 and -1 or 1
+  local arc=math.rad(angle*.46)*(2*t-1)
+  local offset=(flat*math.cos(arc)+right*math.sin(arc))*math.min(radius,6)*(.65+.18*math.sin(t*math.pi))
+  return first+offset+Vector3.yAxis*(.85-1.65*t)*side
+ end
+ local function cleavePath(t)
+  local a=t*math.pi*.8
+  local lateral=id=="dwarf_hooking_chop" and -.85
+   or id=="dwarf.iron_axe.crag_cleave" and 1.35
+   or id=="dwarf.iron_axe.armor_splitter" and .18 or 0
+  return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8+right*(t-.5)*lateral
+ end
  local artContext={id=id,shape=shape,key=row.key,first=first,last=last,dir=dir,flat=flat,right=right,floor=floor,radius=radius,angle=angle,area=area,definition=d,character=character,pulse=pulse}
  if Polish.strokes(r,artContext,line,curve)then
  elseif Art.strokes(r,artContext,line,curve)then
@@ -465,8 +478,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   end
  elseif shape=="cleave"then
   for lane=1,count do curve(r,"DescendingCleave",function(t,u)
-   local a=t*math.pi*.8
-   return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*(math.cos(a)*2.8-u*.5)+right*(lane-(count+1)/2)*.3
+   return cleavePath(t)-Vector3.yAxis*u*.5+right*(lane-(count+1)/2)*.3
   end,12,width)end
  elseif shape=='spin'then
   r.model:SetAttribute('SpinStyle',spinStyle)
@@ -479,9 +491,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   for lane=1,count do sector(shape=="low"and"LowSweep"or"BladeRibbon",at,math.min(radius,8)*(.72+lane*.08),arc,lane,shape=="low")end
   if shape=="counter"then sector("CounterGuard",floor,2.4,110,1,true)end
  elseif shape=="cross"then
-  for side=-1,1,2 do
-   stroke("SunwardCross",first+flat*.5+right*side*1.6+Vector3.yAxis*1.2,first+flat*math.min(radius,6)-right*side*1.6-Vector3.yAxis*.6,width,WHITE)
-  end
+  curve(r,"SunwardCross",crossPath,8,width,WHITE)
  elseif shape=="guard"or shape=="warcry"or shape=="holy"or shape=="ward"then
   if shape=="guard"and d.form~="area"then
    local at=first+flat*2;local basis=CFrame.lookAt(at,at+flat)
@@ -696,15 +706,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   for i=start+1,#r.faces do r.faces[i].motion.duration=math.min(r.life,.22)end
  elseif shape=="cleave"then
   local start=#r.faces
-  Surfaces.ribbon(r,"CleaveSurface",function(t)local a=t*math.pi*.8;return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8 end,right,1.2,.36,r.color:Lerp(r.hot,.18),12,Enum.Material.SmoothPlastic)
-  Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)local a=t*math.pi*.8;return first+flat*(math.sin(a)*math.min(radius,5)+.04)+Vector3.yAxis*math.cos(a)*2.8 end,right,.2,.12,r.hot,6,Enum.Material.Neon)
+  Surfaces.ribbon(r,"CleaveSurface",cleavePath,right,1.2,.36,r.color:Lerp(r.hot,.18),12,Enum.Material.SmoothPlastic)
+  Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)return cleavePath(t)+flat*.04 end,right,.2,.12,r.hot,6,Enum.Material.Neon)
   Surfaces.animate(r,start,first,right,.65,false,math.min(r.life,.22))
  elseif shape=="cross"then
-  for side=-1,1,2 do
-   local a=first+flat*.5+right*side*1.6+Vector3.yAxis*1.2
-   local b=first+flat*math.min(radius,6)-right*side*1.6-Vector3.yAxis*.6
-   Surfaces.ribbon(r,"CrossSurface",function(t)return a+(b-a)*t end,flat,.9,.38,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
-  end
+  Surfaces.ribbon(r,"CrossSurface",crossPath,flat,.65,.55,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
  elseif shape=="thrust"then
   Surfaces.triangle(r,"ThrustSurface",first-right*.65,last,first+right*.65,nil,.27)
  elseif shape=="ward"then

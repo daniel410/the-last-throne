@@ -38,7 +38,15 @@ local axeWedge = lead(v(28,15,-16), v(34,-28,21), v(-12,-11,6))
 local lowAxe = lead(v(-24,-22,15), v(30,20,-21), v(18,13,-8))
 local plantedGun = lead(v(12,-9,-7), v(27,-7,12), v(15,5,-8))
 local sightLine = lead(v(-10,8,-7), v(18,-22,13), v(3,12,9))
+local overheadAxe = lead(v(25,-8,-12), v(-12,19,19), v(-10,11,6))
+local shieldRam = lead(v(-20,14,-10), v(26,-14,14), v(17,-5,-7))
 local leads = {
+    ["knight.steel_knight.shield_breaker"] = shieldRam,
+    ["knight.paladin.shield_verdict"] = shieldRam,
+    ["dwarf.iron_axe.armor_splitter"] = overheadAxe,
+    ["dwarf.iron_axe.crag_cleave"] = axeWedge,
+    ["dwarf.iron_axe.mountain_strike"] = overheadAxe,
+    ["dwarf.iron_axe.stonebound_leap"] = axeWedge,
     ["knight.steel_knight.unyielding_front"] = shieldWall,
     ["knight.steel_knight.breaker_charge"] = shoulderDrive,
     ["knight.steel_knight.rallying_slash"] = highStandard,
@@ -106,11 +114,16 @@ function WeightShift.apply(pose, classId, skillId, combo, age)
     local follow = d.active - (pulses-1)*(d.interval or 0)
     local brakeTime = math.min(follow + d.recovery*.35, d.interval or .32)
     local brake = smooth(since/(brakeTime*.32))*(1-smooth((since/brakeTime-.32)/.68))
+    -- Drive forward out of a ram, sit back into a shot, and compress
+    -- downward on an axe landing. Each offset starts after contact.
+    local drive = skillId and d.move and math.clamp(d.move / 6, -1, 1) or 0
+    local landing = skillId and classId == "dwarf" and style == skills.slam and .12 or 0
     local transfer = load - .68*brake
     local coil = style.coil * transfer
     local shift = style.step * transfer
     local crouch = style.compression * (load+.85*brake)
-    local center = Vector3.new(shift, -.006*crouch, .09*load-.14*brake)
+    local center = Vector3.new(shift, -.006*crouch, .09*load-(.14+.15*drive)*brake)
+    center -= Vector3.yAxis * (landing*brake)
     local chest = coil
     if not skillId and combo == 1 then
         -- Both openers already accelerate rapidly out of the high guard.
