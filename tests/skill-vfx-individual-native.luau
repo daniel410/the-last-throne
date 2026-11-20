@@ -56,6 +56,30 @@ local ok,err=xpcall(function()
  check(#beams(m,'ArrowPressure')==5,'Scatter Shot has five authored fan lanes')
  m=cast('knight.common.bash',from,from+Vector3.xAxis*5)
  for _,v in ipairs(beams(m,'GuardHalo'))do check(math.abs(v.Attachment0.WorldPosition.X-2)<.01,'shield plane faces the actual attack direction')end
+ for _,strike in ipairs({
+  {id=A.branches.steel_knight.skills[5].id, edge='ShieldBreakerWave', segments=6, face='ShieldBreakerFace', contact='ShieldImpactShards'},
+  {id=A.branches.paladin.skills[6].id, edge='VerdictCrest', segments=4, face='VerdictCrestFace', contact='VerdictContactRay'},
+ })do
+  m=cast(strike.id,from,from+Vector3.xAxis*5)
+  local edges=beams(m,strike.edge)
+  local face=assert(m:FindFirstChild(strike.face,true))
+  check(#edges==strike.segments and #beams(m,'GuardHalo')==0,'distinct directional shield silhouette')
+  local edgeX=edges[1].Attachment0.WorldPosition.X
+  local faceX=face.Position.X
+  FX.step(workspace:GetServerTimeNow()+.12)
+  local advance=edges[1].Attachment0.WorldPosition.X-edgeX
+  check(advance>.15 and math.abs(advance-(face.Position.X-faceX))<.001,'shield face and outline advance together')
+  FX.clear()
+  local impact=assert(FX.contact(target,'knight',strike.id,Vector3.xAxis,1))
+  check(#beams(impact,strike.contact)==2 and #beams(impact,'PhysicalCutContact')==0,'confirmed shield impact uses its own directional rays')
+ end
+ local armorSplitter=A.branches.iron_axe.skills[1].id
+ m=cast(armorSplitter)
+ local axeEdge=beams(m,'DescendingCleave')
+ check(#axeEdge==12 and axeEdge[1].Attachment0.WorldPosition.Y-axeEdge[12].Attachment1.WorldPosition.Y>4,'Armor Splitter cleaves downward through the centerline')
+ FX.clear()
+ local fracture=assert(FX.contact(target,'dwarf',armorSplitter,Vector3.new(0,0,-1),1))
+ check(#beams(fracture,'ArmorSplitFracture')==2,'confirmed Armor Splitter hits show a split seam')
  FX.clear()
  local char=Instance.new('Model');char.Name='ConfirmedMultiVFX';char.Parent=workspace
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Position=from;root.Parent=char

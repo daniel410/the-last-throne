@@ -23,6 +23,9 @@ local particleCount=0
 local lightCount=0
 local WHITE=Color3.fromRGB(248,248,229)
 local palette=Palette.colors
+local SHIELD_BREAKER="knight.steel_knight.shield_breaker"
+local SHIELD_VERDICT="knight.paladin.shield_verdict"
+local ARMOR_SPLITTER="dwarf.iron_axe.armor_splitter"
 local function finite(n)return type(n)=="number" and n==n and math.abs(n)<math.huge end
 local function vector(v)return typeof(v)=="Vector3" and finite(v.X)and finite(v.Y)and finite(v.Z)and math.abs(v.X)<1e7 and math.abs(v.Y)<1e7 and math.abs(v.Z)<1e7 end
 local function erase(i)
@@ -423,6 +426,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local radius=d.areaRadius or((d.form=="ground"or d.detonate)and d.radius)or d.range or 5
  local angle=d.form=="area"and 360 or d.angle or 80
  local width,count,shape=profile.width,profile.lanes,profile.shape
+ local shieldStrike=id==SHIELD_BREAKER or id==SHIELD_VERDICT
+ local verdict=id==SHIELD_VERDICT
  local phase=(pulse-1)*1.3
  local electricLinks={}
  local spinStyle=id=='knight.steel_knight.twin_cyclone'and 'CrossingCyclones'
@@ -460,10 +465,24 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  end
  local function cleavePath(t)
   local a=t*math.pi*.8
+  if id==ARMOR_SPLITTER then
+   -- A full overhead-to-low stroke gives the narrow edge room to read.
+   return first+flat*(.65+math.sin(a)*math.min(radius*.72,3.6))
+    +Vector3.yAxis*(math.cos(a)*2.65)+right*(.28-.56*t)
+  end
   local lateral=id=="dwarf_hooking_chop" and -.85
-   or id=="dwarf.iron_axe.crag_cleave" and 1.35
-   or id=="dwarf.iron_axe.armor_splitter" and .18 or 0
+   or id=="dwarf.iron_axe.crag_cleave" and 1.35 or 0
   return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8+right*(t-.5)*lateral
+ end
+ local shieldCenter=first+flat*1.7
+ local shieldTravel=verdict and .65 or 1.55
+ local function shieldPath(t)
+  local side=2*t-1
+  if verdict then
+   return shieldCenter+right*side*1.05+Vector3.yAxis*(1.6-2.8*math.abs(side))
+  end
+  return shieldCenter+right*side*1.45+flat*(.55*(1-side*side))
+   +Vector3.yAxis*(.42-.55*math.abs(side))
  end
  local artContext={id=id,shape=shape,key=row.key,first=first,last=last,dir=dir,flat=flat,right=right,floor=floor,radius=radius,angle=angle,area=area,definition=d,character=character,pulse=pulse}
  if Polish.strokes(r,artContext,line,curve)then
@@ -492,6 +511,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   if shape=="counter"then sector("CounterGuard",floor,2.4,110,1,true)end
  elseif shape=="cross"then
   curve(r,"SunwardCross",crossPath,8,width,WHITE)
+ elseif shieldStrike then
+  curve(r,verdict and "VerdictCrest" or "ShieldBreakerWave",function(t,u)
+   return shieldPath(t)+flat*(shieldTravel*u)
+  end,verdict and 4 or 6,width,WHITE)
  elseif shape=="guard"or shape=="warcry"or shape=="holy"or shape=="ward"then
   if shape=="guard"and d.form~="area"then
    local at=first+flat*2;local basis=CFrame.lookAt(at,at+flat)
@@ -706,7 +729,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   for i=start+1,#r.faces do r.faces[i].motion.duration=math.min(r.life,.22)end
  elseif shape=="cleave"then
   local start=#r.faces
-  Surfaces.ribbon(r,"CleaveSurface",cleavePath,right,1.2,.36,r.color:Lerp(r.hot,.18),12,Enum.Material.SmoothPlastic)
+  Surfaces.ribbon(r,"CleaveSurface",cleavePath,right,id==ARMOR_SPLITTER and .75 or 1.2,.36,r.color:Lerp(r.hot,.18),12,Enum.Material.SmoothPlastic)
   Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)return cleavePath(t)+flat*.04 end,right,.2,.12,r.hot,6,Enum.Material.Neon)
   Surfaces.animate(r,start,first,right,.65,false,math.min(r.life,.22))
  elseif shape=="cross"then
@@ -723,6 +746,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    Surfaces.triangle(r,"ArcaneWardFacet",top,at-tangent*.52,bottom,nil,.62)
    Surfaces.triangle(r,"ArcaneWardFacet",top,bottom,at+tangent*.52,nil,.62)
   end
+ elseif shieldStrike then
+  local start=#r.faces
+  Surfaces.ribbon(r,verdict and "VerdictCrestFace" or "ShieldBreakerFace",shieldPath,
+   flat,verdict and .42 or .66,.49,r.color,verdict and 4 or 6,Enum.Material.SmoothPlastic)
+  for i=start+1,#r.faces do r.faces[i].drift=flat*shieldTravel end
  elseif shape=="guard"then
   local at=first+flat*1.8;local verts={Vector2.new(-1.3,1.3),Vector2.new(1.3,1.3),Vector2.new(1,-.4),Vector2.new(0,-1.5),Vector2.new(-1,-.4)}
   for i=1,#verts do
@@ -963,12 +991,31 @@ function FX.contact(at,classId,id,direction,scale)
  local profile=Profiles.get(id)
  if profile then size*=math.clamp(profile.width/.18,.65,1.6)end
  local physical=row.key=='steel'or row.key=='axe'or row.key=='arrow'or row.key=='gun'or row.key=='shield'
- if physical then
+ local shieldStrike=id==SHIELD_BREAKER or id==SHIELD_VERDICT
+ if shieldStrike then
+  local verdict=id==SHIELD_VERDICT
+  for side=-1,1,2 do
+   local lateral=cf.RightVector*side
+   local outward=(lateral*.85+cf.UpVector*(verdict and .72 or -.15))*size
+   line(r,verdict and "VerdictContactRay" or "ShieldImpactShards",function(u)
+    local center=at+dir*(u*.75)
+    return center+outward*(.15+u*.5),center+outward*(.78+u*.95)
+   end,.14,r.hot)
+  end
+ elseif physical then
   impactStar(r,at,dir,size,classId)
   if classId=='knight'then
    for side=-1,1,2 do line(r,'PhysicalCutContact',function(u)local shift=dir*u*.35;return at+shift-cf.RightVector*side*.75*size-cf.UpVector*.25*size,at+shift+cf.RightVector*side*.5*size+cf.UpVector*.35*size end,.08,r.color)end
   elseif classId=='dwarf'and(row.key=='steel'or row.key=='axe')then
    line(r,'AxeCutContact',function(u)return at+cf.UpVector*(.9-u*.5)*size,at-cf.UpVector*(.6+u*.4)*size+dir*u*.3 end,.15,r.color)
+   if id==ARMOR_SPLITTER then
+    for side=-1,1,2 do
+     line(r,"ArmorSplitFracture",function(u)
+      local seam=at-cf.UpVector*(.12+u*.31)*size
+      return seam,seam+(cf.RightVector*side*(.32+u*.6)-cf.UpVector*.33)*size
+     end,.11,r.hot)
+    end
+   end
    debris(r,at,3,'RockChip',size*.65)
   else
    for side=-1,1,2 do line(r,'PiercingContactWake',function(u)local offset=cf.RightVector*side*.12*size;return at-dir*(.8-u*.3)*size+offset,at+dir*(.25+u*.65)*size+offset end,.055,r.color)end
@@ -992,7 +1039,7 @@ function FX.contact(at,classId,id,direction,scale)
  if flash then r.faces[#r.faces].fadeDuration=.08 end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
- if not physical and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
+ if not physical and not shieldStrike and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
   local start=#r.faces
   local basis=CFrame.lookAt(at,at+dir)*CFrame.Angles(math.pi/2,0,0)
   Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)

@@ -59,6 +59,7 @@ end
 -- role even with particle effects disabled.
 for _, pair in {
     {"knight","knight.paladin.oath_of_dawn","knight.steel_knight.unyielding_front"},
+    {"knight","knight.steel_knight.shield_breaker","knight.paladin.shield_verdict"},
     {"dwarf","dwarf.iron_axe.shatter_blow","dwarf.iron_axe.tremor_guard"},
     {"dwarf","dwarf.gunner.field_mortar","dwarf.gunner.blast_step"},
 } do
