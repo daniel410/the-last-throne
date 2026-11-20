@@ -4,6 +4,7 @@ local Kit = require(script.Parent.EpicEnvironmentKit)
 local Midchapter = require(script.Parent.EpicMidchapterLandmarks)
 local ThirdChapter = require(script.Parent.EpicThirdChapterLandmarks)
 local FourthChapter = require(script.Parent.EpicFourthChapterLandmarks)
+local FifthChapter = require(script.Parent.EpicFifthChapterLandmarks)
 
 local Assemblies = {}
 local V = Vector3.new
@@ -237,6 +238,7 @@ function Assemblies.create(scene, chapter, goal, context, area)
 	local profile = profiles[chapter.id]
 	if not profile or goal.id ~= profile.goal then
 		profile = Midchapter[chapter.id] or ThirdChapter[chapter.id] or FourthChapter[chapter.id]
+			or FifthChapter[chapter.id]
 	end
 	if not profile or goal.id ~= profile.goal then return end
 
