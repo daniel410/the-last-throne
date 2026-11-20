@@ -78,7 +78,10 @@ local function dispatchCradle(palette, part)
 	part('CarrierBedWearPlane', V(14.18, .45, 8.19), V(0, 1.54, 0), cutBasalt, M.Slate)
 	for _, x in ipairs({-4.75, 4.75}) do
 		part('CarrierSaddle', V(3.45, 1.09, 7.48), V(x, 2.25, .02), dressedBasalt, M.Basalt)
-		part('CarrierIronRollway', V(1.36, .46, 7.7), V(x, 2.91, -.17), iron, M.CorrodedMetal)
+		for _, z in ipairs({-1.85, 0, 1.85}) do
+			local roller = part('CarrierIronRoller', V(2.42, .85, .85), V(x, 2.88, z), iron, M.Metal)
+			roller.Shape = Enum.PartType.Cylinder
+		end
 		part('CarrierLoadingRamp', V(1.95, 1.48, 2.23), V(x, 2.38, -3.36),
 			iron, M.CorrodedMetal, false, nil, 'Wedge')
 		part('CarrierToeStop', V(2.5, 1.58, 1.48), V(x, 3.44, 3.05),
