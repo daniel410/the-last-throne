@@ -57,7 +57,11 @@ local settings={world={folder=parent,spawns={[c.zone]=marker},nodes={[c.id..':'.
  combat={addStoryEnemy=function(m)local h=m:FindFirstChildOfClass('Humanoid');h.MaxHealth=m:GetAttribute('StoryHealth');h.Health=h.MaxHealth end}}
 local function create()
  local fn=assert(loadstring(source,'ProductionCombatRouteFixture'))
- setfenv(fn,setmetatable({script=SSS.Server.Story.DeepwoodService,fixturePlayers=players,require=function(m)if m.Name=='TrainingField'then return fakeRig end;return require(m)end},{__index=getfenv()}))
+ local assetModule=SSS.Server.Story.StoryEnemyAssets
+ local loadAssets=assert(loadstring(assetModule.Source,'ProductionEnemyAssetFixture'))
+ setfenv(loadAssets,setmetatable({script=assetModule,require=function(m)if m.Name=='TrainingField'then return fakeRig end;return require(m)end},{__index=getfenv()}))
+ local assets=loadAssets()
+ setfenv(fn,setmetatable({script=SSS.Server.Story.DeepwoodService,fixturePlayers=players,require=function(m)if m==assetModule then return assets end;return require(m)end},{__index=getfenv()}))
  local service=fn();service.qa(settings);return service
 end
 local function living()local result={};for _,m in ipairs(enemies:GetChildren())do local h=m:FindFirstChildOfClass('Humanoid');if h and h.Health>0 then result[#result+1]=m end end;return result end

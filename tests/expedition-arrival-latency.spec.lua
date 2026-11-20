@@ -78,6 +78,10 @@ local function fixture(partySize)
    f.entered=f.entered+1;p.attrs.K0SessionPhase='LoadingTutorial';env.Service.sessionChanged(p)
    env.task.delay(.1,function()p.attrs.K0SessionPhase='Tutorial';env.Service.sessionChanged(p)end)
   end},
+  warmStoryEnemies=function(p,chapterId,journal)
+   assert(journal.expeditionMission==chapterId)
+   f.warmup={player=p,chapter=chapterId,at=f.now}
+  end,
   previewWorld=function(chapterId)
    f.prepared[#f.prepared+1]=chapterId
    env.task.wait(f.worldDelay or 1)
@@ -97,9 +101,11 @@ local f=fixture(1);local p=f.players[1]
 f.worldDelay,f.offerDelay=4,.5
 check(f.service.admitArrival(p).heroId=='knight','admission records the validated ticket without generating the launch area')
 check(#f.prepared==0 and p.attrs.TLTTravelLock,'unverified profile stays at the arrival platform')
+check(not f.warmup,'unverified arrivals do not request story assets')
 f.advance(.25);f.profile(1,'HG-03')
 f.advance(.25)
 check(f.prepared[1]=='HG-03' and #f.prepared==1,'a saved continuation builds only the confirmed destination')
+check(f.warmup and f.warmup.player==p and f.warmup.chapter=='HG-03' and f.warmup.at==.25,'resume warms the verified chapter during preparation')
 check(f.offers==1,'rejoin promotion starts alongside the region preparation')
 f.service.sessionChanged(p);f.advance(.5)
 check(f.offers==1 and f.entered==0,'a repeated phase event cannot duplicate promotion or spawn early')

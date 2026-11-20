@@ -65,7 +65,8 @@ local world={nodes={['DW-01:supply_guards']={part=marker,chapter=dw,goal=guards}
 local _,enqueue=makeService(world)
 run={runId='same-region',missionId=dw.id,difficultyId='Easy',balanceVersion=19,kills={}}
 journal={version=2,main=0,flags={['DW-01:trail_guards']=true},clears={},expeditionMission=dw.id}
-root.Position=Vector3.new(table.unpack(routes.entry(dw,guards,run,1)))
+local entry=Vector3.new(table.unpack(routes.entry(dw,guards,run,1)))
+root.Position=entry+Vector3.new(routes.approach-1,0,0)
 local saveReleased=false
 save=function()
  while not saveReleased do task.wait() end
@@ -87,6 +88,10 @@ locked=true
 arrivalService.onBattleReady(player)
 check(#enemies:GetChildren()==0,'the arrival callback cannot bypass the travel lock')
 locked=false
+root.Position=entry+Vector3.new(routes.approach+1,0,0)
+arrivalService.onBattleReady(player)
+check(#enemies:GetChildren()==0,'first pack remains gated outside the route approach radius')
+root.Position=entry+Vector3.new(routes.approach-1,0,0)
 arrivalService.onBattleReady(player)
 check(#enemies:GetChildren()>0,'the first eligible pack starts on arrival without a polling cycle')
 for _,model in ipairs(enemies:GetChildren())do model:Destroy()end
@@ -145,22 +150,71 @@ end
 local sizing=require(server.World.StoryMonsterSizing)
 local balance=require(shared.DeepwoodEncounterBalance)
 local count=0
+local enemyAssets=require(server.Story.StoryEnemyAssets)
 for kind in pairs(species)do
  count+=1
  local scale,visual=sizing.forStory(kind,balance.isBoss(kind))
  local prototype=rig.makeEnemy(nil,kind,0,0,scale,visual)
- local clone=prototype:Clone()
+ local template=enemyAssets.template(kind)
+ local clone=template:Clone()
  local position=Vector3.new(83,15,-106)
  clone:PivotTo(clone:GetPivot()+position)
  check(clone.Parent==nil and prototype.Parent==nil,'templates and clones can be configured off-world')
  check(#prototype:GetDescendants()==#clone:GetDescendants(),'clone preserves every rig descendant')
+ check(enemyAssets.template(kind)==template,'warmup and spawn reuse the same rig template')
  check((clone.PrimaryPart.Position-prototype.PrimaryPart.Position-position).Magnitude<1e-4,'clone preserves translated foot placement')
  local limb=clone.Torso:FindFirstChild('Neck')
  check(limb.Part0==clone.Torso and limb.Part1==clone.Head,'rig joints point to the clone')
  clone:SetAttribute('StoryKillId','fixture')
- check(prototype:GetAttribute('StoryKillId')==nil,'encounter state cannot leak to the template')
+ check(template:GetAttribute('StoryKillId')==nil,'encounter state cannot leak to the template')
  clone:Destroy()
  prototype:Destroy()
 end
+
+-- Exercise the exact server asset payload and client request without timing
+-- assertions about the network cache in this Studio session.
+local http=game:GetService('HttpService')
+local attribute='TLTStoryEnemyWarmup'
+local stub=Instance.new('Folder',folder)
+local warmup=game.StarterPlayer.StarterPlayerScripts.Client.StoryEnemyWarmup
+local chunks,requested={},{}
+local provider={PreloadAsync=function(_,batch)
+ check(#batch<=12,'warmup requests have bounded batches')
+ table.insert(chunks,#batch)
+ for _,item in ipairs(batch)do
+  local isMesh=item:IsA('SpecialMesh')
+  local key=isMesh and 'mesh:'..item.MeshId or 'texture:'..item.Texture
+  check(isMesh and item.MeshType==Enum.MeshType.FileMesh or item:IsA('Decal'),'mesh and texture requests retain their asset types')
+  check(not requested[key],'repeated appearances share one fetch per representation')
+  requested[key]=true
+ end
+ task.wait()
+end}
+local loader=assert(loadstring(warmup.Source))
+setfenv(loader,setmetatable({game={GetService=function(_,name)return name=='HttpService' and http or provider end}},{__index=getfenv()}))
+loader().start(stub)
+enemyAssets.prepare(stub,dw,{flags={}})
+task.wait(.2)
+local payload=http:JSONDecode(stub:GetAttribute(attribute))
+check(#chunks>0 and #payload.meshes>0 and #payload.textures>0,'real DW-01 rig references reach client preload')
+for _,uri in ipairs(payload.meshes)do check(requested['mesh:'..uri],'each authored mesh is queued')end
+for _,uri in ipairs(payload.textures)do check(requested['texture:'..uri],'each authored texture is queued')end
+local numChunks=#chunks
+enemyAssets.prepare(stub,dw,{flags={}})
+task.wait()
+check(#chunks==numChunks,'the same chapter and goals do not queue repeat downloads')
+local flags={}
+for _,goal in ipairs(dw.goals)do flags[dw.id..':'..goal.id]=true end
+enemyAssets.prepare(stub,dw,{flags=flags})
+check(stub:GetAttribute(attribute)==nil,'cleared encounters leave no assets queued')
+
+local fetched=0
+local meshReference=Instance.new('SpecialMesh');meshReference.MeshType=Enum.MeshType.FileMesh;meshReference.MeshId=payload.meshes[1]
+local textureReference=Instance.new('Decal');textureReference.Texture=payload.textures[1]
+game:GetService('ContentProvider'):PreloadAsync({meshReference,textureReference},function(_,status)
+ if status==Enum.AssetFetchStatus.Success then fetched+=1 end
+end)
+check(fetched==2,'Roblox fetches the authored mesh and texture with typed references')
+meshReference:Destroy();textureReference:Destroy()
 folder:Destroy()
 print('STORY_PHASE_SPEED '..game.HttpService:JSONEncode({checks=checks,species=count}))

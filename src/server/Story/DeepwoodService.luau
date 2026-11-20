@@ -6,8 +6,7 @@ local Content=require(ReplicatedStorage.Shared.CampaignContent)
 local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
 local Balance=require(ReplicatedStorage.Shared.DeepwoodEncounterBalance)
 local Routes=require(ReplicatedStorage.Shared.CampaignCombatRoutes)
-local Rig=require(script.Parent.Parent.World.TrainingField)
-local Sizing=require(script.Parent.Parent.World.StoryMonsterSizing)
+local EnemyAssets=require(script.Parent.StoryEnemyAssets)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
 local Difficulty=require(ReplicatedStorage.Shared.Difficulty)
@@ -17,7 +16,6 @@ local travelCheckpoint
 local startNearbyEncounters
 local Service={}
 local offers={}
-local enemyTemplates={}
 local activities,access,companion
 local options,remote,encounters,queues,lastRequest={},{},{},{},{}
 local function context(player)
@@ -61,6 +59,9 @@ end
 local function publish(player,message,notice,completion)
  local h=active(player);if not h then return end
  local s=state(player,h.heroId);if not s then return end
+ if not h.training and player:GetAttribute('K0SessionPhase')=='Tutorial' then
+  EnemyAssets.prepare(player,s.expeditionMission and Content.byId[s.expeditionMission] or QuestLog.main(s),s)
+ end
  require(script.Parent.Parent.World.StoryCheckpointPortal).ensure(options.world,s,function(p,id) Service.travelCheckpoint(p,id)end)
  local activityState,dialogue
  if activities then activityState,dialogue=activities.projection(player,h.heroId) end
@@ -323,13 +324,7 @@ spawnWave=function(e)
   local a=index*math.pi*2/#batch
   local p=e.position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
   local kind=spec.kind;local boss=Balance.isBoss(kind)
-  local template=enemyTemplates[kind]
-  if not template then
-   local scale,visual=Sizing.forStory(kind,boss)
-   template=Rig.makeEnemy(nil,kind,0,0,scale,visual)
-   enemyTemplates[kind]=template
-  end
-  local m=template:Clone()
+  local m=EnemyAssets.template(kind):Clone()
   e.unitSpecs=e.unitSpecs or {};e.unitSpecs[m]=spec
   m:PivotTo(m:GetPivot()+p);m:SetAttribute('DeepwoodEncounter',e.key)
   e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',(e.launchMission and e.chapter.id~=e.launchMission and e.chapter.id..':' or '')..e.goal.id..'_'..(spec.killIndex or e.spawnCount))
@@ -351,7 +346,7 @@ local function begin(player,node,automatic)
  local hero=active(player);local admission=hero and options.inventory.expedition(player,hero.heroId)
  local route=Routes.plan(c,g,admission and admission.balanceVersion)
  if route then position=entryPosition(c,g,admission,admittedCount(player,admission))end
- local ctx=eligible(player,c,g,automatic and 36 or 16,position);if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
+ local ctx=eligible(player,c,g,automatic and (route and Routes.approach or 32) or 16,position);if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
  local run=options.inventory.expedition(player,ctx.heroId)
  local key=c.id..':'..g.id..':'..(run and run.runId or 'legacy');local e=encounters[key]
  if e then
@@ -404,7 +399,7 @@ startNearbyEncounters=function(player)
    if node and Progress.available(s,c,g)then
     local plan=Routes.plan(c,g,rules)
     local at=plan and entryPosition(c,g,admission,admittedCount(player,admission))or node.part.Position
-    if (root.Position-at).Magnitude<32 then
+    if (root.Position-at).Magnitude<=(plan and Routes.approach or 32) then
      begin(player,node,true)
      local encounter=encounters[c.id..':'..g.id..':'..runId]
      -- The newly admitted living hero is already inside the first approach radius.

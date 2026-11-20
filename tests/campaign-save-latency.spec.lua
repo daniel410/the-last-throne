@@ -8,6 +8,7 @@ local Buffer=dofile('src/server/Inventory/ExplorationSaveBuffer.luau')
 local source=arg[1] or 'src/server/Inventory/InventoryService.luau'
 local baseline=arg[2]=='baseline'
 local previous=arg[2]=='previous'
+local beforeWindow=arg[2]=='before-window'
 local checks=0
 local function check(value,message)checks=checks+1;assert(value,message)end
 local function fixture()
@@ -48,7 +49,8 @@ local function fixture()
   os={clock=function()return f.now end,time=function()return 100+math.floor(f.now)end},
   require=function(module)assert(module,'missing fixture dependency');return module end,
   Instance={new=function()return {OnServerEvent={Connect=function()end},FireClient=function()end}end},
-  task={spawn=f.spawn,wait=function(seconds)return coroutine.yield(seconds or .01)end},
+  task={spawn=f.spawn,delay=function(seconds,fn)f.spawn(function()coroutine.yield(seconds);fn()end)end,
+   wait=function(seconds)return coroutine.yield(seconds or .01)end},
   game={GameId=10773575153,GetService=function(_,name)return ({Players=players,ReplicatedStorage=rs,
    RunService={IsStudio=function()return false end},HttpService={GenerateGUID=function()return 'fixture-lease'end},
    DataStoreService={GetDataStore=function()return adapter end}})[name]end,BindToClose=function()end},
@@ -66,7 +68,7 @@ local function fixture()
   f.storyPending=true
   f.spawn(function()
    while true do
-    local reason=S.storyEvent(p,'hero','DW-01','trail_guards')
+    local reason=S.storyEvent(p,'hero','DW-01','trail_guards',nil,nil,f.runId)
     if not reason then f.storyAt=f.now;f.storyPending=false;break end
     assert(reason=='Busy' or reason=='SaveUnknown',reason)
     coroutine.yield((baseline or previous or reason=='SaveUnknown') and 1 or .1)
@@ -105,6 +107,21 @@ if previous then
  print('previous behavior reproduced');return
 end
 check(f.storyAt<3.2 and f.writes==2 and f.data.wallet.gold==gold+12,'objective includes rewards that arrived during the first batch')
+
+-- Six quick kills spread across Heartbeats in an admitted story encounter.
+f=fixture();f.runId='run_burst';assert(f.S.beginExpedition(f.player,'hero','DW-01','Easy',f.runId)==nil)
+f.delay=1.5;f.writes=0;gold=f.data.wallet.gold
+for i=1,6 do
+ f.S.awardXP(f.player,'hero',1,true,2,f.runId,'trail_guards_'..i)
+ if i<6 then f.advance(.1)end
+end
+local clearedAt=f.now
+f.story();f.advance(10)
+local transition=f.storyAt-clearedAt
+print(string.format('admitted burst to confirmed objective: %.2fs, %d writes',transition,f.writes))
+check(f.data.wallet.gold==gold+12 and f.S.storyState(f.player,'hero').flags['DW-01:trail_guards'],'exact rewards and progress commit')
+if beforeWindow then check(transition>=2.5 and f.writes==2,'previous write gets ahead of the clear');return end
+check(transition<=1.51 and f.writes==1,'quick pack clears use one save round trip')
 
 f=fixture();f.replay=true;gold=f.data.wallet.gold
 for x=1,6 do f.reveal(x);f.reward()end
@@ -187,9 +204,16 @@ for _,id in ipairs({'trail_guards_1','trail_guards_2','trail_guards_1'})do
  f.S.awardXP(f.player,'hero',1,true,2,'run_1',id)
 end
 check(f.S.beginExpedition(f.player,'hero','DW-01','Easy','run_2')=='Busy','run cannot change before buffered kill receipts save')
-f.advance(.1)
+f.advance(.6)
+check(f.writes==0,'story rewards wait briefly for the same objective transaction')
+f.advance(.2)
 check(f.writes==1 and f.data.wallet.gold==gold+4,'duplicate kill receipt pays only once')
 check(f.data.heroes.hero.progression.rewardSequence==3,'duplicate kill consumes its sequence')
+
+f=fixture();assert(f.S.beginExpedition(f.player,'hero','DW-01','Easy','run_1')==nil)
+f.S.awardXP(f.player,'hero',1,true,2,'run_1','trail_guards_1')
+f.S.penalizeDeath(f.player,'hero','death_now',false);f.advance(.1)
+check(f.data.heroes.hero.progression.rewardSequence==1 and f.attrs.TLTDeathXPState=='Saved','death settles after buffered kills without waiting for the story timer')
 
 -- Failure before commit retains all observations; no new/default profile appears.
 f=fixture();f.reveal(1);f.offline=true;f.story();f.advance(1.3)

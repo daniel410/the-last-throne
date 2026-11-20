@@ -15,6 +15,9 @@ if sessionOnly then
 	Rules = require(script.Parent.StudioTestRules).wrap(Rules, Growth)
 end
 local started = false
+-- A short, fixed window lets a finishing story pack commit its kill receipts
+-- in the same write as the objective. A lone kill still flushes on its own.
+local storyRewardBatchWindow = 0.65
 
 local function deathNotice(player,id,status,lost)
  player:SetAttribute('TLTDeathXPLost',lost)
@@ -286,7 +289,15 @@ function Service.awardXP(player,heroId,amount,defeat,coins,runId,killId)
 	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==state.store.token and saved.rewardSequence or 0))+1
 	state.rewardSequences[heroId]=sequence
 	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,coins=coins or 0,runId=runId,killId=killId,rewardKind=defeat and "Defeat" or nil,stream=state.store.token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
- runGrowthQueue(player,state)
+ if runId and killId and #state.rewards<32 then
+  if not state.storyRewardFlushScheduled and not state.rewardWorker then
+   state.storyRewardFlushScheduled=true
+   task.delay(storyRewardBatchWindow,function()
+    state.storyRewardFlushScheduled=nil
+    if accounts[player]==state and not state.closing and #state.rewards>0 then runGrowthQueue(player,state)end
+   end)
+  end
+ else runGrowthQueue(player,state)end
 end
 -- Called only by the server's validated death lifecycle, never a client remote.
 function Service.penalizeDeath(player,heroId,deathId,training)

@@ -295,6 +295,9 @@ local function startRunLocked(p,party,runId)
    if why then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
   end
   if party then store.launchStatus(party.id,runId,'forming') end
+  if o.warmStoryEnemies then
+   for _,person in ipairs(participants)do o.warmStoryEnemies(person,chosen.missionId)end
+  end
   o.previewWorld(chosen.missionId)
   for _,person in ipairs(participants) do o.heroSession.enterAdventure(person,members[tostring(person.UserId)].heroId) end
   return true
@@ -443,13 +446,14 @@ local function handle(p,c,...)
   if person~=p and mine.id==partyId and not travel[person]then publish(person)end
  end end
 end
-local function prepareBattleArrival(p,m,chapterId)
+local function prepareBattleArrival(p,m,chapterId,journal)
  local prepared=preparedArrivals[p]
  if prepared and prepared.chapterId==chapterId and prepared.member==m then return prepared end
  prepared={chapterId=chapterId,member=m}
  preparedArrivals[p]=prepared
  task.defer(function()
   if admitted[p]~=m or p.Parent~=Players then return end
+  if o.warmStoryEnemies then o.warmStoryEnemies(p,chapterId,journal)end
   local ready,loadError=xpcall(function()o.previewWorld(chapterId)end,debug.traceback)
   if preparedArrivals[p]~=prepared or admitted[p]~=m or p.Parent~=Players then return end
   if not ready then
@@ -481,7 +485,7 @@ local function verifyBattleArrival(p,m)
  if admitted[p]~=m or not hasBattleLease() then return end
  if verified then
   local view=Adventure.projection(hero)
-  local prepared=prepareBattleArrival(p,m,view and view.expeditionMission or run.missionId)
+  local prepared=prepareBattleArrival(p,m,view and view.expeditionMission or run.missionId,view)
   if prepared.failed then return end
   -- Keep the pending capability on unknown MemoryStore results; rejoin()
   -- resolves it against the account's durable active run after reconnect.
