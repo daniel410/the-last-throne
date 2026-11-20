@@ -7,19 +7,19 @@ local function stragglerBendShoulder(pal, part)
 	local fieldstone = pal.rock:Lerp(pal.trim, .53)
 	local runoff = pal.ground:Lerp(C(108, 83, 59), .72)
 	local moss = pal.ground:Lerp(pal.leaf, .43)
-	part('ShelteredBendEarthBank', V(6.2, 1.32, 9.9), V(.5, .38, 0), moss, M.Ground,
+	part('ShelteredBendEarthBank', V(6.2, 1.32, 9.9), V(-.5, .38, 0), moss, M.Ground,
 		'Wedge', V(0, math.pi, 0))
-	part('WashedBankToe', V(1.68, .37, 8.3), V(-1.88, .14, -.22), runoff, M.Pebble,
+	part('WashedBankToe', V(1.68, .37, 8.3), V(1.88, .14, -.22), runoff, M.Pebble,
 		'Wedge', V(0, math.pi, 0))
 	for i, z in ipairs({-3.1, -.60, 2.05}) do
-		local x = -.91 + i * .29
+		local x = .91 - i * .29
 		part('ShelterBendFieldstone', V(2.72, .91 + i * .12, 2.4), V(x, .37 + i * .06, z),
-			fieldstone:Lerp(pal.rock, i * .13), M.Cobblestone, nil, V(0, -.09 * i, 0))
+			fieldstone:Lerp(pal.rock, i * .13), M.Cobblestone, nil, V(0, .09 * i, 0))
 		part('WashedCopingShale', V(2.56, .36, 2.29), V(x, .96 + i * .12, z + .03), fieldstone,
-			M.Slate, 'Wedge', V(0, math.pi / 2 - .09 * i, 0))
+			M.Slate, 'Wedge', V(0, -math.pi / 2 + .09 * i, 0))
 	end
-	part('RunoffFan', V(2.45, .20, 1.97), V(-1.45, .12, 4.02), runoff, M.Ground, 'Corner',
-		V(0, .42, 0))
+	part('RunoffFan', V(2.45, .20, 1.97), V(1.45, .12, 4.02), runoff, M.Ground, 'Corner',
+		V(0, -.42, 0))
 end
 
 local function outerWebRootShelf(pal, part, beam)
@@ -93,9 +93,9 @@ local function keeperReturnLanternNiche(pal, part)
 end
 
 return {
-	['DW-02'] = {goal = 'exp_2', step = 2, name = 'StragglerBendDrainageShoulder', side = 9, compose = stragglerBendShoulder},
+	['DW-02'] = {goal = 'exp_2', step = 2, name = 'StragglerBendDrainageShoulder', side = -9, compose = stragglerBendShoulder},
 	['GW-02'] = {goal = 'exp_1', step = 2, name = 'OuterWebRootShelf', side = -9, compose = outerWebRootShelf},
 	['FV-02'] = {goal = 'exp_2', step = 1, name = 'TwinBeaconTerraceSill', side = -9, compose = twinBeaconTerraceSill},
-	['EC-02'] = {goal = 'exp_2', step = 2, name = 'MineFreightLineSeat', side = 9, compose = mineFreightLineSeat},
+	['EC-02'] = {goal = 'exp_2', step = 2, name = 'MineFreightLineSeat', side = -9, compose = mineFreightLineSeat},
 	['HG-02'] = {goal = 'exp_2', step = 3, name = 'KeeperReturnLanternNiche', side = -9, compose = keeperReturnLanternNiche},
 }
