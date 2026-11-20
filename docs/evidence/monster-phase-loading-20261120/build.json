@@ -3,8 +3,8 @@
   "sourceCommit": "2684761ef9538cbe947790a407b3e2045661708e",
   "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-2684761e-0pqwgbfw",
   "lfsVerified": [],
-  "published": false,
-  "releaseTag": null,
+  "published": true,
+  "releaseTag": "v0.114.25",
   "outputs": [
     {
       "role": "Game",
