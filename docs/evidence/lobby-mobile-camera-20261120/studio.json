@@ -1,0 +1,206 @@
+{
+  "engine": "Roblox Studio 0.748.0.7481526 (macOS)",
+  "localPlace": true,
+  "orientation": "LandscapeLeft",
+  "hudInsets": "CoreUISafeInsets",
+  "build": {
+    "version": "0.114.24",
+    "sourceCommit": "8be084f9c166b4e3586dbd90a4fe7279a9c91323",
+    "rojo": "7.7.1",
+    "assetPointersVerified": 0,
+    "path": "builds/0.114.24/TheLastThrone-0.114.24.rbxlx",
+    "sha256": "0ff5aa2e83ec386506b4cd7ac3abab576a1fe429709af5a18231f75dd9e02924",
+    "bytes": 26711775,
+    "published": false,
+    "releaseTag": null
+  },
+  "iphone17Pro": {
+    "ok": true,
+    "buttonTop": 137,
+    "values": [
+      { "visible": true, "tilt": 11.69, "label": "native", "gap": 16.34, "restoreError": 0, "rawGap": -42.82, "focusDelta": 0, "positionDelta": 0, "pitch": 15 },
+      { "visible": true, "tilt": 11.74, "label": "24 studs / -10 degrees", "gap": 12.42, "restoreError": 0, "rawGap": -47.2, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+      { "visible": true, "tilt": 12.26, "label": "24 studs / 25 degrees", "gap": 19.49, "restoreError": 0, "rawGap": -42.52, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+      { "visible": true, "tilt": 9.98, "label": "24 studs / 50 degrees", "gap": 20.65, "restoreError": 0, "rawGap": -29.56, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+      { "visible": true, "tilt": 5.5, "label": "24 studs / 80 degrees", "gap": 15.55, "restoreError": 0, "rawGap": -12, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+      { "visible": true, "tilt": 8.54, "label": "32 studs / -10 degrees", "gap": 11.85, "restoreError": 0, "rawGap": -31.21, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+      { "visible": true, "tilt": 9.12, "label": "32 studs / 25 degrees", "gap": 17.31, "restoreError": 0, "rawGap": -28.62, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+      { "visible": true, "tilt": 7.56, "label": "32 studs / 50 degrees", "gap": 18.42, "restoreError": 0, "rawGap": -19.5, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+      { "visible": true, "tilt": 4.17, "label": "32 studs / 80 degrees", "gap": 15.06, "restoreError": 0, "rawGap": -5.8, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+      { "visible": false, "tilt": 0, "label": "dock hidden", "gap": -5.8, "restoreError": 0, "rawGap": -5.8, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+      { "visible": true, "tilt": 4.17, "label": "dock restored", "gap": 15.07, "restoreError": 0, "rawGap": -5.79, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+      { "visible": true, "tilt": 0, "label": "scriptable", "gap": -5.79, "restoreError": 0, "rawGap": -5.79, "focusDelta": 0, "positionDelta": 0, "pitch": 80 }
+    ],
+    "class": "mage",
+    "buttonWidth": 224,
+    "viewport": [
+      750,
+      381
+    ],
+    "zoom": [
+      24,
+      32
+    ],
+    "touch": true
+  },
+  "galaxyA06": {
+    "mage": {
+      "ok": true,
+      "buttonTop": 94,
+      "values": [
+        { "visible": true, "tilt": 19.92, "label": "native", "gap": 15.6, "restoreError": 0, "rawGap": -74.44, "focusDelta": 0, "positionDelta": 0, "pitch": 26.69 },
+        { "visible": true, "tilt": 20.71, "label": "24 studs / -10 degrees", "gap": 11.18, "restoreError": 0, "rawGap": -82.61, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 21.23, "label": "24 studs / 25 degrees", "gap": 17.42, "restoreError": 0, "rawGap": -78.67, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 18.94, "label": "24 studs / 50 degrees", "gap": 18.45, "restoreError": 0, "rawGap": -67.1, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 14.46, "label": "24 studs / 80 degrees", "gap": 13.92, "restoreError": 0, "rawGap": -51.22, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 17.51, "label": "32 studs / -10 degrees", "gap": 10.52, "restoreError": 0, "rawGap": -68.42, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 18.09, "label": "32 studs / 25 degrees", "gap": 15.55, "restoreError": 0, "rawGap": -66.08, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 16.52, "label": "32 studs / 50 degrees", "gap": 16.6, "restoreError": 0, "rawGap": -57.89, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 13.14, "label": "32 studs / 80 degrees", "gap": 13.46, "restoreError": 0, "rawGap": -45.68, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": false, "tilt": 0, "label": "dock hidden", "gap": -45.68, "restoreError": 0, "rawGap": -45.68, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 13.14, "label": "dock restored", "gap": 13.47, "restoreError": 0, "rawGap": -45.67, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 0, "label": "scriptable", "gap": -45.67, "restoreError": 0, "rawGap": -45.67, "focusDelta": 0, "positionDelta": 0, "pitch": 80 }
+      ],
+      "class": "mage",
+      "buttonWidth": 224,
+      "viewport": [
+        705,
+        338
+      ],
+      "zoom": [
+        24,
+        32
+      ],
+      "touch": true
+    },
+    "knight": {
+      "ok": true,
+      "buttonTop": 94,
+      "values": [
+        { "visible": true, "tilt": 18.84, "label": "native", "gap": 16.58, "restoreError": 0, "rawGap": -68.47, "focusDelta": 0, "positionDelta": 0, "pitch": 26.69 },
+        { "visible": true, "tilt": 19.45, "label": "24 studs / -10 degrees", "gap": 11.8, "restoreError": 0, "rawGap": -76.08, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 20.1, "label": "24 studs / 25 degrees", "gap": 19.85, "restoreError": 0, "rawGap": -71, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 18.09, "label": "24 studs / 50 degrees", "gap": 22.52, "restoreError": 0, "rawGap": -59.22, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 14.02, "label": "24 studs / 80 degrees", "gap": 18.93, "restoreError": 0, "rawGap": -44.32, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 16.71, "label": "32 studs / -10 degrees", "gap": 11.43, "restoreError": 0, "rawGap": -63.89, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 17.22, "label": "32 studs / 25 degrees", "gap": 17.19, "restoreError": 0, "rawGap": -60.49, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 15.85, "label": "32 studs / 50 degrees", "gap": 19.53, "restoreError": 0, "rawGap": -51.96, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 12.77, "label": "32 studs / 80 degrees", "gap": 12.69, "restoreError": 0, "rawGap": -44.8, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": false, "tilt": 0, "label": "dock hidden", "gap": -45.56, "restoreError": 0, "rawGap": -45.56, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 12.77, "label": "dock restored", "gap": 11.24, "restoreError": 0, "rawGap": -46.23, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 0, "label": "scriptable", "gap": -46.77, "restoreError": 0, "rawGap": -46.77, "focusDelta": 0, "positionDelta": 0, "pitch": 80 }
+      ],
+      "class": "knight",
+      "buttonWidth": 224,
+      "viewport": [
+        705,
+        338
+      ],
+      "zoom": [
+        24,
+        32
+      ],
+      "touch": true
+    },
+    "elf": {
+      "ok": true,
+      "buttonTop": 94,
+      "values": [
+        { "visible": true, "tilt": 21.19, "label": "native", "gap": 25.24, "restoreError": 0, "rawGap": -70.68, "focusDelta": 0, "positionDelta": 0, "pitch": 26.69 },
+        { "visible": true, "tilt": 20.57, "label": "24 studs / -10 degrees", "gap": 13.74, "restoreError": 0, "rawGap": -79.33, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 22.07, "label": "24 studs / 25 degrees", "gap": 29.01, "restoreError": 0, "rawGap": -71.02, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 20.14, "label": "24 studs / 50 degrees", "gap": 32.07, "restoreError": 0, "rawGap": -59.23, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 15.81, "label": "24 studs / 80 degrees", "gap": 26.59, "restoreError": 0, "rawGap": -44.95, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 17.38, "label": "32 studs / -10 degrees", "gap": 12.05, "restoreError": 0, "rawGap": -66.32, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 18.67, "label": "32 studs / 25 degrees", "gap": 23.84, "restoreError": 0, "rawGap": -60.54, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 17.41, "label": "32 studs / 50 degrees", "gap": 26.86, "restoreError": 0, "rawGap": -51.92, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 14.18, "label": "32 studs / 80 degrees", "gap": 23.31, "restoreError": 0, "rawGap": -40.81, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": false, "tilt": 0, "label": "dock hidden", "gap": -40.82, "restoreError": 0, "rawGap": -40.82, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 14.18, "label": "dock restored", "gap": 23.29, "restoreError": 0, "rawGap": -40.83, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 0, "label": "scriptable", "gap": -40.82, "restoreError": 0, "rawGap": -40.82, "focusDelta": 0, "positionDelta": 0, "pitch": 80 }
+      ],
+      "class": "elf",
+      "buttonWidth": 224,
+      "viewport": [
+        705,
+        338
+      ],
+      "zoom": [
+        24,
+        32
+      ],
+      "touch": true
+    },
+    "dwarf": {
+      "ok": true,
+      "buttonTop": 94,
+      "values": [
+        { "visible": true, "tilt": 18.84, "label": "native", "gap": 16.65, "restoreError": 0, "rawGap": -68.44, "focusDelta": 0, "positionDelta": 0, "pitch": 26.69 },
+        { "visible": true, "tilt": 19.47, "label": "24 studs / -10 degrees", "gap": 11.81, "restoreError": 0, "rawGap": -76.16, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 20.72, "label": "24 studs / 25 degrees", "gap": 22.8, "restoreError": 0, "rawGap": -70.95, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 18.93, "label": "24 studs / 50 degrees", "gap": 26.46, "restoreError": 0, "rawGap": -59.16, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 14.92, "label": "24 studs / 80 degrees", "gap": 23.08, "restoreError": 0, "rawGap": -44.34, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 16.72, "label": "32 studs / -10 degrees", "gap": 11.38, "restoreError": 0, "rawGap": -63.94, "focusDelta": 0, "positionDelta": 0, "pitch": -10 },
+        { "visible": true, "tilt": 17.66, "label": "32 studs / 25 degrees", "gap": 19.17, "restoreError": 0, "rawGap": -60.55, "focusDelta": 0, "positionDelta": 0, "pitch": 25 },
+        { "visible": true, "tilt": 16.47, "label": "32 studs / 50 degrees", "gap": 22.43, "restoreError": 0, "rawGap": -51.96, "focusDelta": 0, "positionDelta": 0, "pitch": 50 },
+        { "visible": true, "tilt": 13.47, "label": "32 studs / 80 degrees", "gap": 20.5, "restoreError": 0, "rawGap": -40.34, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": false, "tilt": 0, "label": "dock hidden", "gap": -40.33, "restoreError": 0, "rawGap": -40.33, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 13.47, "label": "dock restored", "gap": 20.5, "restoreError": 0, "rawGap": -40.33, "focusDelta": 0, "positionDelta": 0, "pitch": 80 },
+        { "visible": true, "tilt": 0, "label": "scriptable", "gap": -40.33, "restoreError": 0, "rawGap": -40.33, "focusDelta": 0, "positionDelta": 0, "pitch": 80 }
+      ],
+      "class": "dwarf",
+      "buttonWidth": 224,
+      "viewport": [
+        705,
+        338
+      ],
+      "zoom": [
+        24,
+        32
+      ],
+      "touch": true
+    }
+  },
+  "desktop": {
+    "ok": true,
+    "buttonTop": 520,
+    "values": [
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 20.49, "restoreError": 0, "rawGap": 20.49, "focusDelta": 0, "positionDelta": 0, "label": "native", "pitch": 26.69 },
+      { "visible": true, "tilt": 0.04, "exactView": true, "gap": 0.8, "restoreError": 0, "rawGap": 0.8, "focusDelta": 0, "positionDelta": 0, "label": "24 studs / -10 degrees", "pitch": -10 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 14.17, "restoreError": 0, "rawGap": 14.17, "focusDelta": 0, "positionDelta": 0, "label": "24 studs / 25 degrees", "pitch": 25 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 44.01, "restoreError": 0, "rawGap": 44.01, "focusDelta": 0, "positionDelta": 0, "label": "24 studs / 50 degrees", "pitch": 50 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 81.39, "restoreError": 0, "rawGap": 81.39, "focusDelta": 0, "positionDelta": 0, "label": "24 studs / 80 degrees", "pitch": 80 },
+      { "visible": true, "tilt": 0.02, "exactView": true, "gap": 31.69, "restoreError": 0, "rawGap": 31.69, "focusDelta": 0, "positionDelta": 0, "label": "32 studs / -10 degrees", "pitch": -10 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 40.48, "restoreError": 0, "rawGap": 40.48, "focusDelta": 0, "positionDelta": 0, "label": "32 studs / 25 degrees", "pitch": 25 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 62.21, "restoreError": 0, "rawGap": 62.21, "focusDelta": 0, "positionDelta": 0, "label": "32 studs / 50 degrees", "pitch": 50 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 91.45, "restoreError": 0, "rawGap": 91.45, "focusDelta": 0, "positionDelta": 0, "label": "32 studs / 80 degrees", "pitch": 80 },
+      { "visible": false, "tilt": 0, "exactView": true, "gap": 91.49, "restoreError": 0, "rawGap": 91.49, "focusDelta": 0, "positionDelta": 0, "label": "dock hidden", "pitch": 80 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 91.53, "restoreError": 0, "rawGap": 91.53, "focusDelta": 0, "positionDelta": 0, "label": "dock restored", "pitch": 80 },
+      { "visible": true, "tilt": 0, "exactView": true, "gap": 91.53, "restoreError": 0, "rawGap": 91.53, "focusDelta": 0, "positionDelta": 0, "label": "scriptable", "pitch": 80 }
+    ],
+    "class": "dwarf",
+    "buttonWidth": 440,
+    "viewport": [
+      1614,
+      908
+    ],
+    "zoom": [
+      24,
+      32
+    ],
+    "touch": false
+  },
+  "expeditionPanelClosed": {
+    "viewport": "705, 338",
+    "panelOpen": false,
+    "expeditionVisible": false,
+    "dockVisible": true
+  },
+  "zoomAndCollision": {
+    "kind": "ADVENTURE_CAMERA_ZOOM_NATIVE",
+    "failures": [],
+    "pass": true,
+    "checks": 15
+  },
+  "cameraConsoleErrors": []
+}
