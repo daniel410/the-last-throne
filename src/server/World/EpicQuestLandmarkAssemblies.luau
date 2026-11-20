@@ -5,6 +5,7 @@ local Midchapter = require(script.Parent.EpicMidchapterLandmarks)
 local ThirdChapter = require(script.Parent.EpicThirdChapterLandmarks)
 local FourthChapter = require(script.Parent.EpicFourthChapterLandmarks)
 local FifthChapter = require(script.Parent.EpicFifthChapterLandmarks)
+local SixthChapter = require(script.Parent.EpicSixthChapterLandmarks)
 
 local Assemblies = {}
 local V = Vector3.new
@@ -238,7 +239,7 @@ function Assemblies.create(scene, chapter, goal, context, area)
 	local profile = profiles[chapter.id]
 	if not profile or goal.id ~= profile.goal then
 		profile = Midchapter[chapter.id] or ThirdChapter[chapter.id] or FourthChapter[chapter.id]
-			or FifthChapter[chapter.id]
+			or FifthChapter[chapter.id] or SixthChapter[chapter.id]
 	end
 	if not profile or goal.id ~= profile.goal then return end
 
@@ -265,8 +266,8 @@ function Assemblies.create(scene, chapter, goal, context, area)
 	local y = Bounds.surface(at.X, at.Z)
 	if not y or math.abs(y - anchor.Y) > .5 then return end
 
-	-- Attach the main-route rearguard separately from its distant incident wing.
-	local parent = finish and finish.rearguard and scene.Parent or scene
+	-- Keep main-route landmarks with the trail rather than the distant incident wing.
+	local parent = not step and finish.onMainRoute and scene.Parent or scene
 	if parent:FindFirstChild(profile.name) then return end
 
 	local origin = V(at.X, y, at.Z)
