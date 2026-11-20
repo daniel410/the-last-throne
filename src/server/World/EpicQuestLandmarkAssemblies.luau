@@ -1,6 +1,7 @@
 -- Terrain-side fixtures for authored quest actions.
 local Bounds = require(game.ReplicatedStorage.Shared.CampaignBounds)
 local Kit = require(script.Parent.EpicEnvironmentKit)
+local Midchapter = require(script.Parent.EpicMidchapterLandmarks)
 
 local Assemblies = {}
 local V = Vector3.new
@@ -232,6 +233,9 @@ local profiles = {
 
 function Assemblies.create(scene, chapter, goal, context, area)
 	local profile = profiles[chapter.id]
+	if not profile or goal.id ~= profile.goal then
+		profile = Midchapter[chapter.id]
+	end
 	if not profile or goal.id ~= profile.goal then return end
 
 	local activity = goal.activity
