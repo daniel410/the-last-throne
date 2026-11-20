@@ -1,0 +1,293 @@
+{
+  "models": {
+    "DW-01": {
+      "before": {
+        "chapter": "DW-01",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          6.129981994628906,
+          1.255000352859497,
+          9.59999942779541
+        ],
+        "goal": "exp_1",
+        "model": "CreekCargoSill",
+        "anchor": [
+          -2130.860107421875,
+          0,
+          -870.0499877929688
+        ],
+        "height": 1.255000352859497,
+        "ground": [
+          -2129.777099609375,
+          0,
+          -878.9845581054688
+        ],
+        "parts": 7
+      },
+      "after": {
+        "chapter": "DW-01",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          6.285013675689697,
+          1.2350003719329834,
+          9.59999942779541
+        ],
+        "goal": "exp_1",
+        "model": "CreekCargoSill",
+        "anchor": [
+          -2130.860107421875,
+          0,
+          -870.0499877929688
+        ],
+        "height": 1.2350003719329834,
+        "ground": [
+          -2129.777099609375,
+          0,
+          -878.9845581054688
+        ],
+        "parts": 11
+      }
+    },
+    "EC-01": {
+      "before": {
+        "chapter": "EC-01",
+        "maxFloorError": 0,
+        "step": "step1",
+        "version": 3,
+        "bounds": [
+          6.099999904632568,
+          1.5199992656707764,
+          10.699999809265137
+        ],
+        "goal": "exp_1",
+        "model": "FreightCarrierWheelSeat",
+        "anchor": [
+          -1378.969970703125,
+          124,
+          -11683.7998046875
+        ],
+        "height": 1.5199992656707764,
+        "ground": [
+          -1375.195556640625,
+          124,
+          -11691.9697265625
+        ],
+        "parts": 9
+      },
+      "after": {
+        "chapter": "EC-01",
+        "maxFloorError": 0,
+        "step": "step1",
+        "version": 3,
+        "bounds": [
+          6.099999904632568,
+          1.6299991607666016,
+          10.699999809265137
+        ],
+        "goal": "exp_1",
+        "model": "FreightCarrierWheelSeat",
+        "anchor": [
+          -1378.969970703125,
+          124,
+          -11683.7998046875
+        ],
+        "height": 1.6299991607666016,
+        "ground": [
+          -1375.195556640625,
+          124,
+          -11691.9697265625
+        ],
+        "parts": 11
+      }
+    },
+    "FV-01": {
+      "before": {
+        "chapter": "FV-01",
+        "maxFloorError": 0,
+        "step": "step3",
+        "version": 3,
+        "bounds": [
+          5.365453243255615,
+          1.4200034141540527,
+          13.781190872192383
+        ],
+        "goal": "exp_1",
+        "model": "WindbreakAscentBank",
+        "anchor": [
+          -1302.8499755859375,
+          78,
+          -7780.25
+        ],
+        "height": 1.4200034141540527,
+        "ground": [
+          -1299.2860107421875,
+          78,
+          -7788.51416015625
+        ],
+        "parts": 5
+      },
+      "after": {
+        "chapter": "FV-01",
+        "maxFloorError": 0,
+        "step": "step3",
+        "version": 3,
+        "bounds": [
+          5.257389068603516,
+          1.4100019931793213,
+          13.649295806884766
+        ],
+        "goal": "exp_1",
+        "model": "WindbreakAscentBank",
+        "anchor": [
+          -1302.8499755859375,
+          78,
+          -7780.25
+        ],
+        "height": 1.4100019931793213,
+        "ground": [
+          -1299.2860107421875,
+          78,
+          -7788.51416015625
+        ],
+        "parts": 5
+      }
+    },
+    "GW-01": {
+      "before": {
+        "chapter": "GW-01",
+        "maxFloorError": 0,
+        "step": "step1",
+        "version": 3,
+        "bounds": [
+          5.560453414916992,
+          1.8897714614868164,
+          12.875112533569336
+        ],
+        "goal": "exp_1",
+        "model": "WheeltrackForkRootCut",
+        "anchor": [
+          -1338.530029296875,
+          54,
+          -4084.39990234375
+        ],
+        "height": 1.8897714614868164,
+        "ground": [
+          -1338.530029296875,
+          54,
+          -4074.39990234375
+        ],
+        "parts": 6
+      },
+      "after": {
+        "chapter": "GW-01",
+        "maxFloorError": 0,
+        "step": "step1",
+        "version": 3,
+        "bounds": [
+          5.445919036865234,
+          2.028226852416992,
+          12.800000190734863
+        ],
+        "goal": "exp_1",
+        "model": "WheeltrackForkRootCut",
+        "anchor": [
+          -1338.530029296875,
+          54,
+          -4084.39990234375
+        ],
+        "height": 2.028226852416992,
+        "ground": [
+          -1338.530029296875,
+          54,
+          -4074.39990234375
+        ],
+        "parts": 7
+      }
+    },
+    "HG-01": {
+      "before": {
+        "chapter": "HG-01",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          9.868163108825684,
+          2.0699944496154785,
+          10.037893295288086
+        ],
+        "goal": "exp_1",
+        "model": "ScoutApproachStoneFooting",
+        "anchor": [
+          -1495.1700439453125,
+          172,
+          -15274.0400390625
+        ],
+        "height": 2.0699944496154785,
+        "ground": [
+          -1500.75830078125,
+          172,
+          -15281.0947265625
+        ],
+        "parts": 6
+      },
+      "after": {
+        "chapter": "HG-01",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          9.868163108825684,
+          2.464991569519043,
+          10.037893295288086
+        ],
+        "goal": "exp_1",
+        "model": "ScoutApproachStoneFooting",
+        "anchor": [
+          -1495.1700439453125,
+          172,
+          -15274.0400390625
+        ],
+        "height": 2.464991569519043,
+        "ground": [
+          -1500.75830078125,
+          172,
+          -15281.0947265625
+        ],
+        "parts": 7
+      }
+    }
+  },
+  "unchangedModels": [
+    "DW-02",
+    "EC-05",
+    "FV-04",
+    "GW-06",
+    "HG-04"
+  ],
+  "framePairs": [
+    "DW-01-approach",
+    "DW-01-side",
+    "GW-01-approach",
+    "GW-01-side",
+    "FV-01-approach",
+    "FV-01-side",
+    "EC-01-approach",
+    "EC-01-side",
+    "HG-01-approach",
+    "HG-01-side"
+  ],
+  "expansionRegression": {
+    "generationSeconds": 32.12720424984582,
+    "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+    "blockers": [],
+    "checks": 9193,
+    "steps": 246,
+    "samples": 3968,
+    "incidents": 82,
+    "parts": 55483
+  }
+}
