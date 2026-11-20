@@ -91,13 +91,13 @@ local function planFootings(pal, part, beam)
 	end
 	-- Short returns expose the dry trough on either side of the taller drafting table.
 	local dryBed = firebrick:Lerp(soot, .6)
-	part('DryRecoveryBed', V(13.1, .24, 1.86), V(0, .05, -2.47), dryBed, M.Basalt)
+	part('DryRecoveryBed', V(11.57, .24, 1.86), V(0, .05, -2.47), dryBed, M.Basalt)
 	part('RecoveryOuterLip', V(14.72, .38, .32), V(0, .13, -3.23), firebrick, M.Brick)
 	part('RecoveryInnerLip', V(12.22, .38, .32), V(0, .13, -1.71), firebrick, M.Brick)
 	for _, side in ipairs({-1, 1}) do
-		part('DryRecoveryReturn', V(1.57, .24, 5.42), V(side * 6.57, .05, -.52), dryBed, M.Basalt)
-		part('RecoveryReturnOuterLip', V(.32, .38, 5.42), V(side * 7.36, .13, -.52), firebrick, M.Brick)
-		part('RecoveryReturnInnerLip', V(.32, .38, 3.73), V(side * 5.95, .13, .33), firebrick, M.Brick)
+		part('DryRecoveryReturn', V(1.57, .24, 5.59), V(side * 6.57, .05, -.605), dryBed, M.Basalt)
+		part('RecoveryReturnOuterLip', V(.32, .38, 5.26), V(side * 7.36, .13, -.44), firebrick, M.Brick)
+		part('RecoveryReturnInnerLip', V(.32, .38, 3.74), V(side * 5.95, .13, .32), firebrick, M.Brick)
 		part('WornRecoveryMouthTile', V(.42, .21, 1.28), V(side * 7.36, .40, 1.53), wornFirebrick, M.Brick)
 		part('WornRecoveryMouthTile', V(.42, .21, 1.28), V(side * 5.95, .40, 1.53), wornFirebrick, M.Brick)
 	end
