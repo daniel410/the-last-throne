@@ -131,72 +131,89 @@ local function gateAnchor(pal, part, beam)
 end
 
 local function creekCargoSill(pal, part)
-	local silt = pal.ground:Lerp(C(110, 83, 59), .64)
-	local gravel = pal.rock:Lerp(pal.trim, .45)
+	local silt = pal.ground:Lerp(C(88, 66, 49), .76)
+	local gravel = pal.rock:Lerp(C(153, 154, 135), .67)
 	local washedWood = pal.wood:Lerp(C(157, 118, 76), .58)
+	local runnerEnd = washedWood:Lerp(pal.trim, .43)
 	part('ScouredSiltFoot', V(9.6, .65, 5.9), V(0, .15, .25), silt, M.Ground, 'Wedge',
 		V(0, math.pi / 2, 0))
-	part('WashedStoneApron', V(9.1, .53, 2.4), V(-1.98, .20, .3), gravel, M.Pebble, 'Wedge',
-		V(0, math.pi / 2, 0))
+	part('WashedStoneApron', V(8.5, .48, 1.77), V(2.45, .20, .34), gravel, M.Pebble, 'Wedge',
+		V(0, -math.pi / 2, 0))
 	for _, z in ipairs({-3.05, .07, 3.27}) do
-		part('DryCargoFieldstone', V(3.31, .82, 2.72), V(.55, .31, z), pal.rock, M.Cobblestone)
+		part('DryCargoFieldstone', V(3.31, .82, 2.72), V(.46, .31, z), pal.rock:Lerp(gravel, .38), M.Cobblestone)
 	end
-	for _, x in ipairs({-.53, 1.57}) do
-		part('RaisedCargoRunner', V(.65, .36, 8.4), V(x, .9, .12), washedWood, M.Wood)
+	for _, x in ipairs({-.61, 1.53}) do
+		part('RaisedCargoRunner', V(.65, .36, 7.86), V(x, .88, .14), washedWood, M.Wood)
+		for _, z in ipairs({-3.94, 4.22}) do
+			part('EndGrainRunnerCap', V(.63, .34, .33), V(x, .88, z), runnerEnd, M.Wood)
+		end
 	end
 end
 
 local function wheeltrackFork(pal, part, beam)
-	local loam = pal.ground:Lerp(C(128, 100, 76), .44)
-	local root = pal.wood:Lerp(C(143, 119, 92), .48)
-	local heartwood = C(151, 122, 88)
+	local loam = pal.ground:Lerp(C(121, 97, 75), .48)
+	local shale = pal.rock:Lerp(pal.trim, .55)
+	local root = pal.wood:Lerp(C(152, 124, 91), .63)
+	local heartwood = C(179, 147, 107)
 	part('WheelCutLoamShoulder', V(12.8, .83, 4.7), V(.14, .19, -.35), loam, M.Ground, 'Wedge',
 		V(0, -math.pi / 2, 0))
-	part('CollapsedBankToe', V(2.07, .46, 5.18), V(-1.36, .09, 3.35), pal.rock, M.Slate, 'Corner',
+	part('CollapsedBankToe', V(2.27, .70, 4.38), V(-1.26, .19, 3.26), shale, M.Slate, 'Corner',
 		V(0, .28, 0))
-	beam('ExposedShoulderRoot', V(.91, .21, -5.58), V(.83, 1.27, .91), .8, root, M.Wood)
-	beam('TurningRootFork', V(.83, 1.27, .91), V(-1.69, .29, 4.29), .63, root, M.Wood)
-	beam('BuriedRootFork', V(.83, 1.27, .91), V(1.95, .31, 5.02), .64, pal.wood, M.Wood)
-	part('SplitRootEndGrain', V(.22, .59, .59), V(-1.72, .29, 4.33), heartwood, M.Wood, 'Cylinder',
+	beam('ExposedShoulderRoot', V(.91, .21, -5.58), V(.83, 1.39, .91), .84, root, M.Wood)
+	beam('TurningRootFork', V(.83, 1.39, .91), V(-1.69, .29, 4.29), .68, root, M.Wood)
+	beam('BuriedRootFork', V(.83, 1.39, .91), V(1.95, .31, 5.02), .64, pal.wood, M.Wood)
+	-- The abraded side of the root is exposed above the bank on the approach.
+	beam('ExposedRootHeartwood', V(-.01, 1.30, 1.66), V(-1.40, .63, 3.75), .34, heartwood, M.Wood)
+	part('SplitRootEndGrain', V(.22, .57, .57), V(-1.72, .29, 4.33), heartwood, M.Wood, 'Cylinder',
 		V(0, -.93, -.23))
 end
 
 local function windbreakAscent(pal, part)
-	local snow = pal.ground:Lerp(pal.trim, .28)
-	local compactSnow = pal.ground:Lerp(pal.rock, .32)
+	local windSculptedSnow = pal.ground:Lerp(pal.trim, .49)
+	local packedSnow = pal.ground:Lerp(pal.rock, .49)
+	local exposedIce = pal.trim:Lerp(pal.rock, .64)
 	local bankTurn = V(0, math.pi / 2, 0)
 	part('WindcutShaleFoot', V(13.1, 1.12, 5.1), V(.18, .38, .05), pal.rock, M.Slate, 'Wedge', bankTurn)
-	part('LeewardSnowShoulder', V(11.7, 1.12, 3.82), V(-.06, .68, -.48), snow, M.Snow, 'Wedge', bankTurn)
-	part('PackedAscentSnowToe', V(8.74, .56, 2.28), V(1.38, .19, .66), compactSnow, M.Snow, 'Wedge', bankTurn)
-	part('ScouredBlueIce', V(6.6, .30, 1.09), V(.91, .29, .23), pal.trim:Lerp(pal.rock, .42), M.Glacier,
+	part('LeewardSnowShoulder', V(9.44, 1.04, 3.34), V(-.34, .71, 1.05), windSculptedSnow, M.Snow,
 		'Wedge', bankTurn)
-	part('WindcutBankEnd', V(2.6, .91, 2.95), V(-.73, .38, -5.23), snow, M.Snow, 'Corner', V(0, -.6, 0))
+	part('PackedAscentSnowToe', V(8.42, .57, 1.63), V(1.63, .25, .33), packedSnow, M.Snow, 'Wedge',
+		bankTurn)
+	part('ScouredBlueIce', V(5.36, .65, 2.30), V(.35, .39, -3.76), exposedIce, M.Glacier, 'Corner',
+		bankTurn)
+	part('WindcutBankEnd', V(2.6, .73, 2.46), V(-.76, .31, -5.3), packedSnow, M.Snow, 'Corner',
+		V(0, -.6, 0))
 end
 
 local function freightWheelSeat(pal, part)
-	local basalt = pal.rock:Lerp(C(92, 80, 78), .44)
-	local wornStone = basalt:Lerp(C(153, 115, 93), .48)
-	local iron = C(108, 99, 96)
+	local basalt = pal.rock:Lerp(C(76, 72, 77), .52)
+	local wornStone = basalt:Lerp(C(165, 139, 125), .55)
+	local iron = C(115, 108, 103)
 	part('AshBedUnderFreight', V(6.1, .64, 10.7), V(0, .13, .13), pal.ground, M.Ground, 'Wedge')
 	for _, x in ipairs({-1.44, 1.44}) do
 		part('FreightWheelBasaltRunner', V(2.05, .66, 8.85), V(x, .36, .12), basalt, M.Basalt)
-		part('WornWheelContact', V(.76, .10, 7.6), V(x, .72, .28), wornStone, M.Basalt)
-		part('ForgedWheelChock', V(1.26, .62, 1.68), V(x, 1.02, -1.98), iron, M.CorrodedMetal, 'Wedge')
-		part('ChockRetainingPin', V(.20, .45, .45), V(x + .7, .84, -1.58), iron, M.Metal, 'Cylinder')
+		part('WornWheelContact', V(.82, .12, 7.6), V(x, .72, .28), wornStone, M.Slate)
+		part('ForgedWheelChock', V(1.24, .70, 1.74), V(x, 1.09, -1.98), iron, M.CorrodedMetal, 'Wedge')
+		local side = math.sign(x)
+		part('ChockHeelPlate', V(.24, .28, 1.95), V(x + side * .59, .81, -1.95), iron, M.Metal)
+		part('ChockRetainingPin', V(.24, .38, .38), V(x + side * .69, .96, -1.38), wornStone, M.Metal,
+			'Cylinder')
 	end
 end
 
 local function scoutStoneFooting(pal, part)
-	local slate = pal.rock:Lerp(C(146, 143, 133), .43)
-	local coping = slate:Lerp(C(166, 157, 138), .53)
+	local slate = pal.rock:Lerp(C(146, 143, 133), .56)
+	local coping = slate:Lerp(C(170, 160, 142), .61)
 	part('RouteStoneMossApron', V(6.44, .46, 7.7), V(-.37, .13, .51), pal.ground, M.Ground, 'Corner',
 		V(0, .69, 0))
 	for _, x in ipairs({-1.67, 1.67}) do
 		part('RouteStoneFoundationCourse', V(3.28, .72, 4.43), V(x, .28, .12), pal.rock, M.Cobblestone)
 	end
 	part('RouteStoneSocket', V(3.8, .53, 3.24), V(-.14, .71, .3), slate, M.Slate)
-	part('WornRouteStone', V(2.42, 1.16, 1.23), V(-.14, 1.39, .23), coping, M.Slate, 'Wedge', V(0, math.pi, 0))
-	part('ChippedApproachCoping', V(3.36, .34, 1.22), V(2.39, .55, -.43), slate, M.Slate, 'Wedge',
+	part('WeatheredRouteStoneFace', V(2.75, .88, 1.60), V(-.22, 1.38, .24), coping, M.Slate,
+		nil, V(0, .10, 0))
+	part('ChippedRouteStoneCrown', V(2.72, .55, 1.58), V(-.22, 2.09, .24), coping:Lerp(slate, .2), M.Slate,
+		'Wedge', V(0, math.pi + .10, 0))
+	part('ChippedApproachCoping', V(3.36, .40, 1.22), V(2.32, .56, -.43), slate, M.Slate, 'Wedge',
 		V(0, math.pi / 2, 0))
 end
 
