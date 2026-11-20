@@ -1,0 +1,23 @@
+MELEE_ACTION_BEATS_NATIVE {"rigActions":140,"contacts":204,"pass":true,"checks":2147}
+PASS melee-action-beats
+HERO_SKILL_SOCKETS_NATIVE {"checks":12,"samples":[{"id":"knight_driving_thrust","forwardDot":1.0000001192092896,"tipHeight":0.794403076171875,"rig":"R6"},{"id":"dwarf.gunner.gunner_shot","forwardDot":0.9948293566703796,"rig":"R6"},{"id":"knight_driving_thrust","forwardDot":1,"tipHeight":0.770477294921875,"rig":"R15"},{"id":"dwarf.gunner.gunner_shot","forwardDot":0.9948294758796692,"rig":"R15"}],"failures":[],"pass":true,"kind":"HERO_SKILL_SOCKETS_NATIVE"}
+PASS hero-skill-sockets
+HERO_SKILLS_NATIVE {"failures":[],"checks":244520,"rigs":["R6/knight","R6/dwarf","R6/elf","R6/mage","R15/knight","R15/dwarf","R15/elf","R15/mage"],"kind":"HERO_SKILLS_NATIVE","pass":true,"skills":256}
+PASS hero-skills
+SHIELD_BASH_LEADING_NATIVE {"checks":86,"samples":[{"dt":0.03333333333333333,"gap":0.7470664978027344,"faceDot":0.9196507930755615,"age":0.195,"rig":"R6"},{"dt":0.03333333333333333,"gap":0.7495732307434082,"faceDot":0.9178091883659363,"age":0.2,"rig":"R6"},{"dt":0.03333333333333333,"gap":0.9097964763641357,"faceDot":0.9442763328552246,"age":0.25,"rig":"R6"},{"dt":0.03333333333333333,"gap":0.9581447839736939,"faceDot":0.948149561882019,"age":0.299,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.7470664978027344,"faceDot":0.9196507930755615,"age":0.195,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.7495732307434082,"faceDot":0.9178091883659363,"age":0.2,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.9097964763641357,"faceDot":0.9442763328552246,"age":0.25,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.9581447839736939,"faceDot":0.948149561882019,"age":0.299,"rig":"R6"},{"dt":0.03333333333333333,"gap":1.4160876274108887,"faceDot":0.9196507930755615,"age":0.195,"rig":"R15"},{"dt":0.03333333333333333,"gap":1.4329508543014527,"faceDot":0.917809247970581,"age":0.2,"rig":"R15"},{"dt":0.03333333333333333,"gap":1.54961097240448,"faceDot":0.9442762732505798,"age":0.25,"rig":"R15"},{"dt":0.03333333333333333,"gap":1.5793602466583253,"faceDot":0.9481495022773743,"age":0.299,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.4160876274108887,"faceDot":0.9196507930755615,"age":0.195,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.4329508543014527,"faceDot":0.917809247970581,"age":0.2,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.54961097240448,"faceDot":0.9442762732505798,"age":0.25,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.5793602466583253,"faceDot":0.9481495022773743,"age":0.299,"rig":"R15"}],"failures":[],"pass":true,"kind":"SHIELD_BASH_LEADING_NATIVE"}
+PASS shield-bash-leading
+SKILL_VFX_INDIVIDUAL_NATIVE {"failures":[],"skills":128,"pass":true,"checks":306}
+PASS skill-vfx-individual
+VFX_ART_HERO_FIXES_NATIVE {"coverage":"Procedural engine geometry and motion; not final art/device acceptance","failures":[],"pass":true,"checks":2361}
+PASS vfx-art-hero-fixes
+RPG_VFX_GAP_NATIVE {"failures":[],"pass":true,"checks":21}
+PASS rpg-vfx-gap
+SKILL_VFX_ART_NATIVE {"failures":[],"pass":true,"checks":43}
+PASS skill-vfx-art
+HERO_VFX_NATIVE {"failures":[],"skills":128,"pass":true,"checks":10466}
+PASS hero-vfx
+PROJECTILE_VFX_TIMING_NATIVE {"pass":true,"checks":192}
+PASS projectile-vfx-timing
+ELEMENT_VFX_NATIVE {"failures":[],"pass":true,"checks":84}
+PASS element-vfx
+MELEE_AND_VFX_ALL_PASS
