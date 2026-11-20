@@ -6,7 +6,7 @@
 - 에픽 퀘스트 0.114.1 후보는 DW-02, GW-06, FV-04, EC-05, HG-04의 대표 행동에 현장 지형과 시설을 연결했다. [모델·접근 화면·Studio 검증](../evidence/epic-quest-landmarks-20261119/README.md) · [0.114.0 퀘스트 진행과 저장 검증](../evidence/epic-quest-variety-20261119/README.md). 후보 미게시·G5 진행 중.
 - 다섯 에픽 결말 환경을 0.114.22에서 다시 점검하고 EC-07 선적 받침을 가로축 철제 롤러로 개선했다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-finale-dispatch-20261120/README.md)
 
-- 지역 생성·전투 반복 작업: 0.113.15 후보는 중복 경로 검사와 불필요한 프레임 대기를 줄였으며, 교전 검증은 원정 ID만 조회한다. [지역 생성 전후·지형 대조·미검증](../evidence/world-runtime-optimization-20261118/README.md). 후보 미게시. [선행 출현·페이즈 개선](../evidence/story-phase-speed-20261118/README.md) · [저장 대기 개선](../evidence/monster-spawn-latency-20261118/README.md) · [지도 복구](../evidence/campaign-save-map-20261117/README.md).
+- 몬스터와 페이즈 로딩은 0.114.25 후보에서 근접 교전 시작 거리, 외형 선행 로드, 처치와 목표 저장을 개선했다. 후보 미게시. [전후 재현·고정 빌드·남은 수용](../evidence/monster-phase-loading-20261120/README.md) · [지역 생성과 반복 작업 계측](../evidence/world-runtime-optimization-20261118/README.md).
 
 - 배틀 입장과 진행 잠금: 0.113.16 후보는 확인된 저장 위치의 지역을 준비하고, 영웅 준비 시 즉시 교전과 스토리를 갱신한다. 일시적인 원정 갱신 오류는 마지막 소유권이 유효한 동안 진행을 막지 않는다. [입장·갱신 장애 재현 및 검증](../evidence/battle-arrival-latency-20261118/README.md). 후보 미게시. [지역 선행 준비·이동 복구](../evidence/battle-loading-20261117/README.md) · [부활·연속 이동 회귀](../evidence/battle-loading-review-20261117/README.md).
 

@@ -1,15 +1,18 @@
 -- Execute the production proximity heartbeat with canonical campaign eligibility.
 local C=dofile('src/shared/CampaignContent.luau')
 local P=dofile('src/shared/DeepwoodProgress.luau')
+local Routes=dofile('src/shared/CampaignCombatRoutes.luau')
 local file=assert(io.open('src/server/Story/DeepwoodService.luau'));local source=file:read('*a');file:close()
+local scanStart=assert(source:find('startNearbyEncounters=function',1,true))
+local scanEnd=assert(source:find('local function offerQuest',scanStart,true))
 local first=assert(source:find(' local activityElapsed=0',1,true))
 local last=assert(source:find(' local elapsed=0',first,true))
-local body=source:sub(first,last-1):gsub('activityElapsed%+=dt','activityElapsed=activityElapsed+dt')
+local body='local '..source:sub(scanStart,scanEnd-1)..source:sub(first,last-1):gsub('activityElapsed%+=dt','activityElapsed=activityElapsed+dt')
 local n,sideBattles,mainBattles=0,0,0
 local function check(v,m)n=n+1;assert(v,m)end
 local player={};local journal,hero,ctx,root,run,callback,started
 local encounters,nodes={},{}
-local env=setmetatable({Content=C,Progress=P,encounters=encounters,
+local env=setmetatable({Content=C,Progress=P,Routes=Routes,encounters=encounters,Service={stepEncounters=function()end},
  Players={GetPlayers=function()return {player}end},
  RunService={Heartbeat={Connect=function(_,f)callback=f end}},
  companion={stepMotion=function()end,update=function()end},access={update=function()end},
@@ -21,7 +24,11 @@ local env=setmetatable({Content=C,Progress=P,encounters=encounters,
 local function reset(c,g)
  journal=P.new();journal.main=c.side and c.minMain or c.number-1;journal.accepted[c.id]=true
  journal.expeditionMission=c.id
- for _,id in ipairs(g.requires)do journal.flags[c.id..':'..id]=true end
+ if g.pacing then journal.combatPacingVersion=1 end
+ if g.expansion then journal.expansionVersion=1 end
+ for _,requirements in ipairs({g.requires,g.pacingRequires or {},g.expansionRequires or {}})do
+  for _,id in ipairs(requirements)do journal.flags[c.id..':'..id]=true end
+ end
  hero={heroId='hero'};ctx={heroId='hero'};run={runId='side-qa'}
  root={Position=setmetatable({},{__sub=function()return {Magnitude=4}end})}
  for k in pairs(nodes)do nodes[k]=nil end;for k in pairs(encounters)do encounters[k]=nil end
