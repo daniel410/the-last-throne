@@ -86,6 +86,18 @@ local function source(character,origin,d)
  if tip and tip:IsA("Attachment") then return tip.WorldPosition end
  return origin
 end
+local function windupSocket(character,motion)
+ if motion=="shield" or motion=="counter" then
+  local shield=character:FindFirstChild("ShieldGrip",true)
+  if shield and shield:IsA("BasePart") then return shield end
+ elseif motion=="draw" or motion=="rain" then
+  local arrow=character:FindFirstChild("NockedArrow",true)
+  if arrow and arrow:IsA("BasePart") then return arrow end
+ end
+ local prop=character:FindFirstChild("BranchSkillProp")
+ local tip=prop and prop:FindFirstChild("SkillMuzzle",true) or character:FindFirstChild("WeaponTip",true)
+ return tip and tip:IsA("Attachment") and tip or nil
+end
 local props=setmetatable({},{__mode="k"})
 local function clearProp(character)
  local record=props[character];if not record then return end
@@ -157,12 +169,18 @@ end
 function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt)
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
  local profile=Presentation.get(d);if not profile then return end
- if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse%1~=0 then return end
- if type(firedAt)=="number" and (firedAt~=firedAt or workspace:GetServerTimeNow()-firedAt>.6 or firedAt-workspace:GetServerTimeNow()>.5) then return end
+ if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse>d.pulses or pulse%1~=0 then return end
+ local now=workspace:GetServerTimeNow()
+ if type(firedAt)=="number" and (firedAt~=firedAt or now-firedAt>.6 or firedAt-now>.5) then return end
+ local opening=pulse==0 and (type(startedAt)=="number" and startedAt or now)
+ if opening and (opening~=opening or opening>now+.1 or now>=opening+d.windup+(d.hitDelay or 0)) then return end
  if character and type(attackSeq)=="number" then
+  local current=character:GetAttribute("K0AttackSeq")
+  if pulse==0 and type(current)=="number" and current>attackSeq then return end
   local old=confirmed[character]
   if old and (attackSeq<old.seq or attackSeq==old.seq and old.id==id and pulse<=old.pulse) then return end
   confirmed[character]={seq=attackSeq,id=id,pulse=pulse}
+  HeroVFX.endWindup(character,attackSeq)
  end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
  -- The server rotates its line hit direction but retains cast.center in the
@@ -180,11 +198,14 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   direction=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
  if pulse==0 then
-  if character then firearm(character,d,attackSeq) end
+  if character then
+   firearm(character,d,attackSeq)
+   HeroVFX.windup(character,d,profile.motion,profile.effect,origin,attackSeq,opening,windupSocket(character,profile.motion))
+  end
   if d.form=="ground" then
    for i=1,d.scatter and d.pulses or 1 do
     local target=center+(d.scatter and Vector3.new((i%2==0 and 1 or -1)*3,0,(i-2)*2) or Vector3.zero)
-    arc(ground(target,character),direction,d.radius,360,color,d.windup+(i-1)*(d.interval or .3),"SkillTelegraph")
+    arc(ground(target,character),direction,d.radius,360,color,opening+d.windup+(d.hitDelay or 0)-now+(i-1)*(d.interval or .3),"SkillTelegraph")
    end
   end
   return

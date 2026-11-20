@@ -1,6 +1,7 @@
 -- Original Blender MCP animation curves. Only accepted server action time is
 -- sampled; this module never moves the root or authorizes hits/projectiles.
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
+local Presentation=require(game.ReplicatedStorage.Shared.SkillPresentation)
 local Gestures=require(script.Parent.RangedActionPoses)
 local Clips=require(script.Parent.K0MageClips)
 local Motion={}
@@ -44,16 +45,19 @@ function Motion.sample(d,profile,age,entry,entrySlope)
   or .82+.18*math.clamp((age-w-a)/r,0,1)
  -- Re-articulate every accepted pulse instead of stretching one release
  -- across an entire barrage. Area channels keep their raised guiding hand.
- if d.advanced and (d.pulses or 1)>1 and age>=w and age<w+a then
-  local pulse=math.min(d.pulses,math.floor((age-w)/d.interval)+1)
-  local since=age-w-(pulse-1)*d.interval
-  if since<.055 then t=.65+.17*math.clamp(since/.055,0,1)
+ if d.advanced and (d.pulses or 1)>1 and age<w+a then
+  local pulse,since=Presentation.beat(d,age)
+  local channel=d.form=="ground" or d.form=="area"
+  local impact=channel and .075 or .045
+  if pulse==0 then t=.65*math.clamp(age/(w+(d.hitDelay or 0)),0,1)
+  elseif since<impact then t=.65+.17*math.clamp(since/impact,0,1)
   elseif pulse<d.pulses then
-   local reload=math.clamp((since-.055)/math.max(.01,d.interval-.055),0,1)
-   -- A continuous return arc joins release (.82) to the next anchor (.65).
+   local reload=math.clamp((since-impact)/math.max(.01,d.interval-impact),0,1)
    local u=math.min(reload*2,(1-reload)*2)
    local ease=u*u*(3-2*u)
-   t=reload<.5 and .82-.32*ease or .65-.15*ease
+   local anchor=channel and .60 or .47
+   local start=reload<.5 and .82 or .65
+   t=start+(anchor-start)*ease
   else t=.82 end
  end
  local pose=Motion.raw(profile,t);if not pose then return nil end

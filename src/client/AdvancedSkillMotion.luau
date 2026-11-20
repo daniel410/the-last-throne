@@ -25,6 +25,10 @@ local function rebuild(pose)
  for channel,a in pairs(pose.angles) do pose[channel]=rot(a) end
  return pose
 end
+local function offset(pose,channel,delta)
+ pose.angles[channel]+=delta
+ pose[channel]=rot(pose.angles[channel])
+end
 local function mix(a,b,weight)
  local pose={angles={}}
  for channel in pairs(a.angles) do
@@ -102,8 +106,11 @@ local function gunner(d,kind,age)
   elbow=v(-12*kick)
   torso=v(3-6*kick,0,0)
  end
- local angles={right=right,left=left,elbow=elbow,leftElbow=v(-35),wrist=v(),neck=v(),
-  torso=torso,rightHip=v(-8),leftHip=v(10),rightKnee=v(10),leftKnee=v(8),weapon=v()}
+ local brace=kind=="mortar" and (14*load+12*kick) or kind=="shoot" and 7*kick or 0
+ local retreat=(d.move or 0)<0 and kick or 0
+ local angles={right=right,left=left,elbow=elbow,leftElbow=v(-35),wrist=v(),neck=v(6*retreat),
+  torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
+  rightKnee=v(10+brace*1.5),leftKnee=v(8+brace+14*retreat),weapon=v()}
  local pose={angles={},cutting=false}
  for channel,a in pairs(Clips.rest.dwarf) do pose.angles[channel]=v(unpack(a)):Lerp(angles[channel],ready) end
  return rebuild(pose)
@@ -150,6 +157,26 @@ local function shieldPose(d,age,rigType,contact,ending)
  end
  return age>=ending and mix(pose,resting("knight"),smooth((age-ending)/d.recovery)) or pose
 end
+local function axeCatch(d,age,contact,ending,base,sample,classId)
+ local flight=d.interval
+ local caught=contact+flight
+ local release=base.windup+(base.hitDelay or 0)
+ local ready=resting(classId)
+ offset(ready,"right",v(82,-12,-8))
+ offset(ready,"elbow",v(-38))
+ offset(ready,"torso",v(-8,18,-8))
+ if age<caught then
+  local travel=math.clamp((age-contact)/flight,0,1)
+  local outgoing=sample(release+(base.windup+base.active-release)*smooth(travel/.28))
+  return mix(outgoing,ready,smooth((travel-.32)/.68))
+ end
+ local settle=smooth((age-caught)/(ending+d.recovery-caught))
+ local pose=mix(ready,resting(classId),settle)
+ local absorb=smooth((age-caught)/.055)*(1-smooth((age-caught-.055)/.17))
+ offset(pose,"elbow",v(-24*absorb))
+ offset(pose,"torso",v(-11*absorb,8*absorb))
+ return pose
+end
 function Motion.sample(classId,d,age,rigType)
  if type(age)~="number" or age~=age then return nil end
  local profile=Presentation.get(d);if not profile then return nil end
@@ -165,7 +192,15 @@ function Motion.sample(classId,d,age,rigType)
  local bContact=base.windup+(base.hitDelay or 0)
  local pose
  if age<contact then
-  pose=sample(bContact*math.clamp(age/contact,0,1))
+  local u=math.clamp(age/contact,0,1)
+  if kind=="slam" or kind=="chop" or d.braced then
+   -- Spend more of the windup with the weapon loaded, then accelerate
+   -- through the same authored contact pose at the same combat time.
+   u=u+.13*math.sin(u*math.pi*2)
+  end
+  pose=sample(bContact*u)
+ elseif d.returning and kind=="throw" then
+  pose=axeCatch(d,age,contact,ending,base,sample,classId)
  elseif age<ending then
   if pulse<(d.pulses or 1) then
    local phase=math.clamp(since/d.interval,0,1)
@@ -199,15 +234,24 @@ function Motion.sample(classId,d,age,rigType)
   local phase=age/contact
   pose=mix(pose,brace,.85*smooth(phase/.44)*(1-smooth((phase-.54)/.46)))
  elseif kind=="spin" then
-  -- Rotate the whole visual rig. A 360-degree waist twist leaves the legs
-  -- planted backwards and is visibly wrong even when the matrix is finite.
-  local turns=smooth((age-contact+.06)/math.max(.1,d.active+.06))
+  -- Each confirmed beat has its own turn of the visual rig. The server
+  -- root and aim remain available for movement and range presentation.
+  local turns
+  if (d.pulses or 1)>1 then
+   turns=pulse==0 and smooth(age/contact) or
+    pulse-1+(pulse<d.pulses and smooth(since/d.interval) or 0)
+  else turns=smooth((age-contact+.06)/math.max(.1,d.active+.06)) end
   pose.root=CFrame.Angles(0,-math.pi*2*turns,0)
   pose.torso=rot(v(0,0,0));pose.angles.torso=v()
  end
- if d.id:find("stonebound_leap",1,true) then
+ if d.id=="dwarf.iron_axe.stonebound_leap" then
   local phase=math.clamp(age/math.max(.01,contact),0,1)
-  pose.root=CFrame.new(0,age<contact and math.sin(math.pi*phase)*1.4 or 0,0)
+  local air=math.max(0,1-((phase-.61)/.39)^2)*1.5
+  local landing=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))
+  pose.root=CFrame.new(0,air-.24*landing,0)
+  offset(pose,"rightKnee",v(18*landing))
+  offset(pose,"leftKnee",v(24*landing))
+  offset(pose,"torso",v(12*landing))
  elseif classId=="dwarf" then
   -- Only Ground Slam and explicit leap skills use the jump's visual root.
   pose.root=nil

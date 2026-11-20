@@ -13,6 +13,7 @@ local Polish=require(script.Parent.HeroVFXPolish)
 local Surfaces=require(script.Parent.HeroVFXSurfaces)
 local Style=require(script.Parent.CombatVFXStyle)
 local Palette=require(RS.Shared.CombatVFXPalette)
+local Windup=require(script.Parent.SkillWindupStrokes)
 local FX={}
 local active={}
 local connection
@@ -167,9 +168,10 @@ function FX.step(now)
  if not finite(now)then return end
  for i=#active,1,-1 do
   local r=active[i];local u=math.clamp((now-r.at)/r.life,0,1)
-  if not r.model.Parent or now-r.at>=r.life then erase(i)
+  if not r.model.Parent or now-r.at>=r.life or (r.windup and not r.windup()) then erase(i)
   else
    local fade=r.key=="lightning"and math.clamp((now-r.at)/.16,0,1)or math.clamp((u-.12)/.88,0,1)
+   if r.windup then fade=.14+.73*(1-u)^2 end
    local bucket=math.floor(fade*24)
    local changed=r.fadeBucket~=bucket
    if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.7+fade^.65*.3)end
@@ -220,6 +222,61 @@ local function floorAt(at,character)
 end
 local function forward(first,last)
  local d=last-first;return d.Magnitude>.01 and d.Unit or Vector3.new(0,0,-1)
+end
+function FX.endWindup(character,seq)
+ for i=#active,1,-1 do
+  local r=active[i]
+  if r.windup and r.character==character and r.seq<=seq then erase(i) end
+ end
+end
+function FX.windup(character,d,motion,effect,origin,seq,startedAt,socket)
+ if not character or not finite(seq) or not finite(startedAt) then return end
+ local now=workspace:GetServerTimeNow()
+ local duration=d.windup+(d.hitDelay or 0)
+ local remaining=startedAt+duration-now
+ if remaining<.045 or startedAt>now+.1 then return end
+ local pending=0
+ for _,r in ipairs(active) do if r.windup then pending+=1 end end
+ if pending>=(Input.TouchEnabled and 2 or 3) then return end
+ local root=character:FindFirstChild("HumanoidRootPart")
+ if not root or not root:IsA("BasePart") then return end
+ local color,hot,key,row=Palette.resolve(d.id:match("^(%a+)"),d.id)
+ if not row then return end
+ local style,count=Windup.style(row.classId,d,motion,effect)
+ if beams+count>(Input.TouchEnabled and 144 or 240) then return end
+ local consumed=false
+ local function refresh()
+  if not character.Parent or not root.Parent or character:GetAttribute("TLTDeathFalling") then return false end
+  local current=character:GetAttribute("K0AttackSeq")
+  if type(current)=="number" and current>seq then return false end
+  local matches=current==seq and character:GetAttribute("K0SkillId")==d.id and character:GetAttribute("K0State")=="Attack"
+  if consumed and not matches then return false end
+  consumed=consumed or matches
+  local anchor=socket and socket.Parent and (socket:IsA("Attachment") and socket.WorldPosition or socket.Position)
+  return true,root.CFrame.Rotation+ (anchor or root.CFrame:PointToWorldSpace(Vector3.new(.65,.45,-1)))
+ end
+ local alive,frame=refresh()
+ if not alive then return end
+ local r=make(origin,origin,remaining,key,d.id)
+ if not r then return end
+ r.at=startedAt;r.life=duration;r.color=color;r.hot=hot
+ r.model.Name="HeroSkillWindup"
+ r.character=character;r.seq=seq
+ r.windup=function()
+  local ok,currentFrame=refresh()
+  frame=currentFrame
+  return ok
+ end
+ r.model:SetAttribute("Style",style)
+ local scale=d.ultimate and 1.4 or d.windup>=.55 and 1.15 or .88
+ for i=1,count do
+  line(r,style,function(u)
+   local a,b=Windup.stroke(style,i,u,scale)
+   return frame:PointToWorldSpace(a),frame:PointToWorldSpace(b)
+  end,.073,i%2==0 and hot or color,.035)
+ end
+ FX.step(now)
+ return r.model
 end
 local function tongue(r,name,at,height,width,heading,color)
  local radial=Vector3.new(math.cos(heading),0,math.sin(heading));local normal=Vector3.new(-radial.Z,0,radial.X)

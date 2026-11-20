@@ -22,6 +22,7 @@ end
 local bow = {
     field=stance(v(7,-15,-7), -12, 15, 22),
     sight=stance(v(9,-23,-10), -5, 24, 14),
+    pierce=stance(v(14,-31,-3), -2, 28, 31),
     heavy=stance(v(15,-32,-13), -17, 31, 34),
     snap=stance(v(5,14,9), 20, 15, 23),
     fan=stance(v(10,-20,15), 39, 22, 32),
@@ -40,6 +41,7 @@ local function bowStance(d)
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
     if d.id=="elf.marksman.heavy_draw" then return bow.heavy end
+    if d.form=="line" then return bow.pierce end
     if d.branch=="magic_archer" then return bow.weave end
     return d.id and bow.sight or bow.field
 end
@@ -48,6 +50,10 @@ function Poses.bow(pose,d,age,since,betweenShots)
     local s = bowStance(d)
     local phase = age/d.windup
     local load = smooth(phase/.55)*(1-smooth((phase-.55)/.45))
+    if d.advanced and d.windup>=.55 and d.form~="ground" then
+        load = smooth(phase/.42)*(1-.6*smooth((phase-.48)/.52))
+        load *= 1-smooth((age-d.windup)/.09)
+    end
     local support = smooth(phase/.64)*(1-smooth((age-d.windup-d.active)/d.recovery))
     local recoil, redraw = 0,0
     if since then
@@ -90,6 +96,8 @@ local spells = {
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
     storm=gesture(v(29,-20,19),v(48,13,27),v(-14,-18,10),v(47,-18,-14),20),
+    iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
+    cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
     ward=gesture(v(13,-24,17),v(47,-16,-28),v(11,14,-10),v(34,12,30),23),
     fall=gesture(v(37,-14,-16),v(49,18,17),v(-20,-17,9),v(-12,-9,30),23),
@@ -106,7 +114,11 @@ local function spellGesture(d,profile)
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
-    if d.form=="area" or d.form=="ground" then return spells.ring end
+    if d.form=="area" or d.form=="ground" then
+        if cue.effect=="frost" then return spells.iceRing end
+        if cue.effect=="fire" then return spells.cinder end
+        return spells.ring
+    end
     if d.id:find("dart",1,true) then return spells.dart end
     if cue.effect=="frost" then return spells.frost end
     if d.form=="line" or d.branch=="pyro" then return spells.lance end
@@ -127,7 +139,8 @@ function Poses.mage(pose,d,profile,age)
             local cycle = since/d.interval
             wind = .52*smooth((cycle-.25)/.34)*(1-smooth((cycle-.59)/.41))
         end
-        guide = 1-.64*wind
+        local channel = (d.form=="area" or d.form=="ground") and (d.pulses or 1)>1
+        guide = 1-(channel and .23 or .64)*wind
     end
     guide *= recovery
     follow *= recovery

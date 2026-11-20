@@ -129,8 +129,12 @@ function S.step(r,u,fade)
    v.part.Transparency=v.alpha+(1-v.alpha)*math.clamp((t-.72)/.28,0,1)
   end
   if v.spin then
-   local m=v.spin;local rotation=CFrame.fromAxisAngle(m.axis,u*m.turn)
-   v.part.CFrame=CFrame.new(m.pivot)*rotation*CFrame.new(v.cf.Position-m.pivot)*v.cf.Rotation
+   local m=v.spin
+   local arrival=m.approach and math.clamp(u*r.life/.075,0,1)
+   local turn=arrival and (1-arrival)^2 or u
+   local pivot=arrival and m.pivot+m.approach*(1-arrival)^2 or m.pivot
+   local rotation=CFrame.fromAxisAngle(m.axis,turn*m.turn)
+   v.part.CFrame=CFrame.new(pivot)*rotation*CFrame.new(v.cf.Position-m.pivot)*v.cf.Rotation
   end
   if v.growLine then
    local g=v.growLine;local t=math.clamp((u*r.life-g.delay)/g.duration,0,1)

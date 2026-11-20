@@ -91,7 +91,12 @@ function Art.strokes(r,c,line,curve)
 end
 function Art.axe(r,c)
  local from,to=c.first,c.last
- if c.definition.returning and c.pulse%2==0 then from,to=to,from end
+ local returning=c.definition.returning and c.pulse%2==0
+ if returning then
+  from,to=to,from
+  local hand=c.character and (c.character:FindFirstChild("RightHand") or c.character:FindFirstChild("Right Arm"))
+  if hand and hand:IsA("BasePart") and (hand.Position-to).Magnitude<6 then to=hand.Position end
+ end
  local axis=(to-from).Magnitude>.01 and (to-from).Unit or c.flat
  local frame=CFrame.lookAt(to,to+axis)
  local source
@@ -117,7 +122,12 @@ function Art.axe(r,c)
   S.bar(r,'ThrownAxeCuttingEdge',corners[2],corners[3],.1,Color3.fromRGB(235,242,247),.14,Enum.Material.Neon)
   local hub=S.volume(r,'ThrownAxeBronzeHub',center,Vector3.one*.24,Color3.fromRGB(205,147,67),.1,'ball',Enum.Material.Metal)
  end
- for i=start+1,#r.faces do r.faces[i].spin={pivot=to,axis=axis,turn=math.pi*2.2}end
+ for i=start+1,#r.faces do
+  local face=r.faces[i]
+  face.spin={pivot=to,axis=returning and frame.RightVector or axis,turn=returning and math.pi or math.pi*2.2,
+   approach=returning and -axis*math.min(2.4,(to-from).Magnitude) or nil}
+  if returning then face.fadeDuration=.16 end
+ end
  r.model:SetAttribute('ArtSilhouette','ThrownAxe');r.model:SetAttribute('AxeSource',cloned and 'Equipped' or 'Fallback')
 end
 function Art.surfaces(r,c)

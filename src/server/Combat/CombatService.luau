@@ -512,8 +512,9 @@ local function startSkill(state, slot, current, targetModel)
 	state.humanoid.AutoRotate = false
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0SkillId", skill.id)
-	state.character:SetAttribute("K0SkillStartedAt", workspace:GetServerTimeNow())
-	state.character:SetAttribute("K0AttackStartedAt", state.character:GetAttribute("K0SkillStartedAt"))
+	local startedAt = workspace:GetServerTimeNow()
+	state.character:SetAttribute("K0SkillStartedAt", startedAt)
+	state.character:SetAttribute("K0AttackStartedAt", startedAt)
 	if skill.effect == "rapid" then
 		state.character:SetAttribute("K0RapidShotCount", 0)
 		state.character:SetAttribute("K0RapidShotAt", nil)
@@ -522,7 +523,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
-	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.center,0,nil,state.attackSeq) end
+	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.center,0,nil,state.attackSeq,startedAt,startedAt) end
 	publishBowAim(state,direction)
 	updateFeedback(state, "ActionStarted")
 end
