@@ -16,9 +16,10 @@ for _,name in ipairs({'InvasionPortalVisual','CrownheartVisual'})do for _,p in i
 streamed:Destroy()
 local lobby=require(game.ServerScriptService.Server.World.LobbyWorld).create()
 local Home=require(client.DawnspireHomecoming)
+local throne=assert(lobby.folder:FindFirstChild('DawnspireThrone'))
 Home.update({heroId='done',heroes={done={deepwood={clears={['HG-07']=true}}}}})
-check(lobby.folder:FindFirstChild('DawnspireHomecoming')~=nil,'complete hero sees restored Dawnspire throne')
-check(lobby.folder.DawnspireHomecoming.Crownheart.HomecomingGreeting.TextLabel.Text:find('WELCOME HOME',1,true),'English homecoming greeting')
+check(throne:FindFirstChild('DawnspireHomecoming')~=nil,'complete hero sees restored Dawnspire throne')
+check(throne.DawnspireHomecoming.Crownheart.HomecomingGreeting.TextLabel.Text:find('WELCOME HOME',1,true),'English homecoming greeting')
 Home.update({heroId='new',heroes={new={deepwood={clears={}}}}})
-check(lobby.folder:FindFirstChild('DawnspireHomecoming')==nil,'unfinished hero cannot inherit another hero ending')
+check(throne:FindFirstChild('DawnspireHomecoming')==nil,'unfinished hero cannot inherit another hero ending')
 report.pass=true;return report

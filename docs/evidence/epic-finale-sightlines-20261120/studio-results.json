@@ -1,0 +1,240 @@
+{
+  "compiled": 554,
+  "navigation": {
+    "ROUTE_NAV_ORIGINAL": {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13309,
+          "samples": 13723,
+          "targets": 243,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5808,
+          "samples": 6177,
+          "targets": 142,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4980,
+          "samples": 5196,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 4560,
+          "samples": 4749,
+          "targets": 105,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8057,
+          "samples": 8360,
+          "targets": 144,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    },
+    "ROUTE_NAV_EASY": {
+      "blockers": [],
+      "epics": {
+        "1": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 13699,
+          "samples": 14113,
+          "targets": 253,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "3": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 5849,
+          "samples": 6218,
+          "targets": 143,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "2": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5275,
+          "samples": 5491,
+          "targets": 117,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "5": {
+          "chapters": 7,
+          "lowSteps": 0,
+          "connectors": 6,
+          "steps": 5003,
+          "samples": 5192,
+          "targets": 119,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        },
+        "4": {
+          "chapters": 11,
+          "lowSteps": 0,
+          "connectors": 9,
+          "steps": 8187,
+          "samples": 8490,
+          "targets": 150,
+          "floors": 0,
+          "corrections": 0,
+          "blockers": 0,
+          "routeFailures": 0
+        }
+      }
+    }
+  },
+  "landmarks": 15,
+  "refinedFinales": {
+    "FV-07": {
+      "story": "FV-07",
+      "buriedDepth": 0.32000577449798584,
+      "approach": [
+        -952.8499755859375,
+        124,
+        -10847.900390625
+      ],
+      "goal": "reunion",
+      "name": "FreightSledLanding",
+      "bounds": [
+        15.100000381469727,
+        3.020001173019409,
+        9.630126953125
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -1014.2276000976562,
+        124,
+        -10856.6630859375
+      ],
+      "parts": 9
+    },
+    "EC-07": {
+      "story": "EC-07",
+      "buriedDepth": 0.4600095748901367,
+      "approach": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "goal": "courier",
+      "name": "DispatchCarrierCradle",
+      "bounds": [
+        15.699999809265137,
+        4.690008163452148,
+        9.279999732971191
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -887.1109619140625,
+        172,
+        -14675.7255859375
+      ],
+      "parts": 11
+    },
+    "HG-07": {
+      "story": "HG-07",
+      "buriedDepth": 0.39499497413635254,
+      "approach": [
+        -917.8499755859375,
+        196,
+        -18343.400390625
+      ],
+      "goal": "portal",
+      "name": "AlliedReturnParapet",
+      "bounds": [
+        16.750003814697266,
+        4.549999713897705,
+        6.305273532867432
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -931.0947875976562,
+        196,
+        -18321.02734375
+      ],
+      "parts": 10
+    }
+  },
+  "roundTripsPerBuild": [
+    23,
+    23
+  ],
+  "comparedViews": [
+    "FV-07_detail",
+    "FV-07_goal_side",
+    "EC-07_detail",
+    "EC-07_goal_side",
+    "HG-07_detail",
+    "HG-07_goal_side",
+    "FV-07_mid_approach",
+    "EC-07_mid_approach",
+    "HG-07_oblique_approach"
+  ]
+}
