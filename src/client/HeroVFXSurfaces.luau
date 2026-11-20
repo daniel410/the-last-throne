@@ -126,7 +126,9 @@ function S.step(r,u,fade)
   if v.fall then
    local t=math.clamp((u*r.life-v.fall.delay)/v.fall.duration,0,1)
    v.part.CFrame=v.cf+Vector3.yAxis*v.fall.height*(1-t*t)
-   v.part.Transparency=v.alpha+(1-v.alpha)*math.clamp((t-.72)/.28,0,1)
+   if not v.fall.landing then
+    v.part.Transparency=v.alpha+(1-v.alpha)*math.clamp((t-.72)/.28,0,1)
+   end
   end
   if v.spin then
    local m=v.spin

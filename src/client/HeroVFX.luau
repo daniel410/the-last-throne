@@ -85,7 +85,7 @@ local function line(r,name,path,width,color,endWidth)
  beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(primary,r.color:Lerp(r.hot,r.key=='lightning'and .7 or .35))
  beam.LightEmission=1;beam.LightInfluence=0;beam.Transparency=NumberSequence.new(.18);beam.Parent=r.carrier
  local glow
- if not r.compact and glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
+ if not r.compact and not r.incoming and glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
   glow=beam:Clone();glow.Name="SoftGlow";glow.Width0=width*2.6;glow.Width1=endWidth*2.6
   glow.Color=ColorSequence.new(r.color);glow.Texture="rbxasset://textures/particles/smoke_main.dds";glow.TextureMode=Enum.TextureMode.Stretch;glow.Transparency=NumberSequence.new(.62);glow.Parent=r.carrier
   table.insert(r.glows,glow);glowCount+=1
@@ -177,10 +177,11 @@ function FX.step(now)
  if not finite(now)then return end
  for i=#active,1,-1 do
   local r=active[i];local u=math.clamp((now-r.at)/r.life,0,1)
-  if not r.model.Parent or now-r.at>=r.life or (r.windup and not r.windup()) then erase(i)
+  if not r.model.Parent or now>=r.at+r.life or (r.windup and not r.windup()) or (r.incoming and not r.incoming()) then erase(i)
   else
    local fade=r.key=="lightning"and math.clamp((now-r.at)/.16,0,1)or math.clamp((u-.12)/.88,0,1)
    if r.windup then fade=.14+.73*(1-u)^2 end
+   if r.incoming then fade=.16*(1-u) end
    local bucket=math.floor(fade*24)
    local changed=r.fadeBucket~=bucket
    if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.7+fade^.65*.3)end
@@ -295,17 +296,82 @@ local function tongue(r,name,at,height,width,heading,color)
  end,normal,width,.48,color or palette.fire,4)
  Surfaces.animate(r,start,at,Vector3.yAxis,.35,false,r.life*.85)
 end
-local function shell(r,at,lane,strong)
- local height=strong and 7 or 6;local delay=((lane-1)%3)*.018
+local function shell(r,at,strong)
+ local height=strong and 10 or 8
  local size=strong and Vector3.new(1.05,2.35,1.05)or Vector3.new(.36,.9,.36)
  local p=Surfaces.volume(r,'MortarShellBody',at+Vector3.yAxis*size.Y*.5,size,strong and Color3.fromRGB(144,151,157)or Color3.fromRGB(74,83,94),.08,'ball',Enum.Material.Metal)
- if p then r.faces[#r.faces].fall={height=height,duration=r.life*.72,delay=delay}end
+ if p then r.faces[#r.faces].fall={height=height,duration=r.life,delay=0,landing=true}end
  local nose=Surfaces.volume(r,'MortarShellNose',at+Vector3.yAxis*.12,strong and Vector3.new(.82,.55,.82)or Vector3.new(.3,.25,.3),palette.bomb,.18,'wedge')
- if nose then r.faces[#r.faces].fall={height=height,duration=r.life*.72,delay=delay}end
+ if nose then r.faces[#r.faces].fall={height=height,duration=r.life,delay=0,landing=true}end
  line(r,'MortarShortWake',function(u)
-  local t=math.clamp((u*r.life-delay)/(r.life*.72),0,1);local y=height*(1-t*t)
+  local y=height*(1-u*u)
   return at+Vector3.yAxis*(y+1.4),at+Vector3.yAxis*(y+.8)
  end,strong and .16 or .09,palette.bomb)
+end
+local groundLead={mortar=.24,rain=.21,hail=.19,ash=.25}
+local rainNames={rain="ArrowRain",hail="HailDescent",ash="AshDescent"}
+
+function FX.groundLead(d)
+ local profile=Profiles.get(d.id)
+ return d.form=="ground" and profile and groundLead[profile.shape] or nil
+end
+
+function FX.endIncoming(character,seq,pulse)
+ for i=#active,1,-1 do
+  local r=active[i]
+  if r.incoming and r.character==character and (r.seq<seq or r.seq==seq and r.pulse<=pulse) then erase(i) end
+ end
+end
+
+function FX.incoming(character,d,center,seq,pulse,landingAt,valid)
+ local now=workspace:GetServerTimeNow()
+ local lead=FX.groundLead(d)
+ if not lead or landingAt-now<.025 or not valid() or not vector(center) then return end
+ local row=Catalog.byId[d.id]
+ local compact=FX.isOtherHero(character)
+ local pending=0
+ for _,effect in ipairs(active) do if effect.incoming then pending+=1 end end
+ if pending>=(compact and 2 or 3) then return end
+ local r=make(center,center,landingAt-now,row.key,d.id,compact)
+ if not r then return end
+ r.at=landingAt-lead;r.life=lead;r.incoming=valid
+ r.character=character;r.seq=seq;r.pulse=pulse
+ r.color,r.hot=Palette.get(row.key,row.classId)
+ r.model.Name="HeroSkillIncoming"
+ r.model:SetAttribute("Pulse",pulse)
+ local profile=Profiles.get(d.id)
+ local shape=profile.shape
+ local siege=profile.signature=="SiegeShells"
+ local spirit=profile.signature=="SpiritCanopy"
+ local count=shape=="mortar" and (siege and not compact and (Input.TouchEnabled and 2 or 3) or 1)
+  or math.min(profile.lanes,(compact or Input.TouchEnabled) and 3 or 5)
+ for lane=1,count do
+  local angle=(lane-1)*2.39996+(pulse-1)*1.3
+  local rad=shape=="mortar" and (count>1 and math.min(d.radius*.17,2.2) or 0)
+   or d.radius*math.sqrt(lane/(count+1))*.78
+  local at=floorAt(center+Vector3.new(math.cos(angle)*rad,0,math.sin(angle)*rad),character)
+  if shape=="mortar" then
+   shell(r,at,siege)
+  else
+   local size=shape=="rain" and Vector3.new(.16,spirit and 2.8 or 1.65,.22)
+    or shape=="hail" and Vector3.new(.48,1.45,.55) or Vector3.new(.31,.95,.36)
+   local height=shape=="hail" and 9 or shape=="ash" and 6 or 8
+   local tip=at+Vector3.yAxis*size.Y*.5
+   local shard=Surfaces.volume(r,spirit and "SpiritCanopyLeaf" or "FallingShardVolume",tip,
+    size,nil,.14,"wedge",shape=="hail" and Enum.Material.Ice or nil)
+   if shard then
+    local face=r.faces[#r.faces]
+    face.cf=CFrame.new(tip)*CFrame.Angles(math.pi,0,.12)
+    face.fall={height=height,duration=lead,delay=0,landing=true}
+   end
+   line(r,rainNames[shape],function(u)
+    local head=tip+Vector3.yAxis*height*(1-u*u)
+    return head+Vector3.yAxis*size.Y*.5,head-Vector3.yAxis*size.Y*.5
+   end,profile.width*.75)
+  end
+ end
+ FX.step(now)
+ return r.model
 end
 local function rootBranch(r,first,last,width,delay)
  local p=Surfaces.bar(r,'GroundRootBody',first,last,width,Color3.fromRGB(130,163,96),.08,Enum.Material.Wood)
@@ -379,7 +445,6 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
   debris(r,floor+flat*radius*.35,5,'RockChip',1.8)
  elseif key=='SiegeShells'then
   for i=1,3 do local a=i*math.pi*2/3;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*math.min(radius*.17,2.2)
-   shell(r,at,i,true)
    for n=1,3 do local b=n*math.pi*2/3;local dir=Vector3.new(math.cos(b),0,math.sin(b));stroke('SiegeLandingSpark',at+dir*.2,at+dir*.7,.07,palette.bomb)end
   end
  elseif key=='VolleyCrown'then
@@ -409,16 +474,6 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
    Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip,mid+tangent*1.1,endLeaf,palette.nature,.36,Enum.Material.SmoothPlastic)
    Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip,endLeaf,mid-tangent*1.1,palette.nature:Lerp(r.hot,.2),.4,Enum.Material.SmoothPlastic)
    Surfaces.bar(r,'SpiritCanopyLeafVein',tip,endLeaf,.075,palette.nature:Lerp(r.hot,.35),.25,Enum.Material.Neon)
-  end
-  for i=1,6 do local a=i*2.39996;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.45
-   local leaf=Surfaces.volume(r,'SpiritCanopyLeaf',at+Vector3.yAxis*.6,Vector3.new(.13,2.8,.13),palette.nature:Lerp(r.hot,.2),.22,'wedge')
-   if leaf then local face=r.faces[#r.faces];face.cf=CFrame.new(leaf.Position)*CFrame.Angles(math.pi,0,.12);face.fall={height=5,duration=r.life*.78,delay=(i%3)*.015}end
-   if i<=6 then
-    local start=#r.faces;local head=at+Vector3.yAxis*.65
-    Surfaces.triangle(r,'SpiritDescendingArrow',head+right*.5+Vector3.yAxis*.7,head,head-right*.5+Vector3.yAxis*.7,palette.nature,.16)
-    for j=start+1,#r.faces do r.faces[j].fall={height=5,duration=r.life*.78,delay=(i%3)*.015}end
-   end
-   line(r,'SpiritCanopyRain',function(u)local t=math.clamp((u*r.life-(i%3)*.015)/(r.life*.78),0,1);local y=5*(1-t*t);return at+Vector3.yAxis*(y+1),at+Vector3.yAxis*(y+.4)end,.08,palette.nature)
   end
  elseif key=='CalderaVents'then
   Surfaces.volume(r,'CalderaCentralVent',floor+Vector3.yAxis*.15,Vector3.new(2.8,.6,2.6),Color3.fromRGB(68,43,29),.12,'wedge',Enum.Material.Slate)
@@ -492,6 +547,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local radius=d.areaRadius or((d.form=="ground"or d.detonate)and d.radius)or d.range or 5
  local angle=d.form=="area"and 360 or d.angle or 80
  local width,count,shape=profile.width,profile.lanes,profile.shape
+ local thrustBase,thrustTip=first,last
+ if shape=="thrust" and vector(muzzle) and (muzzle-first).Magnitude<=6 then
+  local reach=(last-first).Magnitude
+  local projection=(muzzle-first):Dot(dir)
+  if projection>0 and projection<reach-.2 then
+   local height=math.clamp(muzzle.Y-first.Y,-.8,1)
+   thrustBase=muzzle
+   thrustTip=last+Vector3.yAxis*height
+  end
+ end
  local shieldStrike=id==SHIELD_BREAKER or id==SHIELD_VERDICT
  local verdict=id==SHIELD_VERDICT
  local phase=(pulse-1)*1.3
@@ -510,10 +575,6 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   local offset=(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*(storm and .78 or .8)
   if spinStyle=='CrossingCyclones'then offset=CFrame.fromAxisAngle(flat,lane==1 and .48 or -.48):VectorToWorldSpace(offset)end
   return first+offset+Vector3.yAxis*(storm and (lane-2)*.3 or 0)
- end
- local function fallHeight(lane,u)
-  local t=math.clamp((u*r.life-((lane-1)%3)*.012)/(r.life*.78),0,1)
-  return 8*(1-t*t)
  end
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w or width,color)end
  local function sector(name,at,rad,arc,lane,low)
@@ -557,9 +618,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif profile.signature then
   signature(r,profile.signature,first,floor,flat,right,radius,angle)
  elseif shape=="thrust"then
-  stroke("ThrustEdge",first,last,width,WHITE)
+  line(r,"ThrustEdge",function(u)
+   return thrustBase:Lerp(thrustTip,math.min(u*1.5,.86)),thrustTip
+  end,width,WHITE)
   for lane=1,count do local side=lane%2==0 and -1 or 1
-   stroke("ThrustPressure",first+right*side*.45,last+right*side*.08,width*.4)
+   stroke("ThrustPressure",thrustBase+right*side*.27,thrustTip+right*side*.08,width*.4)
   end
  elseif shape=="cleave"then
   for lane=1,count do curve(r,"DescendingCleave",function(t,u)
@@ -648,20 +711,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     return first+(last-first)*t+basis.RightVector*math.cos(a)*.22+basis.UpVector*math.sin(a)*.22
    end,8,width*.6)
   end
- elseif shape=="mortar"then
-  local at=floorAt(last,character)
-  shell(r,at,1,false)
- elseif shape=="rain"or shape=="ash"or shape=="hail"then
-  local at=floorAt(last,character)
-  for lane=1,count do
-   local a=lane*2.39996+phase;local rad=shape=="mortar"and .3 or radius*math.sqrt(lane/(count+1))*.85
-   local target=at+Vector3.new(math.cos(a)*rad,0,math.sin(a)*rad)
-   line(r,shape=="hail"and"HailDescent"or shape=="ash"and"AshDescent"or shape=="mortar"and"MortarDescent"or"ArrowRain",function(u)
-    local height=fallHeight(lane,u)
-    return target+Vector3.yAxis*(height+1.1),target+Vector3.yAxis*height
-   end,width)
-  end
-  ring(r,"LandingRipple",at,math.min(radius,4),width*.5,false,false)
+ elseif shape=="rain"or shape=="hail"or shape=="ash"then
+  ring(r,"LandingRipple",floor,math.min(radius,4),width*.5,false,false)
+  if shape=="hail" then debris(r,floor,4,"IceShard",.82)
+  elseif shape=="ash" then debris(r,floor,4,"Ember",.76) end
  elseif shape=="blast"or shape=="earth"or shape=="lava"then
   local at=area and floorAt(last,character)or floor
   if area or angle>=359 then ring(r,"GroundPressure",at,radius,width*.6,false,false)
@@ -801,7 +854,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif shape=="cross"then
   Surfaces.ribbon(r,"CrossSurface",crossPath,flat,.65,.55,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
  elseif shape=="thrust"then
-  Surfaces.triangle(r,"ThrustSurface",first-right*.65,last,first+right*.65,nil,.27)
+  local start=#r.faces
+  Surfaces.triangle(r,"ThrustSurface",thrustBase-right*.4,thrustTip,thrustBase+right*.4,nil,.32)
+  for i=start+1,#r.faces do r.faces[i].fadeDuration=.13 end
  elseif shape=="ward"then
   -- Open magical facets surround the caster; the martial guard stays frontal.
   for i=1,6 do
@@ -983,16 +1038,6 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
      Surfaces.triangle(r,"LightningBranch",fork[j]-Vector3.yAxis*.075,fork[j+1],fork[j]+Vector3.yAxis*.075,nil,.25)
     end
     end
-  end
- elseif shape=="rain"or shape=="hail"or shape=="ash"then
-  local at=floorAt(last,character)
-  for lane=1,math.min(count,6)do
-   local a=lane*2.39996+phase;local target=at+Vector3.new(math.cos(a),0,math.sin(a))*radius*math.sqrt(lane/(count+1))*.85
-   local shard=Surfaces.volume(r,"FallingShardVolume",target+Vector3.yAxis*.55,shape=="rain"and Vector3.new(.16,1.65,.22)or Vector3.new(.45,1.45,.55),nil,.28,'wedge',shape=="hail"and Enum.Material.Ice or nil)
-   if shard then
-    local face=r.faces[#r.faces];face.cf=CFrame.new(shard.Position)*CFrame.Angles(math.pi,0,.12)
-    face.fall={height=8,duration=r.life*.78,delay=((lane-1)%3)*.012}
-   end
   end
  elseif shape=="warcry"then
   if d.form=='cone'then

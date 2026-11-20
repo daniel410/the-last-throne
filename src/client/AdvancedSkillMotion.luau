@@ -96,10 +96,16 @@ local function gunner(d,kind,age)
   elbow=v(-67*load-12*kick)
   torso=v(4-10*kick,18*load-13*kick,5*load)
  elseif kind=="mortar" then
-  right=v(90+20*load+24*kick,-5*load,-5)
-  left=v(93+14*kick,0,14)
-  elbow=v(-14*load-27*kick)
-  torso=v(3-16*kick,0,4*load)
+  local elevation=smooth(phase/.78)*(1-smooth((age-d.windup-d.active)/d.recovery))
+  local reset=0
+  if pulse>0 and pulse<d.pulses then
+   local cycle=since/d.interval
+   reset=smooth((cycle-.23)/.23)*(1-smooth((cycle-.46)/.45))
+  end
+  right=v(90+20*load+16*elevation+24*kick-24*reset,-5*load,-5)
+  left=v(93+8*elevation+14*kick-19*reset,0,14)
+  elbow=v(-14*load-27*kick-21*reset)
+  torso=v(3-7*elevation-16*kick+10*reset,0,4*load)
  else
   right=v(90-18*load+8*kick,0,-5)
   left=v(87+4*kick,0,10)
@@ -248,6 +254,11 @@ function Motion.sample(classId,d,age,rigType)
   else turns=smooth((age-contact+.06)/math.max(.1,d.active+.06)) end
   pose.root=CFrame.Angles(0,-math.pi*2*turns,0)
   pose.torso=rot(v(0,0,0));pose.angles.torso=v()
+ elseif kind=="thrust" then
+  local brake=smooth((age-contact+.075)/.11)*(1-smooth((age-contact-.035)/.20))
+  local weight=d.id=="knight.steel_knight.vanguard_strike" and 1.35 or 1
+  offset(pose,"leftKnee",v(12*brake*weight))
+  offset(pose,"rightHip",v(-8*brake*weight))
  end
  if d.id=="dwarf.iron_axe.armor_splitter" then
   local weight=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))

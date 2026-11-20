@@ -157,13 +157,24 @@ local function spikes(center,direction,radius,angle,color,kind)
   end
  end
 end
-local function rain(center,radius,color,effect,character)
- for i=1,5 do
-  local a=i*2.39996;local r=radius*math.sqrt(i/6)
-  local target=center+Vector3.new(math.cos(a)*r,0,math.sin(a)*r)
-  local from=target+Vector3.new(-1.5,7+i%3,0)
-  if effect=="rain" then arrow(from,target,color,character)
-  else segment(from,target,color,.2,effect=="hail" and .18 or .35,effect=="hail" and "HailShard" or "AshfallEmber") end
+local function groundTarget(d,center,pulse)
+ return d.scatter and center+Vector3.new((pulse%2==0 and 1 or -1)*3,0,(pulse-2)*2) or center
+end
+local function queueIncoming(character,d,center,seq,firstContact,now)
+ local lead=HeroVFX.groundLead(d)
+ if not lead or not character or type(seq)~="number" then return end
+ for pulse=1,d.pulses do
+  local landingAt=firstContact+(pulse-1)*d.interval
+  local target=groundTarget(d,center,pulse)
+  local function valid()
+   local latest=confirmed[character]
+   if not character.Parent or character:GetAttribute("TLTDeathFalling") or not latest
+    or latest.seq~=seq or latest.id~=d.id or latest.pulse>=pulse then return false end
+   local current=character:GetAttribute("K0AttackSeq")
+   return type(current)~="number" or current<seq
+    or current==seq and character:GetAttribute("K0State")=="Attack" and character:GetAttribute("K0SkillId")==d.id
+  end
+  task.delay(math.max(0,landingAt-lead-now),HeroVFX.incoming,character,d,target,seq,pulse,landingAt,valid)
  end
 end
 function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt)
@@ -181,6 +192,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if old and (attackSeq<old.seq or attackSeq==old.seq and old.id==id and pulse<=old.pulse) then return end
   confirmed[character]={seq=attackSeq,id=id,pulse=pulse}
   HeroVFX.endWindup(character,attackSeq)
+  HeroVFX.endIncoming(character,attackSeq,pulse)
  end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
  -- The server rotates its line hit direction but retains cast.center in the
@@ -203,10 +215,12 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    HeroVFX.windup(character,d,profile.motion,profile.effect,origin,attackSeq,opening,windupSocket(character,profile.motion))
   end
   if d.form=="ground" then
+   local firstContact=opening+d.windup+(d.hitDelay or 0)
    for i=1,d.scatter and d.pulses or 1 do
-    local target=center+(d.scatter and Vector3.new((i%2==0 and 1 or -1)*3,0,(i-2)*2) or Vector3.zero)
-    arc(ground(target,character),direction,d.radius,360,color,opening+d.windup+(d.hitDelay or 0)-now+(i-1)*(d.interval or .3),"SkillTelegraph")
+    local target=groundTarget(d,center,i)
+    arc(ground(target,character),direction,d.radius,360,color,firstContact-now+(i-1)*d.interval,"SkillTelegraph")
    end
+   queueIncoming(character,d,center,attackSeq,firstContact,now)
   end
   return
  end
@@ -252,15 +266,12 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  elseif d.form=="ground" or d.detonate then
   arc(targetFloor,direction,d.radius,360,color,.4,"ImpactBoundary")
-  if effect=="rain" or effect=="hail" or effect=="ash" then rain(targetFloor,d.radius,color,effect,character)
-  elseif effect=="lightning" then lightning(center+Vector3.new(0,12,0),center,color)
+  if effect=="lightning" then lightning(center+Vector3.new(0,12,0),center,color)
   elseif effect=="vine" then
    -- HeroVFX owns ground-planted roots; no duplicate upright helix.
   elseif effect=="earth" or effect=="lava" or effect=="frost" then
    if not primary then spikes(targetFloor,direction,d.radius,360,color,effect)end
    if effect=="lava" then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
-  elseif effect=="shell" then
-   -- HeroVFX owns the falling metal shell and short wake.
   elseif effect=="bomb" then
    local p=part("BlastSmoke",Color3.fromRGB(105,99,93),Enum.PartType.Ball,Vector3.one,CFrame.new(center),.4,.7)
    if p then Tween:Create(p,TweenInfo.new(.4),{Size=Vector3.one*3}):Play() end

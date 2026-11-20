@@ -102,7 +102,8 @@ local spells = {
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
     ward=gesture(v(13,-24,17),v(47,-16,-28),v(11,14,-10),v(34,12,30),23),
-    fall=gesture(v(37,-14,-16),v(49,18,17),v(-20,-17,9),v(-12,-9,30),23),
+    ashfall=gesture(v(37,-22,-24),v(43,25,25),v(-18,-20,12),v(-12,13,34),23),
+    hailfall=gesture(v(28,17,-10),v(48,-13,10),v(-22,14,-5),v(12,-18,15),26),
     caldera=gesture(v(-40,-24,-17),v(-27,22,32),v(25,-24,-12),v(72,-17,20),35),
     tempest=gesture(v(46,19,16),v(57,-27,-22),v(-23,25,12),v(29,20,41),30),
 }
@@ -112,7 +113,7 @@ local function spellGesture(d,profile)
     if profile=="ward" then return spells.ward end
     local cue = Presentation.get(d)
     if not cue then return spells.bolt end
-    if cue.motion=="rain" then return spells.fall end
+    if cue.motion=="rain" then return cue.effect=="hail" and spells.hailfall or spells.ashfall end
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
@@ -151,6 +152,8 @@ function Poses.mage(pose,d,profile,age)
         or s == spells.cinder and v(17,0,8)
         or s == spells.storm and v(-10,14,0)
         or (s == spells.earth or s == spells.caldera) and v(-16,0,7)
+        or s == spells.ashfall and v(-8,14,12)
+        or s == spells.hailfall and v(21,-6,-8)
         or Vector3.zero
     add(pose,"left",s.palm*wind+s.openPalm*guide+palmRelease*follow)
     add(pose,"torso",s.chest*(wind-.48*follow))

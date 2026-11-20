@@ -1,6 +1,7 @@
 -- Verify readable element motion and confirmed endpoints in the real engine.
 assert(game.PlaceId==0 and game.GameId==0,'Local fixture only')
 local Hero=require(game.StarterPlayer.StarterPlayerScripts.Client.HeroVFX)
+local Catalog=require(game.ReplicatedStorage.Shared.PixelFXCatalog)
 local report={checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local camera=workspace.CurrentCamera;local old=camera.CFrame;camera.CFrame=CFrame.new(0,8,12)
@@ -40,7 +41,10 @@ local ok,err=xpcall(function()
  check(not ring:FindFirstChild('ElementalSurface',true),'frost retains an open center')
  local lance=cast('mage.cryo.frost_lance');check(lance:FindFirstChild('IceLanceFacet',true)~=nil,'ice lance has layered hard facets')
  for _,row in ipairs({{'mage.cryo.hailfall','HailDescent'},{'elf.marksman.arrow_rain','ArrowRain'},{'elf.magic_archer.spirit_rain','ArrowRain'}})do
-  local m=cast(row[1]);local shard=assert(m:FindFirstChild('FallingShardVolume',true));local beam=assert(m:FindFirstChild(row[2],true))
+  Hero.clear()
+  local d=Catalog.byId[row[1]].definition;local deadline=workspace:GetServerTimeNow()+Hero.groundLead(d)
+  local m=assert(Hero.incoming(nil,d,last,1,1,deadline,function()return true end))
+  local shard=assert(m:FindFirstChild('FallingShardVolume',true));local beam=assert(m:FindFirstChild(row[2],true))
   local height=shard.Position.Y;now=workspace:GetServerTimeNow();Hero.step(now+.12)
   check(shard.Position.Y<height-.3,'falling body actually descends '..row[1])
   check(math.abs(shard.Position.Y-(beam.Attachment0.WorldPosition.Y+beam.Attachment1.WorldPosition.Y)*.5)<.01,'body and wake share one trajectory '..row[1])

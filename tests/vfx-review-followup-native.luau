@@ -109,7 +109,10 @@ for _,row in ipairs({{'elf.marksman.weakpoint_shot','WeakpointBracket'},{'elf.ma
  {'elf.marksman.grand_volley','VolleyCrownLimb'},{'elf.magic_archer.spirit_arrowfall','SpiritCanopyCrownLeaf'}})do
  local m=cast(row[1]);check(m:FindFirstChild(row[2],true)~=nil,'recognizable signature '..row[1])
 end
-local siege=cast('dwarf.gunner.siege_barrage');local shell=assert(siege:FindFirstChild('MortarShellBody',true))
+Hero.clear()
+local siegeDef=require(game.ReplicatedStorage.Shared.PixelFXCatalog).byId['dwarf.gunner.siege_barrage'].definition
+local siege=assert(Hero.incoming(nil,siegeDef,last,1,1,workspace:GetServerTimeNow()+Hero.groundLead(siegeDef),function()return true end))
+local shell=assert(siege:FindFirstChild('MortarShellBody',true))
 check(shell.Size.X>=1 and shell.Size.Y>=2,'siege has a substantial metal shell')
 local start=shell.Position;Hero.step(workspace:GetServerTimeNow()+.12)
 check(shell.Position.Y<start.Y,'siege shell still descends')
