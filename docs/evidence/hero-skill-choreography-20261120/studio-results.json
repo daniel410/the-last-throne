@@ -1,0 +1,402 @@
+{
+  "version": "0.114.18",
+  "sourceCommit": "602a38b771f57c480426d39852f434e6b8adc1b8",
+  "testsOn": "Committed game build in isolated Roblox Studio Edit",
+  "suites": {
+    "HERO_SKILL_WINDUP_NATIVE": {
+      "styles": {
+        "CrystalTips": 9,
+        "WardPetals": 3,
+        "WaterCurl": 2,
+        "SwordPoint": 2,
+        "RisingGrit": 15,
+        "BoreBrackets": 4,
+        "ShieldBrace": 10,
+        "GatheringFork": 4,
+        "SightDraw": 14,
+        "LeafDraw": 12,
+        "MortarBrace": 5,
+        "DrawnEdge": 17,
+        "AxeCoil": 5,
+        "HighDraw": 2,
+        "EmberCurl": 7,
+        "FuseCurl": 4
+      },
+      "skills": 115,
+      "pass": true,
+      "checks": 1400
+    },
+    "HERO_SKILLS_NATIVE": {
+      "failures": [],
+      "checks": 244520,
+      "rigs": [
+        "R6/knight",
+        "R6/dwarf",
+        "R6/elf",
+        "R6/mage",
+        "R15/knight",
+        "R15/dwarf",
+        "R15/elf",
+        "R15/mage"
+      ],
+      "kind": "HERO_SKILLS_NATIVE",
+      "pass": true,
+      "skills": 256
+    },
+    "HERO_SKILL_SOCKETS_NATIVE": {
+      "checks": 12,
+      "samples": [
+        {
+          "id": "knight_driving_thrust",
+          "forwardDot": 1.0000001192092896,
+          "tipHeight": 0.794403076171875,
+          "rig": "R6"
+        },
+        {
+          "id": "dwarf.gunner.gunner_shot",
+          "forwardDot": 0.9948293566703796,
+          "rig": "R6"
+        },
+        {
+          "id": "knight_driving_thrust",
+          "forwardDot": 1,
+          "tipHeight": 0.770477294921875,
+          "rig": "R15"
+        },
+        {
+          "id": "dwarf.gunner.gunner_shot",
+          "forwardDot": 0.9948294758796692,
+          "rig": "R15"
+        }
+      ],
+      "failures": [],
+      "pass": true,
+      "kind": "HERO_SKILL_SOCKETS_NATIVE"
+    },
+    "K0_SKILL_ANIMATION_NATIVE": {
+      "coverage": "Actual R6/R15 joints and bow transforms; no Player, animation aesthetics, network latency or mobile acceptance",
+      "checks": 61,
+      "samples": [
+        {
+          "armDelta": 0.39147624373435974,
+          "skill": "knight.common.bash",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.0191043615341187,
+          "skill": "knight.common.whirlwind",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.469785213470459,
+          "skill": "knight.common.provoke",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.8297414779663086,
+          "skill": "knight_driving_thrust",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.1146308183670044,
+          "skill": "knight_crescent_cut",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.39147624373435974,
+          "skill": "knight_guarded_strike",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.13133306801319122,
+          "skill": "knight.steel_knight.counter_slash",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.47454652190208435,
+          "skill": "dwarf.common.overhead",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.7253426313400269,
+          "skill": "dwarf.common.throw",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.4608202278614044,
+          "skill": "dwarf.common.ground",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.1242547035217285,
+          "skill": "dwarf_hooking_chop",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.8176978230476379,
+          "skill": "dwarf_low_sweep",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.9200631976127625,
+          "skill": "dwarf_braced_throw",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.056557588279247284,
+          "skill": "elf.common.aimed",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.18195056915283203,
+          "skill": "elf.common.rapid",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.1731719672679901,
+          "skill": "elf.common.multi",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.12130684405565262,
+          "skill": "elf_retreating_shot",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.056557588279247284,
+          "skill": "elf_pinning_shot",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.17190685868263245,
+          "skill": "elf_arrow_screen",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.9107104539871216,
+          "skill": "mage.common.mana_bolt",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.141452670097351,
+          "skill": "mage.common.water_ball",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.7824414372444153,
+          "skill": "mage.common.gravity",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.311558485031128,
+          "skill": "mage_wind_lance",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.0224343538284302,
+          "skill": "mage_tidal_ring",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.238545298576355,
+          "skill": "mage_arcane_ward",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.3914765417575836,
+          "skill": "knight.common.bash",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.8086758852005005,
+          "skill": "knight.common.whirlwind",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.4697847366333008,
+          "skill": "knight.common.provoke",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.0713249444961548,
+          "skill": "knight_driving_thrust",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.8944584131240845,
+          "skill": "knight_crescent_cut",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.3914765417575836,
+          "skill": "knight_guarded_strike",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.1463412344455719,
+          "skill": "knight.steel_knight.counter_slash",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.5285206437110901,
+          "skill": "dwarf.common.overhead",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.7253424525260925,
+          "skill": "dwarf.common.throw",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.8820940256118774,
+          "skill": "dwarf.common.ground",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.1223981380462646,
+          "skill": "dwarf_hooking_chop",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 2.135390281677246,
+          "skill": "dwarf_low_sweep",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.9200630187988281,
+          "skill": "dwarf_braced_throw",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.05655969679355621,
+          "skill": "elf.common.aimed",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.18194924294948578,
+          "skill": "elf.common.rapid",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.17317335307598114,
+          "skill": "elf.common.multi",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.121309794485569,
+          "skill": "elf_retreating_shot",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.05655969679355621,
+          "skill": "elf_pinning_shot",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.17190617322921753,
+          "skill": "elf_arrow_screen",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.9107104539871216,
+          "skill": "mage.common.mana_bolt",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.141452431678772,
+          "skill": "mage.common.water_ball",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.782441258430481,
+          "skill": "mage.common.gravity",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.311558485031128,
+          "skill": "mage_wind_lance",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.0224345922470093,
+          "skill": "mage_tidal_ring",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.238545536994934,
+          "skill": "mage_arcane_ward",
+          "rig": "R15"
+        }
+      ],
+      "kind": "K0_SKILL_ANIMATION_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    "HERO_VFX_NATIVE": {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 10466
+    },
+    "SKILL_VFX_INDIVIDUAL_NATIVE": {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 306
+    },
+    "HERO_VFX_FLOURISH_NATIVE": {
+      "coverage": "Native decoration, budgets and Lua update cost; not GPU or device acceptance",
+      "checks": 82,
+      "luaUpdateP95ms": 0.9436665568500757,
+      "luaUpdateP50ms": 0.8342498913407326,
+      "pass": true,
+      "failures": []
+    },
+    "SKILL_VFX_ART_NATIVE": {
+      "failures": [],
+      "pass": true,
+      "checks": 43
+    },
+    "K0_ELF_BOW_NATIVE": {
+      "maxDegreesError": 1.5495374100282788e-05,
+      "checks": 4890,
+      "failures": [],
+      "kind": "K0_ELF_BOW_NATIVE",
+      "pass": true,
+      "maxNockError": 3.051856765523553e-05
+    },
+    "K0_MAGE_STAFF_NATIVE": {
+      "minReleaseForward": 0.9713628888130188,
+      "checks": 17087,
+      "maxDegreesError": 3.8152233173605055e-05,
+      "kind": "K0_MAGE_STAFF_NATIVE",
+      "pass": true,
+      "failures": []
+    }
+  },
+  "totalChecks": 278867,
+  "modulesMatchingCommitAndCaptureFixture": [
+    "src/client/AdvancedSkillMotion.luau",
+    "src/client/AdvancedSkillVisual.luau",
+    "src/client/HeroVFX.luau",
+    "src/client/HeroVFXArt.luau",
+    "src/client/HeroVFXSurfaces.luau",
+    "src/client/K0BowMotion.luau",
+    "src/client/K0MageMotion.luau",
+    "src/client/RangedActionPoses.luau",
+    "src/client/SkillWindupStrokes.luau",
+    "src/server/Combat/CombatService.luau"
+  ],
+  "capture": {
+    "baselineCommit": "2ea764d1537d8524e0d666d94ed292e8861a862e",
+    "rig": "R15",
+    "windupFraction": 0.77,
+    "skills": [
+      "knight.paladin.shield_verdict",
+      "dwarf.iron_axe.stonebound_leap",
+      "elf.marksman.heavy_draw",
+      "mage.cryo.frost_ring"
+    ],
+    "sha256": "47b4fa03864741838b60d8ed7cc53992e4745cb6d47cd8ec59d329fc643cc767"
+  }
+}
