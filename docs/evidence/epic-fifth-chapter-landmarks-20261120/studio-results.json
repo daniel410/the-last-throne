@@ -1,0 +1,250 @@
+{
+  "placedModels": [
+    {
+      "chapter": "DW-05",
+      "maxFloorError": 0,
+      "clearance": 7.969922065734863,
+      "step": "step2",
+      "version": 3,
+      "height": 1.8469412326812744,
+      "bounds": [
+        6.400000095367432,
+        1.8469412326812744,
+        9.399998664855957
+      ],
+      "goal": "exp_2",
+      "model": "BarracksFreightBreach",
+      "anchor": [
+        1504.0999755859375,
+        38,
+        -2543.60009765625
+      ],
+      "ground": [
+        1504.0999755859375,
+        38,
+        -2532.60009765625
+      ],
+      "parts": 12
+    },
+    {
+      "chapter": "EC-05",
+      "maxFloorError": 0,
+      "clearance": 6.822667121887207,
+      "step": "step1",
+      "version": 3,
+      "height": 1.5800068378448486,
+      "bounds": [
+        8.595399856567383,
+        1.5800068378448486,
+        9.208916664123535
+      ],
+      "goal": "exp_2",
+      "model": "CircuitModelCatchBasin",
+      "anchor": [
+        240.35000610351562,
+        156,
+        -13314.83984375
+      ],
+      "actorClearance": 6.822667121887207,
+      "ground": [
+        250.35533142089844,
+        156,
+        -13319.4111328125
+      ],
+      "parts": 10
+    },
+    {
+      "chapter": "FV-05",
+      "maxFloorError": 0,
+      "clearance": 4.254279613494873,
+      "step": "step1",
+      "version": 3,
+      "height": 2.3234424591064453,
+      "bounds": [
+        6.260002136230469,
+        2.3234424591064453,
+        9.750001907348633
+      ],
+      "goal": "exp_1",
+      "model": "BuriedConvoyWheelTrace",
+      "anchor": [
+        -232.72999572753906,
+        118,
+        -9782.8603515625
+      ],
+      "ground": [
+        -236.2507781982422,
+        118,
+        -9772.439453125
+      ],
+      "parts": 15
+    },
+    {
+      "chapter": "GW-05",
+      "maxFloorError": 0,
+      "clearance": 7.053017616271973,
+      "step": "step2",
+      "version": 3,
+      "height": 2.120000123977661,
+      "bounds": [
+        7.654514789581299,
+        2.120000123977661,
+        9.193656921386719
+      ],
+      "goal": "exp_2",
+      "model": "ScoutLandingStoneAbutment",
+      "anchor": [
+        833.3499755859375,
+        70,
+        -6093.31982421875
+      ],
+      "ground": [
+        834.0677490234375,
+        70,
+        -6082.34326171875
+      ],
+      "parts": 10
+    },
+    {
+      "chapter": "HG-05",
+      "maxFloorError": 0,
+      "clearance": 7.172063827514648,
+      "step": "step2",
+      "version": 3,
+      "height": 1.860009789466858,
+      "bounds": [
+        7.6557464599609375,
+        1.860009789466858,
+        9.900270462036133
+      ],
+      "goal": "exp_2",
+      "model": "EasternGalleryConduitSaddle",
+      "anchor": [
+        724.4299926757812,
+        178,
+        -17309.400390625
+      ],
+      "ground": [
+        730.260009765625,
+        178,
+        -17300.072265625
+      ],
+      "parts": 10
+    }
+  ],
+  "unchangedModels": [
+    "AllianceLandingGuardCourse",
+    "ArchiveSignalObservationSill",
+    "BelowRailCoolantInspectionHead",
+    "CreekCargoSill",
+    "CrewPlanWorktableFootings",
+    "CrushedLanternSill",
+    "FracturedCoolantJunction",
+    "FreightCarrierWheelSeat",
+    "GateWinchAnchorPlinth",
+    "KeeperReturnLanternNiche",
+    "KeeperServiceDoorJamb",
+    "MineFreightLineSeat",
+    "OuterWebRootShelf",
+    "RavineWalkRailAnchor",
+    "RearguardLanternRootBank",
+    "RecoveryRainShelf",
+    "RefugeReturnRootMarker",
+    "RelayReturnHallSkirting",
+    "ReliefRosterStand",
+    "ScoutApproachStoneFooting",
+    "StragglerBendDrainageShoulder",
+    "TwinBeaconTerraceSill",
+    "WatchtowerCableAbutment",
+    "WheeltrackForkRootCut",
+    "WindbreakAscentBank"
+  ],
+  "walks": {
+    "baseline": [
+      {
+        "chapter": "DW-05",
+        "inbound": 1.952880859375,
+        "distance": 32,
+        "outbound": 0.853515625
+      },
+      {
+        "chapter": "EC-05",
+        "inbound": 1.9298083782196045,
+        "distance": 31.999935150146484,
+        "outbound": 0.8112317323684692
+      },
+      {
+        "chapter": "FV-05",
+        "inbound": 1.9149324893951416,
+        "distance": 31.999698638916016,
+        "outbound": 0.9445706009864807
+      },
+      {
+        "chapter": "GW-05",
+        "inbound": 1.943933129310608,
+        "distance": 32.00000762939453,
+        "outbound": 0.8536821603775024
+      },
+      {
+        "chapter": "HG-05",
+        "inbound": 1.998652696609497,
+        "distance": 32.00044631958008,
+        "outbound": 0.8484222292900085
+      }
+    ],
+    "candidate": [
+      {
+        "chapter": "DW-05",
+        "inbound": 1.153076171875,
+        "distance": 32,
+        "outbound": 0.920166015625
+      },
+      {
+        "chapter": "EC-05",
+        "inbound": 1.1292842626571655,
+        "distance": 31.999935150146484,
+        "outbound": 0.877622127532959
+      },
+      {
+        "chapter": "FV-05",
+        "inbound": 1.1141948699951172,
+        "distance": 31.999698638916016,
+        "outbound": 1.011455774307251
+      },
+      {
+        "chapter": "GW-05",
+        "inbound": 1.1439800262451172,
+        "distance": 32.00000762939453,
+        "outbound": 0.9203241467475891
+      },
+      {
+        "chapter": "HG-05",
+        "inbound": 1.1998213529586792,
+        "distance": 32.00044631958008,
+        "outbound": 0.9148264527320862
+      }
+    ]
+  },
+  "framePairs": [
+    "DW-05-approach",
+    "DW-05-return-side",
+    "GW-05-approach",
+    "GW-05-return-side",
+    "FV-05-approach",
+    "FV-05-return-side",
+    "EC-05-approach",
+    "EC-05-return-side",
+    "HG-05-approach",
+    "HG-05-return-side"
+  ],
+  "expansionRegression": {
+    "generationSeconds": 31.73581908340566,
+    "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+    "blockers": [],
+    "checks": 9193,
+    "steps": 246,
+    "samples": 3968,
+    "incidents": 82,
+    "parts": 55697
+  }
+}
