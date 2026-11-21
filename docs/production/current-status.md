@@ -3,7 +3,9 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 영웅 기술 후보 0.115.33은 네 영웅의 여덟 전직 궁극기에서 아군 VFX를 간결하게 다듬고, Knight·Mage 궁극기 네 개에 고유한 마지막 타격 자세를 추가했다. 게시 테스트와 실기기 수용은 후속이다. [궁극기 전후 화면과 Studio 검증](../evidence/hero-ultimate-finish-20261121/README.md) · [강타 모션과 명중](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
+- 최신 비공개 게시 빌드 0.115.33은 로비 118·배틀 43에 반영했다. Roblox Player에서 Dawnspire 진입과 기존 영웅 표시를 확인했다. [게시 및 빈 로비 복구 확인](../evidence/release-0.115.33-20261121/README.md)
+
+- 영웅 기술 0.115.33은 네 영웅의 여덟 전직 궁극기에서 아군 VFX를 간결하게 다듬고, Knight·Mage 궁극기 네 개에 고유한 마지막 타격 자세를 추가했다. 다인 전투와 실기기 수용은 후속이다. [궁극기 전후 화면과 Studio 검증](../evidence/hero-ultimate-finish-20261121/README.md) · [강타 모션과 명중](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
 - 에픽 환경 0.115.28 후보는 다섯 4장 복구 지물의 접근 단면을 개선했다. 야간 GW 셰일과 등불 파손, HG 집결로 끝돌을 중점으로 Studio에서 접근·귀환을 비교했다. 후보 미게시·G5 진행 중. [4장 빌드와 검증](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면 검증](../evidence/epic-finale-route-profiles-20261121/README.md)
@@ -93,7 +95,6 @@
 - 본편: Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. 35본편·12선택, 반복 웨이브를 경로 교전으로 분산. 0.104.3에서 GW/HG·EC-05의 길목 전투13개와 기존 부분 저장 호환을 보강하고 전투 HUD 초기화를 연출 시작과 분리했다. [검증/미게시·남은 수용](../evidence/story-combat-pacing-20261111/README.md).
 - 마법사 모자:사용자 지정 최대 MP +10/+20/+30/+60으로 변경했다. 지력안을 대체하고 기존 서버 MP 집계/강화/메뉴 표시를 사용한다. [소스 회귀·엔진 미검증](../evidence/mage-hat-mp-20261111/README.md). PNG·신규 Traveler 지급은 기존0.101.0 기준이며 최대MP 변경의 전용 엔진·게시·실기기 수용은 후속이다.
 - 최근 장비: Tempered/Veteran/Sentinel 부위별 재지정과 선택형 특수 효과. [수치 검증](../evidence/equipment-values-20261110/README.md), [효과 계약](equipment-special-effects-2026-11-10.md). 기존 장비 효과 자동 배정 없음.
-- **0.114.31 게시 장애**. 비공개 로비의 실제 Roblox Player에서 빈 시작 화면을 재현했다. 복구 진행 중이다. [게시 실패 로그·재시도·남은 수용](../evidence/lobby-compact-hud-011431/README.md#roblox-게시).
 - 남은 수용: 게시 클라이언트/실계정 저장·재접속, 각 Experience 실제 이동, 1~4인+AI, 모바일/실기기 성능·전투 밸런스·사용자 미술 수용. 상세 범위는 해당 증거와 [QA 계획](qa-and-release-plan.md)을 따른다.
 
 - GW-01 숲 가장자리: 0.110.5에서 반복 수목을 높이·깊이가 다른6군집으로 구성했다. [고정 빌드·110검사·지역 경로 감사·전후 화면·남은 수용](../evidence/gw01-verge-20261115/README.md). 실제 게임 카메라/실기기·미술 수용은 미검증이다.
