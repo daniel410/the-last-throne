@@ -130,9 +130,9 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 
 	-- Irregular shoulders expose the wet seam below the spring lip.
 	rock('FracturedSpringShoulder', V(-12.3, 23.7, -4.7), V(9.3, 6.4, 8.8), -.58, stone, 'Wedge')
-	rock('ExposedQuarrySeam', V(10.8, 16.3, -2.6), V(10.2, 7.1, 9.7), .81, wetRock:Lerp(stone, .44), 'Wedge')
+	rock('ExposedQuarrySeam', V(12.0, 16.3, -8.3), V(9.2, 7.1, 8.2), .81, wetRock:Lerp(stone, .44), 'Wedge')
 	rock('QuarryTalus', V(-14.2, 6.2, .4), V(10.1, 12.4, 12.7), -.63, wetRock, 'Wedge')
-	rock('QuarryTalus', V(13.7, 4.5, 2.1), V(8.2, 8.9, 10.5), .55, wetRock:Lerp(stone, .30), 'Wedge')
+	rock('QuarryTalus', V(13.7, 4.5, -5.8), V(8.2, 8.9, 9.0), .55, wetRock:Lerp(stone, .30), 'Wedge')
 	-- A low bed lifts the waterline above the quarry's grass overlay at the strike point.
 	local poolHeight = .67
 	for _, sample in ipairs({V(-5, 0, 6), V(3, 0, 8), V(-3, 0, 14)}) do
