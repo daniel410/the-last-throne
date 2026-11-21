@@ -10,6 +10,9 @@ HERE = Path(__file__).resolve().parent
 parser = argparse.ArgumentParser()
 parser.add_argument('baseline', type=Path)
 parser.add_argument('candidate', type=Path)
+parser.add_argument('--output-dir', type=Path, default=HERE)
+parser.add_argument('--baseline-version', default='0.115.10')
+parser.add_argument('--candidate-version', default='0.115.11')
 args = parser.parse_args()
 
 
@@ -43,12 +46,13 @@ for old, new in zip(baseline['geometry'], candidate['geometry']):
 
 sheet = Image.new('RGB', (800, 26 + 250 * len(before)), '#111622')
 draw = ImageDraw.Draw(sheet)
-draw.text((8, 7), '0.115.10  BEFORE', fill='white')
-draw.text((408, 7), '0.115.11  AFTER', fill='white')
+draw.text((8, 7), f'{args.baseline_version}  BEFORE', fill='white')
+draw.text((408, 7), f'{args.candidate_version}  AFTER', fill='white')
 for index, name in enumerate(before):
     y = 26 + 250 * index
     sheet.paste(before[name], (0, y))
     sheet.paste(after[name], (400, y))
     draw.text((8, y + 229), name, fill='white')
-sheet.save(HERE / 'comparison.jpg', quality=91)
-(HERE / 'studio-results.json').write_text(json.dumps({'baseline': baseline, 'candidate': candidate}, indent=2) + '\n')
+args.output_dir.mkdir(parents=True, exist_ok=True)
+sheet.save(args.output_dir / 'comparison.jpg', quality=91)
+(args.output_dir / 'studio-results.json').write_text(json.dumps({'baseline': baseline, 'candidate': candidate}, indent=2) + '\n')
