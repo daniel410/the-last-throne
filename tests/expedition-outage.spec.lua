@@ -4,7 +4,9 @@ local source=f:read('*a');f:close()
 local first=assert(source:find('local function verifyBattleArrival',1,true))
 local last=assert(source:find('function Service.start(options)',first,true))
 local env=setmetatable({Service={}},{__index=_G})
-local verify,maintain,gather=assert(load(source:sub(first,last-1)..'return verifyBattleArrival,maintainParty,confirmGatherArrival','heartbeat','t',env))()
+local kickStart=assert(source:find('local function wasKicked',1,true))
+local kickEnd=assert(source:find('local function publish',kickStart,true))
+local verify,maintain,gather=assert(load(source:sub(kickStart,kickEnd-1)..source:sub(first,last-1)..'return verifyBattleArrival,maintainParty,confirmGatherArrival','heartbeat','t',env))()
 local kicked,entered,begun,promoted,verified=0,0,0,false,false
 local p={UserId=1,Kick=function()kicked=kicked+1 end}
 local m={heroId='knight',ticket='t'}

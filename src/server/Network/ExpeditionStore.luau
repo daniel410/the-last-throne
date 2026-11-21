@@ -33,13 +33,18 @@ end
 function Store.advertisement(p,memberCount)
  local host=p.members[tostring(p.hostId)]
  return {id=p.id,host=host and host.name or 'Adventurer',count=memberCount,target=p.target,
-  missionId=p.missionId,difficultyId=p.difficultyId,route=p.autoMission and commonRoute(p) or nil,expiresAt=p.expiresAt}
+  missionId=p.missionId,difficultyId=p.difficultyId,route=p.autoMission and commonRoute(p) or nil,expiresAt=p.expiresAt,
+  passwordRequired=p.password~=nil}
 end
 function Store.listing(ad,routes)
  local mission=ad.missionId
  local viewer=routes and routes[ad.difficultyId]
  if ad.route and viewer then mission=destination(ad.route,viewer) end
- return {id=ad.id,host=ad.host,count=ad.count,target=ad.target,missionId=ad.missionId,difficultyId=ad.difficultyId,joinMissionId=mission}
+ return {id=ad.id,host=ad.host,count=ad.count,target=ad.target,missionId=ad.missionId,difficultyId=ad.difficultyId,
+  joinMissionId=mission,passwordRequired=ad.passwordRequired==true}
+end
+function Store.validPassword(password)
+ return type(password)=='string' and password:match('^[0-9][0-9][0-9][0-9]$')~=nil
 end
 local function syncMission(p)
  if not p.difficultyId or p.status~='forming' then return p end
@@ -81,6 +86,9 @@ function Store.new(map,clock,config)
  end
  local function prune(p)
   for uid,m in pairs(p.members) do if m.expiresAt<=clock() then p.members[uid]=nil end end
+  if p.kicked then
+   for uid,untilTime in pairs(p.kicked) do if untilTime<=clock() then p.kicked[uid]=nil end end
+  end
   if not p.members[tostring(p.hostId)] then
    local lowest;for uid,m in pairs(p.members) do if m.arrived and (not lowest or tonumber(uid)<lowest) then lowest=tonumber(uid) end end
    if lowest then p.hostId=lowest end
@@ -110,22 +118,44 @@ function Store.new(map,clock,config)
    old.expiresAt=clock();return old
   end)
  end
- function S.create(id,member,target,job,place)
-  if target~=2 and target~=3 and target~=4 then return nil,'InvalidRequest' end
-  return update('party:'..id,C.partyLease,function(old)
-   if old then if old.hostId==member.userId then return old end;return nil,'AlreadyParty' end
-   member.arrived=true;member.ready=false;member.expiresAt=clock()+C.partyLease
-   return {id=id,version=1,hostId=member.userId,jobId=job,placeId=place,target=target,status='forming',members={[tostring(member.userId)]=member},expiresAt=clock()+C.partyLease}
+ function S.allowPasswordAttempt(uid)
+  return update('password-attempt:'..uid,C.partyPasswordWindow,function(attempt)
+   attempt=attempt or {count=0,expiresAt=clock()+C.partyPasswordWindow}
+   if attempt.count>=C.partyPasswordAttempts then return nil,'PasswordRateLimited' end
+   attempt.count=attempt.count+1
+   return attempt
   end)
  end
- function S.join(id,member,expectedMission,expectedMode)
+ function S.create(id,member,target,job,place,password)
+  if target~=2 and target~=3 and target~=4 then return nil,'InvalidRequest' end
+  if password~=nil and not Store.validPassword(password) then return nil,'InvalidPassword' end
+  return update('party:'..id,C.partyLease,function(old)
+   if old then
+    local host=old.members[tostring(member.userId)]
+    if old.hostId==member.userId and host and host.token==member.token then return old end
+    return nil,'AlreadyParty'
+   end
+   member.arrived=true;member.ready=false;member.expiresAt=clock()+C.partyLease
+   return {id=id,version=1,hostId=member.userId,jobId=job,placeId=place,target=target,status='forming',
+    members={[tostring(member.userId)]=member},expiresAt=clock()+C.partyLease,password=password}
+  end)
+ end
+ function S.join(id,member,expectedMission,expectedMode,password)
   return update('party:'..id,C.partyLease,function(p)
    if not p or p.status~='forming' then return nil,'PartyFull' end;prune(p)
-   local old=p.members[tostring(member.userId)]
+   local uid=tostring(member.userId)
+   if not p.members[tostring(p.hostId)] then return nil,'PartyFull' end
+   if p.kicked and p.kicked[uid] then return nil,'PartyKickedBlocked' end
+   local old=p.members[uid]
    if old then if old.token==member.token then return p end;return nil,'AlreadyParty' end
    if size(p.members)>=p.target then return nil,'PartyFull' end
+   if p.password then
+    if password==nil then return nil,'PasswordRequired' end
+    if not Store.validPassword(password) then return nil,'InvalidPassword' end
+    if password~=p.password then return nil,'WrongPassword' end
+   end
    member.ready=false;member.expiresAt=clock()+(member.arrived and C.partyLease or C.claimSeconds)
-   p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease
+   p.members[uid]=member;p.expiresAt=clock()+C.partyLease
    syncMission(p)
    if expectedMission and (p.missionId~=expectedMission or p.difficultyId~=expectedMode) then return nil,'ListingChanged' end
    return p
@@ -173,6 +203,41 @@ function Store.new(map,clock,config)
    p.members[tostring(uid)]=nil;prune(p)
    if size(p.members)==0 then p.status='closed' end;p.expiresAt=clock()+C.partyLease;return p
   end)
+ end
+ local function manageParty(id,leader,token,change)
+  return update('party:'..id,C.partyLease,function(p)
+   if not p then return nil,'PartyChanged' end
+   prune(p)
+   local host=p.members[tostring(leader)]
+   if p.hostId~=leader or not host or host.token~=token or not host.arrived then return nil,'LeaderOnly' end
+   if p.status~='forming' then return nil,'PartyChanged' end
+   local reason=change(p)
+   if reason then return nil,reason end
+   p.expiresAt=clock()+C.partyLease
+   return p
+  end)
+ end
+ function S.setPassword(id,leader,token,password)
+  if password~='' and not Store.validPassword(password) then return nil,'InvalidPassword' end
+  return manageParty(id,leader,token,function(p)
+   p.password=password~='' and password or nil
+  end)
+ end
+ function S.kick(id,leader,token,target)
+  if target==leader then return nil,'InvalidRequest' end
+  local targetId=tostring(target)
+  local removedToken
+  local party,reason=manageParty(id,leader,token,function(p)
+   local m=p.members[targetId]
+   if not m then return 'PartyChanged' end
+   removedToken=m.token
+   p.members[targetId]=nil
+   p.kicked=p.kicked or {}
+   p.kicked[targetId]=clock()+C.partyKickSeconds
+   for _,other in pairs(p.members) do other.ready=false end
+   syncMission(p)
+  end)
+  return party,reason,party and removedToken
  end
  function S.configure(id,leader,missionId,difficultyId,autoMission)
   return update('party:'..id,C.partyLease,function(p)

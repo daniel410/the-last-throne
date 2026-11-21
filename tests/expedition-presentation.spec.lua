@@ -21,6 +21,10 @@ local party={id='party',hostId=42,target=2,status='forming',missionId='DW-01',di
 local other=R.copy(hero);other.level=1;other.progression=G.new(1)
 local function view()return P.party(party,function(m)return m.userId==42 and hero or other end)end
 local v=view();check(v.launchAllowed and v.members[2].eligible and v.members[2].requiredLevel==0,'level one member can join Hell with prior clear')
+party.password='0042';v=view()
+check(v.passwordRequired and not v.password,'roster exposes lock status only')
+party.password=nil
+check(view().passwordRequired==false,'password is optional')
 other.level=80;other.progression=G.new(80);party.members['43'].level=80;other.expeditions.clears={}
 v=view();check(not v.launchAllowed and v.members[2].reason=='PreviousDifficulty'and v.members[2].previous=='Insane','previous difficulty reason')
 other.expeditions=R.copy(hero.expeditions);party.members['43'].ready=false

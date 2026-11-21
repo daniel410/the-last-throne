@@ -86,14 +86,36 @@ local function selection(p)
  if selections[p]then return selections[p]end
  return require(RS.Shared.AdventureRules).selection(o.inventory.expeditionHero(p))
 end
+local function wasKicked(party,uid)
+ return party and party.kicked and party.kicked[tostring(uid)]~=nil
+end
+local function releaseKickedMember(uid,id,token,deadline)
+ local _,reason=store.releaseMembership(uid,id,token)
+ if reason=='NetworkUnavailable' and os.time()<deadline then
+  task.delay(2,function() releaseKickedMember(uid,id,token,deadline) end)
+ end
+end
 local function publish(p,errorCode,open,requestId)
  if p.Parent~=Players or not remote then return end
  local localParty=parties[p]
  local party
  if localParty then
   local value,reason=store.readParty(localParty.id)
-  if reason~='NetworkUnavailable' then localParty.lastConfirmed=value end
-  party=localParty.lastConfirmed
+  if parties[p]==localParty and reason~='NetworkUnavailable' then
+   local seat=value and value.members[tostring(p.UserId)]
+   if seat and seat.token==localParty.token then
+    localParty.lastConfirmed=value
+   else
+    parties[p]=nil
+    if wasKicked(value,p.UserId) then
+     errorCode='PartyKicked'
+     releaseKickedMember(p.UserId,localParty.id,localParty.token,os.time()+C.partyLease)
+    else
+     store.releaseMembership(p.UserId,localParty.id,localParty.token)
+    end
+   end
+  end
+  party=parties[p] and parties[p].lastConfirmed
  end
  local hero=o.inventory.expeditionHero(p)
  local list={}
@@ -102,7 +124,7 @@ local function publish(p,errorCode,open,requestId)
   local routes
   if ok then for _,row in ipairs(rows) do
    local ad=row.value
-   if Backend.isCurrent(ad.id) and ad.expiresAt>os.time() and ad.count<ad.target then
+   if Backend.isManagedParty(ad.id) and ad.expiresAt>os.time() and ad.count<ad.target then
     if not ad.missionId then
      local old=store.readParty(ad.id)
      ad=old and old.status=='forming' and Store.advertisement(old,count(old.members))
@@ -114,7 +136,7 @@ local function publish(p,errorCode,open,requestId)
    end
   end end
  end
- -- Reserved destination IDs, membership fences and admission tickets stay server-only.
+ -- Reserved destinations, membership fences, tickets and party passwords stay server-only.
  local partyHeroes={}
  local clean=Presentation.party(party,function(m)
   local person=Players:GetPlayerByUserId(m.userId)
@@ -370,8 +392,9 @@ function Service.beforeHeroAction(p,action)
 end
 local function handle(p,c,...)
  if select('#',...)~=0 or type(c)~='table' or type(c.action)~='string' or #c.action>16 then return end
- for k,v in pairs(c) do if k~='action' and k~='id' and k~='target' and k~='ready' and k~='missionId' and k~='difficultyId' and k~='requestId' then return end;if type(v)~='string' and type(v)~='number' and type(v)~='boolean' then return end end
+ for k,v in pairs(c) do if k~='action' and k~='id' and k~='target' and k~='ready' and k~='missionId' and k~='difficultyId' and k~='requestId' and k~='password' and k~='memberId' then return end;if type(v)~='string' and type(v)~='number' and type(v)~='boolean' then return end end
  if c.id~=nil and (type(c.id)~='string' or #c.id>64 or not c.id:match('^[%w_-]+$')) then return end
+ if type(c.password)=='string' and #c.password>64 then return end
  if c.ready~=nil and type(c.ready)~='boolean' then return end
  if c.requestId~=nil and(type(c.requestId)~='string'or #c.requestId>64 or not c.requestId:match('^[%w_-]+$'))then return end
  -- Status polling must not consume the action cooldown (Ready -> Launch).
@@ -397,18 +420,23 @@ local function handle(p,c,...)
    else selections[p]={missionId=c.missionId,difficultyId=c.difficultyId}end
   elseif c.action=='Create' or c.action=='Join' then
    if mine then return 'AlreadyParty' end
-   local id=c.action=='Create' and Backend.newId(guid()) or c.id
+   if c.password~=nil and not Store.validPassword(c.password) then return 'InvalidPassword' end
+   local id=c.action=='Create' and Backend.newPartyId(guid()) or c.id
    if not id then return 'InvalidRequest' end
-   if not Backend.isCurrent(id)then return 'PartyChanged'end
+   if not Backend.isManagedParty(id)then return 'PartyChanged'end
    local token=guid();local m=member(p,token);if not m then return 'NotReady' end
+   if c.action=='Join' and c.password then
+    local attempt,why=store.allowPasswordAttempt(p.UserId)
+    if not attempt then return why end
+   end
    local fence,why=store.claimMembership(p.UserId,id,token);if not fence then store.releaseMembership(p.UserId,id,token);return why end
    local party
-   if c.action=='Create' then party,why=store.create(id,m,c.target,job,C.lobbyPlaceId)
+   if c.action=='Create' then party,why=store.create(id,m,c.target,job,C.lobbyPlaceId,c.password)
     if party then local chosen=selection(p);party,why=store.configure(id,p.UserId,chosen.missionId,chosen.difficultyId,true)end
    else
     party,why=store.readParty(id)
     if party and party.jobId~=job then m.arrived=false end
-    if party then party,why=store.join(id,m,c.missionId,c.difficultyId) end
+    if party then party,why=store.join(id,m,c.missionId,c.difficultyId,c.password) end
    end
    if not party then store.remove(id,p.UserId,token);store.releaseMembership(p.UserId,id,token);return why or 'PartyFull' end
    parties[p]={id=id,token=token,lastConfirmed=party};advertise(id)
@@ -417,6 +445,21 @@ local function handle(p,c,...)
     local ok,reason=send(p,{kind='gather',placeId=C.lobbyPlaceId,jobId=party.jobId,data={partyId=id,token=token}})
     if not ok then store.remove(id,p.UserId,token);store.releaseMembership(p.UserId,id,token);parties[p]=nil;advertise(id);return reason end
    end
+  elseif c.action=='KickMember' or c.action=='SetPassword' then
+   if not mine then return 'PartyRequired' end
+   if c.id~=mine.id then return 'PartyChanged' end
+   local party,why
+   if c.action=='KickMember' then
+    local uid=c.memberId
+    if type(uid)~='number' or math.abs(uid)>9007199254740991 or uid%1~=0 then return 'InvalidRequest' end
+    local removedToken
+    party,why,removedToken=store.kick(mine.id,p.UserId,mine.token,uid)
+    if party then releaseKickedMember(uid,mine.id,removedToken,os.time()+C.partyLease) end
+   else
+    party,why=store.setPassword(mine.id,p.UserId,mine.token,c.password)
+   end
+   if not party then return why=='LeaderOnly' and 'PartyManageLeaderOnly' or why end
+   advertise(mine.id)
   elseif c.action=='Leave' then
    if not mine then return 'PartyRequired' end
    local removed,why=store.remove(mine.id,p.UserId,mine.token)
@@ -525,8 +568,14 @@ local function maintainParty(p,mine)
   if parties[p]==mine then
    if party then mine.lastConfirmed=party;advertise(mine.id)
    elseif reason=='PartyChanged' or reason=='AlreadyParty' then
+    local latest,readReason=store.readParty(mine.id)
+    if readReason=='NetworkUnavailable' or parties[p]~=mine then return end
+    parties[p]=nil
+    if wasKicked(latest,p.UserId) then
+     releaseKickedMember(p.UserId,mine.id,mine.token,os.time()+C.partyLease)
+     return 'PartyKicked'
+    end
     store.releaseMembership(p.UserId,mine.id,mine.token)
-    if parties[p]==mine then parties[p]=nil end
    end
   end
  end
@@ -551,7 +600,7 @@ local function confirmGatherArrival(p,arrival)
   parties[p]={id=arrival.partyId,token=arrival.token,lastConfirmed=joined}
   advertise(arrival.partyId)
  else
-  publish(p,'PartyChanged')
+  publish(p,wasKicked(party,p.UserId) and 'PartyKicked' or 'PartyChanged')
  end
 end
 function Service.start(options)
@@ -606,10 +655,11 @@ function Service.start(options)
     elseif arrivals[p] and o.inventory.ready(p) and p:GetAttribute('K0SessionPhase')=='Lobby' then
      confirmGatherArrival(p,arrivals[p])
     end
-    if ticks%5==0 and parties[p] and not travel[p] and not busy[p] then
-     maintainParty(p,parties[p])
+    if ticks%5==0 then
+     local errorCode
+     if parties[p] and not travel[p] and not busy[p] then errorCode=maintainParty(p,parties[p]) end
+     publish(p,errorCode)
     end
-    if ticks%5==0 then publish(p) end
    end
   end
  end)

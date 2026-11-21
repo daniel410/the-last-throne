@@ -49,6 +49,7 @@ end
 function P.party(party,resolve)
  if not party then return nil end
  local view={recommendedMissionId=party.recommendedMissionId,id=party.id,hostId=party.hostId,target=party.target,status=party.status,missionId=party.missionId,difficultyId=party.difficultyId,members={}}
+ view.passwordRequired=party.password~=nil
  local all=party.status=='forming';local n=0
  local sharedVersion
  for _,m in pairs(party.members)do

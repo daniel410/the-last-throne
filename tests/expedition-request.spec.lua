@@ -10,7 +10,7 @@ local function check(v,m)checks=checks+1;assert(v,m)end
 local function fixture()
  local now,seq=0,0;local jobs,sent,drawn,spawned={},{},{},{}
  local panel={Parent=true};local scroll={CanvasPosition=0}
- local env=setmetatable({panel=panel,scroll=scroll,
+ local env=setmetatable({panel=panel,scroll=scroll,createPassword={Text=''},
   game={GetService=function()return {GenerateGUID=function()seq=seq+1;return 'request'..seq end}end},
   task={delay=function(t,fn)table.insert(jobs,{at=now+t,fn=fn})end,spawn=function(fn)table.insert(spawned,fn)end},
   Text={Applying='applying',Refreshing='refreshing'},Starting={setPending=function()end},
@@ -23,7 +23,7 @@ local function fixture()
  end
  return view,sent,drawn,tick,panel,spawned
 end
-for _,action in ipairs({'Ready','Launch','Create','Join'})do
+for _,action in ipairs({'Ready','Launch','Create','Join','KickMember','SetPassword'})do
  local v,sent,drawn,tick,panel,spawned=fixture()
  local command={action=action,target=3};v.request(command)
  local id=command.requestId

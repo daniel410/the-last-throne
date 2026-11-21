@@ -23,6 +23,8 @@ end
 local sorted,hash=adapter(),adapter()
 local current,legacy=S.new(sorted,function()return now end,C),S.new(hash,function()return now end,C)
 local id=B.newId('run');check(id=='sm2_run'and #B.newId(string.rep('a',32))<=64,'versioned IDs fit wire limit')
+local partyId=B.newPartyId(string.rep('a',32))
+check(#partyId<=64 and B.isManagedParty(partyId) and not B.isCurrent(partyId) and not B.isManagedParty(id),'managed parties use an ID older lobby builds cannot accept')
 check(B.select(current,legacy,id)==current,'new authority is always SortedMap')
 check(B.select(current,legacy,'historic')==legacy,'historic authority is always HashMap')
 check(B.select(current,nil,'studio')==current,'isolated Studio can use one adapter')

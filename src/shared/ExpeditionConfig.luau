@@ -3,5 +3,6 @@ return {
  -- Override with the verified TD test Start Place in test builds.
  defensePlaceId=103116209434833,
  lobbyCapacity=20,battleCapacity=4,partyLease=180,claimSeconds=60,runLease=90,rejoinSeconds=900,
+ partyKickSeconds=300,partyPasswordAttempts=5,partyPasswordWindow=30,
  -- Private battle Place in The Last Throne; TD destinations are never used.
 }

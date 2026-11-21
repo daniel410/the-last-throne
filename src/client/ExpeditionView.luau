@@ -66,7 +66,11 @@ function V.create(parent,send)
   end
  end
  panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize);resize()
- local function clear(host)for _,child in ipairs(host:GetChildren())do if child:IsA('GuiObject')then child:Destroy()end end end
+ local function clear(host,keep)
+  for _,child in ipairs(host:GetChildren())do
+   if child:IsA('GuiObject') and child~=keep then child:Destroy() end
+  end
+ end
  local function ordered(item)order+=1;item.LayoutOrder=order;return item end
  local function line(name,caption,height,color)return ordered(T.label(scroll,name,caption,UDim2.new(),UDim2.new(1,-10,0,height or 32),13,color))end
  local function recover(id)
@@ -90,10 +94,67 @@ function V.create(parent,send)
  local function button(host,name,caption,command,position,size,primary,enabled)
   local b=T.button(host,name,caption,position or UDim2.new(),size or UDim2.new(1,-10,0,44),primary)
   T.enabled(b,enabled==true and not pending)
-  b.Activated:Connect(function()if b.Active then request(command)end end)
+  b.Activated:Connect(function()
+   if not b.Active then return end
+   if type(command)=='function' then command() else request(command) end
+  end)
   return b
  end
  local function action(name,caption,command,enabled)return ordered(button(scroll,name,caption,command,nil,nil,false,enabled~=false))end
+ local function passwordBox(host,name,placeholder,position,size)
+  local input=Instance.new('TextBox')
+  input.Name,input.Position,input.Size=name,position,size
+  input.BackgroundColor3,input.BorderSizePixel=T.color.ink,0
+  input.TextColor3,input.PlaceholderColor3=T.color.text,T.color.muted
+  input.Font,input.TextSize=Enum.Font.GothamMedium,15
+  input.Text,input.PlaceholderText='',placeholder
+  input.AutoLocalize,input.ClearTextOnFocus=false,false
+  input.Parent=host
+  return input
+ end
+ local function validPassword(value)
+  return value:match('^[0-9][0-9][0-9][0-9]$')~=nil
+ end
+ local createPassword=passwordBox(scroll,'CreatePassword',Text.PasswordOptional,UDim2.new(),UDim2.new(1,-10,0,44))
+ local overlay=Instance.new('Frame')
+ overlay.Name='PartyDialogOverlay';overlay.Active=true;overlay.ZIndex=5
+ overlay.BackgroundColor3=Color3.new(0,0,0);overlay.BackgroundTransparency=.3
+ overlay.Size=UDim2.fromScale(1,1);overlay.Visible=false;overlay.Parent=panel
+ local dialog=T.frame(overlay,'PartyDialog',UDim2.fromScale(.5,.5),UDim2.new(1,-24,0,174))
+ dialog.AnchorPoint=Vector2.new(.5,.5)
+ local dialogCap=Instance.new('UISizeConstraint');dialogCap.MaxSize=Vector2.new(380,174);dialogCap.Parent=dialog
+ local heading=T.label(dialog,'Heading','',UDim2.fromOffset(12,8),UDim2.new(1,-24,0,40),16,T.color.gold)
+ local input=passwordBox(dialog,'Password',Text.PasswordPrompt,UDim2.fromOffset(12,50),UDim2.new(1,-24,0,44))
+ local hint=T.label(dialog,'PasswordError','',UDim2.fromOffset(12,94),UDim2.new(1,-24,0,26),12,T.color.error)
+ local cancel=T.button(dialog,'Cancel',Text.Cancel,UDim2.new(0,12,1,-52),UDim2.new(.5,-16,0,44))
+ local confirm=T.button(dialog,'Confirm','',UDim2.new(.5,4,1,-52),UDim2.new(.5,-16,0,44),true)
+ local dialogCommand
+ local function closeDialog()
+  dialogCommand=nil;overlay.Visible=false;input:ReleaseFocus();input.Text=''
+ end
+ local function openDialog(command,title,caption,needsPassword)
+  if pending then return end
+  dialogCommand=command
+  heading.Text=title;confirm.Caption.Text=caption;input.Visible=needsPassword==true
+  input.Text='';hint.Text='';overlay.Visible=true
+ end
+ local function submitDialog()
+  if pending or not dialogCommand then return end
+  local command=dialogCommand
+  if input.Visible then
+   if not validPassword(input.Text) then hint.Text=Text.InvalidPassword;return end
+   command.password=input.Text
+  end
+  closeDialog();request(command)
+ end
+ cancel.Activated:Connect(closeDialog)
+ confirm.Activated:Connect(submitDialog)
+ input.FocusLost:Connect(function(enter)if enter then submitDialog() end end)
+ local function createParty(target)
+  local password=createPassword.Text
+  if password~='' and not validPassword(password) then notice.Text=Text.InvalidPassword;return end
+  request({action='Create',target=target,password=password~='' and password or nil})
+ end
  local function mark(b,selected,locked)
   b.Caption.ZIndex=2
   if locked then
@@ -113,7 +174,9 @@ function V.create(parent,send)
  end
  draw=function(message)
   if not current then return end
-  local s=current;order=0;clear(scroll);clear(modeHost);clear(footer);clear(tabs)
+  local s=current;order=0;clear(scroll,createPassword);clear(modeHost);clear(footer);clear(tabs)
+  createPassword.Visible=tab=='Party' and s.role=='Lobby' and not s.party and not s.travelling
+  createPassword.TextEditable=not pending and not s.busy
   local selected=s.selection or {missionId='DW-01',difficultyId='Easy'};local mission
   for _,m in ipairs(s.missions or {})do if m.id==selected.missionId then mission=m;break end end
   local access=mission and mission.modes[selected.difficultyId]
@@ -163,16 +226,32 @@ function V.create(parent,send)
      action('PartyRecommendation',string.format(Text.UsePartyMission,title),{action='PartyMode',missionId=party.recommendedMissionId,difficultyId=selected.difficultyId})
     end
     line('PartyTitle',string.format('PARTY · %d/%d',#party.members,party.target),28,T.color.gold)
+    if party.passwordRequired then line('PasswordRequired',Text.PasswordRequiredLabel,28,T.color.gold) end
     for _,m in ipairs(party.members)do
      local row=ordered(T.frame(scroll,'Member'..m.userId,UDim2.new(),UDim2.new(1,-10,0,66)));heroArt(row,m.classId)
-     T.label(row,'Hero',(m.userId==party.hostId and Text.LeaderBadge or '')..m.name..' · '..string.format(Text.Hero,Text.Class[m.classId]or m.classId,m.level),UDim2.fromOffset(52,2),UDim2.new(1,-60,0,28),13)
+     local canKick=canConfigure and m.userId~=party.hostId
+     local width=canKick and -132 or -60
+     T.label(row,'Hero',(m.userId==party.hostId and Text.LeaderBadge or '')..m.name..' · '..string.format(Text.Hero,Text.Class[m.classId]or m.classId,m.level),UDim2.fromOffset(52,2),UDim2.new(1,width,0,28),13)
      local why=not m.eligible and reason(m,selected.missionId)or not m.ready and Text.WaitingReady or Text.Eligible
      if m.eligible then why=(m.firstClear and Text.StoryProgress or Text.ReplayProgress)..' · '..why end
-     T.label(row,'Entry',why,UDim2.fromOffset(52,28),UDim2.new(1,-60,0,34),12,m.eligible and(m.ready and T.color.green or T.color.gold)or T.color.error)
+     T.label(row,'Entry',why,UDim2.fromOffset(52,28),UDim2.new(1,width,0,34),12,m.eligible and(m.ready and T.color.green or T.color.gold)or T.color.error)
+     if canKick then
+      button(row,'Kick'..m.userId,Text.Kick,function()
+       openDialog({action='KickMember',id=party.id,memberId=m.userId},string.format(Text.KickConfirm,m.name),Text.Kick)
+      end,UDim2.new(1,-76,0,11),UDim2.fromOffset(68,44),false,true)
+     end
+    end
+    if canConfigure then
+     local passwordAction=party.passwordRequired and Text.ChangePassword or Text.SetPassword
+     action('SetPassword',passwordAction,function()
+      openDialog({action='SetPassword',id=party.id},passwordAction,Text.SavePassword,true)
+     end)
+     if party.passwordRequired then action('RemovePassword',Text.RemovePassword,{action='SetPassword',id=party.id,password=''}) end
     end
     action('Leave',Text.Leave,{action='Leave'})
    else
-    for n=2,4 do action('Create'..n,string.format(Text.Create,n),{action='Create',target=n})end
+    ordered(createPassword)
+    for n=2,4 do action('Create'..n,string.format(Text.Create,n),function()createParty(n)end,not s.busy)end
     line('Recruiting',Text.Recruiting,28,T.color.gold)
     local destinations={}
     for _,m in ipairs(s.missions or {})do destinations[m.id]=m.region..' · '..m.title end
@@ -185,13 +264,16 @@ function V.create(parent,send)
       row.AutomaticSize=Enum.AutomaticSize.Y;row.Parent=scroll;ordered(row)
       local stack=Instance.new('UIListLayout')
       stack.SortOrder=Enum.SortOrder.LayoutOrder;stack.Padding=UDim.new(0,3);stack.Parent=row
-      local title=T.label(row,'Destination',destination..' · '..p.difficultyId,UDim2.new(),UDim2.new(1,0,0,0),14,T.color.gold)
+      local title=T.label(row,'Destination',destination..' · '..p.difficultyId..(p.passwordRequired and ' · '..Text.PasswordRequiredLabel or ''),UDim2.new(),UDim2.new(1,0,0,0),14,T.color.gold)
       title.AutomaticSize=Enum.AutomaticSize.Y;title.LayoutOrder=1
       if joinMission~=p.missionId then
        local preview=T.label(row,'JoinDestination',string.format(Text.JoinDestination,destinations[joinMission] or joinMission),UDim2.new(),UDim2.new(1,0,0,0),13)
        preview.AutomaticSize=Enum.AutomaticSize.Y;preview.LayoutOrder=2
       end
-      local join=button(row,'Join'..p.id,string.format(Text.Join,p.host,p.count,p.target),{action='Join',id=p.id,missionId=joinMission,difficultyId=p.difficultyId},UDim2.new(),UDim2.new(1,0,0,44),false,true)
+      local join=button(row,'Join'..p.id,string.format(Text.Join,p.host,p.count,p.target),function()
+       local command={action='Join',id=p.id,missionId=joinMission,difficultyId=p.difficultyId}
+       if p.passwordRequired then openDialog(command,Text.JoinLocked,Text.JoinButton,true) else request(command) end
+      end,UDim2.new(),UDim2.new(1,0,0,44),false,not s.busy)
       join.LayoutOrder=3
      end
     end
@@ -269,13 +351,19 @@ function V.create(parent,send)
    end
    return
   end
-  if pending and s.requestId==pending.id then pending=nil end
+  if pending and s.requestId==pending.id then
+   if pending.action=='Create' and s.party then createPassword.Text='' end
+   pending=nil
+  end
   if message then feedback=message elseif s.requestId and s.requestId==latestRequestId then feedback=nil end
   local position=scroll.CanvasPosition
   current=s;draw(feedback);scroll.CanvasPosition=position
   Starting.setPending(s.travelling==true or pending~=nil and (pending.action=='Solo' or pending.action=='Launch'))
  end
- panel:GetPropertyChangedSignal('Visible'):Connect(function()if panel.Visible then scroll.CanvasPosition=Vector2.zero end end)
+ panel:GetPropertyChangedSignal('Visible'):Connect(function()
+  if panel.Visible then scroll.CanvasPosition=Vector2.zero
+  else closeDialog();createPassword.Text='' end
+ end)
  return {panel=panel,render=render,showTab=function(value)tab=value;scroll.CanvasPosition=Vector2.zero;draw()end,isPending=function()return pending~=nil end,request=request}
 end
 return V
