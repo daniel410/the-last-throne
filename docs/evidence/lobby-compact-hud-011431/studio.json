@@ -1,0 +1,244 @@
+{
+  "emptyRoster": {
+    "visible": true,
+    "touch": true,
+    "xp": {
+      "y": 245,
+      "x": 294,
+      "visible": false,
+      "w": 108,
+      "h": 8
+    },
+    "zoom": [
+      24,
+      32
+    ],
+    "gap": 10.87,
+    "cards": {
+      "dwarf": {
+        "y": 179,
+        "x": 275,
+        "visible": false,
+        "w": 48,
+        "h": 44
+      },
+      "mage": {
+        "y": 179,
+        "x": 275,
+        "visible": false,
+        "w": 48,
+        "h": 44
+      },
+      "knight": {
+        "y": 179,
+        "x": 275,
+        "visible": false,
+        "w": 48,
+        "h": 44
+      },
+      "elf": {
+        "y": 179,
+        "x": 275,
+        "visible": false,
+        "w": 48,
+        "h": 44
+      }
+    },
+    "amount": {
+      "y": 255,
+      "x": 287,
+      "fit": true,
+      "visible": false,
+      "w": 122,
+      "h": 16
+    },
+    "viewport": [
+      705,
+      338
+    ],
+    "level": {
+      "y": 228,
+      "x": 275,
+      "fit": true,
+      "visible": true,
+      "w": 154,
+      "h": 44
+    },
+    "play": {
+      "y": 179,
+      "x": 275,
+      "visible": true,
+      "w": 154,
+      "h": 44
+    },
+    "insets": "Enum.ScreenInsets.CoreUISafeInsets"
+  },
+  "galaxyA06": {
+    "visible": true,
+    "touch": true,
+    "class": "mage",
+    "xp": {
+      "y": 245,
+      "x": 409,
+      "visible": true,
+      "w": 108,
+      "h": 8
+    },
+    "zoom": [
+      24,
+      32
+    ],
+    "gap": 6.14,
+    "cards": {
+      "dwarf": {
+        "y": 228,
+        "x": 288,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      },
+      "mage": {
+        "y": 228,
+        "x": 342,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      },
+      "knight": {
+        "y": 228,
+        "x": 180,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      },
+      "elf": {
+        "y": 228,
+        "x": 234,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      }
+    },
+    "amount": {
+      "y": 255,
+      "x": 402,
+      "fit": true,
+      "visible": true,
+      "w": 122,
+      "h": 16
+    },
+    "viewport": [
+      705,
+      338
+    ],
+    "level": {
+      "y": 228,
+      "x": 402,
+      "fit": true,
+      "visible": true,
+      "w": 122,
+      "h": 15
+    },
+    "play": {
+      "y": 179,
+      "x": 275,
+      "visible": true,
+      "w": 154,
+      "h": 44
+    },
+    "insets": "Enum.ScreenInsets.CoreUISafeInsets"
+  },
+  "iphone17Pro": {
+    "visible": true,
+    "touch": true,
+    "class": "mage",
+    "xp": {
+      "y": 288,
+      "x": 432,
+      "visible": true,
+      "w": 108,
+      "h": 8
+    },
+    "zoom": [
+      24,
+      32
+    ],
+    "gap": 42.17,
+    "cards": {
+      "dwarf": {
+        "y": 271,
+        "x": 311,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      },
+      "mage": {
+        "y": 271,
+        "x": 365,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      },
+      "knight": {
+        "y": 271,
+        "x": 203,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      },
+      "elf": {
+        "y": 271,
+        "x": 257,
+        "visible": true,
+        "w": 48,
+        "h": 44
+      }
+    },
+    "amount": {
+      "y": 298,
+      "x": 425,
+      "fit": true,
+      "visible": true,
+      "w": 122,
+      "h": 16
+    },
+    "viewport": [
+      750,
+      381
+    ],
+    "level": {
+      "y": 271,
+      "x": 425,
+      "fit": true,
+      "visible": true,
+      "w": 122,
+      "h": 15
+    },
+    "play": {
+      "y": 222,
+      "x": 298,
+      "visible": true,
+      "w": 154,
+      "h": 44
+    },
+    "insets": "Enum.ScreenInsets.CoreUISafeInsets"
+  },
+  "playActivation": {
+    "panel": true,
+    "dockVisible": false
+  },
+  "nativeChecks": {
+    "lobby-hero-dock": {
+      "status": "passed",
+      "kind": "LOBBY_HERO_DOCK_NATIVE",
+      "checks": 524
+    },
+    "adventure-camera-zoom": {
+      "kind": "ADVENTURE_CAMERA_ZOOM_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 15
+    }
+  },
+  "targetConsoleErrors": []
+}
