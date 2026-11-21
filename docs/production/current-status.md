@@ -61,7 +61,7 @@
 
 - Dawnspire 왕좌: TD 최신 파란 크리스탈 원본을 동기화했다. [고정 빌드·엔진 검증/게시·기기·미술 수용](../evidence/dawnspire-blue-throne-20261114/README.md).
 
-- 모바일 로비 카메라가 PLAY 버튼의 윗선을 기준으로 영웅 전신을 위쪽에 배치한다. 0.114.24의 Studio 가로 화면에서 두 휴대폰 프리셋을 확인했으며 게시·실기기 수용은 후속이다. [측정·캡처](../evidence/lobby-mobile-camera-20261120/README.md).
+- 0.114.31에서 로비 카메라를 기존 구도로 복원하고 모바일 가로 HUD의 PLAY·영웅 아이콘·XP를 줄였다. XP를 영웅 아이콘 옆에 배치해 PLAY를 아래로 내렸다. [Studio 측정·캡처와 남은 수용](../evidence/lobby-compact-hud-011431/README.md).
 
 - 무기 방어: 0.110.17에서 Elf·Dwarf·Mage의 무기를 턱 아래 전방에서 양손으로 받치도록 정렬했다. R15 팔꿈치/중립 손목·R6 강체 팔 풀이, 진입/해제·엘프 화살 정리를 적용했다. [실제 엔진·전후 비교/게시·기기·사용자 수용](../evidence/natural-weapon-block-20261115/README.md).
 
