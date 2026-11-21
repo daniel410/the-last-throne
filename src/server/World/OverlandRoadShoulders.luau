@@ -29,10 +29,10 @@ local profiles = {
 }
 
 local basalt = palette.EmberCaldera.rock
-local fracture = palette.EmberCaldera.trim:Lerp(palette.FrozenVale.rock, .28)
+local fracture = palette.EmberCaldera.trim:Lerp(palette.FrozenVale.trim, .24)
 
 local function buildBasaltOutcrop(root, base, side)
-	local relief = side == 1 and 1 or .72
+	local relief = side == 1 and 1 or .79
 	-- The eroded apron seats the exposed, jointed rocks at the edge of the thaw.
 	Kit.part(root, 'BasaltTalus', V(21, 1.5, 10.2),
 		base * CFrame.new(-side * .55, .45, 0) * CFrame.Angles(0, side * math.pi / 2, 0),
@@ -40,44 +40,47 @@ local function buildBasaltOutcrop(root, base, side)
 
 	-- The irregular crown reads in silhouette against the broad banks behind it.
 	local joints = {
-		{side * 1.3, -4.7, 3.3, 3.8, .14},
-		{side * 2.2, -.1, 4.6, 5.1, -.21},
-		{side * 2.6, 4.7, 3.5, 3.2, .09},
+		{side * 1.4, -5.1, 3.7, 4.1, .24},
+		{side * 1.9, -.3, 5.1, 5.55, -.36},
+		{side * 2.8, 4.4, 4.3, 4.65, -.19},
 	}
 	for index, joint in ipairs(joints) do
 		local x, z, width, height, yaw = table.unpack(joint)
 		height *= relief
 		local pivot = base * CFrame.new(x, -.28, z) * CFrame.Angles(0, yaw * side, 0)
-		local color = basalt:Lerp(fracture, .28 + .08 * index)
-		Kit.part(root, 'JointedBasalt', V(width, height, width * .84),
+		local color = basalt:Lerp(fracture, .40 + .05 * index)
+		local depth = width * .92
+		local fractureHeight = 1.25
+		Kit.part(root, 'JointedBasalt', V(width, height, depth),
 			pivot * CFrame.new(0, height * .5, 0), color, M.Basalt)
-		Kit.part(root, 'BasaltFracture', V(width, .8, width * .84),
-			pivot * CFrame.new(0, height + .31, 0), fracture, M.Slate, 'Wedge')
+		Kit.part(root, 'BasaltFracture', V(width, fractureHeight, depth),
+			pivot * CFrame.new(0, height + fractureHeight * .5 - .09, 0), fracture, M.Slate, 'Wedge')
 	end
 end
 
 local function dressVerge(root, name, base, side)
 	if name == 'ConvoyVerge' then
-		-- Exposed roots carry the forest floor into the first shale shoulder.
-		for _, rootEnd in ipairs({-1, 1}) do
-			Kit.part(root, 'ExposedVergeRoot', V(1.2, 1.1, 8),
-				base * CFrame.new(side * .8, .27, rootEnd * 3)
-					* CFrame.Angles(0, side * rootEnd * .46, 0),
-				palette.Deepwood.wood:Lerp(palette.Deepwood.trim, .19), M.Wood, 'Wedge')
-		end
+		-- One long root and a branch meet inside the soil shoulder.
+		local heartwood = palette.Deepwood.wood:Lerp(palette.Deepwood.trim, .38)
+		Kit.part(root, 'ExposedVergeRoot', V(2.1, 2.1, 13.8),
+			base * CFrame.new(side * 2.8, .78, .2) * CFrame.Angles(0, side * .25, 0),
+			heartwood, M.Wood, 'Wedge')
+		Kit.part(root, 'ExposedVergeRoot', V(1.45, 1.7, 8),
+			base * CFrame.new(-side * .15, .58, -1.25) * CFrame.Angles(0, side * .77, 0),
+			heartwood:Lerp(palette.Deepwood.wood, .2), M.Wood, 'Wedge')
 	elseif name == 'WindgapShale' then
 		-- The first packed snow collects in the lee of the dark shale.
-		Kit.part(root, 'WindPackedSnow', V(4.6, 1.15, 15),
-			base * CFrame.new(-side * 3.2, .29, -4) * CFrame.Angles(0, side * .14, 0),
+		Kit.part(root, 'WindPackedSnow', V(5.4, 1.4, 14.6),
+			base * CFrame.new(-side * 2.35, .43, -2.1) * CFrame.Angles(0, side * .16, 0),
 			palette.FrozenVale.ground:Lerp(palette.FrozenVale.trim, .38), M.Snow, 'Wedge')
 	elseif name == 'KeeperRoadstone' then
 		-- Surviving dressed stones mark the beginning of the keeper road.
-		for stone = 1, 3 do
-			local height = 1.2 + stone * .24
-			Kit.part(root, 'KeeperDressedStone', V(3.3, height, 3.05),
-				base * CFrame.new(-side * 2.8, height * .5 - .25, (stone - 2) * 3.3)
-					* CFrame.Angles(0, (stone - 2) * .045, 0),
-				palette.HauntedGraveyard.trim:Lerp(palette.HauntedGraveyard.rock, .2 + stone * .08), M.Slate)
+		for offset = -1, 1 do
+			local height = 1.96 - math.abs(offset) * .36
+			local color = palette.HauntedGraveyard.trim:Lerp(palette.HauntedGraveyard.rock, .25 + offset * .07)
+			Kit.part(root, 'KeeperDressedStone', V(3.6, height, 3.6),
+				base * CFrame.new(-side * (2.9 + offset * .32), height * .5 - .25, offset * 3.48)
+					* CFrame.Angles(0, side * offset * .045, 0), color, M.Slate)
 		end
 	end
 end
@@ -92,7 +95,7 @@ function Shoulders.build(floor, sourceId, a, b)
 		local name, color, material, height, length = table.unpack(spec)
 		for _, side in ipairs({-1, 1}) do
 			local t = .18 + (index - 1) * .32 + side * .035
-			if name == 'ExposedBasalt' and side == 1 then t = .69 end
+			if name == 'ExposedBasalt' and side == 1 then t = .63 end
 			local z = floor.CFrame:PointToObjectSpace(a:Lerp(b, t)).Z
 			local base = floor.CFrame * CFrame.new(side * 39, floor.Size.Y / 2, z)
 			if name == 'ExposedBasalt' then
