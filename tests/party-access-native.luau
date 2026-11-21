@@ -14,7 +14,7 @@ local function loadModule(module,overrides)
  setfenv(fn,setmetatable(overrides,{__index=getfenv()}))
  return fn()
 end
-local function signal() return {Connect=function()end} end
+local function signal() return {Connect=function()return {Disconnect=function()end}end} end
 local people={}
 local players={PlayerRemoving=signal()}
 function players:GetPlayers() return people end
