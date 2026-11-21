@@ -3,6 +3,12 @@
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
+      "Remotes": {
+        "$className": "Folder",
+        "CheckpointTravelState": {
+          "$className": "RemoteEvent"
+        }
+      },
       "Shared": {
         "$path": "src/shared"
       }

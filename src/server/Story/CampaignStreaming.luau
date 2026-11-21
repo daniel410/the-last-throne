@@ -4,6 +4,9 @@ local Content=require(Shared.CampaignContent)
 local Access=require(Shared.CampaignAccess)
 local Bounds=require(Shared.CampaignBounds)
 local Areas=require(Shared.CampaignAreas)
+-- Server-side approach threshold in studs. Workspace.StreamingTargetRadius
+-- is a Studio setting that gameplay scripts cannot read.
+local approachRadiusSquared=384^2
 local M={}
 function M.create(o)
  local pending,failedAt={},{}
@@ -46,13 +49,11 @@ function M.create(o)
     if loaded(source) and not loaded(target) and Access.allowed(journal,source) and Access.allowed(journal,target)
      and not pending[epic] and os.clock()-(failedAt[epic] or -math.huge)>5 then
      local a,b=Bounds.ends(edge);local mouth=side==1 and a or b
-     -- Match the existing streaming radius: request before reaching the road.
-     local radius=workspace.StreamingTargetRadius
      local distance=(position.X-mouth[1])^2+(position.Z-mouth[3])^2
      local priorDistance=(before.X-mouth[1])^2+(before.Z-mouth[3])^2
      -- Spawning beside an old region must not immediately rebuild it. Wait for
      -- actual approach movement, excluding large checkpoint/respawn jumps.
-     if moved<=radius*radius and distance<priorDistance and distance<=radius*radius then
+     if moved<=approachRadiusSquared and distance<priorDistance and distance<=approachRadiusSquared then
       schedule(target)
      end
     end

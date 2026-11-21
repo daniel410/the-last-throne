@@ -82,6 +82,40 @@ check(not current3.createRun(unknown),'unknown committed response reported as un
 sorted3.unknown=false
 check(current3.createRun(unknown).id==unknown.id,'same ID/ticket retries original committed record')
 check(hash.writes==writes,'lost replies never create an alternate authority')
+-- Run the production retry path with a fake scheduler and MemoryStore.
+local waits={}
+local RetryStore=assert(loadfile('src/server/Network/ExpeditionStore.luau','t',setmetatable({
+ task={wait=function(delay)waits[#waits+1]=delay end},
+},{__index=_G})))()
+local retryMap={reads=0,writes=0,commits=0}
+function retryMap:GetAsync()
+ self.reads=self.reads+1
+ if self.reads<=2 or self.readFailure then error(self.readFailure or 'InternalError: Internal Error.')end
+ return self.saved
+end
+function retryMap:UpdateAsync(_,transform)
+ self.writes=self.writes+1
+ if self.writes==1 then error('InternalError: Internal Error.')end
+ self.saved=transform(self.saved);self.commits=self.commits+1
+ if self.lostReply then error('InternalError: Internal Error.')end
+ return self.saved
+end
+local retryStore=RetryStore.new(retryMap,function()return now end,C)
+local retryRun={id=B.newId('retry'),ticket='stable',members={}}
+check(retryStore.createRun(retryRun) and retryMap.writes==2 and retryMap.commits==1 and #waits==1,
+ 'transient write before the transform retries in the original store')
+check(retryStore.readRun(retryRun.id).id==retryRun.id and retryMap.reads==3 and #waits==3
+ and waits[2]>=.25 and waits[2]<=.35 and waits[3]>=.5 and waits[3]<=.6,'transient read recovers with two increasing delays')
+retryMap.readFailure='InvalidRequest'
+local _,invalid=retryStore.readRun(retryRun.id)
+check(invalid=='NetworkUnavailable' and retryMap.reads==4 and #waits==3,'permanent errors are not retried')
+retryMap.readFailure='InternalError: Internal Error.'
+local _,unavailable=retryStore.readRun(retryRun.id)
+check(unavailable=='NetworkUnavailable' and retryMap.reads==7 and #waits==5,'persistent outage stops after three attempts')
+retryMap.lostReply=true
+local _,unknownWrite=retryStore.cancelRun(retryRun.id,retryRun.ticket)
+check(unknownWrite=='NetworkUnavailable' and retryMap.saved.closed and retryMap.writes==3 and retryMap.commits==2 and #waits==5,
+ 'an ambiguous committed write stays unavailable without replaying the transform')
 -- Execute the production arrival block: legacy tickets may resume only the saved run.
 local f=assert(io.open('src/server/Network/ExpeditionService.luau'));local service=f:read('*a');f:close()
 local first=assert(service:find('local function verifyBattleArrival',1,true))

@@ -100,15 +100,13 @@ for _,size in ipairs({Vector2.new(320,500),Vector2.new(643,221),Vector2.new(800,
 end
 field.close();State.set(nil,nil);screen:Destroy()
 do
-local plateSource=client.AtlasPlate.Source:gsub("local assets = game:GetService%(\"AssetService\"%)", "local assets = {CreateEditableImage = function() return nil end}")
-local fn=assert(loadstring(plateSource));setfenv(fn,setmetatable({script=client.AtlasPlate},{__index=getfenv()}))
-local plates=fn();local parent=Instance.new("Frame")
+local plates=require(client.AtlasPlate);local parent=Instance.new("Frame")
 local detail=plates.draw(parent,"GW-05",true)
 local overview=plates.draw(parent,"GW-05",false)
 assert(detail:IsA("Frame") and #detail:GetChildren()>0)
 assert(overview:IsA("Frame") and #overview:GetChildren()>0 and #overview:GetChildren()<#detail:GetChildren())
 assert(#client.AtlasPlates:GetChildren()==44)
-parent:Destroy();print("ATLAS_FALLBACK_PASS",3)
+parent:Destroy();print("ATLAS_TERRAIN_PASS",3)
 end
 
 print("REGION_FIELD_MAP_PASS "..checks)

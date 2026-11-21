@@ -60,10 +60,21 @@ local function syncMission(p)
 end
 local function copy(v) if type(v)~='table' then return v end;local n={};for k,x in pairs(v) do n[k]=copy(x) end;return n end
 local function size(t) local n=0;for _ in pairs(t) do n=n+1 end;return n end
+local retryDelays={.25,.5}
+local function callWithRetry(operation,canRetry)
+ local ok,value=pcall(operation)
+ if ok or not task then return ok,value end
+ for _,delay in ipairs(retryDelays) do
+  if ok or not tostring(value):find('InternalError',1,true) or (canRetry and not canRetry()) then break end
+  task.wait(delay+math.random()*.1)
+  ok,value=pcall(operation)
+ end
+ return ok,value
+end
 function Store.new(map,clock,config)
  local S={};local C=config
  local function read(key)
-  local ok,v=pcall(function() return map:GetAsync(key) end)
+  local ok,v=callWithRetry(function() return map:GetAsync(key) end)
   if not ok then
    if warn then warn('[Expedition] MemoryStore read failed ('..key:match('^[^:]+')..'): '..tostring(v))end
    return nil,'NetworkUnavailable'
@@ -72,12 +83,16 @@ function Store.new(map,clock,config)
   return v
  end
  local function update(key,ttl,fn)
-  local reason
-  local ok,v=pcall(function() return map:UpdateAsync(key,function(old)
+  local reason,transformStarted
+  local ok,v=callWithRetry(function() return map:UpdateAsync(key,function(old)
+   transformStarted=true
    reason=nil
    if old and old.expiresAt<=clock() then old=nil end
    local n,e=fn(copy(old));reason=e;return n
-  end,ttl) end)
+  end,ttl) end,function()
+   -- Once the transform ran, the write may have committed despite the error.
+   return not transformStarted
+  end)
   if not ok then
    if warn then warn('[Expedition] MemoryStore update failed ('..key:match('^[^:]+')..'): '..tostring(v))end
    return nil,'NetworkUnavailable'

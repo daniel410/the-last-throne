@@ -7,7 +7,7 @@ local count=0
 local function check(v,m)count=count+1;assert(v,m)end
 local queued,clock={},10
 local env=setmetatable({game={GetService=function()return {Shared={CampaignContent=C,CampaignAccess=A,CampaignBounds=B,CampaignAreas=Areas}}end},
- require=function(x)return x end,workspace={StreamingTargetRadius=384},
+ require=function(x)return x end,workspace=setmetatable({},{__index=function(_,key)error('Restricted Workspace read: '..key)end}),
  task={spawn=function(fn)queued[#queued+1]=fn end},os={clock=function()return clock end},warn=function()end},{__index=_G})
 local Streaming=assert(loadfile('src/server/Story/CampaignStreaming.luau','t',env))()
 local function point(a)return {X=a[1],Y=a[2]+4,Z=a[3]}end

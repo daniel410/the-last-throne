@@ -589,7 +589,7 @@ function Service.refreshWorld()
 end
 function Service.start(settings)
  options=settings
- local checkpointLoading=Instance.new('RemoteEvent');checkpointLoading.Name='CheckpointTravelState';checkpointLoading.Parent=ReplicatedStorage.Remotes
+ local checkpointLoading=ReplicatedStorage.Remotes.CheckpointTravelState
  travelCheckpoint=require(script.Parent.CheckpointTravelService).create({rules=Checkpoints,context=context,active=active,state=state,
   loading=function(p,stage,request,pivot)
    if p.Parent==Players then checkpointLoading:FireClient(p,stage,request,pivot and pivot.Position)end

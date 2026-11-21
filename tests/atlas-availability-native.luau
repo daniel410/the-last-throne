@@ -3,16 +3,16 @@
 local client=game.StarterPlayer.StarterPlayerScripts.Client
 local plateSource=ATLAS_PLATE_SOURCE or client.AtlasPlate.Source
 local canvasSource=ATLAS_CANVAS_SOURCE or client.DeepwoodMapCanvas.Source
-local assets=game:GetService('AssetService')
 local encoding=game:GetService('EncodingService')
 local realPlates=client.AtlasPlates
 local checks=0
 local function check(ok,message)checks+=1;assert(ok,message)end
-local function plate(folder,service,content)
+local function plate(folder)
  local fn=assert(loadstring(plateSource))
  local owner={FindFirstChild=function(_,name)return name=='AtlasPlates' and folder end,AtlasPlates=folder}
- setfenv(fn,setmetatable({script={Parent=owner},Content=content or Content,game={GetService=function(_,name)
-  return name=='AssetService' and (service or assets) or encoding
+ setfenv(fn,setmetatable({script={Parent=owner},game={GetService=function(_,name)
+  assert(name=='EncodingService','atlas drawing must not request '..name)
+  return encoding
  end}},{__index=getfenv()}))
  return fn()
 end
@@ -45,35 +45,20 @@ local ok,err=xpcall(function()
  end
  entry.Value=realPlates['Relief_DW-01'].Value
  local recovered=p.draw(host,'DW-01',true)
- check(recovered and recovered.Name=='Relief','late valid data restores the surveyed image on reopening')
- host:ClearAllChildren()
- for _,service in ipairs({
-  {CreateEditableImage=function()return nil end},
-  {CreateEditableImage=function()error('image API denied')end},
- })do
-  local fallback=plate(realPlates,service).draw(host,'EC-03',true)
-  check(fallback:IsA('Frame') and #fallback:GetChildren()>0,'creation failure draws the same terrain pixels')
-  host:ClearAllChildren()
- end
- local destroyed=0
- local broken={CreateEditableImage=function()return {
-  WritePixelsBuffer=function()error('pixel upload failed')end,
-  Destroy=function()destroyed+=1 end,
- }end}
- local fallback=plate(realPlates,broken).draw(host,'EC-03',true)
- check(fallback:IsA('Frame') and #fallback:GetChildren()>0 and destroyed==1,'pixel failure cleans image and preserves terrain')
- host:ClearAllChildren()
- local binding={fromObject=function()error('content binding failed')end}
- fallback=plate(realPlates,nil,binding).draw(host,'EC-03',true)
- check(fallback:IsA('Frame') and #fallback:GetChildren()>0,'content binding failure preserves terrain')
+ check(recovered and recovered.Name=='Relief' and recovered:IsA('Frame') and #recovered:GetChildren()>0,
+  'late valid data restores the surveyed terrain on reopening')
  host:ClearAllChildren()
  -- Every stored source still decodes and draws; this is not a visual-quality test.
  p=plate(realPlates)
  local count=0
  for _,entry in ipairs(realPlates:GetChildren())do
-  local drawn=p.draw(host,entry.Name:sub(8),true)
-  check(drawn and drawn.Name=='Relief',entry.Name..' remains available')
-  drawn:Destroy();count+=1;task.wait()
+  for _,detail in ipairs({true,false})do
+   local drawn=p.draw(host,entry.Name:sub(8),detail)
+   check(drawn and drawn.Name=='Relief' and drawn:IsA('Frame') and #drawn:GetChildren()>0,
+    entry.Name..' renders in detailed and overview maps')
+   drawn:Destroy()
+  end
+  count+=1;task.wait()
  end
  check(count==44,'all 44 region sources checked')
 end,debug.traceback)

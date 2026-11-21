@@ -26,8 +26,15 @@ local function pump()
 end
 local frame,event
 local run={RenderStepped={Connect=function(_,fn)frame=fn end}}
-local remote={OnClientEvent={Connect=function(_,fn)event=fn end}}
-local rs={WaitForChild=function()return {WaitForChild=function()return remote end}end}
+local available,connected=true,0
+local remote={OnClientEvent={Connect=function(_,fn)connected=connected+1;event=fn end}}
+local rs={WaitForChild=function(_,name,timeout)
+ check(name=='Remotes' and timeout==10,'remote folder wait has a timeout')
+ return {WaitForChild=function(_,child,childTimeout)
+  check(child=='CheckpointTravelState' and childTimeout==10,'checkpoint event wait has a timeout')
+  return available and remote or nil
+ end}
+end}
 local camera={CameraSubject=human,CameraType='Custom',Focus={Position=V(0)}}
 local world={StreamingEnabled=true,CurrentCamera=camera,Raycast=function()return ground and {}or nil end}
 local actions={BindActionAtPriority=function()bound=true end,UnbindAction=function()bound=false end}
@@ -68,4 +75,6 @@ event('Cancelled',12);event('Arrived',12,V(500));frames(4)
 check(destroyed==9 and bound,'superseded request cannot cancel or redirect the new arrival')
 pump();pump();frames(3);check(destroyed==9,'new destination still waits for its own stream')
 pump();frames(3);check(destroyed==10 and not bound,'new destination closes only after its own stream')
+available=false;UI.start(player);pump()
+check(connected==1 and #queue==0,'a missing event ends setup without blocking or binding')
 print('checkpoint-loading: '..checks..' checks PASS')

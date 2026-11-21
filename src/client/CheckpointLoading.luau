@@ -12,7 +12,9 @@ function M.start(player)
   player:SetAttribute('TLTCheckpointLoading',false)
  end
  task.spawn(function()
-  local remote=game.ReplicatedStorage:WaitForChild('Remotes'):WaitForChild('CheckpointTravelState')
+  local remotes=game.ReplicatedStorage:WaitForChild('Remotes',10)
+  local remote=remotes and remotes:WaitForChild('CheckpointTravelState',10)
+  if not remote then return end
   remote.OnClientEvent:Connect(function(stage,id,position)
    if type(id)~='number'or id<latest then return end
    if stage=='Begin' then
