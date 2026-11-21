@@ -23,6 +23,7 @@ end
 local bow = {
     field=stance(v(7,-15,-7), -12, 15, 22),
     sight=stance(v(9,-23,-10), -5, 24, 14),
+    pin=stance(v(12,-16,3), 8, 27, 10),
     pierce=stance(v(14,-31,-3), -2, 28, 31),
     heavy=stance(v(15,-32,-13), -17, 31, 34),
     snap=stance(v(5,14,9), 20, 15, 23),
@@ -42,6 +43,7 @@ local function bowStance(d)
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
     if d.id=="elf.marksman.heavy_draw" then return bow.heavy end
+    if d.id=="elf_pinning_shot" then return bow.pin end
     if d.form=="line" then return bow.pierce end
     if d.branch=="magic_archer" then return bow.weave end
     return d.id and bow.sight or bow.field
@@ -58,7 +60,8 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     local support = smooth(phase/.64)*(1-smooth((age-d.windup-d.active)/d.recovery))
     local recoil, redraw = 0,0
     if since then
-        local recoilTime = s == bow.heavy and .29 or s == bow.sky and .26 or s == bow.snap and .15 or .22
+        local recoilTime = s == bow.heavy and .29 or s == bow.sky and .26
+            or s == bow.snap and .15 or s == bow.pin and .13 or .22
         local span = math.min(recoilTime, d.interval or d.shotInterval or recoilTime)
         recoil = smooth(since/(span*.23))*(1-smooth((since/span-.23)/.77))
         if betweenShots then
@@ -114,6 +117,7 @@ local spells = {
     bolt=gesture(v(-12,16,-10),v(22,-20,12),v(5,14,-5),v(21,5,-14),13),
     lance=gesture(v(-25,-21,10),v(39,7,22),v(9,-21,7),v(37,-10,-17),22),
     dart=gesture(v(8,18,-22),v(-13,-18,10),v(-4,15,6),v(13,23,-6),12),
+    shatter=gesture(v(14,19,-23),v(29,-26,10),v(-5,17,6),v(31,10,-9),16),
     orb=gesture(v(-19,22,16),v(38,-24,-20),v(12,19,-6),v(22,7,26),19),
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
@@ -142,6 +146,7 @@ local function spellGesture(d,profile)
         if cue.effect=="fire" then return spells.cinder end
         return spells.ring
     end
+    if d.id=="mage.cryo.shatter_dart" then return spells.shatter end
     if d.id:find("dart",1,true) then return spells.dart end
     if cue.effect=="frost" then return spells.frost end
     if d.form=="line" or d.branch=="pyro" then return spells.lance end
@@ -175,6 +180,7 @@ function Poses.mage(pose,d,profile,age)
         or (s == spells.earth or s == spells.caldera) and v(-16,0,7)
         or s == spells.ashfall and v(-8,14,12)
         or s == spells.hailfall and v(21,-6,-8)
+        or s == spells.shatter and v(-26,15,20)
         or Vector3.zero
     add(pose,"left",s.palm*wind+s.openPalm*guide+palmRelease*follow)
     add(pose,"torso",s.chest*(wind-.48*follow))

@@ -1202,6 +1202,41 @@ local function descendingContact(r,at,cf,size,shape)
  end
  if #r.lines>0 then r.model:SetAttribute("ContactStyle",name) end
 end
+local function skillContact(r,at,cf,size,style)
+ local right,up,dir=cf.RightVector,cf.UpVector,cf.LookVector
+ for side=-1,1,2 do
+  local lateral=right*side
+  if style=="ShieldBreakerShear" then
+   line(r,style,function(u)
+    local seam=at+dir*(.48*u*size)
+    return seam+lateral*(.12+u*.38)*size+up*.28*size,
+     seam+(lateral*(.55+u*.82)-up*.32)*size
+   end,.14,r.hot,.045)
+  elseif style=="MountainStrikeFault" then
+   line(r,style,function(u)
+    local seam=at+dir*.4*u*size-up*(.28+.56*u)*size
+    return seam+up*.82*size,seam+(lateral*(.65+u*.75)-up*.42)*size
+   end,.15,r.color,.055)
+  elseif style=="PinningBarb" then
+   line(r,style,function(u)
+    local tip=at+dir*.22*u*size
+    return tip+(-dir*.68+lateral*.34+up*.22)*size,tip
+   end,.075,r.hot,.04)
+  else
+   line(r,style,function(u)
+    local split=lateral*(.28+u*.85)+up*(.36+.42*u)+dir*.24
+    return at+split*.38*size,at+split*size
+   end,.15,r.color,.035)
+  end
+ end
+ if #r.lines>0 then r.model:SetAttribute("ContactStyle",style) end
+end
+local contactStyles={
+ [SHIELD_BREAKER]="ShieldBreakerShear",
+ ["dwarf.iron_axe.mountain_strike"]="MountainStrikeFault",
+ ["elf_pinning_shot"]="PinningBarb",
+ ["mage.cryo.shatter_dart"]="ShatterDartSplinters",
+}
 local function elementalContact(r,at,cf,size)
  local up,right,dir=cf.UpVector,cf.RightVector,cf.LookVector
  local key=r.key
@@ -1244,15 +1279,17 @@ function FX.contact(at,classId,id,direction,scale,compact)
  local d=row.definition
  local piercing=row.key=='arrow' or row.key=='gun' or d and Presentation.get(d).motion=='thrust'
  local descending=d and FX.groundLead(d)
- local shieldStrike=id==SHIELD_BREAKER or id==SHIELD_VERDICT
+ local authored=contactStyles[id]
+ local verdict=id==SHIELD_VERDICT
  if descending then
   descendingContact(r,at,cf,size,profile.shape)
- elseif shieldStrike then
-  local verdict=id==SHIELD_VERDICT
+ elseif authored then
+  skillContact(r,at,cf,size,authored)
+ elseif verdict then
   for side=-1,1,2 do
    local lateral=cf.RightVector*side
-   local outward=(lateral*.85+cf.UpVector*(verdict and .72 or -.15))*size
-   line(r,verdict and "VerdictContactRay" or "ShieldImpactShards",function(u)
+   local outward=(lateral*.85+cf.UpVector*.72)*size
+   line(r,"VerdictContactRay",function(u)
     local center=at+dir*(u*.75)
     return center+outward*(.15+u*.5),center+outward*(.78+u*.95)
    end,.14,r.hot)
@@ -1299,7 +1336,7 @@ function FX.contact(at,classId,id,direction,scale,compact)
  if flash then r.faces[#r.faces].fadeDuration=.08 end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
- if not compact and not descending and not physical and not shieldStrike and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
+ if not compact and not descending and not physical and not authored and not verdict and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
   local start=#r.faces
   local basis=CFrame.lookAt(at,at+dir)*CFrame.Angles(math.pi/2,0,0)
   Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)
@@ -1307,7 +1344,7 @@ function FX.contact(at,classId,id,direction,scale,compact)
  end
  -- Physical hits use the sharp star as their focal point. Repeating the
  -- soft elemental halo here washed out the silhouette during rapid combos.
- if not physical and not descending then flourish(r,at,1.5*size,row.key,false)end
+ if not physical and not descending and not authored then flourish(r,at,1.5*size,row.key,false)end
  FX.step(r.at);return r.model
 end
 return FX

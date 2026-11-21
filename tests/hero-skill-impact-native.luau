@@ -155,6 +155,31 @@ local ok, err = xpcall(function()
         check(contact:FindFirstChild(name, true) ~= nil, id .. " has its authored impact")
         FX.clear()
     end
+    for _, sample in ipairs({
+        {"knight.steel_knight.shield_breaker", "ShieldBreakerShear", "down"},
+        {"dwarf.iron_axe.mountain_strike", "MountainStrikeFault", "down"},
+        {"elf_pinning_shot", "PinningBarb", "forward"},
+        {"mage.cryo.shatter_dart", "ShatterDartSplinters", "up"},
+    }) do
+        local id, name, direction = unpack(sample)
+        for _, compact in ipairs({false, true}) do
+            local contact = assert(FX.contact(at, Catalog.byId[id].classId, id, dir, 1, compact))
+            check(contact:GetAttribute("ContactStyle") == name, id .. " keeps its impact identity in both views")
+            local count, left, right = 0, false, false
+            for _, beam in contact:GetDescendants() do
+                if beam:IsA("Beam") and beam.Name == name then
+                    count += 1
+                    local start, endpoint = beam.Attachment0.WorldPosition, beam.Attachment1.WorldPosition
+                    local delta = endpoint - start
+                    left, right = left or delta.X < -.1, right or delta.X > .1
+                    check(direction == "down" and delta.Y < -.25 or direction == "up" and delta.Y > .15
+                        or direction == "forward" and delta:Dot(dir) > .3, id .. " preserves the strike direction")
+                end
+            end
+            check(count == 2 and left and right, id .. " has two readable edges")
+            FX.clear()
+        end
+    end
 
     local owner = actor("Character", at)
     Instance.new("Humanoid", owner)
@@ -177,16 +202,27 @@ local ok, err = xpcall(function()
     target:SetAttribute("K0AttackAngle", 360)
     warnings = Telegraphs.create(enemies, player)
     FX.isOtherHero = function(character) return character ~= nil and character ~= owner end
+    local function countParts(name)
+        local count = 0
+        for _, object in workspace:GetChildren() do
+            if object.Name == name and object:IsA("BasePart") then count += 1 end
+        end
+        return count
+    end
+    local contacts = countParts("SkillContact")
     for i, id in ipairs({
-        "dwarf.gunner.gunner_shot", "elf.marksman.heavy_draw", "knight.paladin.shield_verdict",
+        "dwarf.gunner.gunner_shot", "mage.cryo.hailfall", "knight.paladin.shield_verdict",
     }) do
         local ally = actor("Ally", at + Vector3.xAxis * i * 3)
-        Visual.play(ally, id, at, at + dir * 5, 1, {})
+        Visual.play(ally, id, at, at + dir * 5, 1, {at+dir*5, at+dir*6})
     end
     local records, _, _, glows, particles = FX.count()
     check(records == 3 and glows + particles == 0, "Three allies retain release shapes with no extra glow or particles")
-    Visual.play(owner, "mage.pyro.cinder_ring", at, at, 1, {})
+    check(countParts("SkillContact") == contacts and countParts("ImpactBoundary") >= 12,
+        "Compact artillery, frost and shield casts keep their outlines without generic flashes")
+    Visual.play(owner, "mage.pyro.cinder_ring", at, at, 1, {at})
     check(FX.count() == 4 and select(5, FX.count()) > 0, "Fourth cast keeps full local impact")
+    check(countParts("SkillContact") == contacts + 1, "Local cast keeps its impact accent")
     warnings.update()
     local edges = 0
     for _, edge in workspace.K0LocalTelegraphs:GetDescendants() do
@@ -202,6 +238,9 @@ local ok, err = xpcall(function()
     holder:Destroy()
     FX.clear()
     for _ = 1, 20 do FX.contact(at, "elf", nil, dir, 1, true) end
+    contacts = countParts("SkillContact")
+    Visual.play(ally, "dwarf.gunner.gunner_shot", at, at+dir*5, 1, {})
+    check(countParts("SkillContact") == contacts + 1, "A culled cast still gets its fallback muzzle flash")
     check(FX.contact(at, "knight", nil, dir, 1) ~= nil, "Ally contact flood leaves a full local slot")
 end, debug.traceback)
 if warnings then warnings.destroy() end

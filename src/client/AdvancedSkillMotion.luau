@@ -218,7 +218,15 @@ local function shieldPose(d,age,rigType,contact,ending)
    pose.angles[ch]=v(math.deg(x),math.deg(y),math.deg(z))
   end
  end
- if d.id=="knight.paladin.shield_verdict" then
+ if d.id=="knight.steel_knight.shield_breaker" then
+  local phase=age/contact
+  local brace=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
+  local drive=smooth((age-contact)/.05)*(1-smooth((age-contact-.05)/.14))
+  -- Wind behind the shield and drive through the lead leg after contact.
+  offset(pose,"torso",v(-7,16,0)*brace+v(13,-6,-5)*drive)
+  offset(pose,"leftKnee",v(16*brace+18*drive))
+  offset(pose,"rightHip",v(-11*drive))
+ elseif d.id=="knight.paladin.shield_verdict" then
   local recoil=smooth((age-contact)/.04)*(1-smooth((age-contact-.04)/.16))
   offset(pose,"torso",v(-7*recoil,-4*recoil,0))
   offset(pose,"leftKnee",v(10*recoil))
@@ -344,7 +352,17 @@ function Motion.sample(classId,d,age,rigType)
    offset(pose,"rightHip",v(-11*finish))
   end
  end
- if d.id=="dwarf.iron_axe.armor_splitter" then
+ if d.id=="dwarf.iron_axe.mountain_strike" then
+  local phase=age/contact
+  local lift=smooth(phase/.56)*(1-smooth((phase-.56)/.44))
+  local weight=smooth((age-contact)/.075)*(1-smooth((age-contact-.075)/.22))
+  -- Plant both feet while the axe is high, then absorb the blow low.
+  offset(pose,"torso",v(-12,8,0)*lift+v(18,0,0)*weight)
+  offset(pose,"leftHip",v(-10*lift-14*weight))
+  offset(pose,"rightHip",v(-8*lift-11*weight))
+  offset(pose,"leftKnee",v(15*lift+22*weight))
+  offset(pose,"rightKnee",v(12*lift+19*weight))
+ elseif d.id=="dwarf.iron_axe.armor_splitter" then
   local weight=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))
   offset(pose,"torso",v(12*weight,0,4*weight))
   offset(pose,"leftKnee",v(13*weight))

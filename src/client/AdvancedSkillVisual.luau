@@ -268,6 +268,9 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local targetFloor=findFloor(center,character)
  local effect=profile.effect
  local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first)
+ -- Compact casts keep the authored shape and radius markers. Confirmed hits
+ -- already have their own target feedback in K0HitEffects.
+ local decorate=not compact or not primary
  -- Core geometry is rendered before optional impact decoration.
  if d.form=="chain" then
   local from=first
@@ -297,7 +300,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    -- HeroVFX owns ground-planted roots; no duplicate upright helix.
   elseif effect=="earth" or effect=="lava" or effect=="frost" then
    if not primary then spikes(targetFloor,direction,d.radius,360,color,effect)end
-   if effect=="lava" then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
+   if effect=="lava" and decorate then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
   elseif effect=="steam" then
    -- HeroVFX owns short translucent rising vapor.
   end
@@ -305,7 +308,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local burst=targetFloor+Vector3.yAxis*Bomb.radius
    if not primary then impact(burst,color,.75) end
    Audio.play("impact",burst,"dwarf",id,character,Players.LocalPlayer~=nil and Players.LocalPlayer.Character==character)
-  else
+  elseif decorate then
    impact(center,color,2)
   end
  elseif effect=="vine" then
@@ -330,7 +333,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if d.form=="cone" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do segment(first,target,color,.12,.07,"ShotPellet") end
   else segment(first,center,color,.12,.08,"RifleTracer") end
-  impact(first,color,.8)
+  if decorate then impact(first,color,.8) end
  elseif d.form=="area" or d.form=="cone" or d.form=="melee" then
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
@@ -359,7 +362,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  end
  if d.shield and d.form~="self" and(not primary or(id~="mage.cryo.ice_ward" and id~="mage.pyro.searing_ward" and id~="dwarf.iron_axe.iron_shoulder"))then arc(floor,direction,2.7,360,color,.5,"GuardGranted")end
- if not bomb and type(points)=="table" then for i=1,math.min(#points,4) do impact(points[i],color,.7) end end
+ if decorate and not bomb and type(points)=="table" then for i=1,math.min(#points,4) do impact(points[i],color,.7) end end
 end
 local started=false
 function Visual.start()

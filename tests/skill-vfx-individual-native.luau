@@ -57,7 +57,7 @@ local ok,err=xpcall(function()
  m=cast('knight.common.bash',from,from+Vector3.xAxis*5)
  for _,v in ipairs(beams(m,'GuardHalo'))do check(math.abs(v.Attachment0.WorldPosition.X-2)<.01,'shield plane faces the actual attack direction')end
  for _,strike in ipairs({
-  {id=A.branches.steel_knight.skills[5].id, edge='ShieldBreakerWave', segments=6, face='ShieldBreakerFace', contact='ShieldImpactShards'},
+  {id=A.branches.steel_knight.skills[5].id, edge='ShieldBreakerWave', segments=6, face='ShieldBreakerFace', contact='ShieldBreakerShear'},
   {id=A.branches.paladin.skills[6].id, edge='VerdictCrest', segments=4, face='VerdictCrestFace', contact='VerdictContactRay'},
  })do
   m=cast(strike.id,from,from+Vector3.xAxis*5)
