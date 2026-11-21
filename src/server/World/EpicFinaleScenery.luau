@@ -18,6 +18,7 @@ local function loadingSill(palette, part)
 	local tread = C(71, 60, 46)
 	local ashlar = palette.rock:Lerp(palette.trim, .38)
 	local timber = C(111, 82, 58)
+	local iron = C(111, 105, 91)
 	part('CompactedLoadingEarth', V(12.8, 1.12, 9.8), V(0, .04, -.45), mud, M.Ground)
 	for _, x in ipairs({-5.2, 5.2}) do
 		part('FeatheredRoadVerge', V(8.2, .98, 3.95), V(x, .05, -.12),
@@ -27,6 +28,8 @@ local function loadingSill(palette, part)
 		part('WagonRutBed', V(1.48, .15, 7.7), V(x, .55, -1.37), tread, M.Mud)
 		part('TimberWheelStop', V(3.8, 1.27, 2.1), V(x, 1.18, 1.6),
 			timber, M.Wood, false, V(0, -.1, 0), 'Wedge')
+		part('WheelStopSeat', V(2.35, .32, 1.55), V(x, .66, .24), ashlar, M.Cobblestone)
+		part('WheelStopIronToe', V(1.61, .15, .84), V(x, .85, .47), iron, M.CorrodedMetal)
 	end
 	part('SillFoundation', V(13.4, 2, 3.1), V(0, .52, 3.28), palette.rock, M.Cobblestone)
 	for _, x in ipairs({-4.4, 0, 4.4}) do
@@ -41,6 +44,11 @@ local function windgapStrata(_, part)
 	part('ShaleToe', V(17, 1.32, 9.1), V(0, .24, .35), lowerSlate, M.Slate)
 	part('ExposedBedding', V(15.1, 1.26, 8.2), V(.28, .65, .43),
 		lowerSlate:Lerp(weathered, .39), M.Slate, false, V(0, .08, 0), 'Wedge')
+	local brokenSlate = weathered:Lerp(snow, .22)
+	part('WindgapLowBeddingEdge', V(11.2, .52, 1.65), V(-.55, .88, -3.23),
+		brokenSlate, M.Slate, false, V(0, .018, -.035))
+	part('WindgapSplitBeddingEdge', V(5.66, .45, 1.45), V(-2.78, 1.14, -2.97),
+		weathered, M.Slate, false, V(0, .067, -.085))
 	part('ShelteredStratum', V(10.8, 3.12, 7.8), V(-2.7, 1.29, .37),
 		lowerSlate, M.Slate, false, V(0, .14, 0), 'Wedge')
 	part('WindpolishedShale', V(8.05, 3.66, 6.1), V(-3.72, 1.57, .95),
@@ -57,6 +65,7 @@ local function sledLanding(palette, part)
 	local packed = C(161, 191, 204)
 	local burnished = C(93, 133, 154)
 	local timber = C(99, 68, 46)
+	local iron = C(112, 136, 147)
 	part('CompressedFreightSnow', V(15.1, .68, 8.25), V(-.55, .02, .61), packed, M.Snow)
 	part('FeatheredFreightApproach', V(14.2, .62, 4.15), V(-.7, .035, -2.7),
 		packed:Lerp(C(208, 228, 235), .36), M.Snow, false, nil, 'Wedge')
@@ -65,6 +74,8 @@ local function sledLanding(palette, part)
 		part('BurnishedSledRunnerTrack', V(1.37, .19, 6.8), V(x, .36, -.25), burnished, M.Glacier)
 		part('SledStopCheek', V(2.35, 2.42, 2.85), V(x, 1.49, 1.91),
 			timber, M.Wood, false, V(0, math.pi, 0), 'Wedge')
+		part('SledStopRunnerSeat', V(1.52, .27, .78), V(x, .54, .14), iron, M.Metal)
+		part('SledStopRunnerStrikeFace', V(1.52, 1.04, .24), V(x, 1.12, .46), iron, M.CorrodedMetal)
 		part('FreightSillSupport', V(3.65, 2.18, 2.35), V(x, .78, 3.68), palette.rock, M.Slate)
 	end
 	part('FreightSillIceLip', V(14.63, .94, 2.1), V(-.65, 2.16, 3.7), palette.trim:Lerp(palette.rock, .28), M.Glacier)
@@ -74,6 +85,7 @@ local function dispatchCradle(palette, part)
 	local cutBasalt = palette.rock:Lerp(C(126, 111, 102), .44)
 	local iron = C(150, 143, 126)
 	local dressedBasalt = cutBasalt:Lerp(C(159, 138, 116), .30)
+	local bearingIron = iron:Lerp(C(80, 77, 71), .68)
 	part('BasaltDispatchFooting', V(15.7, 1.94, 9.28), V(0, .51, 0), palette.rock, M.Basalt)
 	part('CarrierBedWearPlane', V(14.18, .45, 8.19), V(0, 1.54, 0), cutBasalt, M.Slate)
 	for _, x in ipairs({-4.75, 4.75}) do
@@ -81,6 +93,11 @@ local function dispatchCradle(palette, part)
 		for _, z in ipairs({-1.85, 0, 1.85}) do
 			local roller = part('CarrierIronRoller', V(2.42, .85, .85), V(x, 2.88, z), iron, M.Metal)
 			roller.Shape = Enum.PartType.Cylinder
+			for _, side in ipairs({-1, 1}) do
+				local journal = part('CarrierRollerJournal', V(.34, .53, .53),
+					V(x + side * 1.30, 2.88, z), bearingIron, M.CorrodedMetal)
+				journal.Shape = Enum.PartType.Cylinder
+			end
 		end
 		part('CarrierLoadingRamp', V(1.95, 1.48, 2.23), V(x, 2.38, -3.36),
 			iron, M.CorrodedMetal, false, nil, 'Wedge')
@@ -102,6 +119,11 @@ local function returnParapet(palette, part, beam)
 			palette.rock:Lerp(dryStone, .44), M.Cobblestone)
 		local cap = dryStone:Lerp(wornEnd, (i - 1) * .5)
 		part('WeatheredParapetCap', V(5.16, .47, 3.33), V(x, 1.53 + height, .87), cap, M.Slate)
+	end
+	part('ParapetReturnEndStone', V(1.37, 1.06, 3.25), V(7.04, 1.91, .45),
+		dryStone:Lerp(palette.rock, .31), M.Slate)
+	for _, x in ipairs({-4.96, -1.64}) do
+		part('AlliedBraceAnchorShoe', V(1.07, .24, 1.19), V(x, 1.43, -2.13), iron, M.CorrodedMetal)
 	end
 	beam('AlliedBrace', V(-4.96, 1.24, -2.11), V(-4.96, 3.46, -.69), .51, iron, M.CorrodedMetal)
 	beam('AlliedBrace', V(-1.64, 1.24, -2.11), V(-1.64, 3.19, -.69), .51, iron, M.CorrodedMetal)
