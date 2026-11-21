@@ -58,7 +58,10 @@ function Reaction.record(model, direction, current, row, descending, final)
     local previous = hits[model]
     -- Rapid party hits can share a render frame. Let the larger displacement
     -- reach its first readable pose, then allow the next hit to take over.
-    if previous and at - previous.at < previous.profile[1] + .02 and previous.impulse >= impulse * 1.2 then return end
+    if previous then
+        local gap = at - previous.at
+        if gap >= 0 and gap < previous.profile[1] + .02 and previous.impulse >= impulse * 1.2 then return end
+    end
     local entry = Reaction.sample(model, at)
     local boneDirection = root.CFrame:VectorToObjectSpace(flat.Unit)
     hits[model] = {at = at, direction = boneDirection, profile = response, entry = entry, strength = strength, impulse = impulse}
