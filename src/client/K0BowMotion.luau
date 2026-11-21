@@ -97,6 +97,26 @@ local function confirmedRelease(character,record,now)
  return at
 end
 
+local function releaseElapsed(record,now,at,pulse,deadline)
+ local elapsed=math.max(0,now-at)
+ if record.visualPulse~=pulse then
+  record.visualPulse=pulse
+  record.visualRelease=nil
+  local snap=.04/(record.rate or 1)
+  local room=deadline-now-snap
+  -- A rendered anchor needs a visible string release when confirmation
+  -- arrives late. An unseen or superseded draw uses the original clock.
+  if record.heldPulse==pulse and elapsed>1/60 and room>=.025 then
+   record.visualRelease={started=now,delay=elapsed,snap=snap,blend=math.min(.05,room)}
+  end
+ end
+ local visual=record.visualRelease
+ if not visual then return elapsed end
+ local age=math.max(0,now-visual.started)
+ local u=math.clamp((age-visual.snap)/visual.blend,0,1)
+ return age+visual.delay*u*u*(3-2*u)
+end
+
 function Motion.forCharacter(character,now)
  if character:GetAttribute("K0ClassId")~="elf" then records[character]=nil;return nil end
  local mode=character:GetAttribute("K0State")
@@ -126,6 +146,7 @@ function Motion.forCharacter(character,now)
  local total=d.windup+d.active+d.recovery
  if age>=total then records[character]=nil;return rest(rigType) end
  local release=d.windup
+ local ending=record.started+total/(record.rate or 1)
  local t
  local awaitingShot=false
  local advancedMulti=d.advanced and type(d.pulses)=="number" and d.pulses>1
@@ -140,13 +161,13 @@ function Motion.forCharacter(character,now)
  if repeated and age>=d.windup then
   if count<=0 or type(at)~="number" then t=.8
   else
-   local since=math.max(0,now-at)
+   local due=moreShots and record.started+d.windup+count*(advancedMulti and d.interval or d.shotInterval) or ending
+   local since=releaseElapsed(record,now,at,count,math.min(due,ending))
    sinceRelease=since
    if since<.04 then t=.8+.1*since/.04
    elseif moreShots then
-    local due=record.started+d.windup+count*(advancedMulti and d.interval or d.shotInterval)
     local span=math.max(.04,due-(at+.04))
-    t=.18+.62*math.clamp((now-at-.04)/span,0,1)
+    t=.18+.62*math.clamp((since-.04)/span,0,1)
    else
     t=.9+.1*math.clamp((now-at-.04)/math.max(.01,record.started+total-at-.04),0,1)
    end
@@ -165,7 +186,7 @@ function Motion.forCharacter(character,now)
   local firedAt=d.advanced and record.pulseAt or not d.advanced and confirmedRelease(character,record,now)
   if not firedAt then t=.8;awaitingShot=true
   else
-   local since=math.max(0,now-firedAt)*(record.rate or 1)
+   local since=releaseElapsed(record,now,firedAt,1,ending)*(record.rate or 1)
    sinceRelease=since
    local remaining=total-(firedAt-record.started)*(record.rate or 1)
    t=since<.04 and .8+.1*since/.04 or .9+.1*math.clamp((since-.04)/math.max(.01,remaining-.04),0,1)
@@ -199,12 +220,12 @@ function Motion.forCharacter(character,now)
   if moreShots then
    local anchor=Motion.sample(.8)
    for _,channel in ipairs({"left","leftElbow","torso","neck","weapon"}) do pose[channel]=anchor[channel];pose.angles[channel]=anchor.angles[channel] end
-   if type(at)=="number" and now-at>=.04 then
-    pose.ikWeight=math.clamp((now-at-.04)/.035,0,1)
-    pose.nocked=now-at>=.065
+   if sinceRelease and sinceRelease>=.04 then
+    pose.ikWeight=math.clamp((sinceRelease-.04)/.035,0,1)
+    pose.nocked=sinceRelease>=.065
     -- The string can already be slack while the release hand is still
     -- behind the cheek. Bridge the hand from the follow-through to the new draw.
-    local bridge=math.clamp((now-at-.04)/.055,0,1)
+    local bridge=math.clamp((sinceRelease-.04)/.055,0,1)
     if bridge<1 then
      local releasePose=Motion.sample(.9)
      local weight=bridge*bridge*(3-2*bridge)
@@ -220,6 +241,9 @@ function Motion.forCharacter(character,now)
   end
  end
  if awaitingShot then pose.nocked=true;pose.ikWeight=1 end
+ if mode=="Attack" and pose.nocked and t>=.79 then
+  record.heldPulse=repeated and count+1 or 1
+ end
  Gestures.bow(pose,d,awaitingShot and release or age,sinceRelease,moreShots,count)
  -- Lob ground-targeted arrows upward; direct shots retain their reviewed aim.
  if d.form=="ground" then
