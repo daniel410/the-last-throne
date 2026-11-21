@@ -114,7 +114,7 @@ local function line(r,name,path,width,color,endWidth)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true, IconCounterSlashEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -646,7 +646,7 @@ local function signature(r,key,c)
  end
 end
 -- Every authored skill resolves through the same stable server skill catalog.
-function FX.skill(character,id,first,last,pulse,points,muzzle)
+function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
  local row=Catalog.byId[id];local profile=Profiles.get(id)
  if not row or not profile or not vector(first)or not vector(last)or not finite(pulse)or pulse<1 then return end
  local d=row.definition
@@ -662,6 +662,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  if(first-last).Magnitude<.01 then
   local root=character and character:FindFirstChild("HumanoidRootPart")
   dir=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
+ end
+ if (d.form=="cone" or d.form=="melee") and vector(castDirection) and castDirection.Magnitude>.01 then
+  dir=castDirection.Unit
  end
  local flat=Vector3.new(dir.X,0,dir.Z);flat=flat.Magnitude>.01 and flat.Unit or Vector3.new(0,0,-1)
  local right=Vector3.new(-flat.Z,0,flat.X)
@@ -772,6 +775,15 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif counterSlash then
   curve(r,"IconCounterSlashEdge",function(t)return counterPath(t)end,r.compact and 6 or 10,width,WHITE)
   r.model:SetAttribute("PrimaryIconCue",true)
+ elseif id=="knight_crescent_cut" then
+  local segments=r.compact and 6 or 10
+  local before=#r.lines
+  curve(r,"CrescentCutEdge",function(t,u)
+   local a=math.rad(angle)*(t-.5)+.16*math.sin(t*math.pi)*u
+   local reach=radius*(.72+.19*math.sin(t*math.pi))
+   return first+(flat*math.cos(a)+right*math.sin(a))*reach+Vector3.yAxis*(.75-1.08*t)
+  end,segments,width,WHITE)
+  if #r.lines-before==segments then r.model:SetAttribute("CrescentCutEdge",true) end
  elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="low"or shape=="counter"then
   local at=shape=="low"and floor or first
   local arc=shape=="spin"and 360 or angle
@@ -801,7 +813,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif shape=="axe"then
   local from,to=first,last;if d.returning and pulse%2==0 then from,to=last,first end
   r.model:SetAttribute("Returning",d.returning and pulse%2==0 or false)
-  stroke(d.crosscut and "IconCrosscutWake" or "AxeWake",from,to,width*.45)
+  if d.braced then
+   local length=(to-from).Magnitude
+   local launch=vector(muzzle) and (muzzle-from):Dot(dir)<length-.2 and (muzzle-from).Magnitude<=6 and muzzle or from
+   line(r,"BracedThrowWake",function(u)
+    local head=math.min(1,.3+u*5)
+    return launch:Lerp(to,math.max(0,head-.36*(1-u))),launch:Lerp(to,head)
+   end,width*.52,WHITE,width*.84)
+  else
+   stroke(d.crosscut and "IconCrosscutWake" or "AxeWake",from,to,width*.45)
+  end
   local axis,approach
   if crosscutReturn then from,to,axis,approach=Art.axeFlight(artContext) end
   if d.crosscut then r.model:SetAttribute("PrimaryIconCue",true) end
@@ -832,6 +853,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     end,width*.46,r.color,width*.62)
    end
   end
+ elseif id=="elf_retreating_shot" then
+  local start=launch and (last-launch):Dot(dir)>.1 and launch or first
+  local trace=line(r,"RetreatingShotWake",function(u)
+   return start:Lerp(last,.7*(1-(1-u)^2)),last
+  end,.052,r.hot,.10)
+  if trace then r.model:SetAttribute("RetreatingShotWake",true) end
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"then
   local targets={last}
   if shape=="fan"then

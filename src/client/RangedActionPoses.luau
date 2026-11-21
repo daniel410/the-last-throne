@@ -109,6 +109,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftKnee",v(15,0,0)*recoil)
         add(pose,"right",v(-4,16,12)*recoil)
     end
+    if d.id=="elf_retreating_shot" then
+        -- Leave the bow on the sight line while the rear leg takes the step.
+        add(pose,"torso",v(-11,-4,8)*load+v(12,6,-4)*recoil)
+        add(pose,"rightHip",v(-14,0,-5)*recoil)
+        add(pose,"rightKnee",v(20,0,0)*recoil)
+        add(pose,"right",v(-6,18,11)*recoil)
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -139,6 +146,7 @@ local spells = {
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
     storm=gesture(v(29,-20,19),v(48,13,27),v(-14,-18,10),v(47,-18,-14),20),
+    thunderSpear=gesture(v(-26,-15,17),v(39,26,-22),v(9,-22,9),v(40,-13,-16),23),
     chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
@@ -159,6 +167,7 @@ local function spellGesture(d,profile)
     if cue.motion=="rain" then return cue.effect=="hail" and spells.hailfall or spells.ashfall end
     if d.form=="chain" then return spells.chain end
     if d.id=="mage.pyro.stone_lance" then return spells.stone end
+    if d.id=="mage.cryo.thunder_spear" then return spells.thunderSpear end
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
@@ -198,6 +207,7 @@ function Poses.mage(pose,d,profile,age)
     local palmRelease = s == spells.iceRing and v(0,-9,-20)
         or s == spells.cinder and v(17,0,8)
         or s == spells.storm and v(-10,14,0)
+        or s == spells.thunderSpear and v(-17,-19,23)
         or s == spells.chain and v(-22,-18,37)
         or (s == spells.earth or s == spells.caldera) and v(-16,0,7)
         or s == spells.stone and v(-24,-14,-8)
@@ -223,6 +233,10 @@ function Poses.mage(pose,d,profile,age)
     if s == spells.stone then
         add(pose,"leftElbow",v(20,0,0)*follow)
         add(pose,"torso",v(10,0,5)*follow)
+    end
+    if s == spells.thunderSpear then
+        add(pose,"right",v(21,7,-14)*follow)
+        add(pose,"leftElbow",v(21,0,0)*follow)
     end
     if finish>0 then
         if s == spells.caldera then

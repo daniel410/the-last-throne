@@ -117,11 +117,11 @@ function AdvancedCombat.resolve(state,attack,current,services,pulse)
  if d.form=="projectile" and points[1] then center=points[1] end
  -- Keep hit resolution and target ordering above on their original inputs.
  -- The visible line starts at the pulse's origin and stops at its own wall.
- if d.crosscut and d.form=="line" then
+ if d.form=="line" and not d.detonate then
   local delta=direction*d.range
   local wall=castRay(origin,delta,state.character)
   center=wall and origin+direction*math.max(0,wall.Distance-.2) or origin+delta
  end
- services.visual(state,d,origin,center,pulse,points)
+ services.visual(state,d,origin,center,pulse,points,direction)
 end
 return AdvancedCombat

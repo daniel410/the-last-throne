@@ -35,6 +35,11 @@ local function leaf(r,at,axis,side,size,name)
  S.triangle(r,name,at,tip,mid-side*size*.32,r.color:Lerp(r.hot,.38),.22,Enum.Material.SmoothPlastic)
  S.bar(r,'LeafMidrib',at+axis*size*.18,tip,.045,r.color:Lerp(r.hot,.55),.2,Enum.Material.Neon)
 end
+local function spearStart(c)
+ local socket=c.muzzle
+ if socket and (c.last-socket):Dot(c.dir)>.1 then return socket end
+ return c.first
+end
 function Art.strokes(r,c,line,curve)
  local kind=types[c.id]
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w,color)end
@@ -74,14 +79,14 @@ function Art.strokes(r,c,line,curve)
   end
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='ThunderSpear' or kind=='LightningLine' then
-  local first,last=c.first,c.last
+  local first,last=kind=='ThunderSpear' and spearStart(c) or c.first,c.last
   if kind=='LightningLine'then first=Vector3.new(first.X,c.floor.Y+.16,first.Z);last=Vector3.new(last.X,c.floor.Y+.16,last.Z)end
   stroke(kind=='ThunderSpear' and 'IconThunderSpearAxis' or 'IconLightningCorridor',first,last,.17,r.hot)
   for i=1,3 do
-   local at=first+(last-first)*(i/4)
+   local at=first:Lerp(last,kind=='ThunderSpear' and (.43+i*.12) or i/4)
    local span=kind=='ThunderSpear' and .55 or .85
    for side=-1,1,2 do
-    local elbow=at+c.right*span*side-c.dir*.18
+    local elbow=at+c.right*span*side-c.dir*(kind=='ThunderSpear' and .65 or .18)
     stroke('ElectricSpearProng',at,elbow,.08,r.color)
    end
   end
@@ -160,14 +165,15 @@ function Art.surfaces(r,c)
    S.volume(r,'MoltenHotNode',pos,Vector3.new(.55,.1,.6),Color3.fromRGB(255,183,55),.25,'wedge',Enum.Material.Neon)
   end
  elseif kind=='ThunderSpear' or kind=='LightningLine'then
-  local first,last=c.first,c.last
+  local first,last=kind=='ThunderSpear' and spearStart(c) or c.first,c.last
   if kind=='LightningLine'then first=Vector3.new(first.X,c.floor.Y+.16,first.Z);last=Vector3.new(last.X,c.floor.Y+.16,last.Z)end
   local spine=S.bar(r,'ElectricSpearSpine',first,last,.12,r.hot,.28,Enum.Material.Neon)
   if spine then r.faces[#r.faces].fadeDuration=.16 end
   for lane=1,3 do
-   local at=first+(last-first)*(lane/4)
+   local at=first:Lerp(last,kind=='ThunderSpear' and (.43+lane*.12) or lane/4)
    for side=-1,1,2 do
-    S.triangle(r,'LightningBranch',at-UP*.06,at+c.right*side*.85-c.dir*.18,at+UP*.06,r.color,.25)
+    local branch=kind=='ThunderSpear' and c.right*side*.55-c.dir*.65 or c.right*side*.85-c.dir*.18
+    S.triangle(r,'LightningBranch',at-UP*.06,at+branch,at+UP*.06,r.color,.25)
     for i=math.max(1,#r.faces-1),#r.faces do r.faces[i].fadeDuration=.16 end
    end
   end

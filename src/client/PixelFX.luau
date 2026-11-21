@@ -90,7 +90,7 @@ function FX.hit(position,classId,id,scale,direction)
  return FX.emit(row.key,position,(row.key=="axe" and 2.5 or 1.8)*(scale or 1),.19,{hero=row,direction=direction,phase="Contact"})
 end
 local seenPulses=setmetatable({},{__mode="k"})
-function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
+function FX.skill(character,id,origin,center,pulse,points,seq,firedAt,castDirection)
  local row=Catalog.byId[id]
  if not row or not vector(origin) or not vector(center) or not finite(pulse) or pulse<1 then return false end
  if finite(firedAt) then
@@ -105,16 +105,14 @@ function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
  end
  local d=row.definition
  local area=d.form=="area" or d.form=="ground" or d.detonate
- local at=center
- if d.form=="melee" or d.form=="cone" or d.form=="self" or d.form=="area" then
-  local delta=center-origin
-  at=origin+(delta.Magnitude>.01 and delta.Unit or Vector3.new(0,0,-1))*((d.form=="self" or d.form=="area") and 0 or 2)
- end
- local direction=center-origin
+ local direction=vector(castDirection) and castDirection or center-origin
  if direction.Magnitude<.001 then
   local root=character and character:FindFirstChild("HumanoidRootPart")
   direction=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
+ local at=center
+ if d.form=="melee" or d.form=="cone" then at=origin+direction.Unit*2
+ elseif d.form=="self" or d.form=="area" then at=origin end
  if d.form=="chain" then
   at=type(points)=="table" and vector(points[1]) and points[1] or origin
  end

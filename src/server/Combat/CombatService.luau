@@ -1297,7 +1297,7 @@ local function processCombatSamples(current, requiredState)
 				if sample.advancedIndex then
 					attack.advancedFired=math.max(attack.advancedFired or 0,sample.advancedIndex)
 					AdvancedCombat.resolve(state,attack,current,{enemies=enemyStates,clear=unobstructed,damage=damageEnemy,move=skillStep,
-						visual=function(actor,d,origin,center,pulse,points) if advancedEffectRemote then advancedEffectRemote:FireAllClients(actor.character,d.id,origin,center,pulse,points,actor.attackSeq,workspace:GetServerTimeNow(),actor.character:GetAttribute("K0AttackStartedAt")) end end},sample.advancedIndex)
+						visual=function(actor,d,origin,center,pulse,points,direction) if advancedEffectRemote then advancedEffectRemote:FireAllClients(actor.character,d.id,origin,center,pulse,points,actor.attackSeq,workspace:GetServerTimeNow(),actor.character:GetAttribute("K0AttackStartedAt"),direction) end end},sample.advancedIndex)
 				elseif sample.rapidIndex then
 					attack.rapidFired = math.max(attack.rapidFired or 0, sample.rapidIndex)
 					state.character:SetAttribute("K0RapidShotAt", workspace:GetServerTimeNow())

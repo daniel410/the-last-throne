@@ -375,6 +375,22 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(8,-12,-6)*brace+v(3,13,6)*recoil)
   offset(pose,"leftKnee",v(12*brace+14*recoil))
  end
+ if d.id=="knight_crescent_cut" then
+  local phase=age/contact
+  local gather=smooth(phase/.5)*(1-smooth((phase-.5)/.5))
+  local finish=pulse>0 and smooth(since/.075)*(1-smooth((since-.075)/.16)) or 0
+  offset(pose,"torso",v(-5,-17,6)*gather+v(9,15,-8)*finish)
+  offset(pose,"left",v(13,9,-12)*gather+v(-8,-6,13)*finish)
+  offset(pose,"leftKnee",v(12*gather+16*finish))
+ elseif d.id=="dwarf_braced_throw" then
+  local phase=age/contact
+  local plant=smooth(phase/.46)*(1-smooth((phase-.55)/.45))
+  local release=pulse>0 and smooth(since/.065)*(1-smooth((since-.065)/.18)) or 0
+  offset(pose,"torso",v(-9,-14,-7)*plant+v(10,12,5)*release)
+  offset(pose,"rightKnee",v(19*plant+9*release))
+  offset(pose,"leftKnee",v(14*plant+16*release))
+  offset(pose,"left",v(19,-9,16)*plant+v(-13,9,-6)*release)
+ end
  local finish=FinalBeat.weight(d,pulse,since)
  if finish>0 then
   if classId=="dwarf" then

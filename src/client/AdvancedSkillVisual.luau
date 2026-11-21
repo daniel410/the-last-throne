@@ -81,8 +81,8 @@ local function sourceArrow(character,at,direction)
  Tween:Create(p,TweenInfo.new(.22),{Transparency=1}):Play()
  return true
 end
-local function arrow(first,last,color,character)
- segment(first,last,color,.14,.06,"ArrowWake")
+local function arrow(first,last,color,character,hasWake)
+ if not hasWake then segment(first,last,color,.14,.06,"ArrowWake") end
  local delta=last-first;if delta.Magnitude<.01 then return end
  if sourceArrow(character,last,delta) then return end
  local tip=last;local cf=CFrame.lookAt(tip,tip+delta)
@@ -261,7 +261,7 @@ local function queueIncoming(character,d,center,seq,firstContact,now)
   end
  end
 end
-function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt)
+function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt,castDirection)
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
  local bomb=Bomb.get(id)
  local profile=Presentation.get(d);if not profile then return end
@@ -283,17 +283,21 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
  local compact=HeroVFX.isOtherHero(character)
- if pulse~=0 and not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" then
-  PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt)
- end
- if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
  local findFloor=bomb and Bomb.floor or ground
  local direction=center-origin
+ if (d.form=="cone" or d.form=="melee") and typeof(castDirection)=="Vector3"
+  and castDirection.Magnitude>.01 and castDirection.Magnitude<math.huge then
+  direction=castDirection.Unit
+ end
  if direction.Magnitude<.01 then
   local root=character and character:FindFirstChild("HumanoidRootPart")
   direction=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
+ if pulse~=0 and not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" then
+  PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt,direction)
+ end
+ if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  if pulse==0 then
   if character then
    branchProp(character,d,attackSeq)
@@ -315,7 +319,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local floor=ground(d.form=="area" and center or origin,character)
  local targetFloor=findFloor(center,character)
  local effect=profile.effect
- local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first)
+ local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first,direction)
  local ultimateSignature=primary and primary:GetAttribute("UltimateSignature")
  -- Compact casts keep the authored shape and radius markers. Confirmed hits
  -- already have their own target feedback in K0HitEffects.
@@ -380,7 +384,9 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  elseif effect=="arrow" then
   if d.form=="cone" and ultimateSignature~="VolleyCrown" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
-  elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then arrow(first,center,color,character) end
+  elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then
+   arrow(first,center,color,character,primary and primary:GetAttribute("RetreatingShotWake"))
+  end
  elseif effect=="axe" then
   if not primary then
   local from,to=origin,center;if d.returning and pulse==2 then from,to=center,origin end
@@ -401,7 +407,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
   if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
-  elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
+  elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"
+   and not (primary and primary:GetAttribute("CrescentCutEdge")) then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    if not primary or (not ultimateSignature and id~="dwarf.iron_axe.iron_shoulder") then
    local flat=Vector3.new(direction.X,0,direction.Z)
