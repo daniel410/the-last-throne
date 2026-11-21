@@ -1,0 +1,167 @@
+{
+  "models": [
+    {
+      "name": "AshSpireVent",
+      "source": "-499.8499755859375, 205, -11490.400390625",
+      "outlet": "-521.8499755859375, 160, -11513.400390625",
+      "parts": 16
+    },
+    {
+      "name": "MineFractureFlow",
+      "source": "-235.85000610351562, 157.10000610351562, -12513.400390625",
+      "outlet": "-213.85000610351562, 126, -12536.400390625",
+      "parts": 15
+    },
+    {
+      "name": "CoolingRiftFlow",
+      "source": "1250.1500244140625, 165.5500030517578, -13288.400390625",
+      "outlet": "1228.1500244140625, 134, -13311.400390625",
+      "parts": 15
+    },
+    {
+      "name": "FurnaceRimVent",
+      "source": "-1435.8499755859375, 197.64999389648438, -14731.400390625",
+      "outlet": "-1413.8499755859375, 158, -14754.400390625",
+      "parts": 15
+    },
+    {
+      "name": "QuarryCascade",
+      "origin": "-1230.416015625, 20.015625, -1984.248046875",
+      "groundSpread": 0,
+      "parts": 34
+    },
+    {
+      "name": "CreekScenery",
+      "parts": 22
+    }
+  ],
+  "routes": {
+    "1": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 13309,
+      "samples": 13723,
+      "targets": 243,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "3": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 5808,
+      "samples": 6177,
+      "targets": 142,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "2": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4980,
+      "samples": 5196,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "5": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4560,
+      "samples": 4749,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "4": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 8057,
+      "samples": 8360,
+      "targets": 144,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    }
+  },
+  "ashSpireSightlines": {
+    "viewCount": 33,
+    "viewsReachingVent": 32,
+    "maxSamplesReached": 5
+  },
+  "priorRoutes": {
+    "1": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 13309,
+      "samples": 13723,
+      "targets": 243,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "3": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 5808,
+      "samples": 6177,
+      "targets": 142,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "2": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4980,
+      "samples": 5196,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "5": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4560,
+      "samples": 4749,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "4": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 8057,
+      "samples": 8360,
+      "targets": 144,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    }
+  }
+}
