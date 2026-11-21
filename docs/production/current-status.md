@@ -6,7 +6,7 @@
 - 영웅 기술 후보 0.115.27은 Vanguard Strike, Stonebound Leap, Fan Break, Stone Lance의 자세와 명중 방향을 다듬고, 동시에 들어온 약타가 강타의 피격 자세를 덮는 경우를 줄였다. 게시 테스트와 실기기 수용은 후속이다. [전후 화면과 Studio 검증](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
 
 - 에픽 퀘스트 0.114.1 후보는 DW-02, GW-06, FV-04, EC-05, HG-04의 대표 행동에 현장 지형과 시설을 연결했다. [모델·접근 화면·Studio 검증](../evidence/epic-quest-landmarks-20261119/README.md) · [0.114.0 퀘스트 진행과 저장 검증](../evidence/epic-quest-variety-20261119/README.md). 후보 미게시·G5 진행 중.
-- 다섯 에픽 결말 환경 0.115.21 후보는 DW 적재턱, GW 첫눈 아래 셰일, FV 썰매 정지턱, EC 선적 롤러 축경, HG 귀환 보호턱을 개선했다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-finale-assembly-20261121/README.md)
+- 에픽 환경 0.115.28 후보는 다섯 4장 복구 지물의 접근 단면을 개선했다. 야간 GW 셰일과 등불 파손, HG 집결로 끝돌을 중점으로 Studio에서 접근·귀환을 비교했다. 후보 미게시·G5 진행 중. [4장 빌드와 검증](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면 검증](../evidence/epic-finale-route-profiles-20261121/README.md)
 
 - 몬스터와 페이즈 로딩은 0.114.25에서 근접 교전 시작 거리, 외형 선행 로드, 처치와 목표 저장을 개선했다. 비공개 로비·배틀에 게시했으며 실제 플레이 수용은 후속이다. [전후 재현·게시 기록·남은 수용](../evidence/monster-phase-loading-20261120/README.md) · [지역 생성과 반복 작업 계측](../evidence/world-runtime-optimization-20261118/README.md).
 
