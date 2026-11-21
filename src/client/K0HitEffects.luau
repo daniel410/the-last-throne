@@ -81,6 +81,19 @@ local function part(parent, name, position, size, color)
 	return p
 end
 
+local function landingHeight(model)
+	local root = model and model:FindFirstChild("HumanoidRootPart")
+	if root and root:IsA("BasePart") then
+		local height = model:GetAttribute("TdMonsterTargetHeight")
+		if finite(height) then return math.max(.45, height - root.Size.Y * 1.5) + .2 end
+		local head = model:FindFirstChild("Head")
+		if head and head:IsA("BasePart") then
+			return math.max(1.1, head.Position.Y - root.Position.Y + head.Size.Y * .5 + .2)
+		end
+	end
+	return 1.1
+end
+
 -- Public for isolated native fixture QA; live calls come only from OnClientEvent.
 function HitEffects.show(model, position, damage, classId, enemyKind, direction, skillId, impact)
 	local profile = profiles[classId]
@@ -106,8 +119,10 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local definition = row and row.definition
 	local descending = definition and HeroVFX.groundLead(definition)
 	local final = definition and type(impact) == "table" and FinalBeat.isFinal(definition, impact.pulse)
+	local lift = descending and landingHeight(model) or .45
 	-- Place a falling strike above the target. Other sparks sit on the incoming face.
-	position += descending and Vector3.yAxis * 1.1 or -flat * .8 + Vector3.yAxis * .45
+	position += Vector3.yAxis * lift
+	if not descending then position -= flat * .8 end
 	local holder = part(workspace, "K0HitEffect", position, Vector3.new(0.1, 0.1, 0.1), profile.color)
 	holder.Transparency = 1
 	if skill then holder:SetAttribute("K0SkillEffectId", skillId) end
@@ -215,6 +230,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	billboard.Name, billboard.Size = "K0DamageNumber", UDim2.fromOffset(100, 32)
 	local bar = model and model:FindFirstChild("EnemyHealthBar")
 	local numberHeight = bar and bar:IsA("BillboardGui") and math.max(1.5, bar.StudsOffsetWorldSpace.Y + 0.9) or 1.5
+	if descending then numberHeight = math.max(.9, numberHeight - lift + .45) end
 	billboard.StudsOffsetWorldSpace, billboard.MaxDistance, billboard.AlwaysOnTop = Vector3.new(0, numberHeight, 0), 80, false
 	billboard.Parent = holder
 	local label = Instance.new("TextLabel")

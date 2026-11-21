@@ -87,6 +87,16 @@ local ok, err = xpcall(function()
         end
     end
 
+    target:SetAttribute("TdMonsterTargetHeight", 7)
+    local shell = Catalog.byId["dwarf.gunner.siege_barrage"]
+    check(Hits.show(target,at,42,"dwarf","Ogre",dir,shell.definition.id,{pulse=1}),"Tall target receives a falling contact")
+    local tallEffect = assert(workspace:FindFirstChild("K0HitEffect"))
+    local top = at.Y + 7 - root.Size.Y * 1.5
+    check(tallEffect.Position.Y > top and tallEffect.Position.Y < top+.25,"Falling contact clears the actual monster silhouette")
+    tallEffect:Destroy()
+    target:SetAttribute("TdMonsterTargetHeight",nil)
+    FX.clear()
+
     local attacker, attackerRoot = actor("DirectionSource", at)
     local first, firstRoot = actor("FirstContact", at+dir*5)
     local second, secondRoot = actor("SecondContact", firstRoot.Position+Vector3.xAxis*6)
