@@ -14,12 +14,12 @@ local profiles = {
 
 local dark = C(53, 44, 48)
 local cooled = C(74, 56, 54)
-local scoria = C(77, 35, 30)
-local molten = C(164, 48, 23)
-local shear = C(201, 71, 30)
-local ember = C(142, 39, 9)
-local thread = C(166, 49, 12)
+local scoria = C(103, 42, 28)
+local outerCrust = C(83, 42, 37)
+local melt = C(166, 50, 25)
+local thread = C(140, 39, 9)
 local slag = C(37, 28, 29)
+local up = V(0, 1, 0)
 local Lava = {}
 
 local function contour(root, name, size, frame, color, material, shape)
@@ -40,42 +40,58 @@ local function bend(start, lower, shoulder, outlet, t)
 	return upper:Lerp(middle, t):Lerp(middle:Lerp(foot, t), t)
 end
 
-local function channel(root, name, a, b, width, depth, speed, side)
-	local length = (b - a).Magnitude
-	local frame = CFrame.lookAt((a + b) / 2, b)
-	local surface = depth * .34
-	-- An overlapping rock gutter carries the melt at every join, including where it fans out.
-	contour(root, 'FusedBasaltGutter', V(width * .92, depth * 1.34, length + width * .36),
-		frame * CFrame.new(0, -depth * .64, 0), dark, M.Basalt, 'Ball')
-	contour(root, 'ScoriaContactSkin', V(width * .98, depth * .62, length + width * .32),
-		frame * CFrame.new(0, -depth * .05, 0), scoria, M.Basalt, 'Ball')
-	contour(root, name, V(width * .74, depth * .47, length + width * .36),
-		frame * CFrame.new(width * .04, surface, 0), molten, M.SmoothPlastic, 'Ball')
-
-	-- The cooler edge overlaps the melt. The warmer tongue winds past it without a sharp parallel edge.
-	local slagFrame = frame * CFrame.new(side * width * .31, surface - depth * .13, length * .09)
-		* CFrame.Angles(0, side * .38, 0)
-	contour(root, 'SinteredBasaltLip', V(width * .35, depth * .62, length * .75),
-		slagFrame, slag, M.Basalt, 'Ball')
-	contour(root, 'MoltenShearLobe', V(width * .37, depth * .26, length * .94 + width * .17),
-		frame * CFrame.new(-side * width * .09, surface + depth * .17, -length * .037)
-			* CFrame.Angles(0, side * .05, 0),
-		shear, M.SmoothPlastic, 'Ball')
-
-	for i, z in ipairs({.22, -.19}) do
-		local x = side * width * (i == 1 and .095 or -.17)
-		local vein = frame * CFrame.new(x, surface + depth * .30, length * z)
-			* CFrame.Angles(0, z * side * .57, 0)
-		contour(root, 'GlowingFissure', V(width * (i == 1 and .13 or .095), .14, length * (i == 1 and .26 or .19)),
-			vein, ember, M.Neon, 'Ball')
+local function buildLavaRibbon(root, rows)
+	local edges = {}
+	local centers = {}
+	for i, row in ipairs(rows) do
+		local at, left, right, seam, rise = table.unpack(row)
+		local before = rows[math.max(1, i - 1)][1]
+		local after = rows[math.min(#rows, i + 1)][1]
+		local toward = (after - before).Unit
+		local across = toward:Cross(up).Unit
+		local outward = across:Cross(toward)
+		local top = at + outward * rise
+		centers[i] = top + across * seam
+		edges[i] = {
+			top - across * left - outward * .3,
+			top - across * (left * .61 - seam),
+			top + across * (right * .55 + seam),
+			top + across * right - outward * .35,
+		}
 	end
-	local offset = V(-side * width * .04, surface + depth * .37, 0)
-	local from = frame * (offset + V(0, 0, length * .25))
-	local to = frame * (offset - V(0, 0, length * .25))
-	local phase = side < 0 and .24 or .61
-	local streak = contour(root, 'AdvectingEmberStreak', V(width * .135, .16, length * .22),
-		CFrame.lookAt(from:Lerp(to, phase), to), thread, M.Neon, 'Ball')
-	Motion.track(streak, from, to, speed, phase)
+
+	-- Every bend shares a cross-section with its neighbor. The liquid does not pinch shut at joints.
+	for i = 1, #rows - 1 do
+		local a, b = rows[i][1], rows[i + 1][1]
+		local width = (rows[i][2] + rows[i][3] + rows[i + 1][2] + rows[i + 1][3]) * .5
+		local length = (b - a).Magnitude
+		local frame = CFrame.lookAt((a + b) / 2, b)
+		contour(root, 'FusedBasaltGutter', V(width * 1.05, 3.4, length + width * .56),
+			frame * CFrame.new(0, -.85, 0), dark, M.Basalt, 'Ball')
+		for j, color in ipairs({scoria, melt, outerCrust}) do
+			local front, back = edges[i], edges[i + 1]
+			local name = j ~= 2 and 'FracturedCrustMargin' or i == 3 and 'LavaCurtainCore' or 'MoltenRibbon'
+			local mat = j == 2 and M.SmoothPlastic or M.Basalt
+			Kit.triangle(root, name, front[j], back[j], front[j + 1], .12, color, mat)
+			Kit.triangle(root, name, front[j + 1], back[j], back[j + 1], .12, color, mat)
+		end
+	end
+
+	-- A few slowly moving, subdued ember pools break up the surface without outlining it.
+	for _, i in ipairs({2, 3, 4, 6}) do
+		local a, b = centers[i], centers[i + 1]
+		local frame = CFrame.lookAt((a + b) / 2, b)
+		local length = (b - a).Magnitude
+		local side = i == 3 and -.73 or .41
+		local offset = frame.UpVector * .27 + frame.RightVector * side
+		local from = a:Lerp(b, .14) + offset
+		local to = a:Lerp(b, .86) + offset
+		local phase = (i * .37) % 1
+		local streak = contour(root, 'AdvectingEmberStreak', V(i == 3 and 1.35 or .91, .14, length * .18),
+			CFrame.lookAt(from:Lerp(to, phase), to), thread, M.Neon, 'Ball')
+		streak.Transparency = .2
+		Motion.track(streak, from, to, i == 3 and 3.6 or 2.3, phase)
+	end
 end
 
 function Lava.build(parent, id, center, size, safe)
@@ -115,12 +131,17 @@ function Lava.build(parent, id, center, size, safe)
 	local bank = bend(chute, lower, shoulder, out, .84)
 	local intake = bend(chute, lower, shoulder, out, .39)
 	local turnOut = bend(chute, lower, shoulder, out, .65)
-	channel(root, 'VentThroat', source, lip, 10.8, 3.0, 4.8, -1)
-	channel(root, 'RiftApron', lip, chute, 11.9, 3.2, 6, 1)
-	channel(root, 'LavaCurtainCore', chute, intake, 11.5, 3.6, 8.1, -1)
-	channel(root, 'LavaCurtainFoot', intake, turnOut, 11.7, 3.2, 7, 1)
-	channel(root, 'LavaSpillFan', turnOut, bank, 13.7, 2.7, 5.1, -1)
-	channel(root, 'LavaBasinCore', bank, out, 15.4, 1.8, 3.4, 1)
+	buildLavaRibbon(root, {
+		{source, 3.75, 3.1, -.16, 1.15},
+		{lip, 5.3, 3.9, .21, 1.1},
+		{chute, 5.65, 4.35, -.67, 1.05},
+		{intake, 5.05, 4.6, -.14, 1},
+		{turnOut, 4.8, 6.2, .63, .81},
+		{bank, 6.35, 5.75, -.37, .67},
+		{out, 4.5, 4.9, .23, .48},
+	})
+	rock('SpillSlagFragment', turnOut + face.RightVector * (3.75 * turn), V(3.4, 1.25, 2.7), .48, slag, 'Corner')
+	rock('SpillSlagFragment', bank - face.RightVector * (4.3 * turn), V(3.9, 1.1, 3.1), -.38, slag, 'Wedge')
 	-- Seat the top of the channel in the vent, and the fan between the existing basin banks.
 	local bedA, bedB = source - V(0, 1.4, 0), chute - V(0, 1.4, 0)
 	contour(root, 'BasaltChuteBed', V(17, 4.5, (bedB - bedA).Magnitude + .6),

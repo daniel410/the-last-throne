@@ -58,6 +58,33 @@ function Kit.ellipsoid(parent,name,size,cf,color,material)
  mesh.Parent=p
  return p
 end
+-- Split a visual triangle into right wedges along the altitude of its longest edge.
+function Kit.triangle(parent, name, a, b, c, thickness, color, material, transparency)
+ local ab, ac, bc = b - a, c - a, c - b
+ if ab:Dot(ab) > ac:Dot(ac) and ab:Dot(ab) > bc:Dot(bc) then
+  a, c = c, a
+ elseif ac:Dot(ac) > bc:Dot(bc) then
+  a, b = b, a
+ end
+ ab, ac, bc = b - a, c - a, c - b
+ local normal = ac:Cross(ab)
+ if normal.Magnitude < .0001 or bc.Magnitude < .0001 then return end
+ local right, back = normal.Unit, bc.Unit
+ local up = back:Cross(right).Unit
+ local height = math.abs(ab:Dot(up))
+ if height <= .05 then return end
+ for _, half in ipairs({
+  {(a + b) * .5, right, back, math.abs(ab:Dot(back))},
+  {(a + c) * .5, -right, -back, math.abs(ac:Dot(back))},
+ }) do
+  if half[4] > .05 then
+   local frame = CFrame.fromMatrix(half[1], half[2], up, half[3])
+   local part = Kit.part(parent, name, Vector3.new(thickness, height, half[4]), frame, color, material, 'Wedge')
+   part.CastShadow = false
+   part.Transparency = transparency or 0
+  end
+ end
+end
 function Kit.beam(parent,name,a,b,width,color,material)
  return Kit.part(parent,name,Vector3.new(width,width,(b-a).Magnitude),CFrame.lookAt((a+b)/2,b),color,material)
 end

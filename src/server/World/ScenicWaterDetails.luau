@@ -42,9 +42,15 @@ local function runnel(parent, points, widths)
 				wetSilt:Lerp(C(102, 96, 63), .25 + turn * .15), M.Mud)
 			wetEdge.CastShadow = false
 		end
-		film(parent, 'RunnelSurface', from, to, width, .12, deepWater, .2)
+		local tint = shallowWater:Lerp(deepWater, .37)
+		local depth = film(parent, 'RunnelDepth', from - V(0, .057, 0), to - V(0, .057, 0),
+			width * .68, .065, deepWater:Lerp(C(36, 66, 68), .55), .3)
+		depth.Transparency = .11
+		local surface = film(parent, 'RunnelSurface', from, to, width, .12, tint, .2)
+		surface.Transparency = .42
 		if i > 1 then
-			local joint = Kit.ellipsoid(parent, 'RunnelBend', V(width, .12, width), from, deepWater, M.SmoothPlastic)
+			local joint = Kit.ellipsoid(parent, 'RunnelBend', V(width, .12, width), from - V(0, .004, 0), tint, M.SmoothPlastic)
+			joint.Transparency = .42
 			joint.CastShadow = false
 		end
 		for lane = -1, 1, 2 do
@@ -69,7 +75,12 @@ function Water.creek(parent, center, width, depth, palette)
 	for i = -1, 1 do
 		Kit.part(group, 'CreekCrossingStone', V(7, .25, 5),
 			CFrame.new(center + V(i * 6, .12, i * 3)) * CFrame.Angles(0, i * .1, 0),
-			palette.rock, M.Slate)
+			palette.rock:Lerp(C(62, 93, 85), .48), M.Slate)
+	end
+	for i, bed in ipairs({V(-6.1, .034, -1.1), V(-3.5, .032, .54), V(4.9, .033, -1.05), V(8.25, .034, 2.5)}) do
+		local gravel = Kit.ellipsoid(group, 'CreekGravelPatch', V(1.8 + i * .19, .10, .51 + i * .09),
+			CFrame.new(center + bed) * CFrame.Angles(0, i * -.15, 0), wetSilt:Lerp(palette.trim, .47), M.Pebble)
+		gravel.CastShadow = false
 	end
 	for i, side in ipairs({-1, 1}) do
 		local edge = center + V(3.2, .23, side * 1.65)
@@ -139,8 +150,8 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		local floor, found = ground(origin + sample)
 		if found then poolHeight = math.max(poolHeight, floor.Y - origin.Y + .56) end
 	end
-	-- The ledge feeds three unequal water bodies. Each narrows in the air and
-	-- fans out at a different depth. Rounded overlaps hide the joins on side views.
+	-- The spring feeds three narrow streams. Constant-section spans preserve
+	-- their silhouettes, with small rounded seams only at changes in direction.
 	local streams = {
 		{width = 1.63, depth = .71, alpha = .21, points = {
 			V(-6.5, 27.57, -.9), V(-6.8, 23.4, 1.2), V(-7.0, 14.1, 2.55),
@@ -163,17 +174,26 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		spring.CastShadow = false
 		current(model, 'SpringCurrent', head:Lerp(lip, .16) + V(0, .13, 0), head:Lerp(lip, .80) + V(0, .13, 0),
 			V(.42, .06, 2.4), foam, .22, 7, .22 * i)
+		local widths = {1.03, .98, .94, 1.04}
 		for j = 1, #stream.points - 1 do
 			local from, to = origin + stream.points[j], origin + stream.points[j + 1]
 			local aerated = j == #stream.points - 1
-			local tint = shallowWater:Lerp(foam, aerated and .30 or i * .034)
-			local width = stream.width * ({1.18, .96, .88, 1.42})[j]
-			local body = Kit.ellipsoid(model, aerated and 'AeratedWater' or 'FallingWater',
-				V(width, stream.depth * (aerated and 1.28 or 1), (to - from).Magnitude * 1.34),
-				CFrame.lookAt((from + to) * .5, to), tint, M.SmoothPlastic)
-			body.Transparency = stream.alpha + (aerated and .04 or 0)
+			local tint = shallowWater:Lerp(foam, aerated and .18 or i * .033)
+			local width = stream.width * widths[j]
+			local centerline = CFrame.lookAt((from + to) * .5, to)
+			local body = Kit.part(model, aerated and 'AeratedWater' or 'FallingWater',
+				V((to - from).Magnitude + .26, stream.depth, width),
+				centerline * CFrame.Angles(0, math.pi / 2, 0), tint, M.SmoothPlastic)
+			body.Shape = Enum.PartType.Cylinder
+			body.Transparency = stream.alpha * .78
 			body.CastShadow = false
 			if j > 1 then
+				local axis = (to - (origin + stream.points[j - 1])).Unit
+				local join = Kit.ellipsoid(model, 'FallBendBlend',
+					V(stream.width * (widths[j - 1] + widths[j]) * .5, stream.depth, .86),
+					CFrame.lookAlong(from, axis), tint, M.SmoothPlastic)
+				join.Transparency = body.Transparency
+				join.CastShadow = false
 				local front = V(.08 * (i - 2), 0, stream.depth * .53)
 				current(model, 'DescendingWater', from:Lerp(to, .13) + front, from:Lerp(to, .90) + front,
 					V(.27 + stream.width * .06, .065, 1.45 + j * .22), foam, .11 + i * .065,
@@ -182,23 +202,34 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		end
 	end
 
-	-- Three offset pockets follow a cleft between the banks. The downstream
-	-- pocket points into the existing runnel and shares its source height.
-	local pools = {
-		{V(-4, 0, 8.6), 17.2, 14.5, -.31},
-		{V(2.75, -.025, 11.65), 14.8, 16, .58},
-		{V(4.15, -.045, 17.2), 7.7, 12.3, -.39},
+	-- Lay one water plane over the uneven bed; the shallow ledges show beneath it.
+	local level = origin + V(0, poolHeight, 0)
+	local heart = level + V(-1.35, 0, 10.7)
+	local rim = {
+		V(-11.1, 0, 4.8), V(-6.2, 0, 2.0), V(2.7, 0, 2.4), V(9.1, 0, 5.1),
+		V(11.0, 0, 10.9), V(8.8, 0, 16.5), V(6.5, 0, 21.25),
+		V(1.35, 0, 20.5), V(-4.9, 0, 18), V(-9.7, 0, 14.7), V(-11.9, 0, 9.8),
 	}
-	local bedDepth = poolHeight + 1.1
-	for i, pocket in ipairs(pools) do
-		local at, width, length, angle = table.unpack(pocket)
-		local face = CFrame.new(origin + at + V(0, poolHeight, 0)) * CFrame.Angles(0, angle, 0)
-		Kit.ellipsoid(model, 'QuarryPoolBed', V(width + 2.25, bedDepth, length + 2.15),
-			face * CFrame.new(0, -.12 - bedDepth / 2, 0), wetRock, M.Slate)
-		local pool = Kit.ellipsoid(model, i == 1 and 'PlungePool' or 'QuarryPoolPocket',
-			V(width, .20, length), face, deepWater, M.SmoothPlastic)
-		pool.CastShadow = false
-		pool.Transparency = .055
+	local waterColor = deepWater:Lerp(C(46, 117, 110), .45)
+	for i, point in ipairs(rim) do
+		local name = i == 1 and 'PlungePool' or 'QuarryPoolSurface'
+		local inset = V(0, .045, 0)
+		Kit.triangle(model, name, heart - inset, level + point - inset, level + rim[i % #rim + 1] - inset,
+			.09, waterColor, M.SmoothPlastic, .18)
+	end
+	local pocketBed = Kit.ellipsoid(model, 'QuarryPoolBed', V(22, poolHeight + .95, 17.5),
+		CFrame.new(heart - V(0, .72 + poolHeight * .5, 0)) * CFrame.Angles(0, .16, 0),
+		wetRock:Lerp(waterColor, .40), M.Slate)
+	pocketBed.CastShadow = false
+	for _, shelf in ipairs({
+		{V(-7.75, -.145, 8.3), V(7.4, .22, 9.2), -.40},
+		{V(6.55, -.15, 12.55), V(6.15, .24, 10.0), -.36},
+		{V(3.65, -.125, 18.7), V(5.65, .19, 5.5), -.32},
+	}) do
+		local submerged = Kit.ellipsoid(model, 'SubmergedGravelShelf', shelf[2],
+			CFrame.new(level + shelf[1]) * CFrame.Angles(0, shelf[3], 0),
+			wetRock:Lerp(palette.trim, .32), M.Pebble)
+		submerged.CastShadow = false
 	end
 	model:SetAttribute('PoolSurfaceHeight', origin.Y + poolHeight)
 	local churn = Kit.ellipsoid(model, 'FallImpactFoam', V(10.3, .08, 4.8),
