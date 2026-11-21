@@ -241,6 +241,10 @@ local function axeCatch(d,age,contact,ending,base,sample,classId)
  offset(ready,"right",v(82,-12,-8))
  offset(ready,"elbow",v(-38))
  offset(ready,"torso",v(-8,18,-8))
+ if d.crosscut then
+  offset(ready,"right",v(-9,-16,19))
+  offset(ready,"torso",v(4,-14,11))
+ end
  if age<caught then
   local travel=math.clamp((age-contact)/flight,0,1)
   local outgoing=sample(release+(base.windup+base.active-release)*smooth(travel/.28))
@@ -251,6 +255,10 @@ local function axeCatch(d,age,contact,ending,base,sample,classId)
  local absorb=smooth((age-caught)/.055)*(1-smooth((age-caught-.055)/.17))
  offset(pose,"elbow",v(-24*absorb))
  offset(pose,"torso",v(-11*absorb,8*absorb))
+ if d.crosscut then
+  offset(pose,"rightKnee",v(21*absorb))
+  offset(pose,"leftHip",v(-14*absorb))
+ end
  return pose
 end
 function Motion.sample(classId,d,age,rigType)
@@ -337,6 +345,13 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-8,14,6)*pull)
   offset(pose,"elbow",v(23,0,0)*pull)
   offset(pose,"rightKnee",v(12,0,0)*pull)
+ end
+ if d.id=="knight.steel_knight.counter_slash" then
+  local brace=smooth(age/(contact*.46))*(1-smooth((age-contact*.62)/(contact*.38)))
+  local recoil=smooth((age-contact)/.06)*(1-smooth((age-contact-.06)/.15))
+  offset(pose,"left",v(12,0,-16)*brace+v(-13,0,12)*recoil)
+  offset(pose,"torso",v(8,-12,-6)*brace+v(3,13,6)*recoil)
+  offset(pose,"leftKnee",v(12*brace+14*recoil))
  end
  local finish=FinalBeat.weight(d,pulse,since)
  if finish>0 then

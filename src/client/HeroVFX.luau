@@ -96,7 +96,7 @@ local function line(r,name,path,width,color,endWidth)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true, CounterSlashEdge=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -624,6 +624,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local verdict=id==SHIELD_VERDICT
  local phase=(pulse-1)*1.3
  local electricLinks={}
+ local counterSlash=id=="knight.steel_knight.counter_slash"
+ local crossfire=id=="elf.marksman.crossfire"
+ local crosscutReturn=shape=="axe" and d.crosscut and pulse%2==0
  local spinStyle=id=='knight.steel_knight.twin_cyclone'and 'CrossingCyclones'
   or id=='knight.steel_knight.blade_storm'and 'BrokenBladeStorm' or 'WaistWhirlwind'
  local spinLanes=spinStyle=='WaistWhirlwind'and 1 or count
@@ -653,6 +656,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   local arc=math.rad(angle*.46)*(2*t-1)
   local offset=(flat*math.cos(arc)+right*math.sin(arc))*math.min(radius,6)*(.65+.18*math.sin(t*math.pi))
   return first+offset+Vector3.yAxis*(.85-1.65*t)*side
+ end
+ local function counterPath(t)
+  local arc=math.rad(angle*.58)*(2*t-1)
+  local reach=math.min(radius,6)*(.55+.28*math.sin(t*math.pi))
+  return first+(flat*math.cos(arc)+right*math.sin(arc))*reach+Vector3.yAxis*(-.8+2.15*t)
  end
  local function cleavePath(t)
   local a=t*math.pi*.8
@@ -697,6 +705,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   for lane=1,spinLanes do
    curve(r,'BladeRibbon',function(t,u)return spinPath(lane,t,u)end,spinStyle=='BrokenBladeStorm'and 10 or 12,width)
   end
+ elseif counterSlash then
+  curve(r,"CounterSlashEdge",function(t)return counterPath(t)end,r.compact and 6 or 10,width,WHITE)
  elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="low"or shape=="counter"then
   local at=shape=="low"and floor or first
   local arc=shape=="spin"and 360 or angle
@@ -728,10 +738,27 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   r.model:SetAttribute("Returning",d.returning and pulse%2==0 or false)
   stroke("AxeWake",from,to,width*.45)
   local axis=forward(from,to);local basis=CFrame.lookAt(to,to+axis)
-  curve(r,"AxeRotation",function(t,u)
+  local catch=crosscutReturn and to+right*.7+Vector3.yAxis*.55 or to
+  curve(r,crosscutReturn and "CrosscutCatchEdge" or "AxeRotation",function(t,u)
    local a=t*math.pi*1.6+u*7+phase
-   return to+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
+   local approach=crosscutReturn and axis*-math.min((to-from).Magnitude,5)*(1-math.min(u*3.5,1))^2 or Vector3.zero
+   return catch+approach+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
   end,8,width)
+ elseif crossfire then
+  local length=(last-first).Magnitude
+  if length>.1 then
+   local rise=Vector3.yAxis*(pulse==2 and .55 or .25)
+   local start=first+flat*math.min(length*.22,1.05)+rise
+   local tip=last+rise
+   local trace=line(r,"CrossfireTrace",function()return start,tip end,width*.72,WHITE,width*1.32)
+   if trace then r.model:SetAttribute("CrossfireTrace",true) end
+   if not r.compact then
+    line(r,"CrossfireFletching",function(u)
+     local side=right*(pulse==2 and .34 or -.23)*(1-u*.6)
+     return tip-flat*math.min(length*.5,7)*(1-u)^2+side,tip
+    end,width*.46,r.color,width*.62)
+   end
+  end
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"then
   local targets={last}
   if shape=="fan"then
@@ -835,26 +862,38 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif shape=="lightning"then
   local path={}
   if d.form=="chain"then
-   local from=first
+   local from=vector(muzzle) and (muzzle-first).Magnitude<=8 and muzzle or first
    for i=1,math.min(type(points)=="table"and #points or 0,d.maxTargets or 4)do
-    if vector(points[i])then table.insert(path,{from,points[i]});from=points[i]end
+    if vector(points[i])then
+     if (points[i]-from).Magnitude>.02 then table.insert(path,{from,points[i]}) end
+     from=points[i]
+    end
    end
   else table.insert(path,{d.form=="ground"and last+Vector3.yAxis*10 or first,last})end
-  for _,link in ipairs(path)do
-   local bolts=Geometry.lightning(link[1],link[2],6)
+  local segments=d.form=="chain" and r.compact and 4 or 6
+  if d.form=="chain" and #path>0 then
+   local limit=Input.TouchEnabled and 144 or 240
+   if beams+#path*segments<=limit then r.model:SetAttribute("ChainCore",true)
+   else table.clear(path) end
+  end
+  for hop,link in ipairs(path)do
+   local bolts=Geometry.lightning(link[1],link[2],segments)
    local forks={};local axis=forward(link[1],link[2]);local side=axis:Cross(Vector3.yAxis)
    side=side.Magnitude>.01 and side.Unit or Vector3.xAxis
    local extent=math.min(1.6,(link[2]-link[1]).Magnitude*.18)
-   for fork=1,(#path>3 and 1 or 3)do
+   for fork=1,(r.compact and segments==4 and 1 or #path>3 and 1 or 3)do
     local at=bolts[fork*2];local sign=fork%2==0 and -1 or 1
     local tip=at+side*sign*extent+axis*extent*.45
     local kink=at+(tip-at)*.5+Vector3.yAxis*extent*.25
     table.insert(forks,{at,kink,tip})
    end
-   table.insert(electricLinks,{bolts=bolts,forks=forks,side=side})
-   for i=1,#bolts-1 do stroke("ElectricCore",bolts[i],bolts[i+1],width,WHITE)end
-   for _,fork in ipairs(forks)do
-    for i=1,2 do stroke("ElectricFork",fork[i],fork[i+1],width*.42,r.color)end
+   local coreWidth=d.form=="chain" and width*(1-.12*(hop-1)) or width
+   table.insert(electricLinks,{bolts=bolts,forks=forks,side=side,width=coreWidth})
+   for i=1,#bolts-1 do stroke("ElectricCore",bolts[i],bolts[i+1],coreWidth,WHITE)end
+  end
+  for _,link in ipairs(electricLinks)do
+   for _,fork in ipairs(link.forks)do
+    for i=1,2 do stroke("ElectricFork",fork[i],fork[i+1],link.width*.42,r.color)end
    end
   end
  elseif shape=="vine"then
@@ -922,6 +961,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    local sign=spinStyle=='CrossingCyclones'and lane==2 and -1 or 1
    Surfaces.animate(r,start,first,normal,-sign*2.4,false,r.life)
   end
+ elseif counterSlash then
+  Surfaces.ribbon(r,"CounterSlashSteel",counterPath,Vector3.yAxis,.62,.46,r.color:Lerp(r.hot,.18),r.compact and 5 or 9,Enum.Material.SmoothPlastic)
+ elseif crossfire then
+  -- The narrow beam and paired fletching carry this shot across the arena.
  elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="low"or shape=="counter"then
   local sweep=angle
   local start=#r.faces
@@ -1119,12 +1162,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     end
    end
   end
- elseif shape=="lightning"then
+ elseif shape=="lightning" and (d.form~="chain" or not r.compact) then
   for _,link in ipairs(electricLinks)do
     local bolt=link.bolts;local side=link.side
     for j=1,#bolt-1 do
      local a,b=bolt[j],bolt[j+1]
-     Surfaces.triangle(r,"LightningSurface",a-side*.3,b,a+side*.3,nil,.24)
+     local span=d.form=="chain" and link.width*2 or .3
+     Surfaces.triangle(r,"LightningSurface",a-side*span,b,a+side*span,nil,.24)
     end
     for _,fork in ipairs(link.forks)do for j=1,2 do
      Surfaces.triangle(r,"LightningBranch",fork[j]-Vector3.yAxis*.075,fork[j+1],fork[j]+Vector3.yAxis*.075,nil,.25)

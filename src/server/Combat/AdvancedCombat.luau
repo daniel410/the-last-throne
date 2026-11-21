@@ -14,15 +14,22 @@ local function nearer(center,a,b)
  local da,db=(a.root.Position-center).Magnitude,(b.root.Position-center).Magnitude
  return da<db or da==db and a.id<b.id
 end
+local function castRay(origin,delta,character)
+ local world=workspace:FindFirstChild("DeepwoodK0")
+ local params=RaycastParams.new()
+ params.FilterType=Enum.RaycastFilterType.Exclude
+ params.FilterDescendantsInstances={character,world and world:FindFirstChild("Enemies") or character}
+ params.RespectCanCollide=true
+ return workspace:Raycast(origin,delta,params)
+end
 function AdvancedCombat.snapshot(state,skill,direction,target,enemies,clear)
  local origin=state.root.Position
  local center=origin+direction*skill.range
  local selected=target and enemies[target]
  if selected and alive(selected) and (selected.root.Position-origin).Magnitude<=skill.range and math.abs(selected.root.Position.Y-origin.Y)<=skill.maxHeight and clear(origin,selected.root.Position,state.character,selected.model) then center=selected.root.Position
  else selected=nil end
- local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude;params.FilterDescendantsInstances={state.character,workspace:FindFirstChild("DeepwoodK0") and workspace.DeepwoodK0:FindFirstChild("Enemies") or state.character};params.RespectCanCollide=true
  if skill.form=="line" then center=origin+direction*skill.range end
- local wall=workspace:Raycast(origin,center-origin,params)
+ local wall=castRay(origin,center-origin,state.character)
  if wall then center=wall.Position-direction*.2 end
  local visualCenter
  if skill.detonate and skill.form=="line" then
@@ -45,7 +52,7 @@ function AdvancedCombat.resolve(state,attack,current,services,pulse)
  local origin=d.returning and cast.origin or state.root.Position
  local center=(d.form=="area" and (d.originArea and cast.origin or origin)) or cast.center
  local direction=attack.direction
- if d.crosscut and pulse%2==0 then direction=CFrame.Angles(0,math.rad(18),0):VectorToWorldSpace(direction) end
+ if d.crosscut and pulse%2==0 then direction=CFrame.Angles(0,math.rad(d.crosscutAngle),0):VectorToWorldSpace(direction) end
  if d.scatter then center=center+Vector3.new((pulse%2==0 and 1 or -1)*3,0,(pulse-2)*2) end
  local targets={}
  local selected=cast.target and services.enemies[cast.target]
@@ -108,6 +115,13 @@ function AdvancedCombat.resolve(state,attack,current,services,pulse)
  end
  local points={};for i=1,math.min(d.maxTargets,#targets) do table.insert(points,targets[i].root.Position) end
  if d.form=="projectile" and points[1] then center=points[1] end
+ -- Keep hit resolution and target ordering above on their original inputs.
+ -- The visible line starts at the pulse's origin and stops at its own wall.
+ if d.crosscut and d.form=="line" then
+  local delta=direction*d.range
+  local wall=castRay(origin,delta,state.character)
+  center=wall and origin+direction*math.max(0,wall.Distance-.2) or origin+delta
+ end
  services.visual(state,d,origin,center,pulse,points)
 end
 return AdvancedCombat

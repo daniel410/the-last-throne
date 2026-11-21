@@ -15,6 +15,7 @@ local function branch(id,classId,name,icon,rows)
   d.advanced=true;d.stage=d.level>=80 and 4 or d.level>=60 and 3 or d.level>=40 and 2 or 1
   d.ultimate=d.level==80;d.icon=d.icon or icon;d.element=d.element or (classId=="mage" and (id=="pyro" and "fire" or "frost") or id=="magic_archer" and "nature" or id=="gunner" and "gun" or id=="paladin" and "holy" or "steel")
   d.pulses=d.pulses or 1;d.interval=d.interval or .3
+  if d.crosscut then d.crosscutAngle=18 end
   d.windup=d.windup or (d.ultimate and .9 or d.form=="ground" and .65 or .3)
   d.active=.12+(d.pulses-1)*d.interval;d.recovery=.35
   d.cooldown=d.cooldown or (d.ultimate and 60 or d.form=="ground" and 12 or d.shield and 14 or 7)

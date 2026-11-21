@@ -175,6 +175,14 @@ function Motion.forCharacter(character,now)
  local reload=d==Config.BasicAttackProfiles.elf.attacks[1] and rigType~=Enum.HumanoidRigType.R6
  local pose=reload and Motion.sampleBasic(t,rigType) or Motion.sample(t)
  pose.time=t;pose.nocked=t<.8;pose.aimDirection=lockedAim(character)
+ if d.crosscut and pose.aimDirection and count and count>0 then
+  local yaw=1
+  if count==1 then
+   local redraw=math.clamp(((sinceRelease or 0)-.04)/math.max(.01,d.interval-.07),0,1)
+   yaw=redraw*redraw*(3-2*redraw)
+  end
+  pose.aimDirection=CFrame.Angles(0,math.rad(d.crosscutAngle)*yaw,0):VectorToWorldSpace(pose.aimDirection)
+ end
  -- Hold the hand at anchor on release; move it behind the cheek instead of
  -- chasing the string as it snaps forward. IK weight is sampled, never integrated.
  pose.ikWeight=t<.8 and math.clamp(t/.18,0,1) or math.clamp(1-(t-.8)/.035,0,1)

@@ -27,6 +27,7 @@ local bow = {
     pierce=stance(v(14,-31,-3), -2, 28, 31),
     heavy=stance(v(15,-32,-13), -17, 31, 34),
     snap=stance(v(5,14,9), 20, 15, 23),
+    crossfire=stance(v(9,-8,8), 12, 24, 26),
     fan=stance(v(10,-20,15), 39, 22, 32),
     broadside=stance(v(16,-33,18), 47, 32, 39),
     retreat=stance(v(-15,20,9), 22, 29, 28),
@@ -41,6 +42,7 @@ local function bowStance(d)
     local step = d.move or d.pulseMove
     if step then return step<0 and bow.retreat or bow.advance end
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
+    if d.crosscut then return bow.crossfire end
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
     if d.id=="elf.marksman.heavy_draw" then return bow.heavy end
     if d.id=="elf_pinning_shot" then return bow.pin end
@@ -86,6 +88,12 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     add(pose,"leftHip",v(-.36*knees,0,-7*support))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(knees*.65,0,0))
+    if s == bow.crossfire and since then
+        -- The chest follows the sweep while the bow stays on its locked line.
+        local pivot = betweenShots and redraw or .55*recoil
+        add(pose,"torso",v(0,d.crosscutAngle,7)*pivot)
+        add(pose,"leftKnee",v(11*pivot,0,0))
+    end
     if s == bow.heavy and since then
         local settle = smooth(since/.08)*(1-smooth((since-.08)/.15))
         add(pose,"right",v(3,12,11)*settle)
@@ -122,6 +130,7 @@ local spells = {
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
     storm=gesture(v(29,-20,19),v(48,13,27),v(-14,-18,10),v(47,-18,-14),20),
+    chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
@@ -138,6 +147,7 @@ local function spellGesture(d,profile)
     local cue = Presentation.get(d)
     if not cue then return spells.bolt end
     if cue.motion=="rain" then return cue.effect=="hail" and spells.hailfall or spells.ashfall end
+    if d.form=="chain" then return spells.chain end
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
@@ -177,6 +187,7 @@ function Poses.mage(pose,d,profile,age)
     local palmRelease = s == spells.iceRing and v(0,-9,-20)
         or s == spells.cinder and v(17,0,8)
         or s == spells.storm and v(-10,14,0)
+        or s == spells.chain and v(-22,-18,37)
         or (s == spells.earth or s == spells.caldera) and v(-16,0,7)
         or s == spells.ashfall and v(-8,14,12)
         or s == spells.hailfall and v(21,-6,-8)

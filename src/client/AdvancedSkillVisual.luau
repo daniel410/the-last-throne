@@ -227,14 +227,10 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   HeroVFX.endIncoming(character,attackSeq,pulse)
  end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
- -- The server rotates its line hit direction but retains cast.center in the
- -- visual event. Project the same single 18-degree rotation for the even beat.
- if pulse>0 and d.crosscut and d.form=="line" and pulse%2==0 then
-  local direction=CFrame.Angles(0,math.rad(18),0):VectorToWorldSpace(center-origin)
-  center=origin+direction
- end
  local compact=HeroVFX.isOtherHero(character)
- if pulse~=0 and not compact and not bomb then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
+ if pulse~=0 and not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" then
+  PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt)
+ end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
  local findFloor=bomb and Bomb.floor or ground
@@ -273,8 +269,16 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local decorate=not compact or not primary
  -- Core geometry is rendered before optional impact decoration.
  if d.form=="chain" then
-  local from=first
-  for i=1,math.min(type(points)=="table" and #points or 0,8) do lightning(from,points[i],color);from=points[i] end
+  if not (primary and primary:GetAttribute("ChainCore")) then
+   local from=first
+   for i=1,math.min(type(points)=="table" and #points or 0,d.maxTargets) do
+    local target=points[i]
+    if typeof(target)=="Vector3" then
+     segment(from,target,color,.15,.1,"ChainFallback")
+     from=target
+    end
+   end
+  end
  elseif d.form=="self" then
   local root=character and character:FindFirstChild("HumanoidRootPart")
   local life=d.shieldDuration or 4
@@ -317,7 +321,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  elseif effect=="arrow" then
   if d.form=="cone" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
-  else arrow(first,center,color,character) end
+  elseif not (primary and primary:GetAttribute("CrossfireTrace")) then arrow(first,center,color,character) end
  elseif effect=="axe" then
   if not primary then
   local from,to=origin,center;if d.returning and pulse==2 then from,to=center,origin end
@@ -362,7 +366,9 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  end
  if d.shield and d.form~="self" and(not primary or(id~="mage.cryo.ice_ward" and id~="mage.pyro.searing_ward" and id~="dwarf.iron_axe.iron_shoulder"))then arc(floor,direction,2.7,360,color,.5,"GuardGranted")end
- if decorate and not bomb and type(points)=="table" then for i=1,math.min(#points,4) do impact(points[i],color,.7) end end
+ if decorate and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" and type(points)=="table" then
+  for i=1,math.min(#points,4) do impact(points[i],color,.7) end
+ end
 end
 local started=false
 function Visual.start()

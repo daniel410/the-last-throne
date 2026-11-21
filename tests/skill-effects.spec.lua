@@ -83,9 +83,13 @@ for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced the
 end end end
 check(count==116,'execute all advanced skills and all pulses')
 local expectedPulses=0
-for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced and not modules.Bomb.get(d.id) then expectedPulses=expectedPulses+d.pulses end end end
-check(pixelPulses==expectedPulses,'confirmed pulses send to PixelFX while hand-thrown bombs use their own burst')
-for _,name in ipairs({'SkillTelegraph','ImpactBoundary','ArrowShaft','LightningFork','IceCrystal','EarthRupture','RifleTracer','ShotPellet','ThrownAxeBlade','BladeCrescent','PersonalWard','ShieldContact','LavaFissure'})do check(seen[name],name..' has exercised renderer')end
+for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do
+ if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and d.id~='elf.marksman.crossfire' then
+  expectedPulses=expectedPulses+d.pulses
+ end
+end end
+check(pixelPulses==expectedPulses,'confirmed pulses supplement skills that use PixelFX')
+for _,name in ipairs({'SkillTelegraph','ImpactBoundary','ArrowShaft','LightningFork','ChainFallback','IceCrystal','EarthRupture','RifleTracer','ShotPellet','ThrownAxeBlade','BladeCrescent','PersonalWard','ShieldContact','LavaFissure'})do check(seen[name],name..' has exercised renderer')end
 check(not seen.RootingVine and not seen.SteamJet and not seen.MortarDescent,'specialized roots, vapor and shells have one renderer owner')
 -- Gunner cancellation removes the left-hand prop and preserves the held axe.
 local d=Advanced.branches.gunner.skills[1]
