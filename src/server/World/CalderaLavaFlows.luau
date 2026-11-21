@@ -16,7 +16,8 @@ local dark = C(53, 44, 48)
 local cooled = C(74, 56, 54)
 local scoria = C(91, 37, 27)
 local molten = C(166, 41, 17)
-local shear = C(192, 59, 24)
+local shear = C(209, 52, 14)
+local shadedShear = C(165, 27, 8)
 local ember = C(183, 37, 9)
 local thread = C(224, 52, 14)
 local slag = C(31, 25, 28)
@@ -40,9 +41,9 @@ local function channel(root, name, a, b, width, depth, speed)
 	for _, side in ipairs({-1, 1}) do
 		local stretch = side < 0 and .76 or .57
 		contour(root, 'MoltenShearLobe', V(width * .29, depth * .23, length * stretch),
-			frame * CFrame.new(side * width * .16, surface + depth * .13, side * length * .13)
+			frame * CFrame.new(side * width * .16, surface + depth * .30, side * length * .13)
 				* CFrame.Angles(0, side * .13, 0),
-			shear:Lerp(molten, side < 0 and 0 or .36), M.SmoothPlastic, 'Ball')
+			side < 0 and shear or shadedShear, M.Neon, 'Ball')
 	end
 	for _, side in ipairs({-1, 1}) do
 		local z = side * length * .15
@@ -54,11 +55,11 @@ local function channel(root, name, a, b, width, depth, speed)
 
 	-- Short heat streaks move downslope. Nothing illuminates the surrounding rocks locally.
 	for _, side in ipairs({-1, 1}) do
-		local offset = V(side * width * .13, surface + depth * .23, 0)
+		local offset = V(side * width * .13, surface + depth * .45, 0)
 		local from = frame * (offset + V(0, 0, length * .28))
 		local to = frame * (offset - V(0, 0, length * .28))
 		local phase = side < 0 and .22 or .63
-		local vein = frame * CFrame.new(side * width * .11, surface + depth * .20, side * length * .105)
+		local vein = frame * CFrame.new(side * width * .11, surface + depth * .38, side * length * .105)
 			* CFrame.Angles(0, -side * .10, 0)
 		contour(root, 'GlowingFissure', V(width * .125, math.max(.09, depth * .10), length * (side < 0 and .74 or .51)),
 			vein, ember, M.Neon, 'Ball')

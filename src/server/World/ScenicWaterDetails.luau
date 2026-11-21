@@ -115,6 +115,12 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 	rock('QuarryFracture', V(-19, 8, -9), V(12, 17, 16), .34, stone, 'Wedge')
 	rock('QuarryFracture', V(15, 7, -10), V(13, 15, 20), -.27, stone, 'Wedge')
 	rock('MossyLedge', V(-12, 26.8, -15), V(9, .9, 11), .12, palette.ground, 'Wedge')
+	-- A low bed lifts the waterline above the quarry's grass overlay at the strike point.
+	local poolHeight = 1.9
+	for _, sample in ipairs({V(-5, 0, 6), V(3, 0, 8), V(-3, 0, 14)}) do
+		local floor, found = ground(origin + sample)
+		if found then poolHeight = math.max(poolHeight, floor.Y - origin.Y + 1.1) end
+	end
 	local springFrom = origin + V(-2, 27.58, -18)
 	local springTo = origin + V(-2, 27.58, -.7)
 	film(model, 'SpringRun', springFrom, springTo, 9.5, .15, shallowWater, .25)
@@ -126,7 +132,7 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 	for i, lane in ipairs({{-5.4, 3.15}, {-2.4, 3.1}, {.38, 2.8}}) do
 		local x, width = table.unpack(lane)
 		local from = origin + V(x, 27.59, -.8)
-		local to = origin + V(x + .7, .50, 6.0 + i * .33)
+		local to = origin + V(x + .7, poolHeight, 6.0 + i * .33)
 		local bend = from:Lerp(to, .76 + i * .035)
 		local strip = film(model, 'FallingWater', from, bend, width * (i == 2 and 1 or .88), .22,
 			i == 2 and C(111, 174, 185) or shallowWater:Lerp(deepWater, .12), .38)
@@ -142,12 +148,16 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		end
 	end
 
-	local pool = Kit.part(model, 'PlungePool', V(28, .26, 25),
-		CFrame.new(origin + V(-1, .44, 9.5)) * CFrame.Angles(0, -.12, 0), deepWater, M.SmoothPlastic, 'Ball')
+	local poolFrame = CFrame.new(origin + V(-1, poolHeight, 9.5)) * CFrame.Angles(0, -.12, 0)
+	local bedDepth = poolHeight + 1.1
+	Kit.part(model, 'QuarryPoolBed', V(29.2, bedDepth, 25.8),
+		poolFrame * CFrame.new(0, -.12 - bedDepth / 2, 0), wetRock, M.Slate, 'Ball')
+	local pool = Kit.part(model, 'PlungePool', V(28, .26, 25), poolFrame, deepWater, M.SmoothPlastic, 'Ball')
 	pool.CastShadow = false
 	pool.Transparency = .075
+	model:SetAttribute('PoolSurfaceHeight', pool.Position.Y)
 	local churn = Kit.part(model, 'FallImpactFoam', V(10.3, .08, 4.8),
-		CFrame.new(origin + V(-2.1, .62, 7.6)), shallowWater:Lerp(foam, .62), M.SmoothPlastic, 'Ball')
+		CFrame.new(origin + V(-2.1, poolHeight + .18, 7.6)), shallowWater:Lerp(foam, .62), M.SmoothPlastic, 'Ball')
 	churn.CastShadow = false
 	churn.Transparency = .35
 	local stones = {
@@ -158,17 +168,17 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		rock('PoolBank', bank[1], bank[2] + V(0, groundSpread, 0), bank[3], wetRock, 'Wedge')
 	end
 	for i, side in ipairs({-1, 0, 1}) do
-		local impact = origin + V(-1 + side, .65, 7)
-		current(model, 'PoolFoamFan', impact, origin + V(-1 + side * 7, .65, 12.5 + (1 - math.abs(side)) * 3),
+		local impact = origin + V(-1 + side, poolHeight + .21, 7)
+		current(model, 'PoolFoamFan', impact, origin + V(-1 + side * 7, poolHeight + .21, 12.5 + (1 - math.abs(side)) * 3),
 			V(3.5 + i * .45, .07, .63), foam, .16, 4.2, i / 4, 'splash', 'Ball')
 	end
 	for _, side in ipairs({-1, 1}) do
-		local impact = origin + V(-1 + side, .66, 7.4)
+		local impact = origin + V(-1 + side, poolHeight + .22, 7.4)
 		current(model, 'ImpactSpray', impact, impact + V(side * 3.1, 1.25, 2.7),
 			V(.45, .23, .76), foam, .24, 6, .48 + side * .22, 'splash', 'Ball')
 	end
 	runnel(model, {
-		origin + V(3.6, .37, 18.5), origin + V(7, .18, 27), origin + V(13.5, .14, 35),
+		origin + V(3.6, poolHeight, 18.5), origin + V(7, .18, 27), origin + V(13.5, .14, 35),
 		origin + V(15.3, .11, 45), origin + V(21, .10, 55),
 	}, {8.5, 7.7, 6.7, 4.9})
 	rock('OutflowGravel', V(21.4, .10, 55), V(7, .7, 6), -.28, wetRock, 'Wedge')
