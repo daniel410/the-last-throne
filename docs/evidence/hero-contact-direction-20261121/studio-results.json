@@ -1,0 +1,997 @@
+{
+  "sourceCommit": "fef0343ddc18db84d0a85c08e1def435e327bb8e",
+  "placeSha256": "616275ffb39078fe4675af80424112aeca10ecb029d1abb3ec980ff30db8130c",
+  "environment": "Roblox Studio isolated local Place, run-in-roblox 0.3.0",
+  "batch": {
+    "suiteCount": 30,
+    "passedSuites": 29,
+    "checksInPassedSuites": 281455,
+    "suites": {
+      "gunner-payload": false,
+      "hero-skill-sockets": true,
+      "melee-action-beats": true,
+      "hero-ground-impact": true,
+      "rpg-element-motion": true,
+      "vfx-art-hero-fixes": true,
+      "vfx-review-followup": true,
+      "hero-skill-impact": true,
+      "hero-vfx": true,
+      "skill-vfx-individual": true,
+      "hero-vfx-flourish": true,
+      "hero-hit-feedback": true,
+      "combat-audio": true,
+      "arcade-impact-vfx": true,
+      "rpg-vfx-motion": true,
+      "element-vfx": true,
+      "hero-skill-windup": true,
+      "ranged-action-poses": true,
+      "hero-skills": true,
+      "k0-skill-animation": true,
+      "projectile-vfx-timing": true,
+      "elf-confirmed-release": true,
+      "skill-icon-vfx": true,
+      "rpg-vfx-gap": true,
+      "vfx-style-fit": true,
+      "hero-final-beat": true,
+      "curated-vfx": true,
+      "vfx-art-palette": true,
+      "k0-hit-effects": true,
+      "damage-feedback": true
+    },
+    "reports": {
+      "GUNNER_PAYLOAD_NATIVE": {
+        "error": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:82: dwarf.gunner.shrapnel_toss releases a physical bomb before landing\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:82\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:62\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:3\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n",
+        "pass": false,
+        "checks": 19
+      },
+      "HERO_SKILL_SOCKETS_NATIVE": {
+        "checks": 16,
+        "samples": [
+          {
+            "id": "knight_driving_thrust",
+            "forwardDot": 1.0000001192092896,
+            "tipHeight": 0.794403076171875,
+            "rig": "R6"
+          },
+          {
+            "id": "dwarf.gunner.gunner_shot",
+            "forwardDot": 0.9948293566703796,
+            "rig": "R6"
+          },
+          {
+            "id": "knight_driving_thrust",
+            "forwardDot": 1,
+            "tipHeight": 0.770477294921875,
+            "rig": "R15"
+          },
+          {
+            "id": "dwarf.gunner.gunner_shot",
+            "forwardDot": 0.9948296546936035,
+            "rig": "R15"
+          }
+        ],
+        "failures": [],
+        "pass": true,
+        "kind": "HERO_SKILL_SOCKETS_NATIVE"
+      },
+      "MELEE_ACTION_BEATS_NATIVE": {
+        "rigActions": 140,
+        "contacts": 204,
+        "pass": true,
+        "checks": 2147
+      },
+      "HERO_GROUND_IMPACT_NATIVE": {
+        "skills": 10,
+        "pass": true,
+        "checks": 128
+      },
+      "RPG_ELEMENT_MOTION_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 78
+      },
+      "VFX_ART_HERO_FIXES_NATIVE": {
+        "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+        "failures": [],
+        "pass": true,
+        "checks": 2335
+      },
+      "VFX_REVIEW_FOLLOWUP_NATIVE": {
+        "attacks": 146,
+        "checks": 1357,
+        "failures": [],
+        "pass": true,
+        "dashes": 11
+      },
+      "HERO_SKILL_IMPACT_NATIVE": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 716
+      },
+      "HERO_VFX_NATIVE": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 10063
+      },
+      "SKILL_VFX_INDIVIDUAL_NATIVE": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 306
+      },
+      "HERO_VFX_FLOURISH_NATIVE": {
+        "coverage": "Native decoration, budgets and Lua update cost; not GPU or device acceptance",
+        "checks": 82,
+        "luaUpdateP95ms": 0.8830416481941938,
+        "luaUpdateP50ms": 0.8471666369587183,
+        "pass": true,
+        "failures": []
+      },
+      "HERO_HIT_FEEDBACK_NATIVE": {
+        "kind": "HERO_HIT_FEEDBACK_NATIVE",
+        "pass": true,
+        "checks": 1667
+      },
+      "COMBAT_AUDIO_NATIVE": {
+        "kind": "COMBAT_AUDIO_NATIVE",
+        "assets": [
+          {
+            "loaded": true,
+            "id": "rbxassetid://9125959472",
+            "length": 1.5328333333333333,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9118598279",
+            "length": 0.37525,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9125648149",
+            "length": 0.7233125,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9113852810",
+            "length": 2.181395833333333,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9119744718",
+            "length": 0.39995833333333336,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9119072660",
+            "length": 0.7398958333333333,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://7258329846",
+            "length": 0.422312925170068,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9116395089",
+            "length": 2.4622083333333333,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9125703168",
+            "length": 0.7544166666666666,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9114855626",
+            "length": 1.280875,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9114277757",
+            "length": 0.9707708333333334,
+            "status": "Success"
+          },
+          {
+            "loaded": true,
+            "id": "rbxassetid://9117988736",
+            "length": 0.6475833333333333,
+            "status": "Success"
+          }
+        ],
+        "success": true,
+        "checks": 824,
+        "published": false,
+        "skills": 128,
+        "pulses": 199
+      },
+      "ARCADE_IMPACT_VFX_NATIVE": {
+        "coverage": "Native geometry and timing; no GPU, multiplayer or user art acceptance",
+        "failures": [],
+        "pass": true,
+        "checks": 585
+      },
+      "RPG_VFX_MOTION_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 190
+      },
+      "ELEMENT_VFX_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 84
+      },
+      "HERO_SKILL_WINDUP_NATIVE": {
+        "styles": {
+          "CrystalTips": 9,
+          "WardPetals": 3,
+          "WaterCurl": 2,
+          "SwordPoint": 2,
+          "RisingGrit": 15,
+          "BoreBrackets": 4,
+          "ShieldBrace": 10,
+          "GatheringFork": 4,
+          "SightDraw": 14,
+          "LeafDraw": 12,
+          "MortarBrace": 5,
+          "DrawnEdge": 17,
+          "AxeCoil": 5,
+          "HighDraw": 2,
+          "EmberCurl": 7,
+          "FuseCurl": 4
+        },
+        "skills": 115,
+        "pass": true,
+        "checks": 1400
+      },
+      "RANGED_ACTION_POSES_NATIVE": {
+        "checks": 158,
+        "pass": true,
+        "maxRedrawJumpDegrees": 0.011101223528385162,
+        "actions": 132,
+        "rigs": [
+          "R6",
+          "R15"
+        ]
+      },
+      "HERO_SKILLS_NATIVE": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      },
+      "K0_SKILL_ANIMATION_NATIVE": {
+        "coverage": "Actual R6/R15 joints and bow transforms; no Player, animation aesthetics, network latency or mobile acceptance",
+        "checks": 61,
+        "samples": [
+          {
+            "armDelta": 0.39147624373435974,
+            "skill": "knight.common.bash",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.0191043615341187,
+            "skill": "knight.common.whirlwind",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.469785213470459,
+            "skill": "knight.common.provoke",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.8297414779663086,
+            "skill": "knight_driving_thrust",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.1146308183670044,
+            "skill": "knight_crescent_cut",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.39147624373435974,
+            "skill": "knight_guarded_strike",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.13133306801319122,
+            "skill": "knight.steel_knight.counter_slash",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.47454652190208435,
+            "skill": "dwarf.common.overhead",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.7253426313400269,
+            "skill": "dwarf.common.throw",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.4608202278614044,
+            "skill": "dwarf.common.ground",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.1242547035217285,
+            "skill": "dwarf_hooking_chop",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.8176978230476379,
+            "skill": "dwarf_low_sweep",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.9200631976127625,
+            "skill": "dwarf_braced_throw",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.056557588279247284,
+            "skill": "elf.common.aimed",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.18174226582050323,
+            "skill": "elf.common.rapid",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.1731719672679901,
+            "skill": "elf.common.multi",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.12130684405565262,
+            "skill": "elf_retreating_shot",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.056557588279247284,
+            "skill": "elf_pinning_shot",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.1631564348936081,
+            "skill": "elf_arrow_screen",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.9107104539871216,
+            "skill": "mage.common.mana_bolt",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.141452670097351,
+            "skill": "mage.common.water_ball",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.7824414372444153,
+            "skill": "mage.common.gravity",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.311558485031128,
+            "skill": "mage_wind_lance",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.0224343538284302,
+            "skill": "mage_tidal_ring",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.238545298576355,
+            "skill": "mage_arcane_ward",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.3914765417575836,
+            "skill": "knight.common.bash",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.8086758852005005,
+            "skill": "knight.common.whirlwind",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.4697847366333008,
+            "skill": "knight.common.provoke",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.0713249444961548,
+            "skill": "knight_driving_thrust",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.8944584131240845,
+            "skill": "knight_crescent_cut",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.3914765417575836,
+            "skill": "knight_guarded_strike",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.1463412344455719,
+            "skill": "knight.steel_knight.counter_slash",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.5285206437110901,
+            "skill": "dwarf.common.overhead",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.7253424525260925,
+            "skill": "dwarf.common.throw",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.8820940256118774,
+            "skill": "dwarf.common.ground",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.1223981380462646,
+            "skill": "dwarf_hooking_chop",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 2.135390281677246,
+            "skill": "dwarf_low_sweep",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.9200630187988281,
+            "skill": "dwarf_braced_throw",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.05655969679355621,
+            "skill": "elf.common.aimed",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.1817416101694107,
+            "skill": "elf.common.rapid",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.17317335307598114,
+            "skill": "elf.common.multi",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.121309794485569,
+            "skill": "elf_retreating_shot",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.05655969679355621,
+            "skill": "elf_pinning_shot",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.16315864026546478,
+            "skill": "elf_arrow_screen",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.9107104539871216,
+            "skill": "mage.common.mana_bolt",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.141452431678772,
+            "skill": "mage.common.water_ball",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.782441258430481,
+            "skill": "mage.common.gravity",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.311558485031128,
+            "skill": "mage_wind_lance",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.0224345922470093,
+            "skill": "mage_tidal_ring",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.238545536994934,
+            "skill": "mage_arcane_ward",
+            "rig": "R15"
+          }
+        ],
+        "kind": "K0_SKILL_ANIMATION_NATIVE",
+        "pass": true,
+        "failures": []
+      },
+      "PROJECTILE_VFX_TIMING_NATIVE": {
+        "pass": true,
+        "checks": 192
+      },
+      "ELF_CONFIRMED_RELEASE": {
+        "passed": true,
+        "checks": 13
+      },
+      "SKILL_ICON_VFX_NATIVE": {
+        "maxBeams": 48,
+        "failures": [],
+        "checks": 13480,
+        "missing": [],
+        "skills": 128,
+        "pass": true,
+        "pulses": 199
+      },
+      "RPG_VFX_GAP_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 21
+      },
+      "VFX_STYLE_FIT_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 58
+      },
+      "HERO_FINAL_BEAT_NATIVE": {
+        "skills": 8,
+        "pass": true,
+        "checks": 100
+      },
+      "CURATED_VFX_NATIVE": {
+        "assets": {
+          "rbxassetid://8030734851": true,
+          "rbxassetid://8196169974": true,
+          "rbxassetid://9937082969": true,
+          "rbxassetid://9997556038": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 168
+      },
+      "VFX_ART_PALETTE_NATIVE": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 562
+      },
+      "K0_HIT_EFFECTS_NATIVE": {
+        "coverage": "Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance",
+        "checks": 102,
+        "samples": [
+          {
+            "speed": 1.350000023841858,
+            "class": "knight",
+            "sound": "rbxasset://sounds/action_jump_land.mp3"
+          },
+          {
+            "speed": 0.892288863658905,
+            "class": "dwarf",
+            "sound": "rbxassetid://9118598279"
+          },
+          {
+            "speed": 0.8981928825378418,
+            "class": "mage",
+            "sound": "rbxassetid://9118598279"
+          },
+          {
+            "speed": 0.9047308564186096,
+            "class": "elf",
+            "sound": "rbxassetid://9118598279"
+          }
+        ],
+        "kind": "K0_HIT_EFFECTS_NATIVE",
+        "pass": true,
+        "failures": []
+      },
+      "DAMAGE_FEEDBACK_NATIVE": {
+        "checks": 42,
+        "pass": true,
+        "kind": "DAMAGE_FEEDBACK_NATIVE",
+        "sound": {
+          "id": "rbxasset://sounds/ouch.ogg",
+          "duration": 0.3322902494331066,
+          "loaded": true
+        },
+        "failures": []
+      }
+    }
+  },
+  "gunnerTimingReproduction": {
+    "baselineVersion": "0.115.11",
+    "comparisonVersion": "0.115.12",
+    "lateBySeconds": {
+      "before": 0.3653249740600586,
+      "after": 0.3805079460144043
+    },
+    "case": "Shrapnel Toss pulse 1 in Edit mode"
+  },
+  "visualComparison": {
+    "baselineVersion": "0.115.11",
+    "baselineSha256": "2b030230e437866e78ac1226c809fa5ca740b7380d79342228095c59194761f5",
+    "poseSnapshots": {
+      "before": {
+        "knight_driving_thrust": {
+          "angles": {
+            "elbow": [
+              37.34000015258789,
+              0,
+              0
+            ],
+            "leftKnee": [
+              11.663999557495117,
+              0,
+              0
+            ],
+            "rightKnee": [
+              0,
+              0,
+              0
+            ],
+            "leftElbow": [
+              24,
+              0,
+              0
+            ],
+            "torso": [
+              2,
+              0,
+              -1
+            ],
+            "left": [
+              30,
+              -35,
+              8
+            ],
+            "right": [
+              54.630001068115234,
+              1.5399999618530273,
+              -29.170000076293945
+            ]
+          },
+          "skill": "knight_driving_thrust",
+          "delay": 0.055
+        },
+        "dwarf_hooking_chop": {
+          "angles": {
+            "elbow": [
+              23.64150047302246,
+              11.458932876586914,
+              -0.5661033391952515
+            ],
+            "leftKnee": [
+              5.051585674285889,
+              0,
+              0
+            ],
+            "rightKnee": [
+              5.051585674285889,
+              0,
+              0
+            ],
+            "leftElbow": [
+              21.895862579345703,
+              37.513423919677734,
+              8.427281379699707
+            ],
+            "torso": [
+              15.370936393737793,
+              13.897014617919922,
+              -1.4176071882247925
+            ],
+            "left": [
+              21.382129669189453,
+              11.911905288696289,
+              -32.50994873046875
+            ],
+            "right": [
+              29.644174575805664,
+              3.5468406677246094,
+              87.52355194091797
+            ]
+          },
+          "skill": "dwarf_hooking_chop",
+          "delay": 0.06
+        },
+        "elf.marksman.heavy_draw": {
+          "angles": {
+            "elbow": [
+              54.978675842285156,
+              0,
+              0
+            ],
+            "leftKnee": [
+              17.38602066040039,
+              0,
+              0
+            ],
+            "rightKnee": [
+              26.747722625732422,
+              0,
+              0
+            ],
+            "leftElbow": [
+              7.140795707702637,
+              0,
+              0
+            ],
+            "torso": [
+              -0.19015073776245117,
+              3.7478160858154297,
+              4.45384407043457
+            ],
+            "left": [
+              88.99703979492188,
+              -2.66606068611145,
+              9.613469123840332
+            ],
+            "right": [
+              57.72517776489258,
+              58.93296813964844,
+              -4.976071357727051
+            ]
+          },
+          "skill": "elf.marksman.heavy_draw",
+          "delay": 0.08
+        },
+        "mage.cryo.frost_lance": {
+          "angles": {
+            "elbow": [
+              35.920780181884766,
+              0,
+              0
+            ],
+            "leftKnee": [
+              8.399920463562012,
+              0,
+              0
+            ],
+            "rightKnee": [
+              11.999886512756348,
+              0,
+              0
+            ],
+            "leftElbow": [
+              41.64691925048828,
+              0,
+              0
+            ],
+            "torso": [
+              6.695812225341797,
+              -5.283932209014893,
+              4.755861282348633
+            ],
+            "left": [
+              81.49455261230469,
+              -17.65845489501953,
+              -13.829912185668945
+            ],
+            "right": [
+              56.778602600097656,
+              -3.521575450897217,
+              15.306602478027344
+            ]
+          },
+          "skill": "mage.cryo.frost_lance",
+          "delay": 0.062
+        }
+      },
+      "after": {
+        "knight_driving_thrust": {
+          "angles": {
+            "elbow": [
+              37.34000015258789,
+              0,
+              0
+            ],
+            "leftKnee": [
+              21.663999557495117,
+              0,
+              0
+            ],
+            "rightKnee": [
+              0,
+              0,
+              0
+            ],
+            "leftElbow": [
+              24,
+              0,
+              0
+            ],
+            "torso": [
+              -4,
+              0,
+              -1
+            ],
+            "left": [
+              30,
+              -35,
+              8
+            ],
+            "right": [
+              54.630001068115234,
+              1.5399999618530273,
+              -29.170000076293945
+            ]
+          },
+          "skill": "knight_driving_thrust",
+          "delay": 0.055
+        },
+        "dwarf_hooking_chop": {
+          "angles": {
+            "elbow": [
+              46.641502380371094,
+              11.458932876586914,
+              -0.5661033391952515
+            ],
+            "leftKnee": [
+              5.051585674285889,
+              0,
+              0
+            ],
+            "rightKnee": [
+              17.051586151123047,
+              0,
+              0
+            ],
+            "leftElbow": [
+              21.895862579345703,
+              37.513423919677734,
+              8.427281379699707
+            ],
+            "torso": [
+              7.370936393737793,
+              27.897014617919922,
+              4.582392692565918
+            ],
+            "left": [
+              21.382129669189453,
+              11.911905288696289,
+              -32.50994873046875
+            ],
+            "right": [
+              29.644174575805664,
+              3.5468406677246094,
+              87.52355194091797
+            ]
+          },
+          "skill": "dwarf_hooking_chop",
+          "delay": 0.06
+        },
+        "elf.marksman.heavy_draw": {
+          "angles": {
+            "elbow": [
+              54.978675842285156,
+              0,
+              0
+            ],
+            "leftKnee": [
+              27.38602066040039,
+              0,
+              0
+            ],
+            "rightKnee": [
+              26.747722625732422,
+              0,
+              0
+            ],
+            "leftElbow": [
+              7.140795707702637,
+              0,
+              0
+            ],
+            "torso": [
+              -0.19015073776245117,
+              3.7478160858154297,
+              4.45384407043457
+            ],
+            "left": [
+              88.99703979492188,
+              -2.66606068611145,
+              9.613469123840332
+            ],
+            "right": [
+              60.72517776489258,
+              70.93296813964844,
+              6.023928642272949
+            ]
+          },
+          "skill": "elf.marksman.heavy_draw",
+          "delay": 0.08
+        },
+        "mage.cryo.frost_lance": {
+          "angles": {
+            "elbow": [
+              35.920780181884766,
+              0,
+              0
+            ],
+            "leftKnee": [
+              8.399920463562012,
+              0,
+              0
+            ],
+            "rightKnee": [
+              11.999886512756348,
+              0,
+              0
+            ],
+            "leftElbow": [
+              65.6464614868164,
+              0,
+              0
+            ],
+            "torso": [
+              1.6959075927734375,
+              2.7159152030944824,
+              1.7559185028076172
+            ],
+            "left": [
+              69.49478149414062,
+              -25.658302307128906,
+              -27.82964515686035
+            ],
+            "right": [
+              56.778602600097656,
+              -3.521575450897217,
+              15.306602478027344
+            ]
+          },
+          "skill": "mage.cryo.frost_lance",
+          "delay": 0.062
+        }
+      }
+    }
+  },
+  "staticChecks": 336,
+  "advancedSkillChecks": 1435,
+  "skillEffectsCpuChecks": 14026,
+  "published": false,
+  "multiplayerLiveVerified": false,
+  "lowEndTouchMeasured": false,
+  "playerAcceptanceVerified": false,
+  "gunnerIsolatedRun": {
+    "mode": "Run",
+    "warmupSeconds": 0.7,
+    "report": {
+      "pass": true,
+      "checks": 180
+    }
+  }
+}
