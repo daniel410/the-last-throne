@@ -177,17 +177,22 @@ function Motifs.draw(r,id,c,line,curve)
     return pos+spread,pos+spread+radial*.48+UP*.2
    end,width,r.hot)
   end
+ elseif cue=='lob' or cue=='bounce' or cue=='roll'then
+  -- The physical payload already traveled. Keep the icon accent at detonation.
+  for i=1,3 do
+   local angle=i*math.pi*2/3
+   local radial=flat*math.cos(angle)+right*math.sin(angle)
+   boundedLine(r,'IconBombLandingSpark',function(u)
+    local at=floor+radial*(.16+u*.9)+UP*.1
+    return at,at+radial*.4+UP*(.38*(1-u)+.06)
+   end,width,r.hot)
+  end
  else
   -- Directional feathers, chevrons, projectile echoes and explosive flight cues.
   local from,to=first,last
   if cue=='returning' and c.definition.returning and c.pulse%2==0 then from,to=last,first end
   local axis=(to-from).Magnitude>.01 and (to-from).Unit or flat
-  if cue=='lob' or cue=='bounce' or cue=='roll'then
-   for lane=1,n do path('BallisticEcho',function(t,u)
-    local height=cue=='roll' and .12 or math.abs(math.sin(t*math.pi*(cue=='bounce' and 2 or 1)))*1.6
-    return from+(to-from)*t+UP*height+right*(lane-(n+1)/2)*.18
-   end,6)end
-  elseif cue=='cross' or cue=='pair'then
+  if cue=='cross' or cue=='pair'then
    for side=-1,1,2 do
     local offset=right*side*.6
     stroke('PairedPath',from+offset,to+(cue=='cross' and -offset or offset),.075)

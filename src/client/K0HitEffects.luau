@@ -7,6 +7,7 @@ local TweenService = game:GetService("TweenService")
 local HitReaction = require(script.Parent.K0EnemyHitReaction)
 local PixelFX = require(script.Parent.PixelFX)
 local CombatAudio = require(script.Parent.K0CombatAudio)
+local Bomb = require(script.Parent.BombVisual)
 local HitStop = require(script.Parent.K0HitStop)
 local HeroVFX = require(script.Parent.HeroVFX)
 local Palette = require(ReplicatedStorage.Shared.CombatVFXPalette)
@@ -220,8 +221,10 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		{ StudsOffsetWorldSpace = Vector3.new(0, numberHeight + 0.7, 0) }):Play()
 	TweenService:Create(label, TweenInfo.new(0.65), { TextTransparency = 1, TextStrokeTransparency = 1 }):Play()
 	if type(impact) == "table" then HitStop.record(impact.attacker, impact, workspace:GetServerTimeNow()) end
-	CombatAudio.play("impact", position, classId, skillId, attacker,
-		Players.LocalPlayer ~= nil and Players.LocalPlayer.Character == attacker)
+	if not Bomb.get(skillId) then
+		CombatAudio.play("impact", position, classId, skillId, attacker,
+			Players.LocalPlayer ~= nil and Players.LocalPlayer.Character == attacker)
+	end
 	return true
 end
 

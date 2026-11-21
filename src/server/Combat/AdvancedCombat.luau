@@ -3,6 +3,17 @@
 local AdvancedCombat={}
 local function flat(v) return Vector3.new(v.X,0,v.Z) end
 local function alive(e) return e.model.Parent~=nil and e.humanoid.Health>0 and e.root.Parent~=nil end
+local function inLine(d,direction,delta)
+ local horizontal=flat(delta)
+ local along=horizontal:Dot(direction)
+ return along>=0 and along<=d.range
+  and (horizontal-direction*along).Magnitude<=(d.crosscut and 2 or 1.5)
+  and math.abs(delta.Y)<=d.maxHeight
+end
+local function nearer(center,a,b)
+ local da,db=(a.root.Position-center).Magnitude,(b.root.Position-center).Magnitude
+ return da<db or da==db and a.id<b.id
+end
 function AdvancedCombat.snapshot(state,skill,direction,target,enemies,clear)
  local origin=state.root.Position
  local center=origin+direction*skill.range
@@ -13,7 +24,18 @@ function AdvancedCombat.snapshot(state,skill,direction,target,enemies,clear)
  if skill.form=="line" then center=origin+direction*skill.range end
  local wall=workspace:Raycast(origin,center-origin,params)
  if wall then center=wall.Position-direction*.2 end
- return {origin=origin,center=center,target=selected and selected.model,direction=direction}
+ local visualCenter
+ if skill.detonate and skill.form=="line" then
+  -- Preview the charge's destination. Impact still resolves live targets.
+  local best
+  for _,e in pairs(enemies) do
+   if alive(e) and inLine(skill,direction,e.root.Position-origin)
+    and (not best or nearer(center,e,best))
+    and clear(origin,e.root.Position,state.character,e.model) then best=e end
+  end
+  visualCenter=best and best.root.Position
+ end
+ return {origin=origin,center=center,target=selected and selected.model,direction=direction,visualCenter=visualCenter}
 end
 function AdvancedCombat.resolve(state,attack,current,services,pulse)
  local d=attack.definition
@@ -56,16 +78,12 @@ function AdvancedCombat.resolve(state,attack,current,services,pulse)
      rayOrigin=center;inside=flat(e.root.Position-center).Magnitude<=d.range and math.abs(e.root.Position.Y-center.Y)<=d.maxHeight
     elseif d.form=="projectile" then inside=(not selected or selected==e) and length<=d.range and dot>=math.cos(math.rad(d.angle/2)) and math.abs(delta.Y)<=d.maxHeight
     elseif d.form=="line" then
-     local along=flat(delta):Dot(direction);local lateral=(flat(delta)-direction*along).Magnitude
-     inside=along>=0 and along<=d.range and lateral<=(d.crosscut and 2 or 1.5) and math.abs(delta.Y)<=d.maxHeight
+     inside=inLine(d,direction,delta)
     else inside=length<=d.range and dot>=math.cos(math.rad(d.angle/2)) and math.abs(delta.Y)<=d.maxHeight end
     if inside and services.clear(rayOrigin,e.root.Position,state.character,e.model) then table.insert(targets,e) end
    end
   end
-  table.sort(targets,function(a,b)
-   local da,db=(a.root.Position-center).Magnitude,(b.root.Position-center).Magnitude
-   if da==db then return a.id<b.id end;return da<db
-  end)
+  table.sort(targets,function(a,b)return nearer(center,a,b)end)
  end
  if d.detonate then
   local first=targets[1]
@@ -74,7 +92,7 @@ function AdvancedCombat.resolve(state,attack,current,services,pulse)
   for _,e in pairs(services.enemies) do
    if alive(e) and flat(e.root.Position-center).Magnitude<=d.radius and math.abs(e.root.Position.Y-center.Y)<=d.maxHeight and services.clear(center,e.root.Position,state.character,e.model) then table.insert(targets,e) end
   end
-  table.sort(targets,function(a,b) local da,db=(a.root.Position-center).Magnitude,(b.root.Position-center).Magnitude;if da==db then return a.id<b.id end;return da<db end)
+  table.sort(targets,function(a,b)return nearer(center,a,b)end)
  end
  attack.hits={};attack.hitCount=0
  for i=1,math.min(d.maxTargets,#targets) do services.damage(state,targets[i],attack,current) end

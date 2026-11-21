@@ -542,7 +542,7 @@ function Visual.renderArms(character, dt, now)
 	end
 	if motion then
         local began = character:GetAttribute("K0AttackStartedAt")
-        if mode == "Attack" and type(began) == "number" and (classId == "knight" or classId == "dwarf") then
+        if mode == "Attack" and not motion.offhand and type(began) == "number" and (classId == "knight" or classId == "dwarf") then
             local rate = not skillId and character:GetAttribute("K0BasicAttackRate") or 1
             WeightShift.apply(motion, classId, skillId, character:GetAttribute("K0Combo"), (now-began)*rate)
         end

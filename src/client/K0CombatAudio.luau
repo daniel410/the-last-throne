@@ -5,6 +5,7 @@ local Players = game:GetService("Players")
 local Config = require(RS.Shared.K0Config)
 local FXCatalog = require(RS.Shared.PixelFXCatalog)
 local Catalog = require(RS.Shared.CombatAudioCatalog)
+local Bomb = require(script.Parent.BombVisual)
 local Audio = {}
 local active = {}
 local seen = setmetatable({}, {__mode = "k"})
@@ -83,7 +84,8 @@ function Audio.renderCharacter(character, now)
     local rate = not row.definition and (character:GetAttribute("K0BasicAttackRate") or 1) or 1
     if not d or not finite(at) or not finite(seq) or not finite(rate) or rate <= 0
         or not root or not root:IsA("BasePart") then return false end
-    local beat = FXCatalog.beat(d, (now - at) * rate)
+    local bomb = Bomb.get(skillId)
+    local beat = FXCatalog.beat(d, (now - at) * rate + (bomb and bomb.flight or 0))
     if beat == 0 then return false end
     local old = seen[character]
     if old and old.seq == seq and old.at == at and old.beat >= beat then return false end

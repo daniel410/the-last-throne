@@ -523,7 +523,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
-	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.center,0,nil,state.attackSeq,startedAt,startedAt) end
+	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.visualCenter or advancedCast.center,0,nil,state.attackSeq,startedAt,startedAt) end
 	publishBowAim(state,direction)
 	updateFeedback(state, "ActionStarted")
 end

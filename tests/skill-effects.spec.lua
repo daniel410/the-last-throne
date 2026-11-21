@@ -8,6 +8,7 @@ mt.__index=function(v,k)if k=='Magnitude'then return math.sqrt(v.X^2+v.Y^2+v.Z^2
 function V.new(x,y,z)return setmetatable({X=x or 0,Y=y or 0,Z=z or 0},mt)end
 mt.__add=function(a,b)return V.new(a.X+b.X,a.Y+b.Y,a.Z+b.Z)end
 mt.__sub=function(a,b)return V.new(a.X-b.X,a.Y-b.Y,a.Z-b.Z)end
+mt.__unm=function(a)return V.new(-a.X,-a.Y,-a.Z)end
 mt.__mul=function(a,b)if type(a)=='number'then a,b=b,a end;return V.new(a.X*b,a.Y*b,a.Z*b)end
 mt.__div=function(a,b)return a*(1/b)end
 function V:Cross(b)return V.new(self.Y*b.Z-self.Z*b.Y,self.Z*b.X-self.X*b.Z,self.X*b.Y-self.Y*b.X)end
@@ -29,16 +30,16 @@ local obj={};obj.__index=obj
 function obj:IsA(class)return self.ClassName==class or class=='BasePart'and self.ClassName=='Part'end
 function obj:Destroy()self.Parent=nil end
 function obj:FindFirstChild(name,recursive)for _,x in ipairs(created)do if x.Parent==self then if x.Name==name then return x end;if recursive then local f=x:FindFirstChild(name,true);if f then return f end end end end end
-function obj:GetDescendants()local out={};for _,x in ipairs(created)do if x.Parent==self then out[#out+1]=x;for _,y in ipairs(x:GetDescendants())do out[#out+1]=y end end end;return out end
+function obj:GetChildren()local out={};for _,x in ipairs(created)do if x.Parent==self then out[#out+1]=x end end;return out end
 function obj:GetAttribute(k)return self.attributes and self.attributes[k]end
 function obj:GetAttributeChangedSignal(k)self.signals=self.signals or {};self.signals[k]=self.signals[k]or signal();return self.signals[k]end
 Instance={new=function(class)local p=setmetatable({ClassName=class,AncestryChanged=signal(),LocalTransparencyModifier=0},obj);created[#created+1]=p;return p end}
-workspace={GetServerTimeNow=function()return 100 end,Raycast=function(self,from,delta,params)return {Position=V.new(from.X,0,from.Z)}end}
+workspace={FindFirstChild=function()end,GetServerTimeNow=function()return 100 end,Raycast=function(self,from,delta,params)return {Position=V.new(from.X,0,from.Z)}end}
 local Config=dofile('src/shared/K0Config.luau');local Advanced=dofile('src/shared/AdvancedSkills.luau')
 local pixelPulses=0
 local modules={AdvancedSkills=Advanced,K0Config=Config,PixelFX={skill=function(_,_,_,_,pulse)assert(pulse>0);pixelPulses=pixelPulses+1 end}}
 require=function(name)return assert(modules[name],tostring(name))end
-script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX',HeroVFX='HeroVFX'}}
+script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX',HeroVFX='HeroVFX',BombVisual='Bomb',K0CombatAudio='Audio'}}
 local P=dofile('src/shared/SkillPresentation.luau');modules.SkillPresentation=P;modules.Geometry=dofile('src/client/SkillEffectGeometry.luau')
 table.freeze=table.freeze or function(value)return value end
 local previousScript=script
@@ -47,11 +48,13 @@ modules.PixelFXCatalog=dofile('src/shared/PixelFXCatalog.luau')
 script={Parent={PixelFXCatalog='PixelFXCatalog'}}
 modules.CombatVFXPalette=dofile('src/shared/CombatVFXPalette.luau')
 script=previousScript
-modules.HeroVFX={skill=function()end}
+modules.Bomb=dofile('src/client/BombVisual.luau')
+modules.Audio={play=function()end}
+modules.HeroVFX={skill=function()end,isOtherHero=function()return false end,windup=function()end,groundLead=function()end,endWindup=function()end,endIncoming=function()end}
 modules.Bow={confirmPulse=function()end};modules.Wind={play=function()end}
 local rs={Shared={K0Config='K0Config',SkillPresentation='SkillPresentation',CombatVFXPalette='CombatVFXPalette'}}
 local event=signal();rs.WaitForChild=function()return {WaitForChild=function()return {OnClientEvent=event}end}end
-local services={ReplicatedStorage=rs,TweenService={Create=function(self,p,info,props)return {Play=function()for k,v in pairs(props)do p[k]=v end end}end},Debris={AddItem=function(self,p)task.delay(0,function()p:Destroy()end)end}}
+local services={ReplicatedStorage=rs,Players={},TweenService={Create=function(self,p,info,props)return {Play=function()for k,v in pairs(props)do p[k]=v end end}end},Debris={AddItem=function(self,p)task.delay(0,function()p:Destroy()end)end}}
 game={GetService=function(self,k)return services[k]end}
 typeof=function(v)return getmetatable(v)==mt and 'Vector3'or type(v)end
 local f=assert(io.open('src/client/AdvancedSkillVisual.luau'));local source=f:read('*a');f:close()
@@ -74,26 +77,28 @@ local count=0
 for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced then
  count=count+1
  for pulse=0,d.pulses do
-  Visual.play(nil,d.id,V.new(0,3,0),V.new(0,3,-d.range),pulse,{V.new(0,3,-4)},1,100,99)
+  Visual.play(nil,d.id,V.new(0,3,0),V.new(0,3,-d.range),pulse,{V.new(0,3,-4)},1,100,100)
   inspect();flush();created={}
  end
 end end end
 check(count==116,'execute all advanced skills and all pulses')
 local expectedPulses=0
-for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced then expectedPulses=expectedPulses+d.pulses end end end
-check(pixelPulses==expectedPulses,'every advanced pulse forwards to PixelFX exactly once; no windup emission')
-for _,name in ipairs({'SkillTelegraph','ImpactBoundary','ArrowShaft','LightningFork','IceCrystal','EarthRupture','RifleTracer','ShotPellet','ThrownAxeBlade','BladeCrescent','PersonalWard','ShieldContact','LavaFissure','HailShard','AshfallEmber'})do check(seen[name],name..' has exercised renderer')end
+for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced and not modules.Bomb.get(d.id) then expectedPulses=expectedPulses+d.pulses end end end
+check(pixelPulses==expectedPulses,'confirmed pulses send to PixelFX while hand-thrown bombs use their own burst')
+for _,name in ipairs({'SkillTelegraph','ImpactBoundary','ArrowShaft','LightningFork','IceCrystal','EarthRupture','RifleTracer','ShotPellet','ThrownAxeBlade','BladeCrescent','PersonalWard','ShieldContact','LavaFissure'})do check(seen[name],name..' has exercised renderer')end
 check(not seen.RootingVine and not seen.SteamJet and not seen.MortarDescent,'specialized roots, vapor and shells have one renderer owner')
--- Gunner cancellation restores held weapon and removes temporary props.
-local character=Instance.new('Model');character.Parent=workspace;character.attributes={K0State='Attack',K0AttackSeq=5}
-local hand=Instance.new('Part');hand.Name='RightHand';hand.Parent=character;hand.CFrame=CFrame.new()
+-- Gunner cancellation removes the left-hand prop and preserves the held axe.
+local d=Advanced.branches.gunner.skills[1]
+local character=Instance.new('Model');character.Parent=workspace;character.attributes={K0State='Attack',K0AttackSeq=5,K0SkillId=d.id}
+local hand=Instance.new('Part');hand.Name='LeftHand';hand.Parent=character;hand.CFrame=CFrame.new()
 local appearance=Instance.new('Model');appearance.Parent=character
 local grip=Instance.new('Part');grip.Name='WeaponGrip';grip.Parent=appearance
 local axe=Instance.new('Part');axe.Name='Weapon';axe.Parent=appearance;axe.LocalTransparencyModifier=.2
-local d=Advanced.branches.gunner.skills[1]
 Visual.play(character,d.id,V.new(0,3,0),V.new(0,3,-10),0,nil,5)
-check(axe.LocalTransparencyModifier==1,'gunner hides axe while holding gun')
-check(character:FindFirstChild('BranchSkillProp')~=nil,'gunner prop attached')
+check(axe.LocalTransparencyModifier==.2,'gunner keeps the axe visible')
+local prop=assert(character:FindFirstChild('BranchSkillProp'))
+local weld=assert(prop:FindFirstChild('Barrel'):GetChildren()[1])
+check(weld.Part0==hand,'gunner prop attached to the left hand')
 character.attributes.K0State='Dodge';character.signals.K0State.callback()
 check(axe.LocalTransparencyModifier==.2,'cancel restores original transparency')
 check(character:FindFirstChild('BranchSkillProp')==nil,'cancel destroys prop')

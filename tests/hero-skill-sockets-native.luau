@@ -45,13 +45,16 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
    else
     Effects.play(c,d.id,c.HumanoidRootPart.Position,c.HumanoidRootPart.Position+forward*20,0,nil,7)
     local prop=assert(c:FindFirstChild("BranchSkillProp"));local barrel=assert(prop:FindFirstChild("Barrel"))
+    local hand=c:FindFirstChild("LeftHand") or c:FindFirstChild("Left Arm")
+    check(barrel.WeldConstraint.Part0==hand,"Gunner mount uses the free left hand")
+    check(m.Weapon.LocalTransparencyModifier==0,"The right-hand axe stays visible during fire")
     local dot=barrel.CFrame.RightVector:Dot(forward)
     check(dot>.97,"Rifle bore must face forward at firing, before recoil")
     check(barrel.SkillMuzzle.Position.X>0,"Muzzle is on the cylinder bore axis")
     table.insert(report.samples,{rig=rig.Name,id=d.id,forwardDot=dot})
     c:SetAttribute("K0State","Dodge");task.wait()
     check(c:FindFirstChild("BranchSkillProp")==nil,"Cancel removes gun")
-    check(m.Weapon.LocalTransparencyModifier==0,"Cancel restores axe")
+    check(m.Weapon.LocalTransparencyModifier==0,"Cancel preserves the shown axe")
    end
   end,debug.traceback)
   if c then c:Destroy()end

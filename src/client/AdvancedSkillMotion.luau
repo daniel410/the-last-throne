@@ -3,6 +3,7 @@
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
 local Presentation=require(game.ReplicatedStorage.Shared.SkillPresentation)
 local FinalBeat=require(script.Parent.SkillFinalBeat)
+local Bomb=require(script.Parent.BombVisual)
 local Clips=require(script.Parent.K0MeleeClips)
 local Melee=require(script.Parent.K0MeleeMotion)
 local KnightBasic=require(script.Parent.K0KnightMixamoBasic)
@@ -75,6 +76,73 @@ local gunRecoil={
  ["dwarf.gunner.blast_step"]={gain=1.30,settle=.23},
  ["dwarf.gunner.siege_barrage"]={gain=1.25,settle=.30},
 }
+local bombPoses={
+ hold={right=v(52,-8,12),elbow=v(-64),left=v(19,-10,30),torso=v(3,-6,2)},
+ load={right=v(-31,-23,37),elbow=v(-104),left=v(46,-18,30),torso=v(-9,-29,7),
+  rightHip=v(-19),rightKnee=v(25),leftHip=v(8),leftKnee=v(14)},
+ release={right=v(111,12,12),elbow=v(-12),left=v(21,-23,28),torso=v(11,17,-6),
+  rightHip=v(-14),rightKnee=v(16),leftHip=v(-22),leftKnee=v(25)},
+ follow={right=v(47,38,5),elbow=v(-25),left=v(16,-14,22),torso=v(17,26,-10),
+  rightHip=v(-12),rightKnee=v(12),leftHip=v(-19),leftKnee=v(23)},
+ lowLoad={right=v(-53,-17,19),elbow=v(-28),left=v(28,-26,27),torso=v(24,-21,6),
+  rightHip=v(-28),rightKnee=v(39),leftHip=v(-31),leftKnee=v(42)},
+ lowRelease={right=v(47,11,16),elbow=v(-8),left=v(24,-18,39),torso=v(28,15,-8),
+  rightHip=v(-19),rightKnee=v(34),leftHip=v(-28),leftKnee=v(37)},
+ lowFollow={right=v(57,27,15),elbow=v(-15),left=v(20,-11,36),torso=v(24,23,-8),
+  rightHip=v(-21),rightKnee=v(24),leftHip=v(-24),leftKnee=v(28)},
+}
+local opposite={
+ right="left",left="right",elbow="leftElbow",leftElbow="elbow",
+ rightHip="leftHip",leftHip="rightHip",rightKnee="leftKnee",leftKnee="rightKnee",
+}
+local function offhandPose(pose)
+ local angles={}
+ for channel in pairs(pose.angles) do
+  local a=pose.angles[opposite[channel] or channel]
+  angles[channel]=v(a.X,-a.Y,-a.Z)
+ end
+ pose.angles=angles
+ pose.offhand=true
+ return rebuild(pose)
+end
+local function bombToss(d,age,profile)
+ local launch=d.windup+(d.hitDelay or 0)-profile.flight
+ local loaded=launch*.61
+ local low=profile.path=="bounce" or profile.path=="roll"
+ local load=low and bombPoses.lowLoad or bombPoses.load
+ local release=low and bombPoses.lowRelease or bombPoses.release
+ local follow=low and bombPoses.lowFollow or bombPoses.follow
+ local followTime=d.pulses>1 and .09 or .13
+ local rest=resting("dwarf")
+ local a,b,u
+ if age<launch*.2 then
+  a,b,u=rest.angles,bombPoses.hold,age/(launch*.2)
+ elseif age<loaded then
+  a,b,u=bombPoses.hold,load,(age-launch*.2)/(loaded-launch*.2)
+ elseif age<launch then
+  a,b,u=load,release,(age-loaded)/(launch-loaded)
+ else
+  local pulse=math.min(d.pulses,math.floor((age-launch)/d.interval)+1)
+  local since=age-launch-(pulse-1)*d.interval
+  local reload=d.interval*.61
+  if since<followTime then
+   a,b,u=release,follow,since/followTime
+  elseif pulse<d.pulses then
+   if since<reload then a,b,u=follow,load,(since-followTime)/(reload-followTime)
+   else a,b,u=load,release,(since-reload)/(d.interval-reload) end
+  else
+   local lastLaunch=launch+(d.pulses-1)*d.interval
+   local recovery=d.windup+d.active+d.recovery-lastLaunch-followTime
+   a,b,u=follow,rest.angles,(since-followTime)/recovery
+  end
+ end
+ local weight=smooth(u)
+ local pose={angles={},cutting=false}
+ for channel,value in pairs(rest.angles) do
+  pose.angles[channel]=(a[channel] or value):Lerp(b[channel] or value,weight)
+ end
+ return offhandPose(pose)
+end
 local function gunner(d,kind,age)
  local pulse,since=Presentation.beat(d,age)
  local phase=age/d.windup
@@ -85,19 +153,8 @@ local function gunner(d,kind,age)
  local kick=pulse>0 and gain*smooth(since/(span*.18))*(1-smooth((since/span-.18)/.82)) or 0
  local finish=FinalBeat.weight(d,pulse,since)
  local load=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
- local right,left,elbow,torso
- if kind=="lob" then
-  -- Cock the bomb behind the shoulder, open the elbow into release, then
-  -- let the empty hand cross the chest. Reload before each later toss.
-  if pulse>0 and pulse<(d.pulses or 1) then
-   local u=since/d.interval
-   load+=smooth((u-.24)/.38)*(1-smooth((u-.62)/.38))
-  end
-  right=v(78+61*load-34*kick,-28*load+16*kick,-10-14*load)
-  left=v(48-18*kick,7,24)
-  elbow=v(-67*load-12*kick)
-  torso=v(4-10*kick,18*load-13*kick,5*load)
- elseif kind=="mortar" then
+ local right,elbow,torso
+ if kind=="mortar" then
   local elevation=smooth(phase/.78)*(1-smooth((age-d.windup-d.active)/d.recovery))
   local reset=0
   if pulse>0 and pulse<d.pulses then
@@ -105,23 +162,21 @@ local function gunner(d,kind,age)
    reset=smooth((cycle-.23)/.23)*(1-smooth((cycle-.46)/.45))
   end
   right=v(90+20*load+16*elevation+24*kick-24*reset+8*finish,-5*load,-5)
-  left=v(93+8*elevation+14*kick-19*reset+7*finish,0,14)
   elbow=v(-14*load-27*kick-21*reset-9*finish)
   torso=v(3-7*elevation-16*kick+10*reset-7*finish,0,4*load)
  else
   right=v(90-18*load+8*kick,0,-5)
-  left=v(87+4*kick,0,10)
   elbow=v(-12*kick)
   torso=v(3-6*kick,0,0)
  end
  local brace=kind=="mortar" and (14*load+12*kick+9*finish) or kind=="shoot" and 7*kick or 0
  local retreat=(d.move or 0)<0 and kick or 0
- local angles={right=right,left=left,elbow=elbow,leftElbow=v(-35),wrist=v(),neck=v(6*retreat),
+ local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
   torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
   rightKnee=v(10+brace*1.5),leftKnee=v(8+brace+14*retreat),weapon=v()}
  local pose={angles={},cutting=false}
  for channel,a in pairs(Clips.rest.dwarf) do pose.angles[channel]=v(unpack(a)):Lerp(angles[channel],ready) end
- return rebuild(pose)
+ return offhandPose(pose)
 end
 
 local function challenge(d,age)
@@ -194,7 +249,9 @@ function Motion.sample(classId,d,age,rigType)
  if type(age)~="number" or age~=age then return nil end
  local profile=Presentation.get(d);if not profile then return nil end
  local kind=profile.motion
- if d.branch=="gunner" then return gunner(d,kind,age) end
+ local bomb=Bomb.get(d.id)
+ if bomb then return bombToss(d,age,bomb) end
+ if d.branch=="gunner" then return gunner(d,d.form=="cone" and "shoot" or kind,age) end
  if kind=="slash" and classId=="knight" and (d.pulses or 1)>1 then kind="cross" end
  local contact=d.windup+(d.hitDelay or 0)
  local ending=d.windup+d.active
@@ -321,6 +378,7 @@ function Motion.forCharacter(character,now)
   pose.root=(record.entry.root or CFrame.identity):Lerp(target.root or CFrame.identity,blend)
   pose.aimWeapon=(record.entry.aimWeapon or 0)*(1-blend)+(target.aimWeapon or 0)*blend
   pose.cutting=target.cutting
+  pose.offhand=target.offhand
  end
  return pose
 end

@@ -16,6 +16,7 @@ local Style=require(script.Parent.CombatVFXStyle)
 local Palette=require(RS.Shared.CombatVFXPalette)
 local Windup=require(script.Parent.SkillWindupStrokes)
 local FinalBeat=require(script.Parent.SkillFinalBeat)
+local Bomb=require(script.Parent.BombVisual)
 local FX={}
 local active={}
 local connection
@@ -210,6 +211,7 @@ function FX.step(now)
     r.light.Enabled=remaining>0
    end
    Surfaces.step(r,u,fade)
+   if r.payload then r.payload(u) end
    for _,s in ipairs(r.flares)do
     local age=now-r.at;local burstFade=math.clamp(age/.14,0,1)
     local coreFade=math.clamp(age/.075,0,1)
@@ -299,14 +301,14 @@ local function tongue(r,name,at,height,width,heading,color)
 end
 local function shell(r,at,strong)
  local height=strong and 10 or 8
- local size=strong and Vector3.new(1.05,2.35,1.05)or Vector3.new(.36,.9,.36)
+ local size=strong and Vector3.new(1.05,2.35,1.05)or Vector3.new(.54,1.38,.54)
  local p=Surfaces.volume(r,'MortarShellBody',at+Vector3.yAxis*size.Y*.5,size,strong and Color3.fromRGB(144,151,157)or Color3.fromRGB(74,83,94),.08,'ball',Enum.Material.Metal)
  if p then r.faces[#r.faces].fall={height=height,duration=r.life,delay=0,landing=true}end
- local nose=Surfaces.volume(r,'MortarShellNose',at+Vector3.yAxis*.12,strong and Vector3.new(.82,.55,.82)or Vector3.new(.3,.25,.3),palette.bomb,.18,'wedge')
+ local nose=Surfaces.volume(r,'MortarShellNose',at+Vector3.yAxis*.12,strong and Vector3.new(.82,.55,.82)or Vector3.new(.42,.30,.42),palette.bomb,.18,'wedge')
  if nose then r.faces[#r.faces].fall={height=height,duration=r.life,delay=0,landing=true}end
  line(r,'MortarShortWake',function(u)
   local y=height*(1-u*u)
-  return at+Vector3.yAxis*(y+1.4),at+Vector3.yAxis*(y+.8)
+  return at+Vector3.yAxis*(y+size.Y+1.1),at+Vector3.yAxis*(y+size.Y-.1)
  end,strong and .16 or .09,palette.bomb)
 end
 local groundLead={mortar=.24,rain=.21,hail=.19,ash=.25}
@@ -333,28 +335,57 @@ function FX.endIncoming(character,seq,pulse)
  end
 end
 
-function FX.incoming(character,d,center,seq,pulse,landingAt,valid)
+local function makeIncoming(character,d,first,center,seq,pulse,landingAt,valid,lead)
  local now=workspace:GetServerTimeNow()
- local lead=FX.groundLead(d)
  if not lead or landingAt-now<.025 or not valid() or not vector(center) then return end
  local row=Catalog.byId[d.id]
  local compact=FX.isOtherHero(character)
  local pending=0
  for _,effect in ipairs(active) do if effect.incoming then pending+=1 end end
  if pending>=(compact and 2 or 3) then return end
- local r=make(center,center,landingAt-now,row.key,d.id,compact)
+ local r=make(first,center,landingAt-now,row.key,d.id,compact)
  if not r then return end
  r.at=landingAt-lead;r.life=lead;r.incoming=valid
  r.character=character;r.seq=seq;r.pulse=pulse
  r.color,r.hot=Palette.get(row.key,row.classId)
  r.model.Name="HeroSkillIncoming"
  r.model:SetAttribute("Pulse",pulse)
+ return r,now
+end
+
+function FX.bombFlight(character,d,profile,launch,target,seq,pulse,landingAt,valid)
+ local now=workspace:GetServerTimeNow()
+ local lead=math.min(profile.flight,landingAt-now)
+ local r=makeIncoming(character,d,launch.Position,target,seq,pulse,landingAt,valid,lead)
+ if not r then return end
+ local model=Instance.new("Model")
+ model.Name="ThrownBomb"
+ Bomb.mount(model,launch)
+ model.Parent=r.model
+ local landing=Bomb.floor(target,character)+Vector3.yAxis*Bomb.radius
+ local groundPoint
+ if profile.path=="bounce" or profile.path=="roll" then
+  local progress=profile.path=="bounce" and .56 or .18
+  groundPoint=Bomb.floor(launch.Position:Lerp(target,progress),character)+Vector3.yAxis*Bomb.radius
+ end
+ r.payload=function(u)
+  model:PivotTo(Bomb.flightFrame(profile.path,launch,landing,groundPoint,u))
+ end
+ r.model:SetAttribute("PayloadPath",profile.path)
+ FX.step(now)
+ return r.model
+end
+
+function FX.incoming(character,d,center,seq,pulse,landingAt,valid)
+ local lead=FX.groundLead(d)
+ local r,now=makeIncoming(character,d,center,center,seq,pulse,landingAt,valid,lead)
+ if not r then return end
  local profile=Profiles.get(d.id)
  local shape=profile.shape
  local siege=profile.signature=="SiegeShells"
  local spirit=profile.signature=="SpiritCanopy"
- local count=shape=="mortar" and (siege and siegeCount(compact) or 1)
-  or math.min(profile.lanes,(compact or Input.TouchEnabled) and 3 or 5)
+ local count=shape=="mortar" and (siege and siegeCount(r.compact) or 1)
+  or math.min(profile.lanes,(r.compact or Input.TouchEnabled) and 3 or 5)
  for lane=1,count do
   local angle=(lane-1)*2.39996+(pulse-1)*1.3
   local rad=d.radius*math.sqrt(lane/(count+1))*.78
@@ -556,6 +587,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local row=Catalog.byId[id];local profile=Profiles.get(id)
  if not row or not profile or not vector(first)or not vector(last)or not finite(pulse)or pulse<1 then return end
  local d=row.definition
+ local bomb=Bomb.get(id)
  -- The dedicated Wind Lance renderer owns its release; no empty duplicate model.
  if profile.shape=="wind"then return end
  local r=make(first,last,profile.life,row.key,id,FX.isOtherHero(character));if not r then return end
@@ -571,7 +603,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local area=d.form=="ground"or d.form=="area"or d.detonate or d.areaRadius~=nil
  -- For originArea, the server's center is the departure point, not current origin.
  local center=area and last or first
- local floor=floorAt(center,character)
+ local floor=bomb and Bomb.floor(center,character) or floorAt(center,character)
  local radius=d.areaRadius or((d.form=="ground"or d.detonate)and d.radius)or d.range or 5
  local angle=d.form=="area"and 360 or d.angle or 80
  local width,count,shape=profile.width,profile.lanes,profile.shape
@@ -772,7 +804,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   if shape=="hail" then debris(r,floor,4,"IceShard",.82)
   elseif shape=="ash" then debris(r,floor,4,"Ember",.76) end
  elseif shape=="blast"or shape=="earth"or shape=="lava"then
-  local at=area and floorAt(last,character)or floor
+  local at=floor
   if area or angle>=359 then ring(r,"GroundPressure",at,radius,width*.6,false,false)
   else sector("GroundSector",at,radius,angle,1,true)end
   if shape=="blast"then
@@ -984,18 +1016,21 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   end
  elseif shape=="earth"or shape=="lava"or shape=="blast"or shape=="mortar"then
   if shape=="blast"or shape=="mortar"then
-   local at=area and floorAt(last,character)+Vector3.yAxis or first+flat*2
-   if id=='dwarf.gunner.bomb_toss'then
+   local at=area and floor+Vector3.yAxis*(bomb and Bomb.radius or 1) or first+flat*2
+   if bomb then
     local flash=Surfaces.volume(r,'BombContactFlash',at,Vector3.one*.6,WHITE,.18,'ball')
     if flash then r.faces[#r.faces].fadeDuration=.09 end
-    for i=1,5 do
-     local a=i*math.pi*2/5;local direction=Vector3.new(math.cos(a),.2,math.sin(a))
+    local fragments=r.compact and 3 or bomb.path=="scatter" and 7 or 5
+    for i=1,fragments do
+     local a=i*math.pi*2/fragments
+     local direction=Vector3.new(math.cos(a),bomb.path=="scatter" and .48 or .2,math.sin(a))
      local fragment=Surfaces.volume(r,'BombCasingFragment',at+direction*.25,Vector3.new(.15,.3,.6),Color3.fromRGB(95,75,58),.15,'wedge',Enum.Material.Slate)
      if fragment then
       local face=r.faces[#r.faces];face.cf=CFrame.lookAt(fragment.Position,fragment.Position+direction);fragment.CFrame=face.cf
       face.drift=direction*2.4
      end
     end
+    atmosphere(r,"BombGroundSmoke",at,false,6,1.4)
    else
    local flash=Surfaces.volume(r,"BlastCore",at,Vector3.one*.9,r.hot,.2,'ball')
    if flash then r.faces[#r.faces].fadeDuration=.09 end
@@ -1108,7 +1143,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  Art.accents(r,artContext)
  Polish.finish(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
- if (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
+ if not bomb and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   flourish(r,at,id=="knight.paladin.oathbound_assault"and .55 or d.ultimate and 4.5 or area and 3.2 or 2.2,row.key,d.ultimate)
  end

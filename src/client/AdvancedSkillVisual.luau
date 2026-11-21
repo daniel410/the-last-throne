@@ -9,6 +9,9 @@ local BowMotion=require(script.Parent.K0BowMotion)
 local WindLance=require(script.Parent.WindLanceVisual)
 local PixelFX=require(script.Parent.PixelFX)
 local HeroVFX=require(script.Parent.HeroVFX)
+local Bomb=require(script.Parent.BombVisual)
+local Audio=require(script.Parent.K0CombatAudio)
+local Players=game:GetService("Players")
 local Palette=require(RS.Shared.CombatVFXPalette)
 local Visual={}
 local byId={};for _,list in pairs(Config.Skills) do for _,d in ipairs(list) do byId[d.id]=d end end
@@ -95,39 +98,32 @@ local function windupSocket(character,motion)
   if arrow and arrow:IsA("BasePart") then return arrow end
  end
  local prop=character:FindFirstChild("BranchSkillProp")
- local tip=prop and prop:FindFirstChild("SkillMuzzle",true) or character:FindFirstChild("WeaponTip",true)
- return tip and tip:IsA("Attachment") and tip or nil
+ local tip=prop and (prop:FindFirstChild("BombFuseEmber") or prop:FindFirstChild("SkillMuzzle",true))
+  or character:FindFirstChild("WeaponTip",true)
+ return tip and (tip:IsA("Attachment") or tip:IsA("BasePart")) and tip or nil
 end
 local props=setmetatable({},{__mode="k"})
 local function clearProp(character)
  local record=props[character];if not record then return end
  props[character]=nil
  for _,connection in ipairs(record.connections) do connection:Disconnect() end
- for p,value in pairs(record.hidden) do if p.Parent then p.LocalTransparencyModifier=value end end
  if record.model.Parent then record.model:Destroy() end
 end
-local function firearm(character,d,seq)
+local function branchProp(character,d,seq)
  if d.branch~="gunner" then return end
  clearProp(character)
- local arm=character:FindFirstChild("RightHand") or character:FindFirstChild("Right Arm")
+ local arm=character:FindFirstChild("LeftHand") or character:FindFirstChild("Left Arm")
  if not arm then return end
  local model=Instance.new("Model");model.Name="BranchSkillProp";model.Parent=character
- local record={model=model,hidden={},connections={},seq=seq,id=d.id};props[character]=record
- -- The temporary skill prop replaces the axe visually, never in inventory.
- local grip=character:FindFirstChild("WeaponGrip",true) or character:FindFirstChild("SwordGrip",true)
- local appearance=grip and grip.Parent
- if appearance then for _,p in ipairs(appearance:GetDescendants()) do
-  if p:IsA("BasePart") then record.hidden[p]=p.LocalTransparencyModifier;p.LocalTransparencyModifier=1 end
- end end
+ local record={model=model,connections={},seq=seq,id=d.id};props[character]=record
  local function piece(name,size,offset,color,shape)
   local p=Instance.new("Part");p.Name=name;p.Size=size;p.Shape=shape or Enum.PartType.Block;p.Color=color;p.Material=Enum.Material.Metal
   p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Massless=true;p.CFrame=arm.CFrame*CFrame.new(0,-.25,0)*CFrame.Angles(-math.pi/2,0,0)*offset;p.Parent=model
   local weld=Instance.new("WeldConstraint");weld.Part0=arm;weld.Part1=p;weld.Parent=p;return p
  end
- if d.element=="bomb" then
-  local bomb=piece("Bomb",Vector3.one*.65,CFrame.new(0,-.35,-.25),Color3.fromRGB(65,66,72),Enum.PartType.Ball)
-  local release=Instance.new("Attachment");release.Name="SkillMuzzle";release.Parent=bomb
-  piece("Fuse",Vector3.new(.08,.25,.08),CFrame.new(0,.05,-.25),colors.bomb)
+ local bomb=Bomb.get(d.id)
+ if bomb then
+  Bomb.mount(model,Bomb.handFrame(arm),arm)
  else
   local heavy=d.element=="shell";local length=heavy and 2.3 or 1.7
   local diameter=heavy and .6 or .28
@@ -139,12 +135,25 @@ local function firearm(character,d,seq)
   piece("Stock",Vector3.new(.45,.4,.7),CFrame.new(0,-.35,.35),Color3.fromRGB(111,68,39))
   local muzzle=Instance.new("Attachment");muzzle.Name="SkillMuzzle";muzzle.Position=Vector3.new(length/2,0,0);muzzle.Parent=barrel
  end
- local function cancelled()
-  if not character.Parent or character:GetAttribute("K0State")~="Attack" or character:GetAttribute("K0AttackSeq")~=seq then clearProp(character) end
+ local function matches()
+  return character:GetAttribute("K0State")=="Attack" and character:GetAttribute("K0AttackSeq")==seq
+   and character:GetAttribute("K0SkillId")==d.id
  end
- for _,attribute in ipairs({"K0State","K0AttackSeq"}) do table.insert(record.connections,character:GetAttributeChangedSignal(attribute):Connect(cancelled)) end
+ local seenAction=matches()
+ local function cancelled()
+  local current=character:GetAttribute("K0AttackSeq")
+  local active=matches()
+  if not character.Parent or character:GetAttribute("TLTDeathFalling")
+   or type(current)=="number" and type(seq)=="number" and current>seq
+   or seenAction and not active then clearProp(character) end
+  seenAction=seenAction or active
+ end
+ for _,attribute in ipairs({"K0State","K0AttackSeq","K0SkillId","TLTDeathFalling"}) do table.insert(record.connections,character:GetAttributeChangedSignal(attribute):Connect(cancelled)) end
  table.insert(record.connections,character.AncestryChanged:Connect(cancelled))
  task.delay(d.windup+d.active+d.recovery+.1,function() if props[character]==record then clearProp(character) end end)
+end
+local function showProp(record,visible)
+ for _,piece in record.model:GetChildren() do piece.LocalTransparencyModifier=visible and 0 or 1 end
 end
 local function spikes(center,direction,radius,angle,color,kind)
  local points=Geometry.sector(center,direction,radius*.7,angle,4)
@@ -161,7 +170,8 @@ local function groundTarget(d,center,pulse)
  return d.scatter and center+Vector3.new((pulse%2==0 and 1 or -1)*3,0,(pulse-2)*2) or center
 end
 local function queueIncoming(character,d,center,seq,firstContact,now)
- local lead=HeroVFX.groundLead(d)
+ local bomb=Bomb.get(d.id)
+ local lead=bomb and bomb.flight or HeroVFX.groundLead(d)
  if not lead or not character or type(seq)~="number" then return end
  for pulse=1,d.pulses do
   local landingAt=firstContact+(pulse-1)*d.interval
@@ -174,11 +184,33 @@ local function queueIncoming(character,d,center,seq,firstContact,now)
    return type(current)~="number" or current<seq
     or current==seq and character:GetAttribute("K0State")=="Attack" and character:GetAttribute("K0SkillId")==d.id
   end
-  task.delay(math.max(0,landingAt-lead-now),HeroVFX.incoming,character,d,target,seq,pulse,landingAt,valid)
+  local waitTime=landingAt-lead-now
+  if bomb then
+   if pulse>1 then
+    task.delay(math.max(0,waitTime-.11),function()
+     local prop=props[character]
+     if valid() and prop and prop.seq==seq and prop.id==d.id and (prop.releasedPulse or 0)==pulse-1 then
+      showProp(prop,true)
+     end
+    end)
+   end
+   task.delay(math.max(0,waitTime),function()
+    if not valid() then return end
+    local prop=props[character]
+    if not prop or prop.seq~=seq or prop.id~=d.id or not prop.model.PrimaryPart then return end
+    local launch=prop.model.PrimaryPart.CFrame
+    prop.releasedPulse=pulse
+    showProp(prop,false)
+    HeroVFX.bombFlight(character,d,bomb,launch,target,seq,pulse,landingAt,valid)
+   end)
+  else
+   task.delay(math.max(0,waitTime),HeroVFX.incoming,character,d,target,seq,pulse,landingAt,valid)
+  end
  end
 end
 function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt)
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
+ local bomb=Bomb.get(id)
  local profile=Presentation.get(d);if not profile then return end
  if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse>d.pulses or pulse%1~=0 then return end
  local now=workspace:GetServerTimeNow()
@@ -202,9 +234,10 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   center=origin+direction
  end
  local compact=HeroVFX.isOtherHero(character)
- if pulse~=0 and not compact then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
+ if pulse~=0 and not compact and not bomb then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
+ local findFloor=bomb and Bomb.floor or ground
  local direction=center-origin
  if direction.Magnitude<.01 then
   local root=character and character:FindFirstChild("HumanoidRootPart")
@@ -212,35 +245,27 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  end
  if pulse==0 then
   if character then
-   firearm(character,d,attackSeq)
+   branchProp(character,d,attackSeq)
    HeroVFX.windup(character,d,profile.motion,profile.effect,origin,attackSeq,opening,windupSocket(character,profile.motion))
   end
+  local firstContact=opening+d.windup+(d.hitDelay or 0)
   if d.form=="ground" then
-   local firstContact=opening+d.windup+(d.hitDelay or 0)
    for i=1,d.scatter and d.pulses or 1 do
     local target=groundTarget(d,center,i)
-    arc(ground(target,character),direction,d.radius,360,color,firstContact-now+(i-1)*d.interval,"SkillTelegraph",compact)
+    arc(findFloor(target,character),direction,d.radius,360,color,firstContact-now+(i-1)*d.interval,"SkillTelegraph",compact)
    end
-   queueIncoming(character,d,center,attackSeq,firstContact,now)
   end
+  if d.form=="ground" or bomb then queueIncoming(character,d,center,attackSeq,firstContact,now) end
   return
  end
  local first=source(character,origin,d)
  local prop=props[character]
- if d.element=="bomb" and prop and prop.seq==attackSeq and prop.id==id then
-  prop.pulse=pulse
-  for _,piece in prop.model:GetChildren() do piece.LocalTransparencyModifier=1 end
-  if pulse<d.pulses then
-   local drawAt=(firedAt or workspace:GetServerTimeNow())+d.interval*.34
-   task.delay(math.max(0,drawAt-workspace:GetServerTimeNow()),function()
-    if props[character]==prop and prop.pulse==pulse then
-     for _,piece in prop.model:GetChildren() do piece.LocalTransparencyModifier=0 end
-    end
-   end)
-  end
+ if bomb and prop and prop.seq==attackSeq and prop.id==id and (prop.releasedPulse or 0)<pulse then
+  prop.releasedPulse=pulse
+  showProp(prop,false)
  end
  local floor=ground(d.form=="area" and center or origin,character)
- local targetFloor=ground(center,character)
+ local targetFloor=findFloor(center,character)
  local effect=profile.effect
  local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first)
  -- Core geometry is rendered before optional impact decoration.
@@ -273,13 +298,16 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="earth" or effect=="lava" or effect=="frost" then
    if not primary then spikes(targetFloor,direction,d.radius,360,color,effect)end
    if effect=="lava" then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
-  elseif effect=="bomb" then
-   local p=part("BlastSmoke",Color3.fromRGB(105,99,93),Enum.PartType.Ball,Vector3.one,CFrame.new(center),.4,.7)
-   if p then Tween:Create(p,TweenInfo.new(.4),{Size=Vector3.one*3}):Play() end
   elseif effect=="steam" then
    -- HeroVFX owns short translucent rising vapor.
   end
-  impact(center,color,2)
+  if bomb then
+   local burst=targetFloor+Vector3.yAxis*Bomb.radius
+   if not primary then impact(burst,color,.75) end
+   Audio.play("impact",burst,"dwarf",id,character,Players.LocalPlayer~=nil and Players.LocalPlayer.Character==character)
+  else
+   impact(center,color,2)
+  end
  elseif effect=="vine" then
   -- Keep the actual cone boundary if optional roots are culled.
   if d.form=='cone'then arc(floor,direction,d.range,d.angle,color,.3,'SkillSector')end
@@ -331,7 +359,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  end
  if d.shield and d.form~="self" and(not primary or(id~="mage.cryo.ice_ward" and id~="mage.pyro.searing_ward" and id~="dwarf.iron_axe.iron_shoulder"))then arc(floor,direction,2.7,360,color,.5,"GuardGranted")end
- if type(points)=="table" then for i=1,math.min(#points,4) do impact(points[i],color,.7) end end
+ if not bomb and type(points)=="table" then for i=1,math.min(#points,4) do impact(points[i],color,.7) end end
 end
 local started=false
 function Visual.start()
