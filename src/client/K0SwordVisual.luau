@@ -1162,7 +1162,8 @@ function Visual.renderCharacter(character, dt, now, sampledPose)
    if not d.ranged then HeroVFX.skill(character,id,root.Position,root.Position+root.CFrame.LookVector*(d.range or 5),1) end
   end
  end
-	if classId == "knight" and character:GetAttribute("K0AttackPhase") == "Active" then
+	-- Advanced shield strikes use the confirmed release renderer.
+	if classId == "knight" and d and character:GetAttribute("K0AttackPhase") == "Active" then
 		local skillId, seq = character:GetAttribute("K0SkillId"), character:GetAttribute("K0AttackSeq")
 		local root = character:FindFirstChild("HumanoidRootPart")
 		if root and seq and seenSkillEffects[character] ~= seq and (skillId == "knight.common.whirlwind" or skillId == "knight.common.provoke" or shieldSkills[skillId]) then

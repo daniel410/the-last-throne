@@ -1220,7 +1220,7 @@ local function skillContact(r,at,cf,size,style)
   elseif style=="PinningBarb" then
    line(r,style,function(u)
     local tip=at+dir*.22*u*size
-    return tip+(-dir*.68+lateral*.34+up*.22)*size,tip
+    return tip+(-dir*.86+lateral*.48+up*.25)*size,tip
    end,.075,r.hot,.04)
   else
    line(r,style,function(u)
@@ -1229,7 +1229,9 @@ local function skillContact(r,at,cf,size,style)
    end,.15,r.color,.035)
   end
  end
- if #r.lines>0 then r.model:SetAttribute("ContactStyle",style) end
+ if #r.lines==0 then return false end
+ r.model:SetAttribute("ContactStyle",style)
+ return true
 end
 local contactStyles={
  [SHIELD_BREAKER]="ShieldBreakerShear",
@@ -1280,11 +1282,12 @@ function FX.contact(at,classId,id,direction,scale,compact)
  local piercing=row.key=='arrow' or row.key=='gun' or d and Presentation.get(d).motion=='thrust'
  local descending=d and FX.groundLead(d)
  local authored=contactStyles[id]
+ local distinctContact
  local verdict=id==SHIELD_VERDICT
  if descending then
   descendingContact(r,at,cf,size,profile.shape)
  elseif authored then
-  skillContact(r,at,cf,size,authored)
+  distinctContact=skillContact(r,at,cf,size,authored)
  elseif verdict then
   for side=-1,1,2 do
    local lateral=cf.RightVector*side
@@ -1332,7 +1335,7 @@ function FX.contact(at,classId,id,direction,scale,compact)
  if not compact and (row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb")then
   debris(r,at,3,row.key=="frost"and"IceShard"or row.key=="earth"and"RockChip"or"Ember",size)
  end
- local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*.65*size,r.hot,.25,"ball")
+ local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*(distinctContact and .38 or .65)*size,r.hot,.25,"ball")
  if flash then r.faces[#r.faces].fadeDuration=.08 end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
@@ -1345,6 +1348,6 @@ function FX.contact(at,classId,id,direction,scale,compact)
  -- Physical hits use the sharp star as their focal point. Repeating the
  -- soft elemental halo here washed out the silhouette during rapid combos.
  if not physical and not descending and not authored then flourish(r,at,1.5*size,row.key,false)end
- FX.step(r.at);return r.model
+ FX.step(r.at);return r.model,distinctContact
 end
 return FX

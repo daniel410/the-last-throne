@@ -134,12 +134,15 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local attacker = type(impact) == "table" and impact.attacker or nil
 	local compact = HeroVFX.isOtherHero(attacker)
 	HitReaction.record(model, flat, nil, row, descending, final)
-	if not compact and not descending then PixelFX.hit(position, classId, skillId, scale, flat) end
-	local contact = HeroVFX.contact(position, classId, skillId, flat, scale * (final and 1.2 or 1), compact)
+	local contact, distinctContact = HeroVFX.contact(position, classId, skillId, flat, scale * (final and 1.2 or 1), compact)
 	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
-	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)
-	TweenService:Create(flash, TweenInfo.new(0.09, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-		{ Size = Vector3.one * .8 * scale * impactScale, Transparency = 1 }):Play()
+	local cleanContact = distinctContact or descending and sharpContact
+	if not compact and not descending and not distinctContact then PixelFX.hit(position, classId, skillId, scale, flat) end
+	if not distinctContact then
+		local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)
+		TweenService:Create(flash, TweenInfo.new(0.09, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ Size = Vector3.one * .8 * scale * impactScale, Transparency = 1 }):Play()
+	end
 	if not compact and model and model:IsDescendantOf(workspace) then
 		local highlight = Instance.new("Highlight")
 		highlight.Name, highlight.Adornee = "K0HitFlash", model
@@ -155,7 +158,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		ray.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(index == 1 and 35 or -55))
 		TweenService:Create(ray, TweenInfo.new(.17), {Size = ray.Size * 1.4, Transparency = 1}):Play()
 	end
-	if skill and not compact and (not descending or not sharpContact) then
+	if skill and not compact and not cleanContact then
 		local accent = part(holder, "K0SkillImpact", position, Vector3.new(0.12, 0.45, 0.45) * scale, skill.color)
 		accent.Transparency=.3
 		accent:SetAttribute("Style", skill.shape)
@@ -205,7 +208,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		streak.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(classId == "knight" and 45 or -35))
 		TweenService:Create(streak, TweenInfo.new(0.18), { Transparency = 1, Size = streak.Size * 1.2 }):Play()
 	end
-	for index = 1, (compact or descending and sharpContact) and 0 or 3 do
+	for index = 1, (compact or cleanContact) and 0 or 3 do
 		local angle = (index - 1) * (math.pi * 2 / 5) + 0.35
 		local offset = Vector3.new(math.cos(angle), 0.45 + (index % 2) * 0.4, math.sin(angle)) * scale
 		local particle = part(holder, slime and "K0GelDroplet" or "K0ImpactSpark", position,
