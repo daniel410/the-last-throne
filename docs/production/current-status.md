@@ -6,7 +6,7 @@
 - 영웅 기술 후보 0.115.20은 Counter Slash의 방패와 검호, Crosscut Axe의 회수, Crossfire의 재조준, Chain Lightning의 표적 사이 경로를 개선했다. 게시 테스트와 실기기 수용은 후속이다. [전후 화면과 Studio 검증](../evidence/hero-skill-direction-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
 
 - 에픽 퀘스트 0.114.1 후보는 DW-02, GW-06, FV-04, EC-05, HG-04의 대표 행동에 현장 지형과 시설을 연결했다. [모델·접근 화면·Studio 검증](../evidence/epic-quest-landmarks-20261119/README.md) · [0.114.0 퀘스트 진행과 저장 검증](../evidence/epic-quest-variety-20261119/README.md). 후보 미게시·G5 진행 중.
-- 다섯 에픽 결말 환경을 0.114.22에서 다시 점검하고 EC-07 선적 받침을 가로축 철제 롤러로 개선했다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-finale-dispatch-20261120/README.md)
+- 다섯 에픽 결말 환경 0.115.21 후보는 DW 적재턱, GW 첫눈 아래 셰일, FV 썰매 정지턱, EC 선적 롤러 축경, HG 귀환 보호턱을 개선했다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-finale-assembly-20261121/README.md)
 
 - 몬스터와 페이즈 로딩은 0.114.25에서 근접 교전 시작 거리, 외형 선행 로드, 처치와 목표 저장을 개선했다. 비공개 로비·배틀에 게시했으며 실제 플레이 수용은 후속이다. [전후 재현·게시 기록·남은 수용](../evidence/monster-phase-loading-20261120/README.md) · [지역 생성과 반복 작업 계측](../evidence/world-runtime-optimization-20261118/README.md).
 

@@ -5,7 +5,7 @@
 환경 아트가 [결말 전후](../evidence/epic-finale-readability-20261120/README.md), [목표 측 시야](../evidence/epic-finale-sightlines-20261120/README.md), [선적대 롤러](../evidence/epic-finale-dispatch-20261120/README.md)를 검토했다. 직전 회차의 6장 설비를 바탕으로, 이번에는 다섯 7장 장면에서 각 시설이 지형과 맞물리는 부분을 우선했다.
 
 - Diablo IV 환경 팀은 카메라에 따른 디테일과 명도 배분, Scosglen의 풍향이 지물에 남기는 흔적을 설명한다. GW-07에서 바람에 드러난 셰일과 바람그늘의 눈이 만드는 단면을 우선한다. [Blizzard 환경 아트 개발 업데이트](https://news.blizzard.com/en-us/article/23788294/diablo-iv-quarterly-updatemarch-2022)
-- World of Warcraft의 Ringing Deeps는 주민의 일과 제련·수로의 유지보수를 공간에 연결한다. DW·FV·EC에서 바퀴홈, 고임목, 축과 받침의 접촉이 운송 과정을 설명하게 한다. [Blizzard Ringing Deeps 지역 소개](https://worldofwarcraft.blizzard.com/en-us/news/24125258/)
+- World of Warcraft의 Ringing Deeps는 주민의 작업과 제련소·수로를 같은 산업 공간에 배치한다. DW·FV·EC에서 바퀴홈, 고임목, 축과 받침의 접촉이 운송 과정을 설명하게 한다. [Blizzard Ringing Deeps 지역 소개](https://news.blizzard.com/en-us/article/24025827/world-of-warcraft-whats-next-panel-recap)
 - Lost Ark Voldis 제작진은 Sage’s Tower의 높이로 건설 주체의 의지를 표현했다. HG-07의 낮아지는 갓돌과 보강철은 복원 이후 아군이 활용하는 귀환 공간의 규모와 기능을 드러낸다. 기존 복원 상태는 유지한다. [Lost Ark 제작진의 Voldis 해설](https://www.playlostark.com/en-us/news/articles/creating-voldis)
 - Roblox는 Studio 테스트와 실기기 확인을 구분한다. 동일 시점 전후와 R15 자동 보행을 확인하고, 실제 조작에서 보이는 첫 시점은 후속 수용 대상으로 둔다. [Studio 테스트 모드](https://create.roblox.com/docs/studio/testing-modes) · [실기기 테스트](https://create.roblox.com/docs/performance-optimization/test-on-hardware)
 
