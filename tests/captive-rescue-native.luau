@@ -48,7 +48,14 @@ local attempt=engine.projection(player,'a')
 check(attempt[key]~=nil,'server-validated unlock creates real escort')
 view.update({heroId='a',journal=journal,activities=attempt})
 check(scene:GetAttribute('RescueOpen')and door:GetPivot().LookVector:Dot(closed.LookVector)<.1,'door swings open on confirmed escort')
-check(scene.CaptiveResident.Torso.LocalTransparencyModifier==1,'no duplicate NPC while real escort moves')
+local hidden
+for _,part in ipairs(scene.CaptiveResident:GetDescendants())do
+ if part:IsA('BasePart') and part~=scene.CaptiveResident.PrimaryPart then
+  check(part.LocalTransparencyModifier==1,'no duplicate NPC while real escort moves')
+  hidden=true
+ end
+end
+check(hidden,'captured resident has a visible-part representation to hide')
 for i=1,180 do
  local projection=engine.projection(player,'a');if not projection[key]then break end
  local at=projection[key].actorPosition
