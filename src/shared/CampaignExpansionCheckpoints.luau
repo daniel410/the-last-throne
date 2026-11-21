@@ -32,7 +32,8 @@ function E.list(s)
   if s.flags[c.id..':'..g.id] and not (g.activity.finish and g.activity.finish.onMainRoute) then
    local area;for _,a in ipairs(C.zones[c.zone].expansionAreas or {})do if a.id==g.area then area=a end end
    local id=c.id..':'..g.id
-   result[id]={id=id,zone=c.zone,chapterId=c.id,title=area.name:upper(),position=g.activity.steps[#g.activity.steps].position}
+   local step=g.activity.finish or g.activity.steps[#g.activity.steps]
+   result[id]={id=id,zone=c.zone,chapterId=c.id,title=area.name:upper(),position=step.position}
    local exit='exit:'..id
    local target=nextDestination(s,c) or nextDestination(s,current)
    if target and C.zones[target.zone].epic==current.epic then

@@ -14,15 +14,15 @@ G.text={purpose='WHY WE ARE HERE',recap='LAST CONFIRMED RESULT',people='PEOPLE',
 }
 G.regions={
  {question='Who is missing from the convoy?',purpose='Bring the travelers and supplies home. Their clues can lead you to the missing workers.',
- result='The convoy and its people are safe. The portal is closed.',next='The cargo trail leads into Gloamwood, where Eryn\'s scouts have gone missing.'},
+ result='The camp and village can use the forest road again.',next="The raiders' orders point to Gloamwood. Meet Captain Maeve at Lantern Trail to find the scouts who followed the Crownheart."},
  {question='Can every scout make it home?',purpose='Follow the scout lanterns into the webs. Rescue your friends and open the old northern road.',
- result='The scouts are safe and the northern road is open.',next='Tali saw the Crownheart convoy heading toward Frozen Vale. Follow the snowy ridge.'},
+ result='Finn brought the last scouts home and Maeve can keep the rescue route open.',next='Freya knows the mountain pass the Crownheart cargo took. Find her at Blizzard Gate.'},
  {question='Why are the guardians blocking the refuge road?',purpose='Help the stranded travelers, reconnect their shelters, and discover what is wrong with the valley signals.',
- result='The guardians are calm, the storm has eased, and the villages are reunited.',next='The delivery records lead to the great furnace in Ember Caldera.'},
+ result='The guardians now protect the refuge road and the crossing again.',next="Ivo's records show why the cargo went to Ember Caldera. The great furnace can fit the Crownheart into a portal-key frame."},
  {question='Why was the Crownheart taken to the furnace?',purpose='Free the workers and restore the city\'s equipment. Follow the cargo records to uncover the enemy\'s plan.',
- result='The workshops are working again and the invasion plan is exposed.',next='Veyr plans to open an invasion gate at the royal tomb. Your friends are securing the approach.'},
+ result='The crews can work safely again with the city shield in service.',next="Veyr means to open an invasion gate at the royal tomb. Meet Rook at Mist Gate. He has a route from Brann's map."},
  {question='How will the friends we rescued help us reach the tomb?',purpose='Follow the allied signals, open the royal tomb, and stop Veyr from using the Crownheart against Dawnspire.',
- result='The Crownheart is safe and the invasion portal is closed.',next='Return to Dawnspire. The people you saved are ready to welcome you home.'},
+ result='The allies who opened the tomb road are keeping it clear for your return.',next="Your friends are waiting in Dawnspire to see the throne light up again."},
 }
 local records={
  {id='eryn',kind='people',epic=1,title='Eryn · Following people, not just cargo',stages={

@@ -48,6 +48,8 @@ src/server/World/CampaignIncidentScenes.luau
 src/server/World/EpicQuestLandmarkAssemblies.luau
 src/shared/DeepwoodQuestLog.luau
 src/shared/CampaignStoryBeats.luau
+src/shared/CampaignStoryGuide.luau
+src/shared/CampaignStoryText.luau
 src/server/World/CampaignCircuitWorld.luau
 src/server/World/CampaignNarrativeScenes.luau
 src/server/World/CampaignReturnScenes.luau

@@ -275,10 +275,37 @@ local serviceSource=game.ServerScriptService.Server.Story.DeepwoodService.Source
 local binding=assert(serviceSource:match('(function Service.refreshWorld%(%)'..'.-)'..'\nfunction Service.start'))
 local env={Service={interactStep=function(p,cid,gid,sid,choice)controlEngine.interactStep(p,cid,gid,sid,choice)end},options={world=fakeWorld},boundNodes={}}
 setmetatable(env,{__index=getfenv()});local fn=assert(loadstring(binding..'\nreturn Service.refreshWorld'));setfenv(fn,env);local refresh=fn();refresh();refresh()
-check(binds==12,'each physical control and field action binds once to the actual server interaction path')
+check(binds==21,'each physical control and field action binds once to the actual server interaction path')
 local journalSource=Client.DeepwoodJournal.Source
 local promptBody=assert(journalSource:match('(local function updatePrompts%(%)'..'.-)'..'\n workspace.DescendantAdded:Connect'))
 local updatePrompts=assert(loadstring('return function(workspace,current,Content,Progress,Checkpoints,Log)\n'..promptBody..'\nupdatePrompts() end'))()
+local log=require(Shared.DeepwoodQuestLog)
+local varied={
+ {'DW-01','exp_2'},{'DW-03','exp_1'},{'DW-03','exp_2'},{'GW-04','exp_1'},{'GW-05','exp_2'},
+ {'GW-07','exp_2'},{'FV-06','exp_2'},{'EC-06','exp_2'},{'EC-07','exp_2'},{'HG-02','exp_1'},
+ {'HG-02','exp_2'},{'HG-05','exp_1'},{'HG-07','exp_2'},
+}
+for _,entry in ipairs(varied)do
+ local s,c,g=reach(entry[1],entry[2]);controlsState=s
+ local key=c.id..':'..g.id
+ local step=P.nextStep(s,c,g)
+ local node=assert(world.activityNodes[key..':resolve'],key..' has a native action')
+ check(step==node.step and node.part.Position==Vector3.new(table.unpack(step.position))+Vector3.new(0,1,0),key..' tracks the generated action')
+ updatePrompts(workspace,{journal=controlsState},C,P,CP,log)
+ check((node.prompt==nil)==step.onMainRoute and (not node.prompt or node.prompt.Enabled),key..' uses the correct input')
+ for _,old in ipairs(g.activity.steps)do
+  check(not world.activityNodes[key..':'..old.id].prompt,key..' has no old mandatory prompt')
+ end
+ local function triggerAction()
+  if node.prompt then callbacks[key..':resolve'](cp)else controlEngine.update(0)end
+ end
+ local before=enqueues
+ controlRoot.Position=node.part.Position+Vector3.new(50,0,0);triggerAction()
+ check(enqueues==before,key..' rejects remote progression')
+ controlRoot.Position=node.part.Position;triggerAction();triggerAction()
+ check(enqueues==before+1 and controlsState.flags[key] and controlsState.activities[key]==3,key..' commits the old three stages once')
+end
+controlsState,cc,cg=reach('EC-05','exp_2')
 for i,step in ipairs(cg.activity.steps)do
  local good=world.activityChoices['EC-05:exp_2:'..step.id..':'..step.solution]
  local bad=world.activityChoices['EC-05:exp_2:'..step.id..':'..step.choices[2].id]
