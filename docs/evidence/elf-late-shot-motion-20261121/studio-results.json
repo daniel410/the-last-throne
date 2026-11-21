@@ -1,0 +1,221 @@
+{
+  "version": "0.115.39",
+  "sourceCommit": "579f1b60df91f292a8c1a87a803970591ea3a1f8",
+  "baselineVersion": "0.115.37",
+  "baselineSourceCommit": "47e2d69d",
+  "lateShot": {
+    "baseline": {
+      "timeline": {
+        "elf.marksman.heavy_draw": {
+          "release": 0.9104651162790682,
+          "snap": 0.915116279069765,
+          "after": 0.9325581395348818
+        },
+        "elf.marksman.crossfire": {
+          "release": 0.28730769230768116,
+          "snap": 0.334999999999981,
+          "after": 0.5138461538461478
+        },
+        "basic": {
+          "release": 0.9196709892139399,
+          "snap": 0.9249341512638037,
+          "after": 0.9534210158586968
+        },
+        "elf.common.rapid": {
+          "release": 0.37928571428568575,
+          "snap": 0.46785714285709634,
+          "after": 0.7999999999999647
+        },
+        "elf.marksman.grand_volley": {
+          "release": 0.28730769230768116,
+          "snap": 0.334999999999981,
+          "after": 0.5138461538461478
+        },
+        "elf.common.aimed": {
+          "release": 0.9124999999999984,
+          "snap": 0.9180555555555528,
+          "after": 0.9388888888888871
+        }
+      },
+      "failures": [
+        "basic launches once with the hand at the anchor",
+        "basic shows the bowstring moving forward before recovery",
+        "elf.common.aimed launches once with the hand at the anchor",
+        "elf.common.aimed shows the bowstring moving forward before recovery",
+        "elf.marksman.heavy_draw launches once with the hand at the anchor",
+        "elf.marksman.heavy_draw shows the bowstring moving forward before recovery",
+        "elf.common.rapid launches once with the hand at the anchor",
+        "elf.common.rapid shows the bowstring moving forward before recovery",
+        "elf.marksman.crossfire launches once with the hand at the anchor",
+        "elf.marksman.crossfire shows the bowstring moving forward before recovery",
+        "elf.marksman.grand_volley launches once with the hand at the anchor",
+        "elf.marksman.grand_volley shows the bowstring moving forward before recovery"
+      ],
+      "pass": false,
+      "checks": 39
+    },
+    "candidate": {
+      "timeline": {
+        "elf.marksman.heavy_draw": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.9325581395348818
+        },
+        "elf.marksman.crossfire": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.5138461538461478
+        },
+        "basic": {
+          "release": 0.8,
+          "snap": 0.8499999999999919,
+          "after": 0.9534210158586968
+        },
+        "elf.common.rapid": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.7999999999999647
+        },
+        "elf.marksman.grand_volley": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.5138461538461478
+        },
+        "elf.common.aimed": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.9388888888888871
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 39
+    }
+  },
+  "studio": {
+    "elf-late-shot-motion-native.luau": 39,
+    "elf-confirmed-release-native.luau": 13,
+    "arrow-public-clock-native.luau": 3,
+    "elf-arrow-direction-native.luau": 50,
+    "elf-basic-tempo-native.luau": 873,
+    "elf-straight-shot-native.luau": 570,
+    "hero-skill-direction-native.luau": 31,
+    "hero-release-alignment-native.luau": 26,
+    "hero-ultimate-finish-native.luau": 88,
+    "hero-skills-native.luau": 244520,
+    "hero-skill-beats-native.luau": 75,
+    "k0-elf-bow-native.luau": 4890
+  },
+  "studioTotal": 251178,
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 13712
+  },
+  "artifactVerification": {
+    "sha256": "be6e9f1353cbfcc2de8ddfa27adc08fac26d149703303b820e1402f4d98c15e5",
+    "pinnedClientModules": 1
+  },
+  "retries": "Some Studio runs failed to load or produce complete output during disk pressure. Passed counts are from the pinned final build with successful retries.",
+  "capture": {
+    "0.115.37": [
+      {
+        "index": 1,
+        "nocked": false,
+        "draw": 0,
+        "clip": 0.9104651162790682,
+        "skill": "elf.marksman.heavy_draw",
+        "delay": 0
+      },
+      {
+        "index": 2,
+        "nocked": false,
+        "draw": 0,
+        "clip": 0.915116279069765,
+        "skill": "elf.marksman.heavy_draw",
+        "delay": 0.02
+      },
+      {
+        "index": 3,
+        "nocked": false,
+        "draw": 0,
+        "clip": 0.9325581395348818,
+        "skill": "elf.marksman.heavy_draw",
+        "delay": 0.095
+      },
+      {
+        "index": 4,
+        "nocked": true,
+        "draw": 0.5045949626172694,
+        "clip": 0.37928571428568575,
+        "skill": "elf.common.rapid",
+        "delay": 0
+      },
+      {
+        "index": 5,
+        "nocked": true,
+        "draw": 0.6965823976919818,
+        "clip": 0.46785714285709634,
+        "skill": "elf.common.rapid",
+        "delay": 0.02
+      },
+      {
+        "index": 6,
+        "nocked": true,
+        "draw": 1,
+        "clip": 0.7999999999999647,
+        "skill": "elf.common.rapid",
+        "delay": 0.095
+      }
+    ],
+    "0.115.39": [
+      {
+        "index": 1,
+        "nocked": false,
+        "draw": 1,
+        "clip": 0.8,
+        "skill": "elf.marksman.heavy_draw",
+        "delay": 0
+      },
+      {
+        "index": 2,
+        "nocked": false,
+        "draw": 0.0090720201599836,
+        "clip": 0.8499999999999901,
+        "skill": "elf.marksman.heavy_draw",
+        "delay": 0.02
+      },
+      {
+        "index": 3,
+        "nocked": false,
+        "draw": 0,
+        "clip": 0.9325581395348818,
+        "skill": "elf.marksman.heavy_draw",
+        "delay": 0.095
+      },
+      {
+        "index": 4,
+        "nocked": false,
+        "draw": 1,
+        "clip": 0.8,
+        "skill": "elf.common.rapid",
+        "delay": 0
+      },
+      {
+        "index": 5,
+        "nocked": false,
+        "draw": 0.0090720201599836,
+        "clip": 0.8499999999999901,
+        "skill": "elf.common.rapid",
+        "delay": 0.02
+      },
+      {
+        "index": 6,
+        "nocked": true,
+        "draw": 1,
+        "clip": 0.7999999999999647,
+        "skill": "elf.common.rapid",
+        "delay": 0.095
+      }
+    ]
+  }
+}
