@@ -261,11 +261,11 @@ local ok, err = xpcall(function()
     check(holder.K0DamageNumber.Amount.Text == "42" and holder:FindFirstChild("K0HitFlash") == nil, "Compact ally hit keeps damage text")
     holder:Destroy()
     FX.clear()
-    for _ = 1, 20 do FX.contact(at, "elf", nil, dir, 1, true) end
+    for _ = 1, 20 do FX.skill(ally, "dwarf.gunner.gunner_shot", at, at+dir*5, 1, {}) end
     contacts = countParts("SkillContact")
     Visual.play(ally, "dwarf.gunner.gunner_shot", at, at+dir*5, 1, {})
     check(countParts("SkillContact") == contacts + 1, "A culled cast still gets its fallback muzzle flash")
-    check(FX.contact(at, "knight", nil, dir, 1) ~= nil, "Ally contact flood leaves a full local slot")
+    check(FX.contact(at, "knight", nil, dir, 1) ~= nil, "Ally release flood leaves a full local slot")
 end, debug.traceback)
 if warnings then warnings.destroy() end
 if world then world:Destroy() end

@@ -65,14 +65,32 @@ function FX.isOtherHero(character)
  local player=Players.LocalPlayer
  return player~=nil and character~=nil and character~=player.Character
 end
-local function make(first,last,life,key,id,compact)
- local limit=Input.TouchEnabled and 8 or 12
- if not vector(first)or not vector(last)or not visible(first,last)or #active>=limit-(compact and 2 or 0)then return end
+local function make(first,last,life,key,id,compact,contact,minBeams)
+ if not vector(first)or not vector(last)or not visible(first,last)then return end
+ local limit=(Input.TouchEnabled and 8 or 12)-(compact and 2 or 0)
+ local beamLimit=(Input.TouchEnabled and 144 or 240)-(minBeams or 0)
+ local now=workspace:GetServerTimeNow()
+ if #active>=limit or beams>beamLimit then
+  for i=#active,1,-1 do
+   local r=active[i]
+   if not r.model.Parent or now>=r.at+r.life then erase(i) end
+  end
+  if not contact then
+   -- A release or an incoming attack communicates its path once. Reuse
+   -- slots from the oldest ally hit accents before dropping that path.
+   local i=1
+   while i<=#active and (#active>=limit or beams>beamLimit) do
+    local r=active[i]
+    if r.contact and r.compact then erase(i) else i+=1 end
+   end
+  end
+ end
+ if #active>=limit or beams>beamLimit then return end
  local m=Instance.new("Model");m.Name="HeroVFX";m:SetAttribute("SkillId",id or "");m:SetAttribute("Style",key)
  local carrier=Instance.new("Part");carrier.Name="VFXCarrier";carrier.Size=Vector3.one*.05;carrier.Transparency=1
  carrier.Anchored=true;carrier.CanCollide=false;carrier.CanTouch=false;carrier.CanQuery=false;carrier.CastShadow=false
  carrier.Position=first;carrier.Parent=m;m.Parent=workspace;Debris:AddItem(m,life+.2)
- local r={model=m,carrier=carrier,at=workspace:GetServerTimeNow(),life=life,lines={},chips={},glows={},flares={},faces={},particles=0,color=palette[key]or palette.steel,key=key,hot=key=="holy"and Color3.fromRGB(255,226,128)or WHITE,compact=compact}
+ local r={model=m,carrier=carrier,at=now,life=life,lines={},chips={},glows={},flares={},faces={},particles=0,color=palette[key]or palette.steel,key=key,hot=key=="holy"and Color3.fromRGB(255,226,128)or WHITE,compact=compact,contact=contact}
  table.insert(active,r)
  if not connection and Run:IsClient()then connection=Run.RenderStepped:Connect(function()FX.step(workspace:GetServerTimeNow())end)end
  return r
@@ -249,15 +267,15 @@ function FX.windup(character,d,motion,effect,origin,seq,startedAt,socket)
  local duration=d.windup+(d.hitDelay or 0)
  local remaining=startedAt+duration-now
  if remaining<.045 or startedAt>now+.1 then return end
+ local compact=FX.isOtherHero(character)
  local pending=0
  for _,r in ipairs(active) do if r.windup then pending+=1 end end
- if pending>=(Input.TouchEnabled and 2 or 3) then return end
+ if pending>=(Input.TouchEnabled and 2 or 3)-(compact and 1 or 0) then return end
  local root=character:FindFirstChild("HumanoidRootPart")
  if not root or not root:IsA("BasePart") then return end
  local color,hot,key,row=Palette.resolve(d.id:match("^(%a+)"),d.id)
  if not row then return end
  local style,count=Windup.style(row.classId,d,motion,effect)
- if beams+count>(Input.TouchEnabled and 144 or 240) then return end
  local consumed=false
  local function refresh()
   if not character.Parent or not root.Parent or character:GetAttribute("TLTDeathFalling") then return false end
@@ -271,7 +289,7 @@ function FX.windup(character,d,motion,effect,origin,seq,startedAt,socket)
  end
  local alive,frame=refresh()
  if not alive then return end
- local r=make(origin,origin,remaining,key,d.id,FX.isOtherHero(character))
+ local r=make(origin,origin,remaining,key,d.id,compact,false,count)
  if not r then return end
  r.at=startedAt;r.life=duration;r.color=color;r.hot=hot
  r.model.Name="HeroSkillWindup"
@@ -344,7 +362,7 @@ local function makeIncoming(character,d,first,center,seq,pulse,landingAt,valid,l
  local pending=0
  for _,effect in ipairs(active) do if effect.incoming then pending+=1 end end
  if pending>=(compact and 2 or 3) then return end
- local r=make(first,center,landingAt-now,row.key,d.id,compact)
+ local r=make(first,center,landingAt-now,row.key,d.id,compact,false,2)
  if not r then return end
  r.at=landingAt-lead;r.life=lead;r.incoming=valid
  r.character=character;r.seq=seq;r.pulse=pulse
@@ -637,7 +655,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  if profile.shape=="wind"then return end
  local final=FinalBeat.isFinal(d,pulse)
  local life=profile.signature and not final and math.min(profile.life,d.interval) or profile.life
- local r=make(first,last,life,row.key,id,FX.isOtherHero(character));if not r then return end
+ local r=make(first,last,life,row.key,id,FX.isOtherHero(character),false,2);if not r then return end
  r.color,r.hot=Palette.get(row.key,row.classId)
  r.model:SetAttribute("Silhouette",profile.shape);r.model:SetAttribute("Pulse",pulse)
  local dir=forward(first,last)
@@ -1393,7 +1411,7 @@ local function elementalContact(r,at,cf,size)
 end
 function FX.contact(at,classId,id,direction,scale,compact)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
- local r=make(at,at,compact and .16 or .3,row.key,id,compact);if not r then return end
+ local r=make(at,at,compact and .16 or .3,row.key,id,compact,true);if not r then return end
  r.color,r.hot=Palette.get(row.key,row.classId)
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)

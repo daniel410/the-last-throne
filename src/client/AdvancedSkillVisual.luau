@@ -425,7 +425,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  end
  if d.shield and d.form~="self" and(not primary or(id~="mage.cryo.ice_ward" and id~="mage.pyro.searing_ward" and id~="dwarf.iron_axe.iron_shoulder"))then arc(floor,direction,2.7,360,color,.5,"GuardGranted")end
- if decorate and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" and type(points)=="table" then
+ if not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" and type(points)=="table" then
   for i=1,math.min(#points,4) do impact(points[i],color,.7) end
  end
 end
