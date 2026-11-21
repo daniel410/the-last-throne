@@ -10,6 +10,7 @@ assert 'ServerRole' not in tree['ReplicatedFirst']
 for name in ('PlaceRole','ExpeditionConfig','DeepwoodMusicPolicy'):
  assert tree['ReplicatedFirst'][name]['$path']==f'src/shared/{name}.luau'
 assert tree['ReplicatedStorage']['Shared']['$path']=='src/shared'
+assert tree['ReplicatedStorage']['Remotes']['CheckpointTravelState']['$className']=='RemoteEvent'
 print('single-build: project mounts and compatibility alias PASS')
 
 # Optional artifact check exercises the exact ModuleScript/LocalScript bytes
@@ -25,7 +26,11 @@ if args.artifact:
  def source(item):
   return item.findtext('./Properties/string[@name="Source"]')
  first=child(xml,'ReplicatedFirst')
- shared=child(child(xml,'ReplicatedStorage'),'Shared')
+ replicated=child(xml,'ReplicatedStorage')
+ shared=child(replicated,'Shared')
+ remotes=child(replicated,'Remotes')
+ checkpoints=[item for item in remotes.findall('./Item') if item.findtext('./Properties/string[@name="Name"]')=='CheckpointTravelState']
+ assert len(checkpoints)==1 and checkpoints[0].get('class')=='RemoteEvent', 'checkpoint event must exist before gameplay starts'
  for name in ('PlaceRole','ExpeditionConfig','DeepwoodMusicPolicy'):
   assert source(child(first,name))==source(child(shared,name)), name+' early/server bytes differ'
  for service in ('ReplicatedFirst','ServerStorage'):

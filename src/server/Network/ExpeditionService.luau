@@ -475,8 +475,8 @@ local function handle(p,c,...)
    local _,why=startRun(p,mine);return why
   elseif c.action=='Rejoin' then
    if studio then return 'Configuration' end
-   local r,why=offer(p);if not r then return why or 'RejoinExpired' end
-   local run=Backend.select(currentStore,legacyStore,r.runId).readRun(r.runId);if not run or not run.members[tostring(p.UserId)] then return 'RejoinExpired' end
+   local r,why,run=offer(p);if not r then return why or 'RejoinExpired' end
+   if not run.members[tostring(p.UserId)] then return 'RejoinExpired' end
    local ok,reason=send(p,{kind='battle',placeId=run.placeId,reservedId=run.reservedId,data={runId=run.id,ticket=r.ticket}});if not ok then return reason end
   else return 'InvalidRequest' end
  end)

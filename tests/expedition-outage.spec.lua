@@ -48,4 +48,20 @@ maintain(p,mine);assert(advertised==1 and released==0,'next heartbeat renews the
 gather(p,arrival);assert(not env.arrivals[p] and env.parties[p].id==mine.id,'gather resumes the original party')
 mine=env.parties[p];reason='PartyChanged';maintain(p,mine);assert(not env.parties[p] and released==1,'confirmed seat loss releases ownership')
 verified=false;reason='RejoinExpired';verify(p,m);assert(kicked==1 and begun==1,'expired ticket never stages a journal')
-print('Expedition outage: 9 checks passed')
+-- Rejoin should use the manifest already returned by offer and propagate
+-- an unavailable result without mistaking it for an expired ticket.
+local rejoinFirst=assert(source:find("elseif c.action=='Rejoin' then",1,true))+#"elseif c.action=='Rejoin' then"
+local rejoinLast=assert(source:find("else return 'InvalidRequest' end",rejoinFirst,true))
+local rejoin=assert(load(source:sub(rejoinFirst,rejoinLast-1),'rejoin request','t',env))
+local sent
+env.p=p
+env.offer=function()return nil,'NetworkUnavailable'end
+env.send=function(_,data)sent=data;return true end
+assert(rejoin()=='NetworkUnavailable' and not sent,'unavailable run store is reported as an outage')
+local run={id='existing',placeId=123,reservedId='reserved',members={}}
+env.offer=function()return {runId='existing',ticket='original'},nil,run end
+assert(rejoin()=='RejoinExpired' and not sent,'absent member cannot rejoin')
+run.members['1']=m
+assert(rejoin()==nil and sent.placeId==123 and sent.reservedId=='reserved' and sent.data.ticket=='original'
+ and sent.data.runId=='existing','rejoin uses the validated manifest without reading it again')
+print('Expedition outage: 12 checks passed')

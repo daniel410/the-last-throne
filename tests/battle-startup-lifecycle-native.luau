@@ -11,11 +11,15 @@ waitFor(function()return p:GetAttribute('K0SessionPhase')=='Lobby'end,'lobby rea
 check(not p.PlayerGui:FindFirstChild('DeepwoodTrainingHud'),'no battle HUD in initial lobby')
 check(not workspace:FindFirstChild('DeepwoodCampaign'),'no campaign in initial lobby')
 check(not r:FindFirstChild('K0Action'),'no combat remote in initial lobby')
+check(r.CheckpointTravelState:IsA('RemoteEvent'),'checkpoint event is replicated in the initial lobby')
 r.K0HeroRequest:FireServer('CreateHero','lifecycle-create','knight')
 task.wait(.5)
 r.K0HeroRequest:FireServer('StartTutorial','lifecycle-launch')
 waitFor(function()return p:GetAttribute('K0SessionPhase')=='Tutorial'and p.PlayerGui:FindFirstChild('DeepwoodJournal')end,'normal adventure entry')
 check(p.PlayerGui:FindFirstChild('DeepwoodWorldMap'),'map initialized after entry')
+local checkpointEvents=0
+for _,remote in ipairs(r:GetChildren())do if remote.Name=='CheckpointTravelState'then checkpointEvents+=1 end end
+check(checkpointEvents==1,'adventure startup reuses the replicated checkpoint event')
 waitFor(function()return p.Character and p.Character:GetAttribute('K0SpawnReady')==true end,'spawn readiness')
 -- Match held attack retries; the first intent can precede the server's first
 -- valid movement sample after spawning.

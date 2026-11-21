@@ -50,7 +50,10 @@ local ok,err=xpcall(function()
  local original=Server.Story.DeepwoodService;local copy=original:Clone();copy.Name='LateEpicServiceQA'
  local source=copy.Source;local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.destination',first,true))
  copy.Source=source:sub(1,first-1)..'local function publish(player,message)player.message=message end\n'..source:sub(last);copy.Parent=original.Parent
- local story=require(copy);local combat=table.clone(require(Server.Combat.CombatService));if not RS:FindFirstChild('Remotes')then combat.start(workspace.DeepwoodK0.Enemies,function()return nil end)end;local faults={'SaveUnknown','Busy'};local retries=0;local xp,gold=0,0;local activeMission
+ local story=require(copy);local combat=table.clone(require(Server.Combat.CombatService))
+ local remotes=RS:FindFirstChild('Remotes')
+ if not remotes or not remotes:FindFirstChild('K0Action')then combat.start(workspace.DeepwoodK0.Enemies,function()return nil end)end
+ local faults={'SaveUnknown','Busy'};local retries=0;local xp,gold=0,0;local activeMission
  local character=Instance.new('Model');character.Parent=folder
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=character;character.PrimaryPart=root
  local human=Instance.new('Humanoid');human.MaxHealth=1000;human.Health=1000;human.Parent=character
