@@ -10,6 +10,9 @@ local Gestures = require(client.RangedActionPoses)
 
 local stage = Instance.new("Folder", workspace)
 local origin, forward = Vector3.new(0, 300, 0), -Vector3.zAxis
+local camera = workspace.CurrentCamera
+local previousCamera = camera.CFrame
+camera.CFrame = CFrame.lookAt(origin+Vector3.new(8, 12, 18), origin)
 local report = {checks = 0, failures = {}, poses = {}}
 local function check(condition, label)
     report.checks += 1
@@ -142,7 +145,7 @@ for _, rig in {Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15} do
     local throwEnd = Melee.sample("dwarf", axe, axe.windup+.065, rig)
     report.poses[rig.Name] = {crescentLoadYaw = cut.angles.torso.Y, crescentFinishYaw = cutEnd.angles.torso.Y,
         axeLoadKnee = throw.angles.rightKnee.X, axeFinishKnee = throwEnd.angles.leftKnee.X}
-    check(cut.angles.torso.Y < -10 and cutEnd.angles.torso.Y > 7, "Crescent coils then follows through on " .. rig.Name)
+    check(cut.angles.torso.Y > 28 and cutEnd.angles.torso.Y < -23, "Crescent coils then follows through on " .. rig.Name)
     check(throw.angles.rightKnee.X > 20 and throwEnd.angles.leftKnee.X > 12, "Braced Throw loads and shifts weight on " .. rig.Name)
 end
 local bow = {angles = {}}
@@ -155,6 +158,7 @@ report.poses.spearElbow = cast.angles.leftElbow.X
 check(cast.angles.leftElbow.X > 32, "Thunder Spear drives the guiding arm forward")
 
 stage:Destroy()
+camera.CFrame = previousCamera
 report.pass = #report.failures == 0
 print("HERO_RELEASE_ALIGNMENT_NATIVE " .. game.HttpService:JSONEncode(report))
 assert(report.pass, table.concat(report.failures, "\n"))
