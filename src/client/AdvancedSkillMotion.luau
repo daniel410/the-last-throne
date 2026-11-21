@@ -318,6 +318,17 @@ function Motion.sample(classId,d,age,rigType)
   local weight=d.id=="knight.steel_knight.vanguard_strike" and 1.35 or 1
   offset(pose,"leftKnee",v(12*brake*weight))
   offset(pose,"rightHip",v(-8*brake*weight))
+  if d.id=="knight_driving_thrust" then
+   local settle=smooth(since/.055)*(1-smooth((since-.055)/.16))
+   offset(pose,"leftKnee",v(10*settle))
+   offset(pose,"rightHip",v(-9*settle,0,-4*settle))
+   offset(pose,"torso",v(-6*settle,0,0))
+  end
+ elseif d.id=="dwarf_hooking_chop" then
+  local pull=smooth(since/.06)*(1-smooth((since-.06)/.16))
+  offset(pose,"torso",v(-8,14,6)*pull)
+  offset(pose,"elbow",v(23,0,0)*pull)
+  offset(pose,"rightKnee",v(12,0,0)*pull)
  end
  local finish=FinalBeat.weight(d,pulse,since)
  if finish>0 then

@@ -804,7 +804,7 @@ local function applyProvokeDebuffs(enemy, definition, current)
  end
 end
 
-local function damageEnemy(state, enemy, attack, current)
+local function damageEnemy(state, enemy, attack, current, contactDirection, pulse)
 	if attack.hits[enemy.model] then return end
 	attack.hits[enemy.model] = true
 	attack.hitCount = attack.hitCount + 1
@@ -857,12 +857,12 @@ local function damageEnemy(state, enemy, attack, current)
 	if applied > 0 and hitEffectRemote then
 		-- This is presentation data for an already resolved hit, never an
 		-- input to damage. A position snapshot survives a lethal target's removal.
-		local direction = horizontalUnit(position - state.root.Position, attack.direction)
+		local direction = contactDirection or horizontalUnit(position - state.root.Position, attack.direction)
 		local skillId = attack.isSkill and attack.definition.id or nil
 		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, skillId,
 			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
 				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
-				classId = state.baseClassId, skillId = skillId})
+				classId = state.baseClassId, skillId = skillId, pulse = pulse})
 	end
 	if enemy.humanoid.Health > 0 then
   if applied > 0 then
@@ -1077,7 +1077,7 @@ local function applyArrowShot(state, current)
 			end)
 			for _, enemy in ipairs(others) do
 				if attack.hitCount >= attack.maxTargets then break end
-				damageEnemy(state, enemy, attack, current)
+				damageEnemy(state, enemy, attack, current, horizontalUnit(enemy.root.Position - center, attack.direction))
 			end
 		elseif attack.isSkill and attack.definition.effect == "multi" then
 			local aim = horizontalUnit(target.root.Position - origin, attack.direction)

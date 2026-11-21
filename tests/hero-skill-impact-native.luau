@@ -6,6 +6,7 @@ local FX = require(Client.HeroVFX)
 local Visual = require(Client.AdvancedSkillVisual)
 local Hits = require(Client.K0HitEffects)
 local Telegraphs = require(Client.K0Telegraphs)
+local AdvancedCombat = require(game.ServerScriptService.Server.Combat.AdvancedCombat)
 local at, dir = Vector3.new(0, 320, 0), -Vector3.zAxis
 local camera = workspace.CurrentCamera
 local originalCamera, isOtherHero = camera.CFrame, FX.isOtherHero
@@ -35,7 +36,7 @@ local ok, err = xpcall(function()
     end
     local shield = motion("knight.paladin.shield_verdict", 10, .036)
     local axe = motion("dwarf.iron_axe.armor_splitter", 11, .045)
-    local arrow = motion("elf.marksman.heavy_draw", 12, .018)
+    local arrow = motion("elf.common.aimed", 12, .018)
     local gravity = motion("mage.common.gravity", 13, .05)
     check(shield.Position.Z < -.2, "Shield drives straight through the target")
     check(axe.Position.Y < -.12, "Axe compresses downward")
@@ -50,6 +51,74 @@ local ok, err = xpcall(function()
     check(boss.Position.Magnitude < shield.Position.Magnitude * .25, "Boss windup remains readable")
     target:SetAttribute("K0EnemyState", "Idle")
     target:SetAttribute("StoryBoss", nil)
+    local heavy = motion("elf.marksman.heavy_draw", 15, .026)
+    check(heavy.Position.Z < -arrow.Position.Magnitude * 1.8, "Heavy Draw makes a deeper recoil than aimed shot")
+
+    for _, example in ipairs({
+        {"dwarf.gunner.siege_barrage", "ShellContactBurst", .036},
+        {"elf.magic_archer.spirit_arrowfall", "ArrowfallContactFletches", .021},
+        {"mage.pyro.ashfall", "AshContactCinders", .032},
+        {"mage.cryo.hailfall", "HailContactShards", .027},
+    }) do
+        local id, style, peak = unpack(example)
+        local row = Catalog.byId[id]
+        Reaction.record(target, dir, 16, row, true)
+        local early = Reaction.sample(target, 16+peak)
+        Reaction.record(target, dir, 17, row, true, true)
+        local final = Reaction.sample(target, 17+peak)
+        check(early.Position.Y < -.07 and final.Position.Y < early.Position.Y * 1.2, id .. " compresses further on the final hit")
+        check(Reaction.sample(target, 17.3) == CFrame.identity and root.Position == at, id .. " recovers without moving the root")
+
+        local firstWidth
+        for _, pulse in ipairs({1, row.definition.pulses}) do
+            check(Hits.show(target, at, 42, row.classId, "Goblin", dir, id, {pulse=pulse}), id .. " reaches the live hit handler")
+            local holder = assert(workspace:FindFirstChild("K0HitEffect"))
+            check(holder.Position == at+Vector3.yAxis*1.1 and holder.K0DamageNumber.Amount.Text == "42", id .. " shows the contact above the target with confirmed damage")
+            check(not holder:FindFirstChild("K0SkillImpact") and not holder:FindFirstChild("K0ImpactSpark"), id .. " uses one clear contact effect")
+            local impact = assert(workspace:FindFirstChild("HeroVFX"))
+            local stroke = assert(impact:FindFirstChild(style, true))
+            local height = (stroke.Attachment0.WorldPosition-stroke.Attachment1.WorldPosition).Y
+            check(impact:GetAttribute("ContactStyle") == style and (id == "mage.pyro.ashfall" and height < 0 or id ~= "mage.pyro.ashfall" and height > 0), id .. " has the expected vertical contact silhouette")
+            height = math.abs(height)
+            if firstWidth then check(height > firstWidth * 1.15, id .. " final hit reads larger") end
+            firstWidth = height
+            holder:Destroy()
+            FX.clear()
+        end
+    end
+
+    local attacker, attackerRoot = actor("DirectionSource", at)
+    local first, firstRoot = actor("FirstContact", at+dir*5)
+    local second, secondRoot = actor("SecondContact", firstRoot.Position+Vector3.xAxis*6)
+    local enemies = {
+        [first]={id=1,model=first,root=firstRoot,humanoid=Instance.new("Humanoid",first)},
+        [second]={id=2,model=second,root=secondRoot,humanoid=Instance.new("Humanoid",second)},
+    }
+    local function confirmed(id, pulse, center)
+        local hits = {}
+        local state = {character=attacker, root=attackerRoot}
+        local d = Catalog.byId[id].definition
+        local attack = {definition=d, direction=dir, advancedCast={origin=at,center=center,target=first}}
+        AdvancedCombat.resolve(state,attack,0,{
+            enemies=enemies, clear=function() return true end, visual=function() end,
+            damage=function(_,enemy,_,_,heading,index)
+                check(index==pulse,"Resolved damage carries its confirmed pulse")
+                hits[enemy.id]=heading
+            end,
+        },pulse)
+        return hits
+    end
+    local chain = confirmed("mage.cryo.chain_lightning", 1, firstRoot.Position)
+    check(chain[1]==dir and chain[2]==Vector3.xAxis,"Chain contact follows the previous link")
+    local ground = confirmed("dwarf.gunner.bomb_toss",1,(firstRoot.Position+secondRoot.Position)*.5)
+    check(ground[1]==-Vector3.xAxis and ground[2]==Vector3.xAxis,"Explosion sends contacts away from its confirmed center")
+    local axeOut = confirmed("dwarf.iron_axe.returning_echo",1,at+dir*12)
+    local axeBack = confirmed("dwarf.iron_axe.returning_echo",2,at+dir*12)
+    check(axeOut[1]==dir and axeBack[1]==-dir,"Returning axe reverses the direction of its second contact")
+
+    local thrust = assert(FX.contact(at,"knight","knight_driving_thrust",dir,1))
+    check(thrust:GetAttribute("ContactStyle")=="ArcadePierce" and thrust:FindFirstChild("PiercingContactWake",true), "Driving Thrust uses a narrow piercing contact")
+    FX.clear()
 
     for id, row in pairs(Catalog.byId) do
         report.skills += 1

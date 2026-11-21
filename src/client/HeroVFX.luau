@@ -6,6 +6,7 @@ local Players=game:GetService("Players")
 local Input=game:GetService("UserInputService")
 local Debris=game:GetService("Debris")
 local Catalog=require(RS.Shared.PixelFXCatalog)
+local Presentation=require(RS.Shared.SkillPresentation)
 local Geometry=require(script.Parent.SkillEffectGeometry)
 local Profiles=require(script.Parent.SkillVFXProfiles)
 local IconVFX=require(script.Parent.SkillIconVFX)
@@ -1151,7 +1152,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
 end
 -- A crisp, camera-facing contact silhouette reads at the gameplay camera.
 -- Geometry stays in world depth and uses the existing surface budget/lifetime.
-local function impactStar(r,at,dir,size,classId)
+local function impactStar(r,at,dir,size,classId,pierce)
  local camera=workspace.CurrentCamera
  local normal=camera and camera.CFrame.Position-at or -dir
  if normal.Magnitude<.01 then normal=-dir end
@@ -1162,7 +1163,6 @@ local function impactStar(r,at,dir,size,classId)
  up=up.Unit;right=up:Cross(normal).Unit
  local projected=dir-normal*dir:Dot(normal)
  if projected.Magnitude>.15 then right=projected.Unit;up=normal:Cross(right).Unit end
- local pierce=classId=='elf'or r.key=='gun'
  local spokes=Input.TouchEnabled and 4 or 6
  local start=#r.faces
  local function point(index)
@@ -1183,6 +1183,24 @@ local function impactStar(r,at,dir,size,classId)
   r.faces[i].motion={pivot=at,axis=normal,turn=0,expand=true,duration=.13}
  end
  r.model:SetAttribute('ContactStyle',pierce and 'ArcadePierce'or classId=='dwarf'and'ArcadeChop'or'ArcadeCut')
+end
+local function descendingContact(r,at,cf,size,shape)
+ local shell=shape=="mortar"
+ local ash=shape=="ash"
+ local span=shell and 1.05 or shape=="hail" and .8 or ash and .6 or .45
+ local name=shell and "ShellContactBurst" or shape=="hail" and "HailContactShards"
+  or ash and "AshContactCinders" or "ArrowfallContactFletches"
+ local count=r.compact and 1 or 3
+ for i=1,count do
+  local side=i-(count+1)*.5
+  local spread=(cf.RightVector*side+cf.LookVector*(shell and .65 or .24))*span*size
+  line(r,name,function(u)
+   local tip=at+spread*(.18+u*.85)+Vector3.yAxis*((ash and .65 or -.5)*u*size)
+   local tail=tip-spread*.3+Vector3.yAxis*((ash and -.48 or shell and .35 or .78)*size)
+   return tail,tip
+  end,shell and .14 or .08,i==math.ceil(count/2) and r.hot or r.color,.035)
+ end
+ if #r.lines>0 then r.model:SetAttribute("ContactStyle",name) end
 end
 local function elementalContact(r,at,cf,size)
  local up,right,dir=cf.UpVector,cf.RightVector,cf.LookVector
@@ -1223,8 +1241,13 @@ function FX.contact(at,classId,id,direction,scale,compact)
  local profile=Profiles.get(id)
  if profile then size*=math.clamp(profile.width/.18,.65,1.6)end
  local physical=row.key=='steel'or row.key=='axe'or row.key=='arrow'or row.key=='gun'or row.key=='shield'
+ local d=row.definition
+ local piercing=row.key=='arrow' or row.key=='gun' or d and Presentation.get(d).motion=='thrust'
+ local descending=d and FX.groundLead(d)
  local shieldStrike=id==SHIELD_BREAKER or id==SHIELD_VERDICT
- if shieldStrike then
+ if descending then
+  descendingContact(r,at,cf,size,profile.shape)
+ elseif shieldStrike then
   local verdict=id==SHIELD_VERDICT
   for side=-1,1,2 do
    local lateral=cf.RightVector*side
@@ -1235,8 +1258,7 @@ function FX.contact(at,classId,id,direction,scale,compact)
    end,.14,r.hot)
   end
  elseif physical and compact then
-  local pierce=row.key=="arrow"or row.key=="gun"
-  local axis=pierce and dir or classId=="dwarf" and cf.UpVector or cf.RightVector+cf.UpVector*.35
+  local axis=piercing and dir or classId=="dwarf" and cf.UpVector or cf.RightVector+cf.UpVector*.35
   for side=-1,1,2 do
    line(r,"AllyWeaponContact",function(u)
     local shift=cf.RightVector*side*.14*size+dir*u*.5
@@ -1244,8 +1266,8 @@ function FX.contact(at,classId,id,direction,scale,compact)
    end,.085,r.hot)
   end
  elseif physical then
-  impactStar(r,at,dir,size,classId)
-  if classId=='knight'then
+  impactStar(r,at,dir,size,classId,piercing)
+  if classId=='knight' and not piercing then
    for side=-1,1,2 do line(r,'PhysicalCutContact',function(u)local shift=dir*u*.35;return at+shift-cf.RightVector*side*.75*size-cf.UpVector*.25*size,at+shift+cf.RightVector*side*.5*size+cf.UpVector*.35*size end,.08,r.color)end
   elseif classId=='dwarf'and(row.key=='steel'or row.key=='axe')then
    line(r,'AxeCutContact',function(u)return at+cf.UpVector*(.9-u*.5)*size,at-cf.UpVector*(.6+u*.4)*size+dir*u*.3 end,.15,r.color)
@@ -1277,7 +1299,7 @@ function FX.contact(at,classId,id,direction,scale,compact)
  if flash then r.faces[#r.faces].fadeDuration=.08 end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
- if not compact and not physical and not shieldStrike and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
+ if not compact and not descending and not physical and not shieldStrike and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
   local start=#r.faces
   local basis=CFrame.lookAt(at,at+dir)*CFrame.Angles(math.pi/2,0,0)
   Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)
@@ -1285,7 +1307,7 @@ function FX.contact(at,classId,id,direction,scale,compact)
  end
  -- Physical hits use the sharp star as their focal point. Repeating the
  -- soft elemental halo here washed out the silhouette during rapid combos.
- if not physical then flourish(r,at,1.5*size,row.key,false)end
+ if not physical and not descending then flourish(r,at,1.5*size,row.key,false)end
  FX.step(r.at);return r.model
 end
 return FX

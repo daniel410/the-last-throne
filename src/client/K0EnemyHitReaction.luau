@@ -10,14 +10,24 @@ local profiles = {
     crush = {.045, .24, .16, -.13, 9, 0},
     shove = {.036, .21, .22, .035, 12, 0},
     pierce = {.018, .12, .065, 0, 4, 0},
+    heavyPierce = {.026, .17, .13, 0, 7, 0},
     burst = {.029, .19, .14, .065, 8, 0},
     frost = {.025, .16, .045, 0, 4, 0},
     lightning = {.015, .105, .055, .018, 5, -6},
     gravity = {.05, .22, -.10, -.07, -6, 0},
+    arrowfall = {.021, .14, .035, -.08, 4, 0},
+    hailfall = {.027, .17, .035, -.12, 6, 0},
+    ashfall = {.032, .18, .05, -.085, 5, 0},
+    shell = {.036, .22, .12, -.15, 8, 0},
 }
-local function profile(row)
+local function profile(row, descending)
     if not row then return idleHit end
     local d, key = row.definition, row.key
+    if descending then
+        return key == "bomb" and profiles.shell or key == "frost" and profiles.hailfall
+            or key == "fire" and profiles.ashfall or profiles.arrowfall
+    end
+    if d and d.id == "elf.marksman.heavy_draw" then return profiles.heavyPierce end
     local motion = d and Presentation.get(d).motion
     if key == "shield" or motion == "shield" then return profiles.shove end
     if key == "earth" or motion == "chop" or motion == "slam" then return profiles.crush end
@@ -27,7 +37,7 @@ local function profile(row)
     return (row.classId == "knight" or row.classId == "dwarf") and profiles.cut or idleHit
 end
 
-function Reaction.record(model, direction, current, row)
+function Reaction.record(model, direction, current, row, descending, final)
     if not model or not model:IsA("Model") or not model:IsDescendantOf(Workspace) then return end
     local root = model:FindFirstChild("HumanoidRootPart")
     if not root then return end
@@ -36,7 +46,7 @@ function Reaction.record(model, direction, current, row)
     local at = current or Workspace:GetServerTimeNow()
     local entry = Reaction.sample(model, at)
     local boneDirection = root.CFrame:VectorToObjectSpace(flat.Unit)
-    hits[model] = {at = at, direction = boneDirection, profile = profile(row), entry = entry}
+    hits[model] = {at = at, direction = boneDirection, profile = profile(row, descending), entry = entry, strength = final and 1.25 or 1}
 end
 function Reaction.sample(model, current)
     local hit = hits[model]
@@ -45,7 +55,7 @@ function Reaction.sample(model, current)
     local rise, duration, push, dip, pitch, turn = unpack(hit.profile)
     if age < 0 then return CFrame.identity end
     if age >= duration then hits[model] = nil; return CFrame.identity end
-    local weight = (1 - math.max(0, age - rise) / (duration - rise)) ^ 2
+    local weight = hit.strength * (1 - math.max(0, age - rise) / (duration - rise)) ^ 2
     local state = model:GetAttribute("K0EnemyState")
     if state == "Windup" or state == "Active" then weight *= .4 end
     if model:GetAttribute("StoryBoss") then weight *= .5 end

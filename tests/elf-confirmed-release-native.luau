@@ -30,5 +30,20 @@ check(not Motion.forCharacter(c,104.91).nocked,'close-range hit still releases n
 -- Older servers without the protocol continue their existing timed motion.
 c:SetAttribute('K0ArrowReleaseProtocol',nil);c:SetAttribute('K0AttackSeq',4);c:SetAttribute('K0AttackStartedAt',106)
 check(not Motion.forCharacter(c,106+release+.02).nocked,'older server compatibility')
+local heavy
+for _,d in ipairs(Config.Skills.elf) do
+ if d.id=='elf.marksman.heavy_draw' then heavy=d;break end
+end
+assert(heavy)
+c:SetAttribute('K0ArrowReleaseProtocol',1);c:SetAttribute('K0SkillId',heavy.id)
+c:SetAttribute('K0AttackSeq',5);c:SetAttribute('K0AttackStartedAt',108)
+local due=108+heavy.windup
+check(Motion.forCharacter(c,due+.05).nocked,'Heavy Draw holds the arrow through a delayed single pulse')
+Motion.confirmPulse(c,heavy.id,1,4,due+.07,108,due+.07)
+check(Motion.forCharacter(c,due+.07).nocked,'older sequence cannot release Heavy Draw')
+Motion.confirmPulse(c,heavy.id,1,5,due+.09,108,due+.09)
+check(not Motion.forCharacter(c,due+.1).nocked,'confirmed advanced single pulse releases the held arrow')
+Motion.confirmPulse(c,heavy.id,1,5,due+.15,108,due+.15)
+check(Motion.forCharacter(c,due+.16).time>.9,'duplicate pulse cannot replay the release')
 c:Destroy()
 print('ELF_CONFIRMED_RELEASE '..game.HttpService:JSONEncode({checks=checks,passed=true}))

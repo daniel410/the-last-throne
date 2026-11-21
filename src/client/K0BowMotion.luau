@@ -55,7 +55,7 @@ function Motion.confirmPulse(character,skillId,pulse,attackSeq,firedAt,startedAt
   or not validNumber(startedAt) or firedAt<startedAt or firedAt>now+.5 then return end
  local expected
  for _,d in ipairs(Config.Skills.elf) do if d.id==skillId then expected=d;break end end
- if not expected or not expected.advanced or type(expected.pulses)~="number" or expected.pulses<2
+ if not expected or not expected.advanced or type(expected.pulses)~="number"
   or pulse<1 or pulse>expected.pulses
   or firedAt>=startedAt+expected.windup+expected.active+expected.recovery then return end
  local currentSeq=character:GetAttribute("K0AttackSeq")
@@ -161,8 +161,8 @@ function Motion.forCharacter(character,now)
  else t=.9+.1*math.clamp((age-release-.04)/math.max(.01,total-release-.04),0,1) end
  -- Predicted windup completion is not proof that the server fired. A delayed
  -- or interrupted attack must keep its nocked arrow instead of faking a shot.
- if not repeated and not d.advanced and character:GetAttribute("K0ArrowReleaseProtocol")==1 and age>=release then
-  local firedAt=confirmedRelease(character,record,now)
+ if not repeated and character:GetAttribute("K0ArrowReleaseProtocol")==1 and age>=release then
+  local firedAt=d.advanced and record.pulseAt or not d.advanced and confirmedRelease(character,record,now)
   if not firedAt then t=.8;awaitingShot=true
   else
    local since=math.max(0,now-firedAt)*(record.rate or 1)
@@ -212,7 +212,7 @@ function Motion.forCharacter(character,now)
   end
  end
  if awaitingShot then pose.nocked=true;pose.ikWeight=1 end
- Gestures.bow(pose,d,age,sinceRelease,moreShots,count)
+ Gestures.bow(pose,d,awaitingShot and release or age,sinceRelease,moreShots,count)
  -- Lob ground-targeted arrows upward; direct shots retain their reviewed aim.
  if d.form=="ground" then
   local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)

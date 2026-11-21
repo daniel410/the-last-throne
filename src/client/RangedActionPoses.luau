@@ -83,6 +83,12 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     add(pose,"leftHip",v(-.36*knees,0,-7*support))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(knees*.65,0,0))
+    if s == bow.heavy and since then
+        local settle = smooth(since/.08)*(1-smooth((since-.08)/.15))
+        add(pose,"right",v(3,12,11)*settle)
+        add(pose,"neck",v(-4,-6,2)*settle)
+        add(pose,"leftKnee",v(10,0,0)*settle)
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -180,6 +186,11 @@ function Poses.mage(pose,d,profile,age)
     add(pose,"leftHip",v(-.4*knees,0,7*wind))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(.7*knees,0,0))
+    if d.id=="mage.cryo.frost_lance" then
+        add(pose,"leftElbow",v(24,0,0)*follow)
+        add(pose,"left",v(-12,-8,-14)*follow)
+        add(pose,"torso",v(-5,8,-3)*follow)
+    end
     if finish>0 then
         local ash = s == spells.ashfall
         add(pose,"left",(ash and v(-12,22,23) or v(26,-5,-10))*finish)

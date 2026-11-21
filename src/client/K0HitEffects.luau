@@ -8,6 +8,7 @@ local HitReaction = require(script.Parent.K0EnemyHitReaction)
 local PixelFX = require(script.Parent.PixelFX)
 local CombatAudio = require(script.Parent.K0CombatAudio)
 local Bomb = require(script.Parent.BombVisual)
+local FinalBeat = require(script.Parent.SkillFinalBeat)
 local HitStop = require(script.Parent.K0HitStop)
 local HeroVFX = require(script.Parent.HeroVFX)
 local Palette = require(ReplicatedStorage.Shared.CombatVFXPalette)
@@ -101,8 +102,12 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		and Vector3.new(direction.X, 0, direction.Z) or Vector3.new(0, 0, -1)
 	if flat.Magnitude < .001 then flat = Vector3.new(0, 0, -1) end
 	flat = flat.Unit
-	-- Root-centred sparks were hidden inside the opaque monster body.
-	position = position - flat * .8 + Vector3.new(0, .45, 0)
+	local row = Catalog.get(classId, skill and skillId or nil)
+	local definition = row and row.definition
+	local descending = definition and HeroVFX.groundLead(definition)
+	local final = definition and type(impact) == "table" and FinalBeat.isFinal(definition, impact.pulse)
+	-- Place a falling strike above the target. Other sparks sit on the incoming face.
+	position += descending and Vector3.yAxis * 1.1 or -flat * .8 + Vector3.yAxis * .45
 	local holder = part(workspace, "K0HitEffect", position, Vector3.new(0.1, 0.1, 0.1), profile.color)
 	holder.Transparency = 1
 	if skill then holder:SetAttribute("K0SkillEffectId", skillId) end
@@ -113,9 +118,9 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
 	local attacker = type(impact) == "table" and impact.attacker or nil
 	local compact = HeroVFX.isOtherHero(attacker)
-	HitReaction.record(model, flat, nil, Catalog.get(classId, skill and skillId or nil))
-	if not compact then PixelFX.hit(position, classId, skillId, scale, flat) end
-	local contact = HeroVFX.contact(position, classId, skillId, flat, scale, compact)
+	HitReaction.record(model, flat, nil, row, descending, final)
+	if not compact and not descending then PixelFX.hit(position, classId, skillId, scale, flat) end
+	local contact = HeroVFX.contact(position, classId, skillId, flat, scale * (final and 1.2 or 1), compact)
 	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
 	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)
 	TweenService:Create(flash, TweenInfo.new(0.09, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
@@ -135,7 +140,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		ray.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(index == 1 and 35 or -55))
 		TweenService:Create(ray, TweenInfo.new(.17), {Size = ray.Size * 1.4, Transparency = 1}):Play()
 	end
-	if skill and not compact then
+	if skill and not compact and (not descending or not sharpContact) then
 		local accent = part(holder, "K0SkillImpact", position, Vector3.new(0.12, 0.45, 0.45) * scale, skill.color)
 		accent.Transparency=.3
 		accent:SetAttribute("Style", skill.shape)
@@ -185,7 +190,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		streak.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(classId == "knight" and 45 or -35))
 		TweenService:Create(streak, TweenInfo.new(0.18), { Transparency = 1, Size = streak.Size * 1.2 }):Play()
 	end
-	for index = 1, compact and 0 or 3 do
+	for index = 1, (compact or descending and sharpContact) and 0 or 3 do
 		local angle = (index - 1) * (math.pi * 2 / 5) + 0.35
 		local offset = Vector3.new(math.cos(angle), 0.45 + (index % 2) * 0.4, math.sin(angle)) * scale
 		local particle = part(holder, slime and "K0GelDroplet" or "K0ImpactSpark", position,

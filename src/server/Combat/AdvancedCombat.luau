@@ -95,7 +95,17 @@ function AdvancedCombat.resolve(state,attack,current,services,pulse)
   table.sort(targets,function(a,b)return nearer(center,a,b)end)
  end
  attack.hits={};attack.hitCount=0
- for i=1,math.min(d.maxTargets,#targets) do services.damage(state,targets[i],attack,current) end
+ local contactFrom=(d.form=="ground" or d.form=="area" or d.detonate) and center or origin
+ for i=1,math.min(d.maxTargets,#targets) do
+  local target=targets[i]
+  local position=target.root.Position
+  local heading=flat(position-contactFrom)
+  if d.form=="line" and not d.detonate then
+   heading=d.returning and pulse%2==0 and -direction or direction
+  end
+  services.damage(state,target,attack,current,heading.Magnitude>.001 and heading.Unit or direction,pulse)
+  if d.form=="chain" then contactFrom=position end
+ end
  local points={};for i=1,math.min(d.maxTargets,#targets) do table.insert(points,targets[i].root.Position) end
  if d.form=="projectile" and points[1] then center=points[1] end
  services.visual(state,d,origin,center,pulse,points)
