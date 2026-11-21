@@ -8,7 +8,7 @@
 - 영웅 기술 0.115.33은 네 영웅의 여덟 전직 궁극기에서 아군 VFX를 간결하게 다듬고, Knight·Mage 궁극기 네 개에 고유한 마지막 타격 자세를 추가했다. 다인 전투와 실기기 수용은 후속이다. [궁극기 전후 화면과 Studio 검증](../evidence/hero-ultimate-finish-20261121/README.md) · [강타 모션과 명중](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
-- 에픽 환경 0.115.28 후보는 다섯 4장 복구 지물의 접근 단면을 개선했다. 야간 GW 셰일과 등불 파손, HG 집결로 끝돌을 중점으로 Studio에서 접근·귀환을 비교했다. 후보 미게시·G5 진행 중. [4장 빌드와 검증](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면 검증](../evidence/epic-finale-route-profiles-20261121/README.md)
+- 에픽 환경 0.115.34 후보는 다섯 에픽 2장의 배수 사면, 뿌리 셰일층, 전망대 석축, 화물 레일과 귀환 벽감을 개선했다. 후보 미게시·G5 진행 중. [2장 빌드와 Studio 비교](../evidence/epic-second-chapter-route-profiles-20261121/README.md) · [4장 복구 지물](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면](../evidence/epic-finale-route-profiles-20261121/README.md)
 
 - 몬스터와 페이즈 로딩은 0.114.25에서 근접 교전 시작 거리, 외형 선행 로드, 처치와 목표 저장을 개선했다. 비공개 로비·배틀에 게시했으며 실제 플레이 수용은 후속이다. [전후 재현·게시 기록·남은 수용](../evidence/monster-phase-loading-20261120/README.md) · [지역 생성과 반복 작업 계측](../evidence/world-runtime-optimization-20261118/README.md).
 
