@@ -1,7 +1,13 @@
--- Run in an empty local Studio place with actual source factories in `deps`.
--- tools/assembly is intentionally external to avoid editing any open TD place.
+-- Run against the local artifact, or use the isolated source factories in deps.
 assert(game.PlaceId == 0 and #game:GetService("Players"):GetPlayers() == 0, "Empty local place required")
-local Audio, Catalog, Config = deps.Audio, deps.CombatAudioCatalog, deps.K0Config
+local deps = deps
+if not deps then
+ local client=game.StarterPlayer.StarterPlayerScripts.Client
+ local shared=game.ReplicatedStorage.Shared
+ deps={Audio=require(client.K0CombatAudio),CombatAudioCatalog=require(shared.CombatAudioCatalog),
+  K0Config=require(shared.K0Config),BombVisual=require(client.BombVisual)}
+end
+local Audio, Catalog, Config, Bomb = deps.Audio, deps.CombatAudioCatalog, deps.K0Config, deps.BombVisual
 local result = {checks=0,skills=0,pulses=0,assets={},kind="COMBAT_AUDIO_NATIVE",published=false}
 local function check(v,label) result.checks+=1;assert(v,label) end
 local function clean()
@@ -25,7 +31,8 @@ local ok,err=xpcall(function()
    check(not Audio.renderCharacter(c,100),d.id.." no windup release")
    for beat=1,d.shotCount or d.pulses or 1 do
     clean()
-    local at=100+d.windup+(d.hitDelay or 0)+(beat-1)*(d.shotInterval or d.interval or .3)+.001
+    local bomb=Bomb.get(d.id)
+    local at=100+d.windup+(d.hitDelay or 0)+(beat-1)*(d.shotInterval or d.interval or .3)+.001-(bomb and bomb.flight or 0)
     check((Audio.renderCharacter(c,at)==true)==releaseExpected,d.id.." pulse "..beat)
     check(not Audio.renderCharacter(c,at),d.id.." dedup "..beat)
     result.pulses+=1

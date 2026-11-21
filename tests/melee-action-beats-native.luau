@@ -28,13 +28,18 @@ for _, rig in {Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15} do
             local duration = d.windup+d.active+d.recovery
             local function weighted(age)
                 local pose = sample(age)
-                body.apply(pose,classId,d.id,combo,age)
+                if not pose.offhand then body.apply(pose,classId,d.id,combo,age) end
                 return pose
             end
             local loaded = sample(contact*.48)
             local accent = weighted(contact*.48)
-            local hipAngle = delta(loaded.rightHip or CFrame.identity,accent.rightHip)
-            check(hipAngle>8,"Weight must load the supporting leg: "..tostring(d.id or combo))
+            if loaded.offhand then
+                check(delta(CFrame.identity,loaded.leftHip)>4 or delta(CFrame.identity,loaded.rightHip)>4,
+                    "The left-handed action loads its support leg: "..d.id)
+            else
+                local hipAngle = delta(loaded.rightHip or CFrame.identity,accent.rightHip)
+                check(hipAngle>8,"Weight must load the supporting leg: "..tostring(d.id or combo))
+            end
             local finish, released = sample(duration), weighted(duration)
             for _, joint in {"torso","left","neck","rightHip","leftHip","rightKnee","leftKnee"} do
                 local angle, offset = delta(finish[joint] or CFrame.identity,released[joint] or CFrame.identity)
@@ -68,8 +73,8 @@ for _, pair in {
         if d.id==pair[2] or d.id==pair[3] then
             local age=d.windup*.48
             local pose=advanced.sample(pair[1],d,age,Enum.HumanoidRigType.R15)
-            body.apply(pose,pair[1],d.id,1,age)
-            shoulders[d.id]=pose.right
+            if not pose.offhand then body.apply(pose,pair[1],d.id,1,age) end
+            shoulders[d.id]=pose.offhand and pose.left or pose.right
         end
     end
     check(delta(shoulders[pair[2]],shoulders[pair[3]])>18,"Distinct anticipation: "..pair[2])
@@ -87,7 +92,7 @@ local scatter = skills.gunner.skills[7]
 local function kick(d)
     local aim = advanced.sample("dwarf",d,d.windup,rig)
     local recoil = advanced.sample("dwarf",d,d.windup+.04,rig)
-    return delta(aim.elbow,recoil.elbow)
+    return delta(aim.leftElbow,recoil.leftElbow)
 end
 check(kick(scatter)>kick(single)+3,"Scatter Shot shoulder absorbs a heavier recoil")
 print("MELEE_ACTION_BEATS_NATIVE "..game.HttpService:JSONEncode({pass=true,checks=checks,rigActions=actions,contacts=seams}))

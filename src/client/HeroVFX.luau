@@ -308,7 +308,7 @@ local function shell(r,at,strong)
  if nose then r.faces[#r.faces].fall={height=height,duration=r.life,delay=0,landing=true}end
  line(r,'MortarShortWake',function(u)
   local y=height*(1-u*u)
-  return at+Vector3.yAxis*(y+size.Y+1.1),at+Vector3.yAxis*(y+size.Y-.1)
+  return at+Vector3.yAxis*(y+size.Y+.56),at+Vector3.yAxis*(y+size.Y-.08)
  end,strong and .16 or .09,palette.bomb)
 end
 local groundLead={mortar=.24,rain=.21,hail=.19,ash=.25}

@@ -90,7 +90,10 @@ local ok,err=xpcall(function()
    if path=="roll" then
     check(math.abs(height(.45)-floorY)<.2 and math.abs(height(.8)-floorY)<.2,id.." rolls on the floor")
    elseif path=="bounce" then
-    check(height(.31)>floorY+.7 and math.abs(height(.56)-floorY)<.28 and height(.78)>floorY+.45,
+    -- Studio can start a late frame partway into the intended flight window.
+    local bounceHeight=math.huge
+    for sample=0,16 do bounceHeight=math.min(bounceHeight,height(.54+sample*.01)) end
+    check(height(.31)>floorY+.7 and math.abs(bounceHeight-floorY)<.22 and height(.83)>floorY+.45,
      id.." lands and lifts for a second skip")
    else
     check(height(.5)>floorY+1.45,id.." visible airborne arc")

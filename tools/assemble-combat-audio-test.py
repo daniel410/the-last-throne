@@ -3,7 +3,7 @@ Run: python3 tools/assemble-combat-audio-test.py
 Then: run-in-roblox --place <empty-local.rbxlx> --script /tmp/tlt-combat-audio-native.luau
 """
 from pathlib import Path
-modules=[('AdvancedSkills','src/shared/AdvancedSkills.luau'),('K0Config','src/shared/K0Config.luau'),('SkillPresentation','src/shared/SkillPresentation.luau'),('PixelFXCatalog','src/shared/PixelFXCatalog.luau'),('CombatAudioCatalog','src/shared/CombatAudioCatalog.luau'),('Audio','src/client/K0CombatAudio.luau')]
+modules=[('AdvancedSkills','src/shared/AdvancedSkills.luau'),('K0Config','src/shared/K0Config.luau'),('SkillPresentation','src/shared/SkillPresentation.luau'),('PixelFXCatalog','src/shared/PixelFXCatalog.luau'),('CombatAudioCatalog','src/shared/CombatAudioCatalog.luau'),('BombVisual','src/client/BombVisual.luau'),('Audio','src/client/K0CombatAudio.luau')]
 parts=['local deps={}']
 for name,path in modules:
  s=Path(path).read_text()
