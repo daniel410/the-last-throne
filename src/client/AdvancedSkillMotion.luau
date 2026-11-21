@@ -29,7 +29,7 @@ local function rebuild(pose)
 end
 local function offset(pose,channel,delta)
  pose.angles[channel]+=delta
- pose[channel]=rot(pose.angles[channel])
+ pose[channel]=rot(pose.angles[channel])+pose[channel].Position
 end
 local function mix(a,b,weight)
  local pose={angles={}}
