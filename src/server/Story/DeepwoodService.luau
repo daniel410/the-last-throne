@@ -175,6 +175,7 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
     end
     task.wait(reason=='Busy' and .1 or 1)
    elseif reason then
+    if activities then activities.saveFailed(player,e.heroId,e.c,e.g,e.stepId,e.runId) end
     publish(player,'Progress could not be saved. Return to the checkpoint or rejoin to retry.')
     q.keys[e.key]=nil;table.remove(q.events,1)
    else
@@ -499,7 +500,7 @@ end
 function Service.interactStep(player,chapterId,goalId,stepId,choice)
  return activities.interactStep(player,chapterId,goalId,stepId,choice)
 end
-function Service.stepActivities(dt) activities.update(dt) end
+function Service.stepActivities(dt) activities.update(dt);activities.stepMotion(dt) end
 function Service.supportCampAccess(player,heroId)return companion and companion.atCamp(player,heroId)==true end
 function Service.selectSelene(player,following) return companion.select(player,following) end
 function Service.stepCompanion(dt) companion.update(dt);companion.stepMotion(dt) end
@@ -630,7 +631,7 @@ function Service.start(settings)
   partyElapsed=partyElapsed+dt;if partyElapsed<.5 then return end;partyElapsed=0
   for _,p in ipairs(Players:GetPlayers())do partyRemote:FireClient(p,partySnapshot(p))end
  end)
- activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
+ activities=require(script.Parent.DeepwoodActivities).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
  companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,activate=options.inventory.activateSupport,passState=options.inventory.supportState,phase=function(p)return p:GetAttribute('K0SessionPhase')end,notice=function(p,message)publish(p,nil,message)end,
   select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})
  local prepareNearby=options.prepareStory and require(script.Parent.CampaignStreaming).create(options)
@@ -666,6 +667,7 @@ function Service.start(settings)
  local activityElapsed=0
  RunService.Heartbeat:Connect(function(dt)
   companion.stepMotion(dt)
+  activities.stepMotion(dt)
   activityElapsed+=dt;if activityElapsed<.2 then return end
   local tick=activityElapsed;activityElapsed=0
   for _,p in ipairs(Players:GetPlayers()) do

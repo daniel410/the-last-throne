@@ -55,7 +55,11 @@ function Journal.guidance(current,target,origin)
   elseif a.mode=='sequence' then hint=a.clue;destination=Vector3.new(table.unpack(step.position))
   elseif a.mode=='escort' then
    local attempt=current.activities and current.activities[chapter.id..':'..goal.id]
-   if attempt then destination=attempt.actorPosition;hint=attempt.status else hint='Speak to '..a.actor..' to begin the escort.' end
+   if attempt then
+    local actorRoot=attempt.actorRoot
+    destination=actorRoot and actorRoot:IsDescendantOf(workspace) and actorRoot.Position or attempt.actorPosition
+    hint=attempt.status
+   else hint='Speak to '..a.actor..' to begin the escort.' end
   elseif a.mode=='dialogue' and step==a.steps[1] and goal.approach then hint=goal.approach
   elseif a.mode~='dialogue' then destination=Vector3.new(table.unpack(step.position)) end
  end
