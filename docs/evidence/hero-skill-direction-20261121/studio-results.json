@@ -1,0 +1,280 @@
+{
+  "work": [
+    "TLT-033",
+    "TLT-057",
+    "TLT-059"
+  ],
+  "baseline": {
+    "version": "0.115.18",
+    "sourceCommit": "65fe4b16d0f3c6c1ec0d0547a869385ec151d72d"
+  },
+  "candidate": {
+    "version": "0.115.20",
+    "sourceCommit": "3436bce9329a6360f440e3a464b5c788c335fdde"
+  },
+  "studio": "isolated Roblox Studio / run-in-roblox 0.3.0",
+  "baselineFocusProbe": {
+    "status": "Fail",
+    "checksAtFailure": 1,
+    "message": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21: First shot uses current origin and its own visibility"
+  },
+  "studioTotals": {
+    "passingSuites": 31,
+    "checks": 281519
+  },
+  "studioSuites": [
+    {
+      "name": "hero-skill-sockets",
+      "status": "Pass",
+      "checks": 16,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "melee-action-beats",
+      "status": "Pass",
+      "checks": 2147,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-ground-impact",
+      "status": "Pass",
+      "checks": 128,
+      "run": "isolated Studio Run after 0.7 s warm-up",
+      "firstAttempt": {
+        "status": "Fail",
+        "checksAtFailure": 115,
+        "message": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:192: Second pulse follows its own scatter center"
+      }
+    },
+    {
+      "name": "rpg-element-motion",
+      "status": "Pass",
+      "checks": 78,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "vfx-art-hero-fixes",
+      "status": "Pass",
+      "checks": 2335,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "vfx-review-followup",
+      "status": "Pass",
+      "checks": 1373,
+      "run": "isolated Studio Edit",
+      "firstAttempt": {
+        "status": "Fail",
+        "checksAtFailure": 1308,
+        "message": [
+          "exact range outline survives decoration removal mage.pyro.ember_step",
+          "exact range outline survives decoration removal mage.pyro.searing_ward"
+        ]
+      }
+    },
+    {
+      "name": "hero-skill-impact",
+      "status": "Pass",
+      "checks": 761,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-vfx",
+      "status": "Pass",
+      "checks": 9951,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "skill-vfx-individual",
+      "status": "Pass",
+      "checks": 306,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-vfx-flourish",
+      "status": "Pass",
+      "checks": 82,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-hit-feedback",
+      "status": "Pass",
+      "checks": 1667,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "combat-audio",
+      "status": "Pass",
+      "checks": 824,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "arcade-impact-vfx",
+      "status": "Pass",
+      "checks": 585,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "rpg-vfx-motion",
+      "status": "Pass",
+      "checks": 190,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "element-vfx",
+      "status": "Pass",
+      "checks": 84,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-skill-windup",
+      "status": "Pass",
+      "checks": 1400,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "ranged-action-poses",
+      "status": "Pass",
+      "checks": 158,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-skills",
+      "status": "Pass",
+      "checks": 244520,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "k0-skill-animation",
+      "status": "Pass",
+      "checks": 61,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "projectile-vfx-timing",
+      "status": "Pass",
+      "checks": 192,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "elf-confirmed-release",
+      "status": "Pass",
+      "checks": 13,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "skill-icon-vfx",
+      "status": "Pass",
+      "checks": 13384,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "rpg-vfx-gap",
+      "status": "Pass",
+      "checks": 21,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "vfx-style-fit",
+      "status": "Pass",
+      "checks": 58,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-final-beat",
+      "status": "Pass",
+      "checks": 100,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "curated-vfx",
+      "status": "Pass",
+      "checks": 168,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "vfx-art-palette",
+      "status": "Pass",
+      "checks": 562,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "k0-hit-effects",
+      "status": "Pass",
+      "checks": 102,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "damage-feedback",
+      "status": "Pass",
+      "checks": 42,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "hero-skill-direction",
+      "status": "Pass",
+      "checks": 31,
+      "run": "batch Studio Edit"
+    },
+    {
+      "name": "gunner-payload",
+      "status": "Pass",
+      "checks": 180,
+      "run": "isolated Studio Run after 0.7 s warm-up",
+      "firstAttempt": {
+        "status": "Fail",
+        "checksAtFailure": 19,
+        "message": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:81: dwarf.gunner.shrapnel_toss releases a physical bomb before landing"
+      }
+    }
+  ],
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 14000,
+    "place-role.spec.lua": 10
+  },
+  "partyFixture": {
+    "before": {
+      "legacyChain": 18,
+      "floorOutline": 0,
+      "legacyFlashes": 4,
+      "enemyOutline": 16,
+      "device": {
+        "touch": true,
+        "name": "iPhone 17 Pro",
+        "active": true,
+        "viewport": "750, 381",
+        "resolution": "874, 402"
+      },
+      "chainSurfaces": 36,
+      "chainCore": 18,
+      "damage": "42"
+    },
+    "after": {
+      "legacyChain": 0,
+      "floorOutline": 0,
+      "legacyFlashes": 0,
+      "enemyOutline": 16,
+      "device": {
+        "touch": true,
+        "name": "iPhone 17 Pro",
+        "active": true,
+        "viewport": "750, 381",
+        "resolution": "874, 402"
+      },
+      "chainSurfaces": 0,
+      "chainCore": 12,
+      "damage": "42"
+    }
+  },
+  "captures": {
+    "hero-direction-effects.jpg": "bb83dc2eaaed1a5ed126927e483874e18af719f8c97b0d880f13107c3f2c0943",
+    "hero-direction-poses.jpg": "15309fd059b2c7fa7e5a6ebd5caf55f674a3aa82cad2a04964a8960381e4e439",
+    "party-overlap.jpg": "7824be861ca2f5676a76aea961a795a219a89cb184e6326aa8c1a2481c31c321"
+  },
+  "unverified": [
+    "published four-player combat",
+    "low-end device frame time",
+    "player acceptance"
+  ]
+}
