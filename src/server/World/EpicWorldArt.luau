@@ -12,7 +12,7 @@ local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local StoryLandmarks=require(script.Parent.EpicStoryLandmarks)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=34}
+local Art={version=35}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -300,9 +300,10 @@ local function vista(parent,c,size,pal,theme,index,id,safe)
   elseif index==4 then Architecture.belfry(m,c,size,pal)
   elseif index>=6 then Architecture.cloister(m,c,size,pal,index)end
  end
- -- Fused waterfall exports contain detached horizontal water/terrain islands.
- -- Remove the broken backdrop until a connected source-to-basin asset exists.
- if theme=='EmberCaldera'then
+ if id=='DW-S2' then
+  require(script.Parent.ScenicWaterDetails).build(m,id,c,size,pal,safe,ground)
+ end
+ if theme=='EmberCaldera' and not require(script.Parent.CalderaLavaFlows).build(m,id,c,size,safe) then
   for _,s in ipairs({-1,1})do
    local lava=K.part(m,'LavaBelowCliff',V(26,.6,size[2]+40),c+V(s*(size[1]/2+68),-12,0),pal.accent,Enum.Material.Neon);lava.CastShadow=false
    for i=1,3 do
