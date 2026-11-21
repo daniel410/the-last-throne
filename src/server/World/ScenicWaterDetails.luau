@@ -55,8 +55,8 @@ function Water.creek(parent, center, width, depth, palette)
 end
 
 local function site(center, size, safe, ground)
-	-- The southeast shelf is offset from the fight and the western incident wing.
-	for _, offset in ipairs({{.28, -.36}, {.32, -.39}, {.35, -.33}, {-.31, -.37}}) do
+	-- Reserve an outer quarry shelf away from the hauling and combat routes.
+	for _, offset in ipairs({{-.36, -.52}, {-.38, -.56}, {-.44, .12}}) do
 		local origin = center + V(size[1] * offset[1], 0, size[2] * offset[2])
 		if safe(origin + V(0, 0, 14), 61) then
 			local surface, valid = ground(origin)
