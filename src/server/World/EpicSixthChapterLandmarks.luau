@@ -11,7 +11,10 @@ local function refugePathDrain(pal, part, beam)
 
 	part('ScouredRefugeBank', V(5.8, .68, 8.4), V(.08, .16, .11), silt, M.Ground, 'Corner', V(0, .19, 0))
 	part('DrainStoneFoundation', V(4.32, .65, 6.6), V(0, .22, .15), bed, M.Cobblestone)
-	part('DarkDrainBed', V(1.57, .19, 6.88), V(0, .56, .01), bed:Lerp(C(52, 50, 39), .58), M.Pebble)
+	local wetBed = bed:Lerp(C(53, 48, 39), .72)
+	part('DarkDrainBed', V(1.57, .19, 6.88), V(0, .56, .01), wetBed, M.Pebble)
+	part('SiltFanBelowDrain', V(2.12, .27, 1.51), V(.12, .33, -3.37), wetBed, M.Ground, 'Wedge',
+		V(0, .09, 0))
 	for _, x in ipairs({-1.37, 1.37}) do
 		part('WornDrainCheek', V(1.08, .66, 5.50), V(x, .75, .16), stone, M.Slate, nil, V(0, x * .05, 0))
 		for _, flow in ipairs({-1, 1}) do
@@ -19,7 +22,7 @@ local function refugePathDrain(pal, part, beam)
 				V(0, (flow == -1 and 0 or math.pi) + x * flow * .18, 0))
 		end
 	end
-	part('DrainCrossingLintel', V(3.61, .54, 1.52), V(.03, 1.22, .61), stone:Lerp(C(178, 157, 115), .33),
+	part('DrainCrossingLintel', V(3.61, .40, 1.19), V(.03, 1.20, .61), stone:Lerp(C(178, 157, 115), .33),
 		M.Slate, nil, V(0, -.07, .04))
 	beam('RootAboveDrain', V(-2.71, .38, 2.52), V(-.99, 1.12, 2.01), .63, root, M.Wood)
 	beam('RootAboveDrain', V(-.99, 1.12, 2.01), V(1.37, .34, 3.31), .46, root, M.Wood)
@@ -29,7 +32,7 @@ local function scoutExtractionSkid(pal, part, beam)
 	local shale = pal.rock:Lerp(C(141, 146, 136), .66)
 	local wood = pal.wood:Lerp(C(193, 163, 119), .84)
 	local track = pal.ground:Lerp(C(85, 69, 58), .54)
-	local lash = C(151, 129, 91)
+	local lash = C(218, 185, 132)
 
 	part('ExtractionWornShoulder', V(5.86, .58, 8.14), V(.09, .16, .12), track, M.Ground, 'Wedge')
 	part('ExtractionShaleSeat', V(4.08, .63, 5.34), V(.12, .26, .57), shale, M.Slate, 'Corner',
@@ -39,8 +42,9 @@ local function scoutExtractionSkid(pal, part, beam)
 		beam('CurvedSkidNose', V(x, .68, -2.64), V(x * .92, 1.34, -3.25), .37, wood, M.Wood)
 		part('RunnerBinding', V(.48, .34, .43), V(x, .79, -1.78), lash, M.Fabric)
 	end
-	beam('SkidPullRope', V(-.98, 1.23, -3.14), V(0, .74, -3.71), .14, lash, M.Fabric)
-	beam('SkidPullRope', V(0, .74, -3.71), V(.98, 1.23, -3.14), .14, lash, M.Fabric)
+	local ropeBight = V(0, .98, -3.71)
+	beam('SkidPullRope', V(-.98, 1.23, -3.14), ropeBight, .21, lash, M.Fabric)
+	beam('SkidPullRope', ropeBight, V(.98, 1.23, -3.14), .21, lash, M.Fabric)
 	for _, z in ipairs({-1.56, -.46, .65, 1.75}) do
 		part('EmptySkidSlat', V(2.62, .25, .72), V(0, .81 - z * .046, z), wood:Lerp(shale, .13), M.WoodPlanks)
 	end
@@ -60,13 +64,19 @@ local function citadelServiceCoping(pal, part)
 		part('SplitServiceCoping', V(2.81, .40, 3.53), V(.40, 1.76, z), cut, M.Slate, 'Wedge',
 			V(0, z < 0 and 0 or math.pi, 0))
 	end
-	part('RecessedRelaySleeve', V(4.81, .63, .63), V(1.81, 1.13, -.62), iron, M.CorrodedMetal, 'Cylinder',
+	local sleeveX, sleeveY = 2.15, 1.51
+	part('RecessedRelaySleeve', V(4.81, .75, .75), V(sleeveX, sleeveY, -.62), iron, M.CorrodedMetal, 'Cylinder',
 		V(0, math.pi / 2, 0))
 	for _, z in ipairs({-3.05, 1.80}) do
-		part('ServiceSleeveFlange', V(.29, 1.13, 1.13), V(1.81, 1.13, z), iron:Lerp(cut, .56), M.Metal,
+		part('ServiceSleeveFlange', V(.29, 1.22, 1.22), V(sleeveX, sleeveY, z), iron:Lerp(cut, .68), M.Metal,
 			'Cylinder', V(0, math.pi / 2, 0))
-		part('BlindFlangePlate', V(.13, .72, .72), V(1.81, 1.13, z + (z < 0 and -.16 or .16)), iron,
+		part('BlindFlangePlate', V(.13, .78, .78), V(sleeveX, sleeveY, z + (z < 0 and -.16 or .16)), iron,
 			M.CorrodedMetal, 'Cylinder', V(0, math.pi / 2, 0))
+	end
+	for _, z in ipairs({-2.31, 1.10}) do
+		part('SleeveStoneCradle', V(1.22, .72, .61), V(1.84, 1.02, z), cut, M.Slate)
+		part('SleeveBandClamp', V(.17, .87, .87), V(sleeveX, sleeveY, z), iron:Lerp(cut, .48), M.Metal,
+			'Cylinder', V(0, math.pi / 2, 0))
 	end
 end
 
@@ -79,8 +89,11 @@ local function heatworksObservationBaffle(pal, part)
 	part('BaffleBasaltFoundation', V(4.25, .74, 7.42), V(0, .22, .02), basalt, M.Basalt)
 	part('BaffleFirebrickWall', V(1.09, 1.48, 5.92), V(.81, 1.16, .14), brick, M.Brick)
 	part('BaffleLintel', V(1.76, .35, 7.03), V(.84, 2.08, .14), basalt, M.Basalt)
-	part('BaffleRefractoryCrown', V(1.22, .30, 6.27), V(.82, 2.37, .14), brick:Lerp(C(182, 138, 105), .35),
-		M.Brick)
+	for i, z in ipairs({-1.96, .14, 2.24}) do
+		part('BaffleRefractoryCrown', V(1.22, .31, 2.03), V(.82, 2.37, z),
+			brick:Lerp(C(188, 143, 108), .30 + i * .08), M.Brick)
+	end
+	part('ObservationWearStone', V(1.20, .23, 4.81), V(-1.45, .61, .14), basalt:Lerp(panel, .47), M.Slate)
 	for _, z in ipairs({-2.47, 2.74}) do
 		part('BaffleStoneButtress', V(2.61, 1.78, .84), V(.16, 1.22, z), basalt, M.Basalt, 'Wedge',
 			V(0, -math.pi / 2, 0))
@@ -105,9 +118,11 @@ local function antechamberRailFooting(pal, part, beam)
 		beam('RecessedRailUpright', V(0, 1.37, z), V(0, 2.27, z), .39, iron, M.CorrodedMetal)
 	end
 	part('RailSpine', V(.49, .37, 5.4), V(0, 2.25, 0), iron, M.CorrodedMetal)
-	part('WornRailCap', V(.61, .15, 5.69), V(0, 2.48, 0), iron:Lerp(stone, .62), M.Metal)
+	local wornIron = iron:Lerp(stone, .76)
+	part('WornRailCap', V(.66, .18, 5.42), V(0, 2.48, 0), wornIron, M.Metal)
 	for _, z in ipairs({-2.35, 2.35}) do
 		beam('RailSocketKnee', V(0, 1.44, z), V(0, 2.21, z * .57), .24, iron, M.CorrodedMetal)
+		beam('ReturnedRailEnd', V(0, 2.48, z * 1.13), V(0, 1.91, z * 1.23), .32, wornIron, M.Metal)
 	end
 	part('AntechamberServiceKerb', V(.89, .39, 5.91), V(-1.34, .62, .12), stone, M.Limestone)
 end
