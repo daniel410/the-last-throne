@@ -1,0 +1,85 @@
+{
+  "flowTracks": {
+    "modes": {
+      "splash": 5,
+      "current": 78
+    },
+    "count": 83,
+    "groups": {
+      "AshSpireVent": 4,
+      "FurnaceRimVent": 4,
+      "QuarryCascade": 25,
+      "MineFractureFlow": 4,
+      "CreekScenery": 42,
+      "CoolingRiftFlow": 4
+    }
+  },
+  "routes": {
+    "1": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 13309,
+      "samples": 13723,
+      "targets": 243,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "3": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 5808,
+      "samples": 6177,
+      "targets": 142,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "2": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4980,
+      "samples": 5196,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "5": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4560,
+      "samples": 4749,
+      "targets": 105,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "4": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 8057,
+      "samples": 8360,
+      "targets": 144,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    }
+  },
+  "motionVersion": "0.114.44",
+  "changedPixels": {
+    "creek": 17902,
+    "falls": 11930,
+    "lava": 41502
+  }
+}
