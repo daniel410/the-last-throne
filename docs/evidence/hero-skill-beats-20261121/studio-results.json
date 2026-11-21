@@ -1,0 +1,252 @@
+{
+  "baselineVersion": "0.115.22",
+  "baselineSourceCommit": "4a365e25",
+  "version": "0.115.23",
+  "sourceCommit": "95aabe46ed0288cff59d4fdab9176ffe0f5855c6",
+  "baseline": {
+    "checks": 75,
+    "scatter": {
+      "secondSegments": 72,
+      "afterDodgeSegments": 72,
+      "openingSegments": 72
+    },
+    "rhythm": {
+      "dwarf": [
+        true,
+        false
+      ],
+      "mage": [
+        false,
+        false,
+        false
+      ],
+      "knight": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "elf": [
+        false,
+        false,
+        false
+      ]
+    },
+    "pass": false,
+    "failures": [
+      "knight.steel_knight.blade_storm starts catch-up at the intended time",
+      "knight.steel_knight.blade_storm catches up to server time",
+      "knight.steel_knight.blade_storm accepts hit 2",
+      "knight.steel_knight.blade_storm holds through the authored beat",
+      "knight.steel_knight.blade_storm accepts hit 3",
+      "knight.steel_knight.blade_storm holds through the authored beat",
+      "knight.steel_knight.blade_storm accepts hit 4",
+      "knight.steel_knight.blade_storm holds through the authored beat",
+      "dwarf.iron_axe.mountain_collapse starts catch-up at the intended time",
+      "dwarf.iron_axe.mountain_collapse catches up to server time",
+      "dwarf.iron_axe.mountain_collapse accepts hit 2",
+      "dwarf.iron_axe.mountain_collapse holds through the authored beat",
+      "elf.marksman.grand_volley accepts hit 1",
+      "elf.marksman.grand_volley holds through the authored beat",
+      "elf.marksman.grand_volley accepts hit 2",
+      "elf.marksman.grand_volley holds through the authored beat",
+      "elf.marksman.grand_volley accepts hit 3",
+      "elf.marksman.grand_volley holds through the authored beat",
+      "mage.pyro.molten_line accepts hit 1",
+      "mage.pyro.molten_line holds through the authored beat",
+      "mage.pyro.molten_line accepts hit 2",
+      "mage.pyro.molten_line holds through the authored beat",
+      "mage.pyro.molten_line accepts hit 3",
+      "mage.pyro.molten_line holds through the authored beat",
+      "first scatter preview is one ring at the first landing",
+      "first contact clears its preview and reveals the next scatter",
+      "second contact reveals the last scatter",
+      "dodge clears unfinished ground effects",
+      "a late confirmation cannot recreate a canceled preview",
+      "single landing still gets a full preview",
+      "death clears the ground cue"
+    ]
+  },
+  "studio": [
+    {
+      "fixture": "hero-skill-beats-native.luau",
+      "mode": "Native fixture",
+      "checks": 75,
+      "result": "Pass",
+      "rhythm": {
+        "dwarf": [
+          true,
+          true
+        ],
+        "mage": [
+          true,
+          true,
+          true
+        ],
+        "knight": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "elf": [
+          true,
+          true,
+          true
+        ]
+      },
+      "scatter": {
+        "secondSegments": 24,
+        "afterDodgeSegments": 0,
+        "openingSegments": 24
+      }
+    },
+    {
+      "fixture": "hero-hit-feedback-native.luau",
+      "mode": "Native fixture",
+      "checks": 1667,
+      "result": "Pass"
+    },
+    {
+      "fixture": "melee-feedback-real-rigs-native.luau",
+      "mode": "Run (prewarmed)",
+      "checks": 31,
+      "result": "Pass"
+    },
+    {
+      "fixture": "hero-final-beat-native.luau",
+      "mode": "Native fixture",
+      "checks": 100,
+      "result": "Pass"
+    },
+    {
+      "fixture": "hero-skill-impact-native.luau",
+      "mode": "Native fixture",
+      "checks": 761,
+      "result": "Pass"
+    },
+    {
+      "fixture": "hero-skill-direction-native.luau",
+      "mode": "Native fixture",
+      "checks": 31,
+      "result": "Pass"
+    },
+    {
+      "fixture": "gunner-payload-native.luau",
+      "mode": "Run (prewarmed)",
+      "checks": 180,
+      "result": "Pass"
+    },
+    {
+      "fixture": "projectile-vfx-timing-native.luau",
+      "mode": "Native fixture",
+      "checks": 192,
+      "result": "Pass"
+    },
+    {
+      "fixture": "hero-skills-native.luau",
+      "mode": "Native fixture",
+      "checks": 244520,
+      "result": "Pass"
+    },
+    {
+      "fixture": "k0-skill-animation-native.luau",
+      "mode": "Native fixture",
+      "checks": 61,
+      "result": "Pass"
+    },
+    {
+      "fixture": "display-guides-native.luau",
+      "mode": "Native fixture",
+      "checks": 53,
+      "result": "Pass"
+    },
+    {
+      "fixture": "hero-ground-impact-native.luau",
+      "mode": "Run (prewarmed)",
+      "checks": 128,
+      "result": "Pass"
+    }
+  ],
+  "initialRuns": [
+    {
+      "fixture": "gunner-payload-native.luau",
+      "mode": "Edit",
+      "checksReached": 19,
+      "result": "Fail",
+      "detail": "Shrapnel Toss pre-contact flight missed the scheduled observation window."
+    },
+    {
+      "fixture": "melee-feedback-real-rigs-native.luau",
+      "mode": "Run (started and stopped by fixture)",
+      "checksPassed": 31,
+      "result": "Harness exit 1",
+      "detail": "Fixture passed. Studio built-in plugin React errors followed Run:Stop()."
+    },
+    {
+      "fixture": "k0-timing-native.luau",
+      "mode": "Run",
+      "result": "Harness exit 2",
+      "detail": "Loopback port 50312 was in use. No assertions ran."
+    }
+  ],
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 13712
+  },
+  "partyCapture": {
+    "baseline": {
+      "enemyOutline": 16,
+      "legacyChain": 0,
+      "floorOutline": 0,
+      "chainCore": 12,
+      "device": {
+        "viewport": "1330, 967",
+        "mode": "Studio desktop viewport",
+        "touch": false
+      },
+      "chainSurfaces": 0,
+      "scatterPreview": 36,
+      "legacyFlashes": 0,
+      "damage": "42"
+    },
+    "candidate": {
+      "enemyOutline": 16,
+      "legacyChain": 0,
+      "floorOutline": 0,
+      "chainCore": 12,
+      "device": {
+        "viewport": "1330, 967",
+        "mode": "Studio desktop viewport",
+        "touch": false
+      },
+      "chainSurfaces": 0,
+      "scatterPreview": 12,
+      "legacyFlashes": 0,
+      "damage": "42"
+    }
+  },
+  "studioChecksPassed": 247799,
+  "separateTimingDiagnostic": {
+    "fixture": "k0-timing-native.luau",
+    "mode": "Run (prewarmed)",
+    "result": "Fail on both builds",
+    "checksPerBuild": 92,
+    "sameFailureIds": [
+      "R1-normal-active-multiple-samples-still-one-hit",
+      "R1-late-hit-cap-0.25",
+      "R1-pending-earlier-player-kill-cancels-enemy",
+      "R1-remote-resolves-old-window-before-new-action",
+      "R1-dodge-position-before-enemy-hit-0.079",
+      "R1-dodge-invulnerability-boundary-0.28",
+      "R1-dodge-wall-and-same-time-idempotence",
+      "dodge-sequence-advances-only-on-accepted-dodges",
+      "R2-repeated-input-cannot-extend-buffer",
+      "R2-release-cancels-buffered-guard",
+      "R2-late-buffer-cap-0.25",
+      "R2-exact-expiry-is-not-accepted",
+      "R2-higher-priority-dodge-replaces-due-attack",
+      "R2-due-dodge-precedes-lower-priority-remote"
+    ]
+  }
+}

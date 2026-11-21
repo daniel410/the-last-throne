@@ -3,7 +3,7 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 영웅 기술 후보 0.115.20은 Counter Slash의 방패와 검호, Crosscut Axe의 회수, Crossfire의 재조준, Chain Lightning의 표적 사이 경로를 개선했다. 게시 테스트와 실기기 수용은 후속이다. [전후 화면과 Studio 검증](../evidence/hero-skill-direction-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
+- 영웅 기술 후보 0.115.23은 네 영웅의 확정 연속 명중에 무기별 정지 길이를 적용하고, 산개 기술은 다음 착탄점 한 곳을 보여 준다. 게시 테스트와 실기기 수용은 후속이다. [전후 화면과 Studio 검증](../evidence/hero-skill-beats-20261121/README.md) · [조준·연쇄 개선](../evidence/hero-skill-direction-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
 
 - 에픽 퀘스트 0.114.1 후보는 DW-02, GW-06, FV-04, EC-05, HG-04의 대표 행동에 현장 지형과 시설을 연결했다. [모델·접근 화면·Studio 검증](../evidence/epic-quest-landmarks-20261119/README.md) · [0.114.0 퀘스트 진행과 저장 검증](../evidence/epic-quest-variety-20261119/README.md). 후보 미게시·G5 진행 중.
 - 다섯 에픽 결말 환경 0.115.21 후보는 DW 적재턱, GW 첫눈 아래 셰일, FV 썰매 정지턱, EC 선적 롤러 축경, HG 귀환 보호턱을 개선했다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-finale-assembly-20261121/README.md)
