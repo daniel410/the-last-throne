@@ -128,7 +128,7 @@ local ok,err=xpcall(function()
   for _,piece in landed:GetDescendants() do
    if piece.Name=="SiegeLandingSpark" then table.insert(sparks,piece.Attachment0.WorldPosition*Vector3.new(1,0,1)) end
   end
-  check(#shells>=1 and #sparks==#shells*3 and (not compact or #shells==1),"Each shell has one landing spark group")
+  check(#shells>=1 and #sparks==#shells*(compact and 2 or 3) and (not compact or #shells==1),"Each shell has one landing spark group")
   for _,spark in sparks do
    local matched=false
    for _,shell in shells do if math.abs((spark-shell).Magnitude-.2)<.001 then matched=true end end

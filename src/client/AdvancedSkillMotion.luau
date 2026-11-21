@@ -194,7 +194,7 @@ end
 
 local function shieldPose(d,age,rigType,contact,ending)
  local bash=Config.Skills.knight[1]
- local _,since=Presentation.beat(d,age)
+ local pulse,since=Presentation.beat(d,age)
  local impact=bash.windup
  local follow=impact+bash.active
  local t
@@ -231,7 +231,23 @@ local function shieldPose(d,age,rigType,contact,ending)
   offset(pose,"torso",v(-7*recoil,-4*recoil,0))
   offset(pose,"leftKnee",v(10*recoil))
  end
- return age>=ending and mix(pose,resting("knight"),smooth((age-ending)/d.recovery)) or pose
+ if age>=ending then pose=mix(pose,resting("knight"),smooth((age-ending)/d.recovery)) end
+ local finish=FinalBeat.weight(d,pulse,since)
+ if finish>0 then
+  if d.id=="knight.steel_knight.unyielding_front" then
+   -- Plant the shield forward and let the lead leg absorb the second impact.
+   offset(pose,"torso",v(13,-7,-6)*finish)
+   offset(pose,"left",v(15,-11,-16)*finish)
+   offset(pose,"leftKnee",v(22*finish))
+   offset(pose,"rightHip",v(-12*finish))
+  elseif d.id=="knight.paladin.oath_of_dawn" then
+   -- Raise the sword and open the shield arm as the crest ascends.
+   offset(pose,"right",v(40,-6,-20)*finish)
+   offset(pose,"left",v(-21,5,26)*finish)
+   offset(pose,"torso",v(-12,5,4)*finish)
+  end
+ end
+ return pose
 end
 local function axeCatch(d,age,contact,ending,base,sample,classId)
  local flight=d.interval

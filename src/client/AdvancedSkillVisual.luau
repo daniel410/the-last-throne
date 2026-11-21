@@ -316,6 +316,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local targetFloor=findFloor(center,character)
  local effect=profile.effect
  local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first)
+ local ultimateSignature=primary and primary:GetAttribute("UltimateSignature")
  -- Compact casts keep the authored shape and radius markers. Confirmed hits
  -- already have their own target feedback in K0HitEffects.
  local decorate=not compact or not primary
@@ -362,7 +363,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    -- HeroVFX owns ground-planted roots; no duplicate upright helix.
   elseif effect=="earth" or effect=="lava" or effect=="frost" then
    if not primary then spikes(targetFloor,direction,d.radius,360,color,effect)end
-   if effect=="lava" and decorate then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
+   if effect=="lava" and decorate and not ultimateSignature then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
   elseif effect=="steam" then
    -- HeroVFX owns short translucent rising vapor.
   end
@@ -370,16 +371,16 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local burst=targetFloor+Vector3.yAxis*Bomb.radius
    if not primary then impact(burst,color,.75) end
    Audio.play("impact",burst,"dwarf",id,character,Players.LocalPlayer~=nil and Players.LocalPlayer.Character==character)
-  elseif decorate then
+  elseif decorate and not ultimateSignature then
    impact(center,color,2)
   end
  elseif effect=="vine" then
   -- Keep the actual cone boundary if optional roots are culled.
   if d.form=='cone'then arc(floor,direction,d.range,d.angle,color,.3,'SkillSector')end
  elseif effect=="arrow" then
-  if d.form=="cone" then
+  if d.form=="cone" and ultimateSignature~="VolleyCrown" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
-  elseif not (primary and primary:GetAttribute("CrossfireTrace")) then arrow(first,center,color,character) end
+  elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then arrow(first,center,color,character) end
  elseif effect=="axe" then
   if not primary then
   local from,to=origin,center;if d.returning and pulse==2 then from,to=center,origin end
@@ -402,7 +403,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
   elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
-   if not primary or id~="dwarf.iron_axe.iron_shoulder" then
+   if not primary or (not ultimateSignature and id~="dwarf.iron_axe.iron_shoulder") then
    local flat=Vector3.new(direction.X,0,direction.Z)
    local delta=flat.Magnitude>.001 and flat.Unit or Vector3.new(0,0,-1)
    local at=origin+delta*2
@@ -411,7 +412,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="fire"then
    -- HeroVFX owns the cinder circle, ember wake and searing crown. A second
    -- full ring would erase their silhouettes; the SkillSector above remains.
-  elseif effect=="holy" or effect=="water" then arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave") end
+  elseif (effect=="holy" or effect=="water") and not ultimateSignature then arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave") end
  else
   if effect=="lightning" then
    if not primary or(id~="mage.cryo.thunder_spear" and id~="mage.cryo.lightning_line")then lightning(first,center,color)end

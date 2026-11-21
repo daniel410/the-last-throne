@@ -225,10 +225,23 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"torso",v(10,0,5)*follow)
     end
     if finish>0 then
-        local ash = s == spells.ashfall
-        add(pose,"left",(ash and v(-12,22,23) or v(26,-5,-10))*finish)
-        add(pose,"torso",(ash and v(7,13,5) or v(16,0,-5))*finish)
-        add(pose,"rightKnee",v((ash and 6 or 14)*finish,0,0))
+        if s == spells.caldera then
+            -- Drive the staff down and push the other palm up with the eruption.
+            add(pose,"right",v(-33,-8,-8)*finish)
+            add(pose,"left",v(24,-6,9)*finish)
+            add(pose,"torso",v(14,-8,-6)*finish)
+            add(pose,"rightKnee",v(18*finish,0,0))
+        elseif s == spells.tempest then
+            -- Pull the guiding arm inward as the storm closes around its eye.
+            add(pose,"left",v(-23,26,-32)*finish)
+            add(pose,"leftElbow",v(-26*finish,0,0))
+            add(pose,"torso",v(-7,18,8)*finish)
+        else
+            local ash = s == spells.ashfall
+            add(pose,"left",(ash and v(-12,22,23) or v(26,-5,-10))*finish)
+            add(pose,"torso",(ash and v(7,13,5) or v(16,0,-5))*finish)
+            add(pose,"rightKnee",v((ash and 6 or 14)*finish,0,0))
+        end
     end
 end
 return Poses

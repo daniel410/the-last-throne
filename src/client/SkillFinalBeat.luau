@@ -2,13 +2,17 @@
 local FinalBeat = {}
 local durations = {
     ["knight.steel_knight.blade_storm"] = .23,
+    ["knight.steel_knight.unyielding_front"] = .26,
     ["knight.paladin.oathbound_assault"] = .22,
+    ["knight.paladin.oath_of_dawn"] = .28,
     ["dwarf.iron_axe.mountain_collapse"] = .28,
     ["dwarf.gunner.siege_barrage"] = .30,
     ["elf.marksman.grand_volley"] = .25,
     ["elf.magic_archer.spirit_arrowfall"] = .23,
     ["mage.pyro.ashfall"] = .24,
+    ["mage.pyro.caldera_s_judgment"] = .30,
     ["mage.cryo.hailfall"] = .22,
+    ["mage.cryo.eternal_tempest"] = .28,
 }
 
 function FinalBeat.isFinal(d, pulse)
