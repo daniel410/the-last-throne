@@ -1295,10 +1295,10 @@ local contactStyles={
 -- Each edge is expressed as lateral, vertical and forward offsets from the
 -- confirmed contact. A pair stays readable when party effects are compact.
 local forceContacts={
- ["knight.steel_knight.vanguard_strike"]={"VanguardContactFins",Vector3.new(.26,.34,-.8),Vector3.new(.06,.02,1.05),.72},
+ ["knight.steel_knight.vanguard_strike"]={"VanguardContactFins",Vector3.new(.43,.34,-1.38),Vector3.new(.08,.02,.26),.26},
  ["dwarf.iron_axe.stonebound_leap"]={"StoneboundContactRupture",Vector3.new(.14,-.62,.04),Vector3.new(.76,.35,.30),.22},
- ["elf.marksman.fan_break"]={"FanBreakContactSpread",Vector3.new(.12,-.12,-.48),Vector3.new(.80,.19,.68),.60},
- ["mage.pyro.stone_lance"]={"StoneLanceContactSplinters",Vector3.new(.22,.18,-.48),Vector3.new(.51,-.42,.80),.54},
+ ["elf.marksman.fan_break"]={"FanBreakContactSpread",Vector3.new(.16,-.28,-.91),Vector3.new(1.14,.20,.18),.15},
+ ["mage.pyro.stone_lance"]={"StoneLanceContactSplinters",Vector3.new(.14,.38,-.97),Vector3.new(.76,-.42,.30),.18},
 }
 local function forceContact(r,at,cf,size,shape)
  local name,base,tip,travel=unpack(shape)
@@ -1308,7 +1308,7 @@ local function forceContact(r,at,cf,size,shape)
   local b=at+(right*(tip.X*side)+up*tip.Y+dir*tip.Z)*size
   line(r,name,function(u)
    local drift=dir*(u*travel*size)
-   return a+drift,b+drift+(b-a)*(u*.27)
+   return a:Lerp(b,u*.20)+drift,b+drift
   end,.085,r.hot,.035)
  end
  if #r.lines==0 then return false end
@@ -1414,8 +1414,10 @@ function FX.contact(at,classId,id,direction,scale,compact)
  if not compact and not force and (row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb")then
   debris(r,at,3,row.key=="frost"and"IceShard"or row.key=="earth"and"RockChip"or"Ember",size)
  end
- local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*(distinctContact and .38 or .65)*size,r.hot,.25,"ball")
- if flash then r.faces[#r.faces].fadeDuration=.08 end
+ if not force or not distinctContact then
+  local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*(distinctContact and .38 or .65)*size,r.hot,.25,"ball")
+  if flash then r.faces[#r.faces].fadeDuration=.08 end
+ end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
  if not compact and not descending and not physical and not authored and not force and not verdict and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then

@@ -78,7 +78,7 @@ for _, case in cases do
         check(count == 2 and left and right, id .. " separates its two edges")
         check(count == 2 and axis, id .. " preserves its authored impact axis")
         local _, beams, chips, glows, particles, faces = FX.count()
-        check(beams == 2 and chips + glows + particles == 0 and faces <= 1, id .. " fits the two-beam impact budget")
+        check(beams == 2 and chips + glows + particles + faces == 0, id .. " fits the two-beam impact budget")
         FX.clear()
     end
     check(Hits.show(model, at, 42, row.classId, "Goblin", heading, id, {pulse = 1}), id .. " uses the confirmed hit handler")
