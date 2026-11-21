@@ -21,7 +21,8 @@ end
 local function current(parent, name, from, to, size, color, transparency, speed, phase, mode, shape)
 	local position = from:Lerp(to, phase)
 	local frame = CFrame.lookAt(position, position + (to - from))
-	local part = Kit.part(parent, name, size, frame, color, M.SmoothPlastic, shape)
+	local build = shape == 'Ball' and Kit.ellipsoid or Kit.part
+	local part = build(parent, name, size, frame, color, M.SmoothPlastic)
 	part.CastShadow = false
 	part.Transparency = transparency
 	Motion.track(part, from, to, speed, phase, mode)
@@ -35,7 +36,7 @@ local function runnel(parent, points, widths)
 		silt.Material = M.Mud
 		film(parent, 'RunnelSurface', from, to, width, .12, deepWater, .2)
 		if i > 1 then
-			local joint = Kit.part(parent, 'RunnelBend', V(width, .12, width), from, deepWater, M.SmoothPlastic, 'Ball')
+			local joint = Kit.ellipsoid(parent, 'RunnelBend', V(width, .12, width), from, deepWater, M.SmoothPlastic)
 			joint.CastShadow = false
 		end
 		local bearing = (to - from).Unit
@@ -116,10 +117,10 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 	rock('QuarryFracture', V(15, 7, -10), V(13, 15, 20), -.27, stone, 'Wedge')
 	rock('MossyLedge', V(-12, 26.8, -15), V(9, .9, 11), .12, palette.ground, 'Wedge')
 	-- A low bed lifts the waterline above the quarry's grass overlay at the strike point.
-	local poolHeight = 1.9
+	local poolHeight = .67
 	for _, sample in ipairs({V(-5, 0, 6), V(3, 0, 8), V(-3, 0, 14)}) do
 		local floor, found = ground(origin + sample)
-		if found then poolHeight = math.max(poolHeight, floor.Y - origin.Y + 1.1) end
+		if found then poolHeight = math.max(poolHeight, floor.Y - origin.Y + .56) end
 	end
 	local springFrom = origin + V(-2, 27.58, -18)
 	local springTo = origin + V(-2, 27.58, -.7)
@@ -150,14 +151,14 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 
 	local poolFrame = CFrame.new(origin + V(-1, poolHeight, 9.5)) * CFrame.Angles(0, -.12, 0)
 	local bedDepth = poolHeight + 1.1
-	Kit.part(model, 'QuarryPoolBed', V(29.2, bedDepth, 25.8),
-		poolFrame * CFrame.new(0, -.12 - bedDepth / 2, 0), wetRock, M.Slate, 'Ball')
-	local pool = Kit.part(model, 'PlungePool', V(28, .26, 25), poolFrame, deepWater, M.SmoothPlastic, 'Ball')
+	Kit.ellipsoid(model, 'QuarryPoolBed', V(29.2, bedDepth, 25.8),
+		poolFrame * CFrame.new(0, -.12 - bedDepth / 2, 0), wetRock, M.Slate)
+	local pool = Kit.ellipsoid(model, 'PlungePool', V(28, .26, 25), poolFrame, deepWater, M.SmoothPlastic)
 	pool.CastShadow = false
 	pool.Transparency = .075
 	model:SetAttribute('PoolSurfaceHeight', pool.Position.Y)
-	local churn = Kit.part(model, 'FallImpactFoam', V(10.3, .08, 4.8),
-		CFrame.new(origin + V(-2.1, poolHeight + .18, 7.6)), shallowWater:Lerp(foam, .62), M.SmoothPlastic, 'Ball')
+	local churn = Kit.ellipsoid(model, 'FallImpactFoam', V(10.3, .08, 4.8),
+		CFrame.new(origin + V(-2.1, poolHeight + .18, 7.6)), shallowWater:Lerp(foam, .62), M.SmoothPlastic)
 	churn.CastShadow = false
 	churn.Transparency = .35
 	local stones = {

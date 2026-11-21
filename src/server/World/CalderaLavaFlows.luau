@@ -24,7 +24,12 @@ local slag = C(31, 25, 28)
 local Lava = {}
 
 local function contour(root, name, size, frame, color, material, shape)
-	local part = Kit.part(root, name, size, frame, color, material, shape)
+	local part
+	if shape == 'Ball' then
+		part = Kit.ellipsoid(root, name, size, frame, color, material)
+	else
+		part = Kit.part(root, name, size, frame, color, material, shape)
+	end
 	part.CastShadow = false
 	return part
 end
@@ -43,7 +48,7 @@ local function channel(root, name, a, b, width, depth, speed)
 		contour(root, 'MoltenShearLobe', V(width * .29, depth * .23, length * stretch),
 			frame * CFrame.new(side * width * .16, surface + depth * .30, side * length * .13)
 				* CFrame.Angles(0, side * .13, 0),
-			side < 0 and shear or shadedShear, M.Neon, 'Ball')
+			side < 0 and shear or shadedShear, M.SmoothPlastic, 'Ball')
 	end
 	for _, side in ipairs({-1, 1}) do
 		local z = side * length * .15
@@ -61,11 +66,11 @@ local function channel(root, name, a, b, width, depth, speed)
 		local phase = side < 0 and .22 or .63
 		local vein = frame * CFrame.new(side * width * .11, surface + depth * .38, side * length * .105)
 			* CFrame.Angles(0, -side * .10, 0)
-		contour(root, 'GlowingFissure', V(width * .125, math.max(.09, depth * .10), length * (side < 0 and .74 or .51)),
-			vein, ember, M.Neon, 'Ball')
+		contour(root, 'GlowingFissure', V(width * .125, math.max(.09, depth * .10), length * (side < 0 and .69 or .49)),
+			vein, ember, M.Neon)
 		local streak = contour(root, 'AdvectingEmberStreak',
 			V(width * (side < 0 and .20 or .125), math.max(.09, depth * .08), length * .21),
-			CFrame.lookAt(from:Lerp(to, phase), to), thread, M.Neon, 'Ball')
+			CFrame.lookAt(from:Lerp(to, phase), to), thread, M.Neon)
 		Motion.track(streak, from, to, speed * (side < 0 and 1 or .81), phase)
 	end
 end

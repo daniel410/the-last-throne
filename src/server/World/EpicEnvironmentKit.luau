@@ -50,6 +50,14 @@ function Kit.part(parent,name,size,cf,color,material,shape)
  if shape=='Ball' then p.Shape=Enum.PartType.Ball end
  p.CastShadow=size.Y>2;p.Parent=parent;return p
 end
+-- A Ball primitive is spherical. A sphere mesh can preserve all three authored dimensions.
+function Kit.ellipsoid(parent,name,size,cf,color,material)
+ local p=Kit.part(parent,name,size,cf,color,material)
+ local mesh=Instance.new('SpecialMesh')
+ mesh.MeshType=Enum.MeshType.Sphere
+ mesh.Parent=p
+ return p
+end
 function Kit.beam(parent,name,a,b,width,color,material)
  return Kit.part(parent,name,Vector3.new(width,width,(b-a).Magnitude),CFrame.lookAt((a+b)/2,b),color,material)
 end
