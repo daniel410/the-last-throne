@@ -1,6 +1,6 @@
 -- ART review: readable primary silhouettes, using the existing world-space budgets.
 local S=require(script.Parent.HeroVFXSurfaces)
-local Art={}
+local Art={axeCatchSeconds=.075}
 local UP=Vector3.yAxis
 local types={
  ['mage.pyro.ember_lance']='EmberLance',['mage.pyro.flame_dart']='FlameDart',
@@ -89,7 +89,7 @@ function Art.strokes(r,c,line,curve)
  end
  return false
 end
-function Art.axe(r,c)
+function Art.axeFlight(c)
  local from,to=c.first,c.last
  local returning=c.definition.returning and c.pulse%2==0
  if returning then
@@ -98,6 +98,13 @@ function Art.axe(r,c)
   if hand and hand:IsA("BasePart") and (hand.Position-to).Magnitude<6 then to=hand.Position end
  end
  local axis=(to-from).Magnitude>.01 and (to-from).Unit or c.flat
+ local reach=c.definition.crosscut and 5 or 2.4
+ local approach=returning and -axis*math.min(reach,(to-from).Magnitude) or nil
+ return from,to,axis,approach
+end
+function Art.axe(r,c)
+ local _,to,axis,approach=Art.axeFlight(c)
+ local returning=approach~=nil
  local frame=CFrame.lookAt(to,to+axis)
  local source
  if c.character then for _,model in ipairs(c.character:GetChildren())do
@@ -125,7 +132,7 @@ function Art.axe(r,c)
  for i=start+1,#r.faces do
   local face=r.faces[i]
   face.spin={pivot=to,axis=returning and frame.RightVector or axis,turn=returning and math.pi or math.pi*2.2,
-   approach=returning and -axis*math.min(2.4,(to-from).Magnitude) or nil}
+   approach=approach,duration=Art.axeCatchSeconds}
   if returning then face.fadeDuration=.16 end
  end
  r.model:SetAttribute('ArtSilhouette','ThrownAxe');r.model:SetAttribute('AxeSource',cloned and 'Equipped' or 'Fallback')

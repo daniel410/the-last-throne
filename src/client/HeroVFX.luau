@@ -96,7 +96,7 @@ local function line(r,name,path,width,color,endWidth)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true, CounterSlashEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true, IconCounterSlashEdge=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -659,7 +659,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  end
  local function counterPath(t)
   local arc=math.rad(angle*.58)*(2*t-1)
-  local reach=math.min(radius,6)*(.55+.28*math.sin(t*math.pi))
+  local reach=math.min(radius,6)*(.79+.15*math.sin(t*math.pi))
   return first+(flat*math.cos(arc)+right*math.sin(arc))*reach+Vector3.yAxis*(-.8+2.15*t)
  end
  local function cleavePath(t)
@@ -706,7 +706,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    curve(r,'BladeRibbon',function(t,u)return spinPath(lane,t,u)end,spinStyle=='BrokenBladeStorm'and 10 or 12,width)
   end
  elseif counterSlash then
-  curve(r,"CounterSlashEdge",function(t)return counterPath(t)end,r.compact and 6 or 10,width,WHITE)
+  curve(r,"IconCounterSlashEdge",function(t)return counterPath(t)end,r.compact and 6 or 10,width,WHITE)
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="low"or shape=="counter"then
   local at=shape=="low"and floor or first
   local arc=shape=="spin"and 360 or angle
@@ -736,13 +737,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif shape=="axe"then
   local from,to=first,last;if d.returning and pulse%2==0 then from,to=last,first end
   r.model:SetAttribute("Returning",d.returning and pulse%2==0 or false)
-  stroke("AxeWake",from,to,width*.45)
-  local axis=forward(from,to);local basis=CFrame.lookAt(to,to+axis)
-  local catch=crosscutReturn and to+right*.7+Vector3.yAxis*.55 or to
+  stroke(d.crosscut and "IconCrosscutWake" or "AxeWake",from,to,width*.45)
+  local axis,approach
+  if crosscutReturn then from,to,axis,approach=Art.axeFlight(artContext) end
+  if d.crosscut then r.model:SetAttribute("PrimaryIconCue",true) end
+  axis=axis or forward(from,to)
+  local basis=CFrame.lookAt(to,to+axis)
   curve(r,crosscutReturn and "CrosscutCatchEdge" or "AxeRotation",function(t,u)
-   local a=t*math.pi*1.6+u*7+phase
-   local approach=crosscutReturn and axis*-math.min((to-from).Magnitude,5)*(1-math.min(u*3.5,1))^2 or Vector3.zero
-   return catch+approach+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
+   local arrival=approach and math.clamp(u*r.life/Art.axeCatchSeconds,0,1)
+   local turn=arrival and (1-arrival)^2 or u
+   local a=t*math.pi*1.6+turn*(approach and math.pi or 7)+phase
+   local pivot=approach and to+approach*turn or to
+   return pivot+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
   end,8,width)
  elseif crossfire then
   local length=(last-first).Magnitude
@@ -750,8 +756,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    local rise=Vector3.yAxis*(pulse==2 and .55 or .25)
    local start=first+flat*math.min(length*.22,1.05)+rise
    local tip=last+rise
-   local trace=line(r,"CrossfireTrace",function()return start,tip end,width*.72,WHITE,width*1.32)
-   if trace then r.model:SetAttribute("CrossfireTrace",true) end
+   local trace=line(r,"IconCrossfireTrace",function()return start,tip end,width*.72,WHITE,width*1.32)
+   if trace then
+    r.model:SetAttribute("CrossfireTrace",true)
+    r.model:SetAttribute("PrimaryIconCue",true)
+   end
    if not r.compact then
     line(r,"CrossfireFletching",function(u)
      local side=right*(pulse==2 and .34 or -.23)*(1-u*.6)

@@ -132,7 +132,7 @@ function S.step(r,u,fade)
   end
   if v.spin then
    local m=v.spin
-   local arrival=m.approach and math.clamp(u*r.life/.075,0,1)
+   local arrival=m.approach and math.clamp(u*r.life/m.duration,0,1)
    local turn=arrival and (1-arrival)^2 or u
    local pivot=arrival and m.pivot+m.approach*(1-arrival)^2 or m.pivot
    local rotation=CFrame.fromAxisAngle(m.axis,turn*m.turn)
