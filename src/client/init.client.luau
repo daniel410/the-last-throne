@@ -8,13 +8,11 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
-local lobby,inventory,growthGui,settingsGui
 -- Lobby music starts without waiting for combat admission; BattlePresentation is idempotent.
 task.spawn(function() require(script.K0BackgroundMusic).start() end)
 require(script.EquipmentAssetLoading).start()
 require(script.CharacterAssetLoading).start(player)
 require(script.TravelLoadingScreen).start(player)
-require(script.StoryEnemyWarmup).start(player)
 require(script.CheckpointLoading).start(player)
 require(script.AdventureStartingNotice).start(player)
 task.spawn(function() require(script.LobbyCommerce).start() end)
@@ -24,9 +22,7 @@ require(script.NPCPresentation).start()
 require(script.NPCMotionPresentation).start()
 require(script.SelenePresentation).start()
 require(script.InteractionPrompts).start()
-require(script.AdventureCamera).start(function()
-	return lobby and lobby.getPlayTop()
-end)
+require(script.AdventureCamera).start()
 require(script.WorldPresentationBudget).start()
 local StarterGui=game:GetService("StarterGui")
 local function hideDefaultHealth()
@@ -43,6 +39,7 @@ hideDefaultHealth()
 player.CharacterAdded:Connect(hideDefaultHealth)
 require(script.SkillUnlockNotice).start(player)
 local battle,startingBattle
+local lobby,inventory,growthGui,settingsGui
 local heroSnapshot,heroRequestRemote,pendingRequest
 local pendingHeroDeparture=false
 local requestSequence,lastRevision=0,-1

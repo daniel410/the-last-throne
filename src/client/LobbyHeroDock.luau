@@ -1,5 +1,6 @@
 -- TD HomeDock geometry/art; RPG roster and server-authoritative intentions.
 local RS=game:GetService('ReplicatedStorage')
+local Input=game:GetService('UserInputService')
 local T=require(script.Parent.TDInventoryTheme)
 local Art=require(script.Parent.TDLobbyDockArt)
 local Check=require(script.Parent.TDLobbySelectionCheck)
@@ -59,33 +60,38 @@ function M.create(parent,player,chooseHero,playAction,world)
  local light=Instance.new('UIGradient');light.Rotation=90;light.Color=ColorSequence.new(Color3.fromRGB(80,250,255),Color3.fromRGB(0,178,244));light.Parent=fill
  local function layout(size)
   local w,h=size.X,size.Y
+  local phone=Input.TouchEnabled and w>h and w>=360
   local short,large=h<500,w>=1500 and h>=700
-  local portraitH=short and 46 or w<600 and math.max(44,math.floor((w-60)/4)) or large and 136 or 96
-  local portraitW=math.clamp(large and math.floor(w*.095) or w>=600 and not short and math.floor(w*.09) or portraitH,56,170)
-  local spacing=w<600 and 6 or large and 18 or short and 10 or 12
-  local deckW=4*portraitW+3*spacing
-  local playH=short and 44 or w<600 and 48 or large and 72 or 58
-  local playSlotH=short and 52 or w<600 and 60 or large and 90 or 72
-  local progressH=large and 58 or 48
-  local portraitY=playSlotH+24
-  local progressY=portraitY+portraitH+(short and 4 or 10)
-  local deckH=progressY+progressH
-  dock.Size=UDim2.fromOffset(deckW,deckH);dock.Position=UDim2.fromOffset((w-deckW)/2,h-deckH-12)
-  local playW=short and 224 or w<600 and math.min(240,math.floor((w-44)*.8)) or large and 440 or 320
-  play.Size=UDim2.fromOffset(playW,playH);play.Position=UDim2.fromOffset((deckW-playW)/2,0)
-  playTitle.TextSize=short and 26 or w<600 and 30 or large and 51 or 38
-  heading.Position=UDim2.fromOffset(0,playSlotH+3);heading.Size=UDim2.new(1,0,0,18)
   local count=0
   for _,classId in ipairs(ORDER) do if cards[classId].Visible then count+=1 end end
+  local portraitH=phone and 44 or short and 46 or w<600 and math.max(44,math.floor((w-60)/4)) or large and 136 or 96
+  local portraitW=phone and 48 or math.clamp(large and math.floor(w*.095) or w>=600 and not short and math.floor(w*.09) or portraitH,56,170)
+  local spacing=(phone or w<600) and 6 or large and 18 or short and 10 or 12
   local rowW=count*portraitW+math.max(0,count-1)*spacing
+  local phoneProgressW,phoneProgressGap=122,12
+  local playH=(phone or short) and 44 or w<600 and 48 or large and 72 or 58
+  local playW=phone and 154 or short and 224 or w<600 and math.min(240,math.floor((w-44)*.8)) or large and 440 or 320
+  local deckW=phone and math.max(playW,rowW+phoneProgressGap+phoneProgressW) or 4*portraitW+3*spacing
+  local playSlotH=short and 52 or w<600 and 60 or large and 90 or 72
+  local progressH=large and 58 or 48
+  local portraitY=phone and playH+5 or playSlotH+24
+  local progressY=portraitY+portraitH+(short and 4 or 10)
+  local deckH=phone and portraitY+portraitH or progressY+progressH
+  dock.Size=UDim2.fromOffset(deckW,deckH);dock.Position=UDim2.fromOffset((w-deckW)/2,h-deckH-(phone and 8 or 12))
+  play.Size=UDim2.fromOffset(playW,playH);play.Position=UDim2.fromOffset((deckW-playW)/2,0)
+  playTitle.TextSize=phone and 22 or short and 26 or w<600 and 30 or large and 51 or 38
+  heading.Visible=count>0 and not phone
+  heading.Position=UDim2.fromOffset(0,playSlotH+3);heading.Size=UDim2.new(1,0,0,18)
+  local rowX=phone and 0 or (deckW-rowW)/2
+  local compact=phone or short or w<600
   local index=0
   for _,classId in ipairs(ORDER) do
    local card=cards[classId];local selected=card:GetAttribute('HeroSelected')==true
-   local compact=short or w<600
    if card.Visible then
-    card.Position=UDim2.fromOffset((deckW-rowW)/2+index*(portraitW+spacing),portraitY);index+=1
+    card.Position=UDim2.fromOffset(rowX+index*(portraitW+spacing),portraitY);index+=1
    end
    card.Size=UDim2.fromOffset(portraitW,portraitH)
+   card.HeroName.TextSize=phone and 12 or 14
    -- Compact cards keep the portrait clear: a thin outline and corner check
    -- replace the desktop's filled selection labels.
    card.HeroSelectedTag.Visible=selected and not compact
@@ -96,6 +102,18 @@ function M.create(parent,player,chooseHero,playAction,world)
    card.HeroName.BackgroundColor3=filled and Color3.fromRGB(255,215,90) or Color3.fromRGB(12,27,54)
    card.HeroName.TextColor3=filled and Color3.fromRGB(12,27,54) or Color3.new(1,1,1)
    card.HeroName.TextStrokeTransparency=filled and 1 or 0
+  end
+  if phone then
+   -- Keep the progression column beside the roster so PLAY sits lower.
+   local x=rowW+phoneProgressGap
+   local showProgress=track.Visible
+   xp.Position=UDim2.fromOffset(count==0 and 0 or x,portraitY)
+   xp.Size=UDim2.fromOffset(count==0 and deckW or phoneProgressW,showProgress and 15 or portraitH)
+   xp.TextWrapped=not showProgress;xp.TextSize=12
+   track.Position=UDim2.fromOffset(x+7,portraitY+17);track.Size=UDim2.fromOffset(phoneProgressW-14,8)
+   amount.Position=UDim2.fromOffset(x,portraitY+27);amount.Size=UDim2.fromOffset(phoneProgressW,16)
+   amount.TextXAlignment=Enum.TextXAlignment.Center;amount.TextSize=12
+   return
   end
   local amountW=w<600 and 94 or short and 108 or large and 176 or 144
   local gap=w<600 and 6 or 12
@@ -108,19 +126,17 @@ function M.create(parent,player,chooseHero,playAction,world)
   root.Visible=allowed() or busy and state~=nil and state.phase=='Lobby' and not suppressed
   for _,key in ipairs(BLOCKERS) do if player:GetAttribute(key) then root.Visible=false end end
   if world:GetAttribute('TLTServerRole')=='Battle' then root.Visible=false end
-  local hasHeroes=false
   for _,classId in ipairs(ORDER) do
    local card=cards[classId];local selected,owned=false,false
    for _,hero in ipairs(state and state.heroes or {}) do
     if hero.classId==classId then owned=true;if hero.heroId==state.selectedHeroId then selected=true end end
    end
-   card.Visible=owned;hasHeroes=hasHeroes or owned
+   card.Visible=owned
    card:SetAttribute('HeroSelected',selected);card.HeroSelectedMarker.Visible=selected
    card.HeroPortrait.ImageColor3=selected and Color3.new(1,1,1) or Color3.fromRGB(185,195,210)
    card.HeroSelectionBorder.Color=selected and Color3.fromRGB(255,225,115) or Color3.fromRGB(120,145,175)
    card.Active=owned and allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
   end
-  heading.Visible=hasHeroes
   play.Active=allowed();play.Selectable=play.Active;play.AutoButtonColor=play.Active
   local hero=inventory and inventory.ready==true and state and inventory.heroes[state.selectedHeroId] or nil
   local g=hero and hero.progression
@@ -135,6 +151,7 @@ function M.create(parent,player,chooseHero,playAction,world)
  end
  play.Activated:Connect(function() if allowed() then playAction() end end)
  table.insert(connections,root:GetPropertyChangedSignal('AbsoluteSize'):Connect(function() layout(root.AbsoluteSize) end))
+ table.insert(connections,Input:GetPropertyChangedSignal('TouchEnabled'):Connect(function() layout(root.AbsoluteSize) end))
  for _,key in ipairs(BLOCKERS) do table.insert(connections,player:GetAttributeChangedSignal(key):Connect(render)) end
  table.insert(connections,world:GetAttributeChangedSignal('TLTServerRole'):Connect(render))
  root.Destroying:Connect(function() for _,c in ipairs(connections) do c:Disconnect() end end)

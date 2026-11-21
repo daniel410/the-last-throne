@@ -353,11 +353,6 @@ function LobbyGui.create(request,onManage)
 	UserInputService.LastInputTypeChanged:Connect(function() refresh() end)
 	resize()
 	return {
-		getPlayTop = function()
-			if gui.Enabled and dock.root.Visible and dock.play.Visible and dock.play.AbsoluteSize.Y > 0 then
-				return dock.play.AbsolutePosition.Y
-			end
-		end,
 		setSuppressed = function(value)
 			suppressed=value
 			dock.suppress(value)
