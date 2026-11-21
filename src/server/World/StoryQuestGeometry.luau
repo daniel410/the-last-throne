@@ -183,9 +183,17 @@ box('ProtectionRelayBase',{2.8,.3,2},{0,.15,0},iron,'Metal')
 for _,x in ipairs({-.9,.9})do box('RelayTerminal',{.3,1.4,.5},{x,1,0},brass,'Metal')end
 box('ShieldRelayPlate',{1.4,1.5,.15},{0,1.4,0},blue,'Metal',nil,'Wedge');beam('RelayBridge',{-.9,1.6,0},{.9,1.6,0},.15,brass)
 finish('ProtectionRelay','Dwarven city protection relay with shield plate and two isolated terminals; no Crownheart replica.')
-sled();for _,x in ipairs({-.9,.9})do beam('EmptyCarrierClamp',{x,.8,0},{x*.5,2.4,0},.22,brass)end
-box('EmptyCarrierSocket',{1.8,.35,1.5},{0,1.3,0},ink,'Metal')
-finish('EmptyKeyCarrier','An empty outbound carrier with open clamps and vacant socket; the stolen Crownheart has already left.')
+-- The departure clue keeps the sled footprint and leaves the key seat visibly open.
+sled()
+box('CarrierSocketMount',{1.8,.41,1.5},{0,.88,0},iron,'Metal')
+box('EmptyCarrierSocket',{1.8,.13,1.5},{0,1.15,0},ink,'Metal')
+for _,side in ipairs({-1,1})do
+ box('CarrierSocketRim',{.23,.25,1.5},{side*.785,1.31,0},brass,'Metal')
+ box('CarrierClampBearing',{.48,.74,.74},{side*1.03,1.04,0},iron,'Metal',nil,'Cylinder')
+ beam('EmptyCarrierClamp',{side*.97,1.04,0},{side*1.26,2.4,0},.28,brass)
+ box('CarrierSocketEnd',{1.34,.25,.20},{0,1.31,side*.65},brass,'Metal')
+end
+finish('EmptyKeyCarrier','An empty outbound carrier with open pivoting jaws and a recessed key seat; the stolen Crownheart has already left.')
 box('WorkerTag',{1.3,.15,1.9},{0,.1,0},brass,'Metal');ring('TagCord',{0,.18,-.7},.5,.06,pale,'xz')
 for i=1,3 do box('StampedWorkNumber',{.12,.03,.5},{-.5+i*.25,.2,.25},ink,'Metal')end
 finish('WorkerTag','Numbered workers brass identification tag on a short cord, distinct from a convoy captains badge.')
