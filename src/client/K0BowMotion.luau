@@ -80,7 +80,7 @@ function Motion.confirmPulse(character,skillId,pulse,attackSeq,firedAt,startedAt
   record={definition=d,started=started,rate=not character:GetAttribute("K0SkillId") and (character:GetAttribute("K0BasicAttackRate") or 1) or 1};records[character]=record
  end
  if pulse<=(record.pulse or 0) then return end
- record.pulse=pulse;record.pulseAt=firedAt
+ record.pulse=pulse;record.pulseAt=firedAt;record.pulseReceived=firstReceived or now
 end
 
 -- Release metadata and projectile attributes may replicate in either order.
@@ -97,7 +97,7 @@ local function confirmedRelease(character,record,now)
  return at
 end
 
-local function releaseElapsed(record,now,at,pulse,deadline)
+local function releaseElapsed(record,now,at,pulse,deadline,received)
  local elapsed=math.max(0,now-at)
  if record.visualPulse~=pulse then
   record.visualPulse=pulse
@@ -106,7 +106,9 @@ local function releaseElapsed(record,now,at,pulse,deadline)
   local room=deadline-now-snap
   -- A rendered anchor needs a visible string release when confirmation
   -- arrives late. An unseen or superseded draw uses the original clock.
-  if record.heldPulse==pulse and elapsed>1/60 and room>=.025 then
+  local confirmedAt=received or now
+  if record.heldPulse==pulse and record.heldAt>=at and record.heldAt<=confirmedAt
+   and now-record.heldAt<=.085 and confirmedAt-at>=.05 and room>=.025 then
    record.visualRelease={started=now,delay=elapsed,snap=snap,blend=math.min(.05,room)}
   end
  end
@@ -162,7 +164,7 @@ function Motion.forCharacter(character,now)
   if count<=0 or type(at)~="number" then t=.8
   else
    local due=moreShots and record.started+d.windup+count*(advancedMulti and d.interval or d.shotInterval) or ending
-   local since=releaseElapsed(record,now,at,count,math.min(due,ending))
+   local since=releaseElapsed(record,now,at,count,math.min(due,ending),record.pulseReceived)
    sinceRelease=since
    if since<.04 then t=.8+.1*since/.04
    elseif moreShots then
@@ -186,7 +188,7 @@ function Motion.forCharacter(character,now)
   local firedAt=d.advanced and record.pulseAt or not d.advanced and confirmedRelease(character,record,now)
   if not firedAt then t=.8;awaitingShot=true
   else
-   local since=releaseElapsed(record,now,firedAt,1,ending)*(record.rate or 1)
+   local since=releaseElapsed(record,now,firedAt,1,ending,record.pulseReceived)*(record.rate or 1)
    sinceRelease=since
    local remaining=total-(firedAt-record.started)*(record.rate or 1)
    t=since<.04 and .8+.1*since/.04 or .9+.1*math.clamp((since-.04)/math.max(.01,remaining-.04),0,1)
@@ -243,6 +245,7 @@ function Motion.forCharacter(character,now)
  if awaitingShot then pose.nocked=true;pose.ikWeight=1 end
  if mode=="Attack" and pose.nocked and t>=.79 then
   record.heldPulse=repeated and count+1 or 1
+  record.heldAt=now
  end
  Gestures.bow(pose,d,awaitingShot and release or age,sinceRelease,moreShots,count)
  -- Lob ground-targeted arrows upward; direct shots retain their reviewed aim.
