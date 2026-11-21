@@ -1,5 +1,6 @@
 -- Basalt vents discharge into the existing scenic cut outside the playable caldera.
 local Kit = require(script.Parent.EpicEnvironmentKit)
+local Motion = require(script.Parent.ScenicFlowMarkers)
 local V = Vector3.new
 local C = Color3.fromRGB
 local M = Enum.Material
@@ -13,15 +14,54 @@ local profiles = {
 
 local dark = C(53, 44, 48)
 local cooled = C(74, 56, 54)
-local crust = C(164, 54, 21)
-local hot = C(255, 129, 38)
+local scoria = C(91, 37, 27)
+local molten = C(166, 41, 17)
+local shear = C(192, 59, 24)
+local thread = C(146, 30, 7)
+local slag = C(31, 25, 28)
 local Lava = {}
 
-local function strand(root, name, a, b, width, depth, color, material)
-	local part = Kit.part(root, name, V(width, depth, (b-a).Magnitude + .6),
-		CFrame.lookAt((a+b)/2, b), color, material)
+local function contour(root, name, size, frame, color, material, shape)
+	local part = Kit.part(root, name, size, frame, color, material, shape)
 	part.CastShadow = false
 	return part
+end
+
+local function channel(root, name, a, b, width, depth, speed)
+	local length = (b - a).Magnitude
+	local frame = CFrame.lookAt((a + b) / 2, b)
+	local surface = depth * .38
+	contour(root, name .. 'ScoriaBed', V(width, depth, length + .9), frame, scoria, M.Basalt, 'Ball')
+	contour(root, name, V(width * .79, depth * .44, length + 1.15),
+		frame * CFrame.new(width * -.025, surface, 0), molten, M.SmoothPlastic, 'Ball')
+
+	-- Two lobes overlap the channel at different widths and tones as the melt splits around slag.
+	for _, side in ipairs({-1, 1}) do
+		local stretch = side < 0 and .76 or .57
+		contour(root, 'MoltenShearLobe', V(width * .29, depth * .23, length * stretch),
+			frame * CFrame.new(side * width * .16, surface + depth * .13, side * length * .13)
+				* CFrame.Angles(0, side * .13, 0),
+			shear:Lerp(molten, side < 0 and 0 or .36), M.SmoothPlastic, 'Ball')
+	end
+	for _, side in ipairs({-1, 1}) do
+		local z = side * length * .15
+		local flake = frame * CFrame.new(side * width * .33, surface + depth * .10, z)
+			* CFrame.Angles(0, side * .54, 0)
+		contour(root, 'CooledSlagFlake', V(width * .31, math.max(.42, depth * .43), length * .27),
+			flake, slag, M.Basalt, 'Wedge')
+	end
+
+	-- Short heat streaks move downslope. Nothing illuminates the surrounding rocks locally.
+	for _, side in ipairs({-1, 1}) do
+		local offset = V(side * width * .13, surface + depth * .23, 0)
+		local from = frame * (offset + V(0, 0, length * .28))
+		local to = frame * (offset - V(0, 0, length * .28))
+		local phase = side < 0 and .22 or .63
+		local streak = contour(root, 'AdvectingEmberStreak',
+			V(width * (side < 0 and .12 or .08), math.max(.09, depth * .08), length * .21),
+			CFrame.lookAt(from:Lerp(to, phase), to), thread, M.Neon, 'Ball')
+		Motion.track(streak, from, to, speed * (side < 0 and 1 or .81), phase)
+	end
 end
 
 function Lava.build(parent, id, center, size, safe)
@@ -57,15 +97,13 @@ function Lava.build(parent, id, center, size, safe)
 	local chute = point(5, head + height * .24, 1)
 	local toe = point(9, basinHeight, 8)
 	local out = point(23, basinHeight, 9)
-	strand(root, 'BasaltChuteBed', source - V(0, 1.4, 0), chute - V(0, 1.4, 0), 17, 4.5, dark, M.Basalt)
-	strand(root, 'VentThroat', source, lip, 11, 3.0, crust, M.Slate)
-	strand(root, 'MoltenLip', source + V(0, .7, 0), lip + V(0, .7, 0), 5, 1.7, hot, M.Neon)
-	strand(root, 'RiftApron', lip, chute, 13, 3.2, crust, M.Slate)
-	strand(root, 'MoltenApron', lip + V(0, .7, 0), chute + V(0, .7, 0), 6, 1.9, hot, M.Neon)
-	strand(root, 'LavaCurtainCrust', chute, toe, 12, 3.6, crust, M.Slate)
-	strand(root, 'LavaCurtainCore', chute + V(-side * .8, .35, 0), toe + V(-side * .8, .35, 0), 6.5, 2.5, hot, M.Neon)
-	strand(root, 'LavaBasinCrust', toe, out, 17, 1.8, crust, M.Slate)
-	strand(root, 'LavaBasinCore', toe + V(0, .88, 0), out + V(0, .88, 0), 8, .6, hot, M.Neon)
+	local bedA, bedB = source - V(0, 1.4, 0), chute - V(0, 1.4, 0)
+	contour(root, 'BasaltChuteBed', V(17, 4.5, (bedB - bedA).Magnitude + .6),
+		CFrame.lookAt((bedA + bedB) / 2, bedB), dark, M.Basalt)
+	channel(root, 'VentThroat', source, lip, 11, 3.0, 4.8)
+	channel(root, 'RiftApron', lip, chute, 13, 3.2, 6)
+	channel(root, 'LavaCurtainCore', chute, toe, 12, 3.6, 10)
+	channel(root, 'LavaBasinCore', toe, out, 17, 1.8, 3.4)
 	if basinHeight > 0 then
 		rock('BasaltBasinShelf', point(16, (basinHeight - 8) / 2, 9), V(28, basinHeight + 6.4, 18), .06, dark)
 	end
