@@ -20,6 +20,13 @@ local profiles = {
     ashfall = {.032, .18, .05, -.085, 5, 0},
     shell = {.036, .22, .12, -.15, 8, 0},
 }
+local skillProfiles = {
+    ["knight.steel_knight.vanguard_strike"] = {.032, .19, .20, 0, 9, 2},
+    ["dwarf.iron_axe.stonebound_leap"] = {.044, .23, .095, -.16, 8, 0},
+    ["elf.marksman.fan_break"] = {.024, .16, .19, .025, 7, 0},
+    ["mage.pyro.stone_lance"] = {.034, .19, .16, -.035, 8, 0},
+    ["elf.marksman.heavy_draw"] = profiles.heavyPierce,
+}
 local function profile(row, descending)
     if not row then return idleHit end
     local d, key = row.definition, row.key
@@ -27,7 +34,8 @@ local function profile(row, descending)
         return key == "bomb" and profiles.shell or key == "frost" and profiles.hailfall
             or key == "fire" and profiles.ashfall or profiles.arrowfall
     end
-    if d and d.id == "elf.marksman.heavy_draw" then return profiles.heavyPierce end
+    local authored = d and skillProfiles[d.id]
+    if authored then return authored end
     local motion = d and Presentation.get(d).motion
     if key == "shield" or motion == "shield" then return profiles.shove end
     if key == "earth" or motion == "chop" or motion == "slam" then return profiles.crush end
@@ -44,9 +52,16 @@ function Reaction.record(model, direction, current, row, descending, final)
     local flat = typeof(direction) == "Vector3" and Vector3.new(direction.X, 0, direction.Z) or root.CFrame.LookVector
     if flat.Magnitude < .001 then flat = root.CFrame.LookVector end
     local at = current or Workspace:GetServerTimeNow()
+    local response = profile(row, descending)
+    local strength = final and 1.25 or 1
+    local impulse = (math.abs(response[3]) + math.abs(response[4])) * strength
+    local previous = hits[model]
+    -- Rapid party hits can share a render frame. Let the larger displacement
+    -- reach its first readable pose, then allow the next hit to take over.
+    if previous and at - previous.at < previous.profile[1] + .02 and previous.impulse >= impulse * 1.2 then return end
     local entry = Reaction.sample(model, at)
     local boneDirection = root.CFrame:VectorToObjectSpace(flat.Unit)
-    hits[model] = {at = at, direction = boneDirection, profile = profile(row, descending), entry = entry, strength = final and 1.25 or 1}
+    hits[model] = {at = at, direction = boneDirection, profile = response, entry = entry, strength = strength, impulse = impulse}
 end
 function Reaction.sample(model, current)
     local hit = hits[model]

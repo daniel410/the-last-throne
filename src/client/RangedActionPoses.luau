@@ -29,6 +29,7 @@ local bow = {
     snap=stance(v(5,14,9), 20, 15, 23),
     crossfire=stance(v(9,-8,8), 12, 24, 26),
     fan=stance(v(10,-20,15), 39, 22, 32),
+    fanBreak=stance(v(18,-28,12), 29, 28, 38),
     broadside=stance(v(16,-33,18), 47, 32, 39),
     retreat=stance(v(-15,20,9), 22, 29, 28),
     advance=stance(v(16,-12,-8), -20, 24, 19),
@@ -41,6 +42,7 @@ local function bowStance(d)
     if d.ultimate and d.form=="cone" then return bow.broadside end
     local step = d.move or d.pulseMove
     if step then return step<0 and bow.retreat or bow.advance end
+    if d.id=="elf.marksman.fan_break" then return bow.fanBreak end
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
     if d.crosscut then return bow.crossfire end
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
@@ -100,6 +102,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"neck",v(-4,-6,2)*settle)
         add(pose,"leftKnee",v(10,0,0)*settle)
     end
+    if s == bow.fanBreak then
+        -- Brace the lead leg through the spread while the draw hand opens.
+        add(pose,"torso",v(-7,10,-8)*recoil)
+        add(pose,"leftHip",v(-9,0,-6)*recoil)
+        add(pose,"leftKnee",v(15,0,0)*recoil)
+        add(pose,"right",v(-4,16,12)*recoil)
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -134,6 +143,7 @@ local spells = {
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
+    stone=gesture(v(-32,-19,12),v(22,17,34),v(17,-19,-7),v(50,-14,5),26),
     ward=gesture(v(13,-24,17),v(47,-16,-28),v(11,14,-10),v(34,12,30),23),
     ashfall=gesture(v(37,-22,-24),v(43,25,25),v(-18,-20,12),v(-12,13,34),23),
     hailfall=gesture(v(28,17,-10),v(48,-13,10),v(-22,14,-5),v(12,-18,15),26),
@@ -148,6 +158,7 @@ local function spellGesture(d,profile)
     if not cue then return spells.bolt end
     if cue.motion=="rain" then return cue.effect=="hail" and spells.hailfall or spells.ashfall end
     if d.form=="chain" then return spells.chain end
+    if d.id=="mage.pyro.stone_lance" then return spells.stone end
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
@@ -189,6 +200,7 @@ function Poses.mage(pose,d,profile,age)
         or s == spells.storm and v(-10,14,0)
         or s == spells.chain and v(-22,-18,37)
         or (s == spells.earth or s == spells.caldera) and v(-16,0,7)
+        or s == spells.stone and v(-24,-14,-8)
         or s == spells.ashfall and v(-8,14,12)
         or s == spells.hailfall and v(21,-6,-8)
         or s == spells.shatter and v(-26,15,20)
@@ -207,6 +219,10 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(24,0,0)*follow)
         add(pose,"left",v(-12,-8,-14)*follow)
         add(pose,"torso",v(-5,8,-3)*follow)
+    end
+    if s == spells.stone then
+        add(pose,"leftElbow",v(20,0,0)*follow)
+        add(pose,"torso",v(10,0,5)*follow)
     end
     if finish>0 then
         local ash = s == spells.ashfall

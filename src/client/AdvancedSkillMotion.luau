@@ -334,7 +334,13 @@ function Motion.sample(classId,d,age,rigType)
   local weight=d.id=="knight.steel_knight.vanguard_strike" and 1.35 or 1
   offset(pose,"leftKnee",v(12*brake*weight))
   offset(pose,"rightHip",v(-8*brake*weight))
-  if d.id=="knight_driving_thrust" then
+  if d.id=="knight.steel_knight.vanguard_strike" then
+   local brace=smooth(age/(contact*.55))*(1-smooth((age-contact*.60)/(contact*.40)))
+   local settle=pulse>0 and smooth(since/.055)*(1-smooth((since-.055)/.17)) or 0
+   offset(pose,"left",v(16,-10,-18)*brace+v(-9,0,8)*settle)
+   offset(pose,"torso",v(9,-13,-6)*brace+v(9,6,0)*settle)
+   offset(pose,"leftKnee",v(15*settle))
+  elseif d.id=="knight_driving_thrust" then
    local settle=smooth(since/.055)*(1-smooth((since-.055)/.16))
    offset(pose,"leftKnee",v(10*settle))
    offset(pose,"rightHip",v(-9*settle,0,-4*settle))
@@ -387,10 +393,14 @@ function Motion.sample(classId,d,age,rigType)
   local phase=math.clamp(age/math.max(.01,contact),0,1)
   local air=math.max(0,1-((phase-.61)/.39)^2)*1.5
   local landing=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))
+  local tuck=smooth((phase-.22)/.39)*(1-smooth((phase-.61)/.39))
   pose.root=CFrame.new(0,air-.24*landing,0)
-  offset(pose,"rightKnee",v(18*landing))
-  offset(pose,"leftKnee",v(24*landing))
-  offset(pose,"torso",v(12*landing))
+  offset(pose,"rightHip",v(-21,0,5)*tuck)
+  offset(pose,"leftHip",v(-15,0,-5)*tuck)
+  offset(pose,"rightKnee",v(25*tuck+18*landing))
+  offset(pose,"leftKnee",v(30*tuck+24*landing))
+  offset(pose,"left",v(-12,0,-15)*tuck)
+  offset(pose,"torso",v(-10*tuck+12*landing))
  elseif classId=="dwarf" then
   -- Only Ground Slam and explicit leap skills use the jump's visual root.
   pose.root=nil

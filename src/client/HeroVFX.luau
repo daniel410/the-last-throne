@@ -1292,6 +1292,29 @@ local contactStyles={
  ["elf_pinning_shot"]="PinningBarb",
  ["mage.cryo.shatter_dart"]="ShatterDartSplinters",
 }
+-- Each edge is expressed as lateral, vertical and forward offsets from the
+-- confirmed contact. A pair stays readable when party effects are compact.
+local forceContacts={
+ ["knight.steel_knight.vanguard_strike"]={"VanguardContactFins",Vector3.new(.26,.34,-.8),Vector3.new(.06,.02,1.05),.72},
+ ["dwarf.iron_axe.stonebound_leap"]={"StoneboundContactRupture",Vector3.new(.14,-.62,.04),Vector3.new(.76,.35,.30),.22},
+ ["elf.marksman.fan_break"]={"FanBreakContactSpread",Vector3.new(.12,-.12,-.48),Vector3.new(.80,.19,.68),.60},
+ ["mage.pyro.stone_lance"]={"StoneLanceContactSplinters",Vector3.new(.22,.18,-.48),Vector3.new(.51,-.42,.80),.54},
+}
+local function forceContact(r,at,cf,size,shape)
+ local name,base,tip,travel=unpack(shape)
+ local dir,right,up=cf.LookVector,cf.RightVector,cf.UpVector
+ for side=-1,1,2 do
+  local a=at+(right*(base.X*side)+up*base.Y+dir*base.Z)*size
+  local b=at+(right*(tip.X*side)+up*tip.Y+dir*tip.Z)*size
+  line(r,name,function(u)
+   local drift=dir*(u*travel*size)
+   return a+drift,b+drift+(b-a)*(u*.27)
+  end,.085,r.hot,.035)
+ end
+ if #r.lines==0 then return false end
+ r.model:SetAttribute("ContactStyle",name)
+ return true
+end
 local function elementalContact(r,at,cf,size)
  local up,right,dir=cf.UpVector,cf.RightVector,cf.LookVector
  local key=r.key
@@ -1335,12 +1358,15 @@ function FX.contact(at,classId,id,direction,scale,compact)
  local piercing=row.key=='arrow' or row.key=='gun' or d and Presentation.get(d).motion=='thrust'
  local descending=d and FX.groundLead(d)
  local authored=contactStyles[id]
+ local force=forceContacts[id]
  local distinctContact
  local verdict=id==SHIELD_VERDICT
  if descending then
   descendingContact(r,at,cf,size,profile.shape)
  elseif authored then
   distinctContact=skillContact(r,at,cf,size,authored)
+ elseif force then
+  distinctContact=forceContact(r,at,cf,size,force)
  elseif verdict then
   for side=-1,1,2 do
    local lateral=cf.RightVector*side
@@ -1385,14 +1411,14 @@ function FX.contact(at,classId,id,direction,scale,compact)
  else
   elementalContact(r,at,cf,size)
  end
- if not compact and (row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb")then
+ if not compact and not force and (row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb")then
   debris(r,at,3,row.key=="frost"and"IceShard"or row.key=="earth"and"RockChip"or"Ember",size)
  end
  local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*(distinctContact and .38 or .65)*size,r.hot,.25,"ball")
  if flash then r.faces[#r.faces].fadeDuration=.08 end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
- if not compact and not descending and not physical and not authored and not verdict and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
+ if not compact and not descending and not physical and not authored and not force and not verdict and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
   local start=#r.faces
   local basis=CFrame.lookAt(at,at+dir)*CFrame.Angles(math.pi/2,0,0)
   Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)
@@ -1400,7 +1426,7 @@ function FX.contact(at,classId,id,direction,scale,compact)
  end
  -- Physical hits use the sharp star as their focal point. Repeating the
  -- soft elemental halo here washed out the silhouette during rapid combos.
- if not physical and not descending and not authored then flourish(r,at,1.5*size,row.key,false)end
+ if not physical and not descending and not authored and not force then flourish(r,at,1.5*size,row.key,false)end
  FX.step(r.at);return r.model,distinctContact
 end
 return FX
