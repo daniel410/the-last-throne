@@ -66,8 +66,8 @@ local function buildLavaRibbon(root, rows)
 		local width = (rows[i][2] + rows[i][3] + rows[i + 1][2] + rows[i + 1][3]) * .5
 		local length = (b - a).Magnitude
 		local frame = CFrame.lookAt((a + b) / 2, b)
-		contour(root, 'FusedBasaltGutter', V(width * 1.05, 3.4, length + width * .56),
-			frame * CFrame.new(0, -.85, 0), dark, M.Basalt, 'Ball')
+		contour(root, 'FusedBasaltGutter', V(width * 1.05, 2.8, length + width * .56),
+			frame * CFrame.new(0, -1.47, 0), dark, M.Basalt, 'Ball')
 		for j, color in ipairs({scoria, melt, outerCrust}) do
 			local front, back = edges[i], edges[i + 1]
 			local name = j ~= 2 and 'FracturedCrustMargin' or i == 3 and 'LavaCurtainCore' or 'MoltenRibbon'

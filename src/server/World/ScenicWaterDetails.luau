@@ -153,15 +153,15 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 	-- The spring feeds three narrow streams. Constant-section spans preserve
 	-- their silhouettes, with small rounded seams only at changes in direction.
 	local streams = {
-		{width = 1.63, depth = .71, alpha = .21, points = {
+		{width = 1.63, alpha = .21, points = {
 			V(-6.5, 27.57, -.9), V(-6.8, 23.4, 1.2), V(-7.0, 14.1, 2.55),
 			V(-6.65, 6.8, 4.7), V(-5.3, poolHeight, 7.2),
 		}},
-		{width = 2.42, depth = 1.10, alpha = .12, points = {
+		{width = 2.42, alpha = .12, points = {
 			V(-2.2, 27.59, -.63), V(-2, 22.1, 1.65), V(-1.4, 14.2, 3.9),
 			V(-1.8, 6.3, 5.8), V(-2.7, poolHeight, 9.3),
 		}},
-		{width = 1.18, depth = .64, alpha = .26, points = {
+		{width = 1.18, alpha = .26, points = {
 			V(2.45, 27.39, -1.0), V(2.8, 23.1, .88), V(3.05, 13.7, 2.25),
 			V(2.65, 5.15, 4.45), V(2.1, poolHeight, 6.5),
 		}},
@@ -178,11 +178,11 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		for j = 1, #stream.points - 1 do
 			local from, to = origin + stream.points[j], origin + stream.points[j + 1]
 			local aerated = j == #stream.points - 1
-			local tint = shallowWater:Lerp(foam, aerated and .18 or i * .033)
-			local width = stream.width * widths[j]
+			local tint = shallowWater:Lerp(foam, aerated and .39 or i * .065)
+			local diameter = .83 * stream.width * widths[j]
 			local centerline = CFrame.lookAt((from + to) * .5, to)
 			local body = Kit.part(model, aerated and 'AeratedWater' or 'FallingWater',
-				V((to - from).Magnitude + .26, stream.depth, width),
+				V((to - from).Magnitude + .16, diameter, diameter),
 				centerline * CFrame.Angles(0, math.pi / 2, 0), tint, M.SmoothPlastic)
 			body.Shape = Enum.PartType.Cylinder
 			body.Transparency = stream.alpha * .78
@@ -190,11 +190,11 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 			if j > 1 then
 				local axis = (to - (origin + stream.points[j - 1])).Unit
 				local join = Kit.ellipsoid(model, 'FallBendBlend',
-					V(stream.width * (widths[j - 1] + widths[j]) * .5, stream.depth, .86),
+					V(.83 * stream.width * (widths[j - 1] + widths[j]) * .5, diameter, .48),
 					CFrame.lookAlong(from, axis), tint, M.SmoothPlastic)
 				join.Transparency = body.Transparency
 				join.CastShadow = false
-				local front = V(.08 * (i - 2), 0, stream.depth * .53)
+				local front = V(.08 * (i - 2), 0, diameter * .55)
 				current(model, 'DescendingWater', from:Lerp(to, .13) + front, from:Lerp(to, .90) + front,
 					V(.27 + stream.width * .06, .065, 1.45 + j * .22), foam, .11 + i * .065,
 					13 + j * 1.7 + i, (j * .29 + i * .16) % 1)
