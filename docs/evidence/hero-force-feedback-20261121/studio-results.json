@@ -1,0 +1,98 @@
+{
+  "version": "0.115.27",
+  "sourceCommit": "38640fba8d42d8927dbb4ace0138ce4cf033dedf",
+  "baselineVersion": "0.115.24",
+  "baselineCommit": "391b25f1",
+  "baselineForceFeedback": {
+    "failures": [
+      "knight.steel_knight.vanguard_strike has a heavy reaction",
+      "knight.steel_knight.vanguard_strike carries the target along the confirmed direction",
+      "knight.steel_knight.vanguard_strike remains legible with a nearly simultaneous light hit",
+      "knight.steel_knight.vanguard_strike retains a distinct contact for both views",
+      "knight.steel_knight.vanguard_strike separates its two edges",
+      "knight.steel_knight.vanguard_strike preserves its authored impact axis",
+      "knight.steel_knight.vanguard_strike fits the two-beam impact budget",
+      "knight.steel_knight.vanguard_strike retains a distinct contact for both views",
+      "knight.steel_knight.vanguard_strike separates its two edges",
+      "knight.steel_knight.vanguard_strike preserves its authored impact axis",
+      "knight.steel_knight.vanguard_strike fits the two-beam impact budget",
+      "knight.steel_knight.vanguard_strike keeps damage text and avoids the generic burst",
+      "dwarf.iron_axe.stonebound_leap drives the target downward",
+      "dwarf.iron_axe.stonebound_leap remains legible with a nearly simultaneous light hit",
+      "dwarf.iron_axe.stonebound_leap retains a distinct contact for both views",
+      "dwarf.iron_axe.stonebound_leap separates its two edges",
+      "dwarf.iron_axe.stonebound_leap preserves its authored impact axis",
+      "dwarf.iron_axe.stonebound_leap fits the two-beam impact budget",
+      "dwarf.iron_axe.stonebound_leap retains a distinct contact for both views",
+      "dwarf.iron_axe.stonebound_leap separates its two edges",
+      "dwarf.iron_axe.stonebound_leap preserves its authored impact axis",
+      "dwarf.iron_axe.stonebound_leap fits the two-beam impact budget",
+      "dwarf.iron_axe.stonebound_leap keeps damage text and avoids the generic burst",
+      "elf.marksman.fan_break has a heavy reaction",
+      "elf.marksman.fan_break carries the target along the confirmed direction",
+      "elf.marksman.fan_break remains legible with a nearly simultaneous light hit",
+      "elf.marksman.fan_break retains a distinct contact for both views",
+      "elf.marksman.fan_break separates its two edges",
+      "elf.marksman.fan_break preserves its authored impact axis",
+      "elf.marksman.fan_break fits the two-beam impact budget",
+      "elf.marksman.fan_break retains a distinct contact for both views",
+      "elf.marksman.fan_break separates its two edges",
+      "elf.marksman.fan_break preserves its authored impact axis",
+      "elf.marksman.fan_break fits the two-beam impact budget",
+      "elf.marksman.fan_break keeps damage text and avoids the generic burst",
+      "mage.pyro.stone_lance carries the target along the confirmed direction",
+      "mage.pyro.stone_lance remains legible with a nearly simultaneous light hit",
+      "mage.pyro.stone_lance retains a distinct contact for both views",
+      "mage.pyro.stone_lance separates its two edges",
+      "mage.pyro.stone_lance preserves its authored impact axis",
+      "mage.pyro.stone_lance fits the two-beam impact budget",
+      "mage.pyro.stone_lance retains a distinct contact for both views",
+      "mage.pyro.stone_lance separates its two edges",
+      "mage.pyro.stone_lance preserves its authored impact axis",
+      "mage.pyro.stone_lance fits the two-beam impact budget",
+      "mage.pyro.stone_lance keeps damage text and avoids the generic burst",
+      "Vanguard Strike retracts the guard before the drive R6",
+      "Stonebound Leap visibly tucks both knees R6",
+      "Vanguard Strike retracts the guard before the drive R15",
+      "Stonebound Leap visibly tucks both knees R15",
+      "Fan Break braces the lead leg on release",
+      "Fan Break has a broader draw-hand follow-through",
+      "Stone Lance extends the guiding elbow on release"
+    ],
+    "pass": false,
+    "checks": 81
+  },
+  "studio": {
+    "hero-force-feedback-native.luau": 81,
+    "hero-skill-impact-native.luau": 761,
+    "hero-hit-feedback-native.luau": 1667,
+    "hero-skill-beats-native.luau": 75,
+    "hero-skill-direction-native.luau": 31,
+    "hero-final-beat-native.luau": 100,
+    "hero-skills-native.luau": 244520,
+    "k0-skill-animation-native.luau": 61,
+    "projectile-vfx-timing-native.luau": 192,
+    "display-guides-native.luau": 53
+  },
+  "studioTotal": 247541,
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 13712
+  },
+  "cpuBlocked": {
+    "skill-presentation.spec.lua": "Both builds: stock Lua rejects existing K0MeleeMotion.luau:142 compound assignment."
+  },
+  "retries": {
+    "hero-skill-direction-native.luau": "First attempt caught loopback port 50312 busy before assertions. Isolated retry passed."
+  },
+  "artifactVerification": {
+    "sha256": "df2496f79dae7d55b49582d9a685f6952ffbcce6e933263af8f47c055d6fbff1",
+    "pinnedClientModules": 4
+  },
+  "captured": {
+    "baselineFrames": 8,
+    "candidateFrames": 8,
+    "rig": "R15",
+    "platform": "Desktop Studio"
+  }
+}
