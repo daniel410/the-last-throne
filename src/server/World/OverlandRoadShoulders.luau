@@ -1,4 +1,4 @@
--- Low native scenery on the existing JourneyPass slab.
+-- Native scenery on the existing JourneyPass slab.
 local Kit = require(script.Parent.EpicEnvironmentKit)
 local V = Vector3.new
 local C = Color3.fromRGB
@@ -19,7 +19,7 @@ local profiles = {
 	['FV-07'] = {
 		{'ThawSnowbank', palette.FrozenVale.ground, M.Snow, 3.1, 23},
 		{'ThawSnowbank', palette.FrozenVale.trim, M.Snow, 1.5, 16},
-		{'ExposedBasalt', palette.EmberCaldera.rock, M.Basalt, 2.5, 21},
+		{'ExposedBasalt'},
 	},
 	['EC-07'] = {
 		{'CooledBasalt', palette.EmberCaldera.rock, M.Basalt, 2.8, 15},
@@ -27,6 +27,60 @@ local profiles = {
 		{'KeeperRoadstone', palette.HauntedGraveyard.trim:Lerp(palette.HauntedGraveyard.rock, .36), M.Slate, 2.4, 16},
 	},
 }
+
+local basalt = palette.EmberCaldera.rock
+local fracture = palette.EmberCaldera.trim:Lerp(palette.FrozenVale.rock, .28)
+
+local function buildBasaltOutcrop(root, base, side)
+	local relief = side == 1 and 1 or .72
+	-- The eroded apron seats the exposed, jointed rocks at the edge of the thaw.
+	Kit.part(root, 'BasaltTalus', V(21, 1.5, 10.2),
+		base * CFrame.new(-side * .55, .45, 0) * CFrame.Angles(0, side * math.pi / 2, 0),
+		basalt:Lerp(palette.EmberCaldera.ground, .55), M.Basalt, 'Wedge')
+
+	-- The irregular crown reads in silhouette against the broad banks behind it.
+	local joints = {
+		{side * 1.3, -4.7, 3.3, 3.8, .14},
+		{side * 2.2, -.1, 4.6, 5.1, -.21},
+		{side * 2.6, 4.7, 3.5, 3.2, .09},
+	}
+	for index, joint in ipairs(joints) do
+		local x, z, width, height, yaw = table.unpack(joint)
+		height *= relief
+		local pivot = base * CFrame.new(x, -.28, z) * CFrame.Angles(0, yaw * side, 0)
+		local color = basalt:Lerp(fracture, .28 + .08 * index)
+		Kit.part(root, 'JointedBasalt', V(width, height, width * .84),
+			pivot * CFrame.new(0, height * .5, 0), color, M.Basalt)
+		Kit.part(root, 'BasaltFracture', V(width, .8, width * .84),
+			pivot * CFrame.new(0, height + .31, 0), fracture, M.Slate, 'Wedge')
+	end
+end
+
+local function dressVerge(root, name, base, side)
+	if name == 'ConvoyVerge' then
+		-- Exposed roots carry the forest floor into the first shale shoulder.
+		for _, rootEnd in ipairs({-1, 1}) do
+			Kit.part(root, 'ExposedVergeRoot', V(1.2, 1.1, 8),
+				base * CFrame.new(side * .8, .27, rootEnd * 3)
+					* CFrame.Angles(0, side * rootEnd * .46, 0),
+				palette.Deepwood.wood:Lerp(palette.Deepwood.trim, .19), M.Wood, 'Wedge')
+		end
+	elseif name == 'WindgapShale' then
+		-- The first packed snow collects in the lee of the dark shale.
+		Kit.part(root, 'WindPackedSnow', V(4.6, 1.15, 15),
+			base * CFrame.new(-side * 3.2, .29, -4) * CFrame.Angles(0, side * .14, 0),
+			palette.FrozenVale.ground:Lerp(palette.FrozenVale.trim, .38), M.Snow, 'Wedge')
+	elseif name == 'KeeperRoadstone' then
+		-- Surviving dressed stones mark the beginning of the keeper road.
+		for stone = 1, 3 do
+			local height = 1.2 + stone * .24
+			Kit.part(root, 'KeeperDressedStone', V(3.3, height, 3.05),
+				base * CFrame.new(-side * 2.8, height * .5 - .25, (stone - 2) * 3.3)
+					* CFrame.Angles(0, (stone - 2) * .045, 0),
+				palette.HauntedGraveyard.trim:Lerp(palette.HauntedGraveyard.rock, .2 + stone * .08), M.Slate)
+		end
+	end
+end
 
 local Shoulders = {}
 
@@ -36,18 +90,30 @@ function Shoulders.build(floor, sourceId, a, b)
 	root.Parent = floor.Parent
 	for index, spec in ipairs(profiles[sourceId]) do
 		local name, color, material, height, length = table.unpack(spec)
-		local toeColor = color:Lerp(C(73, 77, 83), .18)
 		for _, side in ipairs({-1, 1}) do
 			local t = .18 + (index - 1) * .32 + side * .035
+			if name == 'ExposedBasalt' and side == 1 then t = .69 end
 			local z = floor.CFrame:PointToObjectSpace(a:Lerp(b, t)).Z
 			local base = floor.CFrame * CFrame.new(side * 39, floor.Size.Y / 2, z)
-			local toe = base * CFrame.new(-side * 1.1, .22, 0)
-			Kit.part(root, name .. 'Toe', V(length + 3, 1, 10),
-				toe * CFrame.Angles(0, side * math.pi / 2, 0), toeColor, material, 'Wedge')
-			-- Wedge rises toward local +Z, which becomes the outside edge.
-			local crest = base * CFrame.new(side * 1.3, height * .5 - .23, -.5)
-				* CFrame.Angles(0, side * math.pi / 2, 0)
-			Kit.part(root, name, V(length, height, 9.2), crest, color, material, 'Wedge')
+			if name == 'ExposedBasalt' then
+				buildBasaltOutcrop(root, base, side)
+			else
+				local toeColor = color:Lerp(C(73, 77, 83), .18)
+				local toe = base * CFrame.new(-side * 1.1, .22, 0)
+				Kit.part(root, name .. 'Toe', V(length + 3, 1, 10),
+					toe * CFrame.Angles(0, side * math.pi / 2, 0), toeColor, material, 'Wedge')
+				-- Wedge rises toward local +Z, which becomes the outside edge.
+				local crest = base * CFrame.new(side * 1.3, height * .5 - .23, -.5)
+					* CFrame.Angles(0, side * math.pi / 2, 0)
+				Kit.part(root, name, V(length, height, 9.2), crest, color, material, 'Wedge')
+				dressVerge(root, name, base, side)
+				if sourceId == 'FV-07' and index == 2 then
+					local melt = base * CFrame.new(-side * 3.2, .23, 2.4)
+						* CFrame.Angles(0, side * (math.pi / 2 + .12), 0)
+					Kit.part(root, 'ExposedMeltEdge', V(12, 1, 4.2), melt,
+						basalt:Lerp(palette.EmberCaldera.trim, .18), M.Basalt, 'Wedge')
+				end
+			end
 		end
 	end
 end
