@@ -9,6 +9,7 @@ local function barracksFreightBreach(pal, part, beam)
 	local timber = pal.wood:Lerp(C(126, 93, 62), .45)
 	local grain = timber:Lerp(C(179, 144, 94), .72)
 	local iron = C(98, 87, 75)
+	local wornIron = iron:Lerp(stone, .58)
 
 	part('TrampledFreightShoulder', V(6.4, .62, 9.4), V(-.17, .19, .16), earth, M.Ground, 'Wedge')
 	part('EmbeddedLoadingSill', V(4.25, .76, 3.06), V(.1, .29, -2.29), stone, M.Cobblestone)
@@ -23,6 +24,13 @@ local function barracksFreightBreach(pal, part, beam)
 	beam('SunkFreightRail', V(-.71, .37, .43), V(-1.22, .97, 3.87), .61, timber, M.Wood)
 	part('BentRollerAxle', V(2.68, .28, .28), V(.09, 1.21, -2.02), iron, M.CorrodedMetal, 'Cylinder')
 	part('SeizedTimberRoller', V(1.50, .59, .59), V(.07, 1.21, -2.02), timber, M.Wood, 'Cylinder')
+	-- The exposed end grain makes the seized roller distinct from the broken rails.
+	for _, side in ipairs({-1, 1}) do
+		part('SeizedRollerEndGrain', V(.14, .55, .55), V(.07 + side * .77, 1.21, -2.02), grain, M.Wood,
+			'Cylinder')
+		part('SeizedRollerThrustWasher', V(.11, .37, .37), V(.09 + side * 1.04, 1.21, -2.02), wornIron,
+			M.Metal, 'Cylinder')
+	end
 end
 
 local function scoutLandingStoneAbutment(pal, part)
@@ -43,6 +51,11 @@ local function scoutLandingStoneAbutment(pal, part)
 		V(.04, -.04, 0))
 	part('SplitLandingCap', V(3.15, .46, 3.01), V(.56, 1.40, 2.05), splitStone, M.Limestone, 'Wedge',
 		V(0, math.pi, 0))
+	-- A pale bedding plane over dark shale stays legible in the approach's night lighting.
+	part('LandingCapSplitFace', V(2.52, .51, .75), V(.34, 1.29, -3.04), splitStone, M.Limestone,
+		'Wedge', V(0, math.pi, 0))
+	part('LandingShaleRunoffFace', V(1.84, .59, .57), V(.61, .84, -3.18), shale:Lerp(loam, .35), M.Slate,
+		'Wedge')
 	part('BuriedLandingTie', V(3.50, .44, 1.27), V(-.30, 1.63, .41), wood, M.Wood)
 	part('LandingTieStrap', V(.29, .18, 1.29), V(-1.28, 1.90, .41), iron, M.CorrodedMetal)
 	part('ShaleAbutmentSpall', V(2.06, .50, 1.40), V(-1.91, .25, 2.02), shale, M.Slate, 'Wedge',
@@ -55,6 +68,7 @@ local function buriedConvoyWheelTrace(pal, part, beam)
 	local ice = pal.rock:Lerp(pal.trim, .48)
 	local ash = pal.wood:Lerp(C(132, 107, 86), .64)
 	local iron = C(70, 81, 92)
+	local endGrain = ash:Lerp(C(166, 138, 110), .64)
 
 	part('ScouredConvoySnowFoot', V(6.26, .70, 9.75), V(0, .20, .14), packed, M.Snow, 'Wedge',
 		V(0, math.pi, 0))
@@ -76,6 +90,10 @@ local function buriedConvoyWheelTrace(pal, part, beam)
 	local axle = V(-1.69, .62, -.59)
 	beam('BrokenWheelSpoke', axle, rim[2], .26, ash, M.Wood)
 	beam('IceCrustedWheelSpoke', axle, rim[4], .30, ash:Lerp(ice, .24), M.Wood)
+	part('ConvoyWheelHub', V(.85, .69, .69), axle + V(-.23, .10, 0), endGrain, M.Wood, 'Cylinder')
+	part('ConvoyWheelHubCap', V(.25, .39, .39), axle + V(-.69, .10, 0), iron, M.CorrodedMetal, 'Cylinder')
+	part('WindPackedSnowBelowHub', V(1.26, .47, 2.25), V(-2.17, .37, -.06), drift, M.Snow, 'Wedge',
+		V(0, -.24, 0))
 end
 
 local function circuitModelCatchBasin(pal, part)
@@ -95,8 +113,14 @@ local function circuitModelCatchBasin(pal, part)
 	part('CatchBasinBackWall', V(3.02, .81, .84), V(0, .84, 2.47), brick, M.Brick)
 	part('CatchBasinSpillSill', V(2.99, .46, 1.06), V(0, .71, -2.46), brick, M.Brick, 'Wedge',
 		V(0, math.pi, 0))
-	part('CatchBasinOverflowTongue', V(1.42, .25, 1.83), V(0, .67, -3.02), mineral, M.Limestone, 'Wedge',
+	part('CatchBasinOverflowTongue', V(1.42, .25, 1.83), V(0, .67, -3.02), basalt, M.Basalt, 'Wedge',
 		V(0, math.pi, 0))
+	for _, side in ipairs({-1, 1}) do
+		part('OverflowChannelCheek', V(.51, .32, 1.67), V(side * .73, .72, -2.86), brick, M.Brick, 'Wedge',
+			V(0, math.pi + side * .10, 0))
+	end
+	part('OverflowMineralRun', V(.71, .14, 1.77), V(-.07, .79, -2.98), mineral, M.Limestone, 'Wedge',
+		V(0, math.pi - .05, 0))
 end
 
 local function easternGalleryConduitSaddle(pal, part)
@@ -104,6 +128,7 @@ local function easternGalleryConduitSaddle(pal, part)
 	local coping = slate:Lerp(C(157, 150, 131), .64)
 	local iron = C(80, 78, 82)
 	local lead = C(109, 111, 113)
+	local burnishedLead = lead:Lerp(coping, .68)
 	local lengthwise = V(0, math.pi / 2, 0)
 
 	part('GallerySaddleSiltToe', V(5.80, .46, 8.81), V(0, .15, .09), pal.ground:Lerp(slate, .58), M.Ground,
@@ -115,8 +140,14 @@ local function easternGalleryConduitSaddle(pal, part)
 		part('GalleryDressedSaddle', V(3.06, .79, 1.56), V(.09, .87, z), coping, M.Slate)
 		part('GallerySaddleCollar', V(.45, 1.24, 1.24), V(.09, 1.16, z), lead, M.Metal, 'Cylinder',
 			lengthwise)
+		part('GalleryCollarSeam', V(.16, 1.18, 1.18), V(.09, 1.16, z + math.sign(z) * .25), burnishedLead,
+			M.Metal, 'Cylinder', lengthwise)
 		part('GallerySaddleChamfer', V(.68, .48, 1.40), V(-1.59, .73, z), slate, M.Slate, 'Wedge',
 			V(0, -math.pi / 2, 0))
+	end
+	for _, z in ipairs({-3.20, 3.40}) do
+		part('GalleryConduitEndBand', V(.25, 1.03, 1.03), V(.09, 1.04, z), burnishedLead, M.Metal, 'Cylinder',
+			lengthwise)
 	end
 	part('GalleryServicePaving', V(1.20, .35, 6.58), V(1.64, .52, .07), coping, M.Limestone)
 end
