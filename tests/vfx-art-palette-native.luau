@@ -19,8 +19,18 @@ local ok,err=xpcall(function()
   local hit=assert(workspace:FindFirstChild('K0HitEffect'))
   local color,hot,key=Palette.resolve(classId,d.id)
   local accent=hit:FindFirstChild('K0SkillImpact')
+  local accentColor=accent and accent.Color==color
+  if not accent then
+   local effect=workspace:FindFirstChild('HeroVFX')
+   local style=effect and effect:GetAttribute('ContactStyle')
+   local stroke=style and effect:FindFirstChild(style,true)
+   if stroke and stroke:IsA('Beam') then
+    local points=stroke.Color.Keypoints
+    accentColor=points[#points].Value==color:Lerp(hot,key=='lightning'and .7 or .35)
+   end
+  end
   check(hit.Color==color and hit.K0HitFlash.FillColor==color
-   and (not accent and Hero.groundLead(d)~=nil or accent and accent.Color==color),'visible hit layers share the element '..d.id)
+   and accentColor,'visible hit layers share the element '..d.id)
   check(hit.K0HitFlash.FillTransparency>=.75,'target silhouette remains visible '..d.id)
   check(hit.K0DamageNumber.Amount.Text=='17','actual damage number preserved '..d.id)
   if key=='fire'then check(color.R>color.B*2,'fire stays warm '..d.id)

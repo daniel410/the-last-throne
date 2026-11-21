@@ -1,0 +1,459 @@
+{
+  "sourceCommit": "64f90576ac8899254229d5a7496cdfb2540369b4",
+  "placeSha256": "508f989993dfb711d8e55e4367e5e51205f13025e41395392c98dc35186cbf9e",
+  "environment": "Isolated Roblox Studio, run-in-roblox 0.3.0",
+  "baselineVersion": "0.115.14",
+  "batch": {
+    "suiteCount": 30,
+    "passedSuites": 28,
+    "checksInPassedSuites": 280114,
+    "suites": {
+      "gunner-payload": false,
+      "hero-skill-sockets": true,
+      "melee-action-beats": true,
+      "hero-ground-impact": true,
+      "rpg-element-motion": true,
+      "vfx-art-hero-fixes": true,
+      "vfx-review-followup": true,
+      "hero-skill-impact": true,
+      "hero-vfx": true,
+      "skill-vfx-individual": true,
+      "hero-vfx-flourish": true,
+      "hero-hit-feedback": true,
+      "combat-audio": true,
+      "arcade-impact-vfx": true,
+      "rpg-vfx-motion": true,
+      "element-vfx": true,
+      "hero-skill-windup": true,
+      "ranged-action-poses": true,
+      "hero-skills": true,
+      "k0-skill-animation": true,
+      "projectile-vfx-timing": true,
+      "elf-confirmed-release": true,
+      "skill-icon-vfx": true,
+      "rpg-vfx-gap": true,
+      "vfx-style-fit": true,
+      "hero-final-beat": true,
+      "curated-vfx": true,
+      "vfx-art-palette": false,
+      "k0-hit-effects": true,
+      "damage-feedback": true
+    },
+    "checksByReport": {
+      "GUNNER_PAYLOAD_NATIVE": 19,
+      "HERO_SKILL_SOCKETS_NATIVE": 16,
+      "MELEE_ACTION_BEATS_NATIVE": 2147,
+      "HERO_GROUND_IMPACT_NATIVE": 128,
+      "RPG_ELEMENT_MOTION_NATIVE": 78,
+      "VFX_ART_HERO_FIXES_NATIVE": 2335,
+      "VFX_REVIEW_FOLLOWUP_NATIVE": 1357,
+      "HERO_SKILL_IMPACT_NATIVE": 761,
+      "HERO_VFX_NATIVE": 10063,
+      "SKILL_VFX_INDIVIDUAL_NATIVE": 306,
+      "HERO_VFX_FLOURISH_NATIVE": 82,
+      "HERO_HIT_FEEDBACK_NATIVE": 1667,
+      "COMBAT_AUDIO_NATIVE": 824,
+      "ARCADE_IMPACT_VFX_NATIVE": 585,
+      "RPG_VFX_MOTION_NATIVE": 190,
+      "ELEMENT_VFX_NATIVE": 84,
+      "HERO_SKILL_WINDUP_NATIVE": 1400,
+      "RANGED_ACTION_POSES_NATIVE": 158,
+      "HERO_SKILLS_NATIVE": 244520,
+      "K0_SKILL_ANIMATION_NATIVE": 61,
+      "PROJECTILE_VFX_TIMING_NATIVE": 192,
+      "ELF_CONFIRMED_RELEASE": 13,
+      "SKILL_ICON_VFX_NATIVE": 13480,
+      "RPG_VFX_GAP_NATIVE": 21,
+      "VFX_STYLE_FIT_NATIVE": 58,
+      "HERO_FINAL_BEAT_NATIVE": 100,
+      "CURATED_VFX_NATIVE": 168,
+      "VFX_ART_PALETTE_NATIVE": 51,
+      "K0_HIT_EFFECTS_NATIVE": 102,
+      "DAMAGE_FEEDBACK_NATIVE": 42
+    }
+  },
+  "isolatedRechecks": {
+    "GUNNER_PAYLOAD_NATIVE": {
+      "pass": true,
+      "checks": 180
+    },
+    "VFX_ART_PALETTE_NATIVE": {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 562
+    }
+  },
+  "uniquePassingSuites": 30,
+  "checksAcrossPassingRuns": 280856,
+  "confirmedImpactSkills": 128,
+  "confirmedImpactChecks": 761,
+  "phoneEmulatorOverlap": {
+    "before": {
+      "floorOutline": 12,
+      "legacyFlashes": 10,
+      "enemyOutline": 16,
+      "device": {
+        "touch": true,
+        "name": "iPhone 17 Pro",
+        "active": true,
+        "viewport": "750, 381",
+        "resolution": "874, 402"
+      },
+      "damage": "42"
+    },
+    "after": {
+      "floorOutline": 12,
+      "legacyFlashes": 2,
+      "enemyOutline": 16,
+      "device": {
+        "touch": true,
+        "name": "iPhone 17 Pro",
+        "active": true,
+        "viewport": "750, 381",
+        "resolution": "874, 402"
+      },
+      "damage": "42"
+    }
+  },
+  "poseSamples": {
+    "before": [
+      {
+        "angles": {
+          "elbow": [
+            15,
+            0,
+            0
+          ],
+          "leftKnee": [
+            0,
+            0,
+            0
+          ],
+          "rightKnee": [
+            0,
+            0,
+            0
+          ],
+          "leftElbow": [
+            0,
+            0,
+            0
+          ],
+          "torso": [
+            -8.176334381103516,
+            11.881505012512207,
+            1.6944386959075928
+          ],
+          "left": [
+            90,
+            2.466429350533872e-06,
+            80
+          ],
+          "right": [
+            -13.79003620147705,
+            29.27972412109375,
+            -11.155088424682617
+          ]
+        },
+        "skill": "knight.steel_knight.shield_breaker",
+        "delay": 0.05
+      },
+      {
+        "angles": {
+          "elbow": [
+            68.50276184082031,
+            -16.46737289428711,
+            24.685739517211914
+          ],
+          "leftKnee": [
+            5.9882097244262695,
+            0,
+            0
+          ],
+          "rightKnee": [
+            5.9882097244262695,
+            0,
+            0
+          ],
+          "leftElbow": [
+            30.6530818939209,
+            -21.965639114379883,
+            20.23419189453125
+          ],
+          "torso": [
+            -19.600000381469727,
+            30.129783630371094,
+            11.08531379699707
+          ],
+          "left": [
+            -38.2392578125,
+            38.28518295288086,
+            -34.09568786621094
+          ],
+          "right": [
+            15.70183277130127,
+            76.39928436279297,
+            18.90354347229004
+          ]
+        },
+        "skill": "dwarf.iron_axe.mountain_strike",
+        "delay": 0.075
+      },
+      {
+        "angles": {
+          "elbow": [
+            56.84697723388672,
+            0,
+            0
+          ],
+          "leftKnee": [
+            13.407933235168457,
+            0,
+            0
+          ],
+          "rightKnee": [
+            20.62759017944336,
+            0,
+            0
+          ],
+          "leftElbow": [
+            7.059971332550049,
+            0,
+            0
+          ],
+          "torso": [
+            -3.233555793762207,
+            0.5806026458740234,
+            3.5928397178649902
+          ],
+          "left": [
+            91.05474090576172,
+            -2.8882949352264404,
+            9.880056381225586
+          ],
+          "right": [
+            59.61216735839844,
+            40.91651916503906,
+            -5.027003288269043
+          ]
+        },
+        "skill": "elf_pinning_shot",
+        "delay": 0.055
+      },
+      {
+        "angles": {
+          "elbow": [
+            35.76237487792969,
+            0,
+            0
+          ],
+          "leftKnee": [
+            6.293818473815918,
+            0,
+            0
+          ],
+          "rightKnee": [
+            8.991168975830078,
+            0,
+            0
+          ],
+          "leftElbow": [
+            41.74624252319336,
+            0,
+            0
+          ],
+          "torso": [
+            4.812258243560791,
+            -4.6846699714660645,
+            -1.9350217580795288
+          ],
+          "left": [
+            70.44058227539062,
+            20.103126525878906,
+            -22.877843856811523
+          ],
+          "right": [
+            61.400665283203125,
+            -2.9781527519226074,
+            18.684349060058594
+          ]
+        },
+        "skill": "mage.cryo.shatter_dart",
+        "delay": 0.06
+      }
+    ],
+    "after": [
+      {
+        "angles": {
+          "elbow": [
+            15,
+            0,
+            0
+          ],
+          "leftKnee": [
+            18,
+            0,
+            0
+          ],
+          "rightKnee": [
+            0,
+            0,
+            0
+          ],
+          "leftElbow": [
+            0,
+            0,
+            0
+          ],
+          "torso": [
+            4.823665618896484,
+            5.881505012512207,
+            -3.3055613040924072
+          ],
+          "left": [
+            90,
+            2.466429350533872e-06,
+            80
+          ],
+          "right": [
+            -13.79003620147705,
+            29.27972412109375,
+            -11.155088424682617
+          ]
+        },
+        "skill": "knight.steel_knight.shield_breaker",
+        "delay": 0.05
+      },
+      {
+        "angles": {
+          "elbow": [
+            68.50276184082031,
+            -16.46737289428711,
+            24.685739517211914
+          ],
+          "leftKnee": [
+            27.988208770751953,
+            0,
+            0
+          ],
+          "rightKnee": [
+            24.988208770751953,
+            0,
+            0
+          ],
+          "leftElbow": [
+            30.6530818939209,
+            -21.965639114379883,
+            20.23419189453125
+          ],
+          "torso": [
+            -1.6000003814697266,
+            30.129783630371094,
+            11.08531379699707
+          ],
+          "left": [
+            -38.2392578125,
+            38.28518295288086,
+            -34.09568786621094
+          ],
+          "right": [
+            15.70183277130127,
+            76.39928436279297,
+            18.90354347229004
+          ]
+        },
+        "skill": "dwarf.iron_axe.mountain_strike",
+        "delay": 0.075
+      },
+      {
+        "angles": {
+          "elbow": [
+            54.055091857910156,
+            0,
+            0
+          ],
+          "leftKnee": [
+            14.376181602478027,
+            0,
+            0
+          ],
+          "rightKnee": [
+            22.117202758789062,
+            0,
+            0
+          ],
+          "leftElbow": [
+            7.059971332550049,
+            0,
+            0
+          ],
+          "torso": [
+            -3.641355037689209,
+            -2.827788829803467,
+            -0.9103387594223022
+          ],
+          "left": [
+            90.434326171875,
+            -2.8882949352264404,
+            9.880056381225586
+          ],
+          "right": [
+            61.008113861083984,
+            35.3734245300293,
+            -6.422946453094482
+          ]
+        },
+        "skill": "elf_pinning_shot",
+        "delay": 0.055
+      },
+      {
+        "angles": {
+          "elbow": [
+            35.76237487792969,
+            0,
+            0
+          ],
+          "leftKnee": [
+            8.39175796508789,
+            0,
+            0
+          ],
+          "rightKnee": [
+            11.988225936889648,
+            0,
+            0
+          ],
+          "leftElbow": [
+            41.74624252319336,
+            0,
+            0
+          ],
+          "torso": [
+            5.291303634643555,
+            -5.642760276794434,
+            -1.9350217580795288
+          ],
+          "left": [
+            62.4922981262207,
+            22.073293685913086,
+            -5.917621612548828
+          ],
+          "right": [
+            58.82579803466797,
+            -3.407297134399414,
+            19.113492965698242
+          ]
+        },
+        "skill": "mage.cryo.shatter_dart",
+        "delay": 0.06
+      }
+    ]
+  },
+  "cpu": {
+    "advancedSkills": 1435,
+    "skillEffects": 14026,
+    "placeRole": 10,
+    "arrivalLoading": 326
+  }
+}
