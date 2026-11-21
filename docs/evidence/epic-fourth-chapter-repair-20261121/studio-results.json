@@ -1,0 +1,408 @@
+{
+  "models": [
+    {
+      "baseline": {
+        "chapter": "HG-04",
+        "maxFloorError": 0,
+        "clearance": 7.255168914794922,
+        "step": "step3",
+        "version": 3,
+        "height": 2.02500057220459,
+        "bounds": [
+          7.608750820159912,
+          2.02500057220459,
+          9.81369400024414
+        ],
+        "goal": "exp_2",
+        "model": "AllianceLandingGuardCourse",
+        "anchor": [
+          1248.8299560546875,
+          184,
+          -16856.80078125
+        ],
+        "actorClearance": 7.764325141906738,
+        "ground": [
+          1257.2174072265625,
+          184,
+          -16863.91796875
+        ],
+        "parts": 8
+      },
+      "candidate": {
+        "chapter": "HG-04",
+        "maxFloorError": 0,
+        "clearance": 7.255168914794922,
+        "step": "step3",
+        "version": 3,
+        "height": 2.02500057220459,
+        "bounds": [
+          7.608750820159912,
+          2.02500057220459,
+          9.81369400024414
+        ],
+        "goal": "exp_2",
+        "model": "AllianceLandingGuardCourse",
+        "anchor": [
+          1248.8299560546875,
+          184,
+          -16856.80078125
+        ],
+        "actorClearance": 7.764325141906738,
+        "ground": [
+          1257.2174072265625,
+          184,
+          -16863.91796875
+        ],
+        "parts": 11
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "GW-04",
+        "maxFloorError": 0,
+        "clearance": 6.744947910308838,
+        "step": "step1",
+        "version": 3,
+        "height": 2.47886323928833,
+        "bounds": [
+          6.530316352844238,
+          2.47886323928833,
+          7.539999961853027
+        ],
+        "goal": "exp_1",
+        "model": "CrushedLanternSill",
+        "anchor": [
+          464.3500061035156,
+          56,
+          -5596.27978515625
+        ],
+        "ground": [
+          467.91497802734375,
+          56,
+          -5586.93701171875
+        ],
+        "parts": 9
+      },
+      "candidate": {
+        "chapter": "GW-04",
+        "maxFloorError": 0,
+        "clearance": 6.744947910308838,
+        "step": "step1",
+        "version": 3,
+        "height": 2.5179805755615234,
+        "bounds": [
+          6.530316352844238,
+          2.5179805755615234,
+          7.539999961853027
+        ],
+        "goal": "exp_1",
+        "model": "CrushedLanternSill",
+        "anchor": [
+          464.3500061035156,
+          56,
+          -5596.27978515625
+        ],
+        "ground": [
+          467.91497802734375,
+          56,
+          -5586.93701171875
+        ],
+        "parts": 12
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "EC-04",
+        "maxFloorError": 0,
+        "clearance": 3.670436382293701,
+        "step": "step2",
+        "version": 3,
+        "height": 2.8250017166137695,
+        "bounds": [
+          5.789999961853027,
+          2.8250017166137695,
+          9.510000228881836
+        ],
+        "goal": "exp_1",
+        "model": "FracturedCoolantJunction",
+        "anchor": [
+          757.1300048828125,
+          148,
+          -13533.599609375
+        ],
+        "ground": [
+          768.1300048828125,
+          148,
+          -13533.599609375
+        ],
+        "parts": 11
+      },
+      "candidate": {
+        "chapter": "EC-04",
+        "maxFloorError": 0,
+        "clearance": 3.670436382293701,
+        "step": "step2",
+        "version": 3,
+        "height": 2.7657082080841064,
+        "bounds": [
+          5.789999961853027,
+          2.7657082080841064,
+          9.510000228881836
+        ],
+        "goal": "exp_1",
+        "model": "FracturedCoolantJunction",
+        "anchor": [
+          757.1300048828125,
+          148,
+          -13533.599609375
+        ],
+        "ground": [
+          768.1300048828125,
+          148,
+          -13533.599609375
+        ],
+        "parts": 21
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "FV-04",
+        "maxFloorError": 0,
+        "clearance": 8.484502792358398,
+        "step": "step3",
+        "version": 3,
+        "height": 1.3300018310546875,
+        "bounds": [
+          5.750001430511475,
+          1.3300018310546875,
+          8.860001564025879
+        ],
+        "goal": "exp_2",
+        "model": "RelayReturnHallSkirting",
+        "anchor": [
+          699.75,
+          100,
+          -9002.6201171875
+        ],
+        "ground": [
+          693.2498168945312,
+          100,
+          -8993.74609375
+        ],
+        "parts": 8
+      },
+      "candidate": {
+        "chapter": "FV-04",
+        "maxFloorError": 0,
+        "clearance": 8.484502792358398,
+        "step": "step3",
+        "version": 3,
+        "height": 1.550001621246338,
+        "bounds": [
+          5.750001430511475,
+          1.550001621246338,
+          8.860001564025879
+        ],
+        "goal": "exp_2",
+        "model": "RelayReturnHallSkirting",
+        "anchor": [
+          699.75,
+          100,
+          -9002.6201171875
+        ],
+        "ground": [
+          693.2498168945312,
+          100,
+          -8993.74609375
+        ],
+        "parts": 12
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "DW-04",
+        "maxFloorError": 0,
+        "clearance": 7.517382621765137,
+        "step": "step3",
+        "version": 3,
+        "height": 5.030000686645508,
+        "bounds": [
+          6.665194988250732,
+          5.030000686645508,
+          6.742151737213135
+        ],
+        "goal": "exp_1",
+        "model": "WatchtowerCableAbutment",
+        "anchor": [
+          359.6499938964844,
+          30,
+          -2326
+        ],
+        "ground": [
+          352.93695068359375,
+          30,
+          -2334.714111328125
+        ],
+        "parts": 10
+      },
+      "candidate": {
+        "chapter": "DW-04",
+        "maxFloorError": 0,
+        "clearance": 7.517382621765137,
+        "step": "step3",
+        "version": 3,
+        "height": 5.030000686645508,
+        "bounds": [
+          6.665194988250732,
+          5.030000686645508,
+          6.742151737213135
+        ],
+        "goal": "exp_1",
+        "model": "WatchtowerCableAbutment",
+        "anchor": [
+          359.6499938964844,
+          30,
+          -2326
+        ],
+        "ground": [
+          352.93695068359375,
+          30,
+          -2334.714111328125
+        ],
+        "parts": 14
+      }
+    }
+  ],
+  "unchangedModels": [
+    "AntechamberRailFooting",
+    "ArchiveSignalObservationSill",
+    "BarracksFreightBreach",
+    "BelowRailCoolantInspectionHead",
+    "BuriedConvoyWheelTrace",
+    "CircuitModelCatchBasin",
+    "CitadelServiceCoping",
+    "CreekCargoSill",
+    "CrewPlanWorktableFootings",
+    "EasternGalleryConduitSaddle",
+    "FreightCarrierWheelSeat",
+    "GateWinchAnchorPlinth",
+    "HeatworksObservationBaffle",
+    "KeeperReturnLanternNiche",
+    "KeeperServiceDoorJamb",
+    "MineFreightLineSeat",
+    "OuterWebRootShelf",
+    "RavineWalkRailAnchor",
+    "RearguardLanternRootBank",
+    "RecoveryRainShelf",
+    "RefugePathDrain",
+    "RefugeReturnRootMarker",
+    "ReliefRosterStand",
+    "ScoutApproachStoneFooting",
+    "ScoutExtractionSkid",
+    "ScoutLandingStoneAbutment",
+    "StragglerBendDrainageShoulder",
+    "TwinBeaconTerraceSill",
+    "WheeltrackForkRootCut",
+    "WindbreakAscentBank"
+  ],
+  "walks": {
+    "baseline": [
+      {
+        "chapter": "DW-04",
+        "inbound": 1.9114264249801636,
+        "distance": 31.999956130981445,
+        "outbound": 2.4918503761291504
+      },
+      {
+        "chapter": "EC-04",
+        "inbound": 2.1005859375,
+        "distance": 32,
+        "outbound": 2.1748046875
+      },
+      {
+        "chapter": "FV-04",
+        "inbound": 2.2043328285217285,
+        "distance": 31.999799728393555,
+        "outbound": 2.2662580013275146
+      },
+      {
+        "chapter": "GW-04",
+        "inbound": 2.1794421672821045,
+        "distance": 32.00014114379883,
+        "outbound": 2.2251718044281006
+      },
+      {
+        "chapter": "HG-04",
+        "inbound": 2.2396953105926514,
+        "distance": 32.000526428222656,
+        "outbound": 2.181825637817383
+      }
+    ],
+    "candidate": [
+      {
+        "chapter": "DW-04",
+        "inbound": 1.3780779838562012,
+        "distance": 31.999956130981445,
+        "outbound": 2.491995334625244
+      },
+      {
+        "chapter": "EC-04",
+        "inbound": 1.2978515625,
+        "distance": 32,
+        "outbound": 2.1748046875
+      },
+      {
+        "chapter": "FV-04",
+        "inbound": 1.4033936262130737,
+        "distance": 31.999799728393555,
+        "outbound": 0.8415608406066895
+      },
+      {
+        "chapter": "GW-04",
+        "inbound": 1.3792999982833862,
+        "distance": 32.00014114379883,
+        "outbound": 2.4918859004974365
+      },
+      {
+        "chapter": "HG-04",
+        "inbound": 1.4411283731460571,
+        "distance": 32.000526428222656,
+        "outbound": 2.1816680431365967
+      }
+    ]
+  },
+  "framePairs": [
+    "DW-04-approach",
+    "DW-04-return-side",
+    "GW-04-approach",
+    "GW-04-return-side",
+    "FV-04-approach",
+    "FV-04-return-side",
+    "EC-04-approach",
+    "EC-04-return-side",
+    "HG-04-approach",
+    "HG-04-return-side"
+  ],
+  "expansionRegression": {
+    "baseline": {
+      "generationSeconds": 32.107912791660056,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9193,
+      "steps": 246,
+      "samples": 3968,
+      "incidents": 82,
+      "parts": 56483
+    },
+    "candidate": {
+      "generationSeconds": 30.50263608316891,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9193,
+      "steps": 246,
+      "samples": 3968,
+      "incidents": 82,
+      "parts": 56507
+    }
+  }
+}
