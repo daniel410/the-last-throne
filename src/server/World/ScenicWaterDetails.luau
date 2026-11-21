@@ -8,6 +8,7 @@ local M = Enum.Material
 local deepWater = C(44, 99, 113)
 local shallowWater = C(84, 154, 168)
 local foam = C(192, 225, 223)
+local wetSilt = C(64, 72, 54)
 
 local function film(parent, name, from, to, width, thickness, color, overlap)
 	local frame = CFrame.lookAt((from + to) / 2, to)
@@ -29,6 +30,9 @@ end
 local function runnel(parent, points, widths)
 	for i, width in ipairs(widths) do
 		local from, to = points[i], points[i + 1]
+		local silt = film(parent, 'WetSiltMargin', from - V(0, .035, 0), to - V(0, .035, 0),
+			width + 1.55, .10, wetSilt, .5)
+		silt.Material = M.Mud
 		film(parent, 'RunnelSurface', from, to, width, .12, deepWater, .2)
 		if i > 1 then
 			local joint = Kit.part(parent, 'RunnelBend', V(width, .12, width), from, deepWater, M.SmoothPlastic, 'Ball')
@@ -122,10 +126,14 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 	for i, lane in ipairs({{-5.4, 3.15}, {-2.4, 3.1}, {.38, 2.8}}) do
 		local x, width = table.unpack(lane)
 		local from = origin + V(x, 27.59, -.8)
-		local to = origin + V(x + .7, .42, 6.0 + i * .33)
-		local strip = film(model, 'FallingWater', from, to, width, .37,
+		local to = origin + V(x + .7, .50, 6.0 + i * .33)
+		local bend = from:Lerp(to, .76 + i * .035)
+		local strip = film(model, 'FallingWater', from, bend, width * (i == 2 and 1 or .88), .22,
 			i == 2 and C(111, 174, 185) or shallowWater:Lerp(deepWater, .12), .38)
-		strip.Transparency = i == 2 and .12 or .22
+		strip.Transparency = i == 2 and .15 or .28
+		local tail = film(model, 'AeratedWater', bend, to, width * (i == 2 and 1.16 or 1.01), .34,
+			shallowWater:Lerp(foam, .27), .42)
+		tail.Transparency = .18 + i * .025
 		for j = 1, 3 do
 			local offset = V((j - 2) * width * .27, 0, .39 + j * .025)
 			current(model, 'DescendingWater', from:Lerp(to, .09) + offset, from:Lerp(to, .93) + offset,
@@ -134,10 +142,14 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		end
 	end
 
-	local pool = Kit.part(model, 'PlungePool', V(27, .38, 24),
-		CFrame.new(origin + V(0, .16, 11)) * CFrame.Angles(0, -.12, 0), deepWater, M.SmoothPlastic, 'Ball')
+	local pool = Kit.part(model, 'PlungePool', V(28, .26, 25),
+		CFrame.new(origin + V(-1, .44, 9.5)) * CFrame.Angles(0, -.12, 0), deepWater, M.SmoothPlastic, 'Ball')
 	pool.CastShadow = false
-	pool.Transparency = .13
+	pool.Transparency = .075
+	local churn = Kit.part(model, 'FallImpactFoam', V(10.3, .08, 4.8),
+		CFrame.new(origin + V(-2.1, .62, 7.6)), shallowWater:Lerp(foam, .62), M.SmoothPlastic, 'Ball')
+	churn.CastShadow = false
+	churn.Transparency = .35
 	local stones = {
 		{V(-12.9, .15, 9), V(5.5, 2.4, 9), .23}, {V(-10.5, -.05, 17), V(5.3, 2.5, 6), -.45},
 		{V(13, .11, 13), V(6, 2.1, 9), -.33}, {V(9.8, .33, 19), V(4, 1.8, 5), -.3},
@@ -146,17 +158,17 @@ function Water.build(parent, id, center, size, palette, safe, ground)
 		rock('PoolBank', bank[1], bank[2] + V(0, groundSpread, 0), bank[3], wetRock, 'Wedge')
 	end
 	for i, side in ipairs({-1, 0, 1}) do
-		local impact = origin + V(-1 + side, .45, 7)
-		current(model, 'PoolFoamFan', impact, origin + V(-1 + side * 7, .45, 12.5 + (1 - math.abs(side)) * 3),
+		local impact = origin + V(-1 + side, .65, 7)
+		current(model, 'PoolFoamFan', impact, origin + V(-1 + side * 7, .65, 12.5 + (1 - math.abs(side)) * 3),
 			V(3.5 + i * .45, .07, .63), foam, .16, 4.2, i / 4, 'splash', 'Ball')
 	end
 	for _, side in ipairs({-1, 1}) do
-		local impact = origin + V(-1 + side, .46, 7.4)
+		local impact = origin + V(-1 + side, .66, 7.4)
 		current(model, 'ImpactSpray', impact, impact + V(side * 3.1, 1.25, 2.7),
 			V(.45, .23, .76), foam, .24, 6, .48 + side * .22, 'splash', 'Ball')
 	end
 	runnel(model, {
-		origin + V(3.6, .21, 19), origin + V(7, .18, 27), origin + V(13.5, .14, 35),
+		origin + V(3.6, .37, 18.5), origin + V(7, .18, 27), origin + V(13.5, .14, 35),
 		origin + V(15.3, .11, 45), origin + V(21, .10, 55),
 	}, {8.5, 7.7, 6.7, 4.9})
 	rock('OutflowGravel', V(21.4, .10, 55), V(7, .7, 6), -.28, wetRock, 'Wedge')
