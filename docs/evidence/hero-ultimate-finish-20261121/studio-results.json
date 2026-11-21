@@ -1,0 +1,394 @@
+{
+  "baselineVersion": "0.115.29",
+  "candidateVersion": "0.115.33",
+  "candidateSourceCommit": "1ba3dea5c31688df8218adb34195cbcfc54dd12c",
+  "newChecksBaseline": {
+    "budget": {
+      "elf.marksman.grand_volley": {
+        "ally": {
+          "beams": 31,
+          "particles": 0,
+          "surfaces": 26
+        },
+        "own": {
+          "beams": 37,
+          "particles": 16,
+          "surfaces": 28
+        }
+      },
+      "dwarf.iron_axe.mountain_collapse": {
+        "ally": {
+          "beams": 27,
+          "particles": 0,
+          "surfaces": 13
+        },
+        "own": {
+          "beams": 27,
+          "particles": 16,
+          "surfaces": 13
+        }
+      },
+      "dwarf.gunner.siege_barrage": {
+        "ally": {
+          "beams": 6,
+          "particles": 0,
+          "surfaces": 0
+        },
+        "own": {
+          "beams": 12,
+          "particles": 23,
+          "surfaces": 0
+        }
+      },
+      "mage.cryo.eternal_tempest": {
+        "ally": {
+          "beams": 39,
+          "particles": 0,
+          "surfaces": 60
+        },
+        "own": {
+          "beams": 39,
+          "particles": 16,
+          "surfaces": 60
+        }
+      },
+      "elf.magic_archer.spirit_arrowfall": {
+        "ally": {
+          "beams": 19,
+          "particles": 0,
+          "surfaces": 24
+        },
+        "own": {
+          "beams": 19,
+          "particles": 16,
+          "surfaces": 24
+        }
+      },
+      "mage.pyro.caldera_s_judgment": {
+        "ally": {
+          "beams": 42,
+          "particles": 0,
+          "surfaces": 58
+        },
+        "own": {
+          "beams": 42,
+          "particles": 35,
+          "surfaces": 58
+        }
+      },
+      "knight.steel_knight.unyielding_front": {
+        "ally": {
+          "beams": 30,
+          "particles": 0,
+          "surfaces": 30
+        },
+        "own": {
+          "beams": 30,
+          "particles": 16,
+          "surfaces": 30
+        }
+      },
+      "knight.paladin.oath_of_dawn": {
+        "ally": {
+          "beams": 24,
+          "particles": 0,
+          "surfaces": 18
+        },
+        "own": {
+          "beams": 24,
+          "particles": 16,
+          "surfaces": 18
+        }
+      }
+    },
+    "failures": [
+      "mage.cryo.eternal_tempest final pose envelope 3",
+      "mage.cryo.eternal_tempest final pose envelope 3",
+      "The final frost eye contracts",
+      "mage.pyro.caldera_s_judgment final pose envelope 3",
+      "mage.pyro.caldera_s_judgment final pose envelope 3",
+      "mage.pyro.caldera_s_judgment has a taller final release",
+      "knight.steel_knight.unyielding_front final pose envelope 3",
+      "knight.steel_knight.unyielding_front final pose envelope 3",
+      "The shield wall drives forward on the second strike",
+      "knight.paladin.oath_of_dawn final pose envelope 3",
+      "knight.paladin.oath_of_dawn final pose envelope 3",
+      "knight.paladin.oath_of_dawn has a taller final release",
+      "elf.magic_archer.spirit_arrowfall first signature clears before the next beat",
+      "elf.magic_archer.spirit_arrowfall first signature clears before the next beat",
+      "elf.magic_archer.spirit_arrowfall ally limits overlapping draws",
+      "dwarf.iron_axe.mountain_collapse first signature clears before the next beat",
+      "dwarf.iron_axe.mountain_collapse first signature clears before the next beat",
+      "dwarf.iron_axe.mountain_collapse ally limits overlapping draws",
+      "mage.pyro.caldera_s_judgment first signature clears before the next beat",
+      "mage.pyro.caldera_s_judgment first signature clears before the next beat",
+      "mage.pyro.caldera_s_judgment ally limits overlapping draws",
+      "knight.paladin.oath_of_dawn first signature clears before the next beat",
+      "knight.paladin.oath_of_dawn first signature clears before the next beat",
+      "knight.paladin.oath_of_dawn ally limits overlapping draws",
+      "knight.steel_knight.unyielding_front first signature clears before the next beat",
+      "knight.steel_knight.unyielding_front first signature clears before the next beat",
+      "knight.steel_knight.unyielding_front ally limits overlapping draws",
+      "mage.cryo.eternal_tempest first signature clears before the next beat",
+      "mage.cryo.eternal_tempest first signature clears before the next beat",
+      "mage.cryo.eternal_tempest ally limits overlapping draws",
+      "elf.marksman.grand_volley ally limits overlapping draws",
+      "Volley starts at the bow",
+      "Volley uses a single primary fan"
+    ],
+    "pass": false,
+    "checks": 88
+  },
+  "candidateStudio": {
+    "melee-action-beats": {
+      "rigActions": 140,
+      "contacts": 204,
+      "pass": true,
+      "checks": 2147
+    },
+    "hero-ultimate-finish": {
+      "budget": {
+        "elf.marksman.grand_volley": {
+          "ally": {
+            "beams": 6,
+            "particles": 0,
+            "surfaces": 0
+          },
+          "own": {
+            "beams": 37,
+            "particles": 16,
+            "surfaces": 28
+          }
+        },
+        "dwarf.iron_axe.mountain_collapse": {
+          "ally": {
+            "beams": 6,
+            "particles": 0,
+            "surfaces": 4
+          },
+          "own": {
+            "beams": 27,
+            "particles": 16,
+            "surfaces": 13
+          }
+        },
+        "dwarf.gunner.siege_barrage": {
+          "ally": {
+            "beams": 2,
+            "particles": 0,
+            "surfaces": 0
+          },
+          "own": {
+            "beams": 12,
+            "particles": 23,
+            "surfaces": 0
+          }
+        },
+        "mage.cryo.eternal_tempest": {
+          "ally": {
+            "beams": 8,
+            "particles": 0,
+            "surfaces": 6
+          },
+          "own": {
+            "beams": 39,
+            "particles": 16,
+            "surfaces": 43
+          }
+        },
+        "elf.magic_archer.spirit_arrowfall": {
+          "ally": {
+            "beams": 9,
+            "particles": 0,
+            "surfaces": 6
+          },
+          "own": {
+            "beams": 19,
+            "particles": 16,
+            "surfaces": 24
+          }
+        },
+        "mage.pyro.caldera_s_judgment": {
+          "ally": {
+            "beams": 10,
+            "particles": 0,
+            "surfaces": 4
+          },
+          "own": {
+            "beams": 42,
+            "particles": 35,
+            "surfaces": 58
+          }
+        },
+        "knight.steel_knight.unyielding_front": {
+          "ally": {
+            "beams": 3,
+            "particles": 0,
+            "surfaces": 6
+          },
+          "own": {
+            "beams": 30,
+            "particles": 16,
+            "surfaces": 18
+          }
+        },
+        "knight.paladin.oath_of_dawn": {
+          "ally": {
+            "beams": 9,
+            "particles": 0,
+            "surfaces": 4
+          },
+          "own": {
+            "beams": 24,
+            "particles": 16,
+            "surfaces": 18
+          }
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 88
+    },
+    "hero-final-beat": {
+      "skills": 8,
+      "pass": true,
+      "checks": 99
+    },
+    "vfx-art-hero-fixes": {
+      "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 2299
+    },
+    "skill-icon-vfx": {
+      "maxBeams": 48,
+      "failures": [],
+      "checks": 13301,
+      "missing": [],
+      "skills": 128,
+      "pass": true,
+      "pulses": 199
+    },
+    "ranged-action-poses": {
+      "checks": 158,
+      "pass": true,
+      "maxRedrawJumpDegrees": 0.011101223528385162,
+      "actions": 132,
+      "rigs": [
+        "R6",
+        "R15"
+      ]
+    },
+    "hero-skills": {
+      "failures": [],
+      "checks": 244520,
+      "rigs": [
+        "R6/knight",
+        "R6/dwarf",
+        "R6/elf",
+        "R6/mage",
+        "R15/knight",
+        "R15/dwarf",
+        "R15/elf",
+        "R15/mage"
+      ],
+      "kind": "HERO_SKILLS_NATIVE",
+      "pass": true,
+      "skills": 256
+    },
+    "hero-force-feedback": {
+      "failures": [],
+      "pass": true,
+      "checks": 81
+    },
+    "hero-skill-impact": {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 761
+    },
+    "hero-skill-beats": {
+      "checks": 75,
+      "scatter": {
+        "secondSegments": 24,
+        "afterDodgeSegments": 0,
+        "openingSegments": 24
+      },
+      "rhythm": {
+        "dwarf": [
+          true,
+          true
+        ],
+        "mage": [
+          true,
+          true,
+          true
+        ],
+        "knight": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "elf": [
+          true,
+          true,
+          true
+        ]
+      },
+      "pass": true,
+      "failures": []
+    },
+    "display-guides": {
+      "failures": [],
+      "kind": "DISPLAY_GUIDES_NATIVE",
+      "pass": true,
+      "checks": 53
+    },
+    "projectile-vfx-timing": {
+      "pass": true,
+      "checks": 192
+    }
+  },
+  "studioChecks": 263774,
+  "candidateCPU": {
+    "advanced-skills": 1435,
+    "skill-effects": 13712
+  },
+  "cpuChecks": 15147,
+  "fourHeroOverlap": {
+    "baseline": {
+      "models": 5,
+      "beams": 113,
+      "warningSegments": 16,
+      "surfaces": 110,
+      "damageLabels": 1,
+      "chips": 10,
+      "particles": 24,
+      "glows": 28
+    },
+    "candidate": {
+      "models": 5,
+      "beams": 67,
+      "warningSegments": 16,
+      "surfaces": 58,
+      "damageLabels": 1,
+      "chips": 10,
+      "particles": 24,
+      "glows": 28
+    }
+  },
+  "alliesSumOfEightIsolatedFinalCasts": {
+    "beams": {
+      "before": 218,
+      "after": 53
+    },
+    "surfaces": {
+      "before": 229,
+      "after": 30
+    }
+  },
+  "publishedClient": false,
+  "physicalDevice": false,
+  "userAcceptance": false
+}

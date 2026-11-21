@@ -1,0 +1,34 @@
+{
+  "version": "0.115.33",
+  "sourceCommit": "1ba3dea5c31688df8218adb34195cbcfc54dd12c",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-1ba3dea5-eyd5u17j",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-1ba3dea5-eyd5u17j/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.115.33/TheLastThrone-0.115.33.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.33.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.33/TheLastThrone-0.115.33.rbxlx",
+      "sha256": "63dd778d65761d564fbbd224496b91d5615bb8cc1ff7461a31fb7fdef775bae6",
+      "bytes": 26820038
+    }
+  ],
+  "moduleSha256": {
+    "src/client/AdvancedSkillMotion.luau": "ac7c13ae798c97cb41195582d2078db28b2c0c5217a5d240c1906fb06a9fe565",
+    "src/client/AdvancedSkillVisual.luau": "f40b1e2a22738205f112a15d7435364c7bff79df471db43f3cd7716d4c1f95ab",
+    "src/client/HeroVFX.luau": "fbff8d5dc7cf251f6336396dcab926d498b4f64e654b7ca92e51e806b7fbbb72",
+    "src/client/HeroVFXArt.luau": "83afe7767cd7954da183516a7b2a7b13122370bb3eac33be27b9c4dbb36d779b",
+    "src/client/RangedActionPoses.luau": "113960eebe225919c5e22ad3d5edf379476bcf21f8aac1502ac9ccc1187dc882",
+    "src/client/SkillFinalBeat.luau": "3db378e30cb0456489786824567f3e49bcf5ba4e208607c4859a4ef30f2abafd"
+  }
+}

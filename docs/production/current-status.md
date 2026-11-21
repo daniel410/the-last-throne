@@ -3,7 +3,7 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 영웅 기술 후보 0.115.27은 Vanguard Strike, Stonebound Leap, Fan Break, Stone Lance의 자세와 명중 방향을 다듬고, 동시에 들어온 약타가 강타의 피격 자세를 덮는 경우를 줄였다. 게시 테스트와 실기기 수용은 후속이다. [전후 화면과 Studio 검증](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
+- 영웅 기술 후보 0.115.33은 네 영웅의 여덟 전직 궁극기에서 아군 VFX를 간결하게 다듬고, Knight·Mage 궁극기 네 개에 고유한 마지막 타격 자세를 추가했다. 게시 테스트와 실기기 수용은 후속이다. [궁극기 전후 화면과 Studio 검증](../evidence/hero-ultimate-finish-20261121/README.md) · [강타 모션과 명중](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
 - 에픽 환경 0.115.28 후보는 다섯 4장 복구 지물의 접근 단면을 개선했다. 야간 GW 셰일과 등불 파손, HG 집결로 끝돌을 중점으로 Studio에서 접근·귀환을 비교했다. 후보 미게시·G5 진행 중. [4장 빌드와 검증](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면 검증](../evidence/epic-finale-route-profiles-20261121/README.md)
