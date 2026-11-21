@@ -5,7 +5,7 @@
 
 - 최신 비공개 게시 빌드 0.115.33은 로비 118·배틀 43에 반영했다. Roblox Player에서 Dawnspire 진입과 기존 영웅 표시를 확인했다. [게시 및 빈 로비 복구 확인](../evidence/release-0.115.33-20261121/README.md)
 
-- 영웅 기술 0.115.33은 네 영웅의 여덟 전직 궁극기에서 아군 VFX를 간결하게 다듬고, Knight·Mage 궁극기 네 개에 고유한 마지막 타격 자세를 추가했다. 다인 전투와 실기기 수용은 후속이다. [궁극기 전후 화면과 Studio 검증](../evidence/hero-ultimate-finish-20261121/README.md) · [강타 모션과 명중](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
+- 영웅 기술 후보 0.115.35는 파티 교전에서 효과가 몰릴 때 발사·착탄과 본인의 무기 준비를 우선 표시한다. 실제 4인 전투와 실기기 수용은 후속이다. [파티 전후 화면과 Studio 검증](../evidence/hero-vfx-priority-20261121/README.md) · [여덟 궁극기와 타격 마무리](../evidence/hero-ultimate-finish-20261121/README.md) · [강타 자세와 명중](../evidence/hero-force-feedback-20261121/README.md) · [연속 명중과 산개 착탄](../evidence/hero-skill-beats-20261121/README.md) · [Gunner 무기·투척 연출](../evidence/gunner-left-hand-payloads-20261120/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
 - 에픽 환경 0.115.34 후보는 다섯 에픽 2장의 배수 사면, 뿌리 셰일층, 전망대 석축, 화물 레일과 귀환 벽감을 개선했다. 후보 미게시·G5 진행 중. [2장 빌드와 Studio 비교](../evidence/epic-second-chapter-route-profiles-20261121/README.md) · [4장 복구 지물](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면](../evidence/epic-finale-route-profiles-20261121/README.md)

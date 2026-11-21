@@ -1,0 +1,83 @@
+{
+  "version": "0.115.35",
+  "sourceCommit": "80d8ff6ea12df752ac51b156fdd2c85c97508d02",
+  "baselineVersion": "0.115.34",
+  "baselineSourceCommit": "25a7cdb65c91dac990c2d082bc8446871cf0a53d",
+  "priorityFixture": {
+    "baseline": {
+      "releases": {
+        "mage.cryo.chain_lightning": false,
+        "elf.marksman.grand_volley": false,
+        "dwarf.iron_axe.returning_echo": false,
+        "knight.steel_knight.vanguard_strike": false
+      },
+      "failures": [
+        "knight.steel_knight.vanguard_strike keeps the release after the compact hit queue fills",
+        "knight.steel_knight.vanguard_strike replaces the oldest compact contact",
+        "dwarf.iron_axe.returning_echo keeps the release after the compact hit queue fills",
+        "dwarf.iron_axe.returning_echo replaces the oldest compact contact",
+        "elf.marksman.grand_volley keeps the release after the compact hit queue fills",
+        "elf.marksman.grand_volley replaces the oldest compact contact",
+        "mage.cryo.chain_lightning keeps the release after the compact hit queue fills",
+        "mage.cryo.chain_lightning replaces the oldest compact contact",
+        "Ally Hailfall keeps its incoming silhouette",
+        "Other windups reserve space for the owner's weapon cue",
+        "Saturated Gunner shot has one fallback muzzle flash and a tracer",
+        "Culled ally hit keeps damage without a redundant flash"
+      ],
+      "pass": false,
+      "checks": 28
+    },
+    "candidate": {
+      "releases": {
+        "mage.cryo.chain_lightning": true,
+        "elf.marksman.grand_volley": true,
+        "dwarf.iron_axe.returning_echo": true,
+        "knight.steel_knight.vanguard_strike": true
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 28
+    }
+  },
+  "studio": {
+    "hero-vfx-priority-native.luau": 28,
+    "hero-skill-impact-native.luau": 761,
+    "hero-ultimate-finish-native.luau": 88,
+    "hero-skill-windup-native.luau": 1400,
+    "hero-vfx-native.luau": 9912,
+    "hero-skills-native.luau": 244520,
+    "hero-force-feedback-native.luau": 81,
+    "hero-skill-beats-native.luau": 75,
+    "hero-skill-direction-native.luau": 31,
+    "display-guides-native.luau": 53
+  },
+  "studioTotal": 256949,
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 13712
+  },
+  "artifactVerification": {
+    "sha256": "9a3a607b44ffd6926515a359cb3eaa98f28cfc0e09dcf200079b44966dd8e35f",
+    "pinnedClientModules": 3
+  },
+  "scene": {
+    "0.115.34": {
+      "arrowFallbacks": 5,
+      "damage": "42",
+      "enemyOutline": 16,
+      "genericHitFlash": 1,
+      "releaseShapes": 1,
+      "openingCompactHits": 10
+    },
+    "0.115.35": {
+      "arrowFallbacks": 0,
+      "damage": "42",
+      "enemyOutline": 16,
+      "genericHitFlash": 0,
+      "releaseShapes": 4,
+      "openingCompactHits": 10
+    }
+  },
+  "captureRetry": "The first comparison had no Character-named rig for the telegraph fixture. Both scenes ran with the same fixture correction."
+}
