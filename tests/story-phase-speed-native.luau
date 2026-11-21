@@ -37,21 +37,34 @@ local function makeService(world)
  local last=assert(source:find('function Service.destination',first,true))
  source=source:sub(1,first-1)..'local publish=recordNotice\n'..source:sub(last)
  source=source:gsub('Players:GetPlayers%(%)','fixturePlayers ')
- source=source:gsub('return Service\n','function Service.qa(o)options=o;return enqueuePersonal end\nreturn Service\n')
+ source=source:gsub('return Service\n','function Service.qa(o)options=o;return enqueuePersonal,warmStoryEnemies,stagedEnemies end\nreturn Service\n')
  local chunk=assert(loadstring(source,'ProductionStoryPhaseFixture'))
  setfenv(chunk,setmetatable({script=story,fixturePlayers={player},recordNotice=function(_,_,notice,completed)
   if notice then table.insert(notices,notice)end
   if completed then completion=completed end
  end},{__index=getfenv()}))
  local service=chunk()
- local enqueue=service.qa({world=world,enemies=enemies,
-  inventory={storyState=function()return journal end,expedition=function()return run end,storyEvent=function()return save()end},
+ local enqueue,warm,staged=service.qa({world=world,enemies=enemies,
+  inventory={storyState=function()return journal end,expedition=function()return run end,storyEvent=function()return save()end,awardXP=function()end},
   heroSession={getActiveHero=function()return {heroId='hero'}end,getCombatContext=function()return {heroId='hero'}end},
   combat={addStoryEnemy=function(model)
    check(model.Parent==enemies and model:GetAttribute('StoryKillId')~=nil,'only a configured enemy is published')
   end},
   prepareStory=function(id)return prepare(id)end})
- return service,enqueue
+ return service,enqueue,warm,staged
+end
+local function stagedModels(staged,key,count)
+ local deadline=os.clock()+3
+ repeat
+  local pack=staged.keep(key)
+  local models={}
+  if pack and pack.models then
+   for _,bucket in pairs(pack.models)do for _,model in ipairs(bucket)do table.insert(models,model)end end
+  end
+  if #models==count then return models end
+  task.wait()
+ until os.clock()>=deadline
+ error('Prepared wave did not reach its expected size: '..key)
 end
 
 -- A successful objective write can trigger the nearby next pack before the
@@ -62,11 +75,16 @@ local guards=progress.goal(dw,'supply_guards')
 local marker=Instance.new('Part')
 marker.Parent=folder
 local world={nodes={['DW-01:supply_guards']={part=marker,chapter=dw,goal=guards}},spawns={},readyEpics={[1]=true}}
-local _,enqueue=makeService(world)
+local _,enqueue,warmPhase,stagePhase=makeService(world)
 run={runId='same-region',missionId=dw.id,difficultyId='Easy',balanceVersion=19,kills={}}
 journal={version=2,main=0,flags={['DW-01:trail_guards']=true},clears={},expeditionMission=dw.id}
 local entry=Vector3.new(table.unpack(routes.entry(dw,guards,run,1)))
 root.Position=entry+Vector3.new(routes.approach-1,0,0)
+local phaseClient=Instance.new('Folder',folder)
+warmPhase(phaseClient,journal,run,1)
+local phaseBatch=require(shared.DeepwoodEncounterBalance).encounterWaves(dw,guards,1,run.difficultyId,run.balanceVersion)[1]
+local readyPhase={}
+for _,model in ipairs(stagedModels(stagePhase,'DW-01:supply_guards:same-region:1',#phaseBatch))do readyPhase[model]=true end
 local saveReleased=false
 save=function()
  while not saveReleased do task.wait() end
@@ -80,6 +98,7 @@ task.wait(.1)
 local pack=enemies:GetChildren()
 check(#pack>0,'confirmed goal triggers a nearby pack without the periodic update')
 for _,model in ipairs(pack)do
+ check(readyPhase[model],'the next objective uses its staged models after the save')
  check(model:FindFirstChild('TdMonsterVisual')~=nil,'cloned story enemy preserves the real visual')
  model:Destroy()
 end
@@ -170,6 +189,92 @@ for kind in pairs(species)do
  clone:Destroy()
  prototype:Destroy()
 end
+
+-- The next chapter's first models are assembled during the preceding story,
+-- then moved into the live encounter only through the normal entry checks.
+local outgoing,nextChapter=content.byId['DW-07'],content.byId['GW-01']
+local nextGoal=enemyAssets.combatGoals(nextChapter,nil,1)[1]
+local nextKey=nextChapter.id..':'..nextGoal.id
+local ready={[1]=true,[2]=false}
+local nextWorld={nodes={[nextKey]={part=marker,chapter=nextChapter,goal=nextGoal}},spawns={},readyEpics=ready}
+local stagedService,_,warm,staged=makeService(nextWorld)
+local stagingClient=Instance.new('Folder',folder)
+run={runId='prefetched-run',missionId=outgoing.id,difficultyId='Easy',balanceVersion=19,kills={}}
+journal={version=2,main=6,flags={},clears={},expeditionMission=outgoing.id,expansionVersion=1,combatPacingVersion=1}
+local waves=balance.encounterWaves(nextChapter,nextGoal,1,run.difficultyId,run.balanceVersion)
+local key=nextKey..':'..run.runId
+warm(stagingClient,journal,run,1)
+warm(stagingClient,journal,run,1)
+local prepared={}
+for _,model in ipairs(stagedModels(staged,key..':1',#waves[1]))do
+ check(model.Parent==nil and model:GetAttribute('StoryKillId')==nil,'staged model is off-world without combat state')
+ prepared[model]=true
+end
+check(#enemies:GetChildren()==0,'preparation cannot register monsters in the outgoing chapter')
+local stagedPayload=game.HttpService:JSONDecode(stagingClient:GetAttribute('TLTStoryEnemyWarmup'))
+local nextVisual=Instance.new('Folder',folder)
+enemyAssets.prepare(nextVisual,nil,nil,{waves[1]})
+task.wait()
+local nextPayload=game.HttpService:JSONDecode(nextVisual:GetAttribute('TLTStoryEnemyWarmup'))
+local requestedMeshes={}
+for _,mesh in ipairs(stagedPayload.meshes)do requestedMeshes[mesh]=true end
+for _,mesh in ipairs(nextPayload.meshes)do check(requestedMeshes[mesh],'previous chapter downloads the next wave mesh')end
+
+root.Position=Vector3.new(table.unpack(routes.entry(nextChapter,nextGoal,run,1)))
+stagedService.onBattleReady(player)
+check(#enemies:GetChildren()==0,'standing at the next clearing does not bypass story progress')
+journal={version=2,main=7,flags={['GW-01:maeve']=true},clears={[outgoing.id]=true},expeditionMission=nextChapter.id,expansionVersion=1,combatPacingVersion=1}
+check(progress.available(journal,nextChapter,nextGoal),'fixture has confirmed preceding story and arrival objective')
+stagedService.onBattleReady(player)
+check(#enemies:GetChildren()==0,'confirmed story does not bypass region preparation')
+ready[2]=true
+locked=true;stagedService.onBattleReady(player);locked=false
+check(#enemies:GetChildren()==0,'prepared models cannot bypass the travel lock')
+run.runId='replacement'
+stagedService.onBattleReady(player)
+local replacements=enemies:GetChildren()
+check(#replacements==#waves[1],'replacement run still spawns without waiting for speculative work')
+for _,model in ipairs(replacements)do
+ check(not prepared[model],'different runs cannot consume each other’s prepared models')
+ model:Destroy()
+end
+run.runId='prefetched-run'
+stagedService.onBattleReady(player)
+local activated=enemies:GetChildren()
+check(#activated==#waves[1],'full staged first wave activates when eligibility is confirmed')
+for _,model in ipairs(activated)do
+ check(prepared[model] and model:GetAttribute('StoryWave')==1,'activation uses the exact earlier model instance')
+ check(model:GetAttribute('StoryKillId'):find('^GW%-01:'),'continuation keeps chapter-prefixed kill receipts')
+end
+check(not staged.claim(key..':1'),'a wave can only claim its prepared models once')
+local readySecond={}
+for _,model in ipairs(stagedModels(staged,key..':2',#waves[2]))do readySecond[model]=true end
+check(#enemies:GetChildren()==#activated,'staged reinforcements stay off-world during the first wave')
+for _,model in ipairs(activated)do
+ stagedService.defeated(model,player)
+ model:Destroy()
+end
+check(#enemies:GetChildren()==0,'route reinforcements still wait for approach')
+local points=routes.points(nextChapter,nextGoal,#waves,run.balanceVersion,run.difficultyId)
+root.Position=Vector3.new(table.unpack(points[2]))
+stagedService.stepEncounters()
+local second=enemies:GetChildren()
+check(#second==#waves[2],'the second wave starts at its normal route clearing')
+for _,model in ipairs(second)do
+ check(readySecond[model] and model:GetAttribute('StoryWave')==2,'follow-up wave uses models made during the first wave')
+ model:Destroy()
+end
+
+-- An abandoned run releases its off-world instances after the retention window.
+local clock=0
+local stagingModule=assert(loadstring(server.Story.StoryEnemyStaging.Source))
+setfenv(stagingModule,setmetatable({os={clock=function()return clock end}},{__index=getfenv()}))
+local expiring=stagingModule().create(enemyAssets.template)
+expiring.request('abandoned',function()return {{kind='Goblin'}}end)
+local abandoned=stagedModels(expiring,'abandoned',1)[1]
+clock=60;expiring.sweep()
+check(not expiring.keep('abandoned'),'abandoned run no longer holds a prepared wave')
+check(not pcall(function()abandoned.Parent=folder end),'unused prepared model was destroyed')
 
 -- Exercise the exact server asset payload and client request without timing
 -- assertions about the network cache in this Studio session.

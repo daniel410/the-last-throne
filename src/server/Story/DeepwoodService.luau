@@ -7,6 +7,8 @@ local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
 local Balance=require(ReplicatedStorage.Shared.DeepwoodEncounterBalance)
 local Routes=require(ReplicatedStorage.Shared.CampaignCombatRoutes)
 local EnemyAssets=require(script.Parent.StoryEnemyAssets)
+local EnemyStaging=require(script.Parent.StoryEnemyStaging)
+local stagedEnemies=EnemyStaging.create(EnemyAssets.template)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
 local Difficulty=require(ReplicatedStorage.Shared.Difficulty)
@@ -39,6 +41,38 @@ local function entryPosition(c,g,run,count)
  local plan=Routes.plan(c,g,run and run.balanceVersion)
  if plan then return Vector3.new(table.unpack(Routes.entry(c,g,run,count or 1)))end
 end
+local function encounterKey(chapter,goal,runId) return chapter.id..':'..goal.id..':'..(runId or 'legacy') end
+local function waveKey(key,wave) return key..':'..wave end
+local function stageEncounterWave(encounter)
+ local batch=encounter.batches[encounter.nextWave]
+ if batch and encounter.runId then
+  return stagedEnemies.request(waveKey(encounter.key,encounter.nextWave),function() return batch end)
+ end
+end
+local function warmStoryEnemies(player,journal,run,partySize)
+ local chapter=journal.expeditionMission and Content.byId[journal.expeditionMission] or QuestLog.main(journal)
+ local upcoming={}
+ if run and chapter and journal.expeditionMission==chapter.id and not journal.clears[chapter.id] then
+  local function collect(c,limit)
+   for _,goal in ipairs(EnemyAssets.combatGoals(c,journal,limit)) do
+    local key=encounterKey(c,goal,run.runId)
+    local encounter=encounters[key]
+    local batch
+    if encounter then
+     if c==chapter then batch=stageEncounterWave(encounter) end
+    else
+     batch=stagedEnemies.request(waveKey(key,1),function()
+      return Balance.encounterWaves(c,goal,partySize,run.difficultyId,run.balanceVersion)[1]
+     end)
+    end
+    if batch then table.insert(upcoming,batch) end
+   end
+  end
+  collect(chapter,2)
+  if not chapter.side then collect(Content.mainChapters[chapter.number+1],1) end
+ end
+ EnemyAssets.prepare(player,chapter,journal,upcoming)
+end
 -- Read-only encounter projection: clients can explain the current blocker,
 -- but cannot declare a kill or complete an objective from this data.
 function Service.encounterState(player,heroId)
@@ -59,16 +93,17 @@ end
 local function publish(player,message,notice,completion)
  local h=active(player);if not h then return end
  local s=state(player,h.heroId);if not s then return end
+ local admission=options.inventory.expedition(player,h.heroId)
+ local partySize=admittedCount(player,admission)
  if not h.training and player:GetAttribute('K0SessionPhase')=='Tutorial' then
-  EnemyAssets.prepare(player,s.expeditionMission and Content.byId[s.expeditionMission] or QuestLog.main(s),s)
+  warmStoryEnemies(player,s,admission,partySize)
  end
  require(script.Parent.Parent.World.StoryCheckpointPortal).ensure(options.world,s,function(p,id) Service.travelCheckpoint(p,id)end)
  local activityState,dialogue
  if activities then activityState,dialogue=activities.projection(player,h.heroId) end
  local offer=offers[player];local ctx,root=context(player)
- local admission=options.inventory.expedition(player,h.heroId)
  if offer and (not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16) then offers[player]=nil;offer=nil end
- remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),routePartySize=admittedCount(player,admission),heroId=h.heroId,training=h.training,gold=options.inventory.goldBalance and options.inventory.goldBalance(player),journal=s,expedition=admission,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
+ remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),routePartySize=partySize,heroId=h.heroId,training=h.training,gold=options.inventory.goldBalance and options.inventory.goldBalance(player),journal=s,expedition=admission,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
  local function prepared(chapter)
@@ -318,13 +353,15 @@ end
 
 spawnWave=function(e)
  local batch=e.batches[e.nextWave];if not batch then return end
+ local prepared=stagedEnemies.claim(waveKey(e.key,e.nextWave))
  if e.routePoints then e.position=Vector3.new(table.unpack(e.routePoints[e.nextWave]))end
  e.waiting=false;e.nextWave=e.nextWave+1;e.wave=e.wave+1
  for index,spec in ipairs(batch) do
   local a=index*math.pi*2/#batch
   local p=e.position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
   local kind=spec.kind;local boss=Balance.isBoss(kind)
-  local m=EnemyAssets.template(kind):Clone()
+  local bucket=prepared and prepared[kind]
+  local m=(bucket and table.remove(bucket)) or EnemyAssets.template(kind):Clone()
   e.unitSpecs=e.unitSpecs or {};e.unitSpecs[m]=spec
   m:PivotTo(m:GetPivot()+p);m:SetAttribute('DeepwoodEncounter',e.key)
   e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',(e.launchMission and e.chapter.id~=e.launchMission and e.chapter.id..':' or '')..e.goal.id..'_'..(spec.killIndex or e.spawnCount))
@@ -336,6 +373,8 @@ spawnWave=function(e)
   m.Parent=options.enemies
   options.combat.addStoryEnemy(m)
  end
+ if prepared then EnemyStaging.destroy(prepared) end
+ stageEncounterWave(e)
 end
 local function activateRouteWave(e)
  spawnWave(e)
@@ -348,7 +387,7 @@ local function begin(player,node,automatic)
  if route then position=entryPosition(c,g,admission,admittedCount(player,admission))end
  local ctx=eligible(player,c,g,automatic and (route and Routes.approach or 32) or 16,position);if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
  local run=options.inventory.expedition(player,ctx.heroId)
- local key=c.id..':'..g.id..':'..(run and run.runId or 'legacy');local e=encounters[key]
+ local key=encounterKey(c,g,run and run.runId);local e=encounters[key]
  if e then
   local n=0 for _ in pairs(e.participants) do n=n+1 end
   if not e.participants[player] and n>=4 then publish(player,'This encounter already has four heroes. Wait for the next attempt.');return end
@@ -377,6 +416,7 @@ local function begin(player,node,automatic)
    task.delay(3,function()destroyEncounter(e)end)
   else
    e.position=Vector3.new(table.unpack(e.routePoints[e.nextWave]));e.waiting=true
+   stageEncounterWave(e)
   end
  else spawnWave(e)end
  for ally in pairs(e.participants) do publish(ally,g.activity and g.activity.intro or 'Encounter started. Watch enemy attack warnings and use the open ground.') end
@@ -391,17 +431,17 @@ startNearbyEncounters=function(player)
  local chapter=s and s.expeditionMission and Content.byId[s.expeditionMission]
  if not s or s.expeditionMission and not chapter then return end
  local chapters=chapter and {chapter} or Content.chapters
- local runId=admission and admission.runId or 'legacy'
+ local runId=admission and admission.runId
  local ready=options.world.readyEpics or options.world.loadedEpics
  for _,c in ipairs(chapters)do if not ready or ready[c.epic or 1]then for _,g in ipairs(c.goals)do
-  if #g.enemies>0 and (g.activity and g.activity.mode=='battle' or Routes.enabled(rules)) and not encounters[c.id..':'..g.id..':'..runId] then
+  if #g.enemies>0 and (g.activity and g.activity.mode=='battle' or Routes.enabled(rules)) and not encounters[encounterKey(c,g,runId)] then
    local node=options.world.nodes[c.id..':'..g.id]
    if node and Progress.available(s,c,g)then
     local plan=Routes.plan(c,g,rules)
     local at=plan and entryPosition(c,g,admission,admittedCount(player,admission))or node.part.Position
     if (root.Position-at).Magnitude<=(plan and Routes.approach or 32) then
      begin(player,node,true)
-     local encounter=encounters[c.id..':'..g.id..':'..runId]
+     local encounter=encounters[encounterKey(c,g,runId)]
      -- The newly admitted living hero is already inside the first approach radius.
      if encounter and encounter.waiting and (root.Position-encounter.position).Magnitude<=Routes.approach then
       activateRouteWave(encounter)
@@ -640,6 +680,7 @@ function Service.start(settings)
  RunService.Heartbeat:Connect(function(dt)
   elapsed=elapsed+dt;if elapsed<2 then return end;elapsed=0
   for _,p in ipairs(Players:GetPlayers()) do publish(p) end
+  stagedEnemies.sweep()
   for _,e in pairs(encounters) do
    local present=false
    for p,heroId in pairs(e.participants) do local ctx,root=context(p);if ctx and ctx.heroId==heroId and root and (root.Position-e.position).Magnitude<110 then present=true end end

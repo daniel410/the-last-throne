@@ -37,22 +37,30 @@ local function forKind(kind)
  return result
 end
 
-function Assets.prepare(player,chapter,journal)
- local kinds,seen={},{}
- local goals=0
+function Assets.combatGoals(chapter,journal,limit)
+ local goals={}
  if chapter then for _,goal in ipairs(chapter.goals)do
   if #goal.enemies>0 and (not journal or not journal.flags[chapter.id..':'..goal.id]
    and (not goal.pacing or journal.combatPacingVersion==1)
    and (not goal.expansion or journal.expansionVersion==1))then
-   for _,unit in ipairs(goal.enemies)do
-    if not seen[unit.kind]then
-     seen[unit.kind]=true;table.insert(kinds,unit.kind)
-    end
-   end
-   goals+=1
-   if goals==2 then break end
+   table.insert(goals,goal)
+   if #goals==limit then break end
   end
  end end
+ return goals
+end
+
+function Assets.prepare(player,chapter,journal,upcomingWaves)
+ local kinds,seen={},{}
+ local function addKinds(wave)
+  for _,unit in ipairs(wave) do
+   if not seen[unit.kind] then
+    seen[unit.kind]=true;table.insert(kinds,unit.kind)
+   end
+  end
+ end
+ for _,goal in ipairs(Assets.combatGoals(chapter,journal,2)) do addKinds(goal.enemies) end
+ for _,wave in ipairs(upcomingWaves or {}) do addKinds(wave) end
  local key=table.concat(kinds,',')
  if requests[player]==key then return end
  requests[player]=key
