@@ -1,0 +1,52 @@
+{
+  "version": "0.115.22",
+  "sourceCommit": "4a365e251c05f4e2a969aa8b8181c20211af5e41",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-4a365e25-e2x_r5m4",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-4a365e25-e2x_r5m4/default.project.json",
+        "-o",
+        "/private/tmp/tlt-finale-routes-20261121/builds/0.115.22/TheLastThrone-0.115.22.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.22.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.22/TheLastThrone-0.115.22.rbxlx",
+      "sha256": "07323b14524caa8f8580f01c0db8facd30ce852431fb6c84a4b4fd4f6522690f",
+      "bytes": 26800074
+    }
+  ],
+  "baseline": {
+    "version": "0.115.21",
+    "sourceCommit": "0eeddbcf1e6062fb8a5032ae3885ba5b5016d351",
+    "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-0eeddbcf-13smqskv",
+    "lfsVerified": [],
+    "published": false,
+    "releaseTag": null,
+    "outputs": [
+      {
+        "role": "Game",
+        "command": [
+          "rojo",
+          "build",
+          "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-0eeddbcf-13smqskv/default.project.json",
+          "-o",
+          "/private/tmp/tlt-map-nov21.cmO1bX/work/builds/0.115.21/TheLastThrone-0.115.21.rbxlx"
+        ],
+        "status": "success",
+        "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.21.rbxlx\n",
+        "stderr": "",
+        "path": "builds/0.115.21/TheLastThrone-0.115.21.rbxlx",
+        "sha256": "e07fd497094e1153df578f8e83dcf957fd25582d63f669d559a84df0357c912f",
+        "bytes": 26799762
+      }
+    ]
+  }
+}
