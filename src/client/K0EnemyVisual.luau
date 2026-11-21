@@ -2,6 +2,7 @@
 -- Server state remains authoritative.
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
 
 local EnemyVisual = {}
 local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
@@ -9,6 +10,8 @@ local PatternText=require(game:GetService('ReplicatedStorage').Shared.EnemyPatte
 local Config=require(game:GetService('ReplicatedStorage').Shared.K0Config)
 local PixelFX=require(script.Parent.PixelFX)
 local PatternFX=require(script.Parent.EnemyPatternEffects)
+local Mood = require(script.Parent.DeepwoodAtmosphere)
+local EnemyOutline = require(script.Parent.GloamwoodEnemyOutline)
 function EnemyVisual.statusText(model,current)
  local lines={}
  if (model:GetAttribute('K0EnemyGuardUntil')or 0)>current then table.insert(lines,PatternText.Guarding)end
@@ -36,6 +39,8 @@ local function mount(enemies)
 		local gravityEffects = {}
 		local provokeEffects = {}
   local debuffLabels={}
+  local outlines = {}
+		local outlineElapsed = 0
 		local render=RunService.RenderStepped:Connect(function(dt)
    local current=Workspace:GetServerTimeNow()
    for model,billboard in pairs(debuffLabels) do
@@ -55,7 +60,8 @@ local function mount(enemies)
 					provokeEffects[model] = nil
 				end
 			end
-			for _, model in enemies:GetChildren() do
+			local models = enemies:GetChildren()
+			for _, model in models do
 				PatternFX.observe(model,current)
     if not model:GetAttribute('K0PatternId')then PixelFX.enemy(model,current)end
 				local provokeUntil = model:GetAttribute("K0ProvokeUntil")
@@ -91,11 +97,25 @@ local function mount(enemies)
     end
 
 			end
+			if Mood.currentMode() == "Gloamwood" then
+				outlineElapsed += dt
+				if outlineElapsed >= 0.125 then
+					outlineElapsed = 0
+					local character = Players.LocalPlayer.Character
+					local human = character and character:FindFirstChildOfClass("Humanoid")
+					local root = character and character:FindFirstChild("HumanoidRootPart")
+					local origin = root and human and human.Health > 0 and root.Position or nil
+					EnemyOutline.update(outlines, models, origin)
+				end
+			elseif next(outlines) then
+				EnemyOutline.clear(outlines)
+			end
 		end)
  local ancestry
  ancestry=enemies.AncestryChanged:Connect(function()
   if enemies:IsDescendantOf(Workspace) then return end
   render:Disconnect();ancestry:Disconnect();stopMotion();stopControl();mounted[enemies]=nil
+  EnemyOutline.clear(outlines)
   for _,set in ipairs({gravityEffects,provokeEffects,debuffLabels})do for _,v in pairs(set)do v:Destroy()end end
  end)
 end

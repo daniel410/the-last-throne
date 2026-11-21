@@ -21,10 +21,16 @@ for _,name in ipairs({'FrozenVale','EmberCaldera','Gloamwood','HauntedGraveyard'
  for _,p in ipairs(prior)do check(p.destroyed,'switch destroys previous regional effects')end
  local active=0;for _,p in ipairs(created)do if not p.destroyed then active=active+1 end end
  check(active==(name=='Lobby'and 2 or 4),'no effect accumulation')
+ check(mood.currentMode()==name,'active lighting mode follows the region')
  if name=='Gloamwood'or name=='HauntedGraveyard'then check(lighting.ClockTime<1 and lighting.Ambient.r>=98,'moonlit region keeps readable ambient light')end
+ if name=='Gloamwood'then
+  check(lighting.Ambient.r==122 and lighting.Ambient.g==138 and lighting.Ambient.b==162,'Gloamwood canopy retains enough ambient light to read enemies')
+  check(lighting.Ambient.r<lighting.OutdoorAmbient.r and lighting.Ambient.g<lighting.OutdoorAmbient.g and lighting.Ambient.b<lighting.OutdoorAmbient.b,'Gloamwood retains a shaded canopy')
+ end
  local count=#created;mood.update(name);check(#created==count,'same mode is idempotent')
 end
 mood.update(false);check(lighting.Brightness==1 and lighting.ClockTime==8 and lighting.FogEnd==900,'training restores authored lighting')
+check(mood.currentMode()==nil,'no regional mode in training')
 check(originalSky.Parent==lighting and originalAtmosphere.Parent==lighting,'original sky/atmosphere restored')
 for _,p in ipairs(created)do check(p.destroyed,'no owned effects leaked outside campaign')end
 mood.update(true);check(lighting.FogEnd==620,'boolean compatibility');mood.update(nil);check(lighting.FogStart==10,'boolean cleanup')

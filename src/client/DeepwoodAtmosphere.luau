@@ -20,8 +20,9 @@ local function clearOwned()
 end
 profiles.FrozenVale={FogStart=180,FogEnd=700,FogColor=Color3.fromRGB(180,208,227),Brightness=2.4,Ambient=Color3.fromRGB(130,154,178),OutdoorAmbient=Color3.fromRGB(157,183,207),ClockTime=10.2,ExposureCompensation=0,ColorShift_Top=Color3.fromRGB(12,26,43)}
 profiles.EmberCaldera={FogStart=165,FogEnd=650,FogColor=Color3.fromRGB(177,132,109),Brightness=2.5,Ambient=Color3.fromRGB(145,116,109),OutdoorAmbient=Color3.fromRGB(176,139,116),ClockTime=16.4,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(30,15,8)}
-profiles.Gloamwood={FogStart=145,FogEnd=680,FogColor=Color3.fromRGB(88,110,147),Brightness=2.4,Ambient=Color3.fromRGB(108,124,150),OutdoorAmbient=Color3.fromRGB(131,148,177),ClockTime=0,ExposureCompensation=.25,ColorShift_Top=Color3.fromRGB(12,19,35)}
+profiles.Gloamwood={FogStart=145,FogEnd=680,FogColor=Color3.fromRGB(88,110,147),Brightness=2.4,Ambient=Color3.fromRGB(122,138,162),OutdoorAmbient=Color3.fromRGB(131,148,177),ClockTime=0,ExposureCompensation=.25,ColorShift_Top=Color3.fromRGB(12,19,35)}
 profiles.HauntedGraveyard={FogStart=140,FogEnd=660,FogColor=Color3.fromRGB(104,124,155),Brightness=2.3,Ambient=Color3.fromRGB(122,137,160),OutdoorAmbient=Color3.fromRGB(148,161,183),ClockTime=.1,ExposureCompensation=.3,ColorShift_Top=Color3.fromRGB(21,22,35)}
+function Mood.currentMode() return current end
 function Mood.update(mode)
  -- Preserve the previous boolean API used by scenery tests and other callers.
  if mode==true then mode='Deepwood' elseif mode==false then mode=nil end
