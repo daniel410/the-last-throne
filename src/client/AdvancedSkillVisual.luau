@@ -36,8 +36,8 @@ local function ground(position,character)
  local hit=workspace:Raycast(position+Vector3.new(0,2,0),Vector3.new(0,-18,0),params)
  return hit and hit.Position+Vector3.new(0,.08,0) or position-Vector3.new(0,2.7,0)
 end
-local function arc(center,direction,radius,angle,color,life,name)
- local points=Geometry.sector(center,direction,radius,angle,angle>=359 and 24 or 12)
+local function arc(center,direction,radius,angle,color,life,name,compact)
+ local points=Geometry.sector(center,direction,radius,angle,angle>=359 and not compact and 24 or 12)
  for i=1,#points-1 do
   local p=segment(points[i],points[i+1],color,life,.07,name)
   if p and(name=="SkillSector"or name=="SkillTelegraph")then p.Transparency=.65 end
@@ -201,7 +201,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local direction=CFrame.Angles(0,math.rad(18),0):VectorToWorldSpace(center-origin)
   center=origin+direction
  end
- if pulse~=0 and not HeroVFX.isOtherHero(character) then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
+ local compact=HeroVFX.isOtherHero(character)
+ if pulse~=0 and not compact then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
  local direction=center-origin
@@ -218,7 +219,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local firstContact=opening+d.windup+(d.hitDelay or 0)
    for i=1,d.scatter and d.pulses or 1 do
     local target=groundTarget(d,center,i)
-    arc(ground(target,character),direction,d.radius,360,color,firstContact-now+(i-1)*d.interval,"SkillTelegraph")
+    arc(ground(target,character),direction,d.radius,360,color,firstContact-now+(i-1)*d.interval,"SkillTelegraph",compact)
    end
    queueIncoming(character,d,center,attackSeq,firstContact,now)
   end
@@ -265,7 +266,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    task.delay(life,clear)
   end
  elseif d.form=="ground" or d.detonate then
-  arc(targetFloor,direction,d.radius,360,color,.4,"ImpactBoundary")
+  arc(targetFloor,direction,d.radius,360,color,.4,"ImpactBoundary",compact)
   if effect=="lightning" then lightning(center+Vector3.new(0,12,0),center,color)
   elseif effect=="vine" then
    -- HeroVFX owns ground-planted roots; no duplicate upright helix.
@@ -304,7 +305,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   impact(first,color,.8)
  elseif d.form=="area" or d.form=="cone" or d.form=="melee" then
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
-  arc(floor,direction,radius,angle,color,.3,"SkillSector")
+  arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
   if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
   elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then

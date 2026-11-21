@@ -212,7 +212,7 @@ function Motion.forCharacter(character,now)
   end
  end
  if awaitingShot then pose.nocked=true;pose.ikWeight=1 end
- Gestures.bow(pose,d,age,sinceRelease,moreShots)
+ Gestures.bow(pose,d,age,sinceRelease,moreShots,count)
  -- Lob ground-targeted arrows upward; direct shots retain their reviewed aim.
  if d.form=="ground" then
   local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)

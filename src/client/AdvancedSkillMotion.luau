@@ -2,6 +2,7 @@
 -- socket review takes precedence over inventing Euler poses for held weapons.
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
 local Presentation=require(game.ReplicatedStorage.Shared.SkillPresentation)
+local FinalBeat=require(script.Parent.SkillFinalBeat)
 local Clips=require(script.Parent.K0MeleeClips)
 local Melee=require(script.Parent.K0MeleeMotion)
 local KnightBasic=require(script.Parent.K0KnightMixamoBasic)
@@ -82,6 +83,7 @@ local function gunner(d,kind,age)
  local span=math.min(d.interval or .3,recoil and recoil.settle or .24)
  local gain=recoil and recoil.gain or 1
  local kick=pulse>0 and gain*smooth(since/(span*.18))*(1-smooth((since/span-.18)/.82)) or 0
+ local finish=FinalBeat.weight(d,pulse,since)
  local load=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
  local right,left,elbow,torso
  if kind=="lob" then
@@ -102,17 +104,17 @@ local function gunner(d,kind,age)
    local cycle=since/d.interval
    reset=smooth((cycle-.23)/.23)*(1-smooth((cycle-.46)/.45))
   end
-  right=v(90+20*load+16*elevation+24*kick-24*reset,-5*load,-5)
-  left=v(93+8*elevation+14*kick-19*reset,0,14)
-  elbow=v(-14*load-27*kick-21*reset)
-  torso=v(3-7*elevation-16*kick+10*reset,0,4*load)
+  right=v(90+20*load+16*elevation+24*kick-24*reset+8*finish,-5*load,-5)
+  left=v(93+8*elevation+14*kick-19*reset+7*finish,0,14)
+  elbow=v(-14*load-27*kick-21*reset-9*finish)
+  torso=v(3-7*elevation-16*kick+10*reset-7*finish,0,4*load)
  else
   right=v(90-18*load+8*kick,0,-5)
   left=v(87+4*kick,0,10)
   elbow=v(-12*kick)
   torso=v(3-6*kick,0,0)
  end
- local brace=kind=="mortar" and (14*load+12*kick) or kind=="shoot" and 7*kick or 0
+ local brace=kind=="mortar" and (14*load+12*kick+9*finish) or kind=="shoot" and 7*kick or 0
  local retreat=(d.move or 0)<0 and kick or 0
  local angles={right=right,left=left,elbow=elbow,leftElbow=v(-35),wrist=v(),neck=v(6*retreat),
   torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
@@ -259,6 +261,20 @@ function Motion.sample(classId,d,age,rigType)
   local weight=d.id=="knight.steel_knight.vanguard_strike" and 1.35 or 1
   offset(pose,"leftKnee",v(12*brake*weight))
   offset(pose,"rightHip",v(-8*brake*weight))
+ end
+ local finish=FinalBeat.weight(d,pulse,since)
+ if finish>0 then
+  if classId=="dwarf" then
+   -- Mountain Collapse settles through both knees after the second strike.
+   offset(pose,"torso",v(18*finish))
+   offset(pose,"leftKnee",v(18*finish))
+   offset(pose,"rightKnee",v(24*finish))
+  else
+   local spinning=kind=="spin"
+   offset(pose,"torso",v((spinning and 9 or 13)*finish,0,(spinning and -9 or 6)*finish))
+   offset(pose,"leftKnee",v(16*finish))
+   offset(pose,"rightHip",v(-11*finish))
+  end
  end
  if d.id=="dwarf.iron_axe.armor_splitter" then
   local weight=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))

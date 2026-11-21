@@ -1,6 +1,7 @@
 -- Angles are additive in the existing bow/staff rig channels. Bow nock,
 -- string length and the staff grip come from their original authored clips.
 local Presentation = require(game.ReplicatedStorage.Shared.SkillPresentation)
+local FinalBeat = require(script.Parent.SkillFinalBeat)
 local Poses = {}
 local v = Vector3.new
 
@@ -46,7 +47,7 @@ local function bowStance(d)
     return d.id and bow.sight or bow.field
 end
 
-function Poses.bow(pose,d,age,since,betweenShots)
+function Poses.bow(pose,d,age,since,betweenShots,pulse)
     local s = bowStance(d)
     local phase = age/d.windup
     local load = smooth(phase/.55)*(1-smooth((phase-.55)/.45))
@@ -82,6 +83,19 @@ function Poses.bow(pose,d,age,since,betweenShots)
     add(pose,"leftHip",v(-.36*knees,0,-7*support))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(knees*.65,0,0))
+    local finish = since and FinalBeat.weight(d,pulse,since) or 0
+    if finish>0 then
+        if d.form=="ground" then
+            -- The last lob ends with the empty hand dropping away from the bow.
+            add(pose,"right",v(-14,12,-18)*finish)
+            add(pose,"torso",v(9,0,-4)*finish)
+        else
+            -- On the final volley the elbow opens and the lead knee takes the weight.
+            add(pose,"right",v(-8,21,13)*finish)
+            add(pose,"elbow",v(13,0,0)*finish)
+            add(pose,"leftKnee",v(12,0,0)*finish)
+        end
+    end
 end
 
 -- The staff hand traces the preparation arc, the guiding palm shapes the
@@ -132,10 +146,11 @@ function Poses.mage(pose,d,profile,age)
     local phase = age/d.windup
     local wind = smooth(phase/.58)*(1-smooth((phase-.58)/.42))
     local guide = smooth((phase-.48)/.52)
-    local follow = 0
+    local follow, finish = 0, 0
     local recovery = 1-smooth((age-d.windup-d.active)/d.recovery)
     if age>=d.windup+(d.hitDelay or 0) then
         local pulse,since = Presentation.beat(d,age)
+        finish = FinalBeat.weight(d,pulse,since)
         local span = math.min(.22,d.interval or .22)
         follow = smooth(since/(span*.28))*(1-smooth((since/span-.28)/.72))
         if pulse<(d.pulses or 1) then
@@ -165,5 +180,11 @@ function Poses.mage(pose,d,profile,age)
     add(pose,"leftHip",v(-.4*knees,0,7*wind))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(.7*knees,0,0))
+    if finish>0 then
+        local ash = s == spells.ashfall
+        add(pose,"left",(ash and v(-12,22,23) or v(26,-5,-10))*finish)
+        add(pose,"torso",(ash and v(7,13,5) or v(16,0,-5))*finish)
+        add(pose,"rightKnee",v((ash and 6 or 14)*finish,0,0))
+    end
 end
 return Poses

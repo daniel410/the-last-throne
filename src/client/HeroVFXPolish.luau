@@ -2,6 +2,12 @@
 local S=require(script.Parent.HeroVFXSurfaces)
 local P={}
 local variants={['knight.paladin.radiant_sweep']='RadiantFan',['knight.paladin.guardian_slash']='GuardianWing',['knight.paladin.oathbound_assault']='OathboundAdvance'}
+local function oathboundPath(c,t,emphasis)
+ local sign=c.pulse%2==0 and -1 or 1
+ local span=emphasis and 3.8 or 2.2
+ local height=emphasis and -2.4 or 1.6
+ return c.first+c.flat*(c.pulse*1.4)+c.right*((t-.5)*sign*span)+Vector3.yAxis*((t-.5)*height)
+end
 function P.strokes(r,c,line,curve)
  if c.id=='mage.cryo.froststorm'then
   for layer=1,3 do curve(r,'FroststormFlow',function(t,u)
@@ -25,10 +31,10 @@ function P.strokes(r,c,line,curve)
    return c.first+c.flat*(1.6+math.sin(a)*1.6)+c.right*side*math.sin(a)*2.3+Vector3.yAxis*(math.cos(a)*1.9+.2+u*.2)
   end,8,.17,r.color)end
  else
-  for lane=c.pulse,c.pulse do curve(r,'OathboundForwardCut',function(t,u)
-   local sign=lane%2==0 and -1 or 1
-   return c.first+c.flat*(lane*1.4+u*1.2)+c.right*((t-.5)*sign*2.2)+Vector3.yAxis*((t-.5)*1.6)
-  end,5,.17,r.color)end
+  local emphasis=c.final and not r.compact
+  curve(r,'OathboundForwardCut',function(t,u)
+   return oathboundPath(c,t,emphasis)+c.flat*(u*1.2)
+  end,5,emphasis and .24 or .17,r.color)
  end
  return true
 end
@@ -42,11 +48,11 @@ function P.surfaces(r,c)
   S.triangle(r,'GuardianShieldVeil',top,bottom,at-c.right*.7,r.color,.64)
   end
  elseif kind=='OathboundAdvance'then
-  for lane=c.pulse,c.pulse do
-   local start=#r.faces;local at=c.first+c.flat*lane*1.4
-   S.ribbon(r,'OathboundAdvancingVeil',function(t)return at+c.right*(t-.5)*2.2+Vector3.yAxis*(t-.5)*1.6 end,c.flat,.45,.58,r.color,3)
-   for i=start+1,#r.faces do r.faces[i].drift=c.flat*1.2;r.faces[i].fadeDuration=r.life*(.6+lane*.12)end
-  end
+  local start=#r.faces
+  local emphasis=c.final and not r.compact
+  S.ribbon(r,'OathboundAdvancingVeil',function(t)return oathboundPath(c,t,emphasis)end,
+   c.flat,emphasis and .58 or .45,.58,r.color,3)
+  for i=start+1,#r.faces do r.faces[i].drift=c.flat*1.2;r.faces[i].fadeDuration=r.life*(.6+c.pulse*.12)end
  else
   S.ribbon(r,'RadiantFanVeil',function(t)
    local a=math.rad(-c.angle*.48+c.angle*.96*t)
