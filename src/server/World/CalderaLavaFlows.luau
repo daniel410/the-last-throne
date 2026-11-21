@@ -5,7 +5,7 @@ local C = Color3.fromRGB
 local M = Enum.Material
 
 local profiles = {
-	['EC-01'] = {1, 110, 90, 1, 'AshSpireVent', 19, 8},
+	['EC-01'] = {1, 151, 90, 1, 'AshSpireVent', 19, 8},
 	['EC-03'] = {-1, 142, 38, -1, 'MineFractureFlow'},
 	['EC-04'] = {1, -153, 39, 1, 'CoolingRiftFlow'},
 	['EC-07'] = {-1, -132, 57, -1, 'FurnaceRimVent'},
