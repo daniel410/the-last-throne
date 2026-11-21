@@ -10,13 +10,19 @@ macOS Roblox Studio 0.748.0.7481526의 로컬 Play에서 `LandscapeLeft`와 `Cor
 
 ## Roblox 게시
 
-사용자 요청으로 0.114.31 단일 빌드를 기존 비공개 Experience `10773575153`의 배틀과 로비에 게시했다. Studio 로그의 대상 ID와 `PublishSuccessful`, 비공개 상태를 확인했다. 게시에 필요한 게임 자산 사용 권한은 같은 Experience에 연결했다. 게시 전후 로컬 빌드 SHA-256이 일치했다.
+사용자 요청으로 0.114.31 단일 빌드를 기존 비공개 Experience `10773575153`의 배틀과 로비에 게시하는 작업을 시도했다. 게시 전후 로컬 빌드 SHA-256이 일치했다. Studio는 두 Place에 `PublishSuccessful`을 표시했으나, 각각 직후 스크립트 업로드 요청이 HTTP 429로 실패했다. 아래 시각은 Studio가 게시 성공을 표시한 시각이다.
 
-| 대상 | Place ID | 게시 성공 시각 (EST) |
-| --- | --- | --- |
-| The Last Throne Battles | `129388473517823` | 2026-11-20 19:55:38 |
-| The Last Throne | `70829337938054` | 2026-11-20 19:57:46 |
+| 대상 | Place ID | Studio 성공 표시 (EST) | 후속 스크립트 업로드 |
+| --- | --- | --- | --- |
+| The Last Throne Battles | `129388473517823` | 2026-11-20 19:55:38 | 19:55:41 HTTP 429 |
+| The Last Throne | `70829337938054` | 2026-11-20 19:57:46 | 19:57:49 HTTP 429 |
 
 릴리스 태그 `v0.114.31`의 대상은 빌드 소스 `0be3eb421517bb136d271d1b558c6677b5aa721e`다. 복구 비교 기준은 [이전 게시 0.114.25](../monster-phase-loading-20261120/README.md)다.
 
-**남은 수용** QA의 게시 클라이언트 및 실기기 이동·회전·핀치 평가와 사용자 구도 확인. Roblox 내부 Place 버전 번호는 미확인이다.
+### 게시 로비 시작 장애
+
+TLT-005/084 후속. 2026-11-20 20:16 EST에 macOS Roblox Player 0.748.0.7481526으로 시작 Place `70829337938054`에 직접 접속했다. 조인 로그의 Place·Experience ID와 핑을 확인했다. 사용자 화면과 같은 회녹색 배경과 Roblox 메뉴만 표시됐다. 캐릭터·로비 UI가 나타나지 않았고 클라이언트 개발자 콘솔에는 오류·경고가 0건이었다. Roblox Studio의 19:55 및 19:57 로그에서 `PublishSuccessful` 직후 `/publish/v1/Scripts`의 HTTP 429와 `Commit Failure: Publish Assets`를 확인했다.
+
+같은 SHA-256의 0.114.31 로비 원본으로 20:19에 재게시를 시도했다. Roblox가 두 차례 `PlaceOngoingTeamCreateSession`으로 거부했다. 클라우드 로비의 Team Create 편집본은 Place 버전 114이며, Studio에서 읽은 스크립트 567개 모두 소스가 있었다. 클라우드 편집본의 버전과 플레이 서버가 실행한 버전의 일치는 확인되지 않았다.
+
+**남은 복구 및 수용** ENG가 승인된 원본의 스크립트 게시 완료를 확인한 뒤 QA가 새 서버의 Roblox Player에서 로비 진입·영웅 표시·배틀 이동을 확인한다. 모바일 실기기와 사용자 수용은 후속이다.
