@@ -3,7 +3,7 @@
 
 2026-11-15 · TLT-001/050/057/062/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 영웅 스킬 애니메이션과 VFX는 0.115.2에서 8개 전직 계열 대표 연속기의 마지막 타격과 회수를 다듬었다. 실제 4인 전투·저사양 터치 성능·미술 수용은 게시 테스트 단계에 남아 있다. [전후 화면·고정 빌드·Studio 검증](../evidence/hero-skill-final-beat-20261120/README.md)
+- 드워프 Gunner 스킬 후보 0.115.7은 오른손 도끼와 왼손 총·폭탄·포격을 함께 표시한다. 폭탄 네 종류의 비행과 착탄, 포격 네 종류의 하강을 점검했다. 게시 테스트와 실기기 수용은 후속이다. [전후 화면과 Studio 검증](../evidence/gunner-left-hand-payloads-20261120/README.md) · [8계열 연속기 검증](../evidence/hero-skill-final-beat-20261120/README.md)
 
 - 에픽 퀘스트 0.114.1 후보는 DW-02, GW-06, FV-04, EC-05, HG-04의 대표 행동에 현장 지형과 시설을 연결했다. [모델·접근 화면·Studio 검증](../evidence/epic-quest-landmarks-20261119/README.md) · [0.114.0 퀘스트 진행과 저장 검증](../evidence/epic-quest-variety-20261119/README.md). 후보 미게시·G5 진행 중.
 - 다섯 에픽 결말 환경을 0.114.22에서 다시 점검하고 EC-07 선적 받침을 가로축 철제 롤러로 개선했다. 후보 미게시·G5 진행 중. [고정 빌드·Studio 전후 비교·남은 수용](../evidence/epic-finale-dispatch-20261120/README.md)

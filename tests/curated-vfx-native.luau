@@ -4,6 +4,7 @@ local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local FX=require(Client.PixelFX)
 local Curated=require(Client.CuratedVFX)
 local Visual=require(Client.AdvancedSkillVisual)
+local Hero=require(Client.HeroVFX)
 local report={checks=0,failures={},assets={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local camera=workspace.CurrentCamera;local old=camera.CFrame;camera.CFrame=CFrame.new(0,7,12)
@@ -48,27 +49,31 @@ local ok,err=xpcall(function()
  local at=holder.Position;root.Position+=Vector3.new(2,0,0);FX.step(.1)
  check(holder.Position==root.Position and holder.Position~=at,'heal follows recipient')
  FX.step(1.3);check(Curated.count()==0 and FX.count()==0,'expiry releases shared and particle reservations')
- local ids={['elf.magic_archer.spirit_rain']='spiritRain',['mage.cryo.frost_ring']='frost',['dwarf.gunner.bomb_toss']='blast'}
+ local ids={['elf.magic_archer.spirit_rain']='spiritRain',['mage.cryo.frost_ring']='frost'}
  for id,key in pairs(ids)do
   FX.clear();char:SetAttribute('K0AttackSeq',9002)
   local now=workspace:GetServerTimeNow()
   Visual.play(char,id,root.Position,Vector3.new(0,3,-5),1,{},9002,now,now-1)
-  local cost=key=='spiritRain'and 15 or key=='frost'and 8 or 1
+  local cost=key=='spiritRain'and 15 or 8
   local p,n=inspect(key,cost)
   check(key~='spiritRain'or n==15,'five localized arrow contacts')
-  if key=='blast'then
-   local sprite=p.CuratedSprite
-   check(sprite.Frame.ImageRectSize==Vector2.new(128,128),'64-frame atlas cell size')
-   FX.step(Curated.duration(key)*.5)
-   check(sprite.Frame.ImageRectOffset==Vector2.new(0,512),'atlas reaches frame32 once')
-  end
-  check(math.abs(p.Position.Y-(key=='blast'and 1.72 or .12))<.01,'ground-relative burst placement')
+  check(math.abs(p.Position.Y-.12)<.01,'ground-relative burst placement')
   Visual.play(char,id,root.Position,Vector3.new(0,3,-5),1,{},9002,now,now-1)
   check(FX.count()==1,'duplicate confirmed pulse suppressed')
   char:SetAttribute('K0State','Dodge');FX.step(.01)
   check(FX.count()==0 and Curated.count()==0,'action cancellation releases particles')
   char:SetAttribute('K0State','Attack')
  end
+ Hero.clear()
+ char:SetAttribute('K0AttackSeq',9003)
+ local now=workspace:GetServerTimeNow()
+ Visual.play(char,'dwarf.gunner.bomb_toss',root.Position,Vector3.new(0,3,-5),1,{},9003,now)
+ local worldBlast
+ for _,p in ipairs(workspace:GetChildren())do
+  if p:GetAttribute('SkillId')=='dwarf.gunner.bomb_toss' then worldBlast=p:FindFirstChild('BombCasingFragment',true) or worldBlast end
+ end
+ check(worldBlast and not current('blast') and Curated.count()==0,'Bomb Toss uses a single terrain burst')
+ Hero.clear()
  FX.clear();check(FX.support(char,'Protect'),'protect unchanged');check(current('heal')==nil,'protect not healing');FX.clear()
  for _=1,30 do FX.support(char,'Heal')end
  check(FX.count()<=24 and Curated.count()<=(game.UserInputService.TouchEnabled and 96 or 192),'shared and particle limits')
@@ -80,7 +85,7 @@ local ok,err=xpcall(function()
  camera.CFrame=CFrame.new(1000,0,0)
  check(not FX.support(char,'Heal')and Curated.count()==0,'distant effects allocate nothing')
 end,debug.traceback)
-FX.clear();stage:Destroy();camera.CFrame=old
+FX.clear();Hero.clear();stage:Destroy();camera.CFrame=old
 if not ok then table.insert(report.failures,err)end
 report.pass=ok
 print('CURATED_VFX_NATIVE '..game.HttpService:JSONEncode(report))
