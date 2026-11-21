@@ -34,9 +34,10 @@ local player={UserId=21,Character=character}
 local hero={heroId='test'}
 local contextReady=true
 local saves,pending=0,nil
+local checkpoints={}
 local function confirm()
  local nextJournal=assert(progress.apply(journal,chapter.id,goal.id,nil,pending))
- journal=nextJournal;pending=nil;saves+=1
+ journal=nextJournal;pending=nil;saves+=1;checkpoints[saves]=journal
 end
 local engine=activity.create({
  frameDriven=true,world={folder=folder,activityNodes={}},enemies=enemies,players=function()return {player}end,
@@ -95,9 +96,40 @@ for i=1,60*55 do
 end
 check(journal.flags[key] and saves==3,'all three authored checkpoints save in order')
 if candidate then
- check(elapsed<24,'escort movement meets the reduced pacing target')
+ check(elapsed<6,'the direct escort route takes under six seconds of movement')
  engine.update(.2)
  check(not position(),'completion cleans up the active escort')
+ for index=1,2 do
+  journal=checkpoints[index]
+  local savedPlace=Vector3.new(table.unpack(goal.activity.steps[index].position))
+  root.Position=savedPlace
+  engine.update(.2)
+  check(position() and position().actorPosition==savedPlace,'resume uses the same saved step index at its new waypoint')
+  check(progress.nextStep(journal,chapter,goal)==goal.activity.steps[index+1],'resume preserves the next checkpoint ID')
+  engine.remove(player)
+ end
 end
 folder:Destroy()
-print('ESCORT_PACING '..game.HttpService:JSONEncode({checks=checks,seconds=elapsed,saves=saves,candidate=candidate}))
+
+local world=require(game.ServerScriptService.Server.World.CampaignWorld).create(1)
+local overlap=OverlapParams.new();overlap.FilterType=Enum.RaycastFilterType.Include
+overlap.FilterDescendantsInstances={world.folder};overlap.RespectCanCollide=true
+local ray=RaycastParams.new();ray.FilterType=Enum.RaycastFilterType.Include
+ray.FilterDescendantsInstances={world.folder};ray.RespectCanCollide=true
+local travelled=0
+local previous=Vector3.new(table.unpack(goal.position))
+for _,step in ipairs(goal.activity.steps) do
+ local finish=Vector3.new(table.unpack(step.position))
+ local length=(finish-previous).Magnitude
+ local samples=math.ceil(length/2)
+ for i=0,samples do
+  local point=previous:Lerp(finish,i/samples)
+  local floor=workspace:Raycast(point+Vector3.new(0,4,0),Vector3.new(0,-8,0),ray)
+  check(floor and floor.Normal.Y>.55 and math.abs(floor.Position.Y-point.Y)<1,'escort route remains at walkable ground: '..tostring(point))
+  local obstacles=workspace:GetPartBoundsInBox(CFrame.new(point+Vector3.new(0,3,0)),Vector3.new(2,4,2),overlap)
+  check(#obstacles==0,'escort route stays clear of solid props: '..tostring(point)..' '..(obstacles[1]and obstacles[1]:GetFullName()or ''))
+ end
+ travelled+=length;previous=finish
+end
+world.folder:Destroy()
+print('ESCORT_PACING '..game.HttpService:JSONEncode({checks=checks,seconds=elapsed,saves=saves,studs=travelled,candidate=candidate}))

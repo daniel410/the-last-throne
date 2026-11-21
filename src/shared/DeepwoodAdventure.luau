@@ -16,8 +16,8 @@ A.goals={
   step("scout_sign","Find Eryn's trail mark",35,20,"Eryn: This way! I can hear people calling from the clearing.",'tracks')}},
  ['DW-01:trail_exit']={mode='travel',steps={step('approach','Reach the overlook above the clearing',0,0,'Smoke rises from a broken cart. Someone below is calling for help.','arrival')}},
  ['DW-02:survivors']={mode='escort',actor='Wounded Scout',steps={
-  step("shelter","Guide the survivors behind the wall",-60,35,"Selene: I will care for the wounded. Let us get everyone to the shelter.",'arrival'),
-  step("crossing","Lead everyone around the cart",10,-45,"Survivor: Thank you for coming! Some of our friends are still in the ruins.",'arrival'),
+  step("shelter","Lead the survivors away from the wreck",15,12,"Selene: I will care for the wounded. Let us get everyone to the shelter.",'arrival'),
+  step("crossing","Follow the lanterns to the shelter",38,23,"Survivor: Thank you for coming! Some of our friends are still in the ruins.",'arrival'),
   step("safety","Reach the lantern shelter",60,25,"Everyone is safe at the shelter! Clear the road so they can reach camp.",'arrival')}},
  ['DW-02:testimony']={mode='investigate',steps={
   step("crest","Find the convoy captain's badge",-45,25,"This is the convoy captain's badge. The survivors saw the captain taken toward the ruins.",'ledger'),
