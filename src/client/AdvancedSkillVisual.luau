@@ -17,21 +17,29 @@ local Visual={}
 local byId={};for _,list in pairs(Config.Skills) do for _,d in ipairs(list) do byId[d.id]=d end end
 local colors=Palette.colors
 local active=0
+local slots={}
 local confirmed=setmetatable({},{__mode="k"})
+local groundCues=setmetatable({},{__mode="k"})
+local function release(p)
+ if not slots[p] then return end
+ slots[p]=nil
+ active=active-1
+end
 local function part(name,color,shape,size,cf,life,transparency)
  if active>=128 then return nil end
  active+=1
  local p=Instance.new("Part");p.Name=name;p.Shape=shape;p.Size=size;p.CFrame=cf
+ slots[p]=true
  p.Material=Enum.Material.Neon;p.Color=color;p.Transparency=transparency or .25
  p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false;p.Parent=workspace
  Debris:AddItem(p,life+.05)
- task.delay(life+.05,function() active=math.max(0,active-1) end)
+ task.delay(life+.05,function() release(p) end)
  Tween:Create(p,TweenInfo.new(life,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Transparency=1}):Play()
  return p
 end
-local function segment(first,last,color,life,width,name)
+local function segment(first,last,color,life,width,name,transparency)
  local length=(last-first).Magnitude;if length<.02 then return end
- return part(name or "SkillStreak",color,Enum.PartType.Block,Vector3.new(width or .1,width or .1,length),CFrame.lookAt((first+last)/2,last),life)
+ return part(name or "SkillStreak",color,Enum.PartType.Block,Vector3.new(width or .1,width or .1,length),CFrame.lookAt((first+last)/2,last),life,transparency)
 end
 local function ground(position,character)
  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
@@ -39,11 +47,15 @@ local function ground(position,character)
  local hit=workspace:Raycast(position+Vector3.new(0,2,0),Vector3.new(0,-18,0),params)
  return hit and hit.Position+Vector3.new(0,.08,0) or position-Vector3.new(0,2.7,0)
 end
-local function arc(center,direction,radius,angle,color,life,name,compact)
- local points=Geometry.sector(center,direction,radius,angle,angle>=359 and not compact and 24 or 12)
+local function arc(center,direction,radius,angle,color,life,name,compact,pieces)
+ local count=angle>=359 and not compact and 24 or 12
+ if pieces and active+count>128 then count=12 end
+ if pieces and active+count>128 then return end
+ local points=Geometry.sector(center,direction,radius,angle,count)
+ local faint=name=="SkillSector" or name=="SkillTelegraph"
  for i=1,#points-1 do
-  local p=segment(points[i],points[i+1],color,life,.07,name)
-  if p and(name=="SkillSector"or name=="SkillTelegraph")then p.Transparency=.65 end
+  local p=segment(points[i],points[i+1],color,life,.07,name,faint and .65 or nil)
+  if pieces and p then table.insert(pieces,p) end
  end
 end
 local function impact(center,color,scale)
@@ -166,8 +178,49 @@ local function spikes(center,direction,radius,angle,color,kind)
   end
  end
 end
+local function scatterOffset(pulse)
+ return Vector3.new((pulse%2==0 and 1 or -1)*3,0,(pulse-2)*2)
+end
 local function groundTarget(d,center,pulse)
- return d.scatter and center+Vector3.new((pulse%2==0 and 1 or -1)*3,0,(pulse-2)*2) or center
+ return d.scatter and center+scatterOffset(pulse) or center
+end
+local function clearGroundCue(character,record)
+ if groundCues[character]~=record then return end
+ groundCues[character]=nil
+ for _,connection in ipairs(record.connections) do connection:Disconnect() end
+ for _,piece in ipairs(record.pieces) do
+  piece:Destroy()
+  release(piece)
+ end
+end
+local function groundCue(character,d,seq,point,direction,color,life,compact,findFloor)
+ if life~=life or life<=0 then return end
+ if not character or type(seq)~="number" then
+  arc(findFloor(point,character),direction,d.radius,360,color,life,"SkillTelegraph",compact)
+  return
+ end
+ local record={seq=seq,connections={},pieces={}}
+ local function isLive()
+  if not character.Parent or character:GetAttribute("TLTDeathFalling") then return false end
+  local current=character:GetAttribute("K0AttackSeq")
+  local mode=character:GetAttribute("K0State")
+  if type(current)=="number" and current>=seq then
+   return current==seq and mode=="Attack" and character:GetAttribute("K0SkillId")==d.id
+  end
+  return mode~="Dead"
+ end
+ if not isLive() then return end
+ arc(findFloor(point,character),direction,d.radius,360,color,life,"SkillTelegraph",compact,record.pieces)
+ if #record.pieces==0 then return end
+ groundCues[character]=record
+ local function refresh()
+  if not isLive() then clearGroundCue(character,record) end
+ end
+ for _,attribute in ipairs({"K0State","K0AttackSeq","K0SkillId","TLTDeathFalling"}) do
+  table.insert(record.connections,character:GetAttributeChangedSignal(attribute):Connect(refresh))
+ end
+ table.insert(record.connections,character.AncestryChanged:Connect(refresh))
+ task.delay(life,function() clearGroundCue(character,record) end)
 end
 local function queueIncoming(character,d,center,seq,firstContact,now)
  local bomb=Bomb.get(d.id)
@@ -223,6 +276,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local old=confirmed[character]
   if old and (attackSeq<old.seq or attackSeq==old.seq and old.id==id and pulse<=old.pulse) then return end
   confirmed[character]={seq=attackSeq,id=id,pulse=pulse}
+  local cue=groundCues[character]
+  if cue and cue.seq<=attackSeq then clearGroundCue(character,cue) end
   HeroVFX.endWindup(character,attackSeq)
   HeroVFX.endIncoming(character,attackSeq,pulse)
  end
@@ -246,10 +301,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
   local firstContact=opening+d.windup+(d.hitDelay or 0)
   if d.form=="ground" then
-   for i=1,d.scatter and d.pulses or 1 do
-    local target=groundTarget(d,center,i)
-    arc(findFloor(target,character),direction,d.radius,360,color,firstContact-now+(i-1)*d.interval,"SkillTelegraph",compact)
-   end
+   groundCue(character,d,attackSeq,groundTarget(d,center,1),direction,color,firstContact-now,compact,findFloor)
   end
   if d.form=="ground" or bomb then queueIncoming(character,d,center,attackSeq,firstContact,now) end
   return
@@ -299,6 +351,12 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  elseif d.form=="ground" or d.detonate then
   arc(targetFloor,direction,d.radius,360,color,.4,"ImpactBoundary",compact)
+  if d.scatter and pulse<d.pulses and character and type(attackSeq)=="number" and type(startedAt)=="number" then
+   local nextAt=startedAt+d.windup+(d.hitDelay or 0)+pulse*d.interval
+   -- Recover the locked center from this confirmed scatter position.
+   local nextPoint=center-scatterOffset(pulse)+scatterOffset(pulse+1)
+   groundCue(character,d,attackSeq,nextPoint,direction,color,math.min(nextAt-now,d.interval),compact,findFloor)
+  end
   if effect=="lightning" then lightning(center+Vector3.new(0,12,0),center,color)
   elseif effect=="vine" then
    -- HeroVFX owns ground-planted roots; no duplicate upright helix.

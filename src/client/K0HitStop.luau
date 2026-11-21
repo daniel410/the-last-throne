@@ -13,12 +13,27 @@ local function definition(classId, skillId, combo)
     end
 end
 
-local function duration(classId, skillId, combo, d)
-    if not d or d.ranged or d.magic or classId == "elf" then return 0 end
+local directRelease = {
+    ["elf.marksman.piercing_line"] = .022,
+    ["elf.marksman.crossfire"] = .018,
+    ["elf.marksman.grand_volley"] = .020,
+    ["mage.cryo.frost_ring"] = .030,
+    ["mage.cryo.lightning_line"] = .022,
+    ["mage.pyro.molten_line"] = .020,
+}
+
+local function duration(classId, skillId, combo, d, pulse)
+    local count = d.pulses or 1
+    local release = directRelease[skillId]
+    if release then return release + (count > 1 and pulse == count and .008 or 0) end
+    if d.ranged or d.magic or classId == "elf" or d.branch == "gunner" then return 0 end
     if skillId then
         if classId ~= "knight" and classId ~= "dwarf" then return 0 end
         if d.form and d.form ~= "melee" and d.form ~= "cone" and d.form ~= "area" then return 0 end
-        if (d.pulses or 1) > 1 then return .03 end
+        if count > 1 then
+            if classId == "dwarf" then return pulse == count and .060 or .027 end
+            return pulse == count and .046 or .022
+        end
         return classId == "dwarf" and .065 or .045
     end
     return classId == "dwarf" and .05 or classId == "mage" and .025
@@ -47,22 +62,29 @@ function HitStop.new(owner)
             or character:GetAttribute("K0AttackStartedAt") ~= meta.startedAt
             or character:GetAttribute("K0ClassId") ~= meta.classId
             or character:GetAttribute("K0SkillId") ~= meta.skillId then return false end
-        if record and record.character == character and record.seq == meta.seq
-            and record.startedAt == meta.startedAt then return false end
         local combo = character:GetAttribute("K0Combo") or 1
         local d = definition(meta.classId, meta.skillId, combo)
-        local hold = duration(meta.classId, meta.skillId, combo, d)
+        if not d then return false end
+        local count = d.pulses or 1
+        local pulse = meta.pulse
+        if pulse == nil and count == 1 then pulse = 1 end
+        if not finite(pulse) or pulse % 1 ~= 0 or pulse < 1 or pulse > count then return false end
+        if matches(character) and (pulse <= record.pulse or now < record.at + record.hold * 3) then return false end
+        local hold = duration(meta.classId, meta.skillId, combo, d, pulse)
         if hold <= 0 then return false end
         local rate = meta.skillId and 1 or character:GetAttribute("K0BasicAttackRate") or 1
         if not finite(rate) or rate <= 0 then return false end
         local ending = meta.startedAt + (d.windup + d.active + d.recovery) / rate
-        local contact = meta.startedAt + (d.windup + (d.hitDelay or 0)) / rate
+        local interval = (d.interval or 0) / rate
+        local contact = meta.startedAt + (d.windup + (d.hitDelay or 0)) / rate + (pulse - 1) * interval
         if now < contact or meta.confirmedAt < contact - .01 then return false end
-        -- Hold + catch-up must finish before the existing action ends.
-        hold = math.min(hold, (ending - now) / 3)
+        if (count > 1 or directRelease[meta.skillId]) and now - contact > .095 then return false end
+        -- Catch up before the next authored beat, or the end of the cast.
+        local deadline = pulse < count and math.min(ending, contact + interval) or ending
+        hold = math.min(hold, (deadline - now) / 3)
         if hold < .012 then return false end
         record = {character = character, seq = meta.seq, startedAt = meta.startedAt,
-            skillId = meta.skillId, at = now, hold = hold}
+            skillId = meta.skillId, pulse = pulse, at = now, hold = hold}
         return true
     end
     function controller.sample(character, now)
