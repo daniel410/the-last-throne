@@ -29,6 +29,9 @@ def frames(log):
 parser = argparse.ArgumentParser(description=__doc__)
 for label in ('baseline', 'candidate', 'regression'):
     parser.add_argument(label, type=Path)
+parser.add_argument('--baseline-version', default='0.115.15')
+parser.add_argument('--output-dir', type=Path, default=Path(__file__).resolve().parent)
+parser.add_argument('--allow-unchanged-summary', action='append', default=[])
 args = parser.parse_args()
 before, after, regression = (path.read_text() for path in (args.baseline, args.candidate, args.regression))
 camera_plan, = records(before, 'SIXTH_CHAPTER_CAMERA_PLAN')
@@ -47,7 +50,10 @@ expected = {
     'RefugePathDrain', 'ScoutExtractionSkid', 'CitadelServiceCoping',
     'HeatworksObservationBaffle', 'AntechamberRailFooting',
 }
-assert {name for name, row in candidate.items() if row != baseline[name]} == expected
+optional = set(args.allow_unchanged_summary)
+assert optional <= expected
+changed = {name for name, row in candidate.items() if row != baseline[name]}
+assert expected - optional <= changed <= expected
 pairs = []
 for name in sorted(expected):
     prior, current = baseline[name], candidate[name]
@@ -67,11 +73,11 @@ report, = records(regression, 'CAMPAIGN_EXPANSION_NATIVE')
 assert not report['blockers']
 assert report['incidents'] == 82 and report['steps'] == 246 and report['samples'] == 3968
 
-directory = Path(__file__).resolve().parent
+directory = args.output_dir
 version = json.loads((directory / 'build.json').read_text())['version']
 board = Image.new('RGB', (824, 28 + 250 * len(left)), '#171c20')
 labels = ImageDraw.Draw(board)
-labels.text((6, 6), '0.115.15', fill='white')
+labels.text((6, 6), args.baseline_version, fill='white')
 labels.text((418, 6), version, fill='white')
 for index, name in enumerate(left):
     y = 28 + 250 * index
