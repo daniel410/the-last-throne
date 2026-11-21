@@ -86,10 +86,12 @@ local middle = Vector3.zero
 for _, part in bounds do middle += part.Position - origin end
 check(#bounds == 12 and math.abs(middle.X) < .08 and middle.Z < -30, "Cone boundary is symmetric about server heading")
 check(#edge >= 6 and model:GetAttribute("CrescentCutEdge") == true, "Crescent uses its own cutting edge")
+local cutAcrossFront = false
 if #edge >= 6 then
     local a, b = edge[1].Attachment0.WorldPosition, edge[#edge].Attachment1.WorldPosition
-    check(math.abs(a.X+b.X-2*origin.X) < .1 and a.Y-b.Y > 1, "Crescent falls across the full front")
+    cutAcrossFront = math.abs(a.X+b.X-2*origin.X) < .1 and a.Y-b.Y > 1
 end
+check(cutAcrossFront, "Crescent falls across the full front")
 check(#parts("BladeCrescent") == 0, "Crescent avoids the duplicate legacy arc")
 clear()
 
@@ -106,11 +108,13 @@ local socket = root.Position+Vector3.new(.5, .6, -1)
 model = assert(FX.skill(character, axe.id, root.Position, ending, 1, {}, socket))
 local wake = effects(model, "BracedThrowWake")[1]
 check(wake and close(wake.Attachment0.WorldPosition, socket), "Braced Throw begins its wake at the weapon")
+local followsRelease = false
 if wake then
     local initial = wake.Attachment1.WorldPosition
     FX.step(workspace:GetServerTimeNow()+.07)
-    check((wake.Attachment1.WorldPosition-initial):Dot(forward) > 8, "The wake advances down the confirmed line")
+    followsRelease = (wake.Attachment1.WorldPosition-initial):Dot(forward) > 8
 end
+check(followsRelease, "The wake advances down the confirmed line")
 check(model:GetAttribute("ArtSilhouette") == "ThrownAxe", "Throw keeps its axe silhouette")
 clear()
 

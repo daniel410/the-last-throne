@@ -1,0 +1,119 @@
+{
+  "baselineVersion": "0.115.35",
+  "firstCandidateVersion": "0.115.36",
+  "version": "0.115.37",
+  "sourceCommit": "47e2d69dcee4b499ab80f1fd6634f03cce7d92c2",
+  "alignment": {
+    "baseline": {
+      "poses": {
+        "retreatKnee": 24.936843872070312,
+        "spearElbow": 14,
+        "R15": {
+          "crescentLoadYaw": 14.4481782913208,
+          "axeFinishKnee": 0,
+          "axeLoadKnee": 0,
+          "crescentFinishYaw": -13.126221656799316
+        },
+        "R6": {
+          "crescentLoadYaw": 19.99538230895996,
+          "axeFinishKnee": 0,
+          "axeLoadKnee": 0,
+          "crescentFinishYaw": -16.765085220336914
+        }
+      },
+      "failures": [
+        "Cone exports its locked heading alongside the selected target",
+        "Cone boundary is symmetric about server heading",
+        "Crescent uses its own cutting edge",
+        "Crescent falls across the full front",
+        "Crescent avoids the duplicate legacy arc",
+        "Braced Throw stops at a wall on the confirmed release ray",
+        "Unobstructed release preserves the configured range from the new position",
+        "Braced Throw begins its wake at the weapon",
+        "The wake advances down the confirmed line",
+        "Retreating Shot connects bow and confirmed endpoint",
+        "Retreating Shot has one wake and a physical arrow fallback",
+        "Thunder Spear begins at the staff and terminates at the confirmed point",
+        "Crescent coils then follows through on R6",
+        "Braced Throw loads and shifts weight on R6",
+        "Crescent coils then follows through on R15",
+        "Braced Throw loads and shifts weight on R15",
+        "Retreating Shot absorbs the rearward step through the rear leg",
+        "Thunder Spear drives the guiding arm forward"
+      ],
+      "pass": false,
+      "checks": 26
+    },
+    "firstCandidate": {
+      "poses": {
+        "retreatKnee": 44.92847442626953,
+        "spearElbow": 35,
+        "R15": {
+          "crescentLoadYaw": -2.551821708679199,
+          "axeFinishKnee": 16,
+          "axeLoadKnee": 19,
+          "crescentFinishYaw": 1.8737783432006836
+        },
+        "R6": {
+          "crescentLoadYaw": 2.995382308959961,
+          "axeFinishKnee": 16,
+          "axeLoadKnee": 19,
+          "crescentFinishYaw": -1.765085220336914
+        }
+      },
+      "failures": [
+        "Crescent coils then follows through on R6",
+        "Braced Throw loads and shifts weight on R6",
+        "Crescent coils then follows through on R15",
+        "Braced Throw loads and shifts weight on R15"
+      ],
+      "pass": false,
+      "checks": 26
+    },
+    "candidate": {
+      "poses": {
+        "retreatKnee": 44.92847442626953,
+        "spearElbow": 35,
+        "R15": {
+          "crescentLoadYaw": 31.448177337646484,
+          "axeFinishKnee": 16,
+          "axeLoadKnee": 23,
+          "crescentFinishYaw": -28.126220703125
+        },
+        "R6": {
+          "crescentLoadYaw": 36.995384216308594,
+          "axeFinishKnee": 16,
+          "axeLoadKnee": 23,
+          "crescentFinishYaw": -31.765085220336914
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 26
+    }
+  },
+  "studio": {
+    "hero-skill-direction-native.luau": 31,
+    "hero-skill-impact-native.luau": 761,
+    "hero-vfx-priority-native.luau": 28,
+    "hero-skill-windup-native.luau": 1400,
+    "hero-ultimate-finish-native.luau": 88,
+    "hero-skills-native.luau": 244520,
+    "hero-vfx-native.luau": 9904,
+    "hero-vfx-flourish-native.luau": 82,
+    "roblox-vfx-polish-native.luau": 2117,
+    "rpg-vfx-motion-native.luau": 190,
+    "skill-vfx-art-native.luau": 43,
+    "hero-force-feedback-native.luau": 81,
+    "hero-release-alignment-native.luau": 26
+  },
+  "studioTotal": 259271,
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 13712
+  },
+  "artifactVerification": {
+    "sha256": "7bd8238864da86e1cfb3ead318113a4a916f0166c36f1f380637967e04510a84",
+    "pinnedModules": 8
+  }
+}
