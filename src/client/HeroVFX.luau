@@ -450,6 +450,7 @@ local function signature(r,key,c)
  local emphasis=c.final and not r.compact
  local compact=r.compact
  r.model:SetAttribute('UltimateSignature',key)
+ if compact then r.model:SetAttribute('PrimaryIconCue',true) end
  local function stroke(name,a,b,width,color,drift)
   line(r,name,function(u)
    local offset=drift and drift*u or Vector3.zero
@@ -463,7 +464,9 @@ local function signature(r,key,c)
   for lane=-wings,wings do
    local at=first+flat*2.2+right*lane*2.35
    local points={at-right*.8+Vector3.yAxis*1.6,at+right*.8+Vector3.yAxis*1.6,at+right*.65-Vector3.yAxis*.6,at-Vector3.yAxis*1.3,at-right*.65-Vector3.yAxis*.6}
-   for i=1,#points do Surfaces.triangle(r,'UltimateFrontPanel',at,points[i],points[i%#points+1],nil,.56,Enum.Material.SmoothPlastic)end
+   for i=2,#points-1 do
+    Surfaces.triangle(r,'UltimateFrontPanel',points[1],points[i],points[i+1],nil,.56,Enum.Material.SmoothPlastic)
+   end
    stroke('FrontWallCrest',points[1],points[2],.13,nil,drift)
    for side=-1,1,2 do
     stroke('FrontWallChevron',at+right*side*.55,at+Vector3.yAxis*.8,.12,nil,drift)
@@ -485,12 +488,12 @@ local function signature(r,key,c)
   end
   local crest=focus+Vector3.yAxis*1.4
   local rays=compact and 3 or 6
-  local rise=Vector3.yAxis*(c.final and 3.4 or .4)
+  local rise=Vector3.yAxis*(c.final and 4.8 or .4)
   for i=1,rays do
    local a=(i-1)/(rays-1)*2-1;local axis=right*math.sin(a)+Vector3.yAxis*math.cos(a)
    stroke('IconDawnCrest',crest+axis*.2,crest+axis*(c.final and 1.65 or 1.3),.12,r.hot,rise)
    if emphasis then
-    Surfaces.volume(r,'DawnAscendingLight',crest+axis*.8,Vector3.new(.12,.8,.12),nil,.62,'ball',nil,false,3.4)
+    Surfaces.volume(r,'DawnAscendingLight',crest+axis*.8,Vector3.new(.12,.8,.12),nil,.62,'ball',nil,false,4.8)
    end
   end
  elseif key=='MountainRidge'then
@@ -556,8 +559,10 @@ local function signature(r,key,c)
    local tip=path(.8);local tangent=Vector3.new(-radial.Z,0,radial.X)
    local mid=tip+radial*1.2-Vector3.yAxis*.6*height;local endLeaf=tip+radial*2.7-Vector3.yAxis*1.8*height
    Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip,mid+tangent*1.1,endLeaf,palette.nature,.36,Enum.Material.SmoothPlastic)
-   Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip,endLeaf,mid-tangent*1.1,palette.nature:Lerp(r.hot,.2),.4,Enum.Material.SmoothPlastic)
-   if not compact then Surfaces.bar(r,'SpiritCanopyLeafVein',tip,endLeaf,.075,palette.nature:Lerp(r.hot,.35),.25,Enum.Material.Neon) end
+   if not compact then
+    Surfaces.triangle(r,'SpiritCanopyCrownLeaf',tip,endLeaf,mid-tangent*1.1,palette.nature:Lerp(r.hot,.2),.4,Enum.Material.SmoothPlastic)
+    Surfaces.bar(r,'SpiritCanopyLeafVein',tip,endLeaf,.075,palette.nature:Lerp(r.hot,.35),.25,Enum.Material.Neon)
+   end
   end
  elseif key=='CalderaVents'then
   Surfaces.volume(r,'CalderaCentralVent',floor+Vector3.yAxis*.15,Vector3.new(2.8,.6,2.6),Color3.fromRGB(68,43,29),.12,'wedge',Enum.Material.Slate)

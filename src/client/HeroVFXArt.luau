@@ -302,7 +302,7 @@ end
 function Art.accents(r,c)
  -- Nature magic is a filled leaf, not a hair-thin line or a plain triangle.
  local id=c.id
- if id=='dwarf.iron_axe.mountain_collapse'then
+ if id=='dwarf.iron_axe.mountain_collapse' and not r.compact then
   local at=c.floor+c.flat*c.radius*.4+UP*3.3
   Art.axe(r,{first=at-UP,last=at,flat=c.flat,character=c.character,definition={},pulse=1})
  elseif id=='elf.magic_archer.elemental_arrow' or id=='elf.magic_archer.bloom_shot' or id=='elf.magic_archer.warden_arrow' or id=='elf.magic_archer.elemental_pierce' or id=='elf.magic_archer.echo_arrows'then
