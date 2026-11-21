@@ -16,6 +16,27 @@ return function(req,tree,root,actor)
   check(not seen[asset],id..' unique asset');seen[asset]=true
  end
  check(count==128,'all 128 registered assets')
+ local skill=K.Skills.elf[1]
+ local art=A.byId[skill.id]
+ A.byId[skill.id]='rbxassetid://0'
+ local probe=Glyph.draw(root,'elf',skill,44,true)
+ A.byId[skill.id]=art
+ check(probe.Fallback.Visible and probe.Fallback.Text=='AI','unavailable tree image has a skill glyph')
+ task.wait()
+ check(not probe.IsLoaded and probe.Fallback.Visible,'unavailable image keeps the glyph')
+ Icon.set(probe,skill,true,true)
+ check(probe.Fallback.Visible and probe.Fallback.TextTransparency==probe.ImageTransparency,'cooldown dims the fallback glyph')
+ Icon.set(probe,skill,true,false)
+ local deadline=os.clock()+10
+ repeat task.wait() until (probe.IsLoaded and not probe.Fallback.Visible) or os.clock()>=deadline
+ check(probe.IsLoaded and not probe.Fallback.Visible,
+  string.format('late image replaces glyph without a redraw (loaded=%s, fallback=%s, status=%s)',tostring(probe.IsLoaded),tostring(probe.Fallback.Visible),game:GetService('ContentProvider'):GetAssetFetchStatus(art).Name))
+ probe:Destroy()
+ local unregistered=Glyph.draw(root,'elf',{id='fixture.unregistered',name='TEST SKILL'},44,false)
+ check(unregistered.Fallback.Visible and unregistered.Fallback.Text=='TE' and unregistered.Fallback.TextColor3.R<.5,'unregistered skill has a locked glyph')
+ Icon.set(unregistered,nil,false,false)
+ check(not unregistered.Visible and not unregistered.Fallback.Visible and unregistered.Fallback.Text=='','cleared skill also clears its glyph')
+ unregistered:Destroy()
  for classId,skills in pairs(K.Skills)do
   check(#skills==32,classId..' 32 definitions')
   for _,skill in ipairs(skills)do
@@ -58,6 +79,14 @@ return function(req,tree,root,actor)
    end
   end
  end
+ root:ClearAllChildren();root.Size=UDim2.fromOffset(1160,700);task.wait()
+ local growth=G.new(99);growth.branch='magic_archer';growth.stage=4;growth.skillSlots={1,2,3,30,31}
+ A.byId[skill.id]=nil
+ Tree.render(root,{heroId='icon-qa',baseClassId='elf',progression=growth},{ready=true,atHub=true,stats={power=0}},
+  {selected=1,path=growth.branch},function()error('unexpected save')end,function()end,nil)
+ A.byId[skill.id]=art
+ check(root.SkillDetails.SelectedSkillIcon.SkillGlyph.Fallback.Visible,'unavailable detail image has a glyph')
+ check(root.CombatLoadout.Slot1.SkillIcon.Fallback.Text=='AI' and root.CombatLoadout.Slot1.SkillIcon.Fallback.Visible,'unavailable loadout image has a glyph')
  local hud=req(tree.src.client.K0Hud).create()
  local character=Instance.new('Model');character.Name='IconQACharacter'
  for classId,skills in pairs(K.Skills)do
@@ -72,7 +101,7 @@ return function(req,tree,root,actor)
    for slot,button in ipairs(hud.skills)do
     local skill=skills[(first+slot-2)%32+1]
     check(button.SkillIcon.Image==A.byId[skill.id]and button.SkillIcon.Visible,'HUD equipped identity')
-    check(not button.Icon.Visible,'HUD has no letter over artwork')
+    check(button.SkillIcon.Fallback.Visible~=button.SkillIcon.IsLoaded,'HUD shows a glyph only while artwork is unloaded')
     check(button.Hint.ZIndex>button.SkillIcon.ZIndex,'key above icon')
    end
    report.hudCases+=1
@@ -84,6 +113,11 @@ return function(req,tree,root,actor)
   for _,path in ipairs(Advanced.order[classId])do
    local skillsInPath=Advanced.branches[path].skills
    local ultimate=skillsInPath[#skillsInPath]
+   local ultimateArt=A.byId[ultimate.id]
+   A.byId[ultimate.id]='rbxassetid://0'
+   character:SetAttribute('K0UltimateId',ultimate.id);hud.setCooldowns(character)
+   check(hud.ultimate.SkillIcon.Fallback.Visible and hud.ultimate.SkillIcon.Fallback.Text==ultimate.glyph,'unavailable ultimate displays a glyph')
+   A.byId[ultimate.id]=ultimateArt
    character:SetAttribute('K0UltimateId',ultimate.id);character:SetAttribute('K0UltimateReady',0);hud.setCooldowns(character)
    check(hud.ultimate.Visible and hud.ultimate.SkillIcon.Image==A.byId[ultimate.id],'ultimate identity')
    character:SetAttribute('K0UltimateReady',workspace:GetServerTimeNow()+5);hud.setCooldowns(character)

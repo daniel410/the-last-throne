@@ -249,8 +249,6 @@ function Hud.create()
 		button.Caption.Size = UDim2.new(1, -6, 0, 20)
 		button.Caption.TextWrapped = true
 		quickKey(key)
-		local icon = text(button, "Icon", "", UDim2.new(0.5, -15, 0, 5), UDim2.fromOffset(30, 28), 17, COLORS.gold)
-		icon.TextXAlignment = Enum.TextXAlignment.Center
 		SkillIcon.create(button, UDim2.fromOffset(13, 3), UDim2.fromOffset(38, 38))
 		key.ZIndex = button.SkillIcon.ZIndex + 1
 		skillButtons[index], skillHints[index] = button, key
@@ -482,14 +480,12 @@ function Hud.create()
 				local ability
 				for _, candidate in ipairs(Config.Skills[classId] or {}) do if candidate.id == equipped then ability = candidate; break end end
 				button.Caption.Text = index > count and "LOCKED" or ability and ability.name or "EMPTY"
-				button.Icon.Text = ability and (ability.glyph or string.sub(ability.name,1,2)) or ""
 				button.Active = index <= count and ability ~= nil
 				local ready = character and character:GetAttribute("K0SkillReady" .. index) or 0
 				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())
 				button.BackgroundTransparency = remaining > 0 and 0.45 or 0
 				button.TDButtonArt.ImageTransparency = index > count and .6 or remaining > 0 and .35 or 0
-				local hasArt=SkillIcon.set(button.SkillIcon,index<=count and ability or nil,index<=count,remaining>0)
-				button.Icon.Visible = index<=count and not hasArt and remaining <= 0
+				SkillIcon.set(button.SkillIcon,index<=count and ability or nil,index<=count,remaining>0)
 				local label = button:FindFirstChild("Cooldown")
 				if not label then
 					label = text(button, "Cooldown", "", UDim2.fromOffset(24, 5), UDim2.new(1, -26, 0, 27), 12, COLORS.cream)

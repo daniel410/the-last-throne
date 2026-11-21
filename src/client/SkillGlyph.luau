@@ -1,6 +1,5 @@
 -- Skill artwork uses stable IDs; native symbols remain for non-skill stat emblems.
 local Icon=require(script.Parent.SkillIcon)
-local Assets=require(game:GetService('ReplicatedStorage').Shared.SkillIconAssets)
 local Glyph={}
 local function shape(p,n,x,y,w,h,color,rotation,round)
  local f=Instance.new('Frame');f.Name=n;f.Position=UDim2.fromOffset(x,y);f.Size=UDim2.fromOffset(w,h);f.BackgroundColor3=color;f.BorderSizePixel=0;f.Rotation=rotation or 0;f.Parent=p
@@ -13,7 +12,7 @@ local function ring(p,x,y,size,color)
  return f
 end
 function Glyph.draw(parent,classId,base,size,unlocked)
- if base.id and Assets.byId[base.id] then
+ if base.id then
   local image=Icon.create(parent,UDim2.new(.5,-size/2,.5,-size/2),UDim2.fromOffset(size,size))
   image.Name='SkillGlyph';Icon.set(image,base,unlocked,false)
   local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(1,0);corner.Parent=image

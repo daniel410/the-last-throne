@@ -29,6 +29,7 @@ local function grayNode(node)
    local c=v.BackgroundColor3;local gray=c.R*.299+c.G*.587+c.B*.114
    v.BackgroundColor3=Color3.new(gray,gray,gray)
   elseif v:IsA('ImageLabel') then v.ImageColor3=Color3.fromRGB(103,103,103)
+  elseif v:IsA('TextLabel') and v.Name=='Fallback' then v.TextColor3=Color3.fromRGB(103,103,103)
   elseif v:IsA('UIStroke') then v.Color=Color3.fromRGB(117,117,117)
   elseif v:IsA('UIGradient') then v.Color=ColorSequence.new(Color3.new(1,1,1),Color3.fromRGB(55,55,55)) end
  end
