@@ -1,0 +1,64 @@
+[
+  {
+    "studioFile": "TheLastThrone-0.115.0.rbxlx",
+    "before": {
+      "total": 128,
+      "artwork": 128,
+      "unloadedAtOneSecond": 0,
+      "missingIds": [],
+      "failed": []
+    },
+    "after": {
+      "total": 128,
+      "artwork": 128,
+      "overlaid": [],
+      "fallback": 0,
+      "assetIssues": [],
+      "blank": []
+    }
+  },
+  {
+    "studioFile": "TheLastThrone-0.114.44.rbxlx",
+    "before": {
+      "total": 128,
+      "artwork": 123,
+      "unloadedAtOneSecond": 106,
+      "missingIds": [],
+      "failed": [
+        {
+          "id": "elf.magic_archer.gliding_shot",
+          "asset": "rbxassetid://123531603243143",
+          "status": "Failure"
+        },
+        {
+          "id": "elf.magic_archer.warden_arrow",
+          "asset": "rbxassetid://88296050949661",
+          "status": "Failure"
+        },
+        {
+          "id": "mage.cryo.eternal_tempest",
+          "asset": "rbxassetid://127085869913898",
+          "status": "Failure"
+        },
+        {
+          "id": "mage.pyro.ember_step",
+          "asset": "rbxassetid://87954245833545",
+          "status": "Failure"
+        },
+        {
+          "id": "mage.pyro.flame_dart",
+          "asset": "rbxassetid://74851653721065",
+          "status": "Failure"
+        }
+      ]
+    },
+    "after": {
+      "total": 128,
+      "artwork": 128,
+      "overlaid": [],
+      "fallback": 0,
+      "assetIssues": [],
+      "blank": []
+    }
+  }
+]
