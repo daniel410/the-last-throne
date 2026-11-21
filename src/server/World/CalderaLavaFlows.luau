@@ -5,7 +5,7 @@ local C = Color3.fromRGB
 local M = Enum.Material
 
 local profiles = {
-	['EC-01'] = {1, 151, 90, 1, 'AshSpireVent', 19, 8},
+	['EC-01'] = {1, 155, 100, 1, 'AshSpireVent', 36},
 	['EC-03'] = {-1, 142, 38, -1, 'MineFractureFlow'},
 	['EC-04'] = {1, -153, 39, 1, 'CoolingRiftFlow'},
 	['EC-07'] = {-1, -132, 57, -1, 'FurnaceRimVent'},
@@ -27,9 +27,9 @@ end
 function Lava.build(parent, id, center, size, safe)
 	local spec = profiles[id]
 	if not spec then return false end
-	local side, z, height, turn, name, rimOffset, basinHeight = table.unpack(spec)
+	local side, z, height, turn, name, basinHeight = table.unpack(spec)
 	basinHeight = basinHeight or -14
-	local at = center + V(side * (size[1]/2 + (rimOffset or 77)), 0, z)
+	local at = center + V(side * (size[1]/2 + 77), 0, z)
 	if not safe(at, 66) then return false end
 	local root = Instance.new('Model')
 	root.Name = name
@@ -51,9 +51,10 @@ function Lava.build(parent, id, center, size, safe)
 		rock('FracturedCraterRim', point(bank * 19, height * .37, -12),
 			V(24, height * 1.12 * rise, 40), bank * .35, cooled, 'Wedge')
 	end
-	local source = point(0, height * .45, -13)
-	local lip = point(2, height * .37, -5)
-	local chute = point(5, height * .24, 1)
+	local head = math.max(0, basinHeight)
+	local source = point(0, head + height * .45, -13)
+	local lip = point(2, head + height * .37, -5)
+	local chute = point(5, head + height * .24, 1)
 	local toe = point(9, basinHeight, 8)
 	local out = point(23, basinHeight, 9)
 	strand(root, 'BasaltChuteBed', source - V(0, 1.4, 0), chute - V(0, 1.4, 0), 17, 4.5, dark, M.Basalt)
@@ -66,7 +67,7 @@ function Lava.build(parent, id, center, size, safe)
 	strand(root, 'LavaBasinCrust', toe, out, 17, 1.8, crust, M.Slate)
 	strand(root, 'LavaBasinCore', toe + V(0, .88, 0), out + V(0, .88, 0), 8, .6, hot, M.Neon)
 	if basinHeight > 0 then
-		rock('BasaltBasinShelf', point(16, basinHeight - 8.5, 9), V(28, 15.4, 18), .06, dark)
+		rock('BasaltBasinShelf', point(16, (basinHeight - 8) / 2, 9), V(28, basinHeight + 6.4, 18), .06, dark)
 	end
 	for _, bank in ipairs({-1, 1}) do
 		rock('CooledBasinBank', point(16, basinHeight - 3, 9 + bank * 9), V(27, 8, 8), bank * .12, dark, 'Wedge')
