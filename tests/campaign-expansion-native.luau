@@ -253,11 +253,15 @@ local earned=select(1,reach('HG-04','exp_2'));presentation.update({journal=earne
 check(payoff:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'earlier scout rescue earns the familiar final assault signal')
 -- Bind the actual refreshWorld source to actual control metadata, with test-only event buses.
 local controlsState,cc,cg=reach('EC-05','exp_2');local controlRoot=Instance.new('Part');controlRoot.Anchored=true;controlRoot.Parent=workspace
-local cp={UserId=197};local feedback={};local enqueues=0
+local cp={UserId=197};local feedback={};local enqueues=0;local dispatches={}
 local controlEngine=require(game.ServerScriptService.Server.Story.DeepwoodActivities).create({players=function()return {cp}end,
  active=function()return {heroId='hero'}end,context=function()return {heroId='hero'},controlRoot end,state=function()return controlsState end,
  world=world,enemies=Instance.new('Folder'),publish=function(_,message)table.insert(feedback,message)end,
- enqueue=function(_,_,c,g,choice,id)enqueues+=1;controlsState=assert(P.apply(controlsState,c.id,g.id,choice,id))end})
+ enqueue=function(_,_,c,g,choice,id)
+  enqueues+=1;local key=c.id..':'..g.id
+  dispatches[key]=(dispatches[key]or 0)+1
+  controlsState=assert(P.apply(controlsState,c.id,g.id,choice,id))
+ end})
 local callbacks={};local fakeWorld={activityChoices={},activityNodes={},nodes={}};local binds=0
 local function trigger(id)
  return {Triggered={Connect=function(_,fn)binds+=1;callbacks[id]=fn end}}
@@ -299,11 +303,11 @@ for _,entry in ipairs(varied)do
  local function triggerAction()
   if node.prompt then callbacks[key..':resolve'](cp)else controlEngine.update(0)end
  end
- local before=enqueues
+ local before=dispatches[key]or 0
  controlRoot.Position=node.part.Position+Vector3.new(50,0,0);triggerAction()
- check(enqueues==before,key..' rejects remote progression')
+ check((dispatches[key]or 0)==before,key..' rejects remote progression')
  controlRoot.Position=node.part.Position;triggerAction();triggerAction()
- check(enqueues==before+1 and controlsState.flags[key] and controlsState.activities[key]==3,key..' commits the old three stages once')
+ check(dispatches[key]==before+1 and controlsState.flags[key] and controlsState.activities[key]==3,key..' commits the old three stages once')
 end
 controlsState,cc,cg=reach('EC-05','exp_2')
 for i,step in ipairs(cg.activity.steps)do

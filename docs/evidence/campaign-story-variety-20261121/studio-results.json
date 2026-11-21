@@ -1,0 +1,15 @@
+{
+  "generationSeconds": 30.2792543747928,
+  "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+  "blockers": [],
+  "checks": 9310,
+  "steps": 246,
+  "samples": 3981,
+  "incidents": 82,
+  "parts": 56531,
+  "storyPresentation": {
+    "kind": "CAMPAIGN_CONTEXT_REVIEW_NATIVE",
+    "failures": [],
+    "checks": 336
+  }
+}
