@@ -10,6 +10,8 @@
 
 - 몬스터와 페이즈 로딩은 0.114.25에서 근접 교전 시작 거리, 외형 선행 로드, 처치와 목표 저장을 개선했다. 비공개 로비·배틀에 게시했으며 실제 플레이 수용은 후속이다. [전후 재현·게시 기록·남은 수용](../evidence/monster-phase-loading-20261120/README.md) · [지역 생성과 반복 작업 계측](../evidence/world-runtime-optimization-20261118/README.md).
 
+- 운영 오류 집계에서 확인한 지역 선행 로딩, 지도, 체크포인트와 원정 재접속 수정은 0.115.10 미게시 후보에 포함했다. [수정 근거·검증·인계](../evidence/runtime-errors-20261120/README.md).
+
 - 배틀 입장과 진행 잠금: 0.113.16 후보는 확인된 저장 위치의 지역을 준비하고, 영웅 준비 시 즉시 교전과 스토리를 갱신한다. 일시적인 원정 갱신 오류는 마지막 소유권이 유효한 동안 진행을 막지 않는다. [입장·갱신 장애 재현 및 검증](../evidence/battle-arrival-latency-20261118/README.md). 후보 미게시. [지역 선행 준비·이동 복구](../evidence/battle-loading-20261117/README.md) · [부활·연속 이동 회귀](../evidence/battle-loading-review-20261117/README.md).
 
 - TLT-053 파티 모집과 혼합 진도는 0.112.2로 빌드했다. 가입 전 현재 목적지와 합류 시 바뀔 임무를 확인할 수 있다. 실제 3계정 합류·입장은 게시 후 수용 항목이다. [빌드·Studio 검증](../evidence/party-campaign-sync-20261116/README.md).
