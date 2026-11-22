@@ -385,7 +385,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if d.form=="cone" and ultimateSignature~="VolleyCrown" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
   elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then
-   arrow(first,center,color,character,primary and primary:GetAttribute("RetreatingShotWake"))
+   local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake"))
+   arrow(first,center,color,character,hasWake)
   end
  elseif effect=="axe" then
   if not primary then
@@ -410,7 +411,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"
    and not (primary and primary:GetAttribute("CrescentCutEdge")) then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
-   if not primary or (not ultimateSignature and id~="dwarf.iron_axe.iron_shoulder") then
+   local chargeEdge=id=="knight.steel_knight.breaker_charge" and primary and primary:GetAttribute("PrimaryIconCue")
+   if not primary or (not ultimateSignature and not chargeEdge and id~="dwarf.iron_axe.iron_shoulder") then
    local flat=Vector3.new(direction.X,0,direction.Z)
    local delta=flat.Magnitude>.001 and flat.Unit or Vector3.new(0,0,-1)
    local at=origin+delta*2

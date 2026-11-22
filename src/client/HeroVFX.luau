@@ -688,6 +688,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
  end
  local shieldStrike=id==SHIELD_BREAKER or id==SHIELD_VERDICT
  local verdict=id==SHIELD_VERDICT
+ local shieldCharge=id=="knight.steel_knight.breaker_charge"
+ local frostStep=id=="mage.cryo.frost_step"
  local phase=(pulse-1)*1.3
  local electricLinks={}
  local counterSlash=id=="knight.steel_knight.counter_slash"
@@ -749,6 +751,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   return shieldCenter+right*side*1.45+flat*(.55*(1-side*side))
    +Vector3.yAxis*(.42-.55*math.abs(side))
  end
+ local function chargePath(t,u)
+  local side=2*t-1
+  local width=pulse==1 and .94 or 1.28
+  local height=pulse==1 and -.32 or .28
+  return first+flat*(1.35+.70*u-.37*math.abs(side))+right*side*width
+   +Vector3.yAxis*(height+(1-math.abs(side))*.48)
+ end
  local launch=vector(muzzle) and (muzzle-first).Magnitude<=6 and muzzle or nil
  local artContext={id=id,shape=shape,key=row.key,first=first,last=last,dir=dir,flat=flat,right=right,floor=floor,radius=radius,angle=angle,area=area,definition=d,character=character,pulse=pulse,final=final,muzzle=launch}
  if Polish.strokes(r,artContext,line,curve)then
@@ -795,6 +804,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   curve(r,verdict and "VerdictCrest" or "ShieldBreakerWave",function(t,u)
    return shieldPath(t)+flat*(shieldTravel*u)
   end,verdict and 4 or 6,width,WHITE)
+ elseif shieldCharge then
+  for side=0,1 do
+   line(r,"BreakerChargeEdge",function(u)return chargePath(side*.5,u),chargePath((side+1)*.5,u)end,width,WHITE,.08)
+  end
+  if #r.lines==2 then r.model:SetAttribute("PrimaryIconCue",true) end
  elseif shape=="guard"or shape=="warcry"or shape=="holy"or shape=="ward"then
   if shape=="guard"and d.form~="area"then
    local at=first+flat*2;local basis=CFrame.lookAt(at,at+flat)
@@ -859,6 +873,21 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
    return start:Lerp(last,.7*(1-(1-u)^2)),last
   end,.052,r.hot,.10)
   if trace then r.model:SetAttribute("RetreatingShotWake",true) end
+ elseif id=="elf.magic_archer.gliding_shot" then
+  local start=launch and (last-launch):Dot(dir)>.1 and launch or first
+  local length=(last-start).Magnitude
+  if length>.1 then
+   local trace=line(r,"GlidingShotWake",function(u)
+    return start:Lerp(last,.86*u),last
+   end,.058,r.hot,.035)
+   if trace then r.model:SetAttribute("GlidingShotWake",true) end
+   if not r.compact then
+    line(r,"GlidingShotFletching",function(u)
+     local tail=start:Lerp(last,math.min(1.4/length,.3))
+     return start+right*(.25*(1-u)),tail
+    end,.045,r.color,.018)
+   end
+  end
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"then
   local targets={last}
   if shape=="fan"then
@@ -957,8 +986,25 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   end
   debris(r,last,3,shape=="stone"and"RockChip"or"IceShard",1)
  elseif shape=="frost"then
-  ring(r,"FrostBloom",floorAt(last,character),radius,width*.6,false,false)
-  debris(r,floorAt(last,character),math.min(count,7),"IceShard",1.7)
+  ring(r,"FrostBloom",floor,radius*(frostStep and .48 or 1),width*.6,false,false,nil,nil,frostStep and 8 or nil)
+  debris(r,floor,math.min(count,frostStep and 2 or 7),"IceShard",frostStep and .8 or 1.7)
+  if frostStep then
+   -- Packet origin is the landing and center is the departure. No movement cue when blocked.
+   local travel=first-last
+   local horizontal=Vector3.new(travel.X,0,travel.Z)
+   if horizontal.Magnitude>.35 and horizontal.Magnitude<=d.move+.5 then
+    local destination=floorAt(first,character)
+    if math.abs(destination.Y-floor.Y)<=1.8 then
+     local side=horizontal.Unit:Cross(Vector3.yAxis)*.28
+     for lane=-1,1,2 do
+      local from=floor+side*lane+Vector3.yAxis*.08
+      local to=destination+side*lane+Vector3.yAxis*.08
+      line(r,"FrostStepHeelTrace",function(u)return from:Lerp(to,u*.18),from:Lerp(to,.72+.22*u)end,.075,r.hot,.035)
+     end
+    end
+   end
+   r.model:SetAttribute("PrimaryIconCue",true)
+  end
  elseif shape=="lightning"then
   local path={}
   if d.form=="chain"then
@@ -1104,6 +1150,15 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   Surfaces.ribbon(r,verdict and "VerdictCrestFace" or "ShieldBreakerFace",shieldPath,
    flat,verdict and .42 or .66,.49,r.color,verdict and 4 or 6,Enum.Material.SmoothPlastic)
   for i=start+1,#r.faces do r.faces[i].drift=flat*shieldTravel end
+ elseif shieldCharge then
+  if not r.compact then
+   local up=Vector3.yAxis*.34
+   local middle=chargePath(.5,0)
+   local start=#r.faces
+   Surfaces.triangle(r,"BreakerChargeFace",chargePath(0,0),middle+up, middle-up,r.color,.5)
+   Surfaces.triangle(r,"BreakerChargeFace",chargePath(1,0),middle-up,middle+up,r.color,.5)
+   for i=start+1,#r.faces do r.faces[i].drift=flat*.7 end
+  end
  elseif shape=="guard"then
   local at=first+flat*1.8;local verts={Vector2.new(-1.3,1.3),Vector2.new(1.3,1.3),Vector2.new(1,-.4),Vector2.new(0,-1.5),Vector2.new(-1,-.4)}
   for i=1,#verts do
@@ -1215,11 +1270,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   end
  elseif shape=="water"or(shape=="frost"and area)or shape=="gravity"then
   if shape=="frost"then
-   local at=floorAt(last,character)
-   for i=1,8 do
-    local a=i*math.pi/4;local radial=Vector3.new(math.cos(a),0,math.sin(a))
-    local height=math.min(2.6,1+radius*.1)*(i%2==0 and 1 or .65)
-    local facet=Surfaces.volume(r,'FrostRimFacet',at+radial*radius*.8+Vector3.yAxis*height*.5,Vector3.new(.5,height,.65),i%2==0 and r.color or Color3.fromRGB(198,244,255),.24,'wedge',Enum.Material.Ice)
+   local facets=frostStep and 4 or 8
+   for i=1,facets do
+    local a=i*math.pi*2/facets;local radial=Vector3.new(math.cos(a),0,math.sin(a))
+    local height=(frostStep and .56 or math.min(2.6,1+radius*.1))*(i%2==0 and 1 or .65)
+    local facet=Surfaces.volume(r,'FrostRimFacet',floor+radial*radius*(frostStep and .42 or .8)+Vector3.yAxis*height*.5,Vector3.new(.5,height,.65),i%2==0 and r.color or Color3.fromRGB(198,244,255),.24,'wedge',Enum.Material.Ice)
     if facet then
      local face=r.faces[#r.faces];face.cf=CFrame.lookAt(facet.Position,facet.Position+radial)*CFrame.Angles(.18,0,(i%2==0 and 1 or -1)*.12)
      facet.CFrame=face.cf;face.emerge={duration=.18,delay=(i%3)*.012}
@@ -1394,6 +1449,10 @@ local forceContacts={
  ["dwarf.gunner.piercing_round"]={"RifleContactWake",Vector3.new(.20,.04,-1.55),Vector3.new(.055,.015,.73),.62,.055},
  ["elf.magic_archer.elemental_pierce"]={"ElementalContactRibbons",Vector3.new(.49,-.28,-1.1),Vector3.new(-.32,.34,.82),.35,.085},
  ["mage.cryo.glacial_spike"]={"GlacialContactShards",Vector3.new(.10,-.39,-.40),Vector3.new(.55,.83,.26),.12,.086,.18},
+ ["knight.steel_knight.breaker_charge"]={"BreakerChargeContact",Vector3.new(.24,.27,-.28),Vector3.new(.86,-.12,.36),.46,.085},
+ ["dwarf.iron_axe.iron_shoulder"]={"IronShoulderContact",Vector3.new(.12,-.08,-.24),Vector3.new(.48,-.63,.68),.43,.085,-.10},
+ ["elf.magic_archer.gliding_shot"]={"GlidingShotContact",Vector3.new(.31,.19,-.83),Vector3.new(.07,.02,.64),.33,.060},
+ ["mage.cryo.frost_step"]={"FrostStepContact",Vector3.new(.07,-.43,-.36),Vector3.new(.48,.21,.38),.19,.076,.10},
 }
 local function forceContact(r,at,cf,size,shape)
  local name,base,tip,travel,width,lift=unpack(shape)

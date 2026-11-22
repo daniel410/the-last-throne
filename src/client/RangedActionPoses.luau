@@ -34,6 +34,7 @@ local bow = {
     broadside=stance(v(16,-33,18), 47, 32, 39),
     retreat=stance(v(-15,20,9), 22, 29, 28),
     advance=stance(v(16,-12,-8), -20, 24, 19),
+    glide=stance(v(14,-19,12), 32, 22, 25),
     sky=stance(v(-16,-12,-10), -23, 24, 32),
     weave=stance(v(-6,24,-14), 25, 19, 28),
     canopy=stance(v(-24,20,-15), 34, 30, 38),
@@ -41,6 +42,7 @@ local bow = {
 local function bowStance(d)
     if d.form=="ground" then return d.ultimate and bow.canopy or bow.sky end
     if d.ultimate and d.form=="cone" then return bow.broadside end
+    if d.id=="elf.magic_archer.gliding_shot" then return bow.glide end
     local step = d.move or d.pulseMove
     if step then return step<0 and bow.retreat or bow.advance end
     if d.id=="elf.marksman.fan_break" then return bow.fanBreak end
@@ -118,6 +120,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"rightKnee",v(20,0,0)*recoil)
         add(pose,"right",v(-6,18,11)*recoil)
     end
+    if s == bow.glide then
+        -- Extend the trailing leg during the draw and catch the release on the lead foot.
+        add(pose,"rightHip",v(24,0,8)*load)
+        add(pose,"rightKnee",v(-17,0,0)*load)
+        add(pose,"leftHip",v(-18,0,-5)*recoil)
+        add(pose,"leftKnee",v(23,0,0)*recoil)
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -152,6 +161,7 @@ local spells = {
     thunderSpear=gesture(v(-26,-15,17),v(39,26,-22),v(9,-22,9),v(40,-13,-16),23),
     chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
+    frostStep=gesture(v(-28,22,16),v(-9,18,-36),v(19,-17,12),v(-24,27,-32),26),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
     stone=gesture(v(-32,-19,12),v(22,17,34),v(17,-19,-7),v(50,-14,5),26),
@@ -175,6 +185,7 @@ local function spellGesture(d,profile)
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
     if d.form=="area" or d.form=="ground" then
+        if d.id=="mage.cryo.frost_step" then return spells.frostStep end
         if cue.effect=="frost" then return spells.iceRing end
         if cue.effect=="fire" then return spells.cinder end
         return spells.ring
@@ -234,6 +245,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(24,0,0)*follow)
         add(pose,"left",v(-12,-8,-14)*follow)
         add(pose,"torso",v(-5,8,-3)*follow)
+    end
+    if s == spells.frostStep then
+        -- Sweep the guiding palm back as the front leg checks the slide.
+        add(pose,"left",v(-30,29,-12)*follow)
+        add(pose,"rightHip",v(20,0,-5)*wind)
+        add(pose,"rightKnee",v(-18,0,0)*wind)
+        add(pose,"leftKnee",v(21,0,0)*follow)
     end
     if s == spells.stone then
         add(pose,"leftElbow",v(20,0,0)*follow)

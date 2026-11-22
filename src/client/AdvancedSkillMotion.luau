@@ -235,6 +235,14 @@ local function shieldPose(d,age,rigType,contact,ending)
   local recoil=smooth((age-contact)/.04)*(1-smooth((age-contact-.04)/.16))
   offset(pose,"torso",v(-7*recoil,-4*recoil,0))
   offset(pose,"leftKnee",v(10*recoil))
+ elseif d.id=="knight.steel_knight.breaker_charge" then
+  local load=pulse==0 and smooth(age/(contact*.52))*(1-smooth((age/contact-.70)/.30)) or 0
+  local drive=pulse>0 and smooth(since/.045)*(1-smooth((since-.045)/.16)) or 0
+  local second=pulse==2 and drive or 0
+  offset(pose,"torso",v(17,-10,-9)*load+v(12,3,-7)*drive+v(-17,10,5)*second)
+  offset(pose,"left",v(18,-12,-13)*load+v(11,-7,-9)*drive+v(15,3,-4)*second)
+  offset(pose,"leftKnee",v(21*load+13*drive+9*second))
+  offset(pose,"rightHip",v(-13*load-9*drive))
  end
  if age>=ending then pose=mix(pose,resting("knight"),smooth((age-ending)/d.recovery)) end
  local finish=FinalBeat.weight(d,pulse,since)
@@ -335,6 +343,15 @@ function Motion.sample(classId,d,age,rigType)
   pose.angles.torso=v(12,0,-5)*weight
   pose.angles.left=v(65,0,15)*weight
   rebuild(pose);pose.axeStrikeTurn=weight
+  if d.id=="dwarf.iron_axe.iron_shoulder" then
+   local load=pulse==0 and smooth(age/(contact*.56))*(1-smooth((age/contact-.70)/.30)) or 0
+   local plant=pulse>0 and smooth(since/.05)*(1-smooth((since-.05)/.18)) or 0
+   offset(pose,"torso",v(19,-17,20)*load+v(14,11,14)*plant)
+   offset(pose,"left",v(-28,16,-9)*load+v(-34,8,-12)*plant)
+   offset(pose,"right",v(-15,-16,21)*load+v(-17,-9,13)*plant)
+   offset(pose,"leftKnee",v(20*load+28*plant))
+   offset(pose,"rightHip",v(-16*load-11*plant))
+  end
  elseif kind=="counter" and age<contact then
   local braceAge=base.windup*.68
   local brace=Melee.sample("knight",1,braceAge,nil,nil,"knight.mixamo.brace",rigType)

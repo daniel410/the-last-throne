@@ -65,8 +65,13 @@ function Art.strokes(r,c,line,curve)
   end
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='IronShoulder'then
-  for side=-1,1,2 do
-   stroke('IconShoulderDrive',c.first+c.right*side*.5,c.first+c.flat*2.2+c.right*side*.2,.11,Color3.fromRGB(243,172,89))
+  local shoulder=c.first-c.right*.68-UP*.28
+  local edge=shoulder+c.flat*1.65-UP*.32
+  for i=-1,1,2 do
+   line(r,'IconShoulderDrive',function(u)
+    local advance=c.flat*u*.62
+    return shoulder+UP*i*.34+advance,edge+UP*i*.11+advance
+   end,.095,Color3.fromRGB(243,172,89),.04)
   end
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='IceShard' or kind=='ShatterDart' or kind=='FrostLance' or kind=='GlacialSpike'then
@@ -178,10 +183,12 @@ function Art.surfaces(r,c)
    end
   end
  elseif kind=='IronShoulder'then
-  local at=c.first+c.flat*1.2+c.right*.5
-  local plate=S.volume(r,'IronShoulderPlate',at,Vector3.new(1.3,1.1,.5),Color3.fromRGB(161,179,190),.18,'wedge',Enum.Material.Metal)
-  orient(r,plate,CFrame.lookAt(at,at+c.flat)*CFrame.Angles(0,0,-.3))
-  S.bar(r,'ShoulderAmberEdge',at-c.right*.55-UP*.35,at+c.right*.55-UP*.35,.1,Color3.fromRGB(243,172,89),.2,Enum.Material.Neon)
+  if not r.compact then
+   local at=c.first+c.flat*1.2-c.right*.68-UP*.40
+   local plate=S.volume(r,'IronShoulderPlate',at,Vector3.new(1.28,.65,.55),Color3.fromRGB(161,179,190),.25,'wedge',Enum.Material.Metal)
+   orient(r,plate,CFrame.lookAt(at,at+c.flat)*CFrame.Angles(-.18,0,.3))
+   if plate then r.faces[#r.faces].drift=c.flat*.62 end
+  end
  elseif kind=='GravityCore'then
   local at=c.floor+UP*1.1
   S.volume(r,'GravityCore',at,Vector3.one*1.25,Color3.fromRGB(62,25,102),.18,'ball',Enum.Material.SmoothPlastic)
