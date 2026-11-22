@@ -1,0 +1,406 @@
+{
+  "models": [
+    {
+      "baseline": {
+        "chapter": "EC-03",
+        "maxFloorError": 0,
+        "clearance": 7.439937114715576,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.119999885559082,
+          2.7200090885162354,
+          7.880000114440918
+        ],
+        "goal": "exp_2",
+        "model": "BelowRailCoolantInspectionHead",
+        "anchor": [
+          735.989990234375,
+          140,
+          -12655.400390625
+        ],
+        "height": 2.7200090885162354,
+        "ground": [
+          741.36669921875,
+          140,
+          -12646.96875
+        ],
+        "parts": 13
+      },
+      "candidate": {
+        "chapter": "EC-03",
+        "maxFloorError": 0,
+        "clearance": 7.439937114715576,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.119999885559082,
+          2.7200090885162354,
+          7.880000114440918
+        ],
+        "goal": "exp_2",
+        "model": "BelowRailCoolantInspectionHead",
+        "anchor": [
+          735.989990234375,
+          140,
+          -12655.400390625
+        ],
+        "height": 2.7200090885162354,
+        "ground": [
+          741.36669921875,
+          140,
+          -12646.96875
+        ],
+        "parts": 20
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "HG-03",
+        "maxFloorError": 0,
+        "clearance": 6.410728931427002,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          7.178542137145996,
+          4.359996318817139,
+          7.231327056884766
+        ],
+        "goal": "exp_1",
+        "model": "KeeperServiceDoorJamb",
+        "anchor": [
+          -175.0500030517578,
+          170,
+          -16340.2001953125
+        ],
+        "height": 4.359996318817139,
+        "ground": [
+          -175.0500030517578,
+          170,
+          -16350.2001953125
+        ],
+        "parts": 12
+      },
+      "candidate": {
+        "chapter": "HG-03",
+        "maxFloorError": 0,
+        "clearance": 6.410728931427002,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          7.178542137145996,
+          4.359996318817139,
+          7.231327056884766
+        ],
+        "goal": "exp_1",
+        "model": "KeeperServiceDoorJamb",
+        "anchor": [
+          -175.0500030517578,
+          170,
+          -16340.2001953125
+        ],
+        "height": 4.359996318817139,
+        "ground": [
+          -175.0500030517578,
+          170,
+          -16350.2001953125
+        ],
+        "parts": 18
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "FV-03",
+        "maxFloorError": 0,
+        "clearance": 9.525659561157227,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.747426986694336,
+          3.705003023147583,
+          8.180000305175781
+        ],
+        "goal": "exp_2",
+        "model": "RavineWalkRailAnchor",
+        "anchor": [
+          686.9500122070312,
+          92,
+          -8781.650390625
+        ],
+        "height": 3.705003023147583,
+        "ground": [
+          694.57177734375,
+          92,
+          -8772.3818359375
+        ],
+        "parts": 13
+      },
+      "candidate": {
+        "chapter": "FV-03",
+        "maxFloorError": 0,
+        "clearance": 9.525659561157227,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.747426986694336,
+          3.705003023147583,
+          8.180000305175781
+        ],
+        "goal": "exp_2",
+        "model": "RavineWalkRailAnchor",
+        "anchor": [
+          686.9500122070312,
+          92,
+          -8781.650390625
+        ],
+        "height": 3.705003023147583,
+        "ground": [
+          694.57177734375,
+          92,
+          -8772.3818359375
+        ],
+        "parts": 18
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "GW-03",
+        "maxFloorError": 0,
+        "clearance": 7.324995517730713,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.523297309875488,
+          4.362665176391602,
+          8.200000762939453
+        ],
+        "goal": "exp_2",
+        "model": "RefugeReturnRootMarker",
+        "anchor": [
+          829.8300170898438,
+          72,
+          -5129.39990234375
+        ],
+        "height": 4.362665176391602,
+        "ground": [
+          834.40234375,
+          72,
+          -5138.29345703125
+        ],
+        "parts": 10
+      },
+      "candidate": {
+        "chapter": "GW-03",
+        "maxFloorError": 0,
+        "clearance": 7.324995517730713,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.523297309875488,
+          4.362665176391602,
+          8.200000762939453
+        ],
+        "goal": "exp_2",
+        "model": "RefugeReturnRootMarker",
+        "anchor": [
+          829.8300170898438,
+          72,
+          -5129.39990234375
+        ],
+        "height": 4.362665176391602,
+        "ground": [
+          834.40234375,
+          72,
+          -5138.29345703125
+        ],
+        "parts": 14
+      }
+    },
+    {
+      "baseline": {
+        "chapter": "DW-03",
+        "maxFloorError": 0,
+        "clearance": 4.903799533843994,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.399999618530273,
+          4.350000858306885,
+          4.600000858306885
+        ],
+        "goal": "exp_1",
+        "model": "ReliefRosterStand",
+        "anchor": [
+          -712.5999755859375,
+          18,
+          -1711.050048828125
+        ],
+        "height": 4.350000858306885,
+        "ground": [
+          -706.5291748046875,
+          18,
+          -1700.698974609375
+        ],
+        "parts": 12
+      },
+      "candidate": {
+        "chapter": "DW-03",
+        "maxFloorError": 0,
+        "clearance": 4.903799533843994,
+        "step": "step2",
+        "version": 3,
+        "bounds": [
+          5.399999618530273,
+          4.350000858306885,
+          4.600000858306885
+        ],
+        "goal": "exp_1",
+        "model": "ReliefRosterStand",
+        "anchor": [
+          -712.5999755859375,
+          18,
+          -1711.050048828125
+        ],
+        "height": 4.350000858306885,
+        "ground": [
+          -706.5291748046875,
+          18,
+          -1700.698974609375
+        ],
+        "parts": 20
+      }
+    }
+  ],
+  "unchangedModels": [
+    "AllianceLandingGuardCourse",
+    "AntechamberRailFooting",
+    "ArchiveSignalObservationSill",
+    "BarracksFreightBreach",
+    "BuriedConvoyWheelTrace",
+    "CircuitModelCatchBasin",
+    "CitadelServiceCoping",
+    "CreekCargoSill",
+    "CrewPlanWorktableFootings",
+    "CrushedLanternSill",
+    "EasternGalleryConduitSaddle",
+    "FracturedCoolantJunction",
+    "FreightCarrierWheelSeat",
+    "GateWinchAnchorPlinth",
+    "HeatworksObservationBaffle",
+    "KeeperReturnLanternNiche",
+    "MineFreightLineSeat",
+    "OuterWebRootShelf",
+    "RearguardLanternRootBank",
+    "RecoveryRainShelf",
+    "RefugePathDrain",
+    "RelayReturnHallSkirting",
+    "ScoutApproachStoneFooting",
+    "ScoutExtractionSkid",
+    "ScoutLandingStoneAbutment",
+    "StragglerBendDrainageShoulder",
+    "TwinBeaconTerraceSill",
+    "WatchtowerCableAbutment",
+    "WheeltrackForkRootCut",
+    "WindbreakAscentBank"
+  ],
+  "walks": {
+    "baseline": [
+      {
+        "chapter": "DW-03",
+        "inbound": 1.1513303518295288,
+        "distance": 31.999975204467773,
+        "outbound": 2.4532229900360107
+      },
+      {
+        "chapter": "EC-03",
+        "inbound": 1.6797747611999512,
+        "distance": 31.99984359741211,
+        "outbound": 1.8746587038040161
+      },
+      {
+        "chapter": "FV-03",
+        "inbound": 1.3963432312011719,
+        "distance": 31.99971580505371,
+        "outbound": 2.27170467376709
+      },
+      {
+        "chapter": "GW-03",
+        "inbound": 1.4027963876724243,
+        "distance": 31.999954223632812,
+        "outbound": 2.1968274116516113
+      },
+      {
+        "chapter": "HG-03",
+        "inbound": 1.6794891357421875,
+        "distance": 32,
+        "outbound": 1.920379638671875
+      }
+    ],
+    "candidate": [
+      {
+        "chapter": "DW-03",
+        "inbound": 1.68467378616333,
+        "distance": 31.999975204467773,
+        "outbound": 1.1201459169387817
+      },
+      {
+        "chapter": "EC-03",
+        "inbound": 1.6797747611999512,
+        "distance": 31.99984359741211,
+        "outbound": 1.0747041702270508
+      },
+      {
+        "chapter": "FV-03",
+        "inbound": 1.6624681949615479,
+        "distance": 31.99971580505371,
+        "outbound": 1.2056752443313599
+      },
+      {
+        "chapter": "GW-03",
+        "inbound": 1.6692116260528564,
+        "distance": 31.999954223632812,
+        "outbound": 1.1309170722961426
+      },
+      {
+        "chapter": "HG-03",
+        "inbound": 1.6794891357421875,
+        "distance": 32,
+        "outbound": 1.120391845703125
+      }
+    ]
+  },
+  "framePairs": [
+    "DW-03-approach",
+    "DW-03-side",
+    "GW-03-approach",
+    "GW-03-side",
+    "FV-03-approach",
+    "FV-03-side",
+    "EC-03-approach",
+    "EC-03-side",
+    "HG-03-approach",
+    "HG-03-side"
+  ],
+  "expansionRegression": {
+    "baseline": {
+      "generationSeconds": 30.079998958390206,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 56583
+    },
+    "candidate": {
+      "generationSeconds": 35.796329708304256,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 56613
+    }
+  }
+}
