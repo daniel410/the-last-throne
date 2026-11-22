@@ -30,6 +30,8 @@ parser = argparse.ArgumentParser(description=__doc__)
 for label in ('baseline', 'candidate', 'baseline_regression', 'candidate_regression'):
     parser.add_argument(label, type=Path)
 parser.add_argument('--baseline-version', default='0.115.23')
+parser.add_argument('--expected-regression', nargs=4, type=int, default=(82, 246, 3968, 9193),
+                    metavar=('INCIDENTS', 'STEPS', 'SAMPLES', 'CHECKS'))
 parser.add_argument('--output-dir', type=Path, default=Path(__file__).resolve().parent)
 args = parser.parse_args()
 before, after = args.baseline.read_text(), args.candidate.read_text()
@@ -74,7 +76,7 @@ expansion = {}
 for label in ('baseline', 'candidate'):
     report, = records(getattr(args, label + '_regression').read_text(), 'CAMPAIGN_EXPANSION_NATIVE')
     assert report['blockers'] == []
-    assert (report['incidents'], report['steps'], report['samples'], report['checks']) == (82, 246, 3968, 9193)
+    assert (report['incidents'], report['steps'], report['samples'], report['checks']) == tuple(args.expected_regression)
     expansion[label] = report
 assert expansion['candidate']['parts'] - expansion['baseline']['parts'] == sum(
     candidate[name]['parts'] - baseline[name]['parts'] for name in targets
