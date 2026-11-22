@@ -5,7 +5,7 @@
 
 - 최신 비공개 게시 빌드 0.115.33은 로비 118·배틀 43에 반영했다. Roblox Player에서 Dawnspire 진입과 기존 영웅 표시를 확인했다. [게시 및 빈 로비 복구 확인](../evidence/release-0.115.33-20261121/README.md)
 
-- 영웅 기술 후보 0.115.43은 네 기술의 공격 자세·명중 방향을 구분하고, 같은 적에게 비슷한 충격이 겹칠 때 피격 자세의 첫 정점을 보존한다. 후보 미게시. 실제 4인 교전과 터치 실기기 수용은 후속이다. [네 영웅 자세와 적중 효과](../evidence/hero-contact-weight-20261121/README.md) · [엘프 지연 발사](../evidence/elf-late-shot-motion-20261121/README.md) · [네 영웅의 발사축과 자세](../evidence/hero-release-alignment-20261121/README.md) · [파티 효과 우선순위](../evidence/hero-vfx-priority-20261121/README.md) · [여덟 궁극기와 타격 마무리](../evidence/hero-ultimate-finish-20261121/README.md)
+- 영웅 기술 후보 0.115.46은 네 영웅의 이동 공격에서 방패 밀기, 어깨 충돌, 이동 사격, 서리 이탈을 각각 다른 자세와 명중 효과로 표현한다. 후보 미게시. 실제 4인 교전과 터치 실기기 수용은 후속이다. [이동 공격과 명중 검증](../evidence/hero-movement-skills-20261122/README.md) · [네 영웅 자세와 겹치는 피격](../evidence/hero-contact-weight-20261121/README.md) · [엘프 지연 발사](../evidence/elf-late-shot-motion-20261121/README.md) · [네 영웅의 발사축과 자세](../evidence/hero-release-alignment-20261121/README.md) · [파티 효과 우선순위](../evidence/hero-vfx-priority-20261121/README.md) · [여덟 궁극기와 타격 마무리](../evidence/hero-ultimate-finish-20261121/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
 - 에픽 환경 0.115.40 후보는 다섯 에픽 2장 길목의 조형과 명암을 손봤다. GW 야간 최초 발견과 HG 귀환 시야의 실제 조작 확인은 후속이다. 후보 미게시·G5 진행 중. [2장 빌드와 Studio 비교](../evidence/epic-second-chapter-landmark-readability-20261122/README.md) · [4장 복구 지물](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면](../evidence/epic-finale-route-profiles-20261121/README.md)

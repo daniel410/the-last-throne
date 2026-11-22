@@ -1,0 +1,280 @@
+{
+  "baselineBuild": {
+    "version": "0.115.43",
+    "sourceCommit": "c3974c3f0ae730b4a1c8e865ac88980aaa30b75d",
+    "sha256": "f426c769dcbd820c4e23ee8f9e8e89b8b974fc642cceba382e1005c5711f7222"
+  },
+  "candidateBuild": {
+    "version": "0.115.46",
+    "sourceCommit": "014c47078763e98c2830457d44cfb56fffca12ef",
+    "sha256": "c9dd9c0f6f4f19d72dca269774d58df586bcde0464cfc6d69de766bbe678226f"
+  },
+  "modulesMatchedToBuildSources": [
+    "AdvancedSkillMotion",
+    "AdvancedSkillVisual",
+    "HeroVFX",
+    "HeroVFXArt",
+    "RangedActionPoses"
+  ],
+  "candidateStudioPassed": {
+    "movement-candidate": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "pass": true,
+        "checks": 67
+      }
+    },
+    "hero-skills": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      }
+    },
+    "hero-skill-impact": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      }
+    },
+    "hero-vfx-priority": {
+      "exitCode": 0,
+      "result": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      }
+    },
+    "hero-contact-weight": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "pass": true,
+        "checks": 53
+      }
+    },
+    "hero-release-alignment": {
+      "exitCode": 0,
+      "result": {
+        "poses": {
+          "retreatKnee": 44.92847442626953,
+          "spearElbow": 35,
+          "R15": {
+            "crescentLoadYaw": 31.448177337646484,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -28.126220703125
+          },
+          "R6": {
+            "crescentLoadYaw": 36.995384216308594,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -31.765085220336914
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 26
+      }
+    },
+    "elf-late-shot-motion": {
+      "exitCode": 0,
+      "result": {
+        "timeline": {
+          "elf.marksman.heavy_draw": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9325581395348818
+          },
+          "elf.marksman.crossfire": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "basic": {
+            "release": 0.8,
+            "snap": 0.8499999999999919,
+            "after": 0.9534210158586968
+          },
+          "elf.common.rapid": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.7999999999999647
+          },
+          "elf.marksman.grand_volley": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "elf.common.aimed": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9388888888888871
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 39
+      }
+    },
+    "skill-vfx-individual": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 306
+      }
+    },
+    "ranged-action-poses": {
+      "exitCode": 0,
+      "result": {
+        "checks": 158,
+        "pass": true,
+        "maxRedrawJumpDegrees": 0.011101223528385162,
+        "actions": 132,
+        "rigs": [
+          "R6",
+          "R15"
+        ]
+      }
+    },
+    "element-vfx-updated": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "pass": true,
+        "checks": 84
+      }
+    }
+  },
+  "candidateStudioCheckCount": 246042,
+  "baselineStudio": {
+    "movement-baseline": {
+      "exitCode": 1,
+      "result": {
+        "failures": [
+          "Breaker Charge lowers the lead leg R6",
+          "Breaker Charge raises the second shield drive R6",
+          "Iron Shoulder tucks the left arm and loads the lead knee R6",
+          "Breaker Charge lowers the lead leg R15",
+          "Breaker Charge raises the second shield drive R15",
+          "Iron Shoulder tucks the left arm and loads the lead knee R15",
+          "Gliding Shot cants the bow and extends the trailing leg",
+          "Gliding Shot wake starts at the weapon socket and ends at the confirmed aim",
+          "Gliding Shot keeps one wake and one arrow",
+          "Gliding Shot braces the lead leg while releasing the string",
+          "Frost Step sweeps its palm to the rear and plants the lead foot",
+          "Breaker Charge projects distinct shield heights along the accepted heading",
+          "Breaker Charge uses the compact shield silhouette for allies",
+          "Breaker Charge projects distinct shield heights along the accepted heading",
+          "Breaker Charge uses the compact shield silhouette for allies",
+          "Iron Shoulder pressure leaves the leading left shoulder in the accepted direction",
+          "Frost tracks span the server's shortened path",
+          "Frost Step has a smaller departure burst",
+          "knight.steel_knight.breaker_charge has two authored contact edges and no generic volume",
+          "knight.steel_knight.breaker_charge contact stays within the two-beam budget",
+          "dwarf.iron_axe.iron_shoulder has two authored contact edges and no generic volume",
+          "dwarf.iron_axe.iron_shoulder contact stays within the two-beam budget",
+          "elf.magic_archer.gliding_shot has two authored contact edges and no generic volume",
+          "elf.magic_archer.gliding_shot contact stays within the two-beam budget",
+          "mage.cryo.frost_step has two authored contact edges and no generic volume",
+          "mage.cryo.frost_step contact stays within the two-beam budget",
+          "Breaker Charge projects distinct shield heights along the accepted heading",
+          "Breaker Charge uses the compact shield silhouette for allies",
+          "Breaker Charge projects distinct shield heights along the accepted heading",
+          "Breaker Charge uses the compact shield silhouette for allies",
+          "Iron Shoulder pressure leaves the leading left shoulder in the accepted direction",
+          "The shoulder plate is reserved for the caster",
+          "Frost tracks span the server's shortened path",
+          "Frost Step has a smaller departure burst",
+          "knight.steel_knight.breaker_charge has two authored contact edges and no generic volume",
+          "knight.steel_knight.breaker_charge contact stays within the two-beam budget",
+          "dwarf.iron_axe.iron_shoulder has two authored contact edges and no generic volume",
+          "dwarf.iron_axe.iron_shoulder contact stays within the two-beam budget",
+          "elf.magic_archer.gliding_shot has two authored contact edges and no generic volume",
+          "elf.magic_archer.gliding_shot contact stays within the two-beam budget",
+          "mage.cryo.frost_step has two authored contact edges and no generic volume",
+          "mage.cryo.frost_step contact stays within the two-beam budget",
+          "Breaker Charge keeps the range boundary and removes its redundant shield plate"
+        ],
+        "pass": false,
+        "checks": 67
+      }
+    },
+    "element-vfx-original-baseline": {
+      "exitCode": 1,
+      "result": {
+        "failures": [
+          "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:54: attempt to index nil with 'Color'50312.rbxmx.run-in-roblox-plugin.Main:54\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+        ],
+        "pass": false,
+        "checks": 40
+      }
+    },
+    "element-vfx-updated-baseline": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "pass": true,
+        "checks": 84
+      }
+    }
+  },
+  "candidateOriginalPaletteFixture": {
+    "exitCode": 1,
+    "result": {
+      "failures": [
+        "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:54: attempt to index nil with 'Color'50312.rbxmx.run-in-roblox-plugin.Main:54\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+      ],
+      "pass": false,
+      "checks": 40
+    }
+  },
+  "cpu": {
+    "advanced-skills": {
+      "pass": true,
+      "checks": 1435
+    },
+    "skill-effects": {
+      "pass": true,
+      "checks": 13712
+    },
+    "skill-presentation": {
+      "pass": false,
+      "sameOnBaseline": true,
+      "error": "K0MeleeMotion.luau:142: syntax error near *"
+    }
+  },
+  "capture": {
+    "mode": "Studio Run",
+    "rig": "R15",
+    "posesPerBuild": 4,
+    "effectsPerBuild": 4,
+    "effectSeconds": 0.045
+  },
+  "published": false
+}

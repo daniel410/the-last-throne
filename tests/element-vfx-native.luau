@@ -50,7 +50,13 @@ local ok,err=xpcall(function()
   check(flare.ImageColor3.R>.95 and flare.ImageColor3.G>.6 and flare.ImageColor3.B<.25,'holy body is golden: '..id)
   check(core.ImageColor3.B<.6 and core.ImageColor3.G>.8,'holy highlight stays warm gold: '..id)
   local contact=assert(Hero.contact(last,'knight',id,Vector3.new(0,0,-1),1))
-  check(contact:FindFirstChild('ContactVolume',true).Color.B<.6,'holy contact stays gold')
+  if id=='knight.paladin.oathbreaker_strike'then
+   local cleft=contact:FindFirstChild('OathbreakerContactCleft',true)
+   check(cleft and cleft:IsA('Beam') and cleft.Color.Keypoints[1].Value.B<.6,'holy cleft stays gold')
+  else
+   local volume=contact:FindFirstChild('ContactVolume',true)
+   check(volume and volume.Color.B<.6,'holy contact stays gold: '..id)
+  end
  end end
  check(holyCount==13,'all thirteen paladin skills checked')
  check(Catalog.byId['knight.common.bash'].key=='shield','physical shield remains unchanged')
