@@ -5,7 +5,7 @@ local M = Enum.Material
 
 local function stragglerBendShoulder(pal, part)
 	local fieldstone = pal.rock:Lerp(pal.trim, .53)
-	local cutFace = fieldstone:Lerp(C(167, 150, 112), .65)
+	local cutFace = fieldstone:Lerp(C(188, 171, 129), .76)
 	local runoff = pal.ground:Lerp(C(108, 83, 59), .72)
 	local depositedSilt = runoff:Lerp(C(161, 132, 92), .65)
 	local moss = pal.ground:Lerp(pal.leaf, .43)
@@ -17,7 +17,7 @@ local function stragglerBendShoulder(pal, part)
 		local x = .91 - i * .29
 		part('ShelterBendFieldstone', V(2.72, .91 + i * .12, 2.4), V(x, .37 + i * .06, z),
 			fieldstone:Lerp(pal.rock, i * .13), M.Cobblestone, nil, V(0, .09 * i, 0))
-		part('WashedCopingShale', V(2.56, .36, 2.29), V(x, .96 + i * .12, z + .03), cutFace,
+		part('WashedCopingShale', V(2.56, .53, 2.29), V(x, 1.045 + i * .12, z + .03), cutFace,
 			M.Slate, 'Wedge', V(0, -math.pi / 2 + .09 * i, 0))
 	end
 	-- Sediment collects where the water drops off the stone-lined bend.
@@ -31,16 +31,17 @@ end
 
 local function outerWebRootShelf(pal, part, beam)
 	local shale = pal.rock:Lerp(pal.trim, .56)
-	local freshShale = shale:Lerp(C(156, 158, 137), .70)
+	local freshShale = shale:Lerp(C(178, 187, 196), .82)
 	local bark = pal.wood:Lerp(C(139, 111, 90), .63)
 	local heartwood = bark:Lerp(C(192, 162, 117), .50)
 	part('RootShelfBuriedShale', V(4.9, 1.37, 10.1), V(.48, .39, .02), pal.rock, M.Slate,
 		'Wedge', V(0, math.pi, 0))
 	part('RootShelfExposedEdge', V(2.8, .83, 7.5), V(-.86, .26, -.57), shale, M.Slate,
 		'Wedge', V(0, -.22, 0))
-	part('RootShelfSplitBedding', V(1.6, .42, 4.34), V(1.19, .34, -2.23), freshShale, M.Slate,
+	-- The exposed bedding is thickest at the observation side of the root.
+	part('RootShelfSplitBedding', V(1.6, .76, 4.34), V(1.19, .58, -2.23), freshShale, M.Slate,
 		'Wedge', V(0, math.pi + .12, 0))
-	part('RootShelfReturnBedding', V(1.82, .44, 2.30), V(.34, .34, 3.12), freshShale, M.Slate,
+	part('RootShelfReturnBedding', V(1.82, .58, 2.30), V(.34, .43, 3.12), freshShale:Lerp(shale, .24), M.Slate,
 		'Corner', V(0, -.24, 0))
 	beam('RootShelfShoulder', V(.45, .24, -4.66), V(.77, 2.08, 1.12), 1.15, bark, M.Wood)
 	beam('RootShelfBuriedFork', V(.77, 2.08, 1.12), V(2.19, .26, 4.36), .84, bark, M.Wood)
@@ -69,7 +70,7 @@ local function twinBeaconTerraceSill(pal, part)
 	part('TerraceCompressedSnow', V(5.63, .38, 1.19), V(.72, .17, -1.78), treadSnow, M.Snow, 'Wedge')
 	part('TerraceCopingSnowCurl', V(1.91, .58, 1.30), V(-2.17, .93, .50), drift, M.Snow,
 		'Corner', V(0, -.19, 0))
-	part('FracturedTerraceEnd', V(1.45, .64, 2.66), V(3.15, .49, 1.19), ashlar, M.Slate,
+	part('FracturedTerraceEnd', V(1.45, .87, 2.66), V(3.15, .605, 1.19), exposedSlate, M.Slate,
 		'Corner', V(0, -.36, 0))
 end
 
@@ -79,6 +80,7 @@ local function mineFreightLineSeat(pal, part)
 	local rail = C(104, 95, 87)
 	local plate = rail:Lerp(C(158, 132, 109), .59)
 	local tread = rail:Lerp(C(177, 160, 144), .61)
+	local cutIron = C(154, 148, 137)
 	part('FreightLineAshBallast', V(5.65, .65, 9.52), V(0, .27, 0), ash, M.Ground, 'Wedge')
 	for _, z in ipairs({-3.11, -.1, 3.19}) do
 		part('FreightLineBasaltSleeper', V(4.73, .70, 1.11), V(0, .48, z), basalt, M.Basalt)
@@ -91,8 +93,8 @@ local function mineFreightLineSeat(pal, part)
 		part('FreightRailWeb', V(.17, .24, 7.81), V(x, 1.30, .04), rail, M.CorrodedMetal)
 		part('FreightRailWornHead', V(.31, .14, 7.81), V(x, 1.46, .04), tread, M.Metal)
 		part('FreightRailCutFoot', V(.47, .15, .24), V(x, 1.155, -3.94), plate, M.CorrodedMetal)
-		part('FreightRailCutWeb', V(.19, .24, .24), V(x, 1.31, -3.94), plate, M.CorrodedMetal)
-		part('FreightRailCutHead', V(.36, .14, .24), V(x, 1.47, -3.94), tread, M.Metal)
+		part('FreightRailCutWeb', V(.19, .20, .24), V(x, 1.29, -3.94), plate, M.CorrodedMetal)
+		part('FreightRailCutHead', V(.41, .18, .24), V(x, 1.45, -3.94), cutIron, M.Metal)
 	end
 end
 
@@ -100,6 +102,7 @@ local function keeperReturnLanternNiche(pal, part)
 	local ashlar = pal.rock:Lerp(C(151, 144, 134), .59)
 	local coping = pal.trim:Lerp(C(181, 167, 145), .56)
 	local wornStone = ashlar:Lerp(C(168, 151, 123), .72)
+	local exposedReveal = C(177, 170, 154)
 	local iron = C(101, 99, 94)
 	part('KeeperNicheApron', V(6.68, .52, 4.48), V(0, .21, .18), pal.ground:Lerp(ashlar, .53),
 		M.Cobblestone, 'Wedge', V(0, math.pi, 0))
@@ -108,11 +111,14 @@ local function keeperReturnLanternNiche(pal, part)
 	for _, x in ipairs({-1.43, 1.43}) do
 		part('KeeperNicheJambLowerCourse', V(.96, .95, 1.99), V(x, 1.265, .32), ashlar, M.Slate)
 		part('KeeperNicheJambBed', V(.96, .18, 1.99), V(x, 1.83, .32), wornStone, M.Limestone)
-		part('KeeperNicheJambUpperCourse', V(.96, 1.63, 1.99), V(x, 2.715, .32), ashlar, M.Slate)
+		local upperStone = x < 0 and exposedReveal or ashlar
+		part('KeeperNicheJambUpperCourse', V(.96, 1.63, 1.99), V(x, 2.715, .32), upperStone, M.Limestone)
 		part('KeeperNicheBeveledShoulder', V(.94, .53, 2.12), V(x, 3.75, .34), coping, M.Slate,
 			'Wedge', V(0, math.sign(x) * math.pi / 2, 0))
 	end
-	part('KeeperNicheLintel', V(2.0, .53, 2.11), V(0, 3.75, .34), coping, M.Slate)
+	-- A chamfer exposes the limestone over the recess above the route marker.
+	part('KeeperNicheLintel', V(2.0, .53, 2.11), V(0, 3.75, .34), exposedReveal, M.Limestone,
+		'Wedge')
 	part('KeeperNicheWornSill', V(2.04, .32, 1.88), V(0, .95, .08), coping, M.Cobblestone)
 	part('KeeperNicheDripNose', V(1.91, .24, .62), V(0, .83, -.90), wornStone, M.Limestone,
 		'Wedge', V(0, math.pi, 0))
