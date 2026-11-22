@@ -84,7 +84,8 @@ end end end
 check(count==116,'execute all advanced skills and all pulses')
 local expectedPulses=0
 for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do
- if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and d.id~='elf.marksman.crossfire' then
+ local usesSocketTrace=d.id=='elf.marksman.crossfire' or d.id=='dwarf.gunner.quickfire' or d.id=='elf.magic_archer.echo_arrows'
+ if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and not usesSocketTrace then
   expectedPulses=expectedPulses+d.pulses
  end
 end end

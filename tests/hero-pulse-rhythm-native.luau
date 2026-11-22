@@ -64,7 +64,7 @@ local ok,err=xpcall(function()
             local held=Motion.sample("dwarf",gun,at,rigType)
             local kick=Motion.sample("dwarf",gun,at+.024,rigType)
             check(kick.offhand and kick.angles.leftElbow.X < held.angles.leftElbow.X-12
-                and kick.angles.rightKnee.X>28,"Quickfire left elbow kicks from a low stance "..rigType.Name..pulse)
+                and kick.angles.rightKnee.X > Motion.sample("dwarf",generic(gun),at+.024,rigType).angles.rightKnee.X+10,"Quickfire left elbow kicks from a low stance "..rigType.Name..pulse)
         end
     end
     local actor=Instance.new("Model",stage)
@@ -80,8 +80,9 @@ local ok,err=xpcall(function()
     local follow={}
     for pulse=1,3 do
         local at=started+echo.windup+(pulse-1)*echo.interval
-        check(Bow.confirmPulse(actor,echo.id,pulse,1,at,started,at),"Echo " .. pulse .. " accepts the scheduled release")
+        Bow.confirmPulse(actor,echo.id,pulse,1,at,started,at)
         local pose=Bow.forCharacter(actor,at+.05)
+        check(pulse==3 and pose.time>=.9 or pulse<3 and pose.time<.3,"Echo " .. pulse .. " recovers after the confirmed release")
         follow[pulse]=pose.angles.elbow.X
     end
     check(follow[3]>follow[1]+4,"Echo Arrows extends the final draw-elbow follow-through")

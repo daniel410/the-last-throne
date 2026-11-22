@@ -1,4 +1,7 @@
 assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,"Local fixture only")
+-- Let Studio finish entering Run before starting the short flight windows.
+if not game.RunService:IsRunning() then game.RunService:Run() end
+task.wait(.75)
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local Catalog=require(game.ReplicatedStorage.Shared.PixelFXCatalog)
 local Bomb=require(Client.BombVisual)

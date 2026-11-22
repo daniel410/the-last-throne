@@ -1,0 +1,290 @@
+{
+  "baselineBuild": {
+    "version": "0.115.47",
+    "sourceCommit": "4bf0e379487e1a90a3fe3a60779b5072e7a47035",
+    "sha256": "4befdbfabc70bf76898242af3cfad2edc29914982a25ca0ae5f3416287fa615f"
+  },
+  "candidateBuild": {
+    "version": "0.115.48",
+    "sourceCommit": "eafd32e92916397539e0494e1a5b8f749882c66e",
+    "sha256": "9f6fd47d981662e71b1f7d77e732bbc690701e2f1ad11f6cf3f9fbe03d945c59"
+  },
+  "candidateStudioPassed": {
+    "hero-skills": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      }
+    },
+    "hero-skill-beats": {
+      "exitCode": 0,
+      "result": {
+        "checks": 75,
+        "scatter": {
+          "secondSegments": 24,
+          "afterDodgeSegments": 0,
+          "openingSegments": 24
+        },
+        "rhythm": {
+          "dwarf": [
+            true,
+            true
+          ],
+          "mage": [
+            true,
+            true,
+            true
+          ],
+          "knight": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "elf": [
+            true,
+            true,
+            true
+          ]
+        },
+        "pass": true,
+        "failures": []
+      }
+    },
+    "hero-vfx-priority": {
+      "exitCode": 0,
+      "result": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      }
+    },
+    "skill-vfx-art": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "pass": true,
+        "checks": 43
+      }
+    },
+    "hero-skill-impact": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      }
+    },
+    "ranged-action-poses": {
+      "exitCode": 0,
+      "result": {
+        "checks": 158,
+        "pass": true,
+        "maxRedrawJumpDegrees": 0.011101223528385162,
+        "actions": 132,
+        "rigs": [
+          "R6",
+          "R15"
+        ]
+      }
+    },
+    "projectile-vfx-timing": {
+      "exitCode": 0,
+      "result": {
+        "pass": true,
+        "checks": 192
+      }
+    },
+    "skill-vfx-individual": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 306
+      }
+    },
+    "elf-late-shot-motion": {
+      "exitCode": 0,
+      "result": {
+        "timeline": {
+          "elf.marksman.heavy_draw": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9325581395348818
+          },
+          "elf.marksman.crossfire": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "basic": {
+            "release": 0.8,
+            "snap": 0.8499999999999919,
+            "after": 0.9534210158586968
+          },
+          "elf.common.rapid": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.7999999999999647
+          },
+          "elf.marksman.grand_volley": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "elf.common.aimed": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9388888888888871
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 39
+      }
+    },
+    "candidate-final": {
+      "exitCode": 0,
+      "result": {
+        "beamCounts": {
+          "ally": [
+            1,
+            1,
+            1
+          ],
+          "caster": [
+            1,
+            1,
+            1
+          ]
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 85
+      }
+    },
+    "gunner-candidate-warm": {
+      "exitCode": 0,
+      "result": {
+        "pass": true,
+        "checks": 180
+      }
+    }
+  },
+  "baselineRegression": {
+    "exitCode": 1,
+    "result": {
+      "beamCounts": {
+        "ally": [],
+        "caster": []
+      },
+      "failures": [
+        "Oathblade transfers the brace between feet R6",
+        "Quickfire left elbow kicks from a low stance R61",
+        "Quickfire left elbow kicks from a low stance R62",
+        "Quickfire left elbow kicks from a low stance R63",
+        "Oathblade transfers the brace between feet R15",
+        "Quickfire left elbow kicks from a low stance R151",
+        "Quickfire left elbow kicks from a low stance R152",
+        "Quickfire left elbow kicks from a low stance R153",
+        "Echo Arrows extends the final draw-elbow follow-through",
+        "Molten Line presses down through the palm and front knee on pulse 1",
+        "Molten Line presses down through the palm and front knee on pulse 2",
+        "Molten Line presses down through the palm and front knee on pulse 3",
+        "Oathblade follows confirmed heading caster1",
+        "Optional blade face caster1",
+        "Oathblade follows confirmed heading caster2",
+        "Optional blade face caster2",
+        "Oathblade traces downward and rising return in opposite directions caster",
+        "One socket-to-target trace casterEchoArrowWake1",
+        "No duplicate projectile shapes casterEchoArrowWake1",
+        "Echo leaf is a caster detail caster1",
+        "One socket-to-target trace casterEchoArrowWake2",
+        "No duplicate projectile shapes casterEchoArrowWake2",
+        "Echo leaf is a caster detail caster2",
+        "One socket-to-target trace casterEchoArrowWake3",
+        "No duplicate projectile shapes casterEchoArrowWake3",
+        "Echo leaf is a caster detail caster3",
+        "One socket-to-target trace casterQuickfireTracer1",
+        "No duplicate projectile shapes casterQuickfireTracer1",
+        "One socket-to-target trace casterQuickfireTracer2",
+        "No duplicate projectile shapes casterQuickfireTracer2",
+        "One socket-to-target trace casterQuickfireTracer3",
+        "No duplicate projectile shapes casterQuickfireTracer3",
+        "Molten starts near the caster caster1",
+        "Molten starts near the caster caster2",
+        "Molten starts near the caster caster3",
+        "Blocked zero-length line cannot leave a burning seam",
+        "Oathblade follows confirmed heading ally1",
+        "Oathblade follows confirmed heading ally2",
+        "Oathblade traces downward and rising return in opposite directions ally",
+        "One socket-to-target trace allyEchoArrowWake1",
+        "No duplicate projectile shapes allyEchoArrowWake1",
+        "One socket-to-target trace allyEchoArrowWake2",
+        "No duplicate projectile shapes allyEchoArrowWake2",
+        "One socket-to-target trace allyEchoArrowWake3",
+        "No duplicate projectile shapes allyEchoArrowWake3",
+        "One socket-to-target trace allyQuickfireTracer1",
+        "No duplicate projectile shapes allyQuickfireTracer1",
+        "One socket-to-target trace allyQuickfireTracer2",
+        "No duplicate projectile shapes allyQuickfireTracer2",
+        "One socket-to-target trace allyQuickfireTracer3",
+        "No duplicate projectile shapes allyQuickfireTracer3",
+        "Molten starts near the caster ally1",
+        "Molten starts near the caster ally2",
+        "Molten starts near the caster ally3",
+        "Blocked zero-length line cannot leave a burning seam",
+        "Composed release avoids a second legacy tracer",
+        "Composed release avoids a second legacy tracer"
+      ],
+      "pass": false,
+      "checks": 77
+    }
+  },
+  "baselineGunnerWarm": {
+    "exitCode": 0,
+    "result": {
+      "pass": true,
+      "checks": 180
+    }
+  },
+  "candidateGunnerBeforeWarmup": {
+    "exitCode": 1,
+    "result": {
+      "error": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:80: dwarf.gunner.shrapnel_toss releases a physical bomb before landing\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:80\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:60\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n",
+      "pass": false,
+      "checks": 19
+    }
+  },
+  "captures": {
+    "baseline": 5,
+    "candidate": 5
+  },
+  "cpu": {
+    "advanced-skills": 1435,
+    "skill-effects": 13640,
+    "skill-presentation": "Lua parse error in unchanged K0MeleeMotion.luau:142 on both builds"
+  }
+}
