@@ -67,7 +67,14 @@ for _, case in cases do
         end
         check(axis and count == 2, case.id .. " has two edges in the authored directions")
         local _, beams, chips, glows, particles, faces = FX.count()
-        check(beams == 2 and chips + glows + particles + faces == 0, case.id .. " uses only two beams")
+        local facetCount = 0
+        for _, node in effect:GetChildren() do
+            if node:IsA("WedgePart") and node.Name == "GlacialContactFacet" then facetCount += 1 end
+        end
+        local iceFacet = case == cases[4] and not compact
+        check(beams == 2 and chips + glows + particles == 0 and faces == facetCount
+            and (iceFacet and facetCount >= 2 and facetCount <= 4 or not iceFacet and facetCount == 0),
+            case.id .. " uses two beams with bounded caster-only ice facets")
         FX.clear()
     end
 

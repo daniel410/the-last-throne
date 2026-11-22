@@ -1402,10 +1402,16 @@ local function forceContact(r,at,cf,size,shape)
  for side=-1,1,2 do
   local a=at+(right*(base.X*side)+up*base.Y+dir*base.Z)*size
   local b=at+(right*(tip.X*side)+up*tip.Y+dir*tip.Z)*size
-  line(r,name,function(u)
+  local stroke=line(r,name,function(u)
    local offset=drift*u
    return a:Lerp(b,u*.20)+offset,b+offset
   end,width or .085,width and side==-1 and r.color or r.hot,.035)
+  if stroke and not r.compact and name=="GlacialContactShards" then
+   local start=#r.faces
+   local baseWidth=right*.17*size
+   Surfaces.triangle(r,"GlacialContactFacet",a-baseWidth,a+baseWidth,b,r.color,.27,Enum.Material.Ice)
+   Surfaces.animate(r,start,a,dir,0,true,.14)
+  end
  end
  if #r.lines==0 then return false end
  r.model:SetAttribute("ContactStyle",name)
