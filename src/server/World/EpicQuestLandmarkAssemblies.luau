@@ -147,6 +147,13 @@ local function creekCargoSill(pal, part)
 	for _, z in ipairs({-3.05, .07, 3.27}) do
 		part('DryCargoFieldstone', V(3.31, .82, 2.72), V(.46, .31, z), pal.rock:Lerp(gravel, .38), M.Cobblestone)
 	end
+	-- Transverse caps lift the runners clear of the wet apron while leaving a drain between the piers.
+	for _, z in ipairs({-3.05, 3.27}) do
+		part('DressedRunnerBearing', V(.72, .23, 3.18), V(.46, .72, z), gravel, M.Slate,
+			'Wedge', V(0, -math.pi / 2, 0))
+	end
+	part('SiltCaughtBetweenPiers', V(1.17, .18, 2.22), V(1.84, .28, -1.52), silt, M.Ground,
+		'Wedge', V(0, -math.pi / 2, 0))
 	for _, x in ipairs({-.61, 1.53}) do
 		part('RaisedCargoRunner', V(.65, .36, 7.86), V(x, .88, .14), washedWood, M.Wood)
 		for _, z in ipairs({-3.94, 4.22}) do
@@ -160,11 +167,17 @@ local function wheeltrackFork(pal, part, beam)
 	local shale = pal.rock:Lerp(pal.trim, .55)
 	local root = pal.wood:Lerp(C(152, 124, 91), .63)
 	local heartwood = C(179, 147, 107)
+	local shaleBreak = shale:Lerp(C(163, 167, 168), .48)
 	part('WheelCutLoamShoulder', V(12.8, .83, 4.7), V(.14, .19, -.35), loam, M.Ground, 'Wedge',
 		V(0, -math.pi / 2, 0))
 	part('CollapsedBankToe', V(2.27, .70, 4.38), V(-1.26, .19, 3.26), shale, M.Slate, 'Corner',
 		V(0, .28, 0))
+	part('WheelcutShaleLayer', V(3.98, .45, 1.04), V(-1.64, .40, -3.50), shale, M.Slate,
+		'Wedge', V(0, -math.pi / 2, 0))
+	part('FreshShaleBreak', V(.91, .25, 2.70), V(-1.94, .63, -3.93), shaleBreak, M.Slate,
+		'Wedge', V(0, .16, 0))
 	beam('ExposedShoulderRoot', V(.91, .21, -5.58), V(.83, 1.39, .91), .84, root, M.Wood)
+	beam('TrackFacingHeartwood', V(.45, .40, -4.62), V(.42, 1.23, .08), .35, heartwood, M.Wood)
 	beam('TurningRootFork', V(.83, 1.39, .91), V(-1.69, .29, 4.29), .68, root, M.Wood)
 	beam('BuriedRootFork', V(.83, 1.39, .91), V(1.95, .31, 5.02), .64, pal.wood, M.Wood)
 	-- The abraded side of the root is exposed above the bank on the approach.
@@ -183,6 +196,10 @@ local function windbreakAscent(pal, part)
 		'Wedge', bankTurn)
 	part('PackedAscentSnowToe', V(8.42, .57, 1.63), V(1.63, .25, .33), packedSnow, M.Snow, 'Wedge',
 		bankTurn)
+	part('AscentShaleBreak', V(.94, .45, 4.36), V(-1.52, .28, -3.70), pal.rock, M.Slate,
+		'Wedge', V(0, -.12, 0))
+	part('ExposedBlueIceLayer', V(.74, .26, 3.91), V(-1.63, .48, -3.80), exposedIce, M.Glacier,
+		'Wedge', V(0, -.12, 0))
 	part('ScouredBlueIce', V(5.36, .65, 2.30), V(.35, .39, -3.76), exposedIce, M.Glacier, 'Corner',
 		bankTurn)
 	part('WindcutBankEnd', V(2.6, .73, 2.46), V(-.76, .31, -5.3), packedSnow, M.Snow, 'Corner',
@@ -197,7 +214,9 @@ local function freightWheelSeat(pal, part)
 	for _, x in ipairs({-1.44, 1.44}) do
 		part('FreightWheelBasaltRunner', V(2.05, .66, 8.85), V(x, .36, .12), basalt, M.Basalt)
 		part('WornWheelContact', V(.82, .12, 7.6), V(x, .72, .28), wornStone, M.Slate)
+		part('ChockBearingShoe', V(1.56, .16, 2.24), V(x, .81, -1.94), basalt:Lerp(iron, .66), M.Metal)
 		part('ForgedWheelChock', V(1.24, .70, 1.74), V(x, 1.09, -1.98), iron, M.CorrodedMetal, 'Wedge')
+		part('ChockRearStop', V(1.32, .56, .24), V(x, 1.13, -1.14), iron:Lerp(wornStone, .35), M.Metal)
 		local side = math.sign(x)
 		part('ChockHeelPlate', V(.24, .28, 1.95), V(x + side * .59, .81, -1.95), iron, M.Metal)
 		part('ChockRetainingPin', V(.24, .38, .38), V(x + side * .69, .96, -1.38), wornStone, M.Metal,
@@ -216,6 +235,10 @@ local function scoutStoneFooting(pal, part)
 	part('RouteStoneSocket', V(3.8, .53, 3.24), V(-.14, .71, .3), slate, M.Slate)
 	part('WeatheredRouteStoneFace', V(2.75, .88, 1.60), V(-.22, 1.38, .24), coping, M.Slate,
 		nil, V(0, .10, 0))
+	part('DressedApproachFace', V(2.29, .53, .35), V(-.31, 1.45, -.57),
+		coping:Lerp(C(182, 166, 142), .41), M.Slate, nil, V(0, .10, 0))
+	part('SplitFoundationCap', V(2.38, .22, .72), V(-1.82, .68, -1.69), coping:Lerp(slate, .28), M.Slate,
+		'Wedge', V(0, -.11, 0))
 	part('ChippedRouteStoneCrown', V(2.72, .55, 1.58), V(-.22, 2.09, .24), coping:Lerp(slate, .2), M.Slate,
 		'Wedge', V(0, math.pi + .10, 0))
 	part('ChippedApproachCoping', V(3.36, .40, 1.22), V(2.32, .56, -.43), slate, M.Slate, 'Wedge',
