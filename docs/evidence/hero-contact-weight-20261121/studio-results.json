@@ -1,0 +1,618 @@
+{
+  "candidate": {
+    "version": "0.115.43",
+    "sourceCommit": "c3974c3f0ae730b4a1c8e865ac88980aaa30b75d",
+    "sha256": "f426c769dcbd820c4e23ee8f9e8e89b8b974fc642cceba382e1005c5711f7222"
+  },
+  "baseline": {
+    "version": "0.115.40",
+    "sourceCommit": "8b3dfac91057df41765934329b817aba7e119627",
+    "sha256": "628b4b835c94f72d5f5826d9ce8c891e37e368d5bceeb8d62c6b0cc95532bd1f"
+  },
+  "modulesMatchedToBuildSources": [
+    "AdvancedSkillMotion",
+    "HeroVFX",
+    "K0EnemyHitReaction",
+    "RangedActionPoses"
+  ],
+  "candidateStudio": {
+    "hero-contact-weight": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "pass": true,
+        "checks": 53
+      }
+    },
+    "hero-skill-impact": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      }
+    },
+    "hero-vfx-priority": {
+      "exitCode": 0,
+      "result": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      }
+    },
+    "hero-skills": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      }
+    },
+    "hero-skill-sockets": {
+      "exitCode": 0,
+      "result": {
+        "checks": 16,
+        "samples": [
+          {
+            "id": "knight_driving_thrust",
+            "forwardDot": 1.0000001192092896,
+            "tipHeight": 0.794403076171875,
+            "rig": "R6"
+          },
+          {
+            "id": "dwarf.gunner.gunner_shot",
+            "forwardDot": 0.9948293566703796,
+            "rig": "R6"
+          },
+          {
+            "id": "knight_driving_thrust",
+            "forwardDot": 1,
+            "tipHeight": 0.770477294921875,
+            "rig": "R15"
+          },
+          {
+            "id": "dwarf.gunner.gunner_shot",
+            "forwardDot": 0.9948296546936035,
+            "rig": "R15"
+          }
+        ],
+        "failures": [],
+        "pass": true,
+        "kind": "HERO_SKILL_SOCKETS_NATIVE"
+      }
+    },
+    "hero-release-alignment": {
+      "exitCode": 0,
+      "result": {
+        "poses": {
+          "retreatKnee": 44.92847442626953,
+          "spearElbow": 35,
+          "R15": {
+            "crescentLoadYaw": 31.448177337646484,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -28.126220703125
+          },
+          "R6": {
+            "crescentLoadYaw": 36.995384216308594,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -31.765085220336914
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 26
+      }
+    },
+    "hero-force-feedback": {
+      "exitCode": 0,
+      "result": {
+        "failures": [],
+        "pass": true,
+        "checks": 81
+      }
+    },
+    "hero-skill-beats": {
+      "exitCode": 0,
+      "result": {
+        "checks": 75,
+        "scatter": {
+          "secondSegments": 24,
+          "afterDodgeSegments": 0,
+          "openingSegments": 24
+        },
+        "rhythm": {
+          "dwarf": [
+            true,
+            true
+          ],
+          "mage": [
+            true,
+            true,
+            true
+          ],
+          "knight": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "elf": [
+            true,
+            true,
+            true
+          ]
+        },
+        "pass": true,
+        "failures": []
+      }
+    },
+    "hero-hit-feedback": {
+      "exitCode": 0,
+      "result": {
+        "kind": "HERO_HIT_FEEDBACK_NATIVE",
+        "pass": true,
+        "checks": 1667
+      }
+    },
+    "k0-skill-animation": {
+      "exitCode": 0,
+      "result": {
+        "coverage": "Actual R6/R15 joints and bow transforms; no Player, animation aesthetics, network latency or mobile acceptance",
+        "checks": 61,
+        "samples": [
+          {
+            "armDelta": 0.39147624373435974,
+            "skill": "knight.common.bash",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.0191043615341187,
+            "skill": "knight.common.whirlwind",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.469785213470459,
+            "skill": "knight.common.provoke",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.8297414779663086,
+            "skill": "knight_driving_thrust",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.1146308183670044,
+            "skill": "knight_crescent_cut",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.39147624373435974,
+            "skill": "knight_guarded_strike",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.5285187363624573,
+            "skill": "knight.steel_knight.counter_slash",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.47454652190208435,
+            "skill": "dwarf.common.overhead",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.7253426313400269,
+            "skill": "dwarf.common.throw",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.4608202278614044,
+            "skill": "dwarf.common.ground",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.1242547035217285,
+            "skill": "dwarf_hooking_chop",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.8176978230476379,
+            "skill": "dwarf_low_sweep",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.9200631976127625,
+            "skill": "dwarf_braced_throw",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.056557588279247284,
+            "skill": "elf.common.aimed",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.18174226582050323,
+            "skill": "elf.common.rapid",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.1731719672679901,
+            "skill": "elf.common.multi",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.12130684405565262,
+            "skill": "elf_retreating_shot",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.08641541749238968,
+            "skill": "elf_pinning_shot",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.1631564348936081,
+            "skill": "elf_arrow_screen",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.9107104539871216,
+            "skill": "mage.common.mana_bolt",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.141452670097351,
+            "skill": "mage.common.water_ball",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.7824414372444153,
+            "skill": "mage.common.gravity",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.311558485031128,
+            "skill": "mage_wind_lance",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.0224343538284302,
+            "skill": "mage_tidal_ring",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 1.238545298576355,
+            "skill": "mage_arcane_ward",
+            "rig": "R6"
+          },
+          {
+            "armDelta": 0.3914765417575836,
+            "skill": "knight.common.bash",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.8086758852005005,
+            "skill": "knight.common.whirlwind",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.4697847366333008,
+            "skill": "knight.common.provoke",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.0713249444961548,
+            "skill": "knight_driving_thrust",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.8944584131240845,
+            "skill": "knight_crescent_cut",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.3914765417575836,
+            "skill": "knight_guarded_strike",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.5328879952430725,
+            "skill": "knight.steel_knight.counter_slash",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.5285206437110901,
+            "skill": "dwarf.common.overhead",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.7253424525260925,
+            "skill": "dwarf.common.throw",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.8820940256118774,
+            "skill": "dwarf.common.ground",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.1223981380462646,
+            "skill": "dwarf_hooking_chop",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 2.135390281677246,
+            "skill": "dwarf_low_sweep",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.9200630187988281,
+            "skill": "dwarf_braced_throw",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.05655969679355621,
+            "skill": "elf.common.aimed",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.1817416101694107,
+            "skill": "elf.common.rapid",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.17317335307598114,
+            "skill": "elf.common.multi",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.121309794485569,
+            "skill": "elf_retreating_shot",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.08641956001520157,
+            "skill": "elf_pinning_shot",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.16315864026546478,
+            "skill": "elf_arrow_screen",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.9107104539871216,
+            "skill": "mage.common.mana_bolt",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.141452431678772,
+            "skill": "mage.common.water_ball",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 0.782441258430481,
+            "skill": "mage.common.gravity",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.311558485031128,
+            "skill": "mage_wind_lance",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.0224345922470093,
+            "skill": "mage_tidal_ring",
+            "rig": "R15"
+          },
+          {
+            "armDelta": 1.238545536994934,
+            "skill": "mage_arcane_ward",
+            "rig": "R15"
+          }
+        ],
+        "kind": "K0_SKILL_ANIMATION_NATIVE",
+        "pass": true,
+        "failures": []
+      }
+    },
+    "elf-late-shot-motion": {
+      "exitCode": 0,
+      "result": {
+        "timeline": {
+          "elf.marksman.heavy_draw": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9325581395348818
+          },
+          "elf.marksman.crossfire": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "basic": {
+            "release": 0.8,
+            "snap": 0.8499999999999919,
+            "after": 0.9534210158586968
+          },
+          "elf.common.rapid": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.7999999999999647
+          },
+          "elf.marksman.grand_volley": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "elf.common.aimed": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9388888888888871
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 39
+      }
+    },
+    "projectile-vfx-timing": {
+      "exitCode": 0,
+      "result": {
+        "pass": true,
+        "checks": 192
+      }
+    },
+    "damage-feedback": {
+      "exitCode": 0,
+      "result": {
+        "checks": 42,
+        "pass": true,
+        "kind": "DAMAGE_FEEDBACK_NATIVE",
+        "sound": {
+          "id": "rbxasset://sounds/ouch.ogg",
+          "duration": 0.3322902494331066,
+          "loaded": true
+        },
+        "failures": []
+      }
+    },
+    "deepwood-monster-motion": {
+      "exitCode": 0,
+      "result": {
+        "maxFootError": 4.76837158203125e-07,
+        "checks": 9553,
+        "kind": "DEEPWOOD_MONSTER_MOTION_NATIVE",
+        "pass": true,
+        "failures": []
+      }
+    },
+    "gunner-payload": {
+      "exitCode": 1,
+      "result": {
+        "error": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:80: dwarf.gunner.shrapnel_toss releases a physical bomb before landing\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:80\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:60\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n",
+        "pass": false,
+        "checks": 19
+      }
+    },
+    "gunner-payload-run": {
+      "exitCode": 1,
+      "result": {
+        "error": "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:81: dwarf.gunner.shrapnel_toss releases a physical bomb before landing\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:81\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:61\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n",
+        "pass": false,
+        "checks": 19
+      }
+    },
+    "gunner-payload-warm": {
+      "exitCode": 0,
+      "result": {
+        "pass": true,
+        "checks": 180
+      }
+    }
+  },
+  "baselineStudio": {
+    "hero-contact-weight": {
+      "exitCode": 1,
+      "result": {
+        "failures": [
+          "knight.paladin.oathbreaker_strike has its authored yield",
+          "knight.paladin.oathbreaker_strike reaches its first peak under equal hits",
+          "knight.paladin.oathbreaker_strike has a distinct contact in both views",
+          "knight.paladin.oathbreaker_strike has two edges in the authored directions",
+          "knight.paladin.oathbreaker_strike uses two beams with bounded caster-only ice facets",
+          "knight.paladin.oathbreaker_strike has a distinct contact in both views",
+          "knight.paladin.oathbreaker_strike has two edges in the authored directions",
+          "knight.paladin.oathbreaker_strike uses two beams with bounded caster-only ice facets",
+          "knight.paladin.oathbreaker_strike keeps the damage amount beside the single authored effect",
+          "dwarf.gunner.piercing_round has its authored yield",
+          "dwarf.gunner.piercing_round reaches its first peak under equal hits",
+          "dwarf.gunner.piercing_round has a distinct contact in both views",
+          "dwarf.gunner.piercing_round has two edges in the authored directions",
+          "dwarf.gunner.piercing_round uses two beams with bounded caster-only ice facets",
+          "dwarf.gunner.piercing_round has a distinct contact in both views",
+          "dwarf.gunner.piercing_round has two edges in the authored directions",
+          "dwarf.gunner.piercing_round uses two beams with bounded caster-only ice facets",
+          "dwarf.gunner.piercing_round keeps the damage amount beside the single authored effect",
+          "elf.magic_archer.elemental_pierce has its authored yield",
+          "elf.magic_archer.elemental_pierce reaches its first peak under equal hits",
+          "elf.magic_archer.elemental_pierce has a distinct contact in both views",
+          "elf.magic_archer.elemental_pierce has two edges in the authored directions",
+          "elf.magic_archer.elemental_pierce uses two beams with bounded caster-only ice facets",
+          "elf.magic_archer.elemental_pierce has a distinct contact in both views",
+          "elf.magic_archer.elemental_pierce has two edges in the authored directions",
+          "elf.magic_archer.elemental_pierce uses two beams with bounded caster-only ice facets",
+          "elf.magic_archer.elemental_pierce keeps the damage amount beside the single authored effect",
+          "mage.cryo.glacial_spike has its authored yield",
+          "mage.cryo.glacial_spike reaches its first peak under equal hits",
+          "mage.cryo.glacial_spike has a distinct contact in both views",
+          "mage.cryo.glacial_spike has two edges in the authored directions",
+          "mage.cryo.glacial_spike uses two beams with bounded caster-only ice facets",
+          "mage.cryo.glacial_spike has a distinct contact in both views",
+          "mage.cryo.glacial_spike has two edges in the authored directions",
+          "mage.cryo.glacial_spike uses two beams with bounded caster-only ice facets",
+          "mage.cryo.glacial_spike keeps the damage amount beside the single authored effect",
+          "Heavy contact can interrupt a light rise",
+          "Oathbreaker Strike plants the lead leg R6",
+          "Piercing Round braces before release R6",
+          "Oathbreaker Strike plants the lead leg R15",
+          "Piercing Round braces before release R15",
+          "Elemental Pierce holds a distinct bow cant",
+          "Glacial Spike carries the guiding palm upward"
+        ],
+        "pass": false,
+        "checks": 53
+      }
+    },
+    "gunner-payload-warm": {
+      "exitCode": 0,
+      "result": {
+        "pass": true,
+        "checks": 180
+      }
+    }
+  },
+  "cpu": {
+    "advanced-skills": {
+      "pass": true,
+      "checks": 1435
+    },
+    "skill-effects": {
+      "pass": true,
+      "checks": 13712
+    },
+    "skill-action-interrupt": {
+      "pass": false,
+      "sameOnBaseline": true,
+      "error": "TargetAssistRules absent in CPU test environment"
+    }
+  },
+  "capturedInStudio": {
+    "mode": "Run",
+    "rig": "R15",
+    "framesPerBuild": 8,
+    "contactSeconds": 0.035
+  },
+  "published": false
+}

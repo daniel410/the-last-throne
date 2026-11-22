@@ -11,4 +11,4 @@ TLT-033/057/059 · 2026-11-21 (EST) · 기준 0.115.40
 | Lost Ark 글로벌 · Machinist와 Destroyer | Strategic Fire는 몸을 낮춰 전방 사격을 버티며, Destroyer의 Vortex Gravity는 망치의 하강과 이어지는 폭발·표적 반응을 분리한다. TLT는 Piercing Round의 반동을 다리로 받게 하고 Oathbreaker Strike에서 검이 닿는 순간 뒤의 무게 이동을 강조했다. [Machinist](https://www.playlostark.com/en-us/news/articles/lost-ark-academy-machinist) · [Destroyer](https://www.playlostark.com/en-us/news/articles/lost-ark-academy-destroyer-class) |
 | Roblox Creator Hub | Studio와 하드웨어의 프레임 시간과 네트워크 조건을 구분한다. 두 Beam 예산과 피격 자세는 Studio에서 고정 조건으로 비교하고 실제 전투의 프레임 시간은 실기기 시험에 남긴다. [실기기 검증](https://create.roblox.com/docs/performance-optimization/test-on-hardware) |
 
-Elemental Pierce의 교차 광선은 같은 진행축 안에서 마법 활의 성격을 보여 주며, Glacial Spike는 지팡이 옆 손을 들어 올리는 동작과 솟는 파편을 연결한다. 형상은 각 판정이 확정됐을 때만 출력되며, 표식 소모 여부나 추가 상태를 따로 표시하지 않는다. 기존 적 준비·공격 중 보정과 보스 감쇠를 적용한다. [시험 및 비교](../evidence/hero-contact-weight-20261121/README.md)
+Elemental Pierce의 교차 광선은 같은 진행축 안에서 마법 활의 성격을 보여 주며, Glacial Spike는 지팡이 옆 손을 들어 올리는 동작과 솟는 파편을 연결한다. 형상은 각 판정이 확정됐을 때 출력하며 대상의 피해 결과를 표현한다. 기존 적 준비·공격 중 보정과 보스 감쇠를 적용한다. [시험 및 비교](../evidence/hero-contact-weight-20261121/README.md)
