@@ -8,7 +8,7 @@
 - 영웅 기술 후보 0.115.39는 서버 발사 확인이 늦을 때 엘프가 활시위를 놓는 동작을 복구하고 다음 발사 전에 기존 박자로 돌아온다. 후보 미게시. 실제 4인 교전과 터치 실기기 수용은 후속이다. [엘프 발사 전후 검증](../evidence/elf-late-shot-motion-20261121/README.md) · [네 영웅의 발사축과 자세](../evidence/hero-release-alignment-20261121/README.md) · [파티 효과 우선순위](../evidence/hero-vfx-priority-20261121/README.md) · [여덟 궁극기와 타격 마무리](../evidence/hero-ultimate-finish-20261121/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
-- 에픽 환경 0.115.40 후보는 다섯 에픽 2장 길목의 조형과 명암을 손봤다. GW 야간 최초 발견과 HG 귀환 시야의 실제 조작 확인은 후속이다. 후보 미게시·G5 진행 중. [2장 빌드와 Studio 비교](../evidence/epic-second-chapter-landmark-readability-20261122/README.md) · [4장 복구 지물](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면](../evidence/epic-finale-route-profiles-20261121/README.md)
+- 에픽 환경 0.115.42 후보는 다섯 에픽 3장의 구조 명부대, 귀환 표식, 난간 받침, 냉각 점검구와 관리문 문설주를 다듬었다. 후보 미게시·G5 진행 중. [3장 빌드와 Studio 비교](../evidence/epic-third-chapter-landmark-readability-20261122/README.md) · [2장 길목](../evidence/epic-second-chapter-landmark-readability-20261122/README.md) · [4장 복구 지물](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면](../evidence/epic-finale-route-profiles-20261121/README.md)
 
 - 몬스터와 페이즈 로딩은 0.114.25에서 근접 교전 시작 거리, 외형 선행 로드, 처치와 목표 저장을 개선했다. 비공개 로비·배틀에 게시했으며 실제 플레이 수용은 후속이다. [전후 재현·게시 기록·남은 수용](../evidence/monster-phase-loading-20261120/README.md) · [지역 생성과 반복 작업 계측](../evidence/world-runtime-optimization-20261118/README.md).
 
