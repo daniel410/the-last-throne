@@ -26,6 +26,10 @@ local skillProfiles = {
     ["elf.marksman.fan_break"] = {.024, .16, .19, .025, 7, 0},
     ["mage.pyro.stone_lance"] = {.034, .19, .16, -.035, 8, 0},
     ["elf.marksman.heavy_draw"] = profiles.heavyPierce,
+    ["knight.paladin.oathbreaker_strike"] = {.038, .23, .12, -.14, 10, 5},
+    ["dwarf.gunner.piercing_round"] = {.016, .13, .17, 0, 6, 0},
+    ["elf.magic_archer.elemental_pierce"] = {.025, .16, .115, .045, 5, -5},
+    ["mage.cryo.glacial_spike"] = {.034, .20, .10, .12, 7, 0},
 }
 local function profile(row, descending)
     if not row then return idleHit end
@@ -56,11 +60,11 @@ function Reaction.record(model, direction, current, row, descending, final)
     local strength = final and 1.25 or 1
     local impulse = (math.abs(response[3]) + math.abs(response[4])) * strength
     local previous = hits[model]
-    -- Rapid party hits can share a render frame. Let the larger displacement
-    -- reach its first readable pose, then allow the next hit to take over.
+    -- Similar party hits must not keep restarting the same rise. A heavier
+    -- hit can take over early; ordinary follow-ups blend after the rise.
     if previous then
         local gap = at - previous.at
-        if gap >= 0 and gap < previous.profile[1] + .02 and previous.impulse >= impulse * 1.2 then return end
+        if gap >= 0 and gap < previous.profile[1] + .02 and impulse <= previous.impulse * 1.15 then return end
     end
     local entry = Reaction.sample(model, at)
     local boneDirection = root.CFrame:VectorToObjectSpace(flat.Unit)

@@ -25,6 +25,7 @@ local bow = {
     sight=stance(v(9,-23,-10), -5, 24, 14),
     pin=stance(v(12,-16,3), 8, 27, 10),
     pierce=stance(v(14,-31,-3), -2, 28, 31),
+    elementalPierce=stance(v(9,-25,13), 23, 24, 35),
     heavy=stance(v(15,-32,-13), -17, 31, 34),
     snap=stance(v(5,14,9), 20, 15, 23),
     crossfire=stance(v(9,-8,8), 12, 24, 26),
@@ -48,6 +49,7 @@ local function bowStance(d)
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
     if d.id=="elf.marksman.heavy_draw" then return bow.heavy end
     if d.id=="elf_pinning_shot" then return bow.pin end
+    if d.id=="elf.magic_archer.elemental_pierce" then return bow.elementalPierce end
     if d.form=="line" then return bow.pierce end
     if d.branch=="magic_archer" then return bow.weave end
     return d.id and bow.sight or bow.field
@@ -145,6 +147,7 @@ local spells = {
     orb=gesture(v(-19,22,16),v(38,-24,-20),v(12,19,-6),v(22,7,26),19),
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
+    glacialSpike=gesture(v(-26,24,-18),v(31,-28,-12),v(15,10,6),v(42,-16,-10),27),
     storm=gesture(v(29,-20,19),v(48,13,27),v(-14,-18,10),v(47,-18,-14),20),
     thunderSpear=gesture(v(-26,-15,17),v(39,26,-22),v(9,-22,9),v(40,-13,-16),23),
     chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
@@ -177,6 +180,7 @@ local function spellGesture(d,profile)
         return spells.ring
     end
     if d.id=="mage.cryo.shatter_dart" then return spells.shatter end
+    if d.id=="mage.cryo.glacial_spike" then return spells.glacialSpike end
     if d.id:find("dart",1,true) then return spells.dart end
     if cue.effect=="frost" then return spells.frost end
     if d.form=="line" or d.branch=="pyro" then return spells.lance end
@@ -214,6 +218,7 @@ function Poses.mage(pose,d,profile,age)
         or s == spells.ashfall and v(-8,14,12)
         or s == spells.hailfall and v(21,-6,-8)
         or s == spells.shatter and v(-26,15,20)
+        or s == spells.glacialSpike and v(23,-12,-13)
         or Vector3.zero
     add(pose,"left",s.palm*wind+s.openPalm*guide+palmRelease*follow)
     add(pose,"torso",s.chest*(wind-.48*follow))

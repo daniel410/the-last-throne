@@ -170,6 +170,11 @@ local function gunner(d,kind,age)
   torso=v(3-6*kick,0,0)
  end
  local brace=kind=="mortar" and (14*load+12*kick+9*finish) or kind=="shoot" and 7*kick or 0
+ if d.id=="dwarf.gunner.piercing_round" then
+  -- Keep the burst on its socket axis while the stance takes the recoil.
+  brace+=8*load+10*kick
+  torso+=v(-5*kick,0,6*kick)
+ end
  local retreat=(d.move or 0)<0 and kick or 0
  local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
   torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
@@ -382,6 +387,13 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-5,17,6)*gather+v(9,-15,-8)*finish)
   offset(pose,"left",v(13,9,-12)*gather+v(-8,-6,13)*finish)
   offset(pose,"leftKnee",v(12*gather+16*finish))
+ elseif d.id=="knight.paladin.oathbreaker_strike" then
+  local load=smooth(age/(contact*.56))*(1-smooth((age/contact-.56)/.44))
+  local plant=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.17))
+  -- Leave the authored sword contact intact and put the weight through the lead leg.
+  offset(pose,"torso",v(-9,0,7)*load+v(12,0,-6)*plant)
+  offset(pose,"leftKnee",v(9*load+19*plant))
+  offset(pose,"leftHip",v(-8*plant))
  elseif d.id=="dwarf_braced_throw" then
   local phase=age/contact
   local plant=smooth(phase/.46)*(1-smooth((phase-.55)/.45))

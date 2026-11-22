@@ -1390,17 +1390,22 @@ local forceContacts={
  ["dwarf.iron_axe.stonebound_leap"]={"StoneboundContactRupture",Vector3.new(.14,-.62,.04),Vector3.new(.76,.35,.30),.22},
  ["elf.marksman.fan_break"]={"FanBreakContactSpread",Vector3.new(.16,-.28,-.91),Vector3.new(1.14,.20,.18),.15},
  ["mage.pyro.stone_lance"]={"StoneLanceContactSplinters",Vector3.new(.14,.38,-.97),Vector3.new(.76,-.42,.30),.18},
+ ["knight.paladin.oathbreaker_strike"]={"OathbreakerContactCleft",Vector3.new(.09,.77,-.20),Vector3.new(.62,-.57,.26),.13,.085,-.18},
+ ["dwarf.gunner.piercing_round"]={"RifleContactWake",Vector3.new(.20,.04,-1.55),Vector3.new(.055,.015,.73),.62,.055},
+ ["elf.magic_archer.elemental_pierce"]={"ElementalContactRibbons",Vector3.new(.49,-.28,-1.1),Vector3.new(-.32,.34,.82),.35,.085},
+ ["mage.cryo.glacial_spike"]={"GlacialContactShards",Vector3.new(.10,-.39,-.40),Vector3.new(.55,.83,.26),.12,.086,.18},
 }
 local function forceContact(r,at,cf,size,shape)
- local name,base,tip,travel=unpack(shape)
+ local name,base,tip,travel,width,lift=unpack(shape)
  local dir,right,up=cf.LookVector,cf.RightVector,cf.UpVector
+ local drift=(dir*travel+up*(lift or 0))*size
  for side=-1,1,2 do
   local a=at+(right*(base.X*side)+up*base.Y+dir*base.Z)*size
   local b=at+(right*(tip.X*side)+up*tip.Y+dir*tip.Z)*size
   line(r,name,function(u)
-   local drift=dir*(u*travel*size)
-   return a:Lerp(b,u*.20)+drift,b+drift
-  end,.085,r.hot,.035)
+   local offset=drift*u
+   return a:Lerp(b,u*.20)+offset,b+offset
+  end,width or .085,width and side==-1 and r.color or r.hot,.035)
  end
  if #r.lines==0 then return false end
  r.model:SetAttribute("ContactStyle",name)
@@ -1438,7 +1443,8 @@ local function elementalContact(r,at,cf,size)
 end
 function FX.contact(at,classId,id,direction,scale,compact)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
- local r=make(at,at,compact and .16 or .3,row.key,id,compact,true);if not r then return end
+ local force=forceContacts[id]
+ local r=make(at,at,compact and .16 or .3,row.key,id,compact,true,force and 2);if not r then return end
  r.color,r.hot=Palette.get(row.key,row.classId)
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)
@@ -1449,7 +1455,6 @@ function FX.contact(at,classId,id,direction,scale,compact)
  local piercing=row.key=='arrow' or row.key=='gun' or d and Presentation.get(d).motion=='thrust'
  local descending=d and FX.groundLead(d)
  local authored=contactStyles[id]
- local force=forceContacts[id]
  local distinctContact
  local verdict=id==SHIELD_VERDICT
  if descending then
