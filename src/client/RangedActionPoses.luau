@@ -28,6 +28,7 @@ local bow = {
     elementalPierce=stance(v(9,-25,13), 23, 24, 35),
     heavy=stance(v(15,-32,-13), -17, 31, 34),
     snap=stance(v(5,14,9), 20, 15, 23),
+    echo=stance(v(2,22,-10), 27, 18, 28),
     crossfire=stance(v(9,-8,8), 12, 24, 26),
     fan=stance(v(10,-20,15), 39, 22, 32),
     fanBreak=stance(v(18,-28,12), 29, 28, 38),
@@ -48,6 +49,7 @@ local function bowStance(d)
     if d.id=="elf.marksman.fan_break" then return bow.fanBreak end
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
     if d.crosscut then return bow.crossfire end
+    if d.id=="elf.magic_archer.echo_arrows" then return bow.echo end
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
     if d.id=="elf.marksman.heavy_draw" then return bow.heavy end
     if d.id=="elf_pinning_shot" then return bow.pin end
@@ -127,6 +129,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftHip",v(-18,0,-5)*recoil)
         add(pose,"leftKnee",v(23,0,0)*recoil)
     end
+    if s==bow.echo and since and pulse then
+        -- Keep the bow hand aimed while the draw hand opens on each successive shot.
+        local extension = (.50+.25*pulse)*recoil
+        add(pose,"right",v(-7,14,-15)*extension)
+        add(pose,"elbow",v(17,0,0)*extension)
+        add(pose,"leftKnee",v(9,0,0)*extension)
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -162,6 +171,7 @@ local spells = {
     chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
     frostStep=gesture(v(-28,22,16),v(-9,18,-36),v(19,-17,12),v(-24,27,-32),26),
+    moltenLine=gesture(v(-20,22,24),v(24,-16,-28),v(19,-12,-8),v(29,-18,-27),27),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
     stone=gesture(v(-32,-19,12),v(22,17,34),v(17,-19,-7),v(50,-14,5),26),
@@ -180,6 +190,7 @@ local function spellGesture(d,profile)
     if cue.motion=="rain" then return cue.effect=="hail" and spells.hailfall or spells.ashfall end
     if d.form=="chain" then return spells.chain end
     if d.id=="mage.pyro.stone_lance" then return spells.stone end
+    if d.id=="mage.pyro.molten_line" then return spells.moltenLine end
     if d.id=="mage.cryo.thunder_spear" then return spells.thunderSpear end
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
@@ -228,6 +239,7 @@ function Poses.mage(pose,d,profile,age)
         or s == spells.stone and v(-24,-14,-8)
         or s == spells.ashfall and v(-8,14,12)
         or s == spells.hailfall and v(21,-6,-8)
+        or s == spells.moltenLine and v(-25,-13,-15)
         or s == spells.shatter and v(-26,15,20)
         or s == spells.glacialSpike and v(23,-12,-13)
         or Vector3.zero
@@ -260,6 +272,12 @@ function Poses.mage(pose,d,profile,age)
     if s == spells.thunderSpear then
         add(pose,"right",v(21,7,-14)*follow)
         add(pose,"leftElbow",v(21,0,0)*follow)
+    end
+    if s==spells.moltenLine then
+        -- Press the guiding palm toward the ground and let the front leg absorb each pulse.
+        add(pose,"leftElbow",v(22,0,0)*follow)
+        add(pose,"torso",v(16,0,6)*follow)
+        add(pose,"leftKnee",v(17,0,0)*follow)
     end
     if finish>0 then
         if s == spells.caldera then

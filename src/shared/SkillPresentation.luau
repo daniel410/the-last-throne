@@ -4,7 +4,7 @@ local Advanced = require(script.Parent.AdvancedSkills)
 local P = {byId = {}}
 local rows = {
  steel_knight = {"counter:slash", "sweep:slash", "slash:slash", "spin:slash", "shield:shield", "counter:shield", "sweep:slash", "shield:shield", "thrust:slash", "spin:slash", "sweep:slash", "slash:slash", "shield:shield"},
- paladin = {"slash:slash", "sweep:slash", "sweep:slash", "spin:holy", "chop:slash", "shield:shield", "sweep:slash", "shield:shield", "shield:shield", "spin:holy", "cross:slash", "slash:slash", "shield:holy"},
+ paladin = {"cross:slash", "sweep:slash", "sweep:slash", "spin:holy", "chop:slash", "shield:shield", "sweep:slash", "shield:shield", "shield:shield", "spin:holy", "cross:slash", "slash:slash", "shield:holy"},
  iron_axe = {"chop:slash", "throw:axe", "sweep:earth", "chop:slash", "throw:axe", "slam:earth", "shield:shield", "throw:axe", "slam:earth", "slam:earth", "throw:axe", "slam:earth", "slam:earth"},
  gunner = {"shoot:bullet", "lob:bomb", "mortar:shell", "shoot:bullet", "lob:bomb", "mortar:shell", "shoot:bullet", "lob:bomb", "mortar:shell", "shoot:bullet", "lob:bomb", "mortar:shell", "mortar:shell"},
  marksman = {"draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "draw:arrow", "rain:rain", "draw:arrow"},

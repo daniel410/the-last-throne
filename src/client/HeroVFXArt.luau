@@ -53,9 +53,13 @@ function Art.strokes(r,c,line,curve)
  elseif kind=='MoltenLine' then
   local first=Vector3.new(c.first.X,c.floor.Y+.08,c.first.Z)
   local delta=Vector3.new(c.last.X-c.first.X,0,c.last.Z-c.first.Z)
-  for side=-1,1,2 do curve(r,'IconMoltenGroundEdge',function(t,u)
-   return first+delta*t+c.right*(side*.22+math.sin(t*19)*.14)+UP*.02
-  end,8,.085,Color3.fromRGB(255,149,42))end
+  if delta.Magnitude>.1 then
+   line(r,'MoltenPulseFront',function(u)
+    local head=math.min(1,.04+u*r.life/.09)
+    local tail=math.max(0,head-.24*(1-u))
+    return first+delta*tail,first+delta*head
+   end,.08,Color3.fromRGB(255,149,42),.22)
+  end
   r.model:SetAttribute('ArtSilhouette',kind);r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='IceWard'then
   for lane=1,3 do
@@ -155,19 +159,26 @@ function Art.surfaces(r,c)
  if kind=='MoltenLine'then
   local first=Vector3.new(c.first.X,c.floor.Y+.11,c.first.Z)
   local delta=Vector3.new(c.last.X-c.first.X,0,c.last.Z-c.first.Z)
-  for i=1,6 do
-   local a=first+delta*((i-1)/6)+c.right*math.sin((i-1)*2)*.12
-   local b=first+delta*(i/6)+c.right*math.sin(i*2)*.12
-   local mid=(a+b)*.5;local length=(b-a).Magnitude+.1
-   local crust=S.volume(r,'MoltenBasaltSeam',mid,Vector3.new(.8,.12,length),Color3.fromRGB(58,42,37),.1,'block',Enum.Material.Slate)
-   orient(r,crust,CFrame.lookAt(mid,b))
-   local hot=S.volume(r,'MoltenFlowCore',mid+UP*.085,Vector3.new(.42,.06,length),Color3.fromRGB(255,113,30),.12,'block',Enum.Material.Neon)
-   orient(r,hot,CFrame.lookAt(mid+UP*.085,b+UP*.085))
-   if hot then r.faces[#r.faces].fadeDuration=.3 end
-  end
-  for i=1,3 do
-   local pos=first+delta*(i/4)+UP*.1
-   S.volume(r,'MoltenHotNode',pos,Vector3.new(.55,.1,.6),Color3.fromRGB(255,183,55),.25,'wedge',Enum.Material.Neon)
+  if delta.Magnitude<=.1 then return true end
+  local segments=r.compact and 3 or 6
+  local span=.09/segments
+  for i=1,segments do
+   local startT,endT=(i-1)/segments,i/segments
+   local a=first+delta*startT+c.right*math.sin(startT*math.pi*4)*.12
+   local b=first+delta*endT+c.right*math.sin(endT*math.pi*4)*.12
+   local mid=(a+b)*.5;local length=(b-a).Magnitude
+   if not r.compact then
+    local crust=S.volume(r,'MoltenBasaltSeam',mid,Vector3.new(.8,.12,length),Color3.fromRGB(58,42,37),.26,'block',Enum.Material.Slate)
+    orient(r,crust,CFrame.lookAt(mid,b))
+   end
+   local surface=UP*.085
+   local width=.33+.045*c.pulse
+   local hot=S.volume(r,'MoltenFlowCore',mid+surface,Vector3.new(width,.06,length),Color3.fromRGB(255,113,30),.12,'block',Enum.Material.Neon)
+   orient(r,hot,CFrame.lookAt(mid+surface,b+surface))
+   if hot then
+    S.growLine(r,a+surface,b+surface,span,span*(i-1))
+    r.faces[#r.faces].fadeDuration=.22
+   end
   end
  elseif kind=='ThunderSpear' or kind=='LightningLine'then
   local first,last=kind=='ThunderSpear' and spearStart(c) or c.first,c.last
@@ -318,12 +329,21 @@ function Art.accents(r,c)
  if id=='dwarf.iron_axe.mountain_collapse' and not r.compact then
   local at=c.floor+c.flat*c.radius*.4+UP*3.3
   Art.axe(r,{first=at-UP,last=at,flat=c.flat,character=c.character,definition={},pulse=1})
- elseif id=='elf.magic_archer.elemental_arrow' or id=='elf.magic_archer.bloom_shot' or id=='elf.magic_archer.warden_arrow' or id=='elf.magic_archer.elemental_pierce' or id=='elf.magic_archer.echo_arrows'then
-  local n=id=='elf.magic_archer.bloom_shot' and 5 or id=='elf.magic_archer.echo_arrows' and 3 or 1
+ elseif id=='elf.magic_archer.echo_arrows'then
+  if not r.compact then
+   local length=math.min(.65+.22*c.pulse,(c.last-c.first).Magnitude*.5)
+   if length>.15 then
+    local side=CFrame.fromAxisAngle(c.dir,math.rad((c.pulse-2)*32)):VectorToWorldSpace(c.right)
+    local tip=c.last-c.dir*.14
+    leaf(r,tip-c.dir*length,c.dir,side,length,'EchoArrowLeaf')
+   end
+  end
+ elseif id=='elf.magic_archer.elemental_arrow' or id=='elf.magic_archer.bloom_shot' or id=='elf.magic_archer.warden_arrow' or id=='elf.magic_archer.elemental_pierce'then
+  local n=id=='elf.magic_archer.bloom_shot' and 5 or 1
   for i=1,n do
    local angle=i*math.pi*2/n
    local axis=n==5 and(c.right*math.cos(angle)+UP*math.sin(angle))or c.dir
-   local at=c.last-c.dir*(n==3 and i*.7 or .5)+(n==5 and axis*.28 or Vector3.zero)
+   local at=c.last-c.dir*.5+(n==5 and axis*.28 or Vector3.zero)
    leaf(r,at,axis,n==5 and(c.right*-math.sin(angle)+UP*math.cos(angle))or c.right,n==5 and 1.4 or 1.15,'NatureArrowLeaf')
   end
  elseif c.shape=='vine'then

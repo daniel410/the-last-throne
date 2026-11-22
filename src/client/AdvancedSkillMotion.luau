@@ -174,6 +174,12 @@ local function gunner(d,kind,age)
   -- Keep the burst on its socket axis while the stance takes the recoil.
   brace+=8*load+10*kick
   torso+=v(-5*kick,0,6*kick)
+ elseif d.id=="dwarf.gunner.quickfire" then
+  -- The off hand kicks, while a low stance catches all three shots.
+  brace+=11+5*kick
+  elbow-=v(19*kick)
+  right+=v(9*kick)
+  torso+=v(2-5*kick,0,-5*kick)
  end
  local retreat=(d.move or 0)<0 and kick or 0
  local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
@@ -404,6 +410,15 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-5,17,6)*gather+v(9,-15,-8)*finish)
   offset(pose,"left",v(13,9,-12)*gather+v(-8,-6,13)*finish)
   offset(pose,"leftKnee",v(12*gather+16*finish))
+ elseif d.id=="knight.paladin.oathblade" then
+  local settle=pulse>0 and smooth(since/.05)*(1-smooth((since-.05)/.15)) or 0
+  if pulse==1 then
+   offset(pose,"left",v(17,0,-12)*settle)
+   offset(pose,"rightKnee",v(13)*settle)
+  elseif pulse==2 then
+   offset(pose,"left",v(-10,0,14)*settle)
+   offset(pose,"leftKnee",v(19)*settle)
+  end
  elseif d.id=="knight.paladin.oathbreaker_strike" then
   local load=smooth(age/(contact*.56))*(1-smooth((age/contact-.56)/.44))
   local plant=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.17))

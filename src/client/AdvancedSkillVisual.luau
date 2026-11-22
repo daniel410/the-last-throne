@@ -294,7 +294,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local root=character and character:FindFirstChild("HumanoidRootPart")
   direction=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
- if pulse~=0 and not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" then
+ if pulse~=0 and not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire"
+  and id~="dwarf.gunner.quickfire" and id~="elf.magic_archer.echo_arrows" then
   PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt,direction)
  end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
@@ -385,7 +386,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if d.form=="cone" and ultimateSignature~="VolleyCrown" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
   elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then
-   local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake"))
+   local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake")
+    or primary:GetAttribute("ReleaseTrace"))
    arrow(first,center,color,character,hasWake)
   end
  elseif effect=="axe" then
@@ -402,7 +404,9 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  elseif effect=="bullet" then
   if d.form=="cone" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do segment(first,target,color,.12,.07,"ShotPellet") end
-  else segment(first,center,color,.12,.08,"RifleTracer") end
+  elseif not (primary and primary:GetAttribute("ReleaseTrace")) then
+   segment(first,center,color,.12,.08,"RifleTracer")
+  end
   if decorate then impact(first,color,.8) end
  elseif d.form=="area" or d.form=="cone" or d.form=="melee" then
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)

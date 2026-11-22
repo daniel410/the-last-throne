@@ -114,7 +114,7 @@ local function line(r,name,path,width,color,endWidth)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -694,6 +694,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
  local electricLinks={}
  local counterSlash=id=="knight.steel_knight.counter_slash"
  local crossfire=id=="elf.marksman.crossfire"
+ local oathblade=id=="knight.paladin.oathblade"
+ local quickfire=id=="dwarf.gunner.quickfire"
+ local echoArrows=id=="elf.magic_archer.echo_arrows"
  local crosscutReturn=shape=="axe" and d.crosscut and pulse%2==0
  local spinStyle=id=='knight.steel_knight.twin_cyclone'and 'CrossingCyclones'
   or id=='knight.steel_knight.blade_storm'and 'BrokenBladeStorm' or 'WaistWhirlwind'
@@ -722,8 +725,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
  local function crossPath(t)
   local side=pulse%2==0 and -1 or 1
   local arc=math.rad(angle*.46)*(2*t-1)
-  local offset=(flat*math.cos(arc)+right*math.sin(arc))*math.min(radius,6)*(.65+.18*math.sin(t*math.pi))
-  return first+offset+Vector3.yAxis*(.85-1.65*t)*side
+  -- Oathblade returns across the body; the two cuts travel in opposite directions.
+  if oathblade then arc*=side end
+  local offset=(flat*math.cos(arc)+right*math.sin(arc))*math.min(radius,6)*(.65+.18*math.sin(t*math.pi)+(oathblade and pulse==2 and .09 or 0))
+  local height=oathblade and (pulse==1 and .9-1.6*t or -.3+.9*t) or (.85-1.65*t)*side
+  return first+offset+Vector3.yAxis*height
  end
  local function counterPath(t)
   local arc=math.rad(angle*.58)*(2*t-1)
@@ -799,7 +805,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   for lane=1,count do sector(shape=="low"and"LowSweep"or"BladeRibbon",at,math.min(radius,8)*(.72+lane*.08),arc,lane,shape=="low")end
   if shape=="counter"then sector("CounterGuard",floor,2.4,110,1,true)end
  elseif shape=="cross"then
-  curve(r,"SunwardCross",crossPath,8,width,WHITE)
+  curve(r,oathblade and "OathbladeEdge" or "SunwardCross",crossPath,r.compact and oathblade and 5 or 8,width,WHITE)
+  if oathblade then r.model:SetAttribute("PrimaryIconCue",true) end
  elseif shieldStrike then
   curve(r,verdict and "VerdictCrest" or "ShieldBreakerWave",function(t,u)
    return shieldPath(t)+flat*(shieldTravel*u)
@@ -886,6 +893,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
      local tail=start:Lerp(last,math.min(1.4/length,.3))
      return start+right*(.25*(1-u)),tail
     end,.045,r.color,.018)
+   end
+  end
+ elseif quickfire or echoArrows then
+  local start=launch and (last-launch):Dot(dir)>.1 and launch or first
+  local length=(last-start).Magnitude
+  if length>.1 then
+   local trace=line(r,quickfire and "QuickfireTracer" or "EchoArrowWake",function(u)
+    return start:Lerp(last,(quickfire and .88 or .75)*u),last
+   end,width*.58,quickfire and WHITE or r.hot,width*.34)
+   if trace then
+    r.model:SetAttribute("PrimaryIconCue",true)
+    r.model:SetAttribute("ReleaseTrace",true)
    end
   end
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"then
@@ -1130,7 +1149,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)return cleavePath(t)+flat*.04 end,right,.2,.12,r.hot,6,Enum.Material.Neon)
   Surfaces.animate(r,start,first,right,.65,false,math.min(r.life,.22))
  elseif shape=="cross"then
-  Surfaces.ribbon(r,"CrossSurface",crossPath,flat,.65,.55,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
+  if not oathblade or not r.compact then
+   Surfaces.ribbon(r,"CrossSurface",crossPath,flat,.65,.55,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
+  end
  elseif shape=="thrust"then
   local start=#r.faces
   Surfaces.triangle(r,"ThrustSurface",thrustBase-right*.4,thrustTip,thrustBase+right*.4,nil,.32)
@@ -1296,6 +1317,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
     Surfaces.volume(r,"WaterFoam",at+Vector3.yAxis*.18,Vector3.new(.8,.08,.12),Color3.fromRGB(192,235,255),.35,'ball',nil,false,.35)
    end
   end
+ elseif quickfire or echoArrows then
+  -- The trace and equipped arrow already carry these releases.
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"or shape=="axe"then
   local targets={last}
   if shape=="fan"then
@@ -1345,7 +1368,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
  if not bomb and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
-  flourish(r,at,id=="knight.paladin.oathbound_assault"and .55 or d.ultimate and (final and 4.5 or 2.6) or area and 3.2 or 2.2,row.key,d.ultimate and final)
+  local scale=quickfire and .85 or echoArrows and .72 or id=="knight.paladin.oathbound_assault" and .55
+   or d.ultimate and (final and 4.5 or 2.6) or area and 3.2 or 2.2
+  flourish(r,at,scale,row.key,d.ultimate and final)
  end
  FX.step(r.at);return r.model
 end
