@@ -31,6 +31,8 @@ for label in ('baseline', 'candidate', 'baseline_regression', 'candidate_regress
     parser.add_argument(label, type=Path)
 parser.add_argument('--baseline-version', default='0.115.33')
 parser.add_argument('--output-dir', type=Path, default=Path(__file__).resolve().parent)
+parser.add_argument('--height-rise', nargs=2, metavar=('MODEL', 'STUDS'),
+                    help='Allow a bounded height increase for one landmark.')
 args = parser.parse_args()
 before, after = args.baseline.read_text(), args.candidate.read_text()
 camera_plan, = records(before, 'SECOND_CHAPTER_CAMERA_PLAN')
@@ -53,6 +55,8 @@ targets = {
     'MineFreightLineSeat', 'KeeperReturnLanternNiche',
 }
 assert targets <= baseline.keys()
+height_model, max_height_rise = args.height_rise or (None, '0')
+assert height_model is None or height_model in targets
 unchanged = sorted(baseline.keys() - targets)
 assert all(candidate[name] == baseline[name] for name in unchanged)
 for name in targets:
@@ -60,7 +64,9 @@ for name in targets:
     for field in ('chapter', 'goal', 'step', 'ground', 'anchor', 'maxFloorError'):
         assert old[field] == new[field], (name, field)
     assert old['bounds'][::2] == new['bounds'][::2], name
-    assert abs(old['height'] - new['height']) < .0001, name
+    height_rise = new['height'] - old['height']
+    allowed_rise = float(max_height_rise) if name == height_model else 0
+    assert -.0001 < height_rise < allowed_rise + .0001, name
     assert old['clearance'] == new['clearance'] >= 3, name
 chapters = {candidate[name]['chapter'] for name in targets}
 walks = {}
