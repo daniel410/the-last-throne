@@ -20,3 +20,10 @@
 | Frozen Vale | 교량을 지난 협곡 난간의 기둥 받침과 압설 아래 암반을 조사점 앞에서 확인한다. |
 | Ember Caldera | 구조로 아래 냉각 점검구의 내화벽돌, 어두운 개구와 광물 자국을 확인한다. |
 | Haunted Graveyard | 관리 통로 문턱과 문설주 귀돌이 야간 접근 및 귀환에서 이어지는지 확인한다. |
+
+## 최신 소스 통합 후 조형
+
+환경 아트가 0.115.44↔0.115.45 고정 카메라 10쌍을 다시 확인했다. Gloamwood에서는 표식보다 낮은 뿌리와 지면이 야간 첫 접근에서 하나의 어두운 면으로 읽힌다. Haunted Graveyard에서는 문설주 앞면보다 귀환 사선의 모서리와 단차가 구별하기 어렵다. [이전 Studio 비교판](../evidence/epic-third-chapter-integrated-20261122/README.md)
+
+- Gloamwood의 셰일 파단과 뿌리 속목 폭을 키워 표식 아래의 지형 단면을 드러냈다. Diablo IV 환경 제작기의 기후에 따른 표면 차이와 WoW Hallowfall의 방향 기준 지물을 참고했다. [Diablo IV 환경 제작기](https://news.blizzard.com/en-us/article/23788294/diablo-iv-quarterly-updatemarch-2022) · [WoW Hallowfall](https://worldofwarcraft.blizzard.com/en-gb/news/24125258)
+- Haunted Graveyard의 문턱과 귀돌은 마모된 석회석 면을 넓혀 관리 통로로 돌아오는 방향을 나타낸다. Lost Ark Voldis의 건축물이 주민의 일을 설명하는 방식과 Roblox의 캐릭터 규모 검증을 참고했다. [Voldis 제작기](https://www.playlostark.com/en-us/news/articles/creating-voldis) · [Roblox 환경 블로킹](https://create.roblox.com/docs/tutorials/curriculums/environmental-art/greybox-your-environment)
