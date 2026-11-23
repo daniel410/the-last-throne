@@ -298,6 +298,7 @@ local function damagePosture(enemy, amount, current)
 		return
 	end
 	enemy.lastPostureDamage = current
+	local hadPosture = enemy.posture > 0
 	enemy.posture = math.max(0, enemy.posture - amount)
 	enemy.model:SetAttribute("K0Posture", enemy.posture)
 	if enemy.posture <= 0 then
@@ -307,6 +308,7 @@ local function damagePosture(enemy, amount, current)
 		stopEnemy(enemy)
 		enemy.exposedUntil = current + enemy.config.exposeTime
 		setEnemyState(enemy, "Exposed")
+		return hadPosture
 	end
 end
 
@@ -870,17 +872,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 		enemy.branchMarks[state.heroId] = {kind = appliedMark, expires = current + 8}
 		enemy.model:SetAttribute("K0BranchMark", appliedMark)
 	end
-	if applied > 0 and hitEffectRemote then
-		-- This is presentation data for an already resolved hit, never an
-		-- input to damage. A position snapshot survives a lethal target's removal.
-		local direction = contactDirection or horizontalUnit(position - state.root.Position, attack.direction)
-		local skillId = attack.isSkill and attack.definition.id or nil
-		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, skillId,
-			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
-				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
-				classId = state.baseClassId, skillId = skillId, pulse = pulse,
-				consumedMark = consumedMark, appliedMark = appliedMark})
-	end
+	local postureBroken
 	if enemy.humanoid.Health > 0 then
   if applied > 0 then
    if Pack.interrupt(enemy,current,packContext(),attack.resolvedSampleAt or current)then
@@ -894,9 +886,13 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
    applyProvokeDebuffs(enemy,d,current)
 			if d.wet then enemy.model:SetAttribute("K0WetUntil",workspace:GetServerTimeNow()+3) end
 			if d.slow and (d.inheritedGravity or (enemy.kind~="Ogre" and not enemy.model:GetAttribute("StoryBoss"))) then
-    enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow
+    local duration=d.slowDuration or 2
+    enemy.gravityUntil=current+duration;enemy.gravityMultiplier=d.slow
     if d.inheritedGravity and not (enemy.stunUntil and current<enemy.stunUntil) then enemy.humanoid.WalkSpeed=enemy.config.walkSpeed*d.slow end
-    enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2))
+    local slowStyle=state.baseClassId=="elf" and (d.element=="nature" and "nature" or "arrow")
+     or state.baseClassId=="dwarf" and "earth" or d.element or "steel"
+    enemy.model:SetAttribute("K0SlowStyle",slowStyle)
+    enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+duration)
    end
 			if d.taunt and enemy.kind~="Ogre" then enemy.provokedBy=state;enemy.provokeUntil=current+d.taunt;enemy.model:SetAttribute("K0ProvokeUntil",workspace:GetServerTimeNow()+d.taunt) end
 			if d.push then
@@ -916,6 +912,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 			enemy.gravityUntil = current + attack.definition.slowDuration
 			enemy.gravityMultiplier = attack.definition.slowMultiplier
 			enemy.humanoid.WalkSpeed = enemy.config.walkSpeed * enemy.gravityMultiplier
+			enemy.model:SetAttribute("K0SlowStyle", "gravity")
 			enemy.model:SetAttribute("K0GravityUntil", workspace:GetServerTimeNow() + attack.definition.slowDuration)
 		end
 		if not enemy.attack and enemy.mode ~= "Exposed" and not enemy.stunUntil and not enemy.hitReactUntil then setEnemyState(enemy, "Chase") end
@@ -925,8 +922,19 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 			if d.weakenPosture and (enemy.defenseBreakUntil or 0)>current then posture=posture+d.weakenPosture end
 			if d.counterPosture and attack.counterDamage>0 then posture=posture+d.counterPosture end
 		end
-		damagePosture(enemy,posture,current)
+		postureBroken = damagePosture(enemy,posture,current)
   if applied>0 and attack.isSkill and (state.baseClassId=="dwarf" or state.baseClassId=="knight") and d.stunDuration then stunEnemy(enemy,d.stunDuration,current,state.baseClassId) end
+	end
+	if (applied > 0 or postureBroken) and hitEffectRemote then
+		-- Publish the posture transition with the confirmed hit. Position is
+		-- captured before damage so the contact also survives target removal.
+		local direction = contactDirection or horizontalUnit(position - state.root.Position, attack.direction)
+		local skillId = attack.isSkill and d.id or nil
+		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, skillId,
+			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
+				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
+				classId = state.baseClassId, skillId = skillId, pulse = pulse,
+				consumedMark = consumedMark, appliedMark = appliedMark, postureBroken = postureBroken or nil})
 	end
 	updateFeedback(state, "Hit")
 end
@@ -1692,6 +1700,7 @@ local function resetEnemy(enemy, restoreHealth)
 	enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
 	enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
 	enemy.model:SetAttribute("K0GravityUntil", nil)
+	enemy.model:SetAttribute("K0SlowStyle", nil)
 	-- Returning home preserves damage; only a full party wipe restores health.
 	if restoreHealth then enemy.humanoid.Health = enemy.humanoid.MaxHealth end
 	enemy.model:SetAttribute("K0Posture", enemy.posture)
@@ -1715,6 +1724,7 @@ local function stepEnemy(enemy, current, dt)
 		enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
 		enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
 		enemy.model:SetAttribute("K0GravityUntil", nil)
+		enemy.model:SetAttribute("K0SlowStyle", nil)
 	end
  if enemy.stunUntil then
   if current<enemy.stunUntil then enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,'Stunned');return end

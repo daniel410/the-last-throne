@@ -39,11 +39,13 @@ local bow = {
     advance=stance(v(16,-12,-8), -20, 24, 19),
     glide=stance(v(14,-19,12), 32, 22, 25),
     sky=stance(v(-16,-12,-10), -23, 24, 32),
+    vineTrap=stance(v(11,17,-9), 19, 27, 19),
     weave=stance(v(-6,24,-14), 25, 19, 28),
     warden=stance(v(-3,16,-17), 18, 22, 24),
     canopy=stance(v(-24,20,-15), 34, 30, 38),
 }
 local function bowStance(d)
+    if d.id=="elf.magic_archer.vine_trap" then return bow.vineTrap end
     if d.form=="ground" then return d.ultimate and bow.canopy or bow.sky end
     if d.ultimate and d.form=="cone" then return bow.broadside end
     if d.id=="elf.magic_archer.gliding_shot" then return bow.glide end
@@ -114,6 +116,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"neck",v(-4,-6,2)*settle)
         add(pose,"leftKnee",v(10,0,0)*settle)
     end
+    if d.id=="elf.marksman.piercing_line" then
+        -- Track the line with the bow shoulder and recover the draw elbow straight back.
+        add(pose,"neck",v(4,8,-6)*load)
+        add(pose,"right",v(-6,-16,-10)*recoil)
+        add(pose,"elbow",v(19,0,0)*recoil)
+        add(pose,"leftKnee",v(19,0,0)*recoil)
+    end
     if s == bow.fanBreak then
         -- Brace the lead leg through the spread while the draw hand opens.
         add(pose,"torso",v(-7,10,-8)*recoil)
@@ -176,6 +185,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"elbow",v(17,0,0)*extension)
         add(pose,"leftKnee",v(9,0,0)*extension)
     end
+    if s==bow.vineTrap then
+        -- Set the trap low and let the draw hand relax away from the cheek.
+        add(pose,"neck",v(12,-9,3)*load)
+        add(pose,"right",v(14,-11,-16)*recoil)
+        add(pose,"elbow",v(-15,0,0)*recoil)
+        add(pose,"leftKnee",v(16,0,0)*recoil)
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -205,6 +221,7 @@ local spells = {
     shatter=gesture(v(14,19,-23),v(29,-26,10),v(-5,17,6),v(31,10,-9),16),
     orb=gesture(v(-19,22,16),v(38,-24,-20),v(12,19,-6),v(22,7,26),19),
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
+    tidalRing=gesture(v(-9,-31,20),v(-16,25,32),v(13,-28,9),v(27,10,43),23),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
     glacialSpike=gesture(v(-26,24,-18),v(31,-28,-12),v(15,10,6),v(42,-16,-10),27),
     storm=gesture(v(29,-20,19),v(48,13,27),v(-14,-18,10),v(47,-18,-14),20),
@@ -229,6 +246,7 @@ local function spellGesture(d,profile)
     if profile=="staff_strike" then return spells.strike end
     if d.ultimate then return d.branch=="pyro" and spells.caldera or spells.tempest end
     if d.id=="mage.cryo.ice_ward" then return spells.iceWard end
+    if d.id=="mage_tidal_ring" then return spells.tidalRing end
     if profile=="ward" then return spells.ward end
     local cue = Presentation.get(d)
     if not cue then return spells.bolt end
@@ -335,9 +353,19 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"torso",v(13,0,-7)*follow)
         add(pose,"leftKnee",v(16,0,0)*follow)
     end
+    if s == spells.tidalRing then
+        -- Scoop toward the body, then open the free hand along the low wave.
+        add(pose,"leftElbow",v(-14*wind+20*follow,0,0))
+        add(pose,"left",v(22,-19,-29)*follow)
+        add(pose,"right",v(-10,16,-12)*follow)
+        add(pose,"torso",v(8,15,-8)*follow)
+    end
     if s == spells.stone then
-        add(pose,"leftElbow",v(20,0,0)*follow)
+        -- Gather low with the free hand, then absorb the stone release in the lead leg.
+        add(pose,"left",v(-19,13,11)*wind+v(12,-10,-13)*follow)
+        add(pose,"leftElbow",v(-15*wind+26*follow,0,0))
         add(pose,"torso",v(10,0,5)*follow)
+        add(pose,"leftKnee",v(21,0,0)*follow)
     end
     if s == spells.thunderSpear then
         add(pose,"right",v(21,7,-14)*follow)

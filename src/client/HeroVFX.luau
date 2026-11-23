@@ -1690,7 +1690,49 @@ local function markContact(r,at,cf,size,mark,grant)
  r.model:SetAttribute("ContactStyle",mark.name)
  return true
 end
-function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMark)
+-- Both halves open from the contact plane. The angle of the break follows
+-- the weapon, while the outward movement identifies the posture transition.
+local postureCuts={
+ knight={Vector3.new(.11,.60,0),Vector3.new(.78,.64,0),Vector3.new(.80,-.56,.06),.58},
+ dwarf={Vector3.new(.08,.81,0),Vector3.new(.28,-.06,0),Vector3.new(1.00,-.62,.12),.79},
+ elf={Vector3.new(.08,.19,.18),Vector3.new(.57,.31,-.42),Vector3.new(1.24,.02,-.92),.62},
+ mage={Vector3.new(.15,-.62,0),Vector3.new(.87,-.33,-.20),Vector3.new(.95,.78,.02),.66},
+}
+local function postureContact(r,at,cf,size,classId)
+ local cut=postureCuts[classId]
+ local right=cf.RightVector
+ local camera=workspace.CurrentCamera
+ if camera then
+  local view=camera.CFrame.Position-at
+  local horizontal=Vector3.new(view.X,0,view.Z)
+  if horizontal.Magnitude>.01 then
+   local normal=horizontal.Unit
+   right=Vector3.yAxis:Cross(normal)
+   at+=normal*.40
+  end
+ end
+ at+=Vector3.yAxis*.32
+ for side=-1,1,2 do
+  local function world(point)
+   return (right*(side*point.X)+cf.UpVector*point.Y+cf.LookVector*point.Z)*size
+  end
+  local a,b,c=world(cut[1]),world(cut[2]),world(cut[3])
+  local drift=world(Vector3.new(cut[4],-.20,-.25))
+  local function path(t,u)
+   local point=a:Lerp(b,t):Lerp(b:Lerp(c,t),t)
+   return at+point+drift*(1-(1-u)^3)
+  end
+  local stroke=line(r,"PostureBreakEdge",function(u)return path(0,u),path(1,u)end,
+   r.compact and .155 or .22,r.color:Lerp(r.hot,.56),.055,true)
+  if stroke then
+   stroke.span=function(u)return Style.span(path,0,1,u)end
+   stroke.beam.Segments=5
+  end
+ end
+ r.model:SetAttribute("PostureBroken",true)
+ r.model:SetAttribute("ContactStyle","PostureBreak")
+end
+function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMark,postureBroken)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
  local d=row.definition
  local mark=d and consumedMark and consumedMark==d.consume and markContacts[consumedMark]
@@ -1698,11 +1740,24 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  local seal=mark or grant
  local force=forceContacts[id]
  local key=mark and mark.key or grant and markContacts[appliedMark].key or row.key
- local life=seal and (compact and .16 or .22) or (compact and .16 or .3)
- local r=make(at,at,life,key,id,compact,true,(seal or force) and 2);if not r then return end
+ local life=postureBroken and (compact and .20 or .26) or seal and (compact and .16 or .22) or (compact and .16 or .3)
+ local reserve=postureBroken and (seal and 4 or 2) or (seal or force) and 2
+ local r=make(at,at,life,key,id,compact,true,reserve)
+ if not r and postureBroken and seal then
+  r=make(at,at,life,key,id,compact,true,2)
+  seal=nil
+ end
+ if not r then return end
  r.color,r.hot=Palette.get(key,row.classId)
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)
+ if postureBroken then
+  local breakSize=math.clamp(size,.7,1.35)
+  postureContact(r,at-dir*.36,cf,breakSize,classId)
+  if seal then markContact(r,at-dir*.37+Vector3.yAxis*.16,cf,breakSize*.78,seal,not mark) end
+  FX.step(r.at)
+  return r.model,true
+ end
  if seal then
   local drawn=markContact(r,at-dir*.37,cf,math.clamp(size,.7,1.35),seal,not mark)
   FX.step(r.at)
