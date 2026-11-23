@@ -29,6 +29,11 @@ def frames(log):
 parser = argparse.ArgumentParser(description=__doc__)
 for label in ('baseline', 'candidate', 'regression'):
     parser.add_argument(label, type=Path)
+parser.add_argument('--baseline-regression', type=Path)
+parser.add_argument('--expected-regression', nargs=4, type=int,
+                    default=(82, 246, 3968, 9193),
+                    metavar=('INCIDENTS', 'STEPS', 'SAMPLES', 'CHECKS'))
+parser.add_argument('--verify-footprint', action='store_true')
 parser.add_argument('--baseline-version', default='0.115.15')
 parser.add_argument('--output-dir', type=Path, default=Path(__file__).resolve().parent)
 parser.add_argument('--allow-unchanged-summary', action='append', default=[])
@@ -60,6 +65,10 @@ for name in sorted(expected):
     for field in ('chapter', 'goal', 'step', 'ground', 'anchor', 'version'):
         assert current.get(field) == prior.get(field), (name, field)
     assert current['clearance'] >= 3 and current['maxFloorError'] < .2
+    if args.verify_footprint:
+        for field in ('clearance', 'actorClearance', 'maxFloorError'):
+            assert current.get(field) == prior.get(field), (name, field)
+        assert current['bounds'][::2] == prior['bounds'][::2], (name, 'footprint')
     pairs.append({'before': prior, 'after': current})
 chapters = {pair['after']['chapter'] for pair in pairs}
 walks = {}
@@ -69,9 +78,20 @@ for label, log in (('baseline', before), ('candidate', after)):
     assert all(row.get('inbound', 2.5) < 2.5 and row.get('outbound', 2.5) < 2.5 for row in rows), rows
     walks[label] = sorted(rows, key=lambda row: row['chapter'])
 
-report, = records(regression, 'CAMPAIGN_EXPANSION_NATIVE')
-assert not report['blockers']
-assert report['incidents'] == 82 and report['steps'] == 246 and report['samples'] == 3968
+def expansion_report(log):
+    report, = records(log, 'CAMPAIGN_EXPANSION_NATIVE')
+    assert report['blockers'] == []
+    totals = tuple(report[field] for field in ('incidents', 'steps', 'samples', 'checks'))
+    assert totals == tuple(args.expected_regression), totals
+    return report
+
+
+report = expansion_report(regression)
+if args.baseline_regression:
+    baseline_report = expansion_report(args.baseline_regression.read_text())
+    changed_parts = sum(candidate[name]['parts'] - baseline[name]['parts'] for name in expected)
+    assert report['parts'] - baseline_report['parts'] == changed_parts
+    report = {'baseline': baseline_report, 'candidate': report}
 
 directory = args.output_dir
 version = json.loads((directory / 'build.json').read_text())['version']

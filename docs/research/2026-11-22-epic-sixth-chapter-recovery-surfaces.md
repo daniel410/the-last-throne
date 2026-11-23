@@ -7,7 +7,7 @@
 ## 사례와 적용
 
 - Diablo IV 환경 팀은 지역의 날씨와 사용 이력을 재질과 표면에 표현했다. 이를 배수구의 수마 흔적과 정비로의 바람에 노출된 암면에 적용했다. [Blizzard 환경 제작기](https://news.blizzard.com/en-us/article/23788294/diablo-iv-quarterly-updatemarch-2022)
-- World of Warcraft의 Ringing Deeps는 주민이 가동하는 산업 설비로 지역의 역할을 드러낸다. TLT의 관리로와 관측소에서도 받침, 접합, 사람이 서는 면이 구별되도록 조형했다. [Blizzard 지역 소개](https://worldofwarcraft.blizzard.com/en-gb/news/24125258)
+- World of Warcraft의 Ringing Deeps는 주민이 가동하는 산업 설비로 지역의 역할을 드러낸다. TLT의 관리로와 관측소에서도 받침, 접합, 사람이 서는 면이 구별되도록 조형했다. [Blizzard 지역 소개](https://news.blizzard.com/en-us/article/24125258/explore-the-zones-and-dungeons-of-the-war-within)
 - Lost Ark의 Elgacia 제작진은 사원과 도서관의 개념부터 지역의 고유성을 설계했다. 왕릉에는 석회석 작업면과 철 고정부를 조합하고 정찰대 구조 구역에는 삼베와 목재의 결합이 드러나게 했다. [Smilegate RPG 제작 인터뷰](https://www.playlostark.com/en-gb/news/articles/elgacia-lore-interview-with-gold-river)
 - Roblox 환경 가이드는 보행 가능성과 캐릭터 축척을 공간 검증에 포함한다. 기존 지형 위에서 조사 위치, 수평 외곽, R15 접근·귀환을 비교한다. [Roblox Creator Hub](https://create.roblox.com/docs/tutorials/curriculums/environmental-art/greybox-your-environment)
 
