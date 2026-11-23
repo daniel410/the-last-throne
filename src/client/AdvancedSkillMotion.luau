@@ -229,7 +229,16 @@ local function shieldPose(d,age,rigType,contact,ending)
    pose.angles[ch]=v(math.deg(x),math.deg(y),math.deg(z))
   end
  end
- if d.id=="knight.steel_knight.shield_breaker" then
+ if d.id=="knight_guarded_strike" then
+  -- Keep the shield close on entry and bring it back up after the hit.
+  local phase=age/contact
+  local brace=smooth(phase/.48)*(1-smooth((phase-.62)/.38))
+  local cover=smooth((age-contact)/.075)*(1-smooth((age-contact-.075)/.19))
+  offset(pose,"leftElbow",v(19*brace+27*cover))
+  offset(pose,"left",v(16,-10,8)*brace+v(12,-9,-10)*cover)
+  offset(pose,"torso",v(8,-11,-7)*brace+v(-9,8,-5)*cover)
+  offset(pose,"leftKnee",v(15*brace+17*cover))
+ elseif d.id=="knight.steel_knight.shield_breaker" then
   local phase=age/contact
   local brace=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
   local drive=smooth((age-contact)/.05)*(1-smooth((age-contact-.05)/.14))
@@ -418,6 +427,15 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-5,17,6)*gather+v(9,-15,-8)*finish)
   offset(pose,"left",v(13,9,-12)*gather+v(-8,-6,13)*finish)
   offset(pose,"leftKnee",v(12*gather+16*finish))
+ elseif d.id=="knight.paladin.radiant_sweep" then
+  -- Load the cut behind the shield, then open the shield arm along the sweep.
+  local phase=age/contact
+  local load=smooth(phase/.52)*(1-smooth((phase-.52)/.48))
+  local release=pulse>0 and smooth(since/.065)*(1-smooth((since-.065)/.15)) or 0
+  offset(pose,"torso",v(-7,-19,8)*load+v(-8,16,9)*release)
+  offset(pose,"left",v(19,-13,-15)*load+v(-16,12,21)*release)
+  offset(pose,"rightKnee",v(18*load))
+  offset(pose,"leftKnee",v(20*release))
  elseif d.id=="knight.paladin.oathblade" then
   local settle=pulse>0 and smooth(since/.05)*(1-smooth((since-.05)/.15)) or 0
   if pulse==1 then
@@ -444,6 +462,16 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-9,0,7)*load+v(12,0,-6)*plant)
   offset(pose,"leftKnee",v(9*load+19*plant))
   offset(pose,"leftHip",v(-8*plant))
+ elseif d.id=="dwarf_low_sweep" then
+  -- Drop through the knees before the sweep and rise through the back leg.
+  local crouch=smooth(age/(contact*.65))*(1-smooth((age-contact)/.18))
+  local rise=smooth((age-contact)/.095)*(1-smooth((age-contact-.095)/.16))
+  offset(pose,"torso",v(10,-5,12)*crouch+v(-8,11,-9)*rise)
+  offset(pose,"rightHip",v(-18,0,7)*crouch)
+  offset(pose,"leftHip",v(-24,0,-7)*crouch)
+  offset(pose,"rightKnee",v(25*crouch+8*rise))
+  offset(pose,"leftKnee",v(32*crouch))
+  offset(pose,"left",v(6,-11,19)*crouch)
  elseif d.id=="dwarf_braced_throw" then
   local phase=age/contact
   local plant=smooth(phase/.46)*(1-smooth((phase-.55)/.45))
@@ -498,10 +526,16 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"leftKnee",v(19*load+23*plant))
   offset(pose,"rightKnee",v(17*load+21*plant))
  elseif d.id=="dwarf.iron_axe.armor_splitter" then
+  -- Draw the free elbow in while the axe loads. Pull the axe back after the bite.
+  local phase=age/contact
+  local load=smooth(phase/.58)*(1-smooth((phase-.58)/.42))
   local weight=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))
-  offset(pose,"torso",v(12*weight,0,4*weight))
+  local pull=smooth((age-contact-.045)/.085)*(1-smooth((age-contact-.13)/.16))
+  offset(pose,"torso",v(-8,-11,5)*load+v(12*weight,0,4*weight)+v(-8,6,-4)*pull)
+  offset(pose,"left",v(24,-9,-14)*load)
+  offset(pose,"elbow",v(-19*pull))
   offset(pose,"leftKnee",v(13*weight))
-  offset(pose,"rightKnee",v(16*weight))
+  offset(pose,"rightKnee",v(16*weight+14*load))
  end
  if d.id=="dwarf.iron_axe.stonebound_leap" then
   local phase=math.clamp(age/math.max(.01,contact),0,1)

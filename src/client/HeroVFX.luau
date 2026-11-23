@@ -1535,6 +1535,10 @@ local forceContacts={
  ["dwarf.iron_axe.tremor_guard"]={"TremorGuardContact",Vector3.new(.12,-.75,-.83),Vector3.new(1.56,-.38,-.62),.23,.15,-.17,Vector3.new(.93,-1.12,-1.02)},
  ["elf.magic_archer.warden_arrow"]={"WardenArrowContact",Vector3.new(1.05,-.58,-1.16),Vector3.new(.08,.49,-.77),.26,.13,.09,Vector3.new(1.12,.07,-1.02)},
  ["mage.cryo.ice_ward"]={"IceWardContact",Vector3.new(.22,-.72,-.92),Vector3.new(.91,.95,-.68),.15,.15,.20,Vector3.new(.89,.08,-1.15)},
+ ["knight_guarded_strike"]={"GuardedStrikeContact",Vector3.new(.59,-.44,-.60),Vector3.new(.37,.70,-.54),.24,.13,.08,Vector3.new(.98,.28,-.82)},
+ ["dwarf_low_sweep"]={"LowSweepContact",Vector3.new(.13,-.75,-.50),Vector3.new(1.49,-.71,-.34),.31,.12,-.12,Vector3.new(.89,-.93,-.72)},
+ ["elf.magic_archer.rooting_fan"]={"RootingFanContact",Vector3.new(1.15,-.82,-.52),Vector3.new(.48,.55,-.73),.13,.12,.16,Vector3.new(.43,-.24,-.91)},
+ ["mage.cryo.frost_ring"]={"FrostRingContact",Vector3.new(.21,-.74,-.63),Vector3.new(1.22,.09,-.40),.21,.13,-.06,Vector3.new(.50,-.61,-.74)},
 }
 local function forceContact(r,at,cf,size,shape)
  local name,base,tip,travel,width,lift,bend=unpack(shape)
@@ -1608,7 +1612,15 @@ local markContacts={
  ember={name="EmberVentBreak",key="fire",from=Vector3.new(.28,-.42,-.11),bend=Vector3.new(.89,.25,-.40),to=Vector3.new(.22,1.09,-.18),drift=Vector3.new(.52,.75,-.20)},
  frost={name="FrostSealBreak",key="frost",from=Vector3.new(.05,.43,-.08),bend=Vector3.new(.72,.42,-.31),to=Vector3.new(.98,-.55,-.12),drift=Vector3.new(.88,-.47,-.19)},
 }
-local function markContact(r,at,cf,size,mark)
+local markGrants={
+ oath={name="OathSealSet",from=Vector3.new(.08,.81,0),bend=Vector3.new(.98,.10,-.13),to=Vector3.new(.06,-.72,0),drift=Vector3.new(.52,.12,-.25)},
+ fracture={name="ArmorFaultSet",from=Vector3.new(.12,.82,0),bend=Vector3.new(.05,-.40,-.09),to=Vector3.new(.63,-.37,0),drift=Vector3.new(.33,.31,-.22)},
+ weakpoint={name="WeakpointBracketSet",from=Vector3.new(.20,-.52,0),bend=Vector3.new(.96,0,-.10),to=Vector3.new(.20,.52,0),drift=Vector3.new(.78,0,-.18)},
+ nature={name="NatureBudSet",from=Vector3.new(.08,-.58,0),bend=Vector3.new(.91,-.28,-.17),to=Vector3.new(.44,.59,0),drift=Vector3.new(.57,.19,-.22)},
+ ember={name="EmberSealSet",from=Vector3.new(.06,-.53,0),bend=Vector3.new(.91,-.05,-.13),to=Vector3.new(.19,.91,0),drift=Vector3.new(.49,-.22,-.24)},
+ frost={name="FrostSealSet",from=Vector3.new(.07,-.38,0),bend=Vector3.new(.99,-.38,-.12),to=Vector3.new(.33,.61,0),drift=Vector3.new(.63,.23,-.18)},
+}
+local function markContact(r,at,cf,size,mark,grant)
  local function offset(point,side)
   return (cf.RightVector*(point.X*side)+cf.UpVector*point.Y+cf.LookVector*point.Z)*size
  end
@@ -1618,8 +1630,10 @@ local function markContact(r,at,cf,size,mark)
   local b=at+offset(mark.to,side)
   local drift=offset(mark.drift,side)
   local function path(t,u)
-   local progress=u*.22+(1-u*.22)*t
-   return a:Lerp(bend,progress):Lerp(bend:Lerp(b,progress),progress)+drift*(1-(1-u)^3)
+   local trim=grant and 0 or u*.22
+   local progress=trim+(1-trim)*t
+   local travel=grant and (1-u)^3 or 1-(1-u)^3
+   return a:Lerp(bend,progress):Lerp(bend:Lerp(b,progress),progress)+drift*travel
   end
   local stroke=line(r,mark.name,function(u)return path(0,u),path(1,u)end,
    r.compact and .128 or .19,side==1 and r.hot or r.color,.055,true)
@@ -1628,23 +1642,27 @@ local function markContact(r,at,cf,size,mark)
    stroke.beam.Segments=5
   end
  end
+ if #r.lines==0 then return false end
  r.model:SetAttribute("ContactStyle",mark.name)
+ return true
 end
-function FX.contact(at,classId,id,direction,scale,compact,consumedMark)
+function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMark)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
  local d=row.definition
  local mark=d and consumedMark and consumedMark==d.consume and markContacts[consumedMark]
+ local grant=d and appliedMark and appliedMark==d.mark and markGrants[appliedMark]
+ local seal=mark or grant
  local force=forceContacts[id]
- local key=mark and mark.key or row.key
- local life=mark and (compact and .16 or .22) or (compact and .16 or .3)
- local r=make(at,at,life,key,id,compact,true,(mark or force) and 2);if not r then return end
+ local key=mark and mark.key or grant and markContacts[appliedMark].key or row.key
+ local life=seal and (compact and .16 or .22) or (compact and .16 or .3)
+ local r=make(at,at,life,key,id,compact,true,(seal or force) and 2);if not r then return end
  r.color,r.hot=Palette.get(key,row.classId)
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)
- if mark then
-  markContact(r,at-dir*.37,cf,math.clamp(size,.7,1.35),mark)
+ if seal then
+  local drawn=markContact(r,at-dir*.37,cf,math.clamp(size,.7,1.35),seal,not mark)
   FX.step(r.at)
-  return r.model,true
+  return r.model,drawn
  end
  local profile=Profiles.get(id)
  if profile then size*=math.clamp(profile.width/.18,.65,1.6)end

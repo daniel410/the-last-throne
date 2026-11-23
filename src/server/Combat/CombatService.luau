@@ -862,6 +862,12 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 	enemy.humanoid:TakeDamage(damage)
 	if enemy.humanoid.Health > 0 then enemy.lethalHitSet = nil end
 	local applied = math.max(0, healthBefore - math.max(0, enemy.humanoid.Health))
+	local appliedMark = applied > 0 and enemy.humanoid.Health > 0 and d.advanced and d.mark or nil
+	if appliedMark then
+		enemy.branchMarks = enemy.branchMarks or {}
+		enemy.branchMarks[state.heroId] = {kind = appliedMark, expires = current + 8}
+		enemy.model:SetAttribute("K0BranchMark", appliedMark)
+	end
 	if applied > 0 and hitEffectRemote then
 		-- This is presentation data for an already resolved hit, never an
 		-- input to damage. A position snapshot survives a lethal target's removal.
@@ -871,7 +877,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
 				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
 				classId = state.baseClassId, skillId = skillId, pulse = pulse,
-				consumedMark = consumedMark})
+				consumedMark = consumedMark, appliedMark = appliedMark})
 	end
 	if enemy.humanoid.Health > 0 then
   if applied > 0 then
@@ -884,7 +890,6 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
   end
 		if applied>0 and d.advanced then
    applyProvokeDebuffs(enemy,d,current)
-			if d.mark then enemy.branchMarks=enemy.branchMarks or {};enemy.branchMarks[state.heroId]={kind=d.mark,expires=current+8};enemy.model:SetAttribute("K0BranchMark",d.mark) end
 			if d.wet then enemy.model:SetAttribute("K0WetUntil",workspace:GetServerTimeNow()+3) end
 			if d.slow and (d.inheritedGravity or (enemy.kind~="Ogre" and not enemy.model:GetAttribute("StoryBoss"))) then
     enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow
