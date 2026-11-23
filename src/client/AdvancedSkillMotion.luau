@@ -249,8 +249,11 @@ local function shieldPose(d,age,rigType,contact,ending)
   local phase=age/contact
   local brace=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
   local drive=smooth((age-contact)/.05)*(1-smooth((age-contact-.05)/.14))
-  -- Wind behind the shield and drive through the lead leg after contact.
-  offset(pose,"torso",v(-7,16,0)*brace+v(13,-6,-5)*drive)
+  local recover=smooth((age-contact-.05)/.10)*(1-smooth((age-contact-.15)/.16))
+  -- Tuck the shield before the shove, then pull it back over the chest.
+  offset(pose,"leftElbow",v(19*brace+24*recover))
+  offset(pose,"left",v(7,-9,-12)*brace+v(10,-5,8)*recover)
+  offset(pose,"torso",v(-7,16,0)*brace+v(13,-6,-5)*drive+v(-9,6,0)*recover)
   offset(pose,"leftKnee",v(16*brace+18*drive))
   offset(pose,"rightHip",v(-11*drive))
  elseif d.id=="knight.paladin.shield_verdict" then
@@ -541,6 +544,16 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"rightHip",v(-9*load-13*plant))
   offset(pose,"leftKnee",v(19*load+23*plant))
   offset(pose,"rightKnee",v(17*load+21*plant))
+ elseif d.id=="dwarf.iron_axe.crag_cleave" then
+  local phase=age/contact
+  local wind=smooth(phase/.52)*(1-smooth((phase-.58)/.42))
+  local catch=smooth((age-contact)/.07)*(1-smooth((age-contact-.07)/.19))
+  -- Load the axe to one side and let the opposite leg take the cleave.
+  offset(pose,"torso",v(-6,-19,11)*wind+v(12,18,-12)*catch)
+  offset(pose,"left",v(20,-11,19)*wind+v(-11,12,-9)*catch)
+  offset(pose,"rightHip",v(-13,0,6)*wind)
+  offset(pose,"rightKnee",v(20*wind))
+  offset(pose,"leftKnee",v(24*catch))
  elseif d.id=="dwarf.iron_axe.armor_splitter" then
   -- Draw the free elbow in while the axe loads. Pull the axe back after the bite.
   local phase=age/contact

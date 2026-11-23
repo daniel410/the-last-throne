@@ -1,4 +1,4 @@
--- Presentation only: the server broadcasts confirmed health loss. Effects
+-- Presentation only: the server broadcasts confirmed hits. Effects
 -- never decide hits or damage and stay bounded on busy multiplayer clients.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Debris = game:GetService("Debris")
@@ -97,8 +97,10 @@ end
 -- Public for isolated native fixture QA; live calls come only from OnClientEvent.
 function HitEffects.show(model, position, damage, classId, enemyKind, direction, skillId, impact)
 	local profile = profiles[classId]
+	local postureBroken = type(impact) == "table" and impact.postureBroken == true
 	if not profile or typeof(position) ~= "Vector3" or not finite(position.X) or not finite(position.Y) or not finite(position.Z)
-		or not finite(damage) or damage <= 0 or damage > 1000000 or type(enemyKind) ~= "string" then return false end
+		or not finite(damage) or damage < 0 or damage > 1000000 or (damage == 0 and not postureBroken)
+		or type(enemyKind) ~= "string" then return false end
 	if model ~= nil and (typeof(model) ~= "Instance" or not model:IsA("Model")) then return false end
 	local skill = type(skillId) == "string" and skillProfiles[skillId] or nil
 	if skill and skill.class == classId then
@@ -109,8 +111,6 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		local color,hot=Palette.resolve(classId,nil)
 		profile=table.clone(profile);profile.color=color;profile.secondary=hot
 	end
-	for i = #active, 1, -1 do if not active[i].Parent then table.remove(active, i) end end
-	if #active >= MAX_ACTIVE then table.remove(active, 1):Destroy() end
 	local flat = typeof(direction) == "Vector3" and finite(direction.X) and finite(direction.Y) and finite(direction.Z)
 		and Vector3.new(direction.X, 0, direction.Z) or Vector3.new(0, 0, -1)
 	if flat.Magnitude < .001 then flat = Vector3.new(0, 0, -1) end
@@ -120,23 +120,28 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local descending = definition and HeroVFX.groundLead(definition)
 	local final = definition and type(impact) == "table" and FinalBeat.isFinal(definition, impact.pulse)
 	local lift = descending and landingHeight(model) or .45
+	local contactPosition = position + Vector3.yAxis * .45 - flat * .8
 	-- Place a falling strike above the target. Other sparks sit on the incoming face.
 	position += Vector3.yAxis * lift
 	if not descending then position -= flat * .8 end
-	local holder = part(workspace, "K0HitEffect", position, Vector3.new(0.1, 0.1, 0.1), profile.color)
-	holder.Transparency = 1
-	if skill then holder:SetAttribute("K0SkillEffectId", skillId) end
-	table.insert(active, holder)
-	Debris:AddItem(holder, 1.2)
 	local scale = enemyKind == "Ogre" and 1.3 or 1
 	if model and model:GetAttribute("SlimeSplitGeneration") == 1 then scale = 0.7 end
 	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
 	local attacker = type(impact) == "table" and impact.attacker or nil
 	local compact = HeroVFX.isOtherHero(attacker)
-	HitReaction.record(model, flat, nil, row, descending, final)
+	HitReaction.record(model, flat, nil, row, descending, final, postureBroken)
 	local consumedMark = type(impact) == "table" and impact.consumedMark or nil
 	local appliedMark = type(impact) == "table" and impact.appliedMark or nil
-	local contact, distinctContact = HeroVFX.contact(position, classId, skillId, flat, scale * (final and 1.2 or 1), compact, consumedMark, appliedMark)
+	local contact, distinctContact = HeroVFX.contact(postureBroken and contactPosition or position, classId, skillId, flat,
+		scale * (final and 1.2 or 1), compact, consumedMark, appliedMark, postureBroken)
+	if damage == 0 then return true end
+	for i = #active, 1, -1 do if not active[i].Parent then table.remove(active, i) end end
+	if #active >= MAX_ACTIVE then table.remove(active, 1):Destroy() end
+	local holder = part(workspace, "K0HitEffect", position, Vector3.new(0.1, 0.1, 0.1), profile.color)
+	holder.Transparency = 1
+	if skill then holder:SetAttribute("K0SkillEffectId", skillId) end
+	table.insert(active, holder)
+	Debris:AddItem(holder, 1.2)
 	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
 	local cleanContact = distinctContact or descending and sharpContact
 	if not compact and not descending and not distinctContact then PixelFX.hit(position, classId, skillId, scale, flat) end

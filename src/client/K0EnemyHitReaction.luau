@@ -19,6 +19,7 @@ local profiles = {
     hailfall = {.027, .17, .035, -.12, 6, 0},
     ashfall = {.032, .18, .05, -.085, 5, 0},
     shell = {.036, .22, .12, -.15, 8, 0},
+    postureBreak = {.052, .30, .18, -.24, 14, 0},
 }
 local skillProfiles = {
     ["knight.steel_knight.vanguard_strike"] = {.032, .19, .20, 0, 9, 2},
@@ -49,22 +50,22 @@ local function profile(row, descending)
     return (row.classId == "knight" or row.classId == "dwarf") and profiles.cut or idleHit
 end
 
-function Reaction.record(model, direction, current, row, descending, final)
+function Reaction.record(model, direction, current, row, descending, final, postureBroken)
     if not model or not model:IsA("Model") or not model:IsDescendantOf(Workspace) then return end
     local root = model:FindFirstChild("HumanoidRootPart")
     if not root then return end
     local flat = typeof(direction) == "Vector3" and Vector3.new(direction.X, 0, direction.Z) or root.CFrame.LookVector
     if flat.Magnitude < .001 then flat = root.CFrame.LookVector end
     local at = current or Workspace:GetServerTimeNow()
-    local response = profile(row, descending)
-    local strength = final and 1.25 or 1
+    local response = postureBroken and profiles.postureBreak or profile(row, descending)
+    local strength = final and not postureBroken and 1.25 or 1
     local impulse = (math.abs(response[3]) + math.abs(response[4])) * strength
     local previous = hits[model]
     -- Similar party hits must not keep restarting the same rise. A heavier
     -- hit can take over early; ordinary follow-ups blend after the rise.
     if previous then
         local gap = at - previous.at
-        if gap >= 0 and gap < previous.profile[1] + .02 and impulse <= previous.impulse * 1.15 then return end
+        if not postureBroken and gap >= 0 and gap < previous.profile[1] + .02 and impulse <= previous.impulse * 1.15 then return end
     end
     local entry = Reaction.sample(model, at)
     local boneDirection = root.CFrame:VectorToObjectSpace(flat.Unit)

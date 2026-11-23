@@ -114,6 +114,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"neck",v(-4,-6,2)*settle)
         add(pose,"leftKnee",v(10,0,0)*settle)
     end
+    if d.id=="elf.marksman.piercing_line" then
+        -- Track the line with the bow shoulder and recover the draw elbow straight back.
+        add(pose,"neck",v(4,8,-6)*load)
+        add(pose,"right",v(-6,-16,-10)*recoil)
+        add(pose,"elbow",v(19,0,0)*recoil)
+        add(pose,"leftKnee",v(19,0,0)*recoil)
+    end
     if s == bow.fanBreak then
         -- Brace the lead leg through the spread while the draw hand opens.
         add(pose,"torso",v(-7,10,-8)*recoil)
@@ -336,8 +343,11 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftKnee",v(16,0,0)*follow)
     end
     if s == spells.stone then
-        add(pose,"leftElbow",v(20,0,0)*follow)
+        -- Gather low with the free hand, then absorb the stone release in the lead leg.
+        add(pose,"left",v(-19,13,11)*wind+v(12,-10,-13)*follow)
+        add(pose,"leftElbow",v(-15*wind+26*follow,0,0))
         add(pose,"torso",v(10,0,5)*follow)
+        add(pose,"leftKnee",v(21,0,0)*follow)
     end
     if s == spells.thunderSpear then
         add(pose,"right",v(21,7,-14)*follow)

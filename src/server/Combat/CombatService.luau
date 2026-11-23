@@ -298,6 +298,7 @@ local function damagePosture(enemy, amount, current)
 		return
 	end
 	enemy.lastPostureDamage = current
+	local hadPosture = enemy.posture > 0
 	enemy.posture = math.max(0, enemy.posture - amount)
 	enemy.model:SetAttribute("K0Posture", enemy.posture)
 	if enemy.posture <= 0 then
@@ -307,6 +308,7 @@ local function damagePosture(enemy, amount, current)
 		stopEnemy(enemy)
 		enemy.exposedUntil = current + enemy.config.exposeTime
 		setEnemyState(enemy, "Exposed")
+		return hadPosture
 	end
 end
 
@@ -870,17 +872,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 		enemy.branchMarks[state.heroId] = {kind = appliedMark, expires = current + 8}
 		enemy.model:SetAttribute("K0BranchMark", appliedMark)
 	end
-	if applied > 0 and hitEffectRemote then
-		-- This is presentation data for an already resolved hit, never an
-		-- input to damage. A position snapshot survives a lethal target's removal.
-		local direction = contactDirection or horizontalUnit(position - state.root.Position, attack.direction)
-		local skillId = attack.isSkill and attack.definition.id or nil
-		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, skillId,
-			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
-				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
-				classId = state.baseClassId, skillId = skillId, pulse = pulse,
-				consumedMark = consumedMark, appliedMark = appliedMark})
-	end
+	local postureBroken
 	if enemy.humanoid.Health > 0 then
   if applied > 0 then
    if Pack.interrupt(enemy,current,packContext(),attack.resolvedSampleAt or current)then
@@ -925,8 +917,19 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 			if d.weakenPosture and (enemy.defenseBreakUntil or 0)>current then posture=posture+d.weakenPosture end
 			if d.counterPosture and attack.counterDamage>0 then posture=posture+d.counterPosture end
 		end
-		damagePosture(enemy,posture,current)
+		postureBroken = damagePosture(enemy,posture,current)
   if applied>0 and attack.isSkill and (state.baseClassId=="dwarf" or state.baseClassId=="knight") and d.stunDuration then stunEnemy(enemy,d.stunDuration,current,state.baseClassId) end
+	end
+	if (applied > 0 or postureBroken) and hitEffectRemote then
+		-- Publish the posture transition with the confirmed hit. Position is
+		-- captured before damage so the contact also survives target removal.
+		local direction = contactDirection or horizontalUnit(position - state.root.Position, attack.direction)
+		local skillId = attack.isSkill and d.id or nil
+		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, skillId,
+			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
+				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
+				classId = state.baseClassId, skillId = skillId, pulse = pulse,
+				consumedMark = consumedMark, appliedMark = appliedMark, postureBroken = postureBroken or nil})
 	end
 	updateFeedback(state, "Hit")
 end
