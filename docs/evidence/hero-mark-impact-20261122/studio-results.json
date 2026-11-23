@@ -1,0 +1,375 @@
+{
+  "baselineMark": {
+    "version": "0.115.49",
+    "checks": 341,
+    "skills": 22,
+    "failed": 113,
+    "result": {
+      "checks": 341,
+      "skills": 22,
+      "pass": false,
+      "failures": [
+        "knight.paladin.sunward_cross emits the consumed mark on the actual target's hit",
+        "knight.paladin.sunward_cross splits into two bounded strokes",
+        "knight.paladin.sunward_cross keeps damage legible without a duplicate flash",
+        "knight.paladin.sunward_cross clears the short contact",
+        "knight.paladin.sunward_cross splits into two bounded strokes",
+        "mage.cryo.glacial_spike emits the consumed mark on the actual target's hit",
+        "mage.cryo.glacial_spike splits into two bounded strokes",
+        "mage.cryo.glacial_spike clears the short contact",
+        "mage.cryo.glacial_spike splits into two bounded strokes",
+        "elf.magic_archer.spirit_arrowfall emits the consumed mark on the actual target's hit",
+        "elf.magic_archer.spirit_arrowfall splits into two bounded strokes",
+        "elf.magic_archer.spirit_arrowfall keeps damage legible without a duplicate flash",
+        "elf.magic_archer.spirit_arrowfall clears the short contact",
+        "elf.magic_archer.spirit_arrowfall splits into two bounded strokes",
+        "knight.paladin.dawn_spiral emits the consumed mark on the actual target's hit",
+        "knight.paladin.dawn_spiral splits into two bounded strokes",
+        "knight.paladin.dawn_spiral keeps damage legible without a duplicate flash",
+        "knight.paladin.dawn_spiral clears the short contact",
+        "knight.paladin.dawn_spiral splits into two bounded strokes",
+        "elf.magic_archer.elemental_pierce emits the consumed mark on the actual target's hit",
+        "elf.magic_archer.elemental_pierce splits into two bounded strokes",
+        "elf.magic_archer.elemental_pierce clears the short contact",
+        "elf.magic_archer.elemental_pierce splits into two bounded strokes",
+        "elf.magic_archer.bloom_shot emits the consumed mark on the actual target's hit",
+        "elf.magic_archer.bloom_shot splits into two bounded strokes",
+        "elf.magic_archer.bloom_shot keeps damage legible without a duplicate flash",
+        "elf.magic_archer.bloom_shot clears the short contact",
+        "elf.magic_archer.bloom_shot splits into two bounded strokes",
+        "dwarf.iron_axe.shatter_blow emits the consumed mark on the actual target's hit",
+        "dwarf.iron_axe.shatter_blow splits into two bounded strokes",
+        "dwarf.iron_axe.shatter_blow keeps damage legible without a duplicate flash",
+        "dwarf.iron_axe.shatter_blow clears the short contact",
+        "dwarf.iron_axe.shatter_blow splits into two bounded strokes",
+        "elf.marksman.mark_breaker emits the consumed mark on the actual target's hit",
+        "elf.marksman.mark_breaker splits into two bounded strokes",
+        "elf.marksman.mark_breaker keeps damage legible without a duplicate flash",
+        "elf.marksman.mark_breaker clears the short contact",
+        "elf.marksman.mark_breaker splits into two bounded strokes",
+        "knight.paladin.oathbreaker_strike emits the consumed mark on the actual target's hit",
+        "knight.paladin.oathbreaker_strike splits into two bounded strokes",
+        "knight.paladin.oathbreaker_strike clears the short contact",
+        "knight.paladin.oathbreaker_strike splits into two bounded strokes",
+        "elf.marksman.precision_volley emits the consumed mark on the actual target's hit",
+        "elf.marksman.precision_volley splits into two bounded strokes",
+        "elf.marksman.precision_volley keeps damage legible without a duplicate flash",
+        "elf.marksman.precision_volley clears the short contact",
+        "elf.marksman.precision_volley splits into two bounded strokes",
+        "mage.cryo.shatter_dart emits the consumed mark on the actual target's hit",
+        "mage.cryo.shatter_dart splits into two bounded strokes",
+        "mage.cryo.shatter_dart clears the short contact",
+        "mage.cryo.shatter_dart splits into two bounded strokes",
+        "knight.paladin.dawn_burst emits the consumed mark on the actual target's hit",
+        "knight.paladin.dawn_burst splits into two bounded strokes",
+        "knight.paladin.dawn_burst keeps damage legible without a duplicate flash",
+        "knight.paladin.dawn_burst clears the short contact",
+        "knight.paladin.dawn_burst splits into two bounded strokes",
+        "elf.magic_archer.vine_burst emits the consumed mark on the actual target's hit",
+        "elf.magic_archer.vine_burst splits into two bounded strokes",
+        "elf.magic_archer.vine_burst keeps damage legible without a duplicate flash",
+        "elf.magic_archer.vine_burst clears the short contact",
+        "elf.magic_archer.vine_burst splits into two bounded strokes",
+        "elf.magic_archer.storm_arrow emits the consumed mark on the actual target's hit",
+        "elf.magic_archer.storm_arrow splits into two bounded strokes",
+        "elf.magic_archer.storm_arrow keeps damage legible without a duplicate flash",
+        "elf.magic_archer.storm_arrow clears the short contact",
+        "elf.magic_archer.storm_arrow splits into two bounded strokes",
+        "mage.pyro.flame_dart emits the consumed mark on the actual target's hit",
+        "mage.pyro.flame_dart splits into two bounded strokes",
+        "mage.pyro.flame_dart keeps damage legible without a duplicate flash",
+        "mage.pyro.flame_dart clears the short contact",
+        "mage.pyro.flame_dart splits into two bounded strokes",
+        "knight.paladin.oath_of_dawn emits the consumed mark on the actual target's hit",
+        "knight.paladin.oath_of_dawn splits into two bounded strokes",
+        "knight.paladin.oath_of_dawn keeps damage legible without a duplicate flash",
+        "knight.paladin.oath_of_dawn clears the short contact",
+        "knight.paladin.oath_of_dawn splits into two bounded strokes",
+        "knight.paladin.oathbound_assault emits the consumed mark on the actual target's hit",
+        "knight.paladin.oathbound_assault splits into two bounded strokes",
+        "knight.paladin.oathbound_assault keeps damage legible without a duplicate flash",
+        "knight.paladin.oathbound_assault clears the short contact",
+        "knight.paladin.oathbound_assault splits into two bounded strokes",
+        "knight.paladin.shield_verdict emits the consumed mark on the actual target's hit",
+        "knight.paladin.shield_verdict splits into two bounded strokes",
+        "knight.paladin.shield_verdict keeps damage legible without a duplicate flash",
+        "knight.paladin.shield_verdict clears the short contact",
+        "knight.paladin.shield_verdict splits into two bounded strokes",
+        "dwarf.iron_axe.breaker_throw emits the consumed mark on the actual target's hit",
+        "dwarf.iron_axe.breaker_throw splits into two bounded strokes",
+        "dwarf.iron_axe.breaker_throw keeps damage legible without a duplicate flash",
+        "dwarf.iron_axe.breaker_throw clears the short contact",
+        "dwarf.iron_axe.breaker_throw splits into two bounded strokes",
+        "mage.pyro.earth_rise emits the consumed mark on the actual target's hit",
+        "mage.pyro.earth_rise splits into two bounded strokes",
+        "mage.pyro.earth_rise keeps damage legible without a duplicate flash",
+        "mage.pyro.earth_rise clears the short contact",
+        "mage.pyro.earth_rise splits into two bounded strokes",
+        "knight.paladin.oath_challenge emits the consumed mark on the actual target's hit",
+        "knight.paladin.oath_challenge splits into two bounded strokes",
+        "knight.paladin.oath_challenge keeps damage legible without a duplicate flash",
+        "knight.paladin.oath_challenge clears the short contact",
+        "knight.paladin.oath_challenge splits into two bounded strokes",
+        "mage.pyro.magma_spear emits the consumed mark on the actual target's hit",
+        "mage.pyro.magma_spear splits into two bounded strokes",
+        "mage.pyro.magma_spear keeps damage legible without a duplicate flash",
+        "mage.pyro.magma_spear clears the short contact",
+        "mage.pyro.magma_spear splits into two bounded strokes",
+        "lethal damage retains the consumed mark and position snapshot",
+        "Sunward Cross changes planted leg between cuts R6",
+        "Shatter Blow settles through the knees R6",
+        "Sunward Cross changes planted leg between cuts R15",
+        "Shatter Blow settles through the knees R15",
+        "Mark Breaker braces and opens the draw elbow after release",
+        "Magma Spear drives the release through the palm and lead leg"
+      ]
+    }
+  },
+  "candidate": {
+    "version": "0.115.52",
+    "suites": 13,
+    "checks": 246468,
+    "results": {
+      "HERO_MARK_IMPACT_NATIVE": {
+        "checks": 341,
+        "skills": 22,
+        "pass": true,
+        "failures": []
+      },
+      "HERO_RELEASE_ALIGNMENT_NATIVE": {
+        "poses": {
+          "retreatKnee": 44.92847442626953,
+          "spearElbow": 35,
+          "R15": {
+            "crescentLoadYaw": 31.448177337646484,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -28.126220703125
+          },
+          "R6": {
+            "crescentLoadYaw": 36.995384216308594,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -31.765085220336914
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 26
+      },
+      "HERO_SKILLS_NATIVE": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      },
+      "HERO_SKILL_IMPACT_NATIVE": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      },
+      "HERO_VFX_PRIORITY_NATIVE": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      },
+      "HERO_PULSE_RHYTHM_NATIVE": {
+        "beamCounts": {
+          "ally": [
+            1,
+            1,
+            1
+          ],
+          "caster": [
+            1,
+            1,
+            1
+          ]
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 85
+      },
+      "SKILL_VFX_ART_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 43
+      },
+      "ELEMENT_VFX_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 84
+      },
+      "HERO_CONTACT_WEIGHT_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 53
+      },
+      "PROJECTILE_VFX_TIMING_NATIVE": {
+        "pass": true,
+        "checks": 192
+      },
+      "HERO_MOVEMENT_SKILLS_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 67
+      },
+      "HERO_ULTIMATE_FINISH_NATIVE": {
+        "budget": {
+          "elf.marksman.grand_volley": {
+            "ally": {
+              "beams": 6,
+              "particles": 0,
+              "surfaces": 0
+            },
+            "own": {
+              "beams": 37,
+              "particles": 16,
+              "surfaces": 28
+            }
+          },
+          "dwarf.iron_axe.mountain_collapse": {
+            "ally": {
+              "beams": 6,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 27,
+              "particles": 16,
+              "surfaces": 13
+            }
+          },
+          "dwarf.gunner.siege_barrage": {
+            "ally": {
+              "beams": 2,
+              "particles": 0,
+              "surfaces": 0
+            },
+            "own": {
+              "beams": 12,
+              "particles": 23,
+              "surfaces": 0
+            }
+          },
+          "mage.cryo.eternal_tempest": {
+            "ally": {
+              "beams": 8,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 39,
+              "particles": 16,
+              "surfaces": 43
+            }
+          },
+          "elf.magic_archer.spirit_arrowfall": {
+            "ally": {
+              "beams": 9,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 19,
+              "particles": 16,
+              "surfaces": 24
+            }
+          },
+          "mage.pyro.caldera_s_judgment": {
+            "ally": {
+              "beams": 10,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 42,
+              "particles": 35,
+              "surfaces": 58
+            }
+          },
+          "knight.steel_knight.unyielding_front": {
+            "ally": {
+              "beams": 3,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 30,
+              "particles": 16,
+              "surfaces": 18
+            }
+          },
+          "knight.paladin.oath_of_dawn": {
+            "ally": {
+              "beams": 9,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 24,
+              "particles": 16,
+              "surfaces": 18
+            }
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 88
+      },
+      "GUNNER_PAYLOAD_NATIVE": {
+        "pass": true,
+        "checks": 180
+      }
+    }
+  },
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 13640,
+    "checks": 15075
+  },
+  "capture": {
+    "format": "Studio CaptureService RGB samples from the built Place, assembled without resampling the viewports",
+    "skills": [
+      {
+        "name": "Sunward Cross",
+        "pulse": 2,
+        "msAfterContact": 60
+      },
+      {
+        "name": "Shatter Blow",
+        "pulse": 1,
+        "msAfterContact": 67
+      },
+      {
+        "name": "Mark Breaker",
+        "pulse": 1,
+        "msAfterContact": 52
+      },
+      {
+        "name": "Magma Spear",
+        "pulse": 1,
+        "msAfterContact": 62
+      }
+    ],
+    "imageSha256": "df8ac32dfcba8b36b446c00f42517b4464bb1a5c3f4d1d7dc3dea1a57b53a1b3"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "version": "0.115.52",
+  "sourceCommit": "b80034860909b0e9d7c7d1e7b1b88b1e73c0de08",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-b8003486-h6lmw4cq",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-b8003486-h6lmw4cq/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.115.52/TheLastThrone-0.115.52.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.52.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.52/TheLastThrone-0.115.52.rbxlx",
+      "sha256": "b0b7cd00ebc6cde23a13525673212a1bc759b6089847ca2814d55d51130c90da",
+      "bytes": 26848316
+    }
+  ],
+  "baseline": {
+    "version": "0.115.49",
+    "sourceCommit": "78861886edcb58228118a007de79c1b8f4e1e24b",
+    "path": "builds/0.115.49/TheLastThrone-0.115.49.rbxlx",
+    "sha256": "13fbc61a25d1586a6a9d76fcc385f0040e67403dc5dc557c76320edf5dba7d6f"
+  },
+  "toolVersions": {
+    "Rojo": "7.7.1",
+    "RobloxStudio": "0.748.0.7481526"
+  },
+  "superseded": [
+    {
+      "version": "0.115.50",
+      "sourceCommit": "4e6c62eb812eab17c747503a1f02d4bb819e07a7",
+      "reason": "Two straight strokes appeared weaker than the ordinary contact."
+    },
+    {
+      "version": "0.115.51",
+      "sourceCommit": "069c42b127194bace6b862ffc13f8e7958d8b182",
+      "reason": "The local output path was occupied by a different input. Existing artifact preserved."
+    }
+  ],
+  "runtimeSourceHashes": {
+    "src/client/AdvancedSkillMotion.luau": "b117711aae8b53472d1109b02088ee3cb037c5d9cc6efd928f245434f3ff1274",
+    "src/client/HeroVFX.luau": "52106d5ddc480fffaf955d58b88e52fc32aee14b4886360fed521f837093427b",
+    "src/client/HeroVFXArt.luau": "ebee0e39c2f8f8a88b713c174c1581897683e96a4d4b679b511ecf64aa04335a",
+    "src/client/K0HitEffects.luau": "aa4b478a31cbc600a2d392d7f5663b08feddc65ef26adb979d9bc9eb8c777a6b",
+    "src/client/RangedActionPoses.luau": "e81c7286cbe0a9ad4867a8801ff49ef52fb87ab43e037da4f4109ec3c423c818",
+    "src/server/Combat/CombatService.luau": "694736501f88e133be430d03e71117187a835f6bd34d03672397e0b617ad20f7"
+  }
+}
