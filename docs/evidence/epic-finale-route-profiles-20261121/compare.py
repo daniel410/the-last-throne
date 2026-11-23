@@ -21,7 +21,7 @@ COUNTS = {
 }
 
 
-def compare(baseline_log, candidate_log, *, counts=COUNTS, build_path=HERE / 'build.json', output=HERE, camera_ids=None):
+def compare(baseline_log, candidate_log, *, counts=COUNTS, build_path=HERE / 'build.json', output=HERE, camera_ids=None, burial_tolerance=0):
     before, after = (path.read_text() for path in (baseline_log, candidate_log))
     stable = ('ROUTE_COMPILE', 'ROUTE_NAV_ORIGINAL', 'ROUTE_NAV_EASY', 'CONTOUR', 'STATION', 'RESCUE_SOLID')
     for tag in stable:
@@ -58,7 +58,8 @@ def compare(baseline_log, candidate_log, *, counts=COUNTS, build_path=HERE / 'bu
                 abs(old - new) < .001
                 for old, new in zip(baseline['bounds'], candidate['bounds'], strict=True)
             ), name
-            unchanged = baseline.keys() - {'parts', 'bounds'}
+            assert abs(baseline['buriedDepth'] - candidate['buriedDepth']) <= burial_tolerance, name
+            unchanged = baseline.keys() - {'parts', 'bounds', 'buriedDepth'}
             assert all(baseline[key] == candidate[key] for key in unchanged), name
         else:
             assert baseline == candidate, name

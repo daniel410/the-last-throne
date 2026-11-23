@@ -1,0 +1,37 @@
+{
+  "baseline": {
+    "version": "0.115.63",
+    "sourceCommit": "c6398e41064b03f75be4bbe5773aac40d5dfcb45",
+    "moduleSHA256": "75f11c7795d64120e7dd0a80ea4258d423619a1a29dfce0160628a89dfa7bd94",
+    "verifiedChangedRuntimeSources": 10,
+    "fixtureSHA256": "c08bda75c5feac864899e70832eb959315f110233735f89f3923aa2e7e965506",
+    "sha256": "abcc71a1482096918cfecbe9dccc62853cdf1e0d1d559340d13c18b1f52587dc",
+    "output": "builds/0.115.63/TheLastThrone-0.115.63.rbxlx",
+    "bytes": 26876763
+  },
+  "version": "0.115.64",
+  "sourceCommit": "79a1cb3eeda4e8a6bf613f2a76e6ed4ab6cb7319",
+  "moduleSHA256": "82808d3b06ef6ce0d5f06d5d033a5dccc6eccef08a028ecad313fa780e9baf09",
+  "verifiedChangedRuntimeSources": 10,
+  "fixtureSHA256": "fc864b75676b101cc8911bc08209ff2e5e42f3f6e573cd7b998d4239fef3c9a9",
+  "sha256": "aa7306e83d6a6f6e7106a9d4db510087b5f37cb7a63d2c73abddee0d5396a543",
+  "output": "builds/0.115.64/TheLastThrone-0.115.64.rbxlx",
+  "bytes": 26876931,
+  "outputs": [
+    {
+      "version": "0.115.64",
+      "sourceCommit": "79a1cb3eeda4e8a6bf613f2a76e6ed4ab6cb7319",
+      "moduleSHA256": "82808d3b06ef6ce0d5f06d5d033a5dccc6eccef08a028ecad313fa780e9baf09",
+      "verifiedChangedRuntimeSources": 10,
+      "fixtureSHA256": "fc864b75676b101cc8911bc08209ff2e5e42f3f6e573cd7b998d4239fef3c9a9",
+      "sha256": "aa7306e83d6a6f6e7106a9d4db510087b5f37cb7a63d2c73abddee0d5396a543",
+      "output": "builds/0.115.64/TheLastThrone-0.115.64.rbxlx",
+      "bytes": 26876931
+    }
+  ],
+  "mainSource": "c4a69b4917142169433b55ac7fdb41959688cad0",
+  "rojoVersion": "7.7.1",
+  "command": "rojo build battle.project.json -o <output>",
+  "published": false,
+  "releaseTag": null
+}
