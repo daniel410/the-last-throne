@@ -1,0 +1,52 @@
+{
+  "HG-07": {
+    "rollers": 0,
+    "baselineParts": 13,
+    "placementRadiusDelta": 0,
+    "nonCollidableParts": 16,
+    "boundCenterDelta": 0,
+    "journals": 0,
+    "boundSizeDelta": 0,
+    "candidateParts": 16
+  },
+  "FV-07": {
+    "rollers": 0,
+    "baselineParts": 13,
+    "placementRadiusDelta": 0,
+    "nonCollidableParts": 15,
+    "boundCenterDelta": 0,
+    "journals": 0,
+    "boundSizeDelta": 0,
+    "candidateParts": 15
+  },
+  "EC-07": {
+    "rollers": 6,
+    "baselineParts": 27,
+    "placementRadiusDelta": 0,
+    "nonCollidableParts": 31,
+    "boundCenterDelta": 0,
+    "journals": 12,
+    "boundSizeDelta": 0,
+    "candidateParts": 31
+  },
+  "GW-07": {
+    "rollers": 0,
+    "baselineParts": 9,
+    "placementRadiusDelta": 0,
+    "nonCollidableParts": 10,
+    "boundCenterDelta": 0,
+    "journals": 0,
+    "boundSizeDelta": 0,
+    "candidateParts": 10
+  },
+  "DW-07": {
+    "rollers": 0,
+    "baselineParts": 16,
+    "placementRadiusDelta": 0,
+    "nonCollidableParts": 21,
+    "boundCenterDelta": 0,
+    "journals": 0,
+    "boundSizeDelta": 0,
+    "candidateParts": 21
+  }
+}
