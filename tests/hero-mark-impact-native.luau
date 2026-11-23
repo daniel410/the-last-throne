@@ -105,12 +105,13 @@ local ok, err = xpcall(function()
             check(Hits.show(marked.model, at, markedHit[3], classId, "Goblin", heading, id, markedHit[8]), id .. " reaches the hit renderer")
             local effect = workspace:FindFirstChild("HeroVFX")
             local holder = workspace:FindFirstChild("K0HitEffect")
-            local style, count, spread = styles[d.consume], 0, false
+            local style, count, spread, shaped = styles[d.consume], 0, false, true
             if effect then
                 local maxOffset = 0
                 for _, beam in effect:GetDescendants() do
                     if beam:IsA("Beam") and beam.Name == style then
                         count += 1
+                        shaped = shaped and beam.CurveSize0 > .15 and beam.CurveSize1 > .15 and beam.Width0 > .14
                         maxOffset = math.max(maxOffset, math.abs(beam.Attachment1.WorldPosition.X))
                     end
                 end
@@ -122,7 +123,7 @@ local ok, err = xpcall(function()
                 end
             end
             local _, beams, chips, glows, particles, faces = FX.count()
-            check(effect and effect:GetAttribute("ContactStyle") == style and count == 2 and spread
+            check(effect and effect:GetAttribute("ContactStyle") == style and count == 2 and spread and shaped
                 and beams == 2 and chips + glows + particles + faces == 0, id .. " splits into two bounded strokes")
             check(holder and holder.K0DamageNumber.Amount.Text == tostring(markedHit[3])
                 and not holder:FindFirstChild("K0ImpactFlash"), id .. " keeps damage legible without a duplicate flash")

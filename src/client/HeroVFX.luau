@@ -95,7 +95,7 @@ local function make(first,last,life,key,id,compact,contact,minBeams)
  if not connection and Run:IsClient()then connection=Run.RenderStepped:Connect(function()FX.step(workspace:GetServerTimeNow())end)end
  return r
 end
-local function line(r,name,path,width,color,endWidth)
+local function line(r,name,path,width,color,endWidth,noGlow)
  if beams>=(Input.TouchEnabled and 144 or 240)then return end
  width*=1.15
  endWidth=endWidth and endWidth*1.15 or width*.45
@@ -106,7 +106,7 @@ local function line(r,name,path,width,color,endWidth)
  beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(primary,r.color:Lerp(r.hot,r.key=='lightning'and .7 or .35))
  beam.LightEmission=1;beam.LightInfluence=0;beam.Transparency=NumberSequence.new(.18);beam.Parent=r.carrier
  local glow
- if not r.compact and not r.incoming and glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
+ if not noGlow and not r.compact and not r.incoming and glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
   glow=beam:Clone();glow.Name="SoftGlow";glow.Width0=width*2.6;glow.Width1=endWidth*2.6
   glow.Color=ColorSequence.new(r.color);glow.Texture="rbxasset://textures/particles/smoke_main.dds";glow.TextureMode=Enum.TextureMode.Stretch;glow.Transparency=NumberSequence.new(.62);glow.Parent=r.carrier
   table.insert(r.glows,glow);glowCount+=1
@@ -1534,12 +1534,12 @@ end
 -- Mark strokes work in the confirmed hit's right/up/forward frame.
 -- Two strokes replace the generic contact, including on compact clients.
 local markContacts={
- oath={name="OathSealBreak",key="holy",from=Vector3.new(.05,.65,0),to=Vector3.new(.68,-.38,0),drift=Vector3.new(.50,.18,0)},
- fracture={name="ArmorFaultBreak",key="earth",from=Vector3.new(.16,.05,0),to=Vector3.new(.69,.50,.16),drift=Vector3.new(.53,-.18,0)},
- weakpoint={name="WeakpointBracketBreak",key="arrow",from=Vector3.new(.34,-.32,-.06),to=Vector3.new(.34,.32,-.06),drift=Vector3.new(.78,0,.14)},
- nature={name="NatureBudBreak",key="nature",from=Vector3.new(.07,-.42,0),to=Vector3.new(.60,.23,-.20),drift=Vector3.new(.45,.35,0)},
- ember={name="EmberVentBreak",key="fire",from=Vector3.new(.28,-.36,0),to=Vector3.new(.13,.62,-.14),drift=Vector3.new(.25,.65,0)},
- frost={name="FrostSealBreak",key="frost",from=Vector3.new(.04,.27,-.08),to=Vector3.new(.64,-.27,0),drift=Vector3.new(.66,-.43,0)},
+ oath={name="OathSealBreak",key="holy",from=Vector3.new(.11,.70,-.13),bend=Vector3.new(1.32,.54,0),to=Vector3.new(.48,-.54,-.05),drift=Vector3.new(.76,.25,-.22)},
+ fracture={name="ArmorFaultBreak",key="earth",from=Vector3.new(.13,-.54,-.02),bend=Vector3.new(.47,.37,-.31),to=Vector3.new(.96,.27,.13),drift=Vector3.new(.83,-.22,-.17)},
+ weakpoint={name="WeakpointBracketBreak",key="arrow",from=Vector3.new(.44,-.57,-.19),bend=Vector3.new(1.15,.01,-.34),to=Vector3.new(.44,.57,-.19),drift=Vector3.new(.88,0,-.16)},
+ nature={name="NatureBudBreak",key="nature",from=Vector3.new(.06,-.53,-.01),bend=Vector3.new(.18,.48,-.44),to=Vector3.new(.89,.56,-.23),drift=Vector3.new(.51,.45,-.23)},
+ ember={name="EmberVentBreak",key="fire",from=Vector3.new(.28,-.42,-.11),bend=Vector3.new(.89,.25,-.40),to=Vector3.new(.22,1.09,-.18),drift=Vector3.new(.52,.75,-.20)},
+ frost={name="FrostSealBreak",key="frost",from=Vector3.new(.05,.43,-.08),bend=Vector3.new(.72,.42,-.31),to=Vector3.new(.98,-.55,-.12),drift=Vector3.new(.88,-.47,-.19)},
 }
 local function markContact(r,at,cf,size,mark)
  local function offset(point,side)
@@ -1547,12 +1547,19 @@ local function markContact(r,at,cf,size,mark)
  end
  for side=-1,1,2 do
   local a=at+offset(mark.from,side)
+  local bend=at+offset(mark.bend,side)
   local b=at+offset(mark.to,side)
   local drift=offset(mark.drift,side)
-  line(r,mark.name,function(u)
-   local move=drift*(1-(1-u)^3)
-   return a:Lerp(b,u*.28)+move,b+move
-  end,.083,side==1 and r.hot or r.color,.061)
+  local function path(t,u)
+   local progress=u*.22+(1-u*.22)*t
+   return a:Lerp(bend,progress):Lerp(bend:Lerp(b,progress),progress)+drift*(1-(1-u)^3)
+  end
+  local stroke=line(r,mark.name,function(u)return path(0,u),path(1,u)end,
+   r.compact and .128 or .19,side==1 and r.hot or r.color,.055,true)
+  if stroke then
+   stroke.span=function(u)return Style.span(path,0,1,u)end
+   stroke.beam.Segments=5
+  end
  end
  r.model:SetAttribute("ContactStyle",mark.name)
 end
@@ -1568,7 +1575,7 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark)
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)
  if mark then
-  markContact(r,at-dir*.24,cf,math.clamp(size,.7,1.35),mark)
+  markContact(r,at-dir*.37,cf,math.clamp(size,.7,1.35),mark)
   FX.step(r.at)
   return r.model,true
  end
