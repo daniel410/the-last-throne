@@ -286,8 +286,8 @@ function FX.shieldGrant(recipient,id)
   local function path(t,u)
    local start,bend,finish=shape[2],shape[3],shape[4]
    local p=start:Lerp(bend,t):Lerp(bend:Lerp(finish,t),t)
-   local open=.62+.46*(1-(1-u)^3)
-   return root.Position+(right*(p.X*side*open)+Vector3.yAxis*(p.Y+.20*u)+front*.40)*scale
+   local open=.76+.40*(1-(1-u)^3)
+   return root.Position+(right*(p.X*side*open)+Vector3.yAxis*(p.Y+.20*u)+front*.78)*scale
   end
   local stroke=line(r,shape[1],function(u)return path(0,u),path(1,u)end,compact and .12 or .18,side==1 and hot or color,.085,true)
   if stroke then
@@ -1531,22 +1531,32 @@ local forceContacts={
  ["dwarf.iron_axe.iron_shoulder"]={"IronShoulderContact",Vector3.new(.12,-.08,-.24),Vector3.new(.48,-.63,.68),.43,.085,-.10},
  ["elf.magic_archer.gliding_shot"]={"GlidingShotContact",Vector3.new(.31,.19,-.83),Vector3.new(.07,.02,.64),.33,.060},
  ["mage.cryo.frost_step"]={"FrostStepContact",Vector3.new(.07,-.43,-.36),Vector3.new(.48,.21,.38),.19,.076,.10},
- ["knight.steel_knight.guardian_counter"]={"GuardianCounterContact",Vector3.new(.11,-.56,-.21),Vector3.new(.72,.57,.35),.32,.09,.18},
- ["dwarf.iron_axe.tremor_guard"]={"TremorGuardContact",Vector3.new(.10,-.65,-.12),Vector3.new(1.02,-.33,.44),.28,.09,-.17},
- ["elf.magic_archer.warden_arrow"]={"WardenArrowContact",Vector3.new(.57,-.32,-.83),Vector3.new(.08,.29,.46),.37,.07},
- ["mage.cryo.ice_ward"]={"IceWardContact",Vector3.new(.27,-.72,-.14),Vector3.new(.81,.73,.08),.15,.08,.20},
+ ["knight.steel_knight.guardian_counter"]={"GuardianCounterContact",Vector3.new(.12,-.57,-.88),Vector3.new(1.11,.65,-.69),.26,.16,.18,Vector3.new(.91,-.20,-1.13)},
+ ["dwarf.iron_axe.tremor_guard"]={"TremorGuardContact",Vector3.new(.12,-.75,-.83),Vector3.new(1.56,-.38,-.62),.23,.15,-.17,Vector3.new(.93,-1.12,-1.02)},
+ ["elf.magic_archer.warden_arrow"]={"WardenArrowContact",Vector3.new(1.05,-.58,-1.16),Vector3.new(.08,.49,-.77),.26,.13,.09,Vector3.new(1.12,.07,-1.02)},
+ ["mage.cryo.ice_ward"]={"IceWardContact",Vector3.new(.22,-.72,-.92),Vector3.new(.91,.95,-.68),.15,.15,.20,Vector3.new(.89,.08,-1.15)},
 }
 local function forceContact(r,at,cf,size,shape)
- local name,base,tip,travel,width,lift=unpack(shape)
+ local name,base,tip,travel,width,lift,bend=unpack(shape)
  local dir,right,up=cf.LookVector,cf.RightVector,cf.UpVector
  local drift=(dir*travel+up*(lift or 0))*size
  for side=-1,1,2 do
   local a=at+(right*(base.X*side)+up*base.Y+dir*base.Z)*size
   local b=at+(right*(tip.X*side)+up*tip.Y+dir*tip.Z)*size
+  local middle=bend and at+(right*(bend.X*side)+up*bend.Y+dir*bend.Z)*size
+  local function path(t,u)
+   local progress=u*.20+(1-u*.20)*t
+   local point=middle and a:Lerp(middle,progress):Lerp(middle:Lerp(b,progress),progress) or a:Lerp(b,progress)
+   return point+drift*u
+  end
   local stroke=line(r,name,function(u)
-   local offset=drift*u
-   return a:Lerp(b,u*.20)+offset,b+offset
+   return path(0,u),path(1,u)
   end,width or .085,width and side==-1 and r.color or r.hot,.035)
+  if stroke and middle then
+   stroke.span=function(u)return Style.span(path,0,1,u)end
+   stroke.beam.Segments=4
+   if stroke.glow then stroke.glow.Segments=4 end
+  end
   if stroke and not r.compact and name=="GlacialContactShards" then
    local start=#r.faces
    local baseWidth=right*.17*size

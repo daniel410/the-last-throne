@@ -166,19 +166,26 @@ local ok, err = xpcall(function()
                     sample = packet
                     local effect = stylesNear(open.root.Position, "SteelGuardClasp")
                     check(effect ~= nil, "the party shield effect is centered on the ally")
+                    local follows = false
                     if effect then
                         local beam = effect:FindFirstChild("SteelGuardClasp", true)
                         local before = beam.Attachment1.WorldPosition
                         open.root.Position += Vector3.xAxis
                         FX.step(workspace:GetServerTimeNow() + .08)
-                        check((beam.Attachment1.WorldPosition - before).Magnitude > .7
-                            and math.abs(beam.CurveSize0) > .1, "two curved edges follow the moving ally")
+                        follows = (beam.Attachment1.WorldPosition - before).Magnitude > .7
+                            and math.abs(beam.CurveSize0) > .1
+                        open.root.Position -= Vector3.xAxis
                     end
+                    check(follows, "two curved edges follow the moving ally")
                     local time = workspace:GetServerTimeNow() + .10
+                    local beforeContact = {}
+                    for _, node in workspace:GetChildren() do beforeContact[node] = true end
                     Visual.play(actor.character, d.id, actor.root.Position, actor.root.Position + dir * 4,
                         1, {}, actor.attackSeq, time, packet[9], dir)
                     check(partsNamed("GuardGranted") == 0 and #grants() == 2, "contact does not repeat the grant as a caster ring")
-                    open.root.Position -= Vector3.xAxis
+                    for _, node in workspace:GetChildren() do
+                        if not beforeContact[node] and node:IsA("BasePart") then node:Destroy() end
+                    end
                 end
             end
             FX.step(workspace:GetServerTimeNow() + .7)
@@ -202,8 +209,9 @@ local ok, err = xpcall(function()
     open.character.Parent = stage
     Visual.play(caster.character, id, at, at + dir, 0, nil, 2, time - .49, time - .49, nil, { open.character })
     check(#grants() == 0, "stale grants are dropped")
-    FX.shieldGrant(open.character, id)
-    FX.shieldGrant(open.character, "knight.paladin.guardian_slash")
+    time = workspace:GetServerTimeNow()
+    Visual.play(caster.character, id, at, at + dir, 0, nil, 3, time, time, nil, { open.character })
+    Visual.play(caster.character, "knight.paladin.guardian_slash", at, at + dir, 0, nil, 4, time, time, nil, { open.character })
     check(#grants() == 1 and stylesNear(open.root.Position, "OathGuardWings"), "one fresh guard per recipient in overlapping casts")
     FX.clear()
 
