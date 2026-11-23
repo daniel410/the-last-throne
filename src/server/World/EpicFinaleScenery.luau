@@ -53,17 +53,17 @@ local function windgapStrata(_, part)
 	local beddingFace = C(168, 185, 196)
 	local fracturedFace = C(89, 107, 125)
 	-- The exposed ends follow separate breaks in the shale toe.
-	part('WindgapLowBeddingEdge', V(6.4, .67, 1.58), V(.78, .93, -2.87),
-		beddingFace:Lerp(weathered, .22), M.Slate, false, V(0, .29, 0), 'Wedge')
+	part('WindgapLowBeddingEdge', V(6.8, .88, 1.62), V(.48, 1.00, -2.83),
+		beddingFace:Lerp(snow, .24), M.Slate, false, V(0, .29, 0), 'Wedge')
 	part('WindgapSplitBeddingEdge', V(5.15, .76, 1.63), V(-3.61, 1.03, -2.56),
 		fracturedFace, M.Slate, false, V(0, -.19, 0), 'Wedge')
 	part('ShelteredStratum', V(10.8, 3.12, 7.8), V(-2.7, 1.29, .37),
 		lowerSlate, M.Slate, false, V(0, .14, 0), 'Wedge')
 	part('WindpolishedShale', V(7.35, 3.66, 6.18), V(-3.74, 1.57, .82),
 		weathered, M.Slate, false, V(0, -.24, 0), 'Wedge')
-	-- One broad drift follows the upper bed, leaving dark shale exposed on the lee side.
-	part('NorthFaceSnowDrift', V(5.85, 3.83, 5.45), V(-4.10, 1.88, 1.28),
-		snow, M.Snow, false, V(0, -.24, 0), 'Wedge')
+	-- The drift runs along the upper bed above the lighter exposed lip.
+	part('NorthFaceSnowDrift', V(7.05, 3.83, 5.03), V(-3.60, 1.88, 1.12),
+		snow:Lerp(C(229, 237, 239), .25), M.Snow, false, V(0, -.24, 0), 'Wedge')
 	part('FracturedLeeStratum', V(7.3, 2.41, 6.68), V(4.7, 1, .54),
 		weathered:Lerp(lowerSlate, .54), M.Slate, false, V(0, -.24, 0), 'Wedge')
 	part('WindgapLeeBeddingEnd', V(5.65, .58, 1.45), V(4.55, 1.11, 3.94),
