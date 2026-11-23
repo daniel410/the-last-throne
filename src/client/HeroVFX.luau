@@ -1700,9 +1700,21 @@ local postureCuts={
 }
 local function postureContact(r,at,cf,size,classId)
  local cut=postureCuts[classId]
+ local right=cf.RightVector
+ local camera=workspace.CurrentCamera
+ if camera then
+  local view=camera.CFrame.Position-at
+  local horizontal=Vector3.new(view.X,0,view.Z)
+  if horizontal.Magnitude>.01 then
+   local normal=horizontal.Unit
+   right=Vector3.yAxis:Cross(normal)
+   at+=normal*.40
+  end
+ end
+ at+=Vector3.yAxis*.32
  for side=-1,1,2 do
   local function world(point)
-   return (cf.RightVector*(side*point.X)+cf.UpVector*point.Y+cf.LookVector*point.Z)*size
+   return (right*(side*point.X)+cf.UpVector*point.Y+cf.LookVector*point.Z)*size
   end
   local a,b,c=world(cut[1]),world(cut[2]),world(cut[3])
   local drift=world(Vector3.new(cut[4],-.20,-.25))
@@ -1711,7 +1723,7 @@ local function postureContact(r,at,cf,size,classId)
    return at+point+drift*(1-(1-u)^3)
   end
   local stroke=line(r,"PostureBreakEdge",function(u)return path(0,u),path(1,u)end,
-   r.compact and .135 or .19,r.hot,.045,true)
+   r.compact and .155 or .22,r.color:Lerp(r.hot,.56),.055,true)
   if stroke then
    stroke.span=function(u)return Style.span(path,0,1,u)end
    stroke.beam.Segments=5
