@@ -69,7 +69,7 @@ local ok,err=xpcall(function()
  check(resumed[p2]==1 and not resumed[p1],'partial failure resumes only the player who stayed')
  check(not p2:GetAttribute('TLTTravelLock') and p2.notice=='TravelFailed','exhausted retry restores lobby control')
  for _,call in ipairs(calls) do if call.userId==p2.UserId then check(call.data.ticket==oldTicket and call.reserved==calls[1].reserved,'retry never changes ticket or reserved destination') end end
- check(service.qaRejoin(p2)~=nil,'failed member can rejoin the already launched expedition')
+ check(service.qaRejoin(p2)==nil,'a member whose departure was rolled back has no stale rejoin offer')
  local firstExternal=#calls+1
  visitor.rejectSave=true
  check(service.travelToLeague(visitor)=='PortalSaveFailed' and #calls<firstExternal and not service.isBusy(visitor),'save refusal blocks travel and permits retry')
