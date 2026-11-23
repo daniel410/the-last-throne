@@ -21,12 +21,8 @@ COUNTS = {
 }
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('baseline', type=Path)
-    parser.add_argument('candidate', type=Path)
-    args = parser.parse_args()
-    before, after = (path.read_text() for path in (args.baseline, args.candidate))
+def compare(baseline_log, candidate_log, *, counts=COUNTS, build_path=HERE / 'build.json', output=HERE):
+    before, after = (path.read_text() for path in (baseline_log, candidate_log))
     stable = ('ROUTE_COMPILE', 'ROUTE_NAV_ORIGINAL', 'ROUTE_NAV_EASY', 'CONTOUR', 'STATION', 'RESCUE_SOLID')
     for tag in stable:
         assert rows(before, tag) and rows(before, tag) == rows(after, tag), tag
@@ -52,11 +48,11 @@ def main():
         assert all(walk['approach']['arrived'] and walk['retreat']['arrived'] for walk in round_trips.values())
         walks.append(round_trips)
     assert walks[0].keys() == walks[1].keys()
-    assert models[0].keys() == models[1].keys() and COUNTS.keys() <= models[0].keys()
+    assert models[0].keys() == models[1].keys() and counts.keys() <= models[0].keys()
     for name, baseline in models[0].items():
         candidate = models[1][name]
-        if name in COUNTS:
-            assert (baseline['parts'], candidate['parts']) == COUNTS[name], name
+        if name in counts:
+            assert (baseline['parts'], candidate['parts']) == counts[name], name
             # Splitting one box into a slab and wedge introduces float rounding in GetBoundingBox.
             assert all(
                 abs(old - new) < .001
@@ -73,10 +69,10 @@ def main():
         for name in images[0]
     }
     changed = [name for name, hashes in frame_hashes.items() if hashes[0] != hashes[1]]
-    for name in COUNTS:
+    for name in counts:
         story = models[1][name]['story']
         assert any(frame.startswith(story) for frame in changed), story
-    build = json.loads((HERE / 'build.json').read_text())
+    build = json.loads(build_path.read_text())
     versions = (build['baseline']['version'], build['version'])
     board = Image.new('RGB', (836, 30 + 250 * len(frame_hashes)), '#171c20')
     draw = ImageDraw.Draw(board)
@@ -86,19 +82,27 @@ def main():
             y = 30 + 250 * index
             board.paste(frame, (x, y))
             draw.text((x, y + 229), name, fill='white')
-    board.save(HERE / 'comparison.jpg', quality=92, optimize=True)
+    board.save(output / 'comparison.jpg', quality=92, optimize=True)
     results = {
         'compiled': rows(after, 'ROUTE_COMPILE')[0],
         'navigation': {tag: rows(after, tag)[0] for tag in stable if tag.startswith('ROUTE_NAV')},
         'rollerJournalsVerified': 12,
         'ecVisibleSamplesOf27': sightlines[1],
-        'matchingLandmarks': len(models[0]) - len(COUNTS),
-        'models': [{name: stage[name] for name in COUNTS} for stage in models],
+        'matchingLandmarks': len(models[0]) - len(counts),
+        'models': [{name: stage[name] for name in counts} for stage in models],
         'walks': walks,
         'frameSHA256': frame_hashes,
         'changedFrames': changed,
     }
-    (HERE / 'studio-results.json').write_text(json.dumps(results, indent=2) + '\n')
+    (output / 'studio-results.json').write_text(json.dumps(results, indent=2) + '\n')
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('baseline', type=Path)
+    parser.add_argument('candidate', type=Path)
+    args = parser.parse_args()
+    compare(args.baseline, args.candidate)
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@
 ## 공식 사례에서 가져온 기준
 
 - Diablo IV의 Scosglen은 해안에 닿기 전부터 방향성 있는 풀로 바람을 전달한다. TLT의 야간 북쪽 출구에서는 낮은 셰일층과 바람그늘에 고인 눈의 단차로 다음 지역의 기후를 예고한다. [Blizzard 환경 아트](https://news.blizzard.com/en-us/article/23788294/diablo-iv-quarterly-updatemarch-2022)
-- World of Warcraft의 Ringing Deeps는 기계 정비와 광차 이동을 지역 활동에 연결한다. TLT의 적재장, 썰매 정지턱, 선적대에서는 화물의 접촉면과 운송 방향이 조형으로 이어지게 한다. [Blizzard 지역·던전 소개](https://worldofwarcraft.blizzard.com/en-us/news/24125258/explore-the-zones-and-dungeons-of-the-war-within)
+- World of Warcraft의 Ringing Deeps는 기계 정비와 광차 이동을 지역 활동에 연결한다. TLT의 적재장, 썰매 정지턱, 선적대에서는 화물의 접촉면과 운송 방향이 조형으로 이어지게 한다. [Blizzard 지역·던전 소개](https://news.blizzard.com/en-us/article/24125258/explore-the-zones-and-dungeons-of-the-war-within)
 - Lost Ark의 Elgacia 제작진은 거대 석상과 움직이는 지형을 여러 카메라 각도로 시험해 장면의 방향을 정했다. TLT에서는 조사점에서 보는 정면과 귀환 중 옆으로 스치는 화면을 모두 비교한다. [Lost Ark Elgacia 개발자 인터뷰](https://www.playlostark.com/en-gb/news/articles/elgacia-lore-interview-with-gold-river)
 - Roblox의 World // Zero는 서로 다른 지형의 월드에서 퀘스트와 탐험을 제공한다. TLT도 다음 지역에서 만나는 물성과 생활 시설을 경계에서 미리 보여 준다. Roblox 환경 아트 가이드의 바닥 재질과 방향 인지 사례를 지형 이음부에 적용한다. [World // Zero 공식 Experience](https://www.roblox.com/games/2727067538/World-Zero-Anime-RPG) · [Roblox 환경 아트 가이드](https://create.roblox.com/docs/tutorials/curriculums/environmental-art/construct-your-world)
 
