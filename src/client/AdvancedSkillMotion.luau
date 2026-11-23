@@ -229,7 +229,16 @@ local function shieldPose(d,age,rigType,contact,ending)
    pose.angles[ch]=v(math.deg(x),math.deg(y),math.deg(z))
   end
  end
- if d.id=="knight.steel_knight.shield_breaker" then
+ if d.id=="knight_guarded_strike" then
+  -- Keep the shield close on entry and bring it back up after the hit.
+  local phase=age/contact
+  local brace=smooth(phase/.48)*(1-smooth((phase-.62)/.38))
+  local cover=smooth((age-contact)/.075)*(1-smooth((age-contact-.075)/.19))
+  offset(pose,"leftElbow",v(19*brace+27*cover))
+  offset(pose,"left",v(16,-10,8)*brace+v(12,-9,-10)*cover)
+  offset(pose,"torso",v(8,-11,-7)*brace+v(-9,8,-5)*cover)
+  offset(pose,"leftKnee",v(15*brace+17*cover))
+ elseif d.id=="knight.steel_knight.shield_breaker" then
   local phase=age/contact
   local brace=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
   local drive=smooth((age-contact)/.05)*(1-smooth((age-contact-.05)/.14))
@@ -444,6 +453,16 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-9,0,7)*load+v(12,0,-6)*plant)
   offset(pose,"leftKnee",v(9*load+19*plant))
   offset(pose,"leftHip",v(-8*plant))
+ elseif d.id=="dwarf_low_sweep" then
+  -- Drop through the knees before the sweep and rise through the back leg.
+  local crouch=smooth(age/(contact*.65))*(1-smooth((age-contact)/.18))
+  local rise=smooth((age-contact)/.095)*(1-smooth((age-contact-.095)/.16))
+  offset(pose,"torso",v(10,-5,12)*crouch+v(-8,11,-9)*rise)
+  offset(pose,"rightHip",v(-18,0,7)*crouch)
+  offset(pose,"leftHip",v(-24,0,-7)*crouch)
+  offset(pose,"rightKnee",v(25*crouch+8*rise))
+  offset(pose,"leftKnee",v(32*crouch))
+  offset(pose,"left",v(6,-11,19)*crouch)
  elseif d.id=="dwarf_braced_throw" then
   local phase=age/contact
   local plant=smooth(phase/.46)*(1-smooth((phase-.55)/.45))

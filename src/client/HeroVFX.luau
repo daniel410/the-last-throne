@@ -1535,6 +1535,10 @@ local forceContacts={
  ["dwarf.iron_axe.tremor_guard"]={"TremorGuardContact",Vector3.new(.12,-.75,-.83),Vector3.new(1.56,-.38,-.62),.23,.15,-.17,Vector3.new(.93,-1.12,-1.02)},
  ["elf.magic_archer.warden_arrow"]={"WardenArrowContact",Vector3.new(1.05,-.58,-1.16),Vector3.new(.08,.49,-.77),.26,.13,.09,Vector3.new(1.12,.07,-1.02)},
  ["mage.cryo.ice_ward"]={"IceWardContact",Vector3.new(.22,-.72,-.92),Vector3.new(.91,.95,-.68),.15,.15,.20,Vector3.new(.89,.08,-1.15)},
+ ["knight_guarded_strike"]={"GuardedStrikeContact",Vector3.new(.59,-.44,-.60),Vector3.new(.37,.70,-.54),.24,.13,.08,Vector3.new(.98,.28,-.82)},
+ ["dwarf_low_sweep"]={"LowSweepContact",Vector3.new(.13,-.75,-.50),Vector3.new(1.49,-.71,-.34),.31,.12,-.12,Vector3.new(.89,-.93,-.72)},
+ ["elf.magic_archer.rooting_fan"]={"RootingFanContact",Vector3.new(1.15,-.82,-.52),Vector3.new(.48,.55,-.73),.13,.12,.16,Vector3.new(.43,-.24,-.91)},
+ ["mage.cryo.frost_ring"]={"FrostRingContact",Vector3.new(.21,-.74,-.63),Vector3.new(1.22,.09,-.40),.21,.13,-.06,Vector3.new(.50,-.61,-.74)},
 }
 local function forceContact(r,at,cf,size,shape)
  local name,base,tip,travel,width,lift,bend=unpack(shape)

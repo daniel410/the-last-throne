@@ -33,6 +33,7 @@ local bow = {
     crossfire=stance(v(9,-8,8), 12, 24, 26),
     fan=stance(v(10,-20,15), 39, 22, 32),
     fanBreak=stance(v(18,-28,12), 29, 28, 38),
+    rootingFan=stance(v(14,-12,18), 25, 28, 27),
     broadside=stance(v(16,-33,18), 47, 32, 39),
     retreat=stance(v(-15,20,9), 22, 29, 28),
     advance=stance(v(16,-12,-8), -20, 24, 19),
@@ -49,6 +50,7 @@ local function bowStance(d)
     local step = d.move or d.pulseMove
     if step then return step<0 and bow.retreat or bow.advance end
     if d.id=="elf.marksman.fan_break" then return bow.fanBreak end
+    if d.id=="elf.magic_archer.rooting_fan" then return bow.rootingFan end
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
     if d.crosscut then return bow.crossfire end
     if d.id=="elf.magic_archer.echo_arrows" then return bow.echo end
@@ -119,6 +121,12 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftKnee",v(15,0,0)*recoil)
         add(pose,"right",v(-4,16,12)*recoil)
     end
+    if s == bow.rootingFan then
+        -- Leave the bow on its aim line as the draw arm opens outward.
+        add(pose,"right",v(-17,18,-24)*recoil)
+        add(pose,"elbow",v(25,0,0)*recoil)
+        add(pose,"leftKnee",v(17,0,0)*recoil)
+    end
     if s == bow.markBreaker then
         -- Hold the sight line, then let the draw hand snap away from the cheek.
         add(pose,"neck",v(3,-6,1)*coil)
@@ -188,6 +196,7 @@ local spells = {
     thunderSpear=gesture(v(-26,-15,17),v(39,26,-22),v(9,-22,9),v(40,-13,-16),23),
     chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
+    frostRing=gesture(v(25,18,-19),v(17,-17,-24),v(10,14,8),v(13,-23,-39),26),
     frostStep=gesture(v(-28,22,16),v(-9,18,-36),v(19,-17,12),v(-24,27,-32),26),
     moltenLine=gesture(v(-20,22,24),v(24,-16,-28),v(19,-12,-8),v(29,-18,-27),27),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
@@ -218,6 +227,7 @@ local function spellGesture(d,profile)
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
     if d.form=="area" or d.form=="ground" then
         if d.id=="mage.cryo.frost_step" then return spells.frostStep end
+        if d.id=="mage.cryo.frost_ring" then return spells.frostRing end
         if cue.effect=="frost" then return spells.iceRing end
         if cue.effect=="fire" then return spells.cinder end
         return spells.ring
@@ -286,6 +296,14 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"rightHip",v(20,0,-5)*wind)
         add(pose,"rightKnee",v(-18,0,0)*wind)
         add(pose,"leftKnee",v(21,0,0)*follow)
+    end
+    if s == spells.frostRing then
+        -- Press both hands low as the ice spreads, with the staff still in its grip.
+        add(pose,"right",v(-24,4,10)*follow)
+        add(pose,"left",v(-31,5,-18)*follow)
+        add(pose,"leftElbow",v(19,0,0)*follow)
+        add(pose,"torso",v(13,0,-7)*follow)
+        add(pose,"leftKnee",v(16,0,0)*follow)
     end
     if s == spells.stone then
         add(pose,"leftElbow",v(20,0,0)*follow)
