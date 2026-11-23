@@ -15,6 +15,8 @@ local function refugePathDrain(pal, part, beam)
 	part('DarkDrainBed', V(1.57, .19, 6.88), V(0, .56, .01), wetBed, M.Pebble)
 	part('SiltFanBelowDrain', V(2.12, .27, 1.51), V(.12, .33, -3.37), wetBed, M.Ground, 'Wedge',
 		V(0, .09, 0))
+	part('ExposedOutletSilt', V(1.32, .17, 1.31), V(.59, .64, 3.34), silt:Lerp(wetBed, .77), M.Pebble,
+		'Wedge', V(0, math.pi + .18, 0))
 	for _, x in ipairs({-1.37, 1.37}) do
 		part('WornDrainCheek', V(1.08, .66, 5.50), V(x, .75, .16), stone, M.Slate, nil, V(0, x * .05, 0))
 		for _, flow in ipairs({-1, 1}) do
@@ -24,27 +26,33 @@ local function refugePathDrain(pal, part, beam)
 	end
 	part('DrainCrossingLintel', V(3.61, .40, 1.19), V(.03, 1.20, .61), stone:Lerp(C(178, 157, 115), .33),
 		M.Slate, nil, V(0, -.07, .04))
+	part('WornOutletStone', V(.78, .19, 1.07), V(1.58, .79, 2.88), stone:Lerp(C(181, 158, 118), .59),
+		M.Slate, 'Wedge', V(0, math.pi + .18, 0))
 	beam('RootAboveDrain', V(-2.71, .38, 2.52), V(-.99, 1.12, 2.01), .63, root, M.Wood)
-	beam('RootAboveDrain', V(-.99, 1.12, 2.01), V(1.37, .34, 3.31), .46, root, M.Wood)
+	beam('RootAboveDrain', V(-.99, 1.12, 2.01), V(.13, .44, 2.88), .46, root, M.Wood)
 end
 
 local function scoutExtractionSkid(pal, part, beam)
 	local shale = pal.rock:Lerp(C(141, 146, 136), .66)
 	local wood = pal.wood:Lerp(C(193, 163, 119), .84)
 	local track = pal.ground:Lerp(C(85, 69, 58), .54)
-	local lash = C(218, 185, 132)
+	local lash = C(190, 147, 97)
+	local endGrain = wood:Lerp(C(224, 201, 157), .69)
+	local pullRope = C(228, 198, 151)
 
 	part('ExtractionWornShoulder', V(5.86, .58, 8.14), V(.09, .16, .12), track, M.Ground, 'Wedge')
 	part('ExtractionShaleSeat', V(4.08, .63, 5.34), V(.12, .26, .57), shale, M.Slate, 'Corner',
 		V(0, -.29, 0))
 	for _, x in ipairs({-1.07, 1.07}) do
 		beam('SkidRunner', V(x, .68, -2.64), V(x, .43, 2.59), .40, wood, M.Wood)
-		beam('CurvedSkidNose', V(x, .68, -2.64), V(x * .92, 1.34, -3.25), .37, wood, M.Wood)
+		beam('CurvedSkidNose', V(x, .68, -2.64), V(x * .92, 1.34, -3.25), .37, endGrain, M.Wood)
+		part('TowBarLashing', V(.34, .42, .38), V(x * .90, 1.29, -3.13), lash, M.Leather)
 		part('RunnerBinding', V(.48, .34, .43), V(x, .79, -1.78), lash, M.Fabric)
 	end
-	local ropeBight = V(0, .98, -3.71)
-	beam('SkidPullRope', V(-.98, 1.23, -3.14), ropeBight, .21, lash, M.Fabric)
-	beam('SkidPullRope', ropeBight, V(.98, 1.23, -3.14), .21, lash, M.Fabric)
+	part('SkidTowCrossbar', V(2.13, .27, .30), V(0, 1.29, -3.10), endGrain, M.Wood)
+	local ropeBight = V(0, 1.16, -3.66)
+	beam('SkidPullRope', V(-.88, 1.42, -3.15), ropeBight, .25, pullRope, M.Fabric)
+	beam('SkidPullRope', ropeBight, V(.88, 1.42, -3.15), .25, pullRope, M.Fabric)
 	for _, z in ipairs({-1.56, -.46, .65, 1.75}) do
 		part('EmptySkidSlat', V(2.62, .25, .72), V(0, .81 - z * .046, z), wood:Lerp(shale, .13), M.WoodPlanks)
 	end
@@ -58,7 +66,10 @@ local function citadelServiceCoping(pal, part)
 
 	part('CitadelWindPackedToe', V(6.30, .92, 8.41), V(.25, .26, .12), ice, M.Snow, 'Corner', V(0, -.24, 0))
 	part('CitadelServiceBed', V(4.44, .72, 7.45), V(.03, .23, .21), slate, M.Slate)
-	part('CitadelPackedSnowLip', V(3.31, .64, 5.12), V(-1.14, .62, .67), pal.ground, M.Snow, 'Wedge')
+	part('CitadelPackedSnowLip', V(2.88, .60, 4.93), V(-1.17, .58, .66), pal.ground, M.Snow, 'Wedge')
+	part('WindScouredStoneMargin', V(.72, .25, 4.78), V(-.04, .69, .61), slate:Lerp(iron, .58), M.Slate,
+		nil, V(0, -.07, 0))
+	part('ExposedServiceWallToe', V(1.93, .29, .76), V(.39, .69, 3.48), slate:Lerp(cut, .28), M.Slate)
 	for _, z in ipairs({-2.10, 1.90}) do
 		part('ServiceWallDressedCourse', V(2.43, 1.06, 3.66), V(.40, 1.07, z), slate, M.Slate)
 		part('SplitServiceCoping', V(2.81, .40, 3.53), V(.40, 1.76, z), cut, M.Slate, 'Wedge',
@@ -89,11 +100,14 @@ local function heatworksObservationBaffle(pal, part)
 	part('BaffleBasaltFoundation', V(4.25, .74, 7.42), V(0, .22, .02), basalt, M.Basalt)
 	part('BaffleFirebrickWall', V(1.09, 1.48, 5.92), V(.81, 1.16, .14), brick, M.Brick)
 	part('BaffleLintel', V(1.76, .35, 7.03), V(.84, 2.08, .14), basalt, M.Basalt)
+	local wornBrick = brick:Lerp(C(187, 142, 110), .68)
 	for i, z in ipairs({-1.96, .14, 2.24}) do
-		part('BaffleRefractoryCrown', V(1.22, .31, 2.03), V(.82, 2.37, z),
-			brick:Lerp(C(188, 143, 108), .30 + i * .08), M.Brick)
+		part('BaffleRefractoryCrown', V(1.22, .31, 1.99), V(.82, 2.37, z),
+			brick:Lerp(wornBrick, .18 + i * .09), M.Brick)
+		part('ScouredRefractoryEdge', V(1.99, .12, .42), V(.45, 2.515, z),
+			wornBrick, M.Concrete, 'Wedge', V(0, math.pi / 2, 0))
 	end
-	part('ObservationWearStone', V(1.20, .23, 4.81), V(-1.45, .61, .14), basalt:Lerp(panel, .47), M.Slate)
+	part('ObservationWearStone', V(1.20, .23, 4.81), V(-1.45, .61, .14), basalt:Lerp(panel, .74), M.Slate)
 	for _, z in ipairs({-2.47, 2.74}) do
 		part('BaffleStoneButtress', V(2.61, 1.78, .84), V(.16, 1.22, z), basalt, M.Basalt, 'Wedge',
 			V(0, -math.pi / 2, 0))
@@ -114,7 +128,10 @@ local function antechamberRailFooting(pal, part, beam)
 	part('RailFootingRubbleCourse', V(3.88, .64, 7.22), V(.05, .26, .15), slate, M.Cobblestone)
 	for _, z in ipairs({-2.36, 2.35}) do
 		part('CarvedRailSocket', V(2.65, .82, 1.91), V(0, .83, z), stone, M.Slate)
-		part('RailSocketIronShoe', V(1.09, .22, .87), V(0, 1.28, z), iron, M.CorrodedMetal)
+		part('RailSocketIronShoe', V(1.25, .26, .93), V(0, 1.31, z),
+			iron:Lerp(C(53, 57, 63), .57), M.CorrodedMetal)
+		part('DressedSocketEnd', V(2.40, .22, .52), V(0, 1.22, z + math.sign(z) * .66),
+			stone:Lerp(C(186, 177, 155), .55), M.Limestone, 'Wedge', V(0, z < 0 and math.pi or 0, 0))
 		beam('RecessedRailUpright', V(0, 1.37, z), V(0, 2.27, z), .39, iron, M.CorrodedMetal)
 	end
 	part('RailSpine', V(.49, .37, 5.4), V(0, 2.25, 0), iron, M.CorrodedMetal)
