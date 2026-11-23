@@ -115,17 +115,23 @@ local ok, err = xpcall(function()
                 id .. " keeps exactly one damage number and replaces common flash")
             if not art then continue end
             local strokes = {}
+            local centerX, count = 0, 0
             for _, child in art:GetDescendants() do
                 if child:IsA("Beam") and child.Name == "PostureBreakEdge" then
-                    strokes[child] = math.abs(child.Attachment0.WorldPosition.X)
+                    local x = child.Attachment0.WorldPosition.X
+                    strokes[child] = x
+                    centerX += x
+                    count += 1
                     check(child.CurveSize0 > .10 and child.CurveSize1 > .10, id .. " curved fracture silhouette")
                 end
             end
             local _, beams, chips, glows, particles = FX.count()
             check(beams == 2 and chips == 0 and glows == 0 and particles == 0, id .. " fits compact effect budget")
             FX.step(workspace:GetServerTimeNow() + .055)
+            centerX /= math.max(1, count)
             for stroke, initial in strokes do
-                check(math.abs(stroke.Attachment0.WorldPosition.X) > initial + .15, id .. " opens away from the point of impact")
+                check(math.abs(stroke.Attachment0.WorldPosition.X - centerX) > math.abs(initial - centerX) + .15,
+                    id .. " opens away from the point of impact")
             end
             for _, node in art:GetDescendants() do
                 check(not node:IsA("PointLight"), id .. " no lighting overlap")

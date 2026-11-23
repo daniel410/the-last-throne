@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "bf57145f3162ff0411f87be289cce9f25371d0b9",
+  "version": "0.115.60",
+  "mode": "Roblox Studio 0.748.0.7481526 Edit, isolated local Place",
+  "baseline": {
+    "version": "0.115.58",
+    "checks": 220,
+    "failures": [
+      "knight.steel_knight.shield_breaker final point emits one confirmed break",
+      "knight.steel_knight.shield_breaker distinct authored fracture",
+      "knight.steel_knight.shield_breaker fits compact effect budget",
+      "knight.steel_knight.shield_breaker distinct authored fracture",
+      "dwarf.iron_axe.crag_cleave final point emits one confirmed break",
+      "dwarf.iron_axe.crag_cleave distinct authored fracture",
+      "dwarf.iron_axe.crag_cleave keeps exactly one damage number and replaces common flash",
+      "dwarf.iron_axe.crag_cleave fits compact effect budget",
+      "dwarf.iron_axe.crag_cleave distinct authored fracture",
+      "dwarf.iron_axe.crag_cleave load and follow-through differ",
+      "elf.marksman.piercing_line final point emits one confirmed break",
+      "elf.marksman.piercing_line distinct authored fracture",
+      "elf.marksman.piercing_line keeps exactly one damage number and replaces common flash",
+      "elf.marksman.piercing_line distinct authored fracture",
+      "mage.pyro.stone_lance final point emits one confirmed break",
+      "mage.pyro.stone_lance distinct authored fracture",
+      "mage.pyro.stone_lance distinct authored fracture",
+      "mark and break on the same confirmed hit",
+      "mark and break retain both silhouettes",
+      "server reports absorbed hit that still breaks posture",
+      "break without health loss shows no damage number",
+      "nearby follow-up preserves break dip"
+    ]
+  },
+  "suites": {
+    "hero-posture-break-native": 187,
+    "hero-contact-weight-native": 53,
+    "hero-control-attacks-native": 178,
+    "hero-force-feedback-native": 81,
+    "hero-ground-impact-native": 128,
+    "hero-hit-feedback-native": 1667,
+    "hero-mark-application-native": 432,
+    "hero-mark-impact-native": 341,
+    "hero-skills-native": 244520,
+    "hero-step-wakes-native": 335,
+    "hero-vfx-priority-native": 28,
+    "k0-hit-effects-native": 102,
+    "skill-icon-vfx-native": 12602
+  },
+  "total": 260654
+}
