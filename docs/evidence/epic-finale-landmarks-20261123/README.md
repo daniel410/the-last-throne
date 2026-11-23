@@ -58,3 +58,5 @@ python3 "$audit_dir/audit.py" "$out" compare
 이 판독은 비교판의 거리와 조명에 한정한다. 맵 미술과 QA의 다음 확인 지점은 FV 표지 옆 실제 보행, GW 야간 첫 발견, EC의 Suri 좌우다. 고정 Place 전체 감사와 R15 왕복은 여전히 미검증이며 후보 병합과 사용자 미술 수용은 대기 중이다.
 
 JSON을 다시 추출하려면 위 격리 측정 스크립트의 앞부분에 `local exportGeometry = true`를 추가한 뒤 반환값을 JSON으로 저장한다. 비교 프레임은 `blender -b --python render-models.py -- model-geometry.json /tmp/tlt-finale-frames`로 생성한다.
+
+후속 0.115.59 후보의 실제 배치, 고정 카메라 18쌍, R15 왕복 23구간 증거는 [7장 북부 고갯길과 썰매 정지 지점](../epic-finale-shale-sled-20261123/README.md)에 있다.

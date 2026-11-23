@@ -64,6 +64,7 @@ def prepare(directory, places, build):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('directory', type=Path, help='outside the evidence tree')
+    parser.add_argument('--build-record', type=Path, default=HERE / 'build.json')
     operation = parser.add_subparsers(dest='operation', required=True)
     prep = operation.add_parser('prepare')
     prep.add_argument('baseline_place', type=Path)
@@ -71,7 +72,7 @@ def main():
     operation.add_parser('compare')
     args = parser.parse_args()
     directory = args.directory.resolve()
-    build_path = HERE / 'build.json'
+    build_path = args.build_record.resolve()
     directory.mkdir(parents=True, exist_ok=True)
 
     if args.operation == 'prepare':

@@ -1,0 +1,36 @@
+{
+  "GW-07": {
+    "baselineParts": 10,
+    "candidateParts": 10,
+    "localBounds": [
+      [
+        -8.591385,
+        -0.42,
+        -4.5891
+      ],
+      [
+        9.03931,
+        3.795,
+        5.120243
+      ]
+    ],
+    "maxBoundDelta": 0.0
+  },
+  "FV-07": {
+    "baselineParts": 15,
+    "candidateParts": 15,
+    "localBounds": [
+      [
+        -8.1,
+        -0.32,
+        -4.775
+      ],
+      [
+        7.0,
+        2.7,
+        4.855
+      ]
+    ],
+    "maxBoundDelta": 0.0
+  }
+}
