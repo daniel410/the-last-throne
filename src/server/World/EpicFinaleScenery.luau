@@ -47,7 +47,10 @@ local function windgapStrata(_, part)
 	local weathered = C(123, 144, 162)
 	local lowerSlate = C(108, 129, 145)
 	local snow = C(205, 221, 231)
-	part('ShaleToe', V(17, 1.32, 9.1), V(0, .24, .35), lowerSlate, M.Slate)
+	part('ShaleToe', V(17, .60, 9.1), V(0, -.12, .35), lowerSlate, M.Slate)
+	-- Feather the road-side end into the buried toe.
+	part('ShaleToeSlope', V(9.1, .72, 17), V(0, .54, .35),
+		lowerSlate, M.Slate, false, V(0, math.pi / 2, 0), 'Wedge')
 	part('ExposedBedding', V(15.1, 1.26, 8.2), V(.28, .65, .43),
 		lowerSlate:Lerp(weathered, .39), M.Slate, false, V(0, .08, 0), 'Wedge')
 	local beddingFace = C(168, 185, 196)

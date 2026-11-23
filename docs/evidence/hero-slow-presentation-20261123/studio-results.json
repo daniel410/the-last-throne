@@ -1,0 +1,63 @@
+{
+  "sourceCommit": "d60d23b9dd4630f78d969b97ba243252cb54bc54",
+  "version": "0.115.62",
+  "mode": "Roblox Studio 0.748.0.7481526 Edit, isolated local Place",
+  "baseline": {
+    "version": "0.115.60",
+    "failures": [
+      "slow visuals render through the client control presenter",
+      "trap keeps the shallow launch and arrow rain keeps the overhead launch",
+      "knight.steel_knight.sweeping_break server selects visual style",
+      "knight.steel_knight.sweeping_break recovery pose R6 = 6",
+      "knight.steel_knight.sweeping_break recovery pose R15 = 5.561971664428711",
+      "dwarf_low_sweep server selects visual style",
+      "dwarf_low_sweep recovery pose R6 = 13.588244438171387",
+      "elf.magic_archer.vine_trap server selects visual style",
+      "elf.magic_archer.vine_trap recovery pose R6 = 13.410719871520996",
+      "elf.magic_archer.vine_trap recovery pose R15 = 13.410719871520996",
+      "mage_tidal_ring server selects visual style",
+      "mage_tidal_ring recovery pose R6 = 14",
+      "mage_tidal_ring recovery pose R15 = 14",
+      "elf_pinning_shot server selects visual style",
+      "mage.cryo.frost_ring server selects visual style",
+      "mage.pyro.earth_rise server selects visual style",
+      "mage.pyro.cinder_ring server selects visual style",
+      "mage.common.gravity server selects visual style"
+    ],
+    "checks": 50
+  },
+  "suites": {
+    "hero-slow-presentation-native": 157,
+    "hero-skills-native": 244520,
+    "knight-stun-and-control-effects-native": 296,
+    "dwarf-stun-native": 36,
+    "hero-control-attacks-native": 178,
+    "hero-posture-break-native": 187,
+    "hero-ground-impact-native": 128,
+    "hero-hit-feedback-native": 1667,
+    "hero-mark-application-native": 432,
+    "hero-mark-impact-native": 341,
+    "hero-vfx-priority-native": 28,
+    "k0-hit-effects-native": 102,
+    "skill-icon-vfx-native": 12602,
+    "elf-late-shot-motion-native": 39
+  },
+  "total": 260713,
+  "candidateFailures": [],
+  "screenComparison": {
+    "mode": "Studio Run, isolated R15 fixture",
+    "baseline": "0.115.60",
+    "candidate": "0.115.62",
+    "pairs": 4
+  },
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 12632,
+    "place-role.spec.lua": 10
+  },
+  "existingCPUFailure": {
+    "suite": "advanced-mode-damage.spec.lua",
+    "assertion": "new runs pin rules18; saved rules17 accepted",
+    "baselineAndCandidateInputsIdentical": true
+  }
+}
