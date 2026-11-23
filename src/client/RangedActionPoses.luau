@@ -134,6 +134,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"elbow",v(20,0,0)*recoil)
         add(pose,"leftKnee",v(16,0,0)*recoil)
     end
+    if d.id=="elf.marksman.weakpoint_shot" then
+        -- Set the eye behind the arrow, then pull the draw hand straight back.
+        add(pose,"neck",v(8,6,-5)*load)
+        add(pose,"right",v(-3,-13,6)*recoil)
+        add(pose,"elbow",v(18,0,0)*recoil)
+        add(pose,"rightKnee",v(11,0,0)*load)
+    end
     if s == bow.warden then
         -- The draw hand folds back toward the chest while the bow stays on target.
         add(pose,"right",v(-10,-22,24)*recoil)
@@ -285,6 +292,12 @@ function Poses.mage(pose,d,profile,age)
     add(pose,"leftHip",v(-.4*knees,0,7*wind))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(.7*knees,0,0))
+    if d.id=="mage.pyro.ember_lance" then
+        -- Gather the ember near the staff, then turn the open palm through the release.
+        add(pose,"left",v(-14,22,11)*wind+v(20,-17,-18)*follow)
+        add(pose,"leftElbow",v(-19,0,0)*wind+v(16,0,0)*follow)
+        add(pose,"torso",v(-5,-7,4)*wind+v(9,8,-5)*follow)
+    end
     if d.id=="mage.cryo.frost_lance" then
         add(pose,"leftElbow",v(24,0,0)*follow)
         add(pose,"left",v(-12,-8,-14)*follow)

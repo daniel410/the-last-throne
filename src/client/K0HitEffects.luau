@@ -135,7 +135,8 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local compact = HeroVFX.isOtherHero(attacker)
 	HitReaction.record(model, flat, nil, row, descending, final)
 	local consumedMark = type(impact) == "table" and impact.consumedMark or nil
-	local contact, distinctContact = HeroVFX.contact(position, classId, skillId, flat, scale * (final and 1.2 or 1), compact, consumedMark)
+	local appliedMark = type(impact) == "table" and impact.appliedMark or nil
+	local contact, distinctContact = HeroVFX.contact(position, classId, skillId, flat, scale * (final and 1.2 or 1), compact, consumedMark, appliedMark)
 	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
 	local cleanContact = distinctContact or descending and sharpContact
 	if not compact and not descending and not distinctContact then PixelFX.hit(position, classId, skillId, scale, flat) end

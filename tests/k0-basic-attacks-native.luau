@@ -262,14 +262,47 @@ return {
 		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
 		local growth=G.new(80);growth.branch="paladin";growth.stage=4;growth.battleWins=12;growth.skillSlots={17,22,0,0,0}
 		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="knight",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5}end)
+		local events = {}
+		api.setHitEffectRemote({FireAllClients = function(_, target, _, _, _, _, _, skillId, impact)
+			table.insert(events, {target = target, skillId = skillId, impact = impact})
+		end})
 		local state=spawnPlayer();local enemy=spawnEnemy(3)
 		action(state,"Skill1",0,nil,enemy.model);sample(.31);sample(.61)
 		equal(enemy.branchMarks[state.heroId].kind,"oath","Oathblade creates own mark")
+		equal(#events,2,"both confirmed pulses refresh the mark")
+		for _, event in ipairs(events) do
+			equal(event.target,enemy.model,"application belongs to the hit enemy")
+			equal(event.impact.appliedMark,"oath","confirmed strike reports the mark")
+			equal(event.impact.consumedMark,nil,"application is distinct from spending the mark")
+		end
 		sample(1.1);api.stepPlayer(state,1.1,0,true)
 		local before=enemy.humanoid.Health
 		action(state,"Skill2",1.2,nil,enemy.model);sample(1.51)
 		equal(enemy.branchMarks[state.heroId],nil,"Shield Verdict consumes own mark")
 		near(before-enemy.humanoid.Health,math.floor(337*1.9*1.4+.5),"mark adds one bounded bonus")
+		equal(events[3].impact.appliedMark,nil,"consuming the mark does not apply it again")
+		equal(events[3].impact.consumedMark,"oath","spending still reports the mark")
+	end)
+	case("branch-mark-feedback-requires-a-surviving-damaged-target", function()
+		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+		local growth=G.new(80);growth.branch="paladin";growth.stage=4;growth.skillSlots={18,0,0,0,0}
+		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="knight",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5}end)
+		local events = {}
+		api.setHitEffectRemote({FireAllClients = function(_, target, _, _, _, _, _, skillId, impact)
+			events[target] = {skillId = skillId, impact = impact}
+		end})
+		local state=spawnPlayer()
+		local survivor, lethal, absorbed = spawnEnemy(2), spawnEnemy(4), spawnEnemy(6)
+		lethal.humanoid.Health = 5
+		local shield = Instance.new("ForceField")
+		shield.Parent = absorbed.model
+		action(state,"Skill1",0,nil,survivor.model);sample(.31)
+		equal(events[survivor.model].skillId,"knight.paladin.radiant_sweep","server accepted mark sweep")
+		equal(events[survivor.model].impact.appliedMark,"oath","survivor shows the new mark")
+		equal(events[lethal.model].impact.appliedMark,nil,"lethal damage shows a regular hit")
+		equal(events[absorbed.model],nil,"forcefield creates no mark event")
+		equal(lethal.model:GetAttribute("K0BranchMark"),nil,"no mark remains after a lethal hit")
+		equal(absorbed.model:GetAttribute("K0BranchMark"),nil,"no mark is granted on zero damage")
 	end)
 	case("branch-area-pulses-and-wall-cover",function()
 		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
