@@ -52,16 +52,18 @@ local function windgapStrata(_, part)
 		lowerSlate:Lerp(weathered, .39), M.Slate, false, V(0, .08, 0), 'Wedge')
 	local beddingFace = C(154, 174, 184)
 	local fracturedFace = C(89, 107, 125)
-	part('WindgapLowBeddingEdge', V(11.2, .74, 1.65), V(-.55, .99, -3.23),
-		beddingFace, M.Slate, false, V(0, .018, -.035))
-	part('WindgapSplitBeddingEdge', V(5.66, .58, 1.45), V(-2.78, 1.205, -2.97),
-		fracturedFace, M.Slate, false, V(0, .067, -.085))
+	-- The exposed ends follow separate breaks in the shale toe.
+	part('WindgapLowBeddingEdge', V(6.4, .67, 1.58), V(.78, .93, -2.87),
+		beddingFace:Lerp(weathered, .36), M.Slate, false, V(0, .29, 0), 'Wedge')
+	part('WindgapSplitBeddingEdge', V(5.15, .76, 1.63), V(-3.61, 1.03, -2.56),
+		fracturedFace, M.Slate, false, V(0, -.19, 0), 'Wedge')
 	part('ShelteredStratum', V(10.8, 3.12, 7.8), V(-2.7, 1.29, .37),
 		lowerSlate, M.Slate, false, V(0, .14, 0), 'Wedge')
-	part('WindpolishedShale', V(8.05, 3.66, 6.1), V(-3.72, 1.57, .95),
-		weathered, M.Slate, false, V(0, .14, 0), 'Wedge')
-	part('NorthFaceSnowDrift', V(5.92, 3.83, 4.55), V(-4.28, 1.88, 1.89),
-		snow, M.Snow, false, V(0, .14, 0), 'Wedge')
+	part('WindpolishedShale', V(7.35, 3.66, 6.18), V(-3.74, 1.57, .82),
+		weathered, M.Slate, false, V(0, -.24, 0), 'Wedge')
+	-- Snow fills the sheltered side of the oblique upper bed.
+	part('NorthFaceSnowDrift', V(4.78, 3.83, 5.32), V(-4.42, 1.88, 1.51),
+		snow, M.Snow, false, V(0, -.24, 0), 'Wedge')
 	part('FracturedLeeStratum', V(7.3, 2.41, 6.68), V(4.7, 1, .54),
 		weathered:Lerp(lowerSlate, .54), M.Slate, false, V(0, -.24, 0), 'Wedge')
 	part('WindgapLeeBeddingEnd', V(5.65, .58, 1.45), V(4.55, 1.11, 3.94),
@@ -84,12 +86,13 @@ local function sledLanding(palette, part)
 		part('BurnishedSledRunnerTrack', V(1.37, .19, 6.8), V(x, .36, -.25), burnished, M.Glacier)
 		part('SledStopCheek', V(2.35, 2.42, 2.85), V(x, 1.49, 1.91),
 			timber, M.Wood, false, V(0, math.pi, 0), 'Wedge')
-		part('SledStopRunnerSeat', V(1.52, .27, .78), V(x, .54, .14), iron, M.Metal)
-		-- Lower cheek follows the outer edge of each track and exposes the grain beside the iron.
-		local outboard = x < 0 and -.88 or .88
-		part('SledStopEndGrain', V(.78, 1.9, 3.04), V(x + outboard, 1.22, 1.98),
-			timber:Lerp(wornIron, .32), M.Wood, false, V(0, math.pi, 0), 'Wedge')
-		part('SledStopRunnerStrikeFace', V(1.87, 1.46, .34), V(x, 1.33, .37), wornIron, M.CorrodedMetal)
+		-- The low iron ramp carries the runner track into the strike plate.
+		part('SledStopRunnerSeat', V(1.52, .45, 1.68), V(x, .63, -.24),
+			iron:Lerp(wornIron, .24), M.Metal, false, nil, 'Wedge')
+		local outboard = x < 0 and -.92 or .92
+		part('SledStopEndGrain', V(.86, 1.25, 2.70), V(x + outboard, .93, 1.53),
+			timber:Lerp(wornIron, .45), M.Wood, false, V(0, math.pi, 0), 'Wedge')
+		part('SledStopRunnerStrikeFace', V(1.83, 1.39, .40), V(x, 1.26, .34), wornIron, M.CorrodedMetal)
 		part('FreightSillSupport', V(3.65, 2.18, 2.35), V(x, .78, 3.68), palette.rock, M.Slate)
 	end
 	part('FreightSillIceLip', V(14.63, .94, 2.1), V(-.65, 2.16, 3.7), palette.trim:Lerp(palette.rock, .28), M.Glacier)
