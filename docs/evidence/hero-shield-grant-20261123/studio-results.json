@@ -1,0 +1,330 @@
+{
+  "baseline": {
+    "version": "0.115.53",
+    "sourceCommit": "26e5d209c44399309b7eae12ca94b55898490a6e",
+    "shieldGrant": {
+      "checks": 139,
+      "partySkills": 6,
+      "failures": [
+        "dwarf.iron_axe.iron_shoulder sends the exact recipient count",
+        "dwarf.iron_axe.iron_shoulder sends nearby ally only for a party shield",
+        "dwarf.iron_axe.iron_shoulder marks recipients before contact",
+        "dwarf.iron_axe.iron_shoulder deduplicates the opener",
+        "dwarf.iron_axe.tremor_guard sends the exact recipient count",
+        "dwarf.iron_axe.tremor_guard sends nearby ally only for a party shield",
+        "dwarf.iron_axe.tremor_guard marks recipients before contact",
+        "dwarf.iron_axe.tremor_guard deduplicates the opener",
+        "mage.pyro.searing_ward sends the exact recipient count",
+        "mage.pyro.searing_ward sends nearby ally only for a party shield",
+        "mage.pyro.searing_ward marks recipients before contact",
+        "mage.pyro.searing_ward deduplicates the opener",
+        "mage.cryo.ice_ward sends the exact recipient count",
+        "mage.cryo.ice_ward sends nearby ally only for a party shield",
+        "mage.cryo.ice_ward marks recipients before contact",
+        "mage.cryo.ice_ward deduplicates the opener",
+        "mage_arcane_ward sends the exact recipient count",
+        "mage_arcane_ward sends nearby ally only for a party shield",
+        "mage_arcane_ward marks recipients before contact",
+        "mage_arcane_ward deduplicates the opener",
+        "knight.steel_knight.guardian_counter sends the exact recipient count",
+        "knight.steel_knight.guardian_counter sends nearby ally only for a party shield",
+        "knight.steel_knight.guardian_counter marks recipients before contact",
+        "knight.steel_knight.guardian_counter deduplicates the opener",
+        "the party shield effect is centered on the ally",
+        "two curved edges follow the moving ally",
+        "contact does not repeat the grant as a caster ring",
+        "knight.steel_knight.unyielding_front sends the exact recipient count",
+        "knight.steel_knight.unyielding_front sends nearby ally only for a party shield",
+        "knight.steel_knight.unyielding_front marks recipients before contact",
+        "knight.steel_knight.unyielding_front deduplicates the opener",
+        "knight.paladin.dawn_burst sends the exact recipient count",
+        "knight.paladin.dawn_burst sends nearby ally only for a party shield",
+        "knight.paladin.dawn_burst marks recipients before contact",
+        "knight.paladin.dawn_burst deduplicates the opener",
+        "knight.paladin.guardian_slash sends the exact recipient count",
+        "knight.paladin.guardian_slash sends nearby ally only for a party shield",
+        "knight.paladin.guardian_slash marks recipients before contact",
+        "knight.paladin.guardian_slash deduplicates the opener",
+        "knight.paladin.valiant_advance sends the exact recipient count",
+        "knight.paladin.valiant_advance sends nearby ally only for a party shield",
+        "knight.paladin.valiant_advance marks recipients before contact",
+        "knight.paladin.valiant_advance deduplicates the opener",
+        "knight.paladin.oath_of_dawn sends the exact recipient count",
+        "knight.paladin.oath_of_dawn sends nearby ally only for a party shield",
+        "knight.paladin.oath_of_dawn marks recipients before contact",
+        "knight.paladin.oath_of_dawn deduplicates the opener",
+        "elf.marksman.hunter_s_focus sends the exact recipient count",
+        "elf.marksman.hunter_s_focus sends nearby ally only for a party shield",
+        "elf.marksman.hunter_s_focus marks recipients before contact",
+        "elf.marksman.hunter_s_focus deduplicates the opener",
+        "elf.magic_archer.warden_arrow sends the exact recipient count",
+        "elf.magic_archer.warden_arrow sends nearby ally only for a party shield",
+        "elf.magic_archer.warden_arrow marks recipients before contact",
+        "elf.magic_archer.warden_arrow deduplicates the opener",
+        "late accepted grant does not replay the opening animation",
+        "late grants still deduplicate",
+        "one fresh guard per recipient in overlapping casts",
+        "knight.steel_knight.guardian_counter braces on R6",
+        "knight.steel_knight.guardian_counter plants at contact on R6",
+        "knight.steel_knight.guardian_counter braces on R15",
+        "knight.steel_knight.guardian_counter plants at contact on R15",
+        "knight.steel_knight.guardian_counter has a distinct two-stroke compact impact",
+        "dwarf.iron_axe.tremor_guard braces on R6",
+        "dwarf.iron_axe.tremor_guard plants at contact on R6",
+        "dwarf.iron_axe.tremor_guard braces on R15",
+        "dwarf.iron_axe.tremor_guard plants at contact on R15",
+        "dwarf.iron_axe.tremor_guard has a distinct two-stroke compact impact",
+        "elf.magic_archer.warden_arrow folds the draw elbow after release",
+        "elf.magic_archer.warden_arrow has a distinct two-stroke compact impact",
+        "mage.cryo.ice_ward turns the guiding palm outward into the burst",
+        "mage.cryo.ice_ward has a distinct two-stroke compact impact"
+      ],
+      "shieldSkills": 13,
+      "pass": false
+    }
+  },
+  "studio": {
+    "version": "0.115.54",
+    "sourceCommit": "30c316115f2dcd689fe6237a9bfa4d76802d9c2e",
+    "batches": 14,
+    "checks": 246607,
+    "results": {
+      "SHIELD_GRANT": {
+        "checks": 139,
+        "partySkills": 6,
+        "failures": [],
+        "shieldSkills": 13,
+        "pass": true
+      },
+      "HERO_MARK_IMPACT_NATIVE": {
+        "checks": 341,
+        "skills": 22,
+        "pass": true,
+        "failures": []
+      },
+      "HERO_RELEASE_ALIGNMENT_NATIVE": {
+        "poses": {
+          "retreatKnee": 44.92847442626953,
+          "spearElbow": 35,
+          "R15": {
+            "crescentLoadYaw": 31.448177337646484,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -28.126220703125
+          },
+          "R6": {
+            "crescentLoadYaw": 36.995384216308594,
+            "axeFinishKnee": 16,
+            "axeLoadKnee": 23,
+            "crescentFinishYaw": -31.765085220336914
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 26
+      },
+      "HERO_SKILLS_NATIVE": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      },
+      "HERO_SKILL_IMPACT_NATIVE": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      },
+      "HERO_VFX_PRIORITY_NATIVE": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      },
+      "HERO_PULSE_RHYTHM_NATIVE": {
+        "beamCounts": {
+          "ally": [
+            1,
+            1,
+            1
+          ],
+          "caster": [
+            1,
+            1,
+            1
+          ]
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 85
+      },
+      "SKILL_VFX_ART_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 43
+      },
+      "ELEMENT_VFX_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 84
+      },
+      "HERO_CONTACT_WEIGHT_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 53
+      },
+      "PROJECTILE_VFX_TIMING_NATIVE": {
+        "pass": true,
+        "checks": 192
+      },
+      "HERO_MOVEMENT_SKILLS_NATIVE": {
+        "failures": [],
+        "pass": true,
+        "checks": 67
+      },
+      "HERO_ULTIMATE_FINISH_NATIVE": {
+        "budget": {
+          "elf.marksman.grand_volley": {
+            "ally": {
+              "beams": 6,
+              "particles": 0,
+              "surfaces": 0
+            },
+            "own": {
+              "beams": 37,
+              "particles": 16,
+              "surfaces": 28
+            }
+          },
+          "dwarf.iron_axe.mountain_collapse": {
+            "ally": {
+              "beams": 6,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 27,
+              "particles": 16,
+              "surfaces": 13
+            }
+          },
+          "dwarf.gunner.siege_barrage": {
+            "ally": {
+              "beams": 2,
+              "particles": 0,
+              "surfaces": 0
+            },
+            "own": {
+              "beams": 12,
+              "particles": 23,
+              "surfaces": 0
+            }
+          },
+          "mage.cryo.eternal_tempest": {
+            "ally": {
+              "beams": 8,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 39,
+              "particles": 16,
+              "surfaces": 43
+            }
+          },
+          "elf.magic_archer.spirit_arrowfall": {
+            "ally": {
+              "beams": 9,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 19,
+              "particles": 16,
+              "surfaces": 24
+            }
+          },
+          "mage.pyro.caldera_s_judgment": {
+            "ally": {
+              "beams": 10,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 42,
+              "particles": 35,
+              "surfaces": 58
+            }
+          },
+          "knight.steel_knight.unyielding_front": {
+            "ally": {
+              "beams": 3,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 30,
+              "particles": 16,
+              "surfaces": 18
+            }
+          },
+          "knight.paladin.oath_of_dawn": {
+            "ally": {
+              "beams": 9,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 24,
+              "particles": 16,
+              "surfaces": 18
+            }
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 88
+      },
+      "GUNNER_PAYLOAD_NATIVE": {
+        "pass": true,
+        "checks": 180
+      }
+    }
+  },
+  "final": {
+    "version": "0.115.55",
+    "sourceCommit": "8adad5009821437b279990e76743629d9909289e",
+    "static": {
+      "luauFiles": 6,
+      "curvedContactSkills": 4,
+      "samplesPerStroke": 5,
+      "advancedSkills": 1435,
+      "skillEffects": 12632,
+      "placeRole": 10
+    },
+    "studio": "Final rerun blocked at runner startup",
+    "fourClient": "Studio runner timed out before the multiplayer simulation started",
+    "published": false
+  },
+  "visualComparison": {
+    "baseline": "0.115.53",
+    "candidate": "0.115.54",
+    "r15ViewsPerBuild": 5
+  }
+}
