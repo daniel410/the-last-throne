@@ -15,7 +15,7 @@ Finale.profiles = {
 
 local function loadingSill(palette, part)
 	local mud = C(110, 87, 65)
-	local tread = C(125, 101, 75)
+	local tread = C(136, 110, 82)
 	local ashlar = palette.rock:Lerp(C(156, 143, 116), .58)
 	local timber = C(111, 82, 58)
 	local iron = C(111, 105, 91)
@@ -30,12 +30,16 @@ local function loadingSill(palette, part)
 		part('WagonRutBed', V(1.75, .15, 6.28), V(x, .55, -.66), tread, M.Ground)
 		part('TimberWheelStop', V(3.8, 1.27, 2.1), V(x, 1.18, 1.6),
 			timber, M.Wood, false, V(0, -.1, 0), 'Wedge')
-		part('WheelStopSeat', V(2.55, .48, 1.72), V(x, .74, .24), ashlar, M.Cobblestone)
+		part('WheelStopSeat', V(2.55, .48, 1.95), V(x, .74, .125), ashlar, M.Cobblestone)
+		part('WheelStopApproachStone', V(1.66, .43, 1.11), V(x, .64, -1.31),
+			tread:Lerp(ashlar, .62), M.Slate, false, nil, 'Wedge')
 		part('WheelStopIronToe', V(1.85, .20, 1.12), V(x, 1.02, .47), iron, M.CorrodedMetal)
 	end
 	part('SillFoundation', V(13.4, 2, 3.1), V(0, .52, 3.28), palette.rock, M.Cobblestone)
 	for _, x in ipairs({-4.4, 0, 4.4}) do
-		part('DressedLoadingSill', V(4.32, .86, 3.55), V(x, 1.91, 3.16), ashlar, M.Slate)
+		part('DressedLoadingSill', V(4.32, .86, 3.31), V(x, 1.91, 3.04), ashlar, M.Slate)
+		part('DressedSillReturnNose', V(4.32, .72, .42), V(x, 1.96, 4.725),
+			ashlar:Lerp(tread, .26), M.Slate, false, V(0, math.pi, 0), 'Wedge')
 	end
 end
 
@@ -60,6 +64,8 @@ local function windgapStrata(_, part)
 		snow, M.Snow, false, V(0, .14, 0), 'Wedge')
 	part('FracturedLeeStratum', V(7.3, 2.41, 6.68), V(4.7, 1, .54),
 		weathered:Lerp(lowerSlate, .54), M.Slate, false, V(0, -.24, 0), 'Wedge')
+	part('WindgapLeeBeddingEnd', V(5.65, .58, 1.45), V(4.55, 1.11, 3.94),
+		beddingFace:Lerp(weathered, .24), M.Slate, false, V(.07, -.04, .08), 'Wedge')
 	part('LeewardSnowTongue', V(5.4, 1.08, 5.32), V(5.36, .42, -1.25),
 		snow:Lerp(weathered, .06), M.Snow, false, V(0, -.3, 0), 'Wedge')
 end
@@ -79,6 +85,10 @@ local function sledLanding(palette, part)
 		part('SledStopCheek', V(2.35, 2.42, 2.85), V(x, 1.49, 1.91),
 			timber, M.Wood, false, V(0, math.pi, 0), 'Wedge')
 		part('SledStopRunnerSeat', V(1.52, .27, .78), V(x, .54, .14), iron, M.Metal)
+		-- Lower cheek follows the outer edge of each track and exposes the grain beside the iron.
+		local outboard = x < 0 and -.88 or .88
+		part('SledStopEndGrain', V(.78, 1.9, 3.04), V(x + outboard, 1.22, 1.98),
+			timber:Lerp(wornIron, .32), M.Wood, false, V(0, math.pi, 0), 'Wedge')
 		part('SledStopRunnerStrikeFace', V(1.87, 1.46, .34), V(x, 1.33, .37), wornIron, M.CorrodedMetal)
 		part('FreightSillSupport', V(3.65, 2.18, 2.35), V(x, .78, 3.68), palette.rock, M.Slate)
 	end
@@ -107,8 +117,13 @@ local function dispatchCradle(palette, part)
 		end
 		part('CarrierLoadingRamp', V(1.95, 1.48, 2.23), V(x, 2.38, -3.36),
 			iron, M.CorrodedMetal, false, nil, 'Wedge')
+		local outboard = x < 0 and -1.17 or 1.17
+		part('CarrierLoadingGuideCheek', V(.55, 1.62, 2.35), V(x + outboard, 2.22, -3.23),
+			exposedAxle:Lerp(dressedBasalt, .32), M.CorrodedMetal, false, nil, 'Wedge')
 		part('CarrierToeStop', V(2.5, 1.58, 1.48), V(x, 3.44, 3.05),
 			iron:Lerp(cutBasalt, .21), M.Metal, false, V(0, math.pi, 0), 'Wedge')
+		part('CarrierReturnGuideCheek', V(.69, 1.52, 1.59), V(x + outboard, 2.96, 3.19),
+			exposedAxle:Lerp(dressedBasalt, .42), M.CorrodedMetal, false, V(0, math.pi, 0), 'Wedge')
 	end
 	part('CradleRearLintel', V(10.8, .74, 1.34), V(0, 2.05, 3.24), cutBasalt, M.Basalt)
 end
@@ -128,8 +143,12 @@ local function returnParapet(palette, part, beam)
 	end
 	part('ParapetReturnEndStone', V(1.37, 1.06, 3.25), V(7.04, 1.91, .45),
 		dryStone:Lerp(palette.rock, .31), M.Slate)
+	part('ParapetEndChamfer', V(1.78, .49, 2.76), V(6.88, 2.45, .58),
+		wornEnd, M.Slate, false, V(0, -math.pi / 2, 0), 'Wedge')
 	for _, x in ipairs({-4.96, -1.64}) do
 		part('AlliedBraceAnchorShoe', V(1.35, .35, 1.38), V(x, 1.47, -2.13), iron, M.CorrodedMetal)
+		part('AlliedBraceSeatingStone', V(1.89, .31, 1.93), V(x, 1.43, -2.02),
+			wornEnd:Lerp(dryStone, .25), M.Slate)
 	end
 	beam('AlliedBrace', V(-4.96, 1.24, -2.11), V(-4.96, 3.46, -.69), .67, iron, M.CorrodedMetal)
 	beam('AlliedBrace', V(-1.64, 1.24, -2.11), V(-1.64, 3.19, -.69), .67, iron, M.CorrodedMetal)
