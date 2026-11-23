@@ -419,6 +419,16 @@ function Motion.sample(classId,d,age,rigType)
    offset(pose,"left",v(-10,0,14)*settle)
    offset(pose,"leftKnee",v(19)*settle)
   end
+ elseif d.id=="knight.paladin.sunward_cross" then
+  -- Take the low first cut on the lead leg, then open the chest into the rising cut.
+  local gather=smooth(age/(contact*.54))*(1-smooth((age/contact-.64)/.36))
+  local stop=pulse>0 and smooth(since/.06)*(1-smooth((since-.06)/.13)) or 0
+  local first=pulse==1 and stop or 0
+  local second=pulse==2 and stop or 0
+  offset(pose,"torso",v(7,-13,8)*gather+v(13,-8,8)*first+v(-11,17,-11)*second)
+  offset(pose,"left",v(14,-10,-13)*gather+v(14,1,-8)*first+v(-14,10,17)*second)
+  offset(pose,"leftKnee",v(17*gather+22*first))
+  offset(pose,"rightKnee",v(23*second))
  elseif d.id=="knight.paladin.oathbreaker_strike" then
   local load=smooth(age/(contact*.56))*(1-smooth((age/contact-.56)/.44))
   local plant=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.17))
@@ -459,6 +469,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"rightHip",v(-8*lift-11*weight))
   offset(pose,"leftKnee",v(15*lift+22*weight))
   offset(pose,"rightKnee",v(12*lift+19*weight))
+ elseif d.id=="dwarf.iron_axe.shatter_blow" then
+  -- Brace under the raised axe, then drop the shoulders through the impact.
+  local phase=age/contact
+  local load=smooth(phase/.58)*(1-smooth((phase-.70)/.30))
+  local plant=pulse>0 and smooth(since/.067)*(1-smooth((since-.067)/.18)) or 0
+  offset(pose,"torso",v(-11,5,-4)*load+v(20,-4,4)*plant)
+  offset(pose,"left",v(19,-7,-16)*load+v(-18,0,-9)*plant)
+  offset(pose,"leftHip",v(-12*load-13*plant))
+  offset(pose,"rightHip",v(-9*load-13*plant))
+  offset(pose,"leftKnee",v(19*load+23*plant))
+  offset(pose,"rightKnee",v(17*load+21*plant))
  elseif d.id=="dwarf.iron_axe.armor_splitter" then
   local weight=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))
   offset(pose,"torso",v(12*weight,0,4*weight))

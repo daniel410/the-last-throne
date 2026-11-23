@@ -1531,17 +1531,50 @@ local function elementalContact(r,at,cf,size)
   end
  end
 end
-function FX.contact(at,classId,id,direction,scale,compact)
+-- Mark strokes work in the confirmed hit's right/up/forward frame.
+-- Two strokes replace the generic contact, including on compact clients.
+local markContacts={
+ oath={name="OathSealBreak",key="holy",from=Vector3.new(.05,.65,0),to=Vector3.new(.68,-.38,0),drift=Vector3.new(.50,.18,0)},
+ fracture={name="ArmorFaultBreak",key="earth",from=Vector3.new(.16,.05,0),to=Vector3.new(.69,.50,.16),drift=Vector3.new(.53,-.18,0)},
+ weakpoint={name="WeakpointBracketBreak",key="arrow",from=Vector3.new(.34,-.32,-.06),to=Vector3.new(.34,.32,-.06),drift=Vector3.new(.78,0,.14)},
+ nature={name="NatureBudBreak",key="nature",from=Vector3.new(.07,-.42,0),to=Vector3.new(.60,.23,-.20),drift=Vector3.new(.45,.35,0)},
+ ember={name="EmberVentBreak",key="fire",from=Vector3.new(.28,-.36,0),to=Vector3.new(.13,.62,-.14),drift=Vector3.new(.25,.65,0)},
+ frost={name="FrostSealBreak",key="frost",from=Vector3.new(.04,.27,-.08),to=Vector3.new(.64,-.27,0),drift=Vector3.new(.66,-.43,0)},
+}
+local function markContact(r,at,cf,size,mark)
+ local function offset(point,side)
+  return (cf.RightVector*(point.X*side)+cf.UpVector*point.Y+cf.LookVector*point.Z)*size
+ end
+ for side=-1,1,2 do
+  local a=at+offset(mark.from,side)
+  local b=at+offset(mark.to,side)
+  local drift=offset(mark.drift,side)
+  line(r,mark.name,function(u)
+   local move=drift*(1-(1-u)^3)
+   return a:Lerp(b,u*.28)+move,b+move
+  end,.083,side==1 and r.hot or r.color,.061)
+ end
+ r.model:SetAttribute("ContactStyle",mark.name)
+end
+function FX.contact(at,classId,id,direction,scale,compact,consumedMark)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
+ local d=row.definition
+ local mark=d and consumedMark and consumedMark==d.consume and markContacts[consumedMark]
  local force=forceContacts[id]
- local r=make(at,at,compact and .16 or .3,row.key,id,compact,true,force and 2);if not r then return end
- r.color,r.hot=Palette.get(row.key,row.classId)
+ local key=mark and mark.key or row.key
+ local life=mark and (compact and .16 or .22) or (compact and .16 or .3)
+ local r=make(at,at,life,key,id,compact,true,(mark or force) and 2);if not r then return end
+ r.color,r.hot=Palette.get(key,row.classId)
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)
+ if mark then
+  markContact(r,at-dir*.24,cf,math.clamp(size,.7,1.35),mark)
+  FX.step(r.at)
+  return r.model,true
+ end
  local profile=Profiles.get(id)
  if profile then size*=math.clamp(profile.width/.18,.65,1.6)end
  local physical=row.key=='steel'or row.key=='axe'or row.key=='arrow'or row.key=='gun'or row.key=='shield'
- local d=row.definition
  local piercing=row.key=='arrow' or row.key=='gun' or d and Presentation.get(d).motion=='thrust'
  local descending=d and FX.groundLead(d)
  local authored=contactStyles[id]

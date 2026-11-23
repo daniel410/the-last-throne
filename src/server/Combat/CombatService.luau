@@ -824,11 +824,13 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 	if enemy.marks and enemy.marks[state] and current < enemy.marks[state] then multiplier *= 1.2 end
 	local d=attack.definition
 	local ownedMark=enemy.branchMarks and enemy.branchMarks[state.heroId]
+	local consumedMark
 	if d.advanced then
-		if ownedMark and ownedMark.expires>current and d.consume==ownedMark.kind then
-			multiplier=multiplier*(1+(d.markBonus or 0));attack.branchMarked=true
+		if d.consume and ownedMark and ownedMark.expires>current and d.consume==ownedMark.kind then
+			consumedMark=ownedMark.kind
+			multiplier=multiplier*(1+(d.markBonus or 0))
 			enemy.branchMarks[state.heroId]=nil
-		else attack.branchMarked=false end
+		end
 		if d.wetBonus and (enemy.model:GetAttribute("K0WetUntil") or 0)>workspace:GetServerTimeNow() then multiplier=multiplier*(1+d.wetBonus) end
 		if d.weakenBonus and (enemy.defenseBreakUntil or 0)>current then multiplier=multiplier*(1+d.weakenBonus) end
 	end
@@ -862,7 +864,8 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, skillId,
 			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
 				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
-				classId = state.baseClassId, skillId = skillId, pulse = pulse})
+				classId = state.baseClassId, skillId = skillId, pulse = pulse,
+				consumedMark = consumedMark})
 	end
 	if enemy.humanoid.Health > 0 then
   if applied > 0 then
@@ -905,7 +908,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 		if not enemy.attack and enemy.mode ~= "Exposed" and not enemy.stunUntil and not enemy.hitReactUntil then setEnemyState(enemy, "Chase") end
 		local posture=d.posture
 		if d.advanced then
-			if attack.branchMarked then posture=posture+(d.markPosture or 0) end
+			if consumedMark then posture=posture+(d.markPosture or 0) end
 			if d.weakenPosture and (enemy.defenseBreakUntil or 0)>current then posture=posture+d.weakenPosture end
 			if d.counterPosture and attack.counterDamage>0 then posture=posture+d.counterPosture end
 		end

@@ -360,13 +360,12 @@ function Art.accents(r,c)
    local at=c.floor+radial*(id=='elf.magic_archer.vine_trap' and 1.1 or math.min(c.radius*.35,2.4))+UP*.5
    leaf(r,at,UP+radial*(burst and .8 or .4),c.right,burst and 2.2 or 1.2,'RootBroadLeaf')
   end
- elseif id=='elf.marksman.weakpoint_shot' or id=='elf.marksman.precision_volley' or id=='elf.marksman.mark_breaker' or id=='elf_pinning_shot'then
+ elseif id=='elf.marksman.weakpoint_shot' or id=='elf.marksman.precision_volley' or id=='elf_pinning_shot'then
   local gold=Color3.fromRGB(255,189,65)
   for i=1,4 do
    local a=i*math.pi/2;local radial=c.right*math.cos(a)+UP*math.sin(a)
    local pos=c.last+radial*.55
-   local notch=S.bar(r,'AimTargetNotch',pos,pos+radial*.25,.1,gold,.3,Enum.Material.Neon)
-   if notch and id=='elf.marksman.mark_breaker'then r.faces[#r.faces].drift=radial*.65 end
+   S.bar(r,'AimTargetNotch',pos,pos+radial*.25,.1,gold,.3,Enum.Material.Neon)
   end
  elseif c.key=='gun'then
   local flash=S.volume(r,'CompactMuzzleFlash',c.first+c.dir*.25,Vector3.new(.22,.22,.55),Color3.fromRGB(255,203,83),.2,'wedge')

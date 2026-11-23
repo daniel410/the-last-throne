@@ -24,6 +24,7 @@ local bow = {
     field=stance(v(7,-15,-7), -12, 15, 22),
     sight=stance(v(9,-23,-10), -5, 24, 14),
     pin=stance(v(12,-16,3), 8, 27, 10),
+    markBreaker=stance(v(12,-28,-5), -10, 30, 24),
     pierce=stance(v(14,-31,-3), -2, 28, 31),
     elementalPierce=stance(v(9,-25,13), 23, 24, 35),
     heavy=stance(v(15,-32,-13), -17, 31, 34),
@@ -52,6 +53,7 @@ local function bowStance(d)
     if d.id=="elf.magic_archer.echo_arrows" then return bow.echo end
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
     if d.id=="elf.marksman.heavy_draw" then return bow.heavy end
+    if d.id=="elf.marksman.mark_breaker" then return bow.markBreaker end
     if d.id=="elf_pinning_shot" then return bow.pin end
     if d.id=="elf.magic_archer.elemental_pierce" then return bow.elementalPierce end
     if d.form=="line" then return bow.pierce end
@@ -115,6 +117,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftKnee",v(15,0,0)*recoil)
         add(pose,"right",v(-4,16,12)*recoil)
     end
+    if s == bow.markBreaker then
+        -- Hold the sight line, then let the draw hand snap away from the cheek.
+        add(pose,"neck",v(3,-6,1)*coil)
+        add(pose,"right",v(-9,19,-17)*recoil)
+        add(pose,"elbow",v(20,0,0)*recoil)
+        add(pose,"leftKnee",v(16,0,0)*recoil)
+    end
     if d.id=="elf_retreating_shot" then
         -- Leave the bow on the sight line while the rear leg takes the step.
         add(pose,"torso",v(-11,-4,8)*load+v(12,6,-4)*recoil)
@@ -160,6 +169,7 @@ local spells = {
     strike=gesture(v(22,-29,-14),v(33,11,24),v(12,-24,-9),v(-16,-8,21),22),
     bolt=gesture(v(-12,16,-10),v(22,-20,12),v(5,14,-5),v(21,5,-14),13),
     lance=gesture(v(-25,-21,10),v(39,7,22),v(9,-21,7),v(37,-10,-17),22),
+    magmaSpear=gesture(v(-31,-12,13),v(23,22,28),v(19,-15,8),v(41,-13,-7),29),
     dart=gesture(v(8,18,-22),v(-13,-18,10),v(-4,15,6),v(13,23,-6),12),
     shatter=gesture(v(14,19,-23),v(29,-26,10),v(-5,17,6),v(31,10,-9),16),
     orb=gesture(v(-19,22,16),v(38,-24,-20),v(12,19,-6),v(22,7,26),19),
@@ -191,6 +201,7 @@ local function spellGesture(d,profile)
     if d.form=="chain" then return spells.chain end
     if d.id=="mage.pyro.stone_lance" then return spells.stone end
     if d.id=="mage.pyro.molten_line" then return spells.moltenLine end
+    if d.id=="mage.pyro.magma_spear" then return spells.magmaSpear end
     if d.id=="mage.cryo.thunder_spear" then return spells.thunderSpear end
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
@@ -278,6 +289,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(22,0,0)*follow)
         add(pose,"torso",v(16,0,6)*follow)
         add(pose,"leftKnee",v(17,0,0)*follow)
+    end
+    if s==spells.magmaSpear then
+        -- Scoop with the guiding hand, then drive the release through the front knee.
+        add(pose,"leftElbow",v(-14*wind+22*follow,0,0))
+        add(pose,"left",v(-14,0,13)*follow)
+        add(pose,"torso",v(11,-8,5)*follow)
+        add(pose,"leftKnee",v(18,0,0)*follow)
     end
     if finish>0 then
         if s == spells.caldera then
