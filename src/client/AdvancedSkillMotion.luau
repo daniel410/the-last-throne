@@ -185,6 +185,13 @@ local function gunner(d,kind,age)
  local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
   torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
   rightKnee=v(10+brace*1.5),leftKnee=v(8+brace+14*retreat),weapon=v()}
+ if d.id=="dwarf.gunner.blast_step" then
+  -- Take the backward skid on the rear leg while the offhand fires forward.
+  angles.rightHip+=v(19*load-13*kick,0,-5*load)
+  angles.rightKnee+=v(18*load+25*kick)
+  angles.leftKnee+=v(-11*load+7*kick)
+  angles.torso+=v(9*load-6*kick,0,5*kick)
+ end
  local pose={angles={},cutting=false}
  for channel,a in pairs(Clips.rest.dwarf) do pose.angles[channel]=v(unpack(a)):Lerp(angles[channel],ready) end
  return offhandPose(pose)
@@ -258,6 +265,15 @@ local function shieldPose(d,age,rigType,contact,ending)
   offset(pose,"left",v(18,-12,-13)*load+v(11,-7,-9)*drive+v(15,3,-4)*second)
   offset(pose,"leftKnee",v(21*load+13*drive+9*second))
   offset(pose,"rightHip",v(-13*load-9*drive))
+ elseif d.id=="knight.paladin.valiant_advance" then
+  -- Settle behind the shield on entry and brace the leading foot at contact.
+  local stride=smooth(age/(contact*.42))*(1-smooth((age/contact-.60)/.40))
+  local plant=pulse>0 and smooth(since/.05)*(1-smooth((since-.05)/.17)) or 0
+  offset(pose,"leftElbow",v(22*stride+15*plant))
+  offset(pose,"left",v(14,-8,-13)*stride+v(-4,8,-12)*plant)
+  offset(pose,"torso",v(12,-7,5)*stride+v(13,5,-5)*plant)
+  offset(pose,"rightHip",v(21*stride-8*plant))
+  offset(pose,"leftKnee",v(15*stride+23*plant))
  end
  if age>=ending then pose=mix(pose,resting("knight"),smooth((age-ending)/d.recovery)) end
  local finish=FinalBeat.weight(d,pulse,since)

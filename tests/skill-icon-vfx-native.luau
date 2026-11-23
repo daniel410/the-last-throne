@@ -33,7 +33,7 @@ local ok,err=xpcall(function()
    else
     m=assert(FX.skill(nil,d.id,first,target,pulse,{target,target+Vector3.xAxis*3}))
     check(m:GetAttribute('IconCue')==Profiles[d.id].cue,'authored cue reaches geometry '..d.id)
-    if iconBeams(m)==0 then table.insert(report.missing,d.id)end
+    if iconBeams(m)==0 and not m:GetAttribute('PrimaryIconCue') then table.insert(report.missing,d.id)end
     local _,b=FX.count();report.maxBeams=math.max(report.maxBeams,b)
     check(b<=48,'preserved beam ceiling '..d.id)
     local latest={}

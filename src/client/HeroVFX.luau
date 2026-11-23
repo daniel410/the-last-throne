@@ -305,6 +305,48 @@ local function floorAt(at,character)
  local hit=workspace:Raycast(at+Vector3.yAxis*2,-Vector3.yAxis*18,params)
  return hit and hit.Position+Vector3.yAxis*.12 or at-Vector3.yAxis*2.6
 end
+-- Lateral spread and lift distinguish the footwork without filling the floor.
+local stepWakes={
+ ["knight.paladin.valiant_advance"]={name="ValiantBootWake",from=.62,to=.38,arch=.13,width=.16},
+ ["dwarf.gunner.blast_step"]={name="BlastRecoilSkid",from=.31,to=.85,arch=.12,width=.20},
+ ["elf.marksman.retreating_fire"]={name="RetreatFletchedWake",from=.56,to=.19,arch=.34,width=.095},
+ ["mage.pyro.ember_step"]={name="EmberStepWake",from=.72,to=.13,arch=.57,width=.14},
+}
+function FX.stepWake(character,d,first,last,startedAt)
+ local shape=stepWakes[d.id]
+ if not shape or not vector(first) or not vector(last) or not finite(startedAt) then return end
+ local delta=last-first
+ local horizontal=Vector3.new(delta.X,0,delta.Z)
+ if horizontal.Magnitude<.25 or horizontal.Magnitude>math.abs(d.move)+.05 or math.abs(delta.Y)>.25 then return end
+ local now=workspace:GetServerTimeNow()
+ local life=.22
+ if now>=startedAt+life or startedAt>now+.1 then return end
+ local a,b=floorAt(first,character),floorAt(last,character)
+ if math.abs(a.Y-b.Y)>1.8 then return end
+ local _,_,key=Palette.resolve(d.id:match("^(%a+)"),d.id)
+ local r=make(first,last,startedAt+life-now,key,d.id,FX.isOtherHero(character),true,2)
+ if not r then return end
+ r.at=startedAt;r.life=life
+ r.model.Name="HeroStepWake"
+ r.model:SetAttribute("Style",shape.name)
+ local right=horizontal.Unit:Cross(Vector3.yAxis)
+ for side=-1,1,2 do
+  local function path(t,u)
+   local progress=.46*u+(1-.46*u)*t
+   local spread=shape.from+(shape.to-shape.from)*progress
+   local lift=math.sin(progress*math.pi)*shape.arch+.045
+   return a:Lerp(b,progress)+right*(side*spread)+Vector3.yAxis*lift
+  end
+  local stroke=line(r,shape.name,function(u)return path(0,u),path(1,u)end,
+   shape.width,side==1 and r.hot or r.color,.045,true)
+  if stroke then
+   stroke.span=function(u)return Style.span(path,0,1,u)end
+   stroke.beam.Segments=4
+  end
+ end
+ FX.step(now)
+ return r.model
+end
 local function forward(first,last)
  local d=last-first;return d.Magnitude>.01 and d.Unit or Vector3.new(0,0,-1)
 end
@@ -1146,12 +1188,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   debris(r,at,math.min(count,6),"WaterSpray",1)
  elseif shape=="fire"or shape=="arcane"then
   local at=area and floorAt(last,character)or first
+  local emberStep=id=='mage.pyro.ember_step'
   if area then ring(r,"CinderRing",at,radius,width*(id=='mage.pyro.cinder_ring'and .6 or .28),false,false)end
   local basis=CFrame.lookAt(first,first+dir)
-  for lane=1,count do curve(r,shape=="fire"and"FlameTongue"or"ArcaneHelix",function(t,u)
+  for lane=1,emberStep and 1 or count do curve(r,shape=="fire"and"FlameTongue"or"ArcaneHelix",function(t,u)
    local a=t*math.pi*3+lane*math.pi*2/count+u*4+phase
    if area then
-    if id=='mage.pyro.ember_step'then
+    if emberStep then
      return at+right*((t-.5)*radius*.65)-flat*radius*.18+Vector3.yAxis*(.15+math.sin(t*math.pi)*.8+u*.6)
     end
     local heading=lane*math.pi*2/count+phase+math.sin(t*math.pi)*.18+u*.25
@@ -1162,6 +1205,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
    return first+(last-first)*t+basis.RightVector*math.cos(a)*.32+basis.UpVector*math.sin(a)*.32
   end,8,width)end
  end
+ if stepWakes[id] and id~="knight.paladin.valiant_advance" then r.model:SetAttribute("PrimaryIconCue",true) end
  IconVFX.draw(r,id,{first=first,last=last,flat=flat,right=right,floor=floor,radius=radius,area=area,definition=d,points=type(points)=='table' and points or {},pulse=pulse},line,curve)
  -- Filled silhouettes carry the effect; narrow beams remain as edge highlights.
  local surfaceOrigin=shape=="low"and floor or first

@@ -154,6 +154,14 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"rightKnee",v(20,0,0)*recoil)
         add(pose,"right",v(-6,18,11)*recoil)
     end
+    if d.id=="elf.marksman.retreating_fire" then
+        -- Keep the bow shoulder on target while the rear heel checks the step.
+        add(pose,"rightHip",v(21,0,8)*load+v(-16,0,-4)*recoil)
+        add(pose,"rightKnee",v(-16,0,0)*load+v(27,0,0)*recoil)
+        add(pose,"leftKnee",v(13,0,0)*load)
+        add(pose,"right",v(-7,17,13)*recoil)
+        add(pose,"elbow",v(17,0,0)*recoil)
+    end
     if s == bow.glide then
         -- Extend the trailing leg during the draw and catch the release on the lead foot.
         add(pose,"rightHip",v(24,0,8)*load)
@@ -205,6 +213,7 @@ local spells = {
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
     frostRing=gesture(v(25,18,-19),v(17,-17,-24),v(10,14,8),v(13,-23,-39),26),
     frostStep=gesture(v(-28,22,16),v(-9,18,-36),v(19,-17,12),v(-24,27,-32),26),
+    emberStep=gesture(v(-23,-16,19),v(24,29,31),v(16,20,-12),v(-31,-29,26),23),
     moltenLine=gesture(v(-20,22,24),v(24,-16,-28),v(19,-12,-8),v(29,-18,-27),27),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
@@ -234,6 +243,7 @@ local function spellGesture(d,profile)
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
     if d.form=="area" or d.form=="ground" then
         if d.id=="mage.cryo.frost_step" then return spells.frostStep end
+        if d.id=="mage.pyro.ember_step" then return spells.emberStep end
         if d.id=="mage.cryo.frost_ring" then return spells.frostRing end
         if cue.effect=="frost" then return spells.iceRing end
         if cue.effect=="fire" then return spells.cinder end
@@ -309,6 +319,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"rightHip",v(20,0,-5)*wind)
         add(pose,"rightKnee",v(-18,0,0)*wind)
         add(pose,"leftKnee",v(21,0,0)*follow)
+    end
+    if s == spells.emberStep then
+        -- Hold the staff across the body and sweep the free hand back over the fire.
+        add(pose,"left",v(-21,-24,15)*follow)
+        add(pose,"leftElbow",v(-17,0,0)*wind+v(23,0,0)*follow)
+        add(pose,"rightHip",v(22,0,6)*wind)
+        add(pose,"leftKnee",v(19,0,0)*follow)
     end
     if s == spells.frostRing then
         -- Press both hands low as the ice spreads, with the staff still in its grip.
