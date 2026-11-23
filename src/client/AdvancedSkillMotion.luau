@@ -481,6 +481,16 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-9,0,7)*load+v(12,0,-6)*plant)
   offset(pose,"leftKnee",v(9*load+19*plant))
   offset(pose,"leftHip",v(-8*plant))
+ elseif d.id=="knight.steel_knight.sweeping_break" then
+  -- Lower the sword-side shoulder into contact, then brake over the front leg.
+  local coil=smooth(age/(contact*.57))*(1-smooth((age/contact-.57)/.43))
+  local brake=smooth((age-contact+.05)/.11)*(1-smooth((age-contact-.06)/.18))
+  offset(pose,"torso",v(10,-16,-9)*coil+v(14,9,8)*brake)
+  offset(pose,"left",v(19,-9,-15)*coil+v(-10,12,13)*brake)
+  offset(pose,"rightHip",v(-14,0,5)*coil)
+  offset(pose,"leftHip",v(-15,0,-8)*brake)
+  offset(pose,"leftKnee",v(27*brake))
+  offset(pose,"rightKnee",v(19*coil))
  elseif d.id=="dwarf_low_sweep" then
   -- Drop through the knees before the sweep and rise through the back leg.
   local crouch=smooth(age/(contact*.65))*(1-smooth((age-contact)/.18))
@@ -491,6 +501,11 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"rightKnee",v(25*crouch+8*rise))
   offset(pose,"leftKnee",v(32*crouch))
   offset(pose,"left",v(6,-11,19)*crouch)
+  local drag=smooth((age-contact)/.085)*(1-smooth((age-contact-.085)/.16))
+  offset(pose,"right",v(12,13,-17)*drag)
+  offset(pose,"elbow",v(-21*drag))
+  offset(pose,"torso",v(0,-10,9)*drag)
+  offset(pose,"rightKnee",v(12*drag))
  elseif d.id=="dwarf_braced_throw" then
   local phase=age/contact
   local plant=smooth(phase/.46)*(1-smooth((phase-.55)/.45))

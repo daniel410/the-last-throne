@@ -886,9 +886,13 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
    applyProvokeDebuffs(enemy,d,current)
 			if d.wet then enemy.model:SetAttribute("K0WetUntil",workspace:GetServerTimeNow()+3) end
 			if d.slow and (d.inheritedGravity or (enemy.kind~="Ogre" and not enemy.model:GetAttribute("StoryBoss"))) then
-    enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow
+    local duration=d.slowDuration or 2
+    enemy.gravityUntil=current+duration;enemy.gravityMultiplier=d.slow
     if d.inheritedGravity and not (enemy.stunUntil and current<enemy.stunUntil) then enemy.humanoid.WalkSpeed=enemy.config.walkSpeed*d.slow end
-    enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2))
+    local slowStyle=state.baseClassId=="elf" and (d.element=="nature" and "nature" or "arrow")
+     or state.baseClassId=="dwarf" and "earth" or d.element or "steel"
+    enemy.model:SetAttribute("K0SlowStyle",slowStyle)
+    enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+duration)
    end
 			if d.taunt and enemy.kind~="Ogre" then enemy.provokedBy=state;enemy.provokeUntil=current+d.taunt;enemy.model:SetAttribute("K0ProvokeUntil",workspace:GetServerTimeNow()+d.taunt) end
 			if d.push then
@@ -908,6 +912,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 			enemy.gravityUntil = current + attack.definition.slowDuration
 			enemy.gravityMultiplier = attack.definition.slowMultiplier
 			enemy.humanoid.WalkSpeed = enemy.config.walkSpeed * enemy.gravityMultiplier
+			enemy.model:SetAttribute("K0SlowStyle", "gravity")
 			enemy.model:SetAttribute("K0GravityUntil", workspace:GetServerTimeNow() + attack.definition.slowDuration)
 		end
 		if not enemy.attack and enemy.mode ~= "Exposed" and not enemy.stunUntil and not enemy.hitReactUntil then setEnemyState(enemy, "Chase") end
@@ -1695,6 +1700,7 @@ local function resetEnemy(enemy, restoreHealth)
 	enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
 	enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
 	enemy.model:SetAttribute("K0GravityUntil", nil)
+	enemy.model:SetAttribute("K0SlowStyle", nil)
 	-- Returning home preserves damage; only a full party wipe restores health.
 	if restoreHealth then enemy.humanoid.Health = enemy.humanoid.MaxHealth end
 	enemy.model:SetAttribute("K0Posture", enemy.posture)
@@ -1718,6 +1724,7 @@ local function stepEnemy(enemy, current, dt)
 		enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
 		enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
 		enemy.model:SetAttribute("K0GravityUntil", nil)
+		enemy.model:SetAttribute("K0SlowStyle", nil)
 	end
  if enemy.stunUntil then
   if current<enemy.stunUntil then enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,'Stunned');return end

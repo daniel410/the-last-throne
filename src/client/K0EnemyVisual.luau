@@ -36,7 +36,6 @@ local function mount(enemies)
   if mounted[enemies] then return end;mounted[enemies]=true
   local stopMotion=require(script.Parent.K0EnemyMotion).start(enemies)
   local stopControl=require(script.Parent.K0EnemyControlEffects).start(enemies)
-		local gravityEffects = {}
 		local provokeEffects = {}
   local debuffLabels={}
   local outlines = {}
@@ -47,12 +46,6 @@ local function mount(enemies)
     local human=model:FindFirstChildOfClass('Humanoid')
     if model.Parent~=enemies or not human or human.Health<=0 or EnemyVisual.statusText(model,current)=='' then billboard:Destroy();debuffLabels[model]=nil end
    end
-			for model, effect in pairs(gravityEffects) do
-				if model.Parent ~= enemies or not model:GetAttribute("K0GravityUntil") then
-					effect:Destroy()
-					gravityEffects[model] = nil
-				end
-			end
 			for model, effect in pairs(provokeEffects) do
 				local untilTime = model:GetAttribute("K0ProvokeUntil")
 				if model.Parent ~= enemies or type(untilTime) ~= "number" or Workspace:GetServerTimeNow() >= untilTime then
@@ -72,17 +65,6 @@ local function mount(enemies)
 					glow.FillTransparency, glow.OutlineTransparency = 0.8, 0.1
 					glow.DepthMode, glow.Parent = Enum.HighlightDepthMode.Occluded, model
 					provokeEffects[model] = glow
-				end
-				if model:GetAttribute("K0GravityUntil") and not gravityEffects[model] then
-					local glow = Instance.new("Highlight")
-					glow.Name = "GravityEffect"
-					glow.Adornee = model
-					glow.FillColor = Color3.fromRGB(98, 43, 168)
-					glow.OutlineColor = Color3.fromRGB(199, 152, 255)
-					glow.FillTransparency, glow.OutlineTransparency = 0.65, 0.1
-					glow.DepthMode = Enum.HighlightDepthMode.Occluded
-					glow.Parent = model
-					gravityEffects[model] = glow
 				end
     local status=EnemyVisual.statusText(model,current)
     local anchor=model:FindFirstChild('HumanoidRootPart')
@@ -116,7 +98,7 @@ local function mount(enemies)
   if enemies:IsDescendantOf(Workspace) then return end
   render:Disconnect();ancestry:Disconnect();stopMotion();stopControl();mounted[enemies]=nil
   EnemyOutline.clear(outlines)
-  for _,set in ipairs({gravityEffects,provokeEffects,debuffLabels})do for _,v in pairs(set)do v:Destroy()end end
+  for _,set in ipairs({provokeEffects,debuffLabels})do for _,v in pairs(set)do v:Destroy()end end
  end)
 end
 function EnemyVisual.start()
