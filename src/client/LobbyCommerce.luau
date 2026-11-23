@@ -122,7 +122,6 @@ function M.start()
  end)
  remotes:WaitForChild('ExpeditionState').OnClientEvent:Connect(function(s)
   expedition.render(s,s.error and (AdventureText[s.error] or Text[s.error] or Text.NetworkUnavailable))
-  if s.open then closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true end
   if s.travelling then closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true end
  end)
  local function phase()

@@ -221,7 +221,7 @@ local function courtyard(model)
   local z = target.Z + frontOffset
   part(scenery, name, Vector3.new(math.abs(target.X) + 8, .05, 12), Vector3.new(target.X / 2, .18, z), COLORS.stoneLight, Enum.Material.Cobblestone, false)
  end
- approach('PortalPath', Facilities.portal.offset, 13)
+ approach('PortalPath', Facilities.league.offset, 13)
  approach('DefensePath', Facilities.defense.offset, 13)
  approach('TrainingPath', Facilities.training.offset, 19)
  approach('PotionShopPath', Facilities.itemShop.offset, 11)

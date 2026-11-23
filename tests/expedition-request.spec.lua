@@ -62,7 +62,7 @@ do
  local now=0;local ack,executed,published={},{},{}
  local env=setmetatable({last={},lastRead={},os={clock=function()return now end},
   remote={FireClient=function(_,p,s)table.insert(ack,s)end},
-  publish=function(p,e,open,id)table.insert(published,id)end,
+  publish=function(p,e,id)table.insert(published,id)end,
   dispatch=function(p,c)table.insert(executed,c.action)end},{__index=_G})
  local handle=assert(load(server:sub(a,b-1)..' dispatch(p,c) end\nreturn handle','server request gate','t',env))()
  local p={};handle(p,{action='Ready',requestId='ready'})
@@ -75,6 +75,6 @@ do
  now=1.01;handle(p,{action='Launch',requestId='launch2'})
  check(#executed==3 and executed[3]=='Launch','poll immediately before Launch cannot suppress action')
  now=1.02;handle(p,{action='GetState',requestId='poll3'})
- check(#published==2,'poll requests keep their own throttle')
+ check(#published==2 and published[1]=='poll' and published[2]=='poll2','poll requests keep their own throttle and response IDs')
 end
 print('Expedition request: '..checks..' checks passed')

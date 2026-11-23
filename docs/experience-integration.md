@@ -29,6 +29,10 @@ flowchart LR
 
 `TeleportService`는 다른 게임으로의 이동을 지원하지만, `TeleportAsync` 단체 이동은 같은 Experience 안에서만 가능하다. 따라서 초기 TD↔RPG 동선은 개인 이동으로 한정한다. 한 게임 안의 파티/원정은 기존 1~4인 규칙을 유지하며, Experience 간 파티 보존·예약 서버 동행은 후속 별도 결정이다. TeleportData는 클라이언트가 볼 수 있는 보조 정보일 뿐 재화·아이템·권리의 근거가 될 수 없다. 이동은 게시된 각 테스트 Experience의 Roblox 클라이언트에서만 수용한다. [Teleport 공식 문서](https://create.roblox.com/docs/projects/teleport)
 
+### Dawnspire → League of Throne
+
+2026-11-23 사용자 지시에 따라 Dawnspire 왼쪽 원정 포탈 자리를 **LEAGUE OF THRONE** 포탈로 교체한다. 간판은 **5V5 MOBA · SOLO TRAVEL**로 표시한다. F·패드 X·터치 입력을 서버에서 검증하고 RPG 진행 저장을 확인한 뒤 플레이어 한 명만 League of Throne의 시작 Place로 보낸다. 출발을 완료하지 못한 플레이어는 계정 잠금을 복구한 뒤 재시도할 수 있다. 원정은 로비 **Play**에서 선택한다. [시작 Place](https://create.roblox.com/dashboard/creations/experiences/10778387851/places/100539309098013/configure) · [구현 및 검증](evidence/league-of-throne-portal-20261123/README.md)
+
 ## 3. 데이터·상품 경계
 
 DataStore는 Experience 단위다. TD와 RPG의 DataStore를 서로 직접 읽거나 하나의 `ProcessReceipt` 콜백/저장 키로 취급하지 않는다. 각 Experience는 자기 서버에서 자기 상품 영수증을 한 번만 처리하고, 기존 TD 상품 처리기는 그대로 보존한다.

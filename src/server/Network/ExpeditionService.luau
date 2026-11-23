@@ -95,7 +95,7 @@ local function releaseKickedMember(uid,id,token,deadline)
   task.delay(2,function() releaseKickedMember(uid,id,token,deadline) end)
  end
 end
-local function publish(p,errorCode,open,requestId)
+local function publish(p,errorCode,requestId)
  if p.Parent~=Players or not remote then return end
  local localParty=parties[p]
  local party
@@ -156,12 +156,7 @@ local function publish(p,errorCode,open,requestId)
  local difficultySelections={}
  for _,mode in ipairs(Difficulty.order)do difficultySelections[mode]=require(RS.Shared.AdventureRules).selection(hero,mode)end
  remote:FireClient(p,{role=role,studio=studio,configured=C.battlePlaceId>0,capacity=role=='Lobby' and C.lobbyCapacity or C.battleCapacity,
-  requestId=requestId,busy=busy[p]==true,hero=hero and {classId=hero.baseClassId,level=hero.level},selection=choice,difficultySelections=difficultySelections,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt,rulesVersion=rejoinRun and rejoinRun.rulesVersion} or nil})
-end
-function Service.openMenu(p)
- if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end
- if Service.isBusy(p) then return 'Busy' end
- publish(p,nil,true)
+  requestId=requestId,busy=busy[p]==true,hero=hero and {classId=hero.baseClassId,level=hero.level},selection=choice,difficultySelections=difficultySelections,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt,rulesVersion=rejoinRun and rejoinRun.rulesVersion} or nil})
 end
 local function advertise(id)
  local p=store.readParty(id);if not p then return end
@@ -198,9 +193,9 @@ local function recoverTravel(p,attempt)
  elseif attempt.kind=='return' then
   leaving[p]=nil
   if admitted[p] and battleRun then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,true)end
- elseif attempt.kind=='defense' then
+ elseif attempt.kind=='external' then
   local notice=RS.Remotes:FindFirstChild('LobbyFacilityState')
-  if notice then notice:FireClient(p,{error='DefenseTravelFailed'}) end
+  if notice then notice:FireClient(p,{error=attempt.destination..'TravelFailed'}) end
  elseif attempt.partyId then
   advertise(attempt.partyId)
  end
@@ -227,19 +222,25 @@ local function send(p,attempt,prepared)
  p:SetAttribute('TLTTravelLock',true);attempt.tries=0;travel[p]=attempt;publish(p)
  retryTravel(p,attempt);return true
 end
-function Service.travelToDefense(p)
+local function travelToExperience(p,placeId,destination)
  if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end
  if Service.isBusy(p) then return 'Busy' end
- if parties[p] then return 'LeavePartyForDefense' end
- if studio then return 'DefenseStudioUnavailable' end
- if type(C.defensePlaceId)~='number' or C.defensePlaceId~=C.defensePlaceId or C.defensePlaceId<=0 or C.defensePlaceId%1~=0 then return 'DefenseNotConfigured' end
+ if parties[p] then return 'LeavePartyFor'..destination end
+ if studio then return 'PortalStudioUnavailable' end
+ if type(placeId)~='number' or placeId<=0 or placeId%1~=0 then return destination..'NotConfigured' end
  busy[p]=true
  local notice=RS.Remotes:FindFirstChild('LobbyFacilityState')
- if notice then notice:FireClient(p,{status='DefenseSaving'}) end
- local ok,reason=send(p,{kind='defense',placeId=C.defensePlaceId,data={}})
+ if notice then notice:FireClient(p,{status='PortalSaving'}) end
+ local ok=send(p,{kind='external',placeId=placeId,destination=destination,data={}})
  busy[p]=nil
- if not ok then return 'DefenseSaveFailed' end
- if notice and p.Parent==Players then notice:FireClient(p,{status='DefenseTravelling'}) end
+ if not ok then return 'PortalSaveFailed' end
+ if notice and p.Parent==Players then notice:FireClient(p,{status=destination..'Travelling'}) end
+end
+function Service.travelToDefense(p)
+ return travelToExperience(p,C.defensePlaceId,'Defense')
+end
+function Service.travelToLeague(p)
+ return travelToExperience(p,C.leaguePlaceId,'League')
 end
 function Service.isBusy(p) return travel[p]~=nil or busy[p]==true end
 function Service.admitArrival(p)
@@ -400,14 +401,14 @@ local function handle(p,c,...)
  -- Status polling must not consume the action cooldown (Ready -> Launch).
  if c.action=='GetState' then
   if os.clock()-(lastRead[p] or -math.huge)<.35 then return end
-  lastRead[p]=os.clock();publish(p,nil,nil,c.requestId);return
+  lastRead[p]=os.clock();publish(p,nil,c.requestId);return
  end
  if os.clock()-(last[p] or -math.huge)<.35 then
   remote:FireClient(p,{ackOnly=true,requestId=c.requestId,error='Busy',retryAfter=.4});return
  end;last[p]=os.clock()
- if c.action=='Solo' then local why=Service.solo(p);publish(p,why,nil,c.requestId);return end
- if Service.isBusy(p) then publish(p,'Busy',nil,c.requestId);return end
- if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then publish(p,'ShopLobbyOnly',nil,c.requestId);return end
+ if c.action=='Solo' then local why=Service.solo(p);publish(p,why,c.requestId);return end
+ if Service.isBusy(p) then publish(p,'Busy',c.requestId);return end
+ if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then publish(p,'ShopLobbyOnly',c.requestId);return end
  local previousParty=parties[p]and parties[p].id
  busy[p]=true
  local success,e=pcall(function()
@@ -483,7 +484,7 @@ local function handle(p,c,...)
  busy[p]=nil
  local errorCode=not success and 'NetworkUnavailable'or e
  if c.action=='Launch' and errorCode then warn('[Expedition] Party launch rejected: reason='..tostring(errorCode))end
- publish(p,errorCode,nil,c.requestId)
+ publish(p,errorCode,c.requestId)
  local partyId=parties[p]and parties[p].id or previousParty
  if partyId then for person,mine in pairs(parties)do
   if person~=p and mine.id==partyId and not travel[person]then publish(person)end

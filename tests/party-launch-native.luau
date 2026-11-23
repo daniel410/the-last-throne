@@ -18,7 +18,7 @@ local function scenario(size,mixed,advancedHost)
  function Players:GetPlayerByUserId(uid)for _,p in ipairs(self.list)do if p.UserId==uid then return p end end end]],1)
  source=source:gsub("local Teleport=game:GetService%('TeleportService'%)",[[local Teleport={TeleportInitFailed={Connect=function()end},calls={}}
  function Teleport:TeleportAsync(place,people,options)table.insert(self.calls,{userId=people[1].UserId,place=place,reserved=options.ReservedServerId,data=options:GetTeleportData()})end]],1)
- local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.openMenu',first,true))
+ local first=assert(source:find('local function publish',1,true));local last=assert(source:find('local function advertise',first,true))
  source=source:sub(1,first-1)..source:sub(first,last-1):gsub('local function publish','local function captureListing',1)..'local function publish(p,e) p.notice=e end\n'..source:sub(last)
  source=source:gsub('return Service%s*$',[[
  function Service.qaActors(list)Players.list=list;for _,p in ipairs(list)do p.Parent=Players end end

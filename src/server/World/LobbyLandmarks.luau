@@ -5,8 +5,9 @@ local W={}
 local function model(parent,name)
  local m=Instance.new('Model');m.Name=name;m:SetAttribute('DawnspireFacility',true);m.Parent=parent;return m
 end
-local function portal(lobby)
- local spec=Specs.portal;local m=model(lobby.folder,'DawnspireExpeditionPortal');local make=A.builder(m,lobby.origin+spec.offset)
+local function league(lobby)
+ local spec=Specs.league;local m=model(lobby.folder,'LeagueOfThroneGateway');local make=A.builder(m,lobby.origin+spec.offset)
+ local glow=Color3.fromRGB(74,174,255)
  make('PortalCourt',Vector3.new(31,.25,25),Vector3.new(0,.13,0),C.pale,Enum.Material.Cobblestone,true)
  make('PortalDais',Vector3.new(23,.4,12),Vector3.new(0,.2,-1),C.dark,Enum.Material.Slate,true)
  for _,x in ipairs({-11,11}) do
@@ -17,10 +18,10 @@ local function portal(lobby)
  for i=0,23 do
   local angle=i*math.pi*2/24;local r=9.1
   make('ArchStone',Vector3.new(2.45,2.4,3.2),Vector3.new(math.cos(angle)*r,10+math.sin(angle)*r,-4),i%2==0 and C.pale or C.stone,Enum.Material.Marble,false,CFrame.Angles(0,0,angle))
-  make('PortalRim',Vector3.new(.38,2.2,.5),Vector3.new(math.cos(angle)*7.7,10+math.sin(angle)*7.7,-2.25),C.purple,Enum.Material.Neon,false,CFrame.Angles(0,0,angle))
+  make('PortalRim',Vector3.new(.38,2.2,.5),Vector3.new(math.cos(angle)*7.7,10+math.sin(angle)*7.7,-2.25),glow,Enum.Material.Neon,false,CFrame.Angles(0,0,angle))
  end
- local core=make('PortalVeil',Vector3.new(.12,14.8,14.8),Vector3.new(0,10,-3.2),C.purple,Enum.Material.Neon,false,CFrame.Angles(0,math.pi/2,0));core.Shape=Enum.PartType.Cylinder;core.Transparency=.68
- A.light(core,C.purple,24,1.4)
+ local core=make('PortalVeil',Vector3.new(.12,14.8,14.8),Vector3.new(0,10,-3.2),glow,Enum.Material.Neon,false,CFrame.Angles(0,math.pi/2,0));core.Shape=Enum.PartType.Cylinder;core.Transparency=.68
+ A.light(core,glow,24,1.4)
  for i=1,7 do
   local angle=i*math.pi*2/7;local rune=make('OrbitRune',Vector3.new(.4,1.1,.3),Vector3.new(math.cos(angle)*6.8,10+math.sin(angle)*6.8,-1.9),C.cream,Enum.Material.Neon)
   rune:SetAttribute('TLTPortalOrbit',true);rune:SetAttribute('OrbitCenter',lobby.origin+spec.offset+Vector3.new(0,10,-1.9));rune:SetAttribute('OrbitAngle',angle)
@@ -82,6 +83,6 @@ local function training(lobby)
  return {model=m,prompt=A.prompt(anchor,spec),anchor=anchor}
 end
 function W.create(lobby)
- return {portal=portal(lobby),training=training(lobby),defense=defense(lobby)}
+ return {league=league(lobby),training=training(lobby),defense=defense(lobby)}
 end
 return W
