@@ -121,7 +121,7 @@ FX.isOtherHero = originalCompact
 FX.clear()
 camera.CFrame = originalCamera
 for _, node in matches("K0HitEffect") do node:Destroy() end
-for _, node in matches("PixelFX") do node:Destroy() end
+for _, node in matches("PixelFXAccent") do node:Destroy() end
 if not ok then table.insert(failures, err) end
 print("HERO_CONTROL_ATTACKS " .. game:GetService("HttpService"):JSONEncode({ checks = checks, failures = failures }))
 assert(ok and #failures == 0, "Hero control attack presentation regression")
