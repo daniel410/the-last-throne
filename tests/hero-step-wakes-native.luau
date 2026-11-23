@@ -2,9 +2,15 @@
 assert(game.PlaceId == 0 and #game.Players:GetPlayers() == 0)
 local Client = game.StarterPlayer.StarterPlayerScripts.Client
 local Combat = game.ServerScriptService.Server.Combat
-local Config = require(game.ReplicatedStorage.Shared.K0Config)
+local Shared = game.ReplicatedStorage.Shared
+local Config = require(Shared.K0Config)
+local Presentation = require(Shared.SkillPresentation)
+local AdvancedCombat = require(Combat.AdvancedCombat)
 local FX = require(Client.HeroVFX)
 local Visual = require(Client.AdvancedSkillVisual)
+local Melee = require(Client.AdvancedSkillMotion)
+local Ranged = require(Client.RangedActionPoses)
+local Mage = require(Client.K0MageMotion)
 local stage = Instance.new("Folder", workspace)
 local camera = workspace.CurrentCamera
 local previousCamera, previousCompact = camera.CFrame, FX.isOtherHero
@@ -61,6 +67,33 @@ local function check(ok, message)
     assert(ok, message)
 end
 
+local function checkPose(classId, d)
+    local other = table.clone(d)
+    other.id = d.id .. "_fixture"
+    Presentation.byId[other.id] = Presentation.get(d)
+    if classId == "knight" or classId == "dwarf" then
+        for _, rig in Enum.HumanoidRigType:GetEnumItems() do
+            local age = d.windup * .6
+            local a, b = Melee.sample(classId, d, age, rig), Melee.sample(classId, other, age, rig)
+            if classId == "knight" then
+                check(a.angles.leftElbow.X - b.angles.leftElbow.X > 20, d.id .. " tucks the shield on " .. rig.Name)
+            else
+                check(a.offhand and a.angles.leftKnee.X - b.angles.leftKnee.X > 9, d.id .. " loads the rear knee on " .. rig.Name)
+            end
+        end
+    elseif classId == "elf" then
+        local a, b = {angles = {}}, {angles = {}}
+        Ranged.bow(a, d, d.windup + .055, .055, false, 1)
+        Ranged.bow(b, other, d.windup + .055, .055, false, 1)
+        check(a.angles.rightKnee.X - b.angles.rightKnee.X > 22, d.id .. " checks the retreat on the rear leg")
+        check((a.angles.left - b.angles.left).Magnitude < .01, d.id .. " keeps the bow shoulder on aim")
+    else
+        local a, b = Mage.sample(d, Mage.profile(d), d.windup + .062), Mage.sample(other, Mage.profile(other), d.windup + .062)
+        check((a.angles.left - b.angles.left).Magnitude > 30, d.id .. " sweeps the guiding palm back")
+    end
+    Presentation.byId[other.id] = nil
+end
+
 local ok, err = xpcall(function()
     local api = require(fixture)
     local packet
@@ -72,6 +105,7 @@ local ok, err = xpcall(function()
         for i, definition in Config.Skills[classId] do
             if definition.id == id then index, d = i, definition; break end
         end
+        checkPose(classId, d)
         for _, scenario in {"open", "clipped", "blocked", "ledge"} do
             for _, compact in {false, true} do
                 FX.clear()
@@ -85,7 +119,14 @@ local ok, err = xpcall(function()
                 packet = nil
                 api.start(s, 1, 100)
                 check(packet and packet[5] == 0 and packet[3] == s.root.Position, id .. " sends the actual arrival")
-                check(not d.originArea or packet[4] == at, id .. " keeps the departure as the attack center")
+                if d.originArea then
+                    local pulseCenter
+                    AdvancedCombat.resolve(s, s.attack, 101, {
+                        enemies = {},
+                        visual = function(_, _, _, center) pulseCenter = center end,
+                    }, 1)
+                    check(pulseCenter == at, id .. " keeps the departure as the attack center")
+                end
                 Visual.play(table.unpack(packet, 1, packet.n))
                 local m = wake()
                 local distance = (packet[3] - at).Magnitude
