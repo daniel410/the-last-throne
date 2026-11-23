@@ -4,6 +4,8 @@
 
 [현재 상태](docs/production/current-status.md) · [결정 조회](docs/decisions.md)
 
+정식 출시를 준비할 때는 [정식 출시 실행 계획](docs/planning/09.md#정식-출시-실행-계획)에서 첫 검증 과제, 공개 테스트 진입 조건, 출시 당일 중단 기준을 확인한다.
+
 - [1. 만들 게임과 성공의 의미](docs/planning/01.md)
 - [2. 원천과 현재 준비 수준](docs/planning/02.md)
 - [3. 변하지 않을 기준과 검증할 제안](docs/planning/03.md)
