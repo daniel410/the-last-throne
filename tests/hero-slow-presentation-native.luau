@@ -5,6 +5,7 @@ local Server = game.ServerScriptService.Server.Combat
 local Config = require(game.ReplicatedStorage.Shared.K0Config)
 local Motion = require(Client.AdvancedSkillMotion)
 local Poses = require(Client.RangedActionPoses)
+local Bow = require(Client.K0BowMotion)
 local Effects = require(Client.K0EnemyControlEffects)
 local report = {checks = 0, failures = {}}
 local function check(result, name)
@@ -68,6 +69,15 @@ local ok, reason = xpcall(function()
     end
     local canRender = type(Effects.updateSlow) == "function"
     check(canRender, "slow visuals render through the client control presenter")
+    local function bowPitch(id)
+        local d = skill("elf", id)
+        actor:SetAttribute("K0State", "Attack")
+        actor:SetAttribute("K0SkillId", id)
+        actor:SetAttribute("K0AttackStartedAt", 100)
+        return Bow.forCharacter(actor, 100 + d.windup - .01).aimPitch
+    end
+    check(bowPitch("elf.magic_archer.vine_trap") <= 12.01 and bowPitch("elf.marksman.arrow_rain") >= 40,
+        "trap keeps the shallow launch and arrow rain keeps the overhead launch")
     local profiles = {}
     for _, row in cases do
         local class, id, kind = unpack(row)

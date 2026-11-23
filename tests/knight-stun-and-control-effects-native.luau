@@ -5,6 +5,7 @@ local function check(v,m)report.checks+=1;assert(v,m)end
 local C=require(game.ReplicatedStorage.Shared.K0Config);local A=require(game.ReplicatedStorage.Shared.AdvancedSkills)
 local Fx=require(game.StarterPlayer.StarterPlayerScripts.Client.K0EnemyControlEffects)
 local Hit=require(game.StarterPlayer.StarterPlayerScripts.Client.K0HitEffects)
+local HeroVFX=require(game.StarterPlayer.StarterPlayerScripts.Client.HeroVFX)
 local Visual=require(game.StarterPlayer.StarterPlayerScripts.Client.K0EnemyVisual)
 local original=game.ServerScriptService.Server.Combat.CombatService;local copy=original:Clone();copy.Name='KnightControlQA'
 copy.Source=copy.Source:gsub('\nreturn CombatService%s*$',[[
@@ -16,6 +17,8 @@ local function rig(name,pos)
  local m=Instance.new('Model');m.Name=name;local r=Instance.new('Part');r.Name='HumanoidRootPart';r.Anchored=true;r.CFrame=CFrame.new(pos);r.Parent=m;m.PrimaryPart=r
  local h=Instance.new('Humanoid');h.RequiresNeck=false;h.BreakJointsOnDeath=false;h.MaxHealth=10000;h.Health=10000;h.Parent=m;m.Parent=folder;return m,r,h
 end
+local camera=workspace.CurrentCamera
+local originalCamera=camera.CFrame
 local ok,err=xpcall(function()
  local pm,pr,ph=rig('Attacker',Vector3.new(0,100,0));local state={feedbackSeq=0,baseClassId='knight',heroId='qa-knight',player={UserId=-902,Parent=game.Players},character=pm,root=pr,humanoid=ph}
  local skills={};for _,list in ipairs({C.Skills.knight})do for _,d in ipairs(list)do
@@ -58,15 +61,24 @@ local ok,err=xpcall(function()
  -- All Knight/Dwarf authored skill IDs get a family-specific impact, while
  -- root health and server attributes remain untouched by the local renderer.
  local target,root,human=rig('ImpactTarget',Vector3.new(20,100,0))
+ camera.CFrame=CFrame.lookAt(root.Position+Vector3.new(8,5,9),root.Position)
  local hp=human.Health
  for _,class in ipairs({'knight','dwarf'})do for _,list in ipairs({C.Skills[class]})do for _,d in ipairs(list)do
+  HeroVFX.clear()
   local before={}for _,m in ipairs(workspace:GetChildren())do if m.Name=='K0HitEffect'then before[m]=true end end
   check(Hit.show(target,root.Position,10,class,'Goblin',Vector3.new(0,0,-1),d.id),'confirmed skill renders: '..d.id)
-  local found;for _,m in ipairs(workspace:GetChildren())do if m.Name=='K0HitEffect' and not before[m]then found=m end end
-  check(found and found:GetAttribute('K0SkillEffectId')==d.id and found:FindFirstChild('K0SkillImpact'),'descendant has visible impact rather than generic fallback')
+  local found,authored
+  for _,m in ipairs(workspace:GetChildren())do
+   if m.Name=='K0HitEffect' and not before[m]then found=m end
+   if m.Name=='HeroVFX' and m:GetAttribute('SkillId')==d.id and m:GetAttribute('ContactStyle') and m:FindFirstChildWhichIsA('Beam',true) then authored=m end
+  end
+  check(found and found:GetAttribute('K0SkillEffectId')==d.id and (found:FindFirstChild('K0SkillImpact') or authored),
+   'descendant has a visible skill impact: '..d.id)
  end end end
  check(human.Health==hp and not target:GetAttribute('K0EnemyStunUntil'),'impact renderer cannot apply stun or damage')
  for _,m in ipairs(workspace:GetChildren())do if m.Name=='K0HitEffect'then m:Destroy()end end
 end,debug.traceback)
+HeroVFX.clear()
+camera.CFrame=originalCamera
 if not ok then table.insert(report.failures,tostring(err))end
 folder:Destroy();copy:Destroy();report.pass=#report.failures==0;print('KNIGHT_STUN_CONTROL_EFFECTS_NATIVE '..game.HttpService:JSONEncode(report));assert(report.pass,'Knight control effects failed')

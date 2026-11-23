@@ -86,7 +86,12 @@ local function createSlow(s,kind,current)
  local profile=slowStyles[kind]
  local root=s.root
  local radius=math.clamp(math.max(root.Size.X,root.Size.Z)*.50,.80,2.4)
- local height=math.clamp(root.Size.Y*.62,.72,2.4)
+ local height=math.clamp(root.Size.Y*.70,.85,2.4)
+ if kind=='earth' then
+  -- An axe can cross the target's belt on contact; keep the grit below it.
+  radius*=1.28
+  height+=.34
+ end
  for side=-1,1,2 do
   local function point(index)
    local p=profile[index]
@@ -129,9 +134,12 @@ function Effects.updateSlow(s,current,observerPosition)
  if #s.slow.beams>0 then
   local opening=1-math.clamp((current-s.slow.startedAt)/.22,0,1)
   local closing=math.clamp((expires-current)/.18,0,1)
-  for _,beam in s.slow.beams do
-   beam.Width0=(.19+.15*opening)*closing
-   beam.Width1=(.06+.07*opening)*closing
+  if opening~=s.slow.opening or closing~=s.slow.closing then
+   s.slow.opening,s.slow.closing=opening,closing
+   for _,beam in s.slow.beams do
+    beam.Width0=(.19+.15*opening)*closing
+    beam.Width1=(.06+.07*opening)*closing
+   end
   end
  end
  return true
