@@ -482,7 +482,9 @@ local function startSkill(state, slot, current, targetModel)
 		state.manaRegenAt = current + Config.ManaRegenDelay
 	end
 	local advancedCast=skill.advanced and AdvancedCombat.snapshot(state,skill,direction,targetModel,enemyStates,unobstructed)
+	local stepFrom = advancedCast and skill.move and state.root.Position
 	if skill.move then skillStep(state,direction,skill.move) end
+	if stepFrom == state.root.Position then stepFrom = nil end
 	if skill.guardReduction then state.guardedUntil=current+skill.guardDuration;state.guardReduction=skill.guardReduction end
 	local shieldRecipients
 	if skill.shield then
@@ -528,7 +530,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
 	if advancedCast and advancedEffectRemote then
 		advancedEffectRemote:FireAllClients(state.character, skill.id, state.root.Position, advancedCast.visualCenter or advancedCast.center,
-			0, nil, state.attackSeq, startedAt, startedAt, nil, shieldRecipients)
+			0, nil, state.attackSeq, startedAt, startedAt, nil, shieldRecipients, stepFrom)
 	end
 	publishBowAim(state,direction)
 	updateFeedback(state, "ActionStarted")

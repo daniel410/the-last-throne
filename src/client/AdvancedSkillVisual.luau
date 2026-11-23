@@ -273,7 +273,7 @@ local function showShieldRecipients(id,recipients)
   if recipient~=own then HeroVFX.shieldGrant(recipient,id) end
  end
 end
-function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt,castDirection,shieldRecipients)
+function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt,castDirection,shieldRecipients,stepFrom)
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
  local bomb=Bomb.get(id)
  local profile=Presentation.get(d);if not profile then return end
@@ -322,6 +322,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if character then
    branchProp(character,d,attackSeq)
    HeroVFX.windup(character,d,profile.motion,profile.effect,origin,attackSeq,opening,windupSocket(character,profile.motion))
+   if typeof(stepFrom)=="Vector3" then HeroVFX.stepWake(character,d,stepFrom,origin,opening) end
   end
   local firstContact=opening+d.windup+(d.hitDelay or 0)
   if d.form=="ground" then
