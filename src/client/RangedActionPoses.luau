@@ -39,6 +39,7 @@ local bow = {
     glide=stance(v(14,-19,12), 32, 22, 25),
     sky=stance(v(-16,-12,-10), -23, 24, 32),
     weave=stance(v(-6,24,-14), 25, 19, 28),
+    warden=stance(v(-3,16,-17), 18, 22, 24),
     canopy=stance(v(-24,20,-15), 34, 30, 38),
 }
 local function bowStance(d)
@@ -56,6 +57,7 @@ local function bowStance(d)
     if d.id=="elf.marksman.mark_breaker" then return bow.markBreaker end
     if d.id=="elf_pinning_shot" then return bow.pin end
     if d.id=="elf.magic_archer.elemental_pierce" then return bow.elementalPierce end
+    if d.id=="elf.magic_archer.warden_arrow" then return bow.warden end
     if d.form=="line" then return bow.pierce end
     if d.branch=="magic_archer" then return bow.weave end
     return d.id and bow.sight or bow.field
@@ -124,6 +126,12 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"elbow",v(20,0,0)*recoil)
         add(pose,"leftKnee",v(16,0,0)*recoil)
     end
+    if s == bow.warden then
+        -- The draw hand folds back toward the chest while the bow stays on target.
+        add(pose,"right",v(-10,-22,24)*recoil)
+        add(pose,"elbow",v(-33,0,0)*recoil)
+        add(pose,"leftKnee",v(12,0,0)*recoil)
+    end
     if d.id=="elf_retreating_shot" then
         -- Leave the bow on the sight line while the rear leg takes the step.
         add(pose,"torso",v(-11,-4,8)*load+v(12,6,-4)*recoil)
@@ -186,6 +194,7 @@ local spells = {
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
     stone=gesture(v(-32,-19,12),v(22,17,34),v(17,-19,-7),v(50,-14,5),26),
     ward=gesture(v(13,-24,17),v(47,-16,-28),v(11,14,-10),v(34,12,30),23),
+    iceWard=gesture(v(15,12,-21),v(30,-27,19),v(5,-18,8),v(42,-19,-20),24),
     ashfall=gesture(v(37,-22,-24),v(43,25,25),v(-18,-20,12),v(-12,13,34),23),
     hailfall=gesture(v(28,17,-10),v(48,-13,10),v(-22,14,-5),v(12,-18,15),26),
     caldera=gesture(v(-40,-24,-17),v(-27,22,32),v(25,-24,-12),v(72,-17,20),35),
@@ -194,6 +203,7 @@ local spells = {
 local function spellGesture(d,profile)
     if profile=="staff_strike" then return spells.strike end
     if d.ultimate then return d.branch=="pyro" and spells.caldera or spells.tempest end
+    if d.id=="mage.cryo.ice_ward" then return spells.iceWard end
     if profile=="ward" then return spells.ward end
     local cue = Presentation.get(d)
     if not cue then return spells.bolt end
@@ -253,6 +263,7 @@ function Poses.mage(pose,d,profile,age)
         or s == spells.moltenLine and v(-25,-13,-15)
         or s == spells.shatter and v(-26,15,20)
         or s == spells.glacialSpike and v(23,-12,-13)
+        or s == spells.iceWard and v(-22,14,-30)
         or Vector3.zero
     add(pose,"left",s.palm*wind+s.openPalm*guide+palmRelease*follow)
     add(pose,"torso",s.chest*(wind-.48*follow))

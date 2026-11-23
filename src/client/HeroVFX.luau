@@ -198,7 +198,8 @@ function FX.step(now)
  if not finite(now)then return end
  for i=#active,1,-1 do
   local r=active[i];local u=math.clamp((now-r.at)/r.life,0,1)
-  if not r.model.Parent or now>=r.at+r.life or (r.windup and not r.windup()) or (r.incoming and not r.incoming()) then erase(i)
+  if not r.model.Parent or now>=r.at+r.life or (r.recipientRoot and not r.recipientRoot:IsDescendantOf(workspace))
+   or (r.windup and not r.windup()) or (r.incoming and not r.incoming()) then erase(i)
   else
    local fade=r.key=="lightning"and math.clamp((now-r.at)/.16,0,1)or math.clamp((u-.12)/.88,0,1)
    if r.windup then fade=.14+.73*(1-u)^2 end
@@ -245,6 +246,58 @@ function FX.step(now)
   end
  end
  if #active==0 and connection then connection:Disconnect();connection=nil end
+end
+-- Each shield opens around the recipient in two strokes. The planar frame
+-- is fixed on grant so movement follows the hero without camera-driven spin.
+local shieldShapes={
+ shield={"SteelGuardClasp",Vector2.new(.20,-.83),Vector2.new(1.75,-.47),Vector2.new(1.42,.62)},
+ holy={"OathGuardWings",Vector2.new(.38,-.75),Vector2.new(.96,.48),Vector2.new(1.78,.92)},
+ earth={"StoneGuardBraces",Vector2.new(.66,-1.28),Vector2.new(1.65,-.97),Vector2.new(1.30,-.20)},
+ arrow={"HunterGuardFletching",Vector2.new(.48,-.52),Vector2.new(1.36,-.45),Vector2.new(1.73,.42)},
+ nature={"WardenGuardLeaves",Vector2.new(.59,-.68),Vector2.new(1.65,-.40),Vector2.new(1.07,.79)},
+ frost={"IceGuardFacets",Vector2.new(.22,.96),Vector2.new(1.56,.70),Vector2.new(1.47,-.60)},
+ fire={"SearingGuardFlames",Vector2.new(.82,-.78),Vector2.new(1.77,-.12),Vector2.new(1.09,.76)},
+ arcane={"ArcaneGuardWeave",Vector2.new(.38,-.70),Vector2.new(1.72,.02),Vector2.new(.89,1.04)},
+}
+function FX.shieldGrant(recipient,id)
+ if typeof(recipient)~="Instance" or not recipient:IsA("Model") or not recipient:IsDescendantOf(workspace) then return end
+ local root=recipient:FindFirstChild("HumanoidRootPart")
+ if not root or not root:IsA("BasePart") then return end
+ local color,hot,key,row=Palette.resolve(id:match("^(%a+)"),id)
+ if not row or not row.definition.shield then return end
+ if row.classId=="dwarf" then key="earth";color,hot=Palette.get(key,row.classId) end
+ local shape=shieldShapes[key] or shieldShapes.shield
+ local compact=FX.isOtherHero(recipient)
+ local at=root.Position
+ for i=#active,1,-1 do
+  if active[i].recipientRoot==root then erase(i);break end
+ end
+ local r=make(at,at,compact and .30 or .40,key,id,compact,true,2)
+ if not r then return end
+ r.model.Name="HeroShieldGrant";r.model:SetAttribute("GuardStyle",shape[1])
+ r.recipientRoot=root;r.color=color;r.hot=hot
+ local camera=workspace.CurrentCamera
+ local sight=camera and camera.CFrame.Position-at or root.CFrame.LookVector
+ local flat=Vector3.new(sight.X,0,sight.Z)
+ local front=flat.Magnitude>.01 and flat.Unit or -Vector3.zAxis
+ local right=front:Cross(Vector3.yAxis)
+ local scale=math.clamp(root.Size.Y*.5,.72,1.4)
+ for side=-1,1,2 do
+  local function path(t,u)
+   local start,bend,finish=shape[2],shape[3],shape[4]
+   local p=start:Lerp(bend,t):Lerp(bend:Lerp(finish,t),t)
+   local open=.62+.46*(1-(1-u)^3)
+   return root.Position+(right*(p.X*side*open)+Vector3.yAxis*(p.Y+.20*u)+front*.40)*scale
+  end
+  local stroke=line(r,shape[1],function(u)return path(0,u),path(1,u)end,compact and .12 or .18,side==1 and hot or color,.085,true)
+  if stroke then
+   stroke.span=function(u)return Style.span(path,0,1,u)end
+   stroke.beam.Segments=5
+   local a,b,ta,tb,c0,c1=stroke.span(0)
+   Style.pose(stroke.a,stroke.b,stroke.beam,a,b,ta,tb,c0,c1)
+  end
+ end
+ return r.model
 end
 local function floorAt(at,character)
  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
@@ -1478,6 +1531,10 @@ local forceContacts={
  ["dwarf.iron_axe.iron_shoulder"]={"IronShoulderContact",Vector3.new(.12,-.08,-.24),Vector3.new(.48,-.63,.68),.43,.085,-.10},
  ["elf.magic_archer.gliding_shot"]={"GlidingShotContact",Vector3.new(.31,.19,-.83),Vector3.new(.07,.02,.64),.33,.060},
  ["mage.cryo.frost_step"]={"FrostStepContact",Vector3.new(.07,-.43,-.36),Vector3.new(.48,.21,.38),.19,.076,.10},
+ ["knight.steel_knight.guardian_counter"]={"GuardianCounterContact",Vector3.new(.11,-.56,-.21),Vector3.new(.72,.57,.35),.32,.09,.18},
+ ["dwarf.iron_axe.tremor_guard"]={"TremorGuardContact",Vector3.new(.10,-.65,-.12),Vector3.new(1.02,-.33,.44),.28,.09,-.17},
+ ["elf.magic_archer.warden_arrow"]={"WardenArrowContact",Vector3.new(.57,-.32,-.83),Vector3.new(.08,.29,.46),.37,.07},
+ ["mage.cryo.ice_ward"]={"IceWardContact",Vector3.new(.27,-.72,-.14),Vector3.new(.81,.73,.08),.15,.08,.20},
 }
 local function forceContact(r,at,cf,size,shape)
  local name,base,tip,travel,width,lift=unpack(shape)

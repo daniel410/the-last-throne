@@ -484,12 +484,15 @@ local function startSkill(state, slot, current, targetModel)
 	local advancedCast=skill.advanced and AdvancedCombat.snapshot(state,skill,direction,targetModel,enemyStates,unobstructed)
 	if skill.move then skillStep(state,direction,skill.move) end
 	if skill.guardReduction then state.guardedUntil=current+skill.guardDuration;state.guardReduction=skill.guardReduction end
+	local shieldRecipients
 	if skill.shield then
+		shieldRecipients = {}
 		for _,friend in pairs(playerStates) do
 			if alive(friend) and (friend==state or skill.partyShield and (friend.root.Position-state.root.Position).Magnitude<=10 and unobstructed(state.root.Position,friend.root.Position,state.character,friend.character)) then
 				local amount=friend.humanoid.MaxHealth*skill.shield
 				friend.branchShield={amount=math.max(amount,friend.branchShield and friend.branchShield.expires>current and friend.branchShield.amount or 0),expires=current+(skill.shieldDuration or 4)}
 				friend.character:SetAttribute("K0Shield",friend.branchShield.amount)
+				table.insert(shieldRecipients, friend.character)
 			end
 		end
 	end
@@ -523,7 +526,10 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
-	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.visualCenter or advancedCast.center,0,nil,state.attackSeq,startedAt,startedAt) end
+	if advancedCast and advancedEffectRemote then
+		advancedEffectRemote:FireAllClients(state.character, skill.id, state.root.Position, advancedCast.visualCenter or advancedCast.center,
+			0, nil, state.attackSeq, startedAt, startedAt, nil, shieldRecipients)
+	end
 	publishBowAim(state,direction)
 	updateFeedback(state, "ActionStarted")
 end

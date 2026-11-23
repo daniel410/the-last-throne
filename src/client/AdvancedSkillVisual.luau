@@ -261,7 +261,19 @@ local function queueIncoming(character,d,center,seq,firstContact,now)
   end
  end
 end
-function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt,castDirection)
+local function showShieldRecipients(id,recipients)
+ local player=Players.LocalPlayer
+ local own=player and player.Character
+ if own then
+  for _,recipient in pairs(recipients) do
+   if recipient==own then HeroVFX.shieldGrant(own,id);break end
+  end
+ end
+ for _,recipient in pairs(recipients) do
+  if recipient~=own then HeroVFX.shieldGrant(recipient,id) end
+ end
+end
+function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt,castDirection,shieldRecipients)
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
  local bomb=Bomb.get(id)
  local profile=Presentation.get(d);if not profile then return end
@@ -269,18 +281,25 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local now=workspace:GetServerTimeNow()
  if type(firedAt)=="number" and (firedAt~=firedAt or now-firedAt>.6 or firedAt-now>.5) then return end
  local opening=pulse==0 and (type(startedAt)=="number" and startedAt or now)
- if opening and (opening~=opening or opening>now+.1 or now>=opening+d.windup+(d.hitDelay or 0)) then return end
+ if opening and (opening~=opening or opening>now+.1) then return end
+ local grant=opening and d.shield and type(shieldRecipients)=="table"
+ local expired=opening and now>=opening+d.windup+(d.hitDelay or 0)
+ if expired and (not grant or now-opening>.42) then return end
  if character and type(attackSeq)=="number" then
   local current=character:GetAttribute("K0AttackSeq")
   if pulse==0 and type(current)=="number" and current>attackSeq then return end
   local old=confirmed[character]
   if old and (attackSeq<old.seq or attackSeq==old.seq and old.id==id and pulse<=old.pulse) then return end
   confirmed[character]={seq=attackSeq,id=id,pulse=pulse}
-  local cue=groundCues[character]
-  if cue and cue.seq<=attackSeq then clearGroundCue(character,cue) end
-  HeroVFX.endWindup(character,attackSeq)
-  HeroVFX.endIncoming(character,attackSeq,pulse)
+  if not expired then
+   local cue=groundCues[character]
+   if cue and cue.seq<=attackSeq then clearGroundCue(character,cue) end
+   HeroVFX.endWindup(character,attackSeq)
+   HeroVFX.endIncoming(character,attackSeq,pulse)
+  end
  end
+ if grant then showShieldRecipients(id,shieldRecipients) end
+ if expired then return end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
  local compact=HeroVFX.isOtherHero(character)
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
@@ -437,7 +456,6 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    impact(center,color,1.2)
   end
  end
- if d.shield and d.form~="self" and(not primary or(id~="mage.cryo.ice_ward" and id~="mage.pyro.searing_ward" and id~="dwarf.iron_axe.iron_shoulder"))then arc(floor,direction,2.7,360,color,.5,"GuardGranted")end
  if not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" and type(points)=="table" then
   for i=1,math.min(#points,4) do impact(points[i],color,.7) end
  end

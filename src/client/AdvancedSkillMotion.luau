@@ -402,6 +402,14 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"left",v(12,0,-16)*brace+v(-13,0,12)*recoil)
   offset(pose,"torso",v(8,-12,-6)*brace+v(3,13,6)*recoil)
   offset(pose,"leftKnee",v(12*brace+14*recoil))
+ elseif d.id=="knight.steel_knight.guardian_counter" then
+  local brace=smooth(age/(contact*.32))*(1-smooth((age/contact-.71)/.29))
+  local release=pulse>0 and smooth(since/.055)*(1-smooth((since-.055)/.17)) or 0
+  -- Protect behind the left shoulder, then uncoil into the countercut.
+  offset(pose,"left",v(28,-10,-21)*brace+v(8,9,16)*release)
+  offset(pose,"leftElbow",v(19*brace))
+  offset(pose,"torso",v(10,-18,-7)*brace+v(-6,14,7)*release)
+  offset(pose,"leftKnee",v(19*brace+17*release))
  end
  if d.id=="knight_crescent_cut" then
   local phase=age/contact
@@ -469,6 +477,15 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"rightHip",v(-8*lift-11*weight))
   offset(pose,"leftKnee",v(15*lift+22*weight))
   offset(pose,"rightKnee",v(12*lift+19*weight))
+ elseif d.id=="dwarf.iron_axe.tremor_guard" then
+  local phase=age/contact
+  local load=smooth(phase/.50)*(1-smooth((phase-.65)/.35))
+  local stomp=pulse>0 and smooth(since/.05)*(1-smooth((since-.05)/.17)) or 0
+  -- The axe stays in its ground strike while the free forearm braces.
+  offset(pose,"left",v(33,-17,14)*load+v(17,9,-19)*stomp)
+  offset(pose,"torso",v(-9,-7,8)*load+v(15,0,-5)*stomp)
+  offset(pose,"leftKnee",v(14*load+22*stomp))
+  offset(pose,"rightKnee",v(10*load+15*stomp))
  elseif d.id=="dwarf.iron_axe.shatter_blow" then
   -- Brace under the raised axe, then drop the shoulders through the impact.
   local phase=age/contact
