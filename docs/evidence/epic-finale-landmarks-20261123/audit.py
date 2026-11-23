@@ -10,6 +10,7 @@ import sys
 HERE = Path(__file__).resolve().parent
 DISPATCH = HERE.parent / 'epic-finale-dispatch-20261120'
 PROFILES = HERE.parent / 'epic-finale-route-profiles-20261121'
+CAMERAS = HERE.parent / 'epic-finale-refinement-20261119' / 'cameras.json'
 MODULE = 'src/server/World/EpicFinaleScenery.luau'
 MODELS = {
     'DW-07': 'ConvoyRoadLoadingSill',
@@ -18,6 +19,20 @@ MODELS = {
     'EC-07': 'DispatchCarrierCradle',
     'HG-07': 'AlliedReturnParapet',
 }
+
+
+def camera_ids():
+    original = json.loads(CAMERAS.read_text())
+    return [shot['id'] for shot in original] + [story + '_rear_diagnostic' for story in MODELS]
+
+
+def add_rear_cameras(program):
+    marker = 'local cameras = game.HttpService:JSONDecode(cameraPlan)'
+    assert program.count(marker) == 1
+    names = json.dumps(MODELS)
+    setup = 'local finaleModels = game.HttpService:JSONDecode(' + json.dumps(names) + ')'
+    rear = (HERE / 'rear-cameras.luau').read_text()
+    return program.replace(marker, marker + '\n' + setup + '\n' + rear)
 
 
 def prepare(directory, places, build):
@@ -43,7 +58,7 @@ def prepare(directory, places, build):
         guard += json.dumps(module.decode('utf-8')) + ', "wrong finale source for ' + stage + '")'
         if stage == 'candidate':
             program += '\ndo\n' + (PROFILES / 'check-journals.luau').read_text() + '\nend\n'
-        output.write_text(guard + '\n' + program)
+        output.write_text(guard + '\n' + add_rear_cameras(program))
 
 
 def main():
@@ -67,7 +82,7 @@ def main():
                   for story, name in MODELS.items()}
         compare = runpy.run_path(str(PROFILES / 'compare.py'))['compare']
         compare(directory / 'baseline.log', directory / 'candidate.log',
-                counts=counts, build_path=build_path, output=directory)
+                counts=counts, build_path=build_path, output=directory, camera_ids=camera_ids())
 
 
 if __name__ == '__main__':

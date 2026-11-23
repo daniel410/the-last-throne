@@ -24,3 +24,12 @@
 | HG-07 · 잔여 잠금을 정리하고 문을 닫은 뒤 왕좌를 복원한다. | 귀환 보호턱의 낮아지는 석재 단부와 철제 버팀이 물리는 단면을 드러낸다. 차가운 석축과 무광 철을 써서 오래된 벽과 보강 부재를 구분한다. | 문 조사 전 접근과 조사 뒤 귀환 사선에서 받침, 버팀, 끝돌의 관계를 비교한다. |
 
 다섯 모델은 공용 정적 배경이다. 조사 전후에 같은 형태를 사용하며 지역 문, 폭풍, 왕좌와 개인 귀환의 상태 전환은 [제품 계약](../product-contracts.md)의 기존 동작이 맡는다. 카메라 각을 고정해 두 빌드에 적용하고, 조사 위치와 지물 외곽, 바닥 접지 및 접근·귀환 도달을 대조한다. 환경 아트와 QA는 실제 입력으로 야간에 처음 보이는 시점과 인물 곁을 통과할 때의 가림을 확인한다.
+
+## 접근·귀환 화면 수용 기준
+
+2026-11-23 환경 아트가 기존 비교 화면 13쌍과 후보 모델을 대조했다. 기존 카메라 원점은 모두 지물의 정면에 있다. 고정 카메라를 다섯 지물의 배치 피벗에서 각각 반사해 후면 사선을 확인하고, 실제 귀환 동선에서도 따로 같은 지점을 확인한다.
+
+- Diablo IV 제작진이 플레이 카메라에서 세부 밀도와 지역별 날씨·재료를 조정한 사례를 참고한다. Gloamwood는 야간 북쪽 첫 굽이와 귀환 사선에서 눈 윗면과 셰일 단면이 분리되어야 한다. [Diablo IV 환경 제작](https://news.blizzard.com/en-us/article/23788294/diablo-iv-quarterly-updatemarch-2022)
+- WoW The Ringing Deeps에서 광차가 설비의 기능과 이동 경로를 연결한다. Deepwood는 양쪽 바퀴홈과 고임목의 접합을, Frozen Vale은 표지 옆 두 정지점과 러너의 연결을 확인한다. Ember Caldera는 Suri 양옆에서 롤러 두 열과 빈 중앙, 앞뒤 가이드의 방향이 함께 드러나야 한다. [The War Within 지역과 던전](https://worldofwarcraft.blizzard.com/en-gb/news/24125258)
+- Lost Ark는 Voldis의 높은 현자의 탑 자체에 지역의 서사 주제를 담았다. Haunted Graveyard는 문에서 돌아설 때 낮은 보호턱의 끝돌, 철 버팀, 석재 받침이 연결되면서 귀환 통로의 경계를 보여줘야 한다. [Lost Ark Voldis 제작기](https://www.playlostark.com/en-us/news/articles/creating-voldis)
+- Roblox Creator Hub의 그레이박스 검증은 시점, 통행 및 캐릭터 스케일을 다룬다. 고정 사선은 지물 단면 검토에 사용하고, 실제 캐릭터로 귀환 시야와 보행을 확인한다. [Roblox 환경 그레이박스](https://create.roblox.com/docs/tutorials/curriculums/environmental-art/greybox-your-environment)

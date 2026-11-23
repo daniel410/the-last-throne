@@ -23,12 +23,14 @@ def by_name(log, tag):
     return indexed
 
 
-def captures(log):
+def captures(log, camera_ids=None):
     assert 'TLT_APPROACH_FRAMES_DONE' in log
     shots = {}
     for name, y, pixels in re.findall(r'^TLT_APPROACH_FRAME (\S+) (\d+) ([a-f0-9]+)$', log, re.M):
         shots.setdefault(name, {})[int(y)] = bytes.fromhex(pixels)
-    assert list(shots) == [shot['id'] for shot in json.loads(CAMERAS.read_text())]
+    if camera_ids is None:
+        camera_ids = [shot['id'] for shot in json.loads(CAMERAS.read_text())]
+    assert list(shots) == camera_ids
     images = {}
     for name, scanlines in shots.items():
         assert set(scanlines) == set(range(225))

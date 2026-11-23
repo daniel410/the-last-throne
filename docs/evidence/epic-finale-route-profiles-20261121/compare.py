@@ -21,7 +21,7 @@ COUNTS = {
 }
 
 
-def compare(baseline_log, candidate_log, *, counts=COUNTS, build_path=HERE / 'build.json', output=HERE):
+def compare(baseline_log, candidate_log, *, counts=COUNTS, build_path=HERE / 'build.json', output=HERE, camera_ids=None):
     before, after = (path.read_text() for path in (baseline_log, candidate_log))
     stable = ('ROUTE_COMPILE', 'ROUTE_NAV_ORIGINAL', 'ROUTE_NAV_EASY', 'CONTOUR', 'STATION', 'RESCUE_SOLID')
     for tag in stable:
@@ -63,7 +63,7 @@ def compare(baseline_log, candidate_log, *, counts=COUNTS, build_path=HERE / 'bu
         else:
             assert baseline == candidate, name
 
-    images = [captures(log) for log in (before, after)]
+    images = [captures(log, camera_ids) for log in (before, after)]
     frame_hashes = {
         name: [hashlib.sha256(panel[name].tobytes()).hexdigest() for panel in images]
         for name in images[0]
