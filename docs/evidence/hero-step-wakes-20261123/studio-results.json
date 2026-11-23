@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "0477af38ce235c8472015ca48db90a5a2b38f616",
+  "version": "0.115.58",
+  "mode": "Studio Edit, isolated local built Place",
+  "suites": {
+    "hero-step-wakes-native": 335,
+    "hero-mark-application-native": 432,
+    "hero-movement-skills-native": 67,
+    "hero-vfx-priority-native": 28,
+    "hero-skills-native": 244520,
+    "skill-icon-vfx-native": 12602,
+    "hero-shield-grant-native": 139,
+    "hero-skill-windup-native": 1400
+  },
+  "total": 259523
+}
