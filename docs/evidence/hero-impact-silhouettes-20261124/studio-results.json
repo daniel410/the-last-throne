@@ -1,0 +1,99 @@
+{
+  "mode": "Isolated Roblox Studio with fixed single-place packages",
+  "studioVersion": "0.748.0.7481526",
+  "baseline": "0.115.79",
+  "candidate": "0.115.83",
+  "passedSuites": 14,
+  "passedChecks": 252865,
+  "suites": {
+    "hero-impact-silhouettes-native": {
+      "pass": true,
+      "checks": 171
+    },
+    "hero-skills-native": {
+      "pass": true,
+      "checks": 244520
+    },
+    "hero-skill-impact-native": {
+      "pass": true,
+      "checks": 761
+    },
+    "hero-skill-windup-native": {
+      "pass": true,
+      "checks": 1400
+    },
+    "skill-vfx-individual-native": {
+      "pass": true,
+      "checks": 307
+    },
+    "roblox-vfx-polish-native": {
+      "pass": true,
+      "checks": 2117
+    },
+    "vfx-art-hero-fixes-native": {
+      "pass": true,
+      "checks": 2299
+    },
+    "hero-vfx-priority-native": {
+      "pass": true,
+      "checks": 28
+    },
+    "hero-pulse-rhythm-native": {
+      "pass": true,
+      "checks": 219
+    },
+    "hero-release-shapes-native": {
+      "pass": true,
+      "checks": 188
+    },
+    "hero-skill-direction-native": {
+      "pass": true,
+      "checks": 31
+    },
+    "hero-contact-materials-native": {
+      "pass": true,
+      "checks": 51
+    },
+    "hero-mark-impact-native": {
+      "pass": true,
+      "checks": 341
+    },
+    "hero-mark-application-native": {
+      "pass": true,
+      "checks": 432
+    }
+  },
+  "baselineImpactSilhouettes": {
+    "checks": 119,
+    "failed": 35
+  },
+  "cpu": {
+    "advanced-skills": 1435,
+    "skill-effects": 12608,
+    "auto-target": 215,
+    "passedChecks": 14258
+  },
+  "screenshots": {
+    "baseline": 8,
+    "candidate": 8,
+    "rig": "R15",
+    "comparison": "comparison.jpg"
+  },
+  "drafts": {
+    "0.115.80": {
+      "sourceCommit": "b7b3d166bc4ca9de0a0c2084ef2dc0e492cd8c62",
+      "sha256": "e5f8a461c3a1c3c7298b5c15a5e667a67735cb62484afcfb487cc58def672528",
+      "observed": "용암 분출이 직선 막대처럼 보임"
+    },
+    "0.115.81": {
+      "sourceCommit": "daacf9c11afc45799243db3f5187b79c9d229e44",
+      "sha256": "f516dcc9dd07aa0348c1e5718006e9602adcb4567f37db2822976e4a8beecff3",
+      "observed": "용암 분출의 텍스처 대비가 낮음"
+    },
+    "0.115.82": {
+      "sourceCommit": "7224dc2cb0ad4a8e7498a674d9b3e90715ce286d",
+      "sha256": "b8ae87b148bb28b5bbfc467676f7b8d63de6d2b63a15d57c4783127073b5cabc",
+      "observed": "도끼 사선이 표적과 겹침"
+    }
+  }
+}
