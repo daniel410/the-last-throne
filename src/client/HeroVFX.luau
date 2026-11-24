@@ -307,12 +307,7 @@ function FX.shieldGrant(recipient,id)
  end
  return r.model
 end
-local function floorAt(at,character)
- local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
- params.FilterDescendantsInstances=character and{character}or{};params.RespectCanCollide=true
- local hit=workspace:Raycast(at+Vector3.yAxis*2,-Vector3.yAxis*18,params)
- return hit and hit.Position+Vector3.yAxis*.12 or at-Vector3.yAxis*2.6
-end
+local floorAt=Geometry.floor
 -- Lateral spread and lift distinguish the footwork without filling the floor.
 local stepWakes={
  ["knight.paladin.valiant_advance"]={name="ValiantBootWake",from=.62,to=.38,arch=.13,width=.16},

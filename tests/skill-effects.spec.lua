@@ -40,7 +40,7 @@ local Config=dofile('src/shared/K0Config.luau');local Advanced=dofile('src/share
 local pixelPulses=0
 local modules={AdvancedSkills=Advanced,K0Config=Config,PixelFX={skill=function(_,_,_,_,pulse)assert(pulse>0);pixelPulses=pixelPulses+1 end}}
 require=function(name)return assert(modules[name],tostring(name))end
-script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX',HeroVFX='HeroVFX',BombVisual='Bomb',K0CombatAudio='Audio'}}
+script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX',HeroVFX='HeroVFX',SkillVFXProfiles='SkillVFXProfiles',BombVisual='Bomb',K0CombatAudio='Audio'}}
 local P=dofile('src/shared/SkillPresentation.luau');modules.SkillPresentation=P;modules.Geometry=dofile('src/client/SkillEffectGeometry.luau')
 table.freeze=table.freeze or function(value)return value end
 local previousScript=script
@@ -50,6 +50,7 @@ script={Parent={PixelFXCatalog='PixelFXCatalog'}}
 modules.CombatVFXPalette=dofile('src/shared/CombatVFXPalette.luau')
 script=previousScript
 modules.Bomb=dofile('src/client/BombVisual.luau')
+modules.SkillVFXProfiles=dofile('src/client/SkillVFXProfiles.luau')
 modules.Audio={play=function()end}
 modules.HeroVFX={skill=function()end,isOtherHero=function()return false end,windup=function()end,groundLead=function()end,endWindup=function()end,endIncoming=function()end}
 modules.Bow={confirmPulse=function()end};modules.Wind={play=function()end}
@@ -93,6 +94,8 @@ for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do
   or d.id=='elf.magic_archer.vine_burst' or d.id=='mage.pyro.lava_eruption'
   or d.id=='knight.steel_knight.warcry_assault' or d.id=='dwarf.iron_axe.twin_axe_path'
   or d.id=='elf.magic_archer.storm_arrow' or d.id=='mage.cryo.froststorm'
+  or d.id=='knight.paladin.dawn_spiral' or d.id=='dwarf.iron_axe.shatter_blow'
+  or d.id=='elf.magic_archer.vine_trap' or d.id=='mage.cryo.frost_ring'
  if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and not usesSocketTrace and not usesAuthoredRelease then
   expectedPulses=expectedPulses+d.pulses
  end

@@ -1,5 +1,32 @@
--- Pure geometry used by rendering and CPU regression fixtures.
+-- Geometry and floor projection for client skill effects.
 local G={}
+local function humanoidModel(part)
+ local model=part and part:FindFirstAncestorOfClass("Model")
+ while model do
+  if model:FindFirstChildOfClass("Humanoid") then return model end
+  model=model:FindFirstAncestorOfClass("Model")
+ end
+end
+function G.floor(position,character,lift,drop)
+ local excluded=character and {character} or {}
+ local world=workspace:FindFirstChild("DeepwoodK0")
+ local enemies=world and world:FindFirstChild("Enemies")
+ if enemies then table.insert(excluded,enemies) end
+ local params=RaycastParams.new()
+ params.FilterType=Enum.RaycastFilterType.Exclude
+ params.RespectCanCollide=true
+ local start=position+Vector3.yAxis*2
+ -- Retry only when another character sits over the painted ground point.
+ for _=1,4 do
+  params.FilterDescendantsInstances=excluded
+  local hit=workspace:Raycast(start,-Vector3.yAxis*18,params)
+  if not hit then break end
+  local actor=humanoidModel(hit.Instance)
+  if not actor then return hit.Position+Vector3.yAxis*(lift or .12) end
+  table.insert(excluded,actor)
+ end
+ return position-Vector3.yAxis*(drop or 2.6)
+end
 function G.sector(origin,direction,radius,angle,count)
  local forward=Vector3.new(direction.X,0,direction.Z)
  forward=forward.Magnitude>.001 and forward.Unit or Vector3.new(0,0,-1)

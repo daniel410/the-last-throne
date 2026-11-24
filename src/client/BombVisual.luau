@@ -50,17 +50,7 @@ function Bomb.handFrame(hand)
         * CFrame.Angles(0, 0, math.rad(38))
 end
 
-function Bomb.floor(position, character)
-    local excluded = character and {character} or {}
-    local world = workspace:FindFirstChild("DeepwoodK0")
-    local enemies = world and world:FindFirstChild("Enemies")
-    if enemies then table.insert(excluded, enemies) end
-    local params = RaycastParams.new()
-    params.FilterType, params.FilterDescendantsInstances = Enum.RaycastFilterType.Exclude, excluded
-    params.RespectCanCollide = true
-    local hit = workspace:Raycast(position + Vector3.yAxis * 2, -Vector3.yAxis * 18, params)
-    return hit and (hit.Position + Vector3.yAxis * .12) or position - Vector3.yAxis * 2.6
-end
+Bomb.floor = require(script.Parent.SkillEffectGeometry).floor
 
 local function arc(start, finish, height, u)
     return start:Lerp(finish, u) + Vector3.yAxis * (4 * height * u * (1 - u))

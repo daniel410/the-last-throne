@@ -13,6 +13,7 @@ local ok,err=xpcall(function()
   Hero.clear();local now=workspace:GetServerTimeNow()
   local m=assert(Hero.skill(char,id,root.Position,root.Position,1,{}))
   local holy=id~='mage_arcane_ward';local rays,facets=0,0;local tracked={}
+  local spiral=id=='knight.paladin.dawn_spiral'
   check(not m:FindFirstChild('ElementalSurface',true),'holy no longer shares a water-like disc')
   check(not m:FindFirstChild('GuardSurface',true),'magical barrier does not use martial shield silhouette')
   for _,p in ipairs(m:GetDescendants())do
@@ -22,7 +23,13 @@ local ok,err=xpcall(function()
     elseif p.Name=='ArcaneWardFacet'then facets+=1;tracked[#tracked+1]={p=p,cf=p.CFrame};check((p.Position-root.Position).Magnitude<3.5,'ward surrounds caster')end
    end
   end
-  check(holy and rays==6 and facets==0 or not holy and facets>=12 and rays==0,'class-specific silhouette')
+  if spiral then
+   local arcs=0
+   for _,beam in ipairs(m:GetDescendants())do if beam:IsA('Beam') and beam.Name=='DawnSpiralSweep'then arcs+=1 end end
+   check(arcs==10 and rays==0 and facets==0,'Dawn Spiral uses open sweeps')
+  else
+   check(holy and rays==6 and facets==0 or not holy and facets>=12 and rays==0,'class-specific silhouette')
+  end
   local _,beams,_,_,_,faces=Hero.count()
   check(beams<=24 and faces<=24,'decorations remain within per-cast budget')
   for _,cf in ipairs({CFrame.new(12,5,0),CFrame.new(0,18,.1)})do

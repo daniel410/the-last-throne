@@ -43,10 +43,7 @@ local function segment(first,last,color,life,width,name,transparency)
  return part(name or "SkillStreak",color,Enum.PartType.Block,Vector3.new(width or .1,width or .1,length),CFrame.lookAt((first+last)/2,last),life,transparency)
 end
 local function ground(position,character)
- local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
- params.FilterDescendantsInstances=character and {character} or {};params.RespectCanCollide=true
- local hit=workspace:Raycast(position+Vector3.new(0,2,0),Vector3.new(0,-18,0),params)
- return hit and hit.Position+Vector3.new(0,.08,0) or position-Vector3.new(0,2.7,0)
+ return Geometry.floor(position,character,.08,2.7)
 end
 local function arc(center,direction,radius,angle,color,life,name,compact,pieces)
  local count=angle>=359 and not compact and 24 or 12

@@ -5,6 +5,7 @@ local Catalog = require(Shared.PixelFXCatalog)
 local Presentation = require(Shared.SkillPresentation)
 local FX = require(Client.HeroVFX)
 local Visual = require(Client.AdvancedSkillVisual)
+local Geometry = require(Client.SkillEffectGeometry)
 local Melee = require(Client.AdvancedSkillMotion)
 local Bow = require(Client.K0BowMotion)
 local Mage = require(Client.K0MageMotion)
@@ -20,6 +21,10 @@ local grip = Instance.new("Part", actor)
 grip.Name, grip.Position, grip.Anchored, grip.CanCollide = "WeaponGrip", origin+direction*.9+Vector3.xAxis, true, false
 local tip = Instance.new("Attachment", grip)
 tip.Name = "WeaponTip"
+local enemy = Instance.new("Model", stage)
+Instance.new("Humanoid", enemy)
+local blocker = Instance.new("Part", enemy)
+blocker.Name, blocker.Position, blocker.Size, blocker.Anchored = "HumanoidRootPart", target, Vector3.new(2,2,2), true
 
 local camera = workspace.CurrentCamera
 local cameraBefore, compactBefore = camera.CFrame, FX.isOtherHero
@@ -43,6 +48,8 @@ local function reset()
     for _, item in workspace:GetChildren() do
         if not initial[item] then item:Destroy() end
     end
+    -- Shared boundary slots retire on their scheduled cleanup even if the fixture removes parts.
+    task.wait(.50)
 end
 local function cast(d, pulse)
     local center = d.form == "area" and origin or target
@@ -75,6 +82,11 @@ local frost = Catalog.byId["mage.cryo.frost_ring"].definition
 local floorY = floor.Position.Y+floor.Size.Y*.5
 
 local ok, err = xpcall(function()
+    check(math.abs(Geometry.floor(target,actor).Y-floorY-.12)<.02, "Actor bodies do not cover the ground")
+    local platform = Instance.new("Part", stage)
+    platform.Position,platform.Size,platform.Anchored = target-Vector3.yAxis*1.8,Vector3.new(3,.4,3),true
+    check(math.abs(Geometry.floor(target,actor).Y-platform.Position.Y-.32)<.02, "Solid scenery is a valid effect surface")
+    platform:Destroy()
     for _, compact in {false,true} do
         FX.isOtherHero = function() return compact end
         local lastReach, lastHeight = 0, -math.huge
@@ -104,6 +116,9 @@ local ok, err = xpcall(function()
             "Shatter Blow replaces the generic pressure ring with staggered rock slabs")
         check(#named(workspace,"ImpactBoundary")==(compact and 12 or 24),
             "Shatter Blow preserves the confirmed ground radius")
+        for _, edge in named(workspace,"ImpactBoundary") do
+            check(math.abs(edge.Position.Y-floorY-.08)<.02, "The ground boundary stays below collider bodies")
+        end
         reset()
 
         local firstRoot
