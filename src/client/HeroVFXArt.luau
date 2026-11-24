@@ -143,10 +143,15 @@ function Art.axe(r,c)
   S.bar(r,'ThrownAxeCuttingEdge',corners[2],corners[3],.1,Color3.fromRGB(235,242,247),.14,Enum.Material.Neon)
   local hub=S.volume(r,'ThrownAxeBronzeHub',center,Vector3.one*.24,Color3.fromRGB(205,147,67),.1,'ball',Enum.Material.Metal)
  end
+ local twin=c.id=='dwarf.iron_axe.twin_axe_path'
  for i=start+1,#r.faces do
   local face=r.faces[i]
   face.spin={pivot=to,axis=returning and frame.RightVector or axis,turn=returning and math.pi or math.pi*2.2,
    approach=approach,duration=Art.axeCatchSeconds}
+  if twin then
+   face.spin.axis=c.pulse==1 and (axis+frame.UpVector*.62).Unit or (axis-frame.UpVector*.46).Unit
+   face.spin.turn=c.pulse==1 and math.pi*1.8 or -math.pi*2.4
+  end
   if returning then face.fadeDuration=.16 end
  end
  r.model:SetAttribute('ArtSilhouette','ThrownAxe');r.model:SetAttribute('AxeSource',cloned and 'Equipped' or 'Fallback')
@@ -252,21 +257,27 @@ function Art.surfaces(r,c)
    if p then r.faces[#r.faces].emerge={duration=.18,delay=0}end
   end
  elseif kind=='Froststorm'then
-  for layer=1,3 do
+  if not r.compact then
    local start=#r.faces
    S.ribbon(r,'FroststormBand',function(t)
-    local angle=t*math.pi*1.6+layer*1.1
-    local radius=math.min(c.radius*.45,4.8)*(1-layer*.13)
-    return c.floor+(c.flat*math.cos(angle)+c.right*math.sin(angle))*radius+UP*(layer*.9+t*.6)
-   end,UP,.45,.58,r.color,4,Enum.Material.SmoothPlastic)
-   S.animate(r,start,c.floor,UP,1.3,false,r.life)
+    local angle=t*math.pi*1.55
+    local radius=math.min(c.radius*.32,4.1)*(1-.22*t)
+    return c.floor+(c.flat*math.cos(angle)+c.right*math.sin(angle))*radius+UP*(.18+.28*t)
+   end,UP,.55,.64,r.color:Lerp(r.hot,.19),4,Enum.Material.SmoothPlastic)
+   S.animate(r,start,c.floor,UP,1.15,false,r.life)
   end
-  for lane=1,3 do
-   local a=lane*math.pi*2/3;local pos=c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*c.radius*.28
-   local p=S.volume(r,'FrostRimFacet',pos+UP*.5,Vector3.new(.4,1,.5),r.color,.3,'wedge',Enum.Material.Ice)
+  local count=r.compact and 2 or 3
+  for lane=1,count do
+   local a=lane*math.pi*2/count
+   local radial=c.flat*math.cos(a)+c.right*math.sin(a)
+   local pos=c.floor+radial*math.min(c.radius*.29,4)
+   local p=S.volume(r,'FrostRimFacet',pos+UP*.5,Vector3.new(.55,1,.6),r.color,.3,'wedge',Enum.Material.Ice)
    if p then r.faces[#r.faces].emerge={duration=.18,delay=0}end
-   local shard=S.volume(r,'FroststormFallingCrystal',pos+UP*.6,Vector3.new(.4,1.4,.4),r.color:Lerp(r.hot,.3),.28,'wedge',Enum.Material.Ice)
-   if shard then r.faces[#r.faces].fall={height=4,duration=r.life*.78,delay=(lane-1)*.02}end
+   local shard=S.volume(r,'FroststormFallingCrystal',pos+UP*.65,Vector3.new(.55,1.6,.55),r.color:Lerp(r.hot,.45),.22,'wedge',Enum.Material.Ice)
+   if shard then
+    orient(r,shard,CFrame.lookAt(shard.Position,shard.Position-radial)*CFrame.Angles(-.27,0,.18))
+    r.faces[#r.faces].fall={height=2.9+lane*.35,duration=.23,delay=(lane-1)*.025}
+   end
   end
  elseif kind=='WaterBall'then
   local shell=S.volume(r,'WaterVolume',c.last,Vector3.one*1.78,Color3.fromRGB(33,107,153),.28,'ball',Enum.Material.Glass)

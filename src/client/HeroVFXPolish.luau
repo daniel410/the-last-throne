@@ -10,11 +10,16 @@ local function oathboundPath(c,t,emphasis)
 end
 function P.strokes(r,c,line,curve)
  if c.id=='mage.cryo.froststorm'then
-  for layer=1,3 do curve(r,'FroststormFlow',function(t,u)
-   local a=t*math.pi*1.6+layer*1.1+u*1.3
-   local radius=math.min(c.radius*.45,4.8)*(1-layer*.13)
-   return c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*radius+Vector3.yAxis*(layer*.9+t*.6+u*.3)
-  end,6,.19,r.color)end
+  for layer=1,r.compact and 1 or 2 do
+   curve(r,'FroststormFlow',function(t,u)
+    local a=t*math.pi*1.48+layer*math.pi+u*.88
+    local collapse=1-.57*(1-(1-u)^3)
+    local radius=math.min(c.radius*.44,5.6)*(1-.34*t)*collapse
+    local height=.22+(1-t)*(1.5+layer*.65)*(1-u*.8)
+    return c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*radius+Vector3.yAxis*height
+   end,r.compact and 5 or 6,.29,r.color:Lerp(r.hot,.25))
+  end
+  r.model:SetAttribute('PrimaryIconCue',true)
   return true
  end
  local kind=variants[c.id];if not kind then return false end

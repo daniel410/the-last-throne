@@ -252,7 +252,8 @@ function Motion.forCharacter(character,now)
  if d.form=="ground" then
   local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)
   local raise=math.clamp(age/math.max(.01,d.windup*.7),0,1)*fade
-  local elevation=d.id=="elf.magic_archer.vine_trap" and 12 or d.ultimate and 46 or d.id=="elf.marksman.arrow_rain" and 43
+  local elevation=d.id=="elf.magic_archer.vine_trap" and 12 or d.id=="elf.magic_archer.storm_arrow" and 51
+   or d.ultimate and 46 or d.id=="elf.marksman.arrow_rain" and 43
    or d.id=="elf_arrow_screen" and 32 or (d.element=="lightning" or d.element=="nature") and 25 or 40
   pose.aimPitch=elevation*raise
   local tilt=CFrame.Angles(math.rad(pose.aimPitch),0,0)

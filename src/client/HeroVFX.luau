@@ -807,14 +807,23 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local cragCleave=id=="dwarf.iron_axe.crag_cleave"
  local vineBurst=id=="elf.magic_archer.vine_burst"
  local lavaEruption=id=="mage.pyro.lava_eruption"
+ local warcryAssault=id=="knight.steel_knight.warcry_assault"
+ local twinAxe=id=="dwarf.iron_axe.twin_axe_path"
+ local stormArrow=id=="elf.magic_archer.storm_arrow"
+ local froststorm=id=="mage.cryo.froststorm"
  local compact=FX.isOtherHero(character)
  local final=FinalBeat.isFinal(d,pulse)
- local life=profile.signature and not final and math.min(profile.life,d.interval) or profile.life
+ local life=(profile.signature and not final or twinAxe and pulse==1 or warcryAssault and not final)
+  and math.min(profile.life,d.interval) or profile.life
  local minBeams=fanLanes and fanLanes*(row.key=="gun" and 1 or 3)
   or (cyclone or cinderRing) and (compact and 8 or 12)
   or (steelSweep or cragCleave) and (compact and 6 or 9)
   or vineBurst and (compact and 9 or 12)
   or lavaEruption and (compact and 2 or 3)
+  or warcryAssault and (compact and 4 or final and 10 or 6)
+  or twinAxe and (compact and 4 or 6)
+  or stormArrow and (compact and 5 or 9)
+  or froststorm and (compact and 5 or 12)
   or returningEcho and (compact and 5 or 7) or 2
  if returningEcho and pulse==2 and character then
   -- The same axe comes back even when both release events arrive together.
@@ -1013,6 +1022,24 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    local at=first+flat*2;local basis=CFrame.lookAt(at,at+flat)
    ring(r,"GuardHalo",at,1.8,width,true,false,nil,basis)
    for side=-1,1,2 do stroke("GuardChevron",at+right*side*1.2,at+Vector3.yAxis*1.7,width*.6,WHITE)end
+  elseif warcryAssault then
+   local bank=pulse==2 and -1 or 1
+   local function wave(t,u)
+    local a=math.rad(angle)*(.46-.92*t)
+    local reach=radius*(.32+pulse*.10+.34*(1-(1-u)^2))
+    local arch=math.sin(t*math.pi)
+    local height=.20+arch*(.45+pulse*.48)+bank*(t-.5)*.46
+    return floor+(flat*math.cos(a)+right*math.sin(a))*reach+Vector3.yAxis*height
+   end
+   curve(r,"WarcryWave",wave,r.compact and 4 or 6,final and .39 or .24)
+   if emphasis then
+    curve(r,"WarcryGroundEcho",function(t,u)
+     local p=wave(t,u)
+     return floor:Lerp(Vector3.new(p.X,floor.Y,p.Z),.87)+Vector3.yAxis*.13
+    end,4,.17,r.color)
+   end
+   r.model:SetAttribute("ForwardOnly",true)
+   r.model:SetAttribute("PrimaryIconCue",true)
   elseif shape=="warcry"then
    for lane=1,count do sector("WarcryWave",floor,radius*lane/count,angle,lane,true)end
   else
@@ -1035,6 +1062,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     local tip=to+(approach or Vector3.zero)*remaining
     return tip-axis*math.min((tip-from).Magnitude,1.65)*(1-u),tip
    end,width*.55,r.hot,width*.92,true)
+  elseif twinAxe then
+   local start=Geometry.fanLaunch(first,launch,last)
+   local reach=(last-start).Magnitude
+   local bank=pulse==2 and -1 or 1
+   if reach>.05 then
+    curve(r,"TwinAxeFlight",function(t,u)
+     local head=start:Lerp(last,.62*u)
+     local bend=math.sin(t*math.pi)*(1-u)*math.min(reach*.08,1.4)
+     return head:Lerp(last,t)+(right*bank*.78+Vector3.yAxis*(pulse==1 and .85 or -.35))*bend
+    end,r.compact and 4 or 6,.23)
+   end
+   r.model:SetAttribute("PrimaryIconCue",true)
   elseif d.braced then
    local length=(to-from).Magnitude
    local launch=vector(muzzle) and (muzzle-from):Dot(dir)<length-.2 and (muzzle-from).Magnitude<=6 and muzzle or from
@@ -1048,13 +1087,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   if d.crosscut then r.model:SetAttribute("PrimaryIconCue",true) end
   axis=axis or forward(from,to)
   local basis=CFrame.lookAt(to,to+axis)
-  curve(r,crosscutReturn and "CrosscutCatchEdge" or "AxeRotation",function(t,u)
+  if not twinAxe then curve(r,crosscutReturn and "CrosscutCatchEdge" or "AxeRotation",function(t,u)
    local arrival=approach and math.clamp(u*r.life/Art.axeCatchSeconds,0,1)
    local turn=arrival and (1-arrival)^2 or u
    local a=t*math.pi*1.6+turn*(approach and math.pi or 7)+phase
    local pivot=approach and to+approach*turn or to
    return pivot+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
-  end,returningEcho and (r.compact and 4 or 6) or 8,width)
+  end,returningEcho and (r.compact and 4 or 6) or 8,width)end
  elseif crossfire then
   local length=(last-first).Magnitude
   if length>.1 then
@@ -1237,6 +1276,32 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    end
    r.model:SetAttribute("PrimaryIconCue",true)
   end
+ elseif stormArrow then
+  local height=r.compact and 6 or 8.6
+  local crown=last-flat*1.45+Vector3.yAxis*height
+  local bolts=Geometry.lightning(crown,last,r.compact and 4 or 5)
+  local strikeColor=Color3.fromRGB(190,227,255)
+  for i=1,#bolts-1 do
+   local a,b=bolts[i],bolts[i+1]
+   line(r,"StormArrowBolt",function()return a,b end,.24,strikeColor,.19,true)
+  end
+  for side=-1,1,2 do
+   if side==1 or not r.compact then
+    local from=bolts[#bolts-1]
+    local tip=floor+right*side*math.min(radius*.36,2.8)+Vector3.yAxis*.12
+    line(r,"StormArrowFork",function(u)
+     return from:Lerp(last,.28*u),last:Lerp(tip,.52+.48*u)
+    end,.105,r.color,.07,true)
+   end
+  end
+  if launch and (launch-first).Magnitude>.15 and not r.compact then
+   line(r,"StormArrowLaunch",function(u)
+    local travel=math.min(1,u*4)
+    local a=launch+Vector3.yAxis*(travel*.9)
+    return a,a+(flat*.68+Vector3.yAxis*1.28)*(1-u)
+   end,.09,r.hot,.04,true)
+  end
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="lightning"then
   local path={}
   if d.form=="chain"then
@@ -1643,6 +1708,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     end
     end
   end
+ elseif warcryAssault then
+  -- The advancing arc is the silhouette. The shared sector owns the boundary.
  elseif shape=="warcry"then
   if d.form=='cone'then
    r.model:SetAttribute('ForwardOnly',true)
@@ -1657,7 +1724,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  Polish.finish(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
  if not bomb and not cinderRing and shape~="steam" and not rallyingSlash and not steelSweep and not cragCleave
-  and not vineBurst and not lavaEruption and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
+  and not vineBurst and not lavaEruption and not warcryAssault and not twinAxe and not stormArrow and not froststorm
+  and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   local scale=quickfire and .85 or echoArrows and .72 or (fanLanes and row.key=="gun") and 1.25
    or id=="knight.paladin.oathbound_assault" and .55

@@ -471,6 +471,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(4,-16,-6)*brace+v(13,10,6)*plant)
   offset(pose,"leftHip",v(-12*plant))
   offset(pose,"leftKnee",v(12*brace+23*plant))
+ elseif d.id=="knight.steel_knight.warcry_assault" then
+  -- Rally behind the shield, answer across the chest, then plant for the last shout.
+  local phase=age/contact
+  local brace=smooth(phase/.58)*(1-smooth((phase-.58)/.42))
+  local drive=pulse>0 and smooth(since/.055)*(1-smooth((since-.055)/.15)) or 0
+  local answer=pulse==2 and -1 or 1
+  local weight=pulse==d.pulses and 1.4 or 1
+  offset(pose,"left",v(21,-17,-13)*brace+v(12,11*answer,18*answer)*drive*weight)
+  offset(pose,"torso",v(15,-9,5)*brace+v(-10,17*answer,-9*answer)*drive*weight)
+  offset(pose,"neck",v(12*brace-15*drive))
+  offset(pose,pulse==2 and "rightKnee" or "leftKnee",v(17*brace+22*drive*weight))
  elseif d.id=="knight.steel_knight.rallying_slash" then
   -- Coil behind the shield, then rise through the horizontal sword clip.
   local phase=age/contact
@@ -651,7 +662,18 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"leftKnee",v(13*weight))
   offset(pose,"rightKnee",v(16*weight+14*load))
  end
- if d.id=="dwarf.iron_axe.stonebound_leap" then
+ if d.id=="dwarf.iron_axe.twin_axe_path" then
+  local phase=age/contact
+  local load=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
+  local snap=pulse>0 and smooth(since/.045)*(1-smooth((since-.045)/.13)) or 0
+  local transfer=pulse==1 and smooth((since-.07)/.065)*(1-smooth((since-.135)/.065)) or 0
+  local side=pulse==2 and -1 or 1
+  -- The right hand reloads across the body for a lower backhand release.
+  offset(pose,"right",v(-12,11,-15)*load+v(-18,-24,21)*transfer+v(14*side,8,-17*side)*snap)
+  offset(pose,"elbow",v(-25*transfer+19*snap))
+  offset(pose,"torso",v(-6,-17,9)*load+v(8,17*side,12*side)*snap+v(8,-16,-9)*transfer)
+  offset(pose,pulse==2 and "leftKnee" or "rightKnee",v(17*load+22*snap+12*transfer))
+ elseif d.id=="dwarf.iron_axe.stonebound_leap" then
   local phase=math.clamp(age/math.max(.01,contact),0,1)
   local air=math.max(0,1-((phase-.61)/.39)^2)*1.5
   local landing=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.18))

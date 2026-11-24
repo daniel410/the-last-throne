@@ -42,6 +42,7 @@ local bow = {
     sky=stance(v(-16,-12,-10), -23, 24, 32),
     vineTrap=stance(v(11,17,-9), 19, 27, 19),
     vineBurst=stance(v(7,-24,12), 14, 29, 30),
+    stormArrow=stance(v(-23,13,-8), -9, 26, 32),
     weave=stance(v(-6,24,-14), 25, 19, 28),
     warden=stance(v(-3,16,-17), 18, 22, 24),
     canopy=stance(v(-24,20,-15), 34, 30, 38),
@@ -49,6 +50,7 @@ local bow = {
 local function bowStance(d)
     if d.id=="elf.magic_archer.vine_trap" then return bow.vineTrap end
     if d.id=="elf.magic_archer.vine_burst" then return bow.vineBurst end
+    if d.id=="elf.magic_archer.storm_arrow" then return bow.stormArrow end
     if d.form=="ground" then return d.ultimate and bow.canopy or bow.sky end
     if d.ultimate and d.form=="cone" then return bow.broadside end
     if d.id=="elf.magic_archer.gliding_shot" then return bow.glide end
@@ -222,6 +224,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"torso",v(-10,8,-5)*recoil)
         add(pose,"leftKnee",v(20*recoil,0,0))
     end
+    if s==bow.stormArrow then
+        -- Look up through the raised bow, then drop the empty hand below the anchor.
+        add(pose,"neck",v(-19,9,0)*load+v(14,-4,0)*recoil)
+        add(pose,"right",v(-27,12,-13)*recoil)
+        add(pose,"elbow",v(-17*recoil,0,0))
+        add(pose,"rightKnee",v(14*recoil,0,0))
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -261,6 +270,7 @@ local spells = {
     chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
     frostRing=gesture(v(25,18,-19),v(17,-17,-24),v(10,14,8),v(13,-23,-39),26),
+    froststorm=gesture(v(26,-28,22),v(46,15,-28),v(-14,21,8),v(-17,-30,27),30),
     frostStep=gesture(v(-28,22,16),v(-9,18,-36),v(19,-17,12),v(-24,27,-32),26),
     emberStep=gesture(v(-23,-16,19),v(24,29,31),v(16,20,-12),v(-31,-29,26),23),
     moltenLine=gesture(v(-20,22,24),v(24,-16,-28),v(19,-12,-8),v(29,-18,-27),27),
@@ -282,6 +292,7 @@ local function spellGesture(d,profile)
     if d.id=="mage_tidal_ring" then return spells.tidalRing end
     if d.id=="mage.pyro.steam_burst" then return spells.steam end
     if d.id=="mage.pyro.lava_eruption" then return spells.eruption end
+    if d.id=="mage.cryo.froststorm" then return spells.froststorm end
     if profile=="ward" then return spells.ward end
     local cue = Presentation.get(d)
     if not cue then return spells.bolt end
@@ -383,6 +394,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(-19*wind+31*follow,0,0))
         add(pose,"torso",v(-19,4,0)*follow)
         add(pose,"rightKnee",v(-21*follow,0,0))
+    end
+    if s == spells.froststorm then
+        -- Gather high with the free hand, then pull the storm down across the chest.
+        add(pose,"left",v(-38,-19,15)*follow)
+        add(pose,"leftElbow",v(-14*wind-25*follow,0,0))
+        add(pose,"torso",v(19,-16,-9)*follow)
+        add(pose,"leftKnee",v(19*follow,0,0))
     end
     if d.id=="mage.cryo.frost_lance" then
         add(pose,"leftElbow",v(24,0,0)*follow)
