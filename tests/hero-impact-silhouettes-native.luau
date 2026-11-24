@@ -2,6 +2,7 @@
 assert(game.PlaceId == 0 and #game.Players:GetPlayers() == 0)
 local Client = game.StarterPlayer.StarterPlayerScripts.Client
 local Catalog = require(game.ReplicatedStorage.Shared.PixelFXCatalog)
+local Presentation = require(game.ReplicatedStorage.Shared.SkillPresentation)
 local FX = require(Client.HeroVFX)
 local Visual = require(Client.AdvancedSkillVisual)
 local Melee = require(Client.AdvancedSkillMotion)
@@ -46,6 +47,14 @@ local function reset()
     for _, item in workspace:GetChildren() do
         if not initial[item] then item:Destroy() end
     end
+end
+local function motionWithoutSkillOffset(d, classId, age, rig)
+    local generic = table.clone(d)
+    generic.id = "Fixture_" .. d.id
+    Presentation.byId[generic.id] = Presentation.get(d)
+    local pose = Melee.sample(classId, generic, age, rig)
+    Presentation.byId[generic.id] = nil
+    return pose
 end
 
 local cases = {
@@ -106,6 +115,7 @@ local ok, err = xpcall(function()
             FX.step(at + 1)
             check(model and not model.Parent and hit and not hit.Parent, id .. " release and contact expire")
             reset()
+            task.wait(.5) -- The legacy range-cue pool retires slots on real time.
         end
         FX.isOtherHero = function() return true end
         for _ = 1, 6 do assert(FX.skill(actor, id, origin, center, 1, {}, nil, aim)) end
@@ -118,18 +128,24 @@ local ok, err = xpcall(function()
         end
         check(FX.count() == 6 and fallback > 0, id .. " only bounded range cue survives primary budget pressure")
         reset()
+        task.wait(.5)
     end
 
     for _, rig in {Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15} do
         local steel = Catalog.byId[cases[1][1]].definition
-        local wind = Melee.sample("knight", steel, steel.windup*.52, rig)
-        local strike = Melee.sample("knight", steel, steel.windup+.052, rig)
-        check(wind.angles.torso.Y < strike.angles.torso.Y-15 and strike.angles.leftKnee.X > wind.angles.leftKnee.X+12,
+        local windAt, strikeAt = steel.windup*.52, steel.windup+.052
+        local wind = Melee.sample("knight", steel, windAt, rig)
+        local strike = Melee.sample("knight", steel, strikeAt, rig)
+        local plainWind = motionWithoutSkillOffset(steel, "knight", windAt, rig)
+        local plainStrike = motionWithoutSkillOffset(steel, "knight", strikeAt, rig)
+        check(wind.angles.torso.Y < plainWind.angles.torso.Y-18 and strike.angles.leftKnee.X > plainStrike.angles.leftKnee.X+22,
             "Steel Sweep transfers stance into the cut " .. rig.Name)
         local crag = Catalog.byId[cases[2][1]].definition
         local plant = Melee.sample("dwarf", crag, crag.windup+.055, rig)
         local pull = Melee.sample("dwarf", crag, crag.windup+.15, rig)
-        check(plant.angles.leftKnee.X > pull.angles.leftKnee.X+12 and pull.angles.elbow.X < plant.angles.elbow.X-12,
+        local plainPlant = motionWithoutSkillOffset(crag, "dwarf", crag.windup+.055, rig)
+        local plainPull = motionWithoutSkillOffset(crag, "dwarf", crag.windup+.15, rig)
+        check(plant.angles.leftKnee.X > plainPlant.angles.leftKnee.X+27 and pull.angles.elbow.X < plainPull.angles.elbow.X-21,
             "Crag Cleave braces, then tucks the axe " .. rig.Name)
     end
     local vine = Catalog.byId[cases[3][1]].definition

@@ -556,7 +556,7 @@ local function roots(r,at,flat,right,radius,angle,count,burst)
   local side=Vector3.new(-radial.Z,0,radial.X)*(lane%2==0 and -1 or 1)
   local fork=bend+radial*radius*.13+side*math.min(radius*.18,1.2)
   rootBranch(r,bend,fork,.22,.045)
-  local upTip=tip+radial*.2+Vector3.yAxis*(burst and (1.55+lane%2*.55) or (.7+lane%2*.25))
+  local upTip=tip+radial*(burst and .72 or .2)+Vector3.yAxis*(burst and (1.55+lane%2*.55) or (.7+lane%2*.25))
   local stem=Surfaces.bar(r,'RootAscendingTip',tip,upTip,.24,palette.nature:Lerp(r.hot,.28),.2,Enum.Material.Neon)
   if stem then Surfaces.growLine(r,tip,upTip,.12,burst and .075 or .02)end
   for n=1,2 do
@@ -917,8 +917,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     +Vector3.yAxis*(math.cos(a)*2.65)+right*(.28-.56*t)
   end
   if cragCleave then
-   local bearing=math.rad(angle)*(.36-.72*t)
-   local reach=math.min(radius,7)*(.38+.49*math.sin(t*math.pi*.66))
+   local bearing=math.rad(angle)*(.43-.86*t)
+   local reach=math.min(radius,7)*(.49+.40*math.sin(t*math.pi*.66))
    return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*(2.35-4.2*t)
   end
   local lateral=id=="dwarf_hooking_chop" and -.85 or 0
@@ -1492,25 +1492,39 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    end
   end
  elseif lavaEruption then
-  local hot=Color3.fromRGB(255,174,47)
+  local magma=Color3.fromRGB(238,91,35)
+  local hot=Color3.fromRGB(255,161,62)
   for lane=1,(compact and 2 or 3) do
    local heading=(lane-1)*math.pi*2/3
    local radial=flat*math.cos(heading)+right*math.sin(heading)
    local base=floor+radial*radius*.23+Vector3.yAxis*.07
-   local tip=base+radial*.48+Vector3.yAxis*(lane==1 and 4.9 or 3.35)
-   local vent=Surfaces.bar(r,"LavaVent",base,tip,lane==1 and .44 or .32,hot,.14,Enum.Material.Neon)
-   if vent then Surfaces.growLine(r,base,tip,.14,(lane-1)*.027) end
+   local delay=(lane-1)*.027
+   local height=lane==1 and 4.9 or 3.35
+   local ventTip=base+radial*.15+Vector3.yAxis*height*.34
+   local vent=Surfaces.bar(r,"LavaVent",base,ventTip,.26,hot,.30,Enum.Material.SmoothPlastic)
+   if vent then Surfaces.growLine(r,base,ventTip,.07,delay) end
    local seamStart=floor+radial*radius*.10+Vector3.yAxis*.06
    local seamEnd=floor+radial*radius*.59+Vector3.yAxis*.06
-   local seam=Surfaces.bar(r,"MoltenSeam",seamStart,seamEnd,.20,hot,.16,Enum.Material.Neon)
+   local seam=Surfaces.bar(r,"MoltenSeam",seamStart,seamEnd,.22,magma,.28,Enum.Material.Neon)
    if seam then Surfaces.growLine(r,seamStart,seamEnd,.11,0) end
-   line(r,"EruptionJet",function(u)
-    local rise=math.clamp((u*r.life-(lane-1)*.027)/.14,0,1)
-    return base:Lerp(tip,rise*.37),base:Lerp(tip,math.max(.01,rise))
-   end,.33,palette.fire,.54,true)
+   local function plume(t,u)
+    local rise=math.clamp((u*r.life-delay)/.14,.01,1)
+    local p=t*rise
+    return base+radial*(1.28*p^2)+Vector3.yAxis*(height*p)
+   end
+   local jet=line(r,"EruptionJet",function(u)return plume(0,u),plume(1,u)end,lane==1 and .96 or .76,magma,.17,true)
+   if jet then
+    jet.span=function(u)return Style.span(plume,0,1,u)end
+    jet.beam.Segments=6
+    jet.beam.Color=ColorSequence.new(magma,hot)
+    jet.beam.LightEmission=.43
+    jet.beam.Texture="rbxasset://textures/particles/fire_main.dds"
+    jet.beam.TextureMode=Enum.TextureMode.Stretch
+    jet.beam.TextureSpeed=0
+   end
    if not compact then
-    local crust=Surfaces.volume(r,"EruptionBasalt",base+Vector3.yAxis*.38,Vector3.new(1.28,1.15,1.42),Color3.fromRGB(79,53,43),.12,"wedge",Enum.Material.Slate)
-    if crust then r.faces[#r.faces].emerge={duration=.13,delay=(lane-1)*.027} end
+    local crust=Surfaces.volume(r,"EruptionBasalt",base+Vector3.yAxis*.38,Vector3.new(1.28,1.15,1.42),Color3.fromRGB(94,65,51),.12,"wedge",Enum.Material.Slate)
+    if crust then r.faces[#r.faces].emerge={duration=.13,delay=delay} end
    end
   end
  elseif shape=="earth"or shape=="lava"or shape=="blast"or shape=="mortar"then
