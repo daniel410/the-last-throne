@@ -361,16 +361,11 @@ function Art.accents(r,c)
   end
  elseif c.shape=='vine'then
   local burst=id=='elf.magic_archer.vine_burst'
-  if id=='elf.magic_archer.vine_trap'then
-   S.ribbon(r,'VineTrapLoop',function(t)
-    local a=t*math.pi*1.85
-    return c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*1.4+UP*(.2+t*1.15)
-   end,UP,.3,.62,r.color,6,Enum.Material.Neon)
-  end
+  if c.groundShape=="VineTrap" then return end
   for lane=1,3 do
    local angle=c.definition.form=='cone' and math.rad(-c.angle*.35+lane*c.angle*.7/4) or lane*math.pi*2/3
    local radial=c.flat*math.cos(angle)+c.right*math.sin(angle)
-   local at=c.floor+radial*(id=='elf.magic_archer.vine_trap' and 1.1 or math.min(c.radius*.35,2.4))+UP*.5
+   local at=c.floor+radial*math.min(c.radius*.35,2.4)+UP*.5
    leaf(r,at,UP+radial*(burst and .8 or .4),c.right,burst and 2.2 or 1.2,'RootBroadLeaf')
   end
  elseif id=='elf.marksman.weakpoint_shot' or id=='elf.marksman.precision_volley' or id=='elf_pinning_shot'then

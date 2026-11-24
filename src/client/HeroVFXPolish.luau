@@ -8,7 +8,46 @@ local function oathboundPath(c,t,emphasis)
  local height=emphasis and -2.4 or 1.6
  return c.first+c.flat*(c.pulse*1.4)+c.right*((t-.5)*sign*span)+Vector3.yAxis*((t-.5)*height)
 end
+local function dawnSpiral(r,c,curve)
+ local beat=c.pulse-1
+ for lane=1,2 do
+  curve(r,"DawnSpiralSweep",function(t,u)
+   local a=(lane-1)*math.pi+beat*1.8+t*math.rad(123)+u*.74
+   local reach=c.radius*(.38+beat*.11+.22*t+.09*u)
+   local height=.22+beat*.37+.24*t+beat*.24*math.sin(t*math.pi)
+   return c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*reach+Vector3.yAxis*height
+  end,r.compact and 3 or 5,.25+beat*.035,r.hot)
+ end
+end
+local function shatterBlow(r,c,curve)
+ for lane=1,3 do
+  local angle=(lane-1)*math.pi*2/3+.3
+  local radial=c.flat*math.cos(angle)+c.right*math.sin(angle)
+  local tangent=radial:Cross(Vector3.yAxis)
+  curve(r,"ShatterBlowCrack",function(t,u)
+   local reach=c.radius*(.36+.53*math.min(1,u*4))
+   return c.floor+radial*(t*reach)+tangent*(math.sin(t*10)*t*.28)+Vector3.yAxis*.09
+  end,3,.19,r.hot)
+ end
+end
+local function frostRing(r,c,curve)
+ for lane=1,2 do
+  curve(r,"FrostRingFront",function(t,u)
+   local a=(lane-1)*math.pi+t*math.rad(148)+.18
+   local reach=c.radius*(.27+.53*(1-(1-math.min(1,u*3))^3))
+   local crest=.12+math.sin(t*math.pi)*.27*(1-u)
+   return c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*reach+Vector3.yAxis*crest
+  end,r.compact and 4 or 6,.31,r.color:Lerp(r.hot,.30))
+ end
+end
+local groundStrokes={DawnSpiral=dawnSpiral,ShatterBlow=shatterBlow,FrostRing=frostRing}
 function P.strokes(r,c,line,curve)
+ local groundStroke=groundStrokes[c.groundShape]
+ if groundStroke then
+  groundStroke(r,c,curve)
+  r.model:SetAttribute("PrimaryIconCue",true)
+  return true
+ end
  if c.id=='mage.cryo.froststorm'then
   for layer=1,r.compact and 1 or 2 do
    curve(r,'FroststormFlow',function(t,u)
@@ -44,6 +83,24 @@ function P.strokes(r,c,line,curve)
  return true
 end
 function P.surfaces(r,c)
+ if c.groundShape=="DawnSpiral" then return true end
+ if c.groundShape=="ShatterBlow" then
+  for lane=1,r.compact and 2 or 3 do
+   local angle=(lane-1)*math.pi*2/3+.3
+   local radial=c.flat*math.cos(angle)+c.right*math.sin(angle)
+   local height=lane==1 and 1.75 or 1.25
+   local at=c.floor+radial*c.radius*(.31+lane*.11)+Vector3.yAxis*height*.5
+   local rock=S.volume(r,"ShatterBlowSlab",at,Vector3.new(.68,height,1.05),
+    Color3.fromRGB(174,139,103),.13,"wedge",Enum.Material.Slate)
+   if rock then
+    local face=r.faces[#r.faces]
+    face.cf=CFrame.lookAt(at,at+radial)*CFrame.Angles(-.14,0,lane%2==0 and .28 or -.22)
+    rock.CFrame=face.cf
+    face.emerge={duration=.13,delay=.025+lane*.014}
+   end
+  end
+  return true
+ end
  local kind=variants[c.id];if not kind then return false end
  if kind=='GuardianWing'then
   for side=-1,1,2 do

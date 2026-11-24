@@ -116,10 +116,10 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
 local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true}
-local function curve(r,name,path,count,width,color)
+local function curve(r,name,path,count,width,color,noGlow)
  for i=1,count do
   local from,to=(i-1)/count,i/count
-  local stroke=line(r,name,function(u)return path(from,u),path(to,u)end,width*(.4+.6*math.sin(from*math.pi)),color,width*(.4+.6*math.sin(to*math.pi)))
+  local stroke=line(r,name,function(u)return path(from,u),path(to,u)end,width*(.4+.6*math.sin(from*math.pi)),color,width*(.4+.6*math.sin(to*math.pi)),noGlow)
   if stroke then
    if cuttingStrokes[name] then stroke.cutStart=from;stroke.cutEnd=to end
    stroke.span=function(u)return Style.span(path,from,to,u)end
@@ -545,9 +545,10 @@ local function rootBranch(r,first,last,width,delay)
   return first,first+(last-first)*math.max(.01,growth)
  end,width*.65,palette.nature:Lerp(r.hot,.22))
 end
-local function roots(r,at,flat,right,radius,angle,count,burst)
+local function roots(r,at,flat,right,radius,angle,count,burst,trapPulse)
  for lane=1,math.min(count,5)do
   local a=angle<359 and math.rad(-angle/2+angle*(lane-.5)/count)or lane/count*math.pi*2
+  if trapPulse then a+=(trapPulse-1)*math.pi/3 end
   local radial=flat*math.cos(a)+right*math.sin(a)
   local from=at+radial*math.min(radius*.1,.6)+Vector3.yAxis*.12
   local bend=at+radial*radius*.38+right*math.sin(lane*2.4)*.18+Vector3.yAxis*.3
@@ -557,6 +558,9 @@ local function roots(r,at,flat,right,radius,angle,count,burst)
   local fork=bend+radial*radius*.13+side*math.min(radius*.18,1.2)
   rootBranch(r,bend,fork,.22,.045)
   local upTip=tip+radial*(burst and .72 or .2)+Vector3.yAxis*(burst and (1.55+lane%2*.55) or (.7+lane%2*.25))
+  if trapPulse then
+   upTip=tip-radial*(.24+trapPulse*.20)+Vector3.yAxis*(.40+trapPulse*.26)
+  end
   local stem=Surfaces.bar(r,'RootAscendingTip',tip,upTip,.24,palette.nature:Lerp(r.hot,.28),.2,Enum.Material.Neon)
   if stem then Surfaces.growLine(r,tip,upTip,.12,burst and .075 or .02)end
   for n=1,2 do
@@ -811,6 +815,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local twinAxe=id=="dwarf.iron_axe.twin_axe_path"
  local stormArrow=id=="elf.magic_archer.storm_arrow"
  local froststorm=id=="mage.cryo.froststorm"
+ local groundShape=profile.groundShape
  local compact=FX.isOtherHero(character)
  local final=FinalBeat.isFinal(d,pulse) or warcryAssault and pulse==d.pulses
  local life=(profile.signature and not final or twinAxe and pulse==1 or warcryAssault and not final)
@@ -824,7 +829,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   or twinAxe and (compact and 4 or 6)
   or stormArrow and (compact and 5 or 9)
   or froststorm and (compact and 5 or 12)
-  or returningEcho and (compact and 5 or 7) or 2
+  or returningEcho and (compact and 5 or 7)
+  or profile.minBeams or 2
  if returningEcho and pulse==2 and character then
   -- The same axe comes back even when both release events arrive together.
   for i=#active,1,-1 do
@@ -951,7 +957,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    +Vector3.yAxis*(height+(1-math.abs(side))*.48)
  end
  local launch=vector(muzzle) and (muzzle-first).Magnitude<=6 and muzzle or nil
- local artContext={id=id,shape=shape,key=row.key,first=first,last=last,dir=dir,flat=flat,right=right,floor=floor,radius=radius,angle=angle,area=area,definition=d,character=character,pulse=pulse,final=final,muzzle=launch}
+ local artContext={id=id,shape=shape,key=row.key,first=first,last=last,dir=dir,flat=flat,right=right,floor=floor,radius=radius,angle=angle,area=area,definition=d,character=character,pulse=pulse,final=final,muzzle=launch,groundShape=groundShape}
  if Polish.strokes(r,artContext,line,curve)then
  elseif Art.strokes(r,artContext,line,curve)then
   -- A distinct primary path replaces the generic elemental helix.
@@ -1345,9 +1351,23 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    end
   end
  elseif shape=="vine"then
-  local rootRadius=id=='elf.magic_archer.vine_trap' and math.min(radius,3.2)or vineBurst and math.min(radius,5)or radius
-  roots(r,floor,flat,right,rootRadius,d.form=='cone'and angle or 360,vineBurst and (compact and 3 or 4) or count,vineBurst)
-  if vineBurst then r.model:SetAttribute("PrimaryIconCue",true) end
+  local trap=groundShape=="VineTrap"
+  local rootRadius=trap and radius*(.44+.13*pulse) or vineBurst and math.min(radius,5) or radius
+  roots(r,floor,flat,right,rootRadius,d.form=="cone" and angle or 360,
+   trap and compact and 2 or vineBurst and (compact and 3 or 4) or count,vineBurst,trap and pulse or nil)
+  if trap and pulse==1 then
+   local from=launch or first
+   local target=floor+Vector3.yAxis*.12
+   if (target-from).Magnitude>.2 then
+    local start=#r.lines
+    curve(r,"VineTrapSeed",function(t,u)
+     local progress=.76*u+(1-.76*u)*t
+     return from:Lerp(target,progress)+Vector3.yAxis*(math.sin(progress*math.pi)*.62)
+    end,compact and 3 or 4,.21,r.hot,true)
+    for i=start+1,#r.lines do r.lines[i].fadeDuration=.13 end
+   end
+  end
+  if trap or vineBurst then r.model:SetAttribute("PrimaryIconCue",true) end
  elseif shape=="gravity"then
   local at=floorAt(last,character)
   local gravityRadius=math.min(radius*.45,2.4)
@@ -1651,14 +1671,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end
  elseif shape=="water"or(shape=="frost"and area)or shape=="gravity"then
   if shape=="frost"then
-   local facets=frostStep and 4 or 8
+   local ringFront=groundShape=="FrostRing"
+   local facets=(frostStep or ringFront and compact) and 4 or 8
    for i=1,facets do
     local a=i*math.pi*2/facets;local radial=Vector3.new(math.cos(a),0,math.sin(a))
     local height=(frostStep and .56 or math.min(2.6,1+radius*.1))*(i%2==0 and 1 or .65)
     local facet=Surfaces.volume(r,'FrostRimFacet',floor+radial*radius*(frostStep and .42 or .8)+Vector3.yAxis*height*.5,Vector3.new(.5,height,.65),i%2==0 and r.color or Color3.fromRGB(198,244,255),.24,'wedge',Enum.Material.Ice)
     if facet then
      local face=r.faces[#r.faces];face.cf=CFrame.lookAt(facet.Position,facet.Position+radial)*CFrame.Angles(.18,0,(i%2==0 and 1 or -1)*.12)
-     facet.CFrame=face.cf;face.emerge={duration=.18,delay=(i%3)*.012}
+     facet.CFrame=face.cf
+     face.emerge={duration=.18,delay=(ringFront and .045 or 0)+(i%3)*.012}
     end
    end
   else
@@ -1729,7 +1751,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  Polish.finish(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
  if not bomb and not cinderRing and shape~="steam" and not rallyingSlash and not steelSweep and not cragCleave
-  and not vineBurst and not lavaEruption and not warcryAssault and not twinAxe and not stormArrow and not froststorm
+  and not vineBurst and not lavaEruption and not warcryAssault and not twinAxe and not stormArrow and not froststorm and not groundShape
   and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   local scale=quickfire and .85 or echoArrows and .72 or (fanLanes and row.key=="gun") and 1.25

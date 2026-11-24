@@ -40,6 +40,7 @@ end
 -- Advanced pulses are presentation events confirmed by the server. Sequence
 -- matching prevents late events from changing a later cast of the same skill.
 local function validNumber(v) return type(v)=="number" and v==v and math.abs(v)<math.huge end
+local VINE_TRAP="elf.magic_archer.vine_trap"
 local function lockedAim(character)
  local packed=character:GetAttribute("K0AttackAim")or character:GetAttribute("K0BowAim")
  if type(packed)~="string" or #packed>128 then return end
@@ -57,6 +58,7 @@ function Motion.confirmPulse(character,skillId,pulse,attackSeq,firedAt,startedAt
  for _,d in ipairs(Config.Skills.elf) do if d.id==skillId then expected=d;break end end
  if not expected or not expected.advanced or type(expected.pulses)~="number"
   or pulse<1 or pulse>expected.pulses
+  or skillId==VINE_TRAP and pulse~=1
   or firedAt>=startedAt+expected.windup+expected.active+expected.recovery then return end
  local currentSeq=character:GetAttribute("K0AttackSeq")
  if validNumber(currentSeq) and attackSeq<currentSeq then return end
@@ -148,10 +150,12 @@ function Motion.forCharacter(character,now)
  local total=d.windup+d.active+d.recovery
  if age>=total then records[character]=nil;return rest(rigType) end
  local release=d.windup
- local ending=record.started+total/(record.rate or 1)
+ local trap=d.id==VINE_TRAP
+ local poseDuration=trap and release+.34 or total
+ local ending=record.started+poseDuration/(record.rate or 1)
  local t
  local awaitingShot=false
- local advancedMulti=d.advanced and type(d.pulses)=="number" and d.pulses>1
+ local advancedMulti=d.advanced and type(d.pulses)=="number" and d.pulses>1 and not trap
  local repeated=d.effect=="rapid" or advancedMulti
  local count, at, sinceRelease
  if advancedMulti then
@@ -181,16 +185,16 @@ function Motion.forCharacter(character,now)
   if d.id=="elf.marksman.heavy_draw" then draw=1-(1-draw)^2.2 end
   t=.8*draw
  elseif age<release+.04 then t=.8+.1*(age-release)/.04
- else t=.9+.1*math.clamp((age-release-.04)/math.max(.01,total-release-.04),0,1) end
+ else t=.9+.1*math.clamp((age-release-.04)/math.max(.01,poseDuration-release-.04),0,1) end
  -- Predicted windup completion is not proof that the server fired. A delayed
  -- or interrupted attack must keep its nocked arrow instead of faking a shot.
- if not repeated and character:GetAttribute("K0ArrowReleaseProtocol")==1 and age>=release then
+ if not repeated and (trap or character:GetAttribute("K0ArrowReleaseProtocol")==1) and age>=release then
   local firedAt=d.advanced and record.pulseAt or not d.advanced and confirmedRelease(character,record,now)
   if not firedAt then t=.8;awaitingShot=true
   else
    local since=releaseElapsed(record,now,firedAt,1,ending,record.pulseReceived)*(record.rate or 1)
    sinceRelease=since
-   local remaining=total-(firedAt-record.started)*(record.rate or 1)
+   local remaining=trap and .34 or poseDuration-(firedAt-record.started)*(record.rate or 1)
    t=since<.04 and .8+.1*since/.04 or .9+.1*math.clamp((since-.04)/math.max(.01,remaining-.04),0,1)
   end
  end
@@ -252,7 +256,8 @@ function Motion.forCharacter(character,now)
  if d.form=="ground" then
   local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)
   local raise=math.clamp(age/math.max(.01,d.windup*.7),0,1)*fade
-  local elevation=d.id=="elf.magic_archer.vine_trap" and 12 or d.id=="elf.magic_archer.storm_arrow" and 51
+  if trap and sinceRelease then raise*=1-math.clamp(sinceRelease/.29,0,1) end
+  local elevation=trap and 12 or d.id=="elf.magic_archer.storm_arrow" and 51
    or d.ultimate and 46 or d.id=="elf.marksman.arrow_rain" and 43
    or d.id=="elf_arrow_screen" and 32 or (d.element=="lightning" or d.element=="nature") and 25 or 40
   pose.aimPitch=elevation*raise

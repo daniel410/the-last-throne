@@ -82,6 +82,9 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         load *= 1-smooth((age-d.windup)/.09)
     end
     local support = smooth(phase/.64)*(1-smooth((age-d.windup-d.active)/d.recovery))
+    if s == bow.vineTrap and since then
+        support *= 1-smooth(since/.32)
+    end
     local recoil, redraw = 0,0
     if since then
         local recoilTime = s == bow.heavy and .29 or s == bow.sky and .26
@@ -211,9 +214,10 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftKnee",v(17*finalRecoil,0,0))
     end
     if s==bow.vineTrap then
-        -- Set the trap low and let the draw hand relax away from the cheek.
+        -- Place the trap with one low shot, then bring the bow down.
         add(pose,"neck",v(12,-9,3)*load)
         add(pose,"right",v(14,-11,-16)*recoil)
+        add(pose,"left",v(-15,7,12)*recoil)
         add(pose,"elbow",v(-15,0,0)*recoil)
         add(pose,"leftKnee",v(16,0,0)*recoil)
     end
@@ -422,12 +426,12 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftKnee",v(19,0,0)*follow)
     end
     if s == spells.frostRing then
-        -- Press both hands low as the ice spreads, with the staff still in its grip.
-        add(pose,"right",v(-24,4,10)*follow)
-        add(pose,"left",v(-31,5,-18)*follow)
-        add(pose,"leftElbow",v(19,0,0)*follow)
-        add(pose,"torso",v(13,0,-7)*follow)
-        add(pose,"leftKnee",v(16,0,0)*follow)
+        -- Close the free arm over the chest, then drive it down and out.
+        add(pose,"right",v(-33,4,12)*follow)
+        add(pose,"left",v(9,12,17)*wind+v(-37,9,-27)*follow)
+        add(pose,"leftElbow",v(-12*wind+26*follow,0,0))
+        add(pose,"torso",v(18,0,-7)*follow)
+        add(pose,"leftKnee",v(24,0,0)*follow)
     end
     if s == spells.tidalRing then
         -- Scoop toward the body, then open the free hand along the low wave.

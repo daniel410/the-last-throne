@@ -9,6 +9,7 @@ local BowMotion=require(script.Parent.K0BowMotion)
 local WindLance=require(script.Parent.WindLanceVisual)
 local PixelFX=require(script.Parent.PixelFX)
 local HeroVFX=require(script.Parent.HeroVFX)
+local VFXProfiles=require(script.Parent.SkillVFXProfiles)
 local Bomb=require(script.Parent.BombVisual)
 local Audio=require(script.Parent.K0CombatAudio)
 local Players=game:GetService("Players")
@@ -287,10 +288,12 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local stormArrow=id=="elf.magic_archer.storm_arrow"
  local froststorm=id=="mage.cryo.froststorm"
  local warcryAssault=id=="knight.steel_knight.warcry_assault"
+ local vfxProfile=VFXProfiles.get(id)
+ local groundShape=vfxProfile and vfxProfile.groundShape
  local authoredRelease=fanLanes or rallyingSlash or steamBurst or id=="mage.pyro.cinder_ring"
   or cyclone or id=="dwarf.iron_axe.returning_echo" or id=="elf.magic_archer.echo_arrows"
   or steelSweep or cragCleave or groundBurst or stormArrow or froststorm
-  or warcryAssault or id=="dwarf.iron_axe.twin_axe_path"
+  or warcryAssault or id=="dwarf.iron_axe.twin_axe_path" or groundShape
  if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse>d.pulses or pulse%1~=0 then return end
  local now=workspace:GetServerTimeNow()
  if type(firedAt)=="number" and (firedAt~=firedAt or now-firedAt>.6 or firedAt-now>.5) then return end
@@ -416,7 +419,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local burst=targetFloor+Vector3.yAxis*Bomb.radius
    if not primary then impact(burst,color,.75) end
    Audio.play("impact",burst,"dwarf",id,character,Players.LocalPlayer~=nil and Players.LocalPlayer.Character==character)
-  elseif decorate and not ultimateSignature and not ((steamBurst or groundBurst or stormArrow or froststorm) and primary) then
+  elseif decorate and not ultimateSignature and not ((steamBurst or groundBurst or stormArrow or froststorm or groundShape) and primary) then
    impact(center,color,2)
   end
  elseif effect=="vine" then
@@ -478,7 +481,9 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="fire"then
    -- HeroVFX owns the cinder circle, ember wake and searing crown. A second
    -- full ring would erase their silhouettes; the SkillSector above remains.
-  elseif (effect=="holy" or effect=="water") and not ultimateSignature then arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave") end
+  elseif (effect=="holy" or effect=="water") and not ultimateSignature and not (groundShape and primary) then
+   arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave")
+  end
  else
   if effect=="lightning" then
    if not primary or(id~="mage.cryo.thunder_spear" and id~="mage.cryo.lightning_line")then lightning(first,center,color)end

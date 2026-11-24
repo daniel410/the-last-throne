@@ -499,6 +499,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-5,17,6)*gather+v(9,-15,-8)*finish)
   offset(pose,"left",v(13,9,-12)*gather+v(-8,-6,13)*finish)
   offset(pose,"leftKnee",v(12*gather+16*finish))
+ elseif d.id=="knight.paladin.dawn_spiral" then
+  local phase=age/contact
+  local coil=smooth(phase/.59)*(1-smooth((phase-.69)/.31))
+  local drive=pulse>0 and smooth(since/.047)*(1-smooth((since-.047)/.16)) or 0
+  local rise=math.max(0,pulse-1)*drive
+  local bank=pulse==2 and -1 or 1
+  offset(pose,"torso",v(16,-10,8)*coil+v(6-11*math.max(0,pulse-1),0,12*bank)*drive)
+  offset(pose,"right",v(-12,0,14)*coil+v(22,0,-7)*rise)
+  offset(pose,"left",v(27,-14,-12)*coil+v(-13,12,16)*rise)
+  offset(pose,"leftKnee",v(16*coil+19*drive))
+  offset(pose,"rightKnee",v(15*coil+(pulse==2 and 19 or 5)*drive))
  elseif d.id=="knight.paladin.radiant_sweep" then
   -- Load the cut behind the shield, then open the shield arm along the sweep.
   local phase=age/contact
@@ -627,12 +638,15 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"leftKnee",v(14*load+22*stomp))
   offset(pose,"rightKnee",v(10*load+15*stomp))
  elseif d.id=="dwarf.iron_axe.shatter_blow" then
-  -- Brace under the raised axe, then drop the shoulders through the impact.
+  -- Brace under the raised axe, then check its rebound through both planted legs.
   local phase=age/contact
   local load=smooth(phase/.58)*(1-smooth((phase-.70)/.30))
   local plant=pulse>0 and smooth(since/.067)*(1-smooth((since-.067)/.18)) or 0
+  local lift=pulse>0 and smooth((since-.07)/.09)*(1-smooth((since-.16)/.18)) or 0
   offset(pose,"torso",v(-11,5,-4)*load+v(20,-4,4)*plant)
+  offset(pose,"right",v(13,-5,9)*load)
   offset(pose,"left",v(19,-7,-16)*load+v(-18,0,-9)*plant)
+  offset(pose,"elbow",v(-24*lift))
   offset(pose,"leftHip",v(-12*load-13*plant))
   offset(pose,"rightHip",v(-9*load-13*plant))
   offset(pose,"leftKnee",v(19*load+23*plant))
