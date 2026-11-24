@@ -310,8 +310,10 @@ local function axeCatch(d,age,contact,ending,base,sample,classId)
  offset(ready,"elbow",v(-38))
  offset(ready,"torso",v(-8,18,-8))
  if d.crosscut then
-  offset(ready,"right",v(-9,-16,19))
-  offset(ready,"torso",v(4,-14,11))
+  -- Turn into the angled return with the hand outside the chest.
+  offset(ready,"right",v(-6,-22,28))
+  offset(ready,"torso",v(4,-21,14))
+  offset(ready,"left",v(21,6,-20))
  end
  if age<caught then
   local travel=math.clamp((age-contact)/flight,0,1)
@@ -326,6 +328,8 @@ local function axeCatch(d,age,contact,ending,base,sample,classId)
  if d.crosscut then
   offset(pose,"rightKnee",v(21*absorb))
   offset(pose,"leftHip",v(-14*absorb))
+  offset(pose,"right",v(-12,16,-18)*absorb)
+  offset(pose,"left",v(-13,-6,15)*absorb)
  elseif d.id=="dwarf.iron_axe.returning_echo" then
   -- Tuck the hand toward the ribs and take the straight catch on the lead leg.
   offset(pose,"right",v(-14,-10,16)*absorb)
@@ -534,10 +538,14 @@ function Motion.sample(classId,d,age,rigType)
   local stop=pulse>0 and smooth(since/.06)*(1-smooth((since-.06)/.13)) or 0
   local first=pulse==1 and stop or 0
   local second=pulse==2 and stop or 0
-  offset(pose,"torso",v(7,-13,8)*gather+v(13,-8,8)*first+v(-11,17,-11)*second)
+  local reset=pulse==1 and smooth((since-d.interval*.23)/(d.interval*.27))
+   *(1-smooth((since-d.interval*.52)/(d.interval*.48))) or 0
+  offset(pose,"torso",v(7,-13,8)*gather+v(16,-9,10)*first+v(-15,18,-15)*second+v(12,-17,8)*reset)
   offset(pose,"left",v(14,-10,-13)*gather+v(14,1,-8)*first+v(-14,10,17)*second)
+  offset(pose,"right",v(-9,0,-8)*first+v(18,0,9)*second)
+  offset(pose,"rightHip",v(-12,0,6)*reset)
   offset(pose,"leftKnee",v(17*gather+22*first))
-  offset(pose,"rightKnee",v(23*second))
+  offset(pose,"rightKnee",v(19*reset+23*second))
  elseif d.id=="knight.paladin.oathbreaker_strike" then
   local load=smooth(age/(contact*.56))*(1-smooth((age/contact-.56)/.44))
   local plant=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.17))

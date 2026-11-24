@@ -82,6 +82,16 @@ function Art.strokes(r,c,line,curve)
   local length=kind=='IceShard' and 1.65 or kind=='ShatterDart' and 1.15 or kind=='GlacialSpike' and 5.3 or 3.6
   local width=kind=='IceShard' and .7 or kind=='ShatterDart' and .3 or kind=='GlacialSpike' and .95 or .42
   local waist=c.last-c.dir*length*.62
+  if kind=='GlacialSpike'then
+   local start=spearStart(c)
+   if (c.last-start).Magnitude>.1 then
+    local wake=line(r,'GlacialSpikeWake',function(u)
+     local falloff=math.clamp((u*r.life-.045)/.12,0,1)
+     return start:Lerp(c.last,1-(1-falloff)^2),c.last
+    end,.19,r.color,.065,true)
+    if wake then wake.fadeDuration=.18 end
+   end
+  end
   for side=-1,1,2 do
    stroke('IconCrystalEdge',waist+c.right*side*width,c.last,.065,r.hot)
    stroke('IconCrystalRear',c.last-c.dir*length,waist+c.right*side*width,.045,r.color)
@@ -313,7 +323,19 @@ function Art.surfaces(r,c)
   gem(r,'IceLanceFacet',c.last,c.dir,length,width,r.color,Enum.Material.Ice)
   S.bar(r,'IceLanceLuminousSpine',c.last-c.dir*length*.9,c.last,.075,r.color:Lerp(r.hot,.4),.23,Enum.Material.Neon)
   if kind=='GlacialSpike'then
-   for side=-1,1,2 do gem(r,'GlacialSideCrystal',c.last-c.dir*1.6+c.right*side*.65,c.dir,2,.4,r.color,Enum.Material.Ice)end
+   -- Leave a solid core and let the splinters peel from its shoulders.
+   if not r.compact then
+    for side=-1,1,2 do
+     local at=c.last-c.dir*1.45+c.right*side*.61+UP*.28
+     local axis=(c.dir+c.right*side*.28+UP*.22).Unit
+     local first=#r.faces+1
+     gem(r,'GlacialSideCrystal',at,axis,1.85,.37,r.color,Enum.Material.Ice)
+     for i=first,#r.faces do
+      r.faces[i].drift=c.right*side*1.6+UP*.85+c.dir*.35
+      r.faces[i].fadeDuration=.25
+     end
+    end
+   end
   end
  elseif kind=='EmberLance' or kind=='FlameDart' or kind=='MagmaSpear'then
   local length=kind=='FlameDart' and 1.5 or kind=='MagmaSpear' and 4.4 or 3.2

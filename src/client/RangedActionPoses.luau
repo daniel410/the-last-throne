@@ -114,10 +114,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(knees*.65,0,0))
     if s == bow.crossfire and since then
-        -- The chest follows the sweep while the bow stays on its locked line.
-        local pivot = betweenShots and redraw or .55*recoil
-        add(pose,"torso",v(0,d.crosscutAngle,7)*pivot)
-        add(pose,"leftKnee",v(11*pivot,0,0))
+        -- Transfer to the other foot as the confirmed aim changes lanes.
+        local second = pulse == 2
+        local plant = recoil*(second and 1 or .7)
+        add(pose,"torso",v(4,d.crosscutAngle,8)*redraw+v(5,second and 11 or -8,second and -9 or 6)*plant)
+        add(pose,"weapon",v(0,0,-22*redraw+(second and -19 or 8)*plant))
+        add(pose,second and "rightKnee" or "leftKnee",v(19*plant+11*redraw,0,0))
+        add(pose,"elbow",v(16*plant,0,0))
     end
     if s == bow.heavy and since then
         local settle = smooth(since/.08)*(1-smooth((since-.08)/.15))
@@ -410,6 +413,14 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(24,0,0)*follow)
         add(pose,"left",v(-12,-8,-14)*follow)
         add(pose,"torso",v(-5,8,-3)*follow)
+    end
+    if s == spells.glacialSpike then
+        -- Cradle the crystal by the staff, then lift the palm through the cast.
+        add(pose,"left",v(-19,20,19)*wind+v(27,-5,-15)*follow)
+        add(pose,"leftElbow",v(-23*wind+27*follow,0,0))
+        add(pose,"right",v(-12,-8,11)*wind+v(10,0,-9)*follow)
+        add(pose,"torso",v(11,-7,7)*wind+v(-12,8,-6)*follow)
+        add(pose,"leftKnee",v(16*wind+19*follow,0,0))
     end
     if s == spells.frostStep then
         -- Sweep the guiding palm back as the front leg checks the slide.

@@ -97,6 +97,10 @@ local function source(character,origin,d)
   tip=grip and grip:FindFirstChild("WeaponTip")
  end
  if tip and tip:IsA("Attachment") then return tip.WorldPosition end
+ if d.id=="elf.marksman.crossfire" then
+  local nocked=character:FindFirstChild("NockedArrow",true)
+  if nocked and nocked:IsA("BasePart") then return nocked.Position end
+ end
  return origin
 end
 local function windupSocket(character,motion)
@@ -290,7 +294,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local authoredRelease=fanLanes or rallyingSlash or steamBurst or id=="mage.pyro.cinder_ring"
   or cyclone or id=="dwarf.iron_axe.returning_echo" or id=="elf.magic_archer.echo_arrows"
   or steelSweep or cragCleave or groundBurst or stormArrow or froststorm
-  or warcryAssault or id=="dwarf.iron_axe.twin_axe_path" or groundShape
+  or warcryAssault or id=="dwarf.iron_axe.twin_axe_path" or groundShape or vfxProfile and vfxProfile.authoredRelease
  if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse>d.pulses or pulse%1~=0 then return end
  local now=workspace:GetServerTimeNow()
  if type(firedAt)=="number" and (firedAt~=firedAt or now-firedAt>.6 or firedAt-now>.5) then return end
@@ -478,7 +482,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="fire"then
    -- HeroVFX owns the cinder circle, ember wake and searing crown. A second
    -- full ring would erase their silhouettes; the SkillSector above remains.
-  elseif (effect=="holy" or effect=="water") and not ultimateSignature and not (groundShape and primary) then
+  elseif (effect=="holy" or effect=="water") and not ultimateSignature
+   and not (primary and (groundShape or primary:GetAttribute("SunwardCrossEdge"))) then
    arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave")
   end
  else

@@ -810,6 +810,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local twinAxe=id=="dwarf.iron_axe.twin_axe_path"
  local stormArrow=id=="elf.magic_archer.storm_arrow"
  local froststorm=id=="mage.cryo.froststorm"
+ local sunwardCross=id=="knight.paladin.sunward_cross"
+ local crosscutAxe=id=="dwarf.iron_axe.crosscut_axe"
  local groundShape=profile.groundShape
  local compact=FX.isOtherHero(character)
  local final=FinalBeat.isFinal(d,pulse) or warcryAssault and pulse==d.pulses
@@ -825,16 +827,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   or stormArrow and (compact and 5 or 9)
   or froststorm and (compact and 5 or 12)
   or returningEcho and (compact and 5 or 7)
+  or sunwardCross and (compact and 5 or 8)
+  or crosscutAxe and (compact and 6 or 9)
   or profile.minBeams or 2
- if returningEcho and pulse==2 and character then
+ if d.returning and pulse==2 and character then
   -- The same axe comes back even when both release events arrive together.
   for i=#active,1,-1 do
    local previous=active[i]
-   if previous.outgoingEcho==character then erase(i) end
+   if previous.outgoingAxe==character and previous.model:GetAttribute("SkillId")==id then erase(i) end
   end
  end
  local r=make(first,last,life,row.key,id,compact,false,minBeams);if not r then return end
- if returningEcho and pulse==1 then r.outgoingEcho=character end
+ if d.returning and pulse==1 then r.outgoingAxe=character end
  r.color,r.hot=Palette.get(row.key,row.classId)
  r.model:SetAttribute("Silhouette",profile.shape);r.model:SetAttribute("Pulse",pulse)
  local dir=forward(first,last)
@@ -905,6 +909,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local arc=math.rad(angle*.46)*(2*t-1)
   -- Oathblade returns across the body; the two cuts travel in opposite directions.
   if oathblade then arc*=side end
+  if sunwardCross then
+   local rise=pulse==2
+   local bearing=arc*(rise and .89 or 1.04)+(rise and .05 or -.05)
+   local reach=radius*(.54+(rise and .29 or .33)*math.sin(t*math.pi)^.55)
+   local height=rise and (-.92+3.35*t) or (1.25-2.25*t+.21*math.sin(t*math.pi))
+   return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*height
+  end
   local offset=(flat*math.cos(arc)+right*math.sin(arc))*math.min(radius,6)*(.65+.18*math.sin(t*math.pi)+(oathblade and pulse==2 and .09 or 0))
   local height=oathblade and (pulse==1 and .9-1.6*t or -.3+.9*t) or (.85-1.65*t)*side
   return first+offset+Vector3.yAxis*height
@@ -1007,8 +1018,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   for lane=1,count do sector(shape=="low"and"LowSweep"or"BladeRibbon",at,math.min(radius,8)*(.72+lane*.08),arc,lane,shape=="low")end
   if shape=="counter"then sector("CounterGuard",floor,2.4,110,1,true)end
  elseif shape=="cross"then
-  curve(r,oathblade and "OathbladeEdge" or "SunwardCross",crossPath,r.compact and oathblade and 5 or 8,width,WHITE)
+  curve(r,oathblade and "OathbladeEdge" or "SunwardCross",crossPath,r.compact and 5 or 8,
+   sunwardCross and (pulse==2 and .37 or .30) or width,WHITE,sunwardCross)
   if oathblade then r.model:SetAttribute("PrimaryIconCue",true) end
+  if sunwardCross then r.model:SetAttribute("SunwardCrossEdge",true) end
  elseif shieldStrike then
   curve(r,verdict and "VerdictCrest" or "ShieldBreakerWave",function(t,u)
    return shieldPath(t)+flat*(shieldTravel*u)
@@ -1056,13 +1069,20 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   r.model:SetAttribute("Returning",d.returning and pulse%2==0 or false)
   local axis,approach
   if crosscutReturn or returningEcho then from,to,axis,approach=Art.axeFlight(artContext) end
-  if returningEcho then
+  if returningEcho or crosscutReturn then
    r.model:SetAttribute("PrimaryIconCue",true)
-   line(r,"ReturningEchoWake",function(u)
+   line(r,crosscutReturn and "CrosscutReturnWake" or "ReturningEchoWake",function(u)
     local remaining=approach and (1-math.clamp(u*r.life/Art.axeCatchSeconds,0,1))^2 or 0
     local tip=to+(approach or Vector3.zero)*remaining
-    return tip-axis*math.min((tip-from).Magnitude,1.65)*(1-u),tip
+    return tip-axis*math.min((tip-from).Magnitude,crosscutReturn and 2.3 or 1.65)*(1-u),tip
    end,width*.55,r.hot,width*.92,true)
+  elseif crosscutAxe then
+   local launchPoint=Geometry.fanLaunch(first,launch,to)
+   local wake=line(r,"CrosscutThrowWake",function(u)
+    local falloff=math.clamp((u*r.life-.052)/.14,0,1)
+    return launchPoint:Lerp(to,1-(1-falloff)^2),to
+   end,width*.7,r.hot,width*.51,true)
+   if wake then wake.fadeDuration=.20 end
   elseif twinAxe then
    local start=Geometry.fanLaunch(first,launch,last)
    local reach=(last-start).Magnitude
@@ -1094,23 +1114,24 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    local a=t*math.pi*1.6+turn*(approach and math.pi or 7)+phase
    local pivot=approach and to+approach*turn or to
    return pivot+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
-  end,returningEcho and (r.compact and 4 or 6) or 8,width)end
+  end,returningEcho and (r.compact and 4 or 6) or crosscutAxe and r.compact and 5 or 8,width,nil,crosscutAxe)end
  elseif crossfire then
-  local length=(last-first).Magnitude
-  if length>.1 then
-   local rise=Vector3.yAxis*(pulse==2 and .55 or .25)
-   local start=first+flat*math.min(length*.22,1.05)+rise
-   local tip=last+rise
-   local trace=line(r,"IconCrossfireTrace",function()return start,tip end,width*.72,WHITE,width*1.32)
+  local start=Geometry.fanLaunch(first,launch,last)
+  local delta=last-start
+  if delta.Magnitude>.1 then
+   local trace=line(r,"IconCrossfireTrace",function(u)
+    local falloff=math.clamp((u*r.life-.050)/.20,0,1)
+    return start+delta*(1-(1-falloff)^2),last
+   end,width*.72,WHITE,width*1.32,true)
    if trace then
     r.model:SetAttribute("CrossfireTrace",true)
     r.model:SetAttribute("PrimaryIconCue",true)
    end
    if not r.compact then
-    line(r,"CrossfireFletching",function(u)
-     local side=right*(pulse==2 and .34 or -.23)*(1-u*.6)
-     return tip-flat*math.min(length*.5,7)*(1-u)^2+side,tip
-    end,width*.46,r.color,width*.62)
+    local tail=delta.Unit*math.min(delta.Magnitude*.5,1.7)
+    for side=-1,1,2 do
+     stroke("CrossfireFletching",last-tail+right*side*.19,last,width*.63,r.color)
+    end
    end
   end
  elseif id=="elf_retreating_shot" then
@@ -1482,8 +1503,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   Surfaces.ribbon(r,"CleaveCuttingEdge",function(t)return cleavePath(t)+flat*.04 end,right,.2,.12,r.hot,6,Enum.Material.Neon)
   Surfaces.animate(r,start,first,right,.65,false,math.min(r.life,.22))
  elseif shape=="cross"then
-  if not oathblade or not r.compact then
-   Surfaces.ribbon(r,"CrossSurface",crossPath,flat,.65,.55,r.color:Lerp(r.hot,.18),8,Enum.Material.SmoothPlastic)
+  if not r.compact then
+   Surfaces.ribbon(r,"CrossSurface",crossPath,flat,sunwardCross and (pulse==2 and .84 or .55) or .65,
+    sunwardCross and .62 or .55,r.color:Lerp(r.hot,.18),sunwardCross and 6 or 8,Enum.Material.SmoothPlastic)
   end
  elseif shape=="thrust"then
   local start=#r.faces
@@ -1747,6 +1769,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
  if not bomb and not cinderRing and shape~="steam" and not rallyingSlash and not steelSweep and not cragCleave
   and not vineBurst and not lavaEruption and not warcryAssault and not twinAxe and not stormArrow and not froststorm and not groundShape
+  and not (profile.authoredRelease or crossfire)
   and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   local scale=quickfire and .85 or echoArrows and .72 or (fanLanes and row.key=="gun") and 1.25
