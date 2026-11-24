@@ -1,0 +1,86 @@
+{
+  "mode": "Isolated Roblox Studio",
+  "baseline": "0.115.73",
+  "candidate": "0.115.75",
+  "passedSuites": 16,
+  "passedChecks": 280465,
+  "suites": {
+    "hero-contact-materials-native": {
+      "checks": 51,
+      "pass": true
+    },
+    "projectile-vfx-timing-native": {
+      "checks": 312,
+      "pass": true
+    },
+    "arcade-impact-vfx-native": {
+      "checks": 297,
+      "pass": true
+    },
+    "hero-skill-impact-native": {
+      "checks": 761,
+      "skills": 128,
+      "pass": true
+    },
+    "hero-vfx-priority-native": {
+      "checks": 28,
+      "pass": true
+    },
+    "hero-release-shapes-native": {
+      "checks": 188,
+      "pass": true
+    },
+    "hero-line-contact-native": {
+      "checks": 158,
+      "pass": true
+    },
+    "hero-windup-interrupt-native": {
+      "checks": 217,
+      "pass": true
+    },
+    "hero-posture-break-native": {
+      "checks": 187,
+      "pass": true
+    },
+    "elf-confirmed-release-native": {
+      "checks": 13,
+      "pass": true
+    },
+    "dwarf-axe-throw-native": {
+      "checks": 468,
+      "pass": true
+    },
+    "k0-mage-staff-native": {
+      "checks": 17087,
+      "pass": true
+    },
+    "element-vfx-native": {
+      "checks": 84,
+      "pass": true
+    },
+    "rpg-vfx-motion-native": {
+      "checks": 190,
+      "pass": true
+    },
+    "hero-skills-native": {
+      "checks": 244520,
+      "skills": 256,
+      "rigs": [
+        "R6/knight",
+        "R6/dwarf",
+        "R6/elf",
+        "R6/mage",
+        "R15/knight",
+        "R15/dwarf",
+        "R15/elf",
+        "R15/mage"
+      ],
+      "pass": true
+    },
+    "enemy-combat-presentation-native": {
+      "checks": 15904,
+      "attacks": 584,
+      "pass": true
+    }
+  }
+}
