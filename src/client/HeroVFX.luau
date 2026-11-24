@@ -1563,7 +1563,10 @@ local contactStyles={
 -- Each edge is expressed as lateral, vertical and forward offsets from the
 -- confirmed contact. A pair stays readable when party effects are compact.
 local forceContacts={
- ["knight.steel_knight.vanguard_strike"]={"VanguardContactFins",Vector3.new(.43,.34,-1.38),Vector3.new(.08,.02,.26),.26},
+ ["knight.steel_knight.vanguard_strike"]={"VanguardContactFins",Vector3.new(.63,.41,-1.53),Vector3.new(.10,.02,.27),.26,.085,0,Vector3.new(.34,.26,-.39)},
+ ["dwarf_braced_throw"]={"BracedThrowContactHooks",Vector3.new(.81,.79,-.95),Vector3.new(.28,-.63,.31),.23,.085,-.20,Vector3.new(1.24,.31,-.65)},
+ ["elf.marksman.piercing_line"]={"PiercingLineContactBarbs",Vector3.new(.49,.04,-1.65),Vector3.new(.08,.08,.44),.34,.066,.03,Vector3.new(.19,.04,-.29)},
+ ["mage.cryo.lightning_line"]={"LightningLineContactFork",Vector3.new(.19,-.27,.12),Vector3.new(1.07,.96,-1.02),.15,.085,.19,Vector3.new(.17,.79,-.67)},
  ["dwarf.iron_axe.stonebound_leap"]={"StoneboundContactRupture",Vector3.new(.14,-.62,.04),Vector3.new(.76,.35,.30),.22},
  ["elf.marksman.fan_break"]={"FanBreakContactSpread",Vector3.new(.16,-.28,-.91),Vector3.new(1.14,.20,.18),.15},
  ["mage.pyro.stone_lance"]={"StoneLanceContactSplinters",Vector3.new(.14,.38,-.97),Vector3.new(.76,-.42,.30),.18},

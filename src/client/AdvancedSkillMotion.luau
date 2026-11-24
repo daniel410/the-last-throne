@@ -409,9 +409,14 @@ function Motion.sample(classId,d,age,rigType)
   if d.id=="knight.steel_knight.vanguard_strike" then
    local brace=smooth(age/(contact*.55))*(1-smooth((age-contact*.60)/(contact*.40)))
    local settle=pulse>0 and smooth(since/.055)*(1-smooth((since-.055)/.17)) or 0
+   -- Catch the forward step under the sword shoulder, then draw the shield back in.
+   local recover=pulse>0 and smooth((since-.05)/.08)*(1-smooth((since-.13)/.16)) or 0
    offset(pose,"left",v(16,-10,-18)*brace+v(-9,0,8)*settle)
    offset(pose,"torso",v(9,-13,-6)*brace+v(9,6,0)*settle)
-   offset(pose,"leftKnee",v(15*settle))
+   offset(pose,"leftHip",v(-16,0,-5)*settle)
+   offset(pose,"leftKnee",v(24*settle))
+   offset(pose,"rightHip",v(12,0,5)*settle)
+   offset(pose,"left",v(19,8,-14)*recover)
   elseif d.id=="knight_driving_thrust" then
    local settle=smooth(since/.055)*(1-smooth((since-.055)/.16))
    offset(pose,"leftKnee",v(10*settle))
@@ -512,8 +517,12 @@ function Motion.sample(classId,d,age,rigType)
   local release=pulse>0 and smooth(since/.065)*(1-smooth((since-.065)/.18)) or 0
   offset(pose,"torso",v(-9,-14,-7)*plant+v(10,12,5)*release)
   offset(pose,"rightKnee",v(23*plant+9*release))
-  offset(pose,"leftKnee",v(14*plant+16*release))
-  offset(pose,"left",v(19,-9,16)*plant+v(-13,9,-6)*release)
+  -- Counterbalance the axe with the empty hand and take the throw on the lead leg.
+  offset(pose,"rightHip",v(-15,0,8)*plant)
+  offset(pose,"leftHip",v(-17,0,-8)*release)
+  offset(pose,"leftKnee",v(14*plant+25*release))
+  offset(pose,"left",v(26,-12,22)*plant+v(-21,15,-13)*release)
+  offset(pose,"elbow",v(-16*release))
  end
  local finish=FinalBeat.weight(d,pulse,since)
  if finish>0 then

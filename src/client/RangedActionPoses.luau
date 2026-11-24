@@ -118,10 +118,12 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     end
     if d.id=="elf.marksman.piercing_line" then
         -- Track the line with the bow shoulder and recover the draw elbow straight back.
-        add(pose,"neck",v(4,8,-6)*load)
-        add(pose,"right",v(-6,-16,-10)*recoil)
-        add(pose,"elbow",v(19,0,0)*recoil)
-        add(pose,"leftKnee",v(19,0,0)*recoil)
+        local sight = smooth(phase/.5)*(1-smooth((phase-.9)/.1))
+        add(pose,"neck",v(9,10,-7)*sight)
+        add(pose,"right",v(-8,-24,-12)*recoil)
+        add(pose,"elbow",v(27,0,0)*recoil)
+        add(pose,"leftHip",v(-12,0,-5)*recoil)
+        add(pose,"leftKnee",v(24,0,0)*recoil)
     end
     if s == bow.fanBreak then
         -- Brace the lead leg through the spread while the draw hand opens.
@@ -225,6 +227,7 @@ local spells = {
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
     glacialSpike=gesture(v(-26,24,-18),v(31,-28,-12),v(15,10,6),v(42,-16,-10),27),
     storm=gesture(v(29,-20,19),v(48,13,27),v(-14,-18,10),v(47,-18,-14),20),
+    lightningLine=gesture(v(38,-17,27),v(19,34,-34),v(-9,-23,12),v(43,-12,-28),24),
     thunderSpear=gesture(v(-26,-15,17),v(39,26,-22),v(9,-22,9),v(40,-13,-16),23),
     chain=gesture(v(34,-21,26),v(26,23,-30),v(-9,17,-6),v(31,-37,-13),19),
     iceRing=gesture(v(14,27,-18),v(-20,-11,-20),v(-12,23,5),v(22,-32,-41),20),
@@ -256,6 +259,7 @@ local function spellGesture(d,profile)
     if d.id=="mage.pyro.molten_line" then return spells.moltenLine end
     if d.id=="mage.pyro.magma_spear" then return spells.magmaSpear end
     if d.id=="mage.cryo.thunder_spear" then return spells.thunderSpear end
+    if d.id=="mage.cryo.lightning_line" then return spells.lightningLine end
     if cue.effect=="lightning" then return spells.storm end
     if cue.effect=="earth" or cue.effect=="lava" or d.effect=="gravity" then return spells.earth end
     if profile=="water_orb" or cue.effect=="steam" then return spells.orb end
@@ -370,6 +374,13 @@ function Poses.mage(pose,d,profile,age)
     if s == spells.thunderSpear then
         add(pose,"right",v(21,7,-14)*follow)
         add(pose,"leftElbow",v(21,0,0)*follow)
+    end
+    if s == spells.lightningLine then
+        -- Gather across the staff, then check the recoil with the guiding arm.
+        add(pose,"right",v(-28,15,-12)*follow)
+        add(pose,"left",v(-22,13,21)*follow)
+        add(pose,"leftElbow",v(26,0,0)*follow)
+        add(pose,"leftKnee",v(18,0,0)*follow)
     end
     if s==spells.moltenLine then
         -- Press the guiding palm toward the ground and let the front leg absorb each pulse.
