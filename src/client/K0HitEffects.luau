@@ -145,7 +145,9 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	Debris:AddItem(holder, 1.2)
 	local sharpContact = contact and contact:GetAttribute("ContactStyle") ~= nil
 	local cleanContact = distinctContact or descending and sharpContact
-	if not compact and not descending and not distinctContact then PixelFX.hit(position, classId, skillId, scale, flat) end
+	if not compact and not descending and not cleanContact and (not sharpContact or enemyKind == "Slime") then
+		PixelFX.hit(position, classId, skillId, scale, flat)
+	end
 	if not compact and not distinctContact then
 		local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)
 		TweenService:Create(flash, TweenInfo.new(0.09, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),

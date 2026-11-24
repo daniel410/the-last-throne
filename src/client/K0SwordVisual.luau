@@ -28,6 +28,7 @@ local CombatAudio = require(script.Parent.K0CombatAudio)
 local HitStop = require(script.Parent.K0HitStop)
 local HeroVFX = require(script.Parent.HeroVFX)
 local VFXStyle = require(script.Parent.CombatVFXStyle)
+local VFXPalette = require(game.ReplicatedStorage.Shared.CombatVFXPalette)
 local Visual = {}
 local seenHeroEffects = setmetatable({}, {__mode="k"})
 local commonDefinitions = {}
@@ -731,16 +732,16 @@ local function emitArrow(character, first, last, payload, showImpact)
 		tip.Transparency,feather.Transparency=1,1;sourceLength=shaft.Size.Z
 	end
 	local skillId=character:GetAttribute("K0SkillId")
- local width=skillId=="elf.common.aimed" and .12 or skillId=="elf.common.rapid" and .055 or .08
+ local width=skillId=="elf.common.aimed" and .17 or skillId=="elf.common.rapid" and .085 or .12
  local tipTrail = Instance.new("Attachment"); tipTrail.Position = Vector3.new(-width, 0, 0); tipTrail.Parent = shaft
  local tailTrail = Instance.new("Attachment"); tailTrail.Position = Vector3.new(width, 0, 0); tailTrail.Parent = shaft
 	local trail = Instance.new("Trail")
+	trail.Name = "ArrowFlightWake"
 	trail.Attachment0, trail.Attachment1 = tipTrail, tailTrail
 	trail.Color = ColorSequence.new(skillId=="elf.common.aimed" and Color3.fromRGB(242,246,177)
-  or skillId=="elf.common.multi" and Color3.fromRGB(115,220,204) or Color3.fromRGB(170,255,178), Color3.fromRGB(255,242,180))
-	trail.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,.22),NumberSequenceKeypoint.new(1,1)})
-	trail.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(1,0)})
-	trail.Lifetime, trail.LightEmission = skillId=="elf.common.aimed" and .19 or .12, .45
+  or skillId=="elf.common.multi" and Color3.fromRGB(115,220,204) or Color3.fromRGB(170,255,178), VFXPalette.colors.arrow)
+	VFXStyle.trail(trail,"arrow")
+	trail.Lifetime, trail.LightEmission = skillId=="elf.common.aimed" and .14 or .09, .45
 	trail.Parent = shaft
 	local pose = CFrame.lookAt(first, last)
 	shaft.CFrame = pose*CFrame.new(0,0,sourceLength*.5)
@@ -758,11 +759,11 @@ local function emitArrow(character, first, last, payload, showImpact)
 end
 
 local function impact(position, color)
-	local part = arrowPart(workspace, "K0VisualImpact", Vector3.new(0.35, 0.35, 0.35), color, Enum.Material.Neon)
+	local part = arrowPart(workspace, "K0VisualImpact", Vector3.one * .32, color, Enum.Material.Neon)
 	part.Shape, part.Position = Enum.PartType.Ball, position
-	local tween = TweenService:Create(part, TweenInfo.new(0.24), { Size = Vector3.new(1.5, 1.5, 1.5), Transparency = 1 })
+	local tween = TweenService:Create(part, TweenInfo.new(.12), { Size = Vector3.one * .86, Transparency = 1 })
 	tween:Play()
-	task.delay(0.3, function() part:Destroy() end)
+	task.delay(.15, function() part:Destroy() end)
 end
 
 local function areaPulse(position, color, radius)
@@ -908,6 +909,19 @@ local function destroySpell(spell)
 	spell.part:Destroy()
 end
 
+local spellFlight = {
+	bolt = {size = Vector3.new(.46, .46, .95), width = .27, wake = .105, emission = .65},
+	water = {size = Vector3.one * 1.35, width = .46, wake = .14, emission = .32},
+	gravity = {size = Vector3.new(.88, .88, .88), width = .30, wake = .095, emission = .38},
+}
+
+local function poseWaterDroplet(droplet, pose, index, age)
+	local angle = age * 15 + index * 2.39996
+	local radius = .48 + index * .055
+	local offset = Vector3.new(math.cos(angle)*radius, math.sin(angle)*radius, .19 + .19*index)
+	droplet.CFrame = pose * CFrame.new(offset)
+end
+
 local function consumeSpell(character)
 	local payload = character:GetAttribute("K0SpellVisual")
 	if payload == nil or seenSpells[character] == payload then return end
@@ -927,10 +941,11 @@ local function consumeSpell(character)
 	end
 	if #spells >= 32 then destroySpell(table.remove(spells, 1)) end
 	local skillId = character:GetAttribute("K0SkillId")
-	local color = classId == "dwarf" and Color3.fromRGB(255, 155, 65)
-		or skillId == "mage.common.water_ball" and Color3.fromRGB(70, 170, 255)
-		or skillId == "mage.common.gravity" and Color3.fromRGB(126, 65, 211)
-		or Color3.fromRGB(160, 224, 255)
+	local water = classId == "mage" and skillId == "mage.common.water_ball"
+	local gravityShot = classId == "mage" and skillId == "mage.common.gravity"
+	local flight = water and spellFlight.water or gravityShot and spellFlight.gravity or spellFlight.bolt
+	local color, hot = VFXPalette.get(water and "water" or gravityShot and "gravity" or "arcane", classId)
+	local pose = CFrame.lookAt(first, last)
 	local orb, launchRotation, heldWeapon, heldTransparency
 	if classId == "dwarf" then
 		for _, model in ipairs(character:GetChildren()) do
@@ -961,39 +976,35 @@ local function consumeSpell(character)
 		orb.Parent, orb.Position = workspace, first
 		heldWeapon.LocalTransparencyModifier = 1
 	else
-		local size = skillId == "mage.common.water_ball" and 1.35 or skillId == "mage.common.gravity" and 0.9 or 0.65
-		orb = arrowPart(workspace, "K0VisualSpell", Vector3.new(size, size, size), color, Enum.Material.Neon)
-		orb.Shape, orb.Position = Enum.PartType.Ball, first
+		local bodyColor = gravityShot and color:Lerp(Color3.new(), .32) or color:Lerp(hot, .52)
+		orb = arrowPart(workspace, "K0VisualSpell", flight.size, bodyColor, Enum.Material.Neon)
+		orb.Shape, orb.CFrame = Enum.PartType.Ball, pose
 	end
 	local waterDroplets
-	if skillId == "mage.common.water_ball" and classId == "mage" then
-		orb.Name, orb.Material, orb.Transparency = "K0WaterBall", Enum.Material.Glass, 0.28
-		orb.Color, orb.Reflectance = Color3.fromRGB(33, 107, 153), .23
+	if water then
+		orb.Name, orb.Material, orb.Transparency = "K0WaterBall", Enum.Material.Glass, .19
+		orb.Color, orb.Reflectance = color:Lerp(Color3.fromRGB(23, 97, 147), .36), .12
 		waterDroplets = {}
 		for index = 1, 5 do
-			local droplet = arrowPart(orb, "K0WaterDroplet", Vector3.one * (index % 2 == 0 and 0.20 or 0.27), Color3.fromRGB(160, 226, 255), Enum.Material.Glass)
-			droplet.Shape, droplet.Transparency = Enum.PartType.Ball, 0.15
-			droplet.Size *= Vector3.new(.74, .86, 1.45)
-			droplet.Position = first + Vector3.new(math.cos(index * 1.256) * 0.9, (index % 2) * 0.3, math.sin(index * 1.256) * 0.9)
+			local droplet = arrowPart(orb, "K0WaterDroplet", Vector3.new(.21, .21, .41) * (1.1 - index * .1),
+				color:Lerp(hot, .56), Enum.Material.SmoothPlastic)
+			droplet.Shape, droplet.Transparency = Enum.PartType.Ball, .08
+			poseWaterDroplet(droplet, pose, index, 0)
 			table.insert(waterDroplets, droplet)
 		end
 	end
-	if not heldWeapon then
-		local light = Instance.new("PointLight"); light.Color = orb.Color; light.Brightness = 2; light.Range = 8; light.Parent = orb
+	if not heldWeapon and not HeroVFX.isOtherHero(character) then
+		local light = Instance.new("PointLight"); light.Color = color; light.Brightness = 1.2; light.Range = 6; light.Parent = orb
 	end
-	local front = Instance.new("Attachment"); front.Position = Vector3.new(-.18, 0, 0); front.Parent = orb
-	local back = Instance.new("Attachment"); back.Position = Vector3.new(.18, 0, 0); back.Parent = orb
+	local front = Instance.new("Attachment"); front.Position = Vector3.new(-flight.width, 0, 0); front.Parent = orb
+	local back = Instance.new("Attachment"); back.Position = Vector3.new(flight.width, 0, 0); back.Parent = orb
 	local trail = Instance.new("Trail"); trail.Attachment0, trail.Attachment1 = front, back
-	trail.Color = ColorSequence.new(color, Color3.fromRGB(230, 238, 255))
-	trail.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,.2),NumberSequenceKeypoint.new(1,1)})
-	trail.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(1,0)})
-	trail.Lifetime, trail.LightEmission = .20, .7
-	if waterDroplets then
-		trail.Color = ColorSequence.new(Color3.fromRGB(145,224,240), Color3.fromRGB(36,106,153))
+	if not heldWeapon then
+		trail.Name = "SpellFlightWake"
+		trail.Color = ColorSequence.new(color:Lerp(hot, .32), color)
+		trail.Lifetime, trail.LightEmission = flight.wake, flight.emission
 		VFXStyle.trail(trail,"spell")
-		trail.Lifetime, trail.LightEmission = .14, .32
-	end
-	if heldWeapon then
+	else
 		-- A short, pale blade-tip sweep leaves the rotating silhouette readable.
 		front.Position = Vector3.new(-0.12, orb.Size.Y * 0.35, 0)
 		back.Position = Vector3.new(0.12, orb.Size.Y * 0.35, 0)
@@ -1035,10 +1046,7 @@ local function advanceSpells(dt)
 				spell.part.CFrame = CFrame.lookAt(position, position + spell.direction)
 			end
 			for i, droplet in ipairs(spell.waterDroplets or {}) do
-				local angle = spell.elapsed * 12 + i * 2 * math.pi / 5
-				local radius = .74 - .055 * i
-				local offset = Vector3.new(math.cos(angle)*radius, math.sin(angle)*radius, .16 + .23*i)
-				droplet.CFrame = spell.part.CFrame * CFrame.new(offset)
+				poseWaterDroplet(droplet, spell.part.CFrame, i, spell.elapsed)
 			end
 			if spell.elapsed >= spell.duration then
 				if not spell.heldWeapon then impact(position, spell.part.Color) end

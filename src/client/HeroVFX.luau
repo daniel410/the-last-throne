@@ -219,7 +219,14 @@ function FX.step(now)
      startWidth*=edgePressure(s.cutStart,cutFront);endWidth*=edgePressure(s.cutEnd,cutFront)
     end
     s.beam.Width0=startWidth;s.beam.Width1=endWidth
-    if changed then s.beam.Transparency=r.alpha end
+    if s.fadeDuration then
+     local t=math.clamp((now-r.at)/s.fadeDuration,0,1)
+     local step=math.floor(t*24)
+     if s.fadeStep~=step then
+      s.fadeStep=step
+      s.beam.Transparency=NumberSequence.new(.12+.88*(step/24)^1.5)
+     end
+    elseif changed then s.beam.Transparency=r.alpha end
     if s.glow then
      s.glow.Width0=s.beam.Width0*2.6;s.glow.Width1=s.beam.Width1*2.6
      if changed then s.glow.Transparency=r.glowAlpha end
@@ -1540,8 +1547,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  end
  FX.step(r.at);return r.model
 end
--- A crisp, camera-facing contact silhouette reads at the gameplay camera.
--- Geometry stays in world depth and uses the existing surface budget/lifetime.
+-- Angles, lengths and half-widths of the filled rays in the contact plane.
+local cutRays={{.32,1.38,.19},{1.49,.61,.14},{3.44,1.06,.16},{5.11,.74,.13}}
+local chopRays={{.6,.81,.19},{1.54,1.38,.22},{2.53,.91,.24},{4.64,1.08,.18}}
+local pierceRays={{.08,1.53,.15},{2.54,.77,.11},{3.27,.99,.13},{3.84,.74,.10}}
+
+-- The rays and the flash are world-depth geometry and share the normal face budget.
 local function impactStar(r,at,dir,size,classId,pierce)
  local camera=workspace.CurrentCamera
  local normal=camera and camera.CFrame.Position-at or -dir
@@ -1549,30 +1560,31 @@ local function impactStar(r,at,dir,size,classId,pierce)
  normal=normal.Unit
  local right=camera and camera.CFrame.RightVector or Vector3.xAxis
  local up=normal:Cross(right)
- if up.Magnitude<.01 then up=Vector3.yAxis end
+ if up.Magnitude<.01 then up=normal:Cross(math.abs(normal.Y)<.95 and Vector3.yAxis or Vector3.zAxis)end
  up=up.Unit;right=up:Cross(normal).Unit
  local projected=dir-normal*dir:Dot(normal)
  if projected.Magnitude>.15 then right=projected.Unit;up=normal:Cross(right).Unit end
- local spokes=Input.TouchEnabled and 4 or 6
  local start=#r.faces
- local function point(index)
-  local angle=index*math.pi/spokes+.18
-  local outer=index%2==0
-  local radius=outer and (index%4==0 and 1 or .76)or .26
-  return at+(right*math.cos(angle)*(pierce and 1.25 or 1)+up*math.sin(angle)*(pierce and .55 or 1))*radius*size
+ local rays=pierce and pierceRays or classId=='dwarf' and chopRays or cutRays
+ for i,ray in ipairs(rays) do
+  local angle,length,width=unpack(ray)
+  local radial=right*math.cos(angle)+up*math.sin(angle)
+  local side=normal:Cross(radial)*width*size
+  local base=at+radial*.22*size
+  local color=i%2==1 and r.color:Lerp(r.hot,.28) or r.color
+  Surfaces.triangle(r,'ArcadeImpactStar',base-side,at+radial*length*size,base+side,color,.08)
  end
- for i=0,spokes*2-1 do
-  Surfaces.triangle(r,'ArcadeImpactStar',at,point(i),point(i+1),r.color,.12)
- end
- -- A small bright diamond preserves a sharp centre without a large glow ball.
+ Surfaces.animate(r,start,at,normal,pierce and 0 or .16,true,.13)
  local center=at+normal*.025
- Surfaces.triangle(r,'ArcadeImpactCore',center+up*size*.42,center-right*size*.18,center-up*size*.42,r.hot,.04)
- Surfaces.triangle(r,'ArcadeImpactCore',center+up*size*.42,center-up*size*.42,center+right*size*.18,r.hot,.04)
- for i=start+1,#r.faces do
-  r.faces[i].fadeDuration=.13
-  r.faces[i].motion={pivot=at,axis=normal,turn=0,expand=true,duration=.13}
- end
+ local span=right*size*(pierce and .57 or .31)
+ local height=up*size*(pierce and .17 or .42)
+ local core=#r.faces
+ Surfaces.triangle(r,'ArcadeImpactCore',center+height,center-span,center-height,r.hot,.04)
+ Surfaces.triangle(r,'ArcadeImpactCore',center+height,center-height,center+span,r.hot,.04)
+ for i=core+1,#r.faces do r.faces[i].fadeDuration=.065 end
+ if #r.faces==start then return false end
  r.model:SetAttribute('ContactStyle',pierce and 'ArcadePierce'or classId=='dwarf'and'ArcadeChop'or'ArcadeCut')
+ return true
 end
 local function descendingContact(r,at,cf,size,shape)
  local shell=shape=="mortar"
@@ -1710,6 +1722,47 @@ local function forceContact(r,at,cf,size,shape,interrupted)
  r.model:SetAttribute("ContactStyle",name)
  return true
 end
+local function contactStroke(r,name,path,width,color,duration)
+ local stroke=line(r,name,function(u)return path(math.min(1,u*r.life/duration))end,width,color,width*.27,true)
+ if stroke then stroke.fadeDuration=duration end
+ return stroke
+end
+
+local function fluidContact(r,at,cf,size)
+ local water=r.key=="water"
+ local right,up,dir=cf.RightVector,cf.UpVector,cf.LookVector
+ local start=#r.lines
+ for side=-1,1,2 do
+  local lateral=right*side
+  if water then
+   contactStroke(r,"WaterContact",function(t)
+    local push=1-(1-t)^3
+    return at+(lateral*(.12+.47*push)+dir*.25*push)*size,
+     at+(lateral*(.78+.5*push)+up*(.24+push*.58-t*t*.45)+dir*(.22+push*.55))*size
+   end,.29*size,side==1 and r.hot or r.color,.17)
+  else
+   contactStroke(r,"GravityContact",function(t)
+    local pull=1-t*t
+    return at+(lateral*(.18+pull*.88)-up*.45*side*pull-dir*.26*pull)*size,
+     at+(lateral*(.08+pull*.28)+up*.4*side*pull)*size
+   end,.23*size,r.color,.15)
+  end
+ end
+ if water and not r.compact then
+  for i,offset in ipairs({-1,0,1})do
+   local drift=(right*offset*.86+dir*.8+up*(offset==0 and 1.15 or .67))*size
+   local atBase=at+drift*.3
+   local p=Surfaces.volume(r,"WaterContactDrop",atBase,Vector3.new(.19,.36,.19)*size,r.color:Lerp(r.hot,i==2 and .65 or .36),.12,"ball",Enum.Material.SmoothPlastic)
+   if p then
+    local face=r.faces[#r.faces]
+    face.cf=CFrame.lookAt(atBase,atBase+drift)*CFrame.Angles(math.pi/2,0,0)
+    face.drift=drift*1.35;face.fadeDuration=.22
+   end
+  end
+ end
+ return #r.lines>start
+end
+
 local function elementalContact(r,at,cf,size)
  local up,right,dir=cf.UpVector,cf.RightVector,cf.LookVector
  local key=r.key
@@ -1725,15 +1778,22 @@ local function elementalContact(r,at,cf,size)
  end
  local count=r.compact and 2 or 4
  for i=1,count do
-  local side=(i-(count+1)*.5)*.32
-  local offset=right*side
+  local side=(i-(count+1)*.5)
+  local offset=right*side*.43
+  local bright=i==math.ceil(count/2) and r.hot or r.color
   if key=="fire"or key=="bomb"then
-   local lift=up*(.75+.12*i)+dir*.45+offset
-   line(r,"HeatContactRise",function(u)return at+lift*u*.55*size,at+lift*(.45+u*.9)*size end,.09,r.hot)
+   local lift=up*(1.26-.31*math.abs(side))+dir*.46+offset
+   contactStroke(r,"HeatContactRise",function(t)
+    local push=1-(1-t)^2
+    return at+lift*(.09+push*.42)*size,at+(lift*(.65+push*.73)+up*t*.31)*size
+   end,.18*size,bright,.19)
   elseif key=="frost"or key=="earth"then
-   local spread=offset*1.8+(key=="frost" and up*.74 or -up*.35)+dir*.4
-   line(r,key=="frost" and "FrostContactFacet" or "EarthContactFracture",
-    function(u)return at+spread*u*.35*size,at+spread*(.62+u*.75)*size end,.095,r.color)
+   local frost=key=="frost"
+   local spread=offset*1.6+up*(frost and .95-.34*math.abs(side) or -.29-.17*math.abs(side))+dir*.45
+   contactStroke(r,frost and "FrostContactFacet" or "EarthContactFracture",function(t)
+    local push=1-(1-t)^2
+    return at+spread*(.08+.63*push)*size,at+spread*(.68+.58*push)*size
+   end,(frost and .16 or .23)*size,bright,frost and .15 or .18)
   else
    local spread=offset+(up*.24+dir*.68)*(i%2==0 and 1 or -1)
    line(r,"ContactSplinter",function(u)return at+spread*u*.6*size,at+spread*(.62+u)*size end,.065,r.hot)
@@ -1837,7 +1897,8 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  local key=mark and mark.key or grant and markContacts[appliedMark].key or force and force.key or row.key
  local life=postureBroken and (compact and .20 or .26) or seal and (compact and .16 or .22)
   or interrupt and .19 or (compact and .16 or .3)
- local reserve=postureBroken and (seal and 4 or 2) or (seal or force) and 2
+ local fluid=row.key=="water" or row.key=="gravity"
+ local reserve=postureBroken and (seal and 4 or 2) or (seal or force or fluid) and 2
  local r=make(at,at,life,key,id,compact,true,reserve)
  if not r and postureBroken and seal then
   r=make(at,at,life,key,id,compact,true,2)
@@ -1872,6 +1933,7 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  local descending=d and FX.groundLead(d)
  local authored=contactStyles[id]
  local distinctContact
+ local weaponStar
  local verdict=id==SHIELD_VERDICT
  if descending then
   descendingContact(r,at,cf,size,profile.shape)
@@ -1897,7 +1959,7 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
    end,.085,r.hot)
   end
  elseif physical then
-  impactStar(r,at,dir,size,classId,piercing)
+  weaponStar=impactStar(r,at,dir,size,classId,piercing)
   if classId=='knight' and not piercing then
    for side=-1,1,2 do line(r,'PhysicalCutContact',function(u)local shift=dir*u*.35;return at+shift-cf.RightVector*side*.75*size-cf.UpVector*.25*size,at+shift+cf.RightVector*side*.5*size+cf.UpVector*.35*size end,.08,r.color)end
   elseif classId=='dwarf'and(row.key=='steel'or row.key=='axe')then
@@ -1914,8 +1976,9 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
   else
    for side=-1,1,2 do line(r,'PiercingContactWake',function(u)local offset=cf.RightVector*side*.12*size;return at-dir*(.8-u*.3)*size+offset,at+dir*(.25+u*.65)*size+offset end,.055,r.color)end
   end
- elseif row.key=="water"or row.key=="gravity"then
-  ring(r,row.key=="water"and"WaterContact"or"GravityContact",at,1.3*size,.12,true,row.key=="gravity",nil,cf,compact and 5 or nil)
+ elseif fluid then
+  distinctContact=fluidContact(r,at,cf,size)
+  if distinctContact then r.model:SetAttribute("ContactStyle",row.key=="water" and "WaterSplash" or "GravityCollapse") end
  elseif row.key=='arcane'then
   for i=1,4 do local a=i*math.pi*.5;local offset=(cf.RightVector*math.cos(a)+cf.UpVector*math.sin(a))*size
    line(r,'ArcaneContactRay',function(u)return at+offset*(.12+u*.35),at+offset*(.45+u*.6)end,.055,r.color)
@@ -1926,13 +1989,13 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  if not compact and not force and (row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb")then
   debris(r,at,3,row.key=="frost"and"IceShard"or row.key=="earth"and"RockChip"or"Ember",size)
  end
- if not force or not distinctContact then
+ if not weaponStar and (not force or not distinctContact) then
   local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*(distinctContact and .38 or .65)*size,r.hot,.25,"ball")
   if flash then r.faces[#r.faces].fadeDuration=.08 end
  end
  -- Only confirmed hit events reach this entry point. A short open pressure
  -- crown replaces a lingering generic sphere; water retains its own ripple.
- if not compact and not descending and not physical and not authored and not force and not verdict and row.key~='arcane'and row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
+ if not compact and not descending and not physical and not authored and not force and not verdict and not fluid and row.key~='arcane'and row.key~="frost"and row.key~="earth"then
   local start=#r.faces
   local basis=CFrame.lookAt(at,at+dir)*CFrame.Angles(math.pi/2,0,0)
   Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)
@@ -1940,7 +2003,7 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  end
  -- Physical hits use the sharp star as their focal point. Repeating the
  -- soft elemental halo here washed out the silhouette during rapid combos.
- if not physical and not descending and not authored and not force then flourish(r,at,1.5*size,row.key,false)end
+ if not physical and not descending and not authored and not force and not distinctContact then flourish(r,at,1.5*size,row.key,false)end
  FX.step(r.at);return r.model,distinctContact
 end
 return FX

@@ -2,6 +2,7 @@
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local A=require(game.ServerScriptService.Server.Cosmetics.WeaponAppearance)
 local FX=require(Client.HeroVFX)
+local Palette=require(game.ReplicatedStorage.Shared.CombatVFXPalette)
 local copy=Client.K0SwordVisual:Clone();copy.Name='ProjectileTimingQA'
 copy.Source=copy.Source:gsub('return Visual%s*$','Visual.advanceQA=advanceSpells\nreturn Visual');copy.Parent=Client
 local V=require(copy)
@@ -21,6 +22,22 @@ local ok,err=xpcall(function()
     c:SetAttribute('K0SpellVisual',string.format('%d|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f',seq,at.X,at.Y,at.Z,at.X,at.Y,at.Z-distance))
     V.renderCharacter(c,1/hz)
     check(#calls==0,'Release does not replay an arrival effect')
+    if row[1]=='mage' then
+     local water=row[2]=='mage.common.water_ball'
+     local gravity=row[2]=='mage.common.gravity'
+     local body=assert(workspace:FindFirstChild(water and 'K0WaterBall' or 'K0VisualSpell'))
+     local wake=body:FindFirstChild('SpellFlightWake')
+     check(wake and wake.FaceCamera and wake.Lifetime<=.14,'Spell uses a brief, camera-facing wake')
+     check(wake.Color.Keypoints[2].Value==Palette.colors[water and 'water' or gravity and 'gravity' or 'arcane'],
+      'Wake ends in the authored element color')
+     if water then
+      for _,drop in body:GetChildren() do if drop.Name=='K0WaterDroplet' then
+       check(body.CFrame:PointToObjectSpace(drop.Position).Z>.30,'Water droplets are initialized behind the moving body')
+      end end
+     elseif not gravity then
+      check(body.Size.Z>body.Size.X*1.7,'Bolt has a stretched silhouette')
+     end
+    end
     V.renderCharacter(c,1/hz);check(#calls==0,'Duplicate snapshot does not emit effects')
     for _=1,hz do V.advanceQA(1/hz)end
     check(#calls==row[3],'Exactly one terminal burst for eligible spells; no delayed axe/gravity replay')
