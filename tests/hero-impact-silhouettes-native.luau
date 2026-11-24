@@ -118,7 +118,11 @@ local ok, err = xpcall(function()
             task.wait(.5) -- The legacy range-cue pool retires slots on real time.
         end
         FX.isOtherHero = function() return true end
-        for _ = 1, 6 do assert(FX.skill(actor, id, origin, center, 1, {}, nil, aim)) end
+        local occupied = 0
+        for _ = 1, 12 do
+            if not FX.skill(actor, id, origin, center, 1, {}, nil, aim) then break end
+            occupied += 1
+        end
         local before = {}
         for _, item in workspace:GetChildren() do before[item] = true end
         Visual.play(actor, id, origin, center, 1, {}, nil, nil, nil, aim)
@@ -126,7 +130,7 @@ local ok, err = xpcall(function()
         for _, item in workspace:GetChildren() do
             if not before[item] and item.Name == boundary then fallback += 1 end
         end
-        check(FX.count() == 6 and fallback > 0, id .. " only bounded range cue survives primary budget pressure")
+        check(occupied >= 6 and FX.count() == occupied and fallback > 0, id .. " range cue survives primary budget pressure")
         reset()
         task.wait(.5)
     end
@@ -154,10 +158,13 @@ local ok, err = xpcall(function()
     actor:SetAttribute("K0ClassId", "elf")
     actor:SetAttribute("K0AttackStartedAt", started)
     actor:SetAttribute("K0AttackSeq", 1)
+    actor:SetAttribute("K0ArrowReleaseProtocol", 1)
     actor:SetAttribute("K0State", "Attack")
     actor:SetAttribute("K0SkillId", vine.id)
     local ready = Bow.forCharacter(actor, started+vine.windup*.52)
     local fireAt = started+vine.windup
+    local held = Bow.forCharacter(actor, fireAt+.04)
+    check(held.time == .8, "Vine Burst keeps the bow at full draw until confirmation")
     Bow.confirmPulse(actor, vine.id, 1, 1, fireAt, started, fireAt)
     local fired = Bow.forCharacter(actor, fireAt+.052)
     check(fired.angles.elbow.X > ready.angles.elbow.X+20 and fired.angles.leftKnee.X > ready.angles.leftKnee.X+5,

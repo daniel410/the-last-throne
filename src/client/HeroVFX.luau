@@ -917,9 +917,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     +Vector3.yAxis*(math.cos(a)*2.65)+right*(.28-.56*t)
   end
   if cragCleave then
-   local bearing=math.rad(angle)*(.43-.86*t)
-   local reach=math.min(radius,7)*(.49+.40*math.sin(t*math.pi*.66))
-   return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*(2.35-4.2*t)
+   local scale=math.min(radius,7)/7
+   local reach=(3.35+math.sin(t*math.pi*.82)*2.16)*scale
+   return first+flat*reach+right*((.5-t)*5.5*scale)+Vector3.yAxis*(2.35-4.2*t)
   end
   local lateral=id=="dwarf_hooking_chop" and -.85 or 0
   return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8+right*(t-.5)*lateral
@@ -956,7 +956,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    stroke("ThrustPressure",thrustBase+right*side*.27,thrustTip+right*side*.08,width*.4)
   end
  elseif cragCleave then
-  curve(r,"CragCleaveEdge",function(t,u)return cleavePath(t)-Vector3.yAxis*u*.35 end,compact and 6 or 9,.34,WHITE)
+  curve(r,"CragCleaveEdge",function(t,u)return cleavePath(t)-Vector3.yAxis*u*.35 end,compact and 6 or 9,.40,WHITE)
   r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="cleave"then
   for lane=1,count do curve(r,"DescendingCleave",function(t,u)
@@ -1374,7 +1374,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   for i=start+1,#r.faces do r.faces[i].drift=flat*radius*.09;r.faces[i].fadeDuration=.17 end
  elseif cragCleave then
   local start=#r.faces
-  Surfaces.ribbon(r,"CragCleaveRibbon",cleavePath,right,.94,.42,r.color,compact and 4 or 7)
+  Surfaces.ribbon(r,"CragCleaveRibbon",cleavePath,flat,1.05,.38,r.color:Lerp(r.hot,.22),compact and 4 or 7)
   for i=start+1,#r.faces do r.faces[i].fadeDuration=.19 end
  elseif rallyingSlash or fanLanes then
   -- The open cutting edge and narrow projectile traces carry the release.
@@ -1512,15 +1512,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     local p=t*rise
     return base+radial*(1.28*p^2)+Vector3.yAxis*(height*p)
    end
-   local jet=line(r,"EruptionJet",function(u)return plume(0,u),plume(1,u)end,lane==1 and .96 or .76,magma,.17,true)
+   local jet=line(r,"EruptionJet",function(u)return plume(0,u),plume(1,u)end,lane==1 and 1.08 or .85,magma,.12,true)
    if jet then
     jet.span=function(u)return Style.span(plume,0,1,u)end
     jet.beam.Segments=6
     jet.beam.Color=ColorSequence.new(magma,hot)
-    jet.beam.LightEmission=.43
-    jet.beam.Texture="rbxasset://textures/particles/fire_main.dds"
-    jet.beam.TextureMode=Enum.TextureMode.Stretch
-    jet.beam.TextureSpeed=0
+    jet.beam.LightEmission=.68
    end
    if not compact then
     local crust=Surfaces.volume(r,"EruptionBasalt",base+Vector3.yAxis*.38,Vector3.new(1.28,1.15,1.42),Color3.fromRGB(94,65,51),.12,"wedge",Enum.Material.Slate)
