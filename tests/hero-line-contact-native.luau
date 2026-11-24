@@ -43,7 +43,8 @@ for _, case in cases do
                     check(delta:Dot(heading) * sign > .65, id .. " follows the confirmed attack axis")
                     check(rise == 0 and math.abs(delta.Y) < .13 or rise > 0 and delta.Y > rise
                         or rise < 0 and delta.Y < rise, id .. " has the intended vertical shape")
-                    check(beam.Segments == 4 and math.abs(beam.CurveSize0) > .03, id .. " has a curved profile")
+                    check(beam.Segments == (class == "mage" and 2 or 4) and math.abs(beam.CurveSize0) > .03,
+                        id .. " preserves its contact profile")
                 end
             end
             check(count == 2, id .. " keeps both edges")

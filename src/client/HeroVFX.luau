@@ -1566,7 +1566,7 @@ local forceContacts={
  ["knight.steel_knight.vanguard_strike"]={"VanguardContactFins",Vector3.new(.63,.41,-1.53),Vector3.new(.10,.02,.27),.26,.085,0,Vector3.new(.34,.26,-.39)},
  ["dwarf_braced_throw"]={"BracedThrowContactHooks",Vector3.new(.81,.79,-.95),Vector3.new(.28,-.63,.31),.23,.085,-.20,Vector3.new(1.24,.31,-.65)},
  ["elf.marksman.piercing_line"]={"PiercingLineContactBarbs",Vector3.new(.49,.04,-1.65),Vector3.new(.08,.08,.44),.34,.066,.03,Vector3.new(.19,.04,-.29)},
- ["mage.cryo.lightning_line"]={"LightningLineContactFork",Vector3.new(.19,-.27,.12),Vector3.new(1.07,.96,-1.02),.15,.085,.19,Vector3.new(.17,.79,-.67)},
+ ["mage.cryo.lightning_line"]={"LightningLineContactFork",Vector3.new(.14,-.24,-.16),Vector3.new(1.36,1.35,-1.57),.15,.155,.19,Vector3.new(.16,1.29,-.98),angular=true},
  ["dwarf.iron_axe.stonebound_leap"]={"StoneboundContactRupture",Vector3.new(.14,-.62,.04),Vector3.new(.76,.35,.30),.22},
  ["elf.marksman.fan_break"]={"FanBreakContactSpread",Vector3.new(.16,-.28,-.91),Vector3.new(1.14,.20,.18),.15},
  ["mage.pyro.stone_lance"]={"StoneLanceContactSplinters",Vector3.new(.14,.38,-.97),Vector3.new(.76,-.42,.30),.18},
@@ -1602,11 +1602,12 @@ local function forceContact(r,at,cf,size,shape)
   end
   local stroke=line(r,name,function(u)
    return path(0,u),path(1,u)
-  end,width or .085,width and side==-1 and r.color or r.hot,.035)
+  end,width or .085,(shape.angular or width and side==-1) and r.color or r.hot,shape.angular and .075 or .035,shape.angular)
   if stroke and middle then
    stroke.span=function(u)return Style.span(path,0,1,u)end
-   stroke.beam.Segments=4
-   if stroke.glow then stroke.glow.Segments=4 end
+   local segments=shape.angular and 2 or 4
+   stroke.beam.Segments=segments
+   if stroke.glow then stroke.glow.Segments=segments end
   end
   if stroke and not r.compact and name=="GlacialContactShards" then
    local start=#r.faces
