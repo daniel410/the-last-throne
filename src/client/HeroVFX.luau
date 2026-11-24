@@ -812,7 +812,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local stormArrow=id=="elf.magic_archer.storm_arrow"
  local froststorm=id=="mage.cryo.froststorm"
  local compact=FX.isOtherHero(character)
- local final=FinalBeat.isFinal(d,pulse)
+ local final=FinalBeat.isFinal(d,pulse) or warcryAssault and pulse==d.pulses
  local life=(profile.signature and not final or twinAxe and pulse==1 or warcryAssault and not final)
   and math.min(profile.life,d.interval) or profile.life
  local minBeams=fanLanes and fanLanes*(row.key=="gun" and 1 or 3)

@@ -670,7 +670,7 @@ function Motion.sample(classId,d,age,rigType)
   local side=pulse==2 and -1 or 1
   -- The right hand reloads across the body for a lower backhand release.
   offset(pose,"right",v(-12,11,-15)*load+v(-18,-24,21)*transfer+v(14*side,8,-17*side)*snap)
-  offset(pose,"elbow",v(-25*transfer+19*snap))
+  offset(pose,"elbow",v(-29*transfer+19*snap))
   offset(pose,"torso",v(-6,-17,9)*load+v(8,17*side,12*side)*snap+v(8,-16,-9)*transfer)
   offset(pose,pulse==2 and "leftKnee" or "rightKnee",v(17*load+22*snap+12*transfer))
  elseif d.id=="dwarf.iron_axe.stonebound_leap" then
