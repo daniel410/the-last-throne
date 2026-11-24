@@ -117,6 +117,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	flat = flat.Unit
 	local row = Catalog.get(classId, skill and skillId or nil)
 	local definition = row and row.definition
+	local windupInterrupted = definition and type(impact) == "table" and impact.windupInterrupted == true
 	local descending = definition and HeroVFX.groundLead(definition)
 	local final = definition and type(impact) == "table" and FinalBeat.isFinal(definition, impact.pulse)
 	local lift = descending and landingHeight(model) or .45
@@ -132,8 +133,8 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	HitReaction.record(model, flat, nil, row, descending, final, postureBroken)
 	local consumedMark = type(impact) == "table" and impact.consumedMark or nil
 	local appliedMark = type(impact) == "table" and impact.appliedMark or nil
-	local contact, distinctContact = HeroVFX.contact(postureBroken and contactPosition or position, classId, skillId, flat,
-		scale * (final and 1.2 or 1), compact, consumedMark, appliedMark, postureBroken)
+	local contact, distinctContact = HeroVFX.contact((postureBroken or windupInterrupted) and contactPosition or position,
+		classId, skillId, flat, scale * (final and 1.2 or 1), compact, consumedMark, appliedMark, postureBroken, windupInterrupted)
 	if damage == 0 then return true end
 	for i = #active, 1, -1 do if not active[i].Parent then table.remove(active, i) end end
 	if #active >= MAX_ACTIVE then table.remove(active, 1):Destroy() end

@@ -444,7 +444,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(10,-18,-7)*brace+v(-6,14,7)*release)
   offset(pose,"leftKnee",v(19*brace+17*release))
  end
- if d.id=="knight_crescent_cut" then
+ if d.id=="knight.steel_knight.challenging_strike" then
+  -- Lead with the shield, then take the cut on the front leg.
+  local phase=age/contact
+  local brace=smooth(phase/.52)*(1-smooth((phase-.60)/.40))
+  local plant=smooth((age-contact)/.07)*(1-smooth((age-contact-.07)/.16))
+  offset(pose,"left",v(23,-11,-16)*brace+v(10,0,-8)*plant)
+  offset(pose,"leftElbow",v(19*brace+12*plant))
+  offset(pose,"torso",v(4,-16,-6)*brace+v(13,10,6)*plant)
+  offset(pose,"leftHip",v(-12*plant))
+  offset(pose,"leftKnee",v(12*brace+23*plant))
+ elseif d.id=="knight_crescent_cut" then
   local phase=age/contact
   local gather=smooth(phase/.5)*(1-smooth((phase-.5)/.5))
   local finish=pulse>0 and smooth(since/.075)*(1-smooth((since-.075)/.16)) or 0
@@ -496,6 +506,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"leftHip",v(-15,0,-8)*brake)
   offset(pose,"leftKnee",v(27*brake))
   offset(pose,"rightKnee",v(19*coil))
+ elseif d.id=="dwarf.iron_axe.mountain_sweep" then
+  -- Load around the rear heel and counterbalance the low axe with the empty hand.
+  local phase=age/contact
+  local crouch=smooth(phase/.64)*(1-smooth((phase-.79)/.21))
+  local brake=smooth((age-contact)/.075)*(1-smooth((age-contact-.075)/.16))
+  offset(pose,"torso",v(18,-9,8)*crouch+v(15,8,-12)*brake)
+  offset(pose,"left",v(12,-12,27)*crouch+v(-8,16,16)*brake)
+  offset(pose,"rightHip",v(-18,0,8)*crouch)
+  offset(pose,"leftHip",v(-18,0,-10)*brake)
+  offset(pose,"rightKnee",v(27*crouch+12*brake))
+  offset(pose,"leftKnee",v(17*crouch+26*brake))
  elseif d.id=="dwarf_low_sweep" then
   -- Drop through the knees before the sweep and rise through the back leg.
   local crouch=smooth(age/(contact*.65))*(1-smooth((age-contact)/.18))

@@ -187,6 +187,14 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"elbow",v(17,0,0)*extension)
         add(pose,"leftKnee",v(9,0,0)*extension)
     end
+    if d.id=="elf.marksman.precision_volley" then
+        -- Keep the eye on the target through three small draw-hand recoveries.
+        local finalRecoil = pulse == d.pulses and recoil or 0
+        add(pose,"neck",v(6,9,-5)*(load + .35*redraw))
+        add(pose,"right",v(-8,-14,-8)*recoil + v(7,11,0)*redraw)
+        add(pose,"elbow",v(15*recoil - 13*redraw,0,0))
+        add(pose,"leftKnee",v(17*finalRecoil,0,0))
+    end
     if s==bow.vineTrap then
         -- Set the trap low and let the draw hand relax away from the cheek.
         add(pose,"neck",v(12,-9,3)*load)
@@ -329,6 +337,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"left",v(-14,22,11)*wind+v(20,-17,-18)*follow)
         add(pose,"leftElbow",v(-19,0,0)*wind+v(16,0,0)*follow)
         add(pose,"torso",v(-5,-7,4)*wind+v(9,8,-5)*follow)
+    end
+    if d.id=="mage.pyro.flame_dart" then
+        -- Gather close to the staff, then snap the free palm up and open.
+        add(pose,"left",v(14,15,-14)*wind + v(-24,9,22)*follow)
+        add(pose,"leftElbow",v(-17*wind + 19*follow,0,0))
+        add(pose,"neck",v(6,-7,3)*wind)
+        add(pose,"leftKnee",v(12*follow,0,0))
     end
     if d.id=="mage.cryo.frost_lance" then
         add(pose,"leftElbow",v(24,0,0)*follow)

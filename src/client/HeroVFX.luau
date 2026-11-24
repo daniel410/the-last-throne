@@ -1563,6 +1563,10 @@ local contactStyles={
 -- Each edge is expressed as lateral, vertical and forward offsets from the
 -- confirmed contact. A pair stays readable when party effects are compact.
 local forceContacts={
+ ["knight.steel_knight.challenging_strike"]={"ChallengingStrikeContact",Vector3.new(.17,-.54,-.65),Vector3.new(.98,.30,-.51),.21,.13,.09,Vector3.new(.60,-.06,-.91)},
+ ["dwarf.iron_axe.mountain_sweep"]={"MountainSweepContact",Vector3.new(.23,-.68,-.73),Vector3.new(1.43,-.53,-.66),.25,.14,-.05,Vector3.new(.87,-.95,-1.07),key="earth"},
+ ["elf.marksman.precision_volley"]={"PrecisionVolleyContact",Vector3.new(.32,.14,-1.42),Vector3.new(.07,.11,.25),.33,.075},
+ ["mage.pyro.flame_dart"]={"FlameDartContact",Vector3.new(.11,-.27,-.62),Vector3.new(.55,.77,-.80),.22,.12,.26,Vector3.new(.60,.03,-.77)},
  ["knight.steel_knight.vanguard_strike"]={"VanguardContactFins",Vector3.new(.63,.41,-1.53),Vector3.new(.10,.02,.27),.26,.085,0,Vector3.new(.34,.26,-.39)},
  ["dwarf_braced_throw"]={"BracedThrowContactHooks",Vector3.new(.81,.79,-.95),Vector3.new(.28,-.63,.31),.23,.085,-.20,Vector3.new(1.24,.31,-.65)},
  ["elf.marksman.piercing_line"]={"PiercingLineContactBarbs",Vector3.new(.49,.04,-1.65),Vector3.new(.08,.08,.44),.34,.066,.03,Vector3.new(.19,.04,-.29)},
@@ -1588,7 +1592,15 @@ local forceContacts={
  ["elf.magic_archer.rooting_fan"]={"RootingFanContact",Vector3.new(1.15,-.82,-.52),Vector3.new(.48,.55,-.73),.13,.12,.16,Vector3.new(.43,-.24,-.91)},
  ["mage.cryo.frost_ring"]={"FrostRingContact",Vector3.new(.21,-.74,-.63),Vector3.new(1.22,.09,-.40),.21,.13,-.06,Vector3.new(.50,-.61,-.74)},
 }
-local function forceContact(r,at,cf,size,shape)
+-- A cancelled windup scatters two short edges across the incoming face.
+-- Class silhouettes retain the difference between blade, axe, arrow and spell.
+local interruptContacts={
+ knight={"SwordWindupCut",Vector3.new(.13,.44,-.22),Vector3.new(.96,-.36,-.78),-.33,.14,.12,Vector3.new(.82,.40,-.60)},
+ dwarf={"AxeWindupBreak",Vector3.new(.13,.74,-.14),Vector3.new(1.07,-.49,-.63),-.36,.17,-.14,Vector3.new(.42,-.20,-.44),key="earth"},
+ elf={"ArrowWindupSplit",Vector3.new(.12,.10,.02),Vector3.new(.91,.27,-1.42),-.48,.10,.10,Vector3.new(.55,.12,-.77)},
+ mage={"SpellWindupDispel",Vector3.new(.12,-.46,-.15),Vector3.new(.80,.65,-.82),-.26,.14,.26,Vector3.new(1.04,-.01,-.48)},
+}
+local function forceContact(r,at,cf,size,shape,noGlow)
  local name,base,tip,travel,width,lift,bend=unpack(shape)
  local dir,right,up=cf.LookVector,cf.RightVector,cf.UpVector
  local drift=(dir*travel+up*(lift or 0))*size
@@ -1605,7 +1617,7 @@ local function forceContact(r,at,cf,size,shape)
   end
   local stroke=line(r,name,function(u)
    return path(0,u),path(1,u)
-  end,width or .085,(shape.angular or width and side==-1) and r.color or r.hot,shape.angular and .075 or .035,shape.angular)
+  end,width or .085,(shape.angular or width and side==-1) and r.color or r.hot,shape.angular and .075 or .035,noGlow or shape.angular)
   if stroke and middle then
    stroke.span=function(u)return Style.span(path,0,1,u)end
    local segments=shape.angular and 2 or 4
@@ -1739,15 +1751,17 @@ local function postureContact(r,at,cf,size,classId)
  r.model:SetAttribute("PostureBroken",true)
  r.model:SetAttribute("ContactStyle","PostureBreak")
 end
-function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMark,postureBroken)
+function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMark,postureBroken,windupInterrupted)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
  local d=row.definition
  local mark=d and consumedMark and consumedMark==d.consume and markContacts[consumedMark]
  local grant=d and appliedMark and appliedMark==d.mark and markGrants[appliedMark]
  local seal=mark or grant
- local force=forceContacts[id]
- local key=mark and mark.key or grant and markContacts[appliedMark].key or row.key
- local life=postureBroken and (compact and .20 or .26) or seal and (compact and .16 or .22) or (compact and .16 or .3)
+ local interrupt=d and windupInterrupted and not postureBroken and not seal and interruptContacts[classId]
+ local force=interrupt or forceContacts[id]
+ local key=mark and mark.key or grant and markContacts[appliedMark].key or force and force.key or row.key
+ local life=postureBroken and (compact and .20 or .26) or seal and (compact and .16 or .22)
+  or interrupt and .19 or (compact and .16 or .3)
  local reserve=postureBroken and (seal and 4 or 2) or (seal or force) and 2
  local r=make(at,at,life,key,id,compact,true,reserve)
  if not r and postureBroken and seal then
@@ -1767,6 +1781,11 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  end
  if seal then
   local drawn=markContact(r,at-dir*.37,cf,math.clamp(size,.7,1.35),seal,not mark)
+  FX.step(r.at)
+  return r.model,drawn
+ end
+ if interrupt then
+  local drawn=forceContact(r,at-dir*.25,cf,math.clamp(size,.8,1.35),interrupt,true)
   FX.step(r.at)
   return r.model,drawn
  end

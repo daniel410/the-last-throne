@@ -291,6 +291,7 @@ local function interruptEnemyOnHit(enemy, attack, current)
  enemy.humanoid.WalkSpeed = 0
  stopEnemy(enemy)
  setEnemyState(enemy, "Staggered")
+ return true
 end
 
 local function damagePosture(enemy, amount, current)
@@ -872,7 +873,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 		enemy.branchMarks[state.heroId] = {kind = appliedMark, expires = current + 8}
 		enemy.model:SetAttribute("K0BranchMark", appliedMark)
 	end
-	local postureBroken
+	local postureBroken, windupInterrupted
 	if enemy.humanoid.Health > 0 then
   if applied > 0 then
    if Pack.interrupt(enemy,current,packContext(),attack.resolvedSampleAt or current)then
@@ -880,7 +881,10 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
     enemy.pathToken+=1;enemy.pathPending=false;enemy.hitReactUntil=current+.4
     enemy.model:SetAttribute('K0EnemyHitUntil',workspace:GetServerTimeNow()+.4)
     enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,'Staggered')
-   else interruptEnemyOnHit(enemy,attack,current)end
+    windupInterrupted = true
+   else
+    windupInterrupted = interruptEnemyOnHit(enemy,attack,current)
+   end
   end
 		if applied>0 and d.advanced then
    applyProvokeDebuffs(enemy,d,current)
@@ -934,7 +938,8 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
 				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
 				classId = state.baseClassId, skillId = skillId, pulse = pulse,
-				consumedMark = consumedMark, appliedMark = appliedMark, postureBroken = postureBroken or nil})
+				consumedMark = consumedMark, appliedMark = appliedMark, postureBroken = postureBroken or nil,
+				windupInterrupted = skillId and windupInterrupted or nil})
 	end
 	updateFeedback(state, "Hit")
 end
