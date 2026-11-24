@@ -1,0 +1,101 @@
+{
+  "candidate": "0.115.78",
+  "sourceCommit": "d704110b36bd24f22e68620e831db689085e7453",
+  "comparisonBaseline": "0.115.76",
+  "fixture": "Isolated local Studio session with 566 candidate script sources matched to the fixed build. No players or saved profiles.",
+  "plainLua": {
+    "regionalAtmosphereChecks": 83,
+    "campaignBiomeChecks": 1100
+  },
+  "studio": {
+    "enemySilhouettes": {
+      "passed": true,
+      "checks": 39
+    },
+    "enemyCombatPresentation": {
+      "passed": true,
+      "checks": 15904,
+      "attackDefinitions": 584
+    },
+    "monsterWeaponHands": {
+      "passed": true
+    },
+    "npcMeshes": {
+      "passed": true,
+      "modelCount": 29,
+      "runtimeChecks": 1945,
+      "visibilityChecks": 552
+    },
+    "seleneMeshAndNameplate": {
+      "passed": true,
+      "tdSourceModel": "nun"
+    },
+    "npcRoleUnification": {
+      "passed": false,
+      "checksBeforeFailure": 26,
+      "failure": "following has one visible Selene and hides camp body",
+      "priorEvidence": "../npc-apply-20261117/build-studio-validation.json"
+    },
+    "armorInsignia": {
+      "passed": true,
+      "checks": 544,
+      "bodyOutfits": 32,
+      "rigs": [
+        "R6",
+        "R15"
+      ]
+    },
+    "dawnspire": {
+      "processed": true,
+      "decorativeInlays": 2
+    },
+    "trainingField": {
+      "processed": true,
+      "enemies": 4,
+      "coverCollidable": true,
+      "arrivalTrailColor": "#C0A971",
+      "ambientColor": "#828A7B"
+    },
+    "campaign": {
+      "processed": true,
+      "generatedEpics": 5,
+      "nonCollidingRegionalLanterns": {
+        "Deepwood": 125,
+        "Gloamwood": 59,
+        "FrozenVale": 63,
+        "EmberCaldera": 60,
+        "HauntedGraveyard": 68
+      },
+      "totalRegionalLanterns": 375
+    },
+    "pendingFullSuite": "Initial runner failed to connect. Full armor and character content preload did not return during the Studio run. Other probes were recorded separately."
+  },
+  "render": {
+    "capturedSize": [
+      640,
+      437
+    ],
+    "paired": [
+      "Dawnspire",
+      "Hero armor back",
+      "Deepwood",
+      "Gloamwood",
+      "Frozen Vale"
+    ],
+    "candidateOnly": [
+      "Hero armor front"
+    ],
+    "pending": [
+      "Ember Caldera",
+      "Haunted Graveyard"
+    ],
+    "limitations": [
+      "The baseline front armor frame had incomplete asset streaming.",
+      "The last two candidate shots timed out in CaptureService."
+    ]
+  },
+  "published": false,
+  "verifiedInPublishedRobloxPlayer": false,
+  "verifiedOnPhysicalTouchDevice": false,
+  "userAcceptance": false
+}
