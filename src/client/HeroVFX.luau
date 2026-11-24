@@ -1277,13 +1277,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    r.model:SetAttribute("PrimaryIconCue",true)
   end
  elseif stormArrow then
-  local height=r.compact and 6 or 8.6
+  local height=r.compact and 5.8 or 7.4
   local crown=last-flat*1.45+Vector3.yAxis*height
   local bolts=Geometry.lightning(crown,last,r.compact and 4 or 5)
-  local strikeColor=Color3.fromRGB(190,227,255)
+  local strikeColor=Color3.fromRGB(110,218,255)
+  local strikeTip=Color3.fromRGB(187,240,255)
   for i=1,#bolts-1 do
    local a,b=bolts[i],bolts[i+1]
-   line(r,"StormArrowBolt",function()return a,b end,.24,strikeColor,.19,true)
+   local bolt=line(r,"StormArrowBolt",function()return a,b end,.33,strikeColor,.26,true)
+   if bolt then
+    bolt.beam.Color=ColorSequence.new(strikeColor,strikeTip)
+    bolt.beam.LightEmission=.9
+   end
   end
   for side=-1,1,2 do
    if side==1 or not r.compact then
@@ -1291,7 +1296,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     local tip=floor+right*side*math.min(radius*.36,2.8)+Vector3.yAxis*.12
     line(r,"StormArrowFork",function(u)
      return from:Lerp(last,.28*u),last:Lerp(tip,.52+.48*u)
-    end,.105,r.color,.07,true)
+    end,.14,strikeColor,.08,true)
    end
   end
   if launch and (launch-first).Magnitude>.15 and not r.compact then
