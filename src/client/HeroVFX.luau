@@ -34,8 +34,15 @@ local SHIELD_VERDICT="knight.paladin.shield_verdict"
 local ARMOR_SPLITTER="dwarf.iron_axe.armor_splitter"
 local function finite(n)return type(n)=="number" and n==n and math.abs(n)<math.huge end
 local function vector(v)return typeof(v)=="Vector3" and finite(v.X)and finite(v.Y)and finite(v.Z)and math.abs(v.X)<1e7 and math.abs(v.Y)<1e7 and math.abs(v.Z)<1e7 end
+local function restoreCrosscutAxe(r)
+ local held=r.heldAxe
+ if not held then return end
+ if held.Parent and held.LocalTransparencyModifier==1 then held.LocalTransparencyModifier=r.heldAxeAlpha end
+ r.heldAxe=nil
+end
 local function erase(i)
- local r=table.remove(active,i);if r.light then lightCount-=1 end;beams-=#r.lines;chips-=#r.chips;glowCount-=#r.glows;particleCount-=r.particles;Surfaces.release(r);r.model:Destroy()
+ local r=table.remove(active,i);restoreCrosscutAxe(r)
+ if r.light then lightCount-=1 end;beams-=#r.lines;chips-=#r.chips;glowCount-=#r.glows;particleCount-=r.particles;Surfaces.release(r);r.model:Destroy()
 end
 local function atmosphere(r,name,at,flame,count,scale)
  if r.compact then return end
@@ -239,6 +246,11 @@ function FX.step(now)
     r.light.Enabled=remaining>0
    end
    Surfaces.step(r,u,fade)
+   if r.catchAxe and now>=r.at+Art.axeCatchSeconds then
+    r.catchAxe.LocalTransparencyModifier=1
+    r.catchAxe=nil
+    restoreCrosscutAxe(r)
+   end
    if r.payload then r.payload(u) end
    for _,s in ipairs(r.flares)do
     local age=now-r.at;local burstFade=math.clamp(age/.14,0,1)
@@ -1021,7 +1033,6 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   curve(r,oathblade and "OathbladeEdge" or "SunwardCross",crossPath,r.compact and 5 or 8,
    sunwardCross and (pulse==2 and .37 or .30) or width,WHITE,sunwardCross)
   if oathblade then r.model:SetAttribute("PrimaryIconCue",true) end
-  if sunwardCross then r.model:SetAttribute("SunwardCrossEdge",true) end
  elseif shieldStrike then
   curve(r,verdict and "VerdictCrest" or "ShieldBreakerWave",function(t,u)
    return shieldPath(t)+flat*(shieldTravel*u)

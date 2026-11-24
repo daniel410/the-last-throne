@@ -46,9 +46,16 @@ local ok,err=xpcall(function()
  for id,row in pairs(Catalog.byId)do if row.definition.element=='holy'then
   holyCount+=1;check(row.key=='holy','holy element wins over generic shield mapping: '..id)
   local m=cast(id)
-  local flare=m:FindFirstChild('ElementalFlare',true);local core=m:FindFirstChild('WhiteHotCore',true)
-  check(flare.ImageColor3.R>.95 and flare.ImageColor3.G>.6 and flare.ImageColor3.B<.25,'holy body is golden: '..id)
-  check(core.ImageColor3.B<.6 and core.ImageColor3.G>.8,'holy highlight stays warm gold: '..id)
+  local edge=m:FindFirstChild('SunwardCross',true) or m:FindFirstChild('DawnSpiralSweep',true)
+  if edge then
+   local colors=edge.Color.Keypoints
+   check(colors[1].Value.R>.9 and colors[1].Value.G>.6 and colors[1].Value.B<.6,'holy edge is golden: '..id)
+   check(colors[2].Value.G>.6 and colors[2].Value.B<.6,'holy edge fade stays warm gold: '..id)
+  else
+   local flare=m:FindFirstChild('ElementalFlare',true);local core=m:FindFirstChild('WhiteHotCore',true)
+   check(flare and flare.ImageColor3.R>.95 and flare.ImageColor3.G>.6 and flare.ImageColor3.B<.25,'holy body is golden: '..id)
+   check(core and core.ImageColor3.B<.6 and core.ImageColor3.G>.8,'holy highlight stays warm gold: '..id)
+  end
   local contact=assert(Hero.contact(last,'knight',id,Vector3.new(0,0,-1),1))
   if id=='knight.paladin.oathbreaker_strike'then
    local cleft=contact:FindFirstChild('OathbreakerContactCleft',true)

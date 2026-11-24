@@ -54,15 +54,15 @@ local ok, err = xpcall(function()
     local before = {}
     for _, child in workspace:GetChildren() do before[child] = true end
     Visual.play(nil, sword.id, origin, endPoint, 2, {}, nil, nil, nil, straight)
-    local sector, wave = 0, 0
+    local sector, release = 0, nil
     for _, child in workspace:GetChildren() do
         if not before[child] then
             if child.Name == "SkillSector" then sector += 1 end
-            if child.Name == "ElementalWave" then wave += 1 end
+            if child.Name == "HeroVFX" then release = child end
         end
     end
     check(sector == 12, "Sunward Cross retains the range boundary")
-    check(wave == 0, "Sunward Cross does not add a second release wave")
+    check(release and not release:FindFirstChild("ElementalFlare", true), "Sunward Cross omits the redundant release flash")
     FX.clear()
 
     local rises = {}
@@ -91,11 +91,13 @@ local ok, err = xpcall(function()
     local hand = actor("RightHand", origin + Vector3.new(.8, .4, -.25), dwarf)
     local weapon = Instance.new("Model", dwarf)
     weapon:SetAttribute("WeaponClassId", "dwarf")
-    actor("Weapon", hand.Position, weapon)
+    local held = actor("Weapon", hand.Position, weapon)
+    held.LocalTransparencyModifier = .2
     local clipped = origin + angled * 11
     local outgoing = FX.skill(dwarf, axe.id, origin, origin + straight*10, 1, {}, hand.Position)
     local throwWake = objects(outgoing, "CrosscutThrowWake")[1]
     check(throwWake and near(throwWake.Attachment0.WorldPosition, hand.Position), "Throw wake begins at equipped axe")
+    check(held.LocalTransparencyModifier == 1, "Throw displays one equipped axe")
     local returning = FX.skill(dwarf, axe.id, origin, clipped, 2, {})
     check(outgoing and not outgoing.Parent, "Recall retires the outgoing axe")
     local catchWake = objects(returning, "CrosscutReturnWake")[1]
@@ -104,7 +106,12 @@ local ok, err = xpcall(function()
     FX.step(workspace:GetServerTimeNow() + .10)
     check(catchWake and flightAxe and near(catchWake.Attachment1.WorldPosition, hand.Position)
         and near(flightAxe.Position, hand.Position), "Recall settles on the actual hand")
+    check(flightAxe and flightAxe.LocalTransparencyModifier == 1 and math.abs(held.LocalTransparencyModifier - .2) < .001,
+        "Catch transfers visibility back to the equipped axe")
     FX.clear()
+    FX.skill(dwarf, axe.id, origin, clipped, 1, {}, hand.Position)
+    FX.clear()
+    check(math.abs(held.LocalTransparencyModifier - .2) < .001, "Clearing an interrupted release restores the equipped axe")
 
     for pulse, heading in {straight, angled} do
         local wallEnd = origin + heading * (pulse == 1 and 13 or 8)
@@ -118,6 +125,12 @@ local ok, err = xpcall(function()
             and near(trace.Attachment1.WorldPosition, wallEnd), "Crossfire wake retracts to its endpoint " .. pulse)
         FX.clear()
     end
+    local cover = origin + straight*.35
+    local close = FX.skill(nil, bow.id, origin, cover, 1, {}, origin+straight*1.4)
+    local shortTrace = objects(close, "IconCrossfireTrace")[1]
+    check(shortTrace and near(shortTrace.Attachment0.WorldPosition, origin) and near(shortTrace.Attachment1.WorldPosition, cover),
+        "Point-blank cover never starts the trace beyond the confirmed endpoint")
+    FX.clear()
     local early, late = {angles = {}}, {angles = {}}
     Ranged.bow(early, bow, bow.windup + .05, .05, true, 1)
     Ranged.bow(late, bow, bow.windup + bow.interval + .05, .05, false, 2)

@@ -2,7 +2,7 @@
 
 2026-11-24 · TLT-033/057/059 · 기준 0.115.92
 
-Sunward Cross의 두 베기는 범용 성속성 물결과 겹쳤다. Crosscut Axe의 회수에는 서버 경로 전체를 가리키는 잔상과 손으로 접근하는 회전 획이 동시에 보였다. Crossfire는 몸에서 떨어진 고정 시작점에서 발사선을 그렸다. Glacial Spike는 얼음창 크기로 Frost Lance와 구별되지만 발사 소켓과 표적의 연결은 별도 범용 광선에 의존했다. [선행 직선 타격 검토](2026-11-23-hero-line-contact.md) · [선행 명중 방향 검토](2026-11-21-hero-contact-weight.md)
+Sunward Cross의 두 베기는 범용 성속성 섬광과 겹쳤다. Crosscut Axe의 회수에는 서버 경로 전체를 가리키는 잔상과 손으로 접근하는 회전 획이 동시에 보였다. Crossfire는 몸에서 떨어진 고정 시작점에서 발사선을 그렸다. Glacial Spike는 얼음창 크기로 Frost Lance와 구별되지만 발사 소켓과 표적의 연결은 별도 범용 광선에 의존했다. [선행 직선 타격 검토](2026-11-23-hero-line-contact.md) · [선행 명중 방향 검토](2026-11-21-hero-contact-weight.md)
 
 | 공식 자료에서 확인한 내용 | TLT 적용 |
 | --- | --- |

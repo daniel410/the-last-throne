@@ -443,7 +443,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then
    local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake")
     or primary:GetAttribute("ReleaseTrace"))
-   arrow(first,center,color,character,hasWake)
+   local launch=id=="elf.marksman.crossfire" and Geometry.fanLaunch(origin,first,center) or first
+   arrow(launch,center,color,character,hasWake)
   end
  elseif effect=="axe" then
   if not primary then
@@ -482,8 +483,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="fire"then
    -- HeroVFX owns the cinder circle, ember wake and searing crown. A second
    -- full ring would erase their silhouettes; the SkillSector above remains.
-  elseif (effect=="holy" or effect=="water") and not ultimateSignature
-   and not (primary and (groundShape or primary:GetAttribute("SunwardCrossEdge"))) then
+  elseif (effect=="holy" or effect=="water") and not ultimateSignature and not (groundShape and primary) then
    arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave")
   end
  else

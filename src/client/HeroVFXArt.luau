@@ -140,7 +140,15 @@ function Art.axe(r,c)
  local cloned
  if source then
   local p=S.clone(r,'ThrownAxeSource',source,to)
-  if p then orient(r,p,CFrame.new(to)*source.CFrame.Rotation);cloned=true end
+  if p then
+   orient(r,p,CFrame.new(to)*source.CFrame.Rotation)
+   cloned=true
+   if c.id=='dwarf.iron_axe.crosscut_axe' and source.LocalTransparencyModifier<1 and (c.last-c.first).Magnitude>.15 then
+    r.heldAxe,r.heldAxeAlpha=source,source.LocalTransparencyModifier
+    source.LocalTransparencyModifier=1
+    if returning then r.catchAxe=p end
+   end
+  end
  end
  if not cloned then
   -- Late/missing source: a bounded steel axe and walnut handle, never an arrowhead.
@@ -326,12 +334,12 @@ function Art.surfaces(r,c)
    -- Leave a solid core and let the splinters peel from its shoulders.
    if not r.compact then
     for side=-1,1,2 do
-     local at=c.last-c.dir*1.45+c.right*side*.61+UP*.28
+     local at=c.last-c.dir*1.45+c.right*side*.82+UP*.35
      local axis=(c.dir+c.right*side*.28+UP*.22).Unit
      local first=#r.faces+1
      gem(r,'GlacialSideCrystal',at,axis,1.85,.37,r.color,Enum.Material.Ice)
      for i=first,#r.faces do
-      r.faces[i].drift=c.right*side*1.6+UP*.85+c.dir*.35
+      r.faces[i].drift=c.right*side*2.25+UP*1.15+c.dir*.35
       r.faces[i].fadeDuration=.25
      end
     end
