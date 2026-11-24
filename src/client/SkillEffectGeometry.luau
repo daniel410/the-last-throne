@@ -22,4 +22,12 @@ function G.lightning(first,last,count)
  points[#points+1]=last
  return points
 end
+function G.fanLaunch(origin,muzzle,target)
+ local path=target-origin
+ -- Point-blank cover may sit between the actor and the visible weapon tip.
+ if muzzle and (muzzle-origin).Magnitude<=6 and (muzzle-origin):Dot(path)<path:Dot(path) then
+  return muzzle
+ end
+ return origin
+end
 return G

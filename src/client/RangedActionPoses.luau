@@ -33,6 +33,7 @@ local bow = {
     crossfire=stance(v(9,-8,8), 12, 24, 26),
     fan=stance(v(10,-20,15), 39, 22, 32),
     fanBreak=stance(v(18,-28,12), 29, 28, 38),
+    piercingVolley=stance(v(12,-33,-7), 8, 28, 26),
     rootingFan=stance(v(14,-12,18), 25, 28, 27),
     broadside=stance(v(16,-33,18), 47, 32, 39),
     retreat=stance(v(-15,20,9), 22, 29, 28),
@@ -52,6 +53,7 @@ local function bowStance(d)
     local step = d.move or d.pulseMove
     if step then return step<0 and bow.retreat or bow.advance end
     if d.id=="elf.marksman.fan_break" then return bow.fanBreak end
+    if d.id=="elf.marksman.piercing_volley" then return bow.piercingVolley end
     if d.id=="elf.magic_archer.rooting_fan" then return bow.rootingFan end
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
     if d.crosscut then return bow.crossfire end
@@ -131,6 +133,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftHip",v(-9,0,-6)*recoil)
         add(pose,"leftKnee",v(15,0,0)*recoil)
         add(pose,"right",v(-4,16,12)*recoil)
+    end
+    if s == bow.piercingVolley then
+        -- Keep the bow upright and draw back along the sight line.
+        add(pose,"neck",v(6,8,-5)*coil)
+        add(pose,"right",v(-7,-16,-10)*recoil)
+        add(pose,"elbow",v(20,0,0)*recoil)
+        add(pose,"rightKnee",v(11,0,0)*recoil)
     end
     if s == bow.rootingFan then
         -- Leave the bow on its aim line as the draw arm opens outward.
@@ -230,6 +239,7 @@ local spells = {
     dart=gesture(v(8,18,-22),v(-13,-18,10),v(-4,15,6),v(13,23,-6),12),
     shatter=gesture(v(14,19,-23),v(29,-26,10),v(-5,17,6),v(31,10,-9),16),
     orb=gesture(v(-19,22,16),v(38,-24,-20),v(12,19,-6),v(22,7,26),19),
+    steam=gesture(v(-21,24,12),v(22,-17,-30),v(14,16,-7),v(27,6,-12),22),
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
     tidalRing=gesture(v(-9,-31,20),v(-16,25,32),v(13,-28,9),v(27,10,43),23),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
@@ -258,6 +268,7 @@ local function spellGesture(d,profile)
     if d.ultimate then return d.branch=="pyro" and spells.caldera or spells.tempest end
     if d.id=="mage.cryo.ice_ward" then return spells.iceWard end
     if d.id=="mage_tidal_ring" then return spells.tidalRing end
+    if d.id=="mage.pyro.steam_burst" then return spells.steam end
     if profile=="ward" then return spells.ward end
     local cue = Presentation.get(d)
     if not cue then return spells.bolt end
@@ -321,6 +332,7 @@ function Poses.mage(pose,d,profile,age)
         or s == spells.shatter and v(-26,15,20)
         or s == spells.glacialSpike and v(23,-12,-13)
         or s == spells.iceWard and v(-22,14,-30)
+        or s == spells.steam and v(43,-15,18)
         or Vector3.zero
     add(pose,"left",s.palm*wind+s.openPalm*guide+palmRelease*follow)
     add(pose,"torso",s.chest*(wind-.48*follow))
@@ -344,6 +356,12 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(-17*wind + 19*follow,0,0))
         add(pose,"neck",v(6,-7,3)*wind)
         add(pose,"leftKnee",v(12*follow,0,0))
+    end
+    if s == spells.steam then
+        -- Press the free palm down, then lift it as the vapor rises.
+        add(pose,"leftElbow",v(-18*wind+25*follow,0,0))
+        add(pose,"right",v(11,5,-8)*follow)
+        add(pose,"torso",v(-9,3,4)*follow)
     end
     if d.id=="mage.cryo.frost_lance" then
         add(pose,"leftElbow",v(24,0,0)*follow)

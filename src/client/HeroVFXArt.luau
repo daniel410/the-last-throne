@@ -210,10 +210,12 @@ function Art.surfaces(r,c)
    if fragment then r.faces[#r.faces].drift=-radial*1.7 end
   end
  elseif kind=='SteamPuffs'then
-  for i=1,3 do
-   local at=c.floor+c.right*(i-2)*.6+UP*(.55+i*.2)
-   local puff=S.volume(r,'SteamRoundedPuff',at,Vector3.one*(.65+i*.15),Color3.fromRGB(204,226,232),.87,'ball',Enum.Material.Neon,false,.9)
-   if puff then r.faces[#r.faces].drift=c.flat*math.sin(i)*.25 end
+  if not r.compact then
+   for side=-1,1,2 do
+    local at=c.floor+c.right*side*.85+UP*.65
+    local puff=S.volume(r,'SteamRoundedPuff',at,Vector3.new(.85,.68,.80),Color3.fromRGB(204,226,232),.86,'ball',Enum.Material.SmoothPlastic,false,.8)
+    if puff then r.faces[#r.faces].drift=UP*1.25+c.right*side*.65 end
+   end
   end
  elseif kind=='EarthPillars'then
   for i=1,3 do

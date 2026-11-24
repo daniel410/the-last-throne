@@ -273,10 +273,14 @@ local function showShieldRecipients(id,recipients)
   if recipient~=own then HeroVFX.shieldGrant(recipient,id) end
  end
 end
-function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt,castDirection,shieldRecipients,stepFrom)
+function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt,castDirection,shieldRecipients,stepFrom,fanEndpoints)
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
  local bomb=Bomb.get(id)
  local profile=Presentation.get(d);if not profile then return end
+ local fanLanes=profile.fanLanes
+ local rallyingSlash=id=="knight.steel_knight.rallying_slash"
+ local steamBurst=id=="mage.pyro.steam_burst"
+ local authoredRelease=fanLanes or rallyingSlash or steamBurst
  if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse>d.pulses or pulse%1~=0 then return end
  local now=workspace:GetServerTimeNow()
  if type(firedAt)=="number" and (firedAt~=firedAt or now-firedAt>.6 or firedAt-now>.5) then return end
@@ -314,7 +318,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   direction=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
  if pulse~=0 and not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire"
-  and id~="dwarf.gunner.quickfire" and id~="elf.magic_archer.echo_arrows" then
+  and id~="dwarf.gunner.quickfire" and id~="elf.magic_archer.echo_arrows" and not authoredRelease then
   PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt,direction)
  end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
@@ -340,7 +344,10 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local floor=ground(d.form=="area" and center or origin,character)
  local targetFloor=findFloor(center,character)
  local effect=profile.effect
- local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first,direction)
+ if fanLanes and type(fanEndpoints)~="table" then
+  fanEndpoints=Geometry.sector(origin,direction,d.range,d.angle,fanLanes-1)
+ end
+ local primary=HeroVFX.skill(character,id,origin,center,pulse,points,first,direction,fanEndpoints)
  local ultimateSignature=primary and primary:GetAttribute("UltimateSignature")
  -- Compact casts keep the authored shape and radius markers. Confirmed hits
  -- already have their own target feedback in K0HitEffects.
@@ -396,12 +403,23 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local burst=targetFloor+Vector3.yAxis*Bomb.radius
    if not primary then impact(burst,color,.75) end
    Audio.play("impact",burst,"dwarf",id,character,Players.LocalPlayer~=nil and Players.LocalPlayer.Character==character)
-  elseif decorate and not ultimateSignature then
+  elseif decorate and not ultimateSignature and not (steamBurst and primary) then
    impact(center,color,2)
   end
  elseif effect=="vine" then
   -- Keep the actual cone boundary if optional roots are culled.
   if d.form=='cone'then arc(floor,direction,d.range,d.angle,color,.3,'SkillSector')end
+ elseif fanLanes then
+  if not (primary and primary:GetAttribute("FanRelease")) then
+   for lane=1,fanLanes do
+    local target=fanEndpoints[lane]
+    if typeof(target)=="Vector3" and (target-origin).Magnitude>.15 and (target-origin).Magnitude<=d.range+.01 then
+     local launch=Geometry.fanLaunch(origin,first,target)
+     if effect=="arrow" then arrow(launch,target,color,character)
+     else segment(launch,target,color,.12,.07,"ShotPellet") end
+    end
+   end
+  end
  elseif effect=="arrow" then
   if d.form=="cone" and ultimateSignature~="VolleyCrown" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
@@ -433,7 +451,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
   if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
   elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"
-   and not (primary and primary:GetAttribute("CrescentCutEdge")) then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
+   and not (primary and (primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))) then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local chargeEdge=id=="knight.steel_knight.breaker_charge" and primary and primary:GetAttribute("PrimaryIconCue")
    if not primary or (not ultimateSignature and not chargeEdge and id~="dwarf.iron_axe.iron_shoulder") then
@@ -457,7 +475,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    impact(center,color,1.2)
   end
  end
- if not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" and type(points)=="table" then
+ if not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire" and not authoredRelease and type(points)=="table" then
   for i=1,math.min(#points,4) do impact(points[i],color,.7) end
  end
 end

@@ -180,6 +180,11 @@ local function gunner(d,kind,age)
   elbow-=v(19*kick)
   right+=v(9*kick)
   torso+=v(2-5*kick,0,-5*kick)
+ elseif d.id=="dwarf.gunner.scatter_shot" then
+  -- Plant before the spread and let the firing elbow take the sharp kick.
+  brace+=12*load+11*kick
+  elbow-=v(22*kick)
+  torso+=v(8*load-6*kick,4*kick,-7*load)
  end
  local retreat=(d.move or 0)<0 and kick or 0
  local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
@@ -454,6 +459,16 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(4,-16,-6)*brace+v(13,10,6)*plant)
   offset(pose,"leftHip",v(-12*plant))
   offset(pose,"leftKnee",v(12*brace+23*plant))
+ elseif d.id=="knight.steel_knight.rallying_slash" then
+  -- Coil behind the shield, then rise through the horizontal sword clip.
+  local phase=age/contact
+  local gather=smooth(phase/.58)*(1-smooth((phase-.58)/.42))
+  local rise=pulse>0 and smooth(since/.065)*(1-smooth((since-.065)/.18)) or 0
+  offset(pose,"torso",v(13,-12,10)*gather+v(-15,14,-8)*rise)
+  offset(pose,"left",v(14,-8,-14)*gather+v(-12,14,21)*rise)
+  offset(pose,"right",v(-14,0,-8)*gather+v(21,0,7)*rise)
+  offset(pose,"rightKnee",v(18*gather))
+  offset(pose,"leftKnee",v(13*rise))
  elseif d.id=="knight_crescent_cut" then
   local phase=age/contact
   local gather=smooth(phase/.5)*(1-smooth((phase-.5)/.5))

@@ -33,6 +33,10 @@ local common = {
  ["mage.common.mana_bolt"]="cast:arcane", ["mage.common.water_ball"]="cast:water", ["mage.common.gravity"]="area:gravity",
 }
 for id, text in pairs(common) do add(id, text) end
+-- These cones render bounded projectile paths at each confirmed pulse.
+P.byId["dwarf.gunner.scatter_shot"].fanLanes = 5
+P.byId["elf.marksman.fan_break"].fanLanes = 5
+P.byId["elf.marksman.piercing_volley"].fanLanes = 5
 function P.get(d) return P.byId[d.id] end
 -- A volley fills the actual sector. A melee sector never becomes a full disc.
 function P.sector(d)

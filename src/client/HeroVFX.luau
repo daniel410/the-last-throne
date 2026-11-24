@@ -114,7 +114,7 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -740,17 +740,59 @@ local function signature(r,key,c)
   debris(r,floor,5,'IceShard',1.5)
  end
 end
+local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
+ local lanes=profile.fanLanes
+ if type(endpoints)~="table" then endpoints=Geometry.sector(first,flat,d.range,d.angle,lanes-1) end
+ local pellet=r.key=="gun"
+ local narrow=d.id=="elf.marksman.piercing_volley"
+ local name=pellet and "ScatterPelletTrace" or narrow and "PiercingVolleyShaft" or "FanBreakShaft"
+ for i=1,lanes do
+  local target=endpoints[i]
+  if vector(target) and (target-first).Magnitude>.15 and (target-first).Magnitude<=d.range+.01 then
+   local start=Geometry.fanLaunch(first,muzzle,target)
+   local delta=target-start
+   if delta.Magnitude>.1 then
+    local tip=target
+    local width=pellet and .115 or narrow and .065 or .09
+    line(r,name,function(u)
+     return start+delta*(1-(1-u)^(pellet and 4 or 2.4)),tip
+    end,width,pellet and r.hot or r.color,pellet and .035 or width*.8,true)
+    if pellet and not r.compact then
+     Surfaces.bar(r,"ShotPelletBody",tip-delta.Unit*math.min(.5,delta.Magnitude*.5),tip,
+      .1,Color3.fromRGB(200,207,214),.15,Enum.Material.Metal)
+    elseif not pellet then
+     local axis=delta.Unit
+     local cross=axis:Cross(Vector3.yAxis)
+     local lateral=cross.Magnitude>.001 and cross.Unit or Vector3.xAxis
+     local length=math.min(delta.Magnitude*.5,narrow and 1.25 or .74)
+     for side=-1,1,2 do
+      line(r,"VolleyArrowhead",function(u)
+       local tail=tip-axis*(length*(1-.35*u))+lateral*(side*length*(narrow and .15 or .32))
+       return tail,tip
+      end,narrow and .085 or .10,r.hot,.038,true)
+     end
+    end
+   end
+  end
+ end
+ r.model:SetAttribute("FanRelease",true)
+ r.model:SetAttribute("PrimaryIconCue",true)
+end
 -- Every authored skill resolves through the same stable server skill catalog.
-function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
+function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanEndpoints)
  local row=Catalog.byId[id];local profile=Profiles.get(id)
  if not row or not profile or not vector(first)or not vector(last)or not finite(pulse)or pulse<1 then return end
  local d=row.definition
  local bomb=Bomb.get(id)
  -- The dedicated Wind Lance renderer owns its release; no empty duplicate model.
  if profile.shape=="wind"then return end
+ local fanProfile=Presentation.get(d)
+ local fanLanes=fanProfile.fanLanes
+ local rallyingSlash=id=="knight.steel_knight.rallying_slash"
  local final=FinalBeat.isFinal(d,pulse)
  local life=profile.signature and not final and math.min(profile.life,d.interval) or profile.life
- local r=make(first,last,life,row.key,id,FX.isOtherHero(character),false,2);if not r then return end
+ local minBeams=fanLanes and fanLanes*(row.key=="gun" and 1 or 3) or 2
+ local r=make(first,last,life,row.key,id,FX.isOtherHero(character),false,minBeams);if not r then return end
  r.color,r.hot=Palette.get(row.key,row.classId)
  r.model:SetAttribute("Silhouette",profile.shape);r.model:SetAttribute("Pulse",pulse)
  local dir=forward(first,last)
@@ -885,6 +927,14 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
  elseif counterSlash then
   curve(r,"IconCounterSlashEdge",function(t)return counterPath(t)end,r.compact and 6 or 10,width,WHITE)
   r.model:SetAttribute("PrimaryIconCue",true)
+ elseif rallyingSlash then
+  curve(r,"RallyingSlashEdge",function(t,u)
+   local bearing=math.rad(angle)*(.5-t)
+   local reach=math.min(radius,7)*(.60+.28*math.sin(t*math.pi)+.10*u)
+   return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*(-1.10+2.42*t)
+  end,r.compact and 6 or 9,.24,r.hot)
+  r.model:SetAttribute("RallyingSlashEdge",true)
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif id=="knight_crescent_cut" then
   local segments=r.compact and 6 or 10
   local before=#r.lines
@@ -1002,6 +1052,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
     r.model:SetAttribute("ReleaseTrace",true)
    end
   end
+ elseif fanLanes then
+  drawFan(r,d,fanProfile,first,flat,launch,fanEndpoints)
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"then
   local targets={last}
   if shape=="fan"then
@@ -1167,12 +1219,23 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
    return at+Vector3.new(math.cos(a)*rad,.3+t*1.6,math.sin(a)*rad)
   end,10,width)end
  elseif shape=="steam"then
-  local at=floorAt(last,character)
-  for lane=1,3 do
-   local a=lane*math.pi*2/3;local pos=at+Vector3.new(math.cos(a),0,math.sin(a))*math.min(radius*.3,1.6)
-   atmosphere(r,'SteamVapor',pos,false,4,1.2)
-   curve(r,'SteamWisp',function(t,u)return pos+Vector3.new(math.sin(t*4+lane)*.25,t*1.8+u*.3,math.cos(t*4+lane)*.25)end,4,.035,Color3.fromRGB(195,219,229))
+  local at=floor
+  local span=math.min(radius*.56,3.2)
+  for side=-1,1,2 do
+   curve(r,"SteamFlashLip",function(t,u)
+    local angle=math.pi*((t-.5)*.86+(side>0 and 1 or 0))
+    local radial=flat*math.cos(angle)+right*math.sin(angle)
+    local reach=span*(.22+.78*(1-(1-u)^4))
+    return at+radial*reach+Vector3.yAxis*(.16+math.sin(t*math.pi)*.22)
+   end,3,.13,r.hot)
+   local pos=at+right*side*.75
+   atmosphere(r,"SteamVapor",pos,false,3,1.1)
+   curve(r,"SteamWisp",function(t,u)
+    return pos+right*side*(t*.77+u*.37)+flat*math.sin(t*math.pi)*.37
+     +Vector3.yAxis*(.2+t*1.65+u*.92)
+   end,3,.095,Color3.fromRGB(195,219,229))
   end
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="water"then
   local at=area and floorAt(last,character)or last
   if Art.kind(id)=='WaterBall'then
@@ -1227,6 +1290,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
   Surfaces.ribbon(r,"CounterSlashSteel",counterPath,Vector3.yAxis,.62,.46,r.color:Lerp(r.hot,.18),r.compact and 5 or 9,Enum.Material.SmoothPlastic)
  elseif crossfire then
   -- The narrow beam and paired fletching carry this shot across the arena.
+ elseif rallyingSlash or fanLanes then
+  -- The open cutting edge and narrow projectile traces carry the release.
  elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="low"or shape=="counter"then
   local sweep=angle
   local start=#r.faces
@@ -1463,9 +1528,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection)
  Art.accents(r,artContext)
  Polish.finish(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
- if not bomb and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
+ if not bomb and shape~="steam" and not rallyingSlash and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
-  local scale=quickfire and .85 or echoArrows and .72 or id=="knight.paladin.oathbound_assault" and .55
+  local scale=quickfire and .85 or echoArrows and .72 or (fanLanes and row.key=="gun") and 1.25
+   or id=="knight.paladin.oathbound_assault" and .55
    or d.ultimate and (final and 4.5 or 2.6) or area and 3.2 or 2.2
   flourish(r,at,scale,row.key,d.ultimate and final)
  end
@@ -1563,6 +1629,10 @@ local contactStyles={
 -- Each edge is expressed as lateral, vertical and forward offsets from the
 -- confirmed contact. A pair stays readable when party effects are compact.
 local forceContacts={
+ ["knight.steel_knight.rallying_slash"]={"RallyingSlashContact",Vector3.new(.14,-.38,-.52),Vector3.new(1.15,.64,-.64),.28,.16,.13,Vector3.new(.68,-.12,-.88)},
+ ["dwarf.gunner.scatter_shot"]={"ScatterPelletContact",Vector3.new(.12,.02,-.63),Vector3.new(.76,.43,-.46),.17,.10,.04},
+ ["elf.marksman.piercing_volley"]={"PiercingVolleyContact",Vector3.new(.26,.12,-1.15),Vector3.new(.11,.02,.48),.42,.082},
+ ["mage.pyro.steam_burst"]={"SteamContactJets",Vector3.new(.11,-.50,-.72),Vector3.new(.71,.91,-.62),.09,.16,.24,Vector3.new(.63,.12,-.91)},
  ["knight.steel_knight.challenging_strike"]={"ChallengingStrikeContact",Vector3.new(.17,-.54,-.65),Vector3.new(.98,.30,-.51),.21,.13,.09,Vector3.new(.60,-.06,-.91)},
  ["dwarf.iron_axe.mountain_sweep"]={"MountainSweepContact",Vector3.new(.23,-.68,-.73),Vector3.new(1.43,-.53,-.66),.25,.14,-.05,Vector3.new(.87,-.95,-1.07),key="earth"},
  ["elf.marksman.precision_volley"]={"PrecisionVolleyContact",Vector3.new(.32,.14,-1.42),Vector3.new(.07,.11,.25),.33,.075},

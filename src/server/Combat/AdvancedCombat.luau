@@ -1,5 +1,6 @@
 -- Bounded geometry for branch skills. The server owns targets, centers, pulses,
 -- movement and per-pulse hit sets; client visuals do not resolve damage.
+local Presentation=require(game.ReplicatedStorage.Shared.SkillPresentation)
 local AdvancedCombat={}
 local function flat(v) return Vector3.new(v.X,0,v.Z) end
 local function alive(e) return e.model.Parent~=nil and e.humanoid.Health>0 and e.root.Parent~=nil end
@@ -14,13 +15,33 @@ local function nearer(center,a,b)
  local da,db=(a.root.Position-center).Magnitude,(b.root.Position-center).Magnitude
  return da<db or da==db and a.id<b.id
 end
-local function castRay(origin,delta,character)
+local function worldRayParams(character)
  local world=workspace:FindFirstChild("DeepwoodK0")
  local params=RaycastParams.new()
  params.FilterType=Enum.RaycastFilterType.Exclude
  params.FilterDescendantsInstances={character,world and world:FindFirstChild("Enemies") or character}
  params.RespectCanCollide=true
- return workspace:Raycast(origin,delta,params)
+ return params
+end
+local function castRay(origin,delta,character)
+ return workspace:Raycast(origin,delta,worldRayParams(character))
+end
+local function fanEndpoints(d,origin,direction,character,visualRayParams)
+ local profile=Presentation.get(d)
+ if not profile or not profile.fanLanes then return nil end
+ local forward=flat(direction)
+ forward=forward.Magnitude>.001 and forward.Unit or Vector3.new(0,0,-1)
+ local right=Vector3.new(-forward.Z,0,forward.X)
+ local params=visualRayParams and visualRayParams(character) or worldRayParams(character)
+ local endpoints={}
+ for lane=1,profile.fanLanes do
+  local angle=math.rad(d.angle*((lane-1)/(profile.fanLanes-1)-.5))
+  local axis=forward*math.cos(angle)+right*math.sin(angle)
+  local wall=workspace:Raycast(origin,axis*d.range,params)
+  local reach=wall and math.max(0,wall.Distance-.2) or d.range
+  endpoints[lane]=origin+axis*reach
+ end
+ return endpoints
 end
 function AdvancedCombat.snapshot(state,skill,direction,target,enemies,clear)
  local origin=state.root.Position
@@ -122,6 +143,7 @@ function AdvancedCombat.resolve(state,attack,current,services,pulse)
   local wall=castRay(origin,delta,state.character)
   center=wall and origin+direction*math.max(0,wall.Distance-.2) or origin+delta
  end
- services.visual(state,d,origin,center,pulse,points,direction)
+ services.visual(state,d,origin,center,pulse,points,direction,
+  fanEndpoints(d,origin,direction,state.character,services.visualRayParams))
 end
 return AdvancedCombat
