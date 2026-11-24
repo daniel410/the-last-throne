@@ -16,7 +16,8 @@ setfenv(fn,setmetatable({script=original,qaNotices=notices},{__index=getfenv()})
 local character=Instance.new('Model');character.Parent=workspace
 local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=character;character.PrimaryPart=root
 local human=Instance.new('Humanoid');human.RequiresNeck=false;human.Parent=character
-local player={Parent=game.Players,Character=character}
+local player={Parent=game.Players,Character=character,
+ GetAttribute=function(_,key)return key=='K0SessionPhase'and 'Tutorial'or nil end}
 local checks=0;local function check(v,m)checks+=1;assert(v,m)end
 for index,edge in ipairs(C.overlandLinks)do for _,failLoad in ipairs({false,true})do
  local chapter=C.byId[edge[1]];local nextChapter=C.byId[edge[2]]
@@ -24,7 +25,8 @@ for index,edge in ipairs(C.overlandLinks)do for _,failLoad in ipairs({false,true
  local after={main=index*7,flags={},clears={[chapter.id]=true},expeditionMission=nextChapter.id}
  local journal=before;local saves,prepares,moves=0,0,0;local calls=0
  root.Position=Vector3.new(table.unpack(C.zones[edge[1]].center))+Vector3.new(0,4,0);local at=root.CFrame
- service.qa({world={spawns={[nextChapter.zone]={CFrame=CFrame.new(table.unpack(C.zones[nextChapter.zone].center))}}},
+ local world={readyEpics={},nodes={},spawns={[nextChapter.zone]={CFrame=CFrame.new(table.unpack(C.zones[nextChapter.zone].center))}}}
+ service.qa({world=world,
   inventory={storyState=function()return journal end,growth=function()return {level=80}end,
    expedition=function()return {runId='qa-run',firstClear=true}end,
    storyEvent=function()
@@ -32,11 +34,12 @@ for index,edge in ipairs(C.overlandLinks)do for _,failLoad in ipairs({false,true
     if calls==1 then return 'SaveUnknown'end
     journal=after;saves+=1
    end},
-  heroSession={getCombatContext=function()return {heroId='qa'}end},
+  heroSession={getActiveHero=function()return {heroId='qa'}end,getCombatContext=function()return {heroId='qa'}end},
   combat={relocateForStoryGate=function()moves+=1 end},
   prepareStory=function(id)
    check(journal==after,'preparation waits for confirmed save');check(id==nextChapter.id,'next epic prepared')
    prepares+=1;if failLoad then error('injected region load failure')end
+   world.readyEpics[nextChapter.epic]=true
   end},player,chapter,chapter.goals[#chapter.goals])
  task.wait(.1);check(prepares==0 and moves==0 and journal==before,'unknown save response keeps hero in current region')
  local deadline=os.clock()+4;repeat task.wait(.1)until prepares==1 or os.clock()>deadline
@@ -54,7 +57,6 @@ for index,edge in ipairs(C.overlandLinks)do
   heroSession={getActiveHero=function()return {heroId='qa'}end},
   inventory={storyState=function()return journal end,expedition=function()return {missionId=edge[1]}end},
   combat={relocateForStoryGate=function(_,cf)corrections+=1;character:PivotTo(cf)end},notice=function()end})
- player.GetAttribute=function(_,key)return key=='K0SessionPhase'and 'Tutorial'or nil end
  root.CFrame=spawns[edge[1]].CFrame+Vector3.new(0,4,0);gate.update(player)
  root.CFrame=spawns[edge[2]].CFrame+Vector3.new(0,4,0);gate.update(player)
  check(corrections==1,'server rejects unfinished epic crossing')
@@ -65,6 +67,7 @@ end
 character:Destroy()
 print('OVERLAND_SAVE_QUEUE '..checks..' checks passed')
 -- Project only the current epic and the immediate outgoing boundary blockade.
+require(game.ServerScriptService.Server.World.StoryGateTemplates).prepare()
 local gates=require(game.StarterPlayer.StarterPlayerScripts.Client.DeepwoodGates).create()
 for epic=1,5 do
  local s={main=(epic-1)*7,flags={},clears={},expeditionMission=C.mainChapters[(epic-1)*7+1].id}

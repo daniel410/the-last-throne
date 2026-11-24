@@ -32,7 +32,7 @@
 - EC-01 화물 시설: 0.111.1에서 기존 승강장 기둥을 권양 드럼·트러스로 연결했다. [고정 빌드·28파트/접지·두 동선16,922표본·전후 비교/미게시·남은 실제 카메라 수용](../evidence/ec01-freight-headframe-20261116/README.md). G5 미완료.
 - 영웅 스킬 아이콘: 승인 Skill Tree 컨셉의 128종을 트리·상세·편성·HUD·궁극기에 연결했다. 0.115.9 후보에서 이미지 다운로드 지연이나 실패 중에도 스킬 약칭을 표시한다. 게시 클라이언트·실기기·미술 수용과 전체 G4는 미완료다. [초기 제작 및 등록](../evidence/hero-skill-icons-20261115/README.md) · [빈 아이콘 재현 및 수정 검증](../evidence/skill-icon-loading-20261120/README.md).
 
-- 네 에픽 도보 경계는 0.115.1에서 노출 뿌리·압설·해빙 현무암 노두·관리로 절단석을 반영했다. [고정 빌드·Studio 왕복·전후 화면](../evidence/epic-boundary-relief-20261121/README.md) · [기존 FV→EC 해빙 지형 검증](../evidence/fv-ec-thaw-20261116/README.md). 실제 입력·실기기·미술 수용과 G5는 미완료다.
+- 네 에픽 도보 경계의 0.115.84 후보에 다섯 지역의 도로 관리 시설을 배치했다. [고정 빌드·Studio 왕복·전후 화면](../evidence/epic-overland-fixtures-20261124/README.md) · [기존 길어깨 지형 검증](../evidence/epic-boundary-relief-20261121/README.md). 미게시이며 실제 입력·실기기·미술 수용과 G5는 미완료다.
 - 스토리 연결부 끼임: 0.110.29에서 사선 경계 전체 폭의 바닥·서버 높이를 일치시키고 옛 경사로 충돌/모서리 지형 돌출과 묻힌 복귀 위치 저장을 수정했다. [43연결부·43,173바닥 표본·실제 R15 28보행·R6/R15 복구8검사·두 경로 회귀/미게시·남은 클라이언트 수용](../evidence/story-passage-stuck-20261115/README.md).
 
 - 로비 출발 안내: 솔로/멀티 시작 즉시 TD 공통 프레임으로 `ADVENTURE STARTING...`를 표시하고 저장·이동 준비 동안 유지한다. [출발 경계/격리 UI 검사·실제 Teleport 수용 후속](../evidence/adventure-starting-20261115/README.md).

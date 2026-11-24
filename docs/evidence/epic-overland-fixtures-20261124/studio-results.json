@@ -1,0 +1,253 @@
+{
+  "baseline": {
+    "geometry": [
+      {
+        "models": [],
+        "floor": "-894.849976, 52, -3723.3999, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "DW-07_GW-01",
+        "size": "96, 4, 280",
+        "shoulderParts": 16
+      },
+      {
+        "models": [],
+        "floor": "-894.849976, 76, -7463.3999, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "GW-07_FV-01",
+        "size": "96, 4, 280",
+        "shoulderParts": 14
+      },
+      {
+        "models": [],
+        "floor": "-952.849976, 122, -11190.9004, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "FV-07_EC-01",
+        "size": "96, 4, 477",
+        "shoulderParts": 24
+      },
+      {
+        "models": [],
+        "floor": "-982.849976, 170, -14929.4004, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "EC-07_HG-01",
+        "size": "96, 4, 280",
+        "shoulderParts": 18
+      }
+    ],
+    "walk": [
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "DW-07_GW-01_back",
+        "distance": 7.28173828125,
+        "position": "-894.8499755859375, 57.27167510986328, -3173.28173828125",
+        "elapsed": 28.66900179165532
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "DW-07_GW-01_forward",
+        "distance": 5.84814453125,
+        "position": "-894.8499755859375, 57.192413330078125, -4078.5517578125",
+        "elapsed": 28.665732458335697
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "EC-07_HG-01_back",
+        "distance": 4.671875,
+        "position": "-982.8499755859375, 175.1923828125, -14604.072265625",
+        "elapsed": 22.13469737500418
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "EC-07_HG-01_forward",
+        "distance": 4.431640625,
+        "position": "-982.8499755859375, 175.1923828125, -15304.96875",
+        "elapsed": 22.13250766665442
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "FV-07_EC-01_back",
+        "distance": 5.3369140625,
+        "position": "-952.8499755859375, 127.19239807128906, -10775.4873046875",
+        "elapsed": 27.333315583324293
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "FV-07_EC-01_forward",
+        "distance": 4.6611328125,
+        "position": "-952.8499755859375, 127.19239807128906, -11640.7392578125",
+        "elapsed": 27.33099554166256
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "GW-07_FV-01_back",
+        "distance": 4.12548828125,
+        "position": "-894.8499755859375, 81.19239807128906, -7142.525390625",
+        "elapsed": 21.336118916675332
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "GW-07_FV-01_forward",
+        "distance": 7.12939453125,
+        "position": "-894.8499755859375, 81.19241333007812, -7814.5205078125",
+        "elapsed": 21.333267958340002
+      }
+    ]
+  },
+  "candidate": {
+    "geometry": [
+      {
+        "models": [
+          {
+            "name": "ConvoyVergeDrain",
+            "inner": 27.20001220703125,
+            "height": 2.0699996948242188,
+            "buried": 0.3300018310546875,
+            "parts": 10
+          }
+        ],
+        "floor": "-894.849976, 52, -3723.3999, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "DW-07_GW-01",
+        "size": "96, 4, 280",
+        "shoulderParts": 16
+      },
+      {
+        "models": [
+          {
+            "name": "WindgapSurveyRest",
+            "inner": 26,
+            "height": 7.601966857910156,
+            "buried": 0.30500030517578125,
+            "parts": 8
+          }
+        ],
+        "floor": "-894.849976, 76, -7463.3999, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "GW-07_FV-01",
+        "size": "96, 4, 280",
+        "shoulderParts": 14
+      },
+      {
+        "models": [
+          {
+            "name": "ThawCulvertHeadwall",
+            "inner": 28.489990234375,
+            "height": 4.18499755859375,
+            "buried": 0.19499969482421875,
+            "parts": 11
+          }
+        ],
+        "floor": "-952.849976, 122, -11190.9004, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "FV-07_EC-01",
+        "size": "96, 4, 477",
+        "shoulderParts": 24
+      },
+      {
+        "models": [
+          {
+            "name": "FreightRoadGauge",
+            "inner": 29.0999755859375,
+            "height": 7.8000030517578125,
+            "buried": 0.1100006103515625,
+            "parts": 13
+          },
+          {
+            "name": "KeeperRoadWaypoint",
+            "inner": 28.39996337890625,
+            "height": 4.899993896484375,
+            "buried": 0.2649993896484375,
+            "parts": 7
+          }
+        ],
+        "floor": "-982.849976, 170, -14929.4004, 1, 0, -0, -0, 1, -0, 0, 0, 1",
+        "id": "EC-07_HG-01",
+        "size": "96, 4, 280",
+        "shoulderParts": 18
+      }
+    ],
+    "walk": [
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "DW-07_GW-01_back",
+        "distance": 7.208984375,
+        "position": "-894.8499755859375, 57.2718391418457, -3173.208984375",
+        "elapsed": 28.664149541669758
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "DW-07_GW-01_forward",
+        "distance": 6.002197265625,
+        "position": "-894.8499755859375, 57.192413330078125, -4078.397705078125",
+        "elapsed": 28.66203620833403
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "EC-07_HG-01_back",
+        "distance": 4.240234375,
+        "position": "-982.8499755859375, 175.1923828125, -14603.640625",
+        "elapsed": 22.13186266667617
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "EC-07_HG-01_forward",
+        "distance": 7.314453125,
+        "position": "-982.8499755859375, 175.1923828125, -15302.0859375",
+        "elapsed": 22.129185708326986
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "FV-07_EC-01_back",
+        "distance": 5.4267578125,
+        "position": "-952.8499755859375, 127.19239807128906, -10775.5771484375",
+        "elapsed": 27.33083070832072
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "FV-07_EC-01_forward",
+        "distance": 4.9921875,
+        "position": "-952.8499755859375, 127.19239807128906, -11640.408203125",
+        "elapsed": 27.328539416659623
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "GW-07_FV-01_back",
+        "distance": 4.265625,
+        "position": "-894.8499755859375, 81.19239807128906, -7142.66552734375",
+        "elapsed": 21.331623791673337
+      },
+      {
+        "jumps": 0,
+        "arrived": true,
+        "corrections": 0,
+        "id": "GW-07_FV-01_forward",
+        "distance": 7.2490234375,
+        "position": "-894.8499755859375, 81.19241333007812, -7814.40087890625",
+        "elapsed": 21.329184958332917
+      }
+    ]
+  }
+}
