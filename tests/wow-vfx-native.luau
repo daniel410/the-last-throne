@@ -11,7 +11,8 @@ local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Position=Vecto
 local ok,err=xpcall(function()
  for _,id in ipairs({'knight.paladin.dawn_burst','knight.paladin.dawn_spiral','knight.paladin.oath_of_dawn','mage_arcane_ward'})do
   Hero.clear();local now=workspace:GetServerTimeNow()
-  local m=assert(Hero.skill(char,id,root.Position,root.Position,1,{}))
+  local pulse=id=='knight.paladin.oath_of_dawn' and 2 or 1
+  local m=assert(Hero.skill(char,id,root.Position,root.Position,pulse,{}))
   local holy=id~='mage_arcane_ward';local rays,facets=0,0;local tracked={}
   local spiral=id=='knight.paladin.dawn_spiral'
   check(not m:FindFirstChild('ElementalSurface',true),'holy no longer shares a water-like disc')

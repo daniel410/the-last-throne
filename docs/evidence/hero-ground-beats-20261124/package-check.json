@@ -1,0 +1,34 @@
+{
+  "0.115.89": {
+    "sourceCommit": "dcb7a01cffa1c516d1bcd59bcf007eb9ca9594c1",
+    "sha256": "712fce55ef0e0bddf564926b79f31d285d5d13bcdd2a7f80ad9bf4be57a96bd3",
+    "modules": {
+      "AdvancedSkillMotion": "cb6be6c71e2882f52186f9eee5431605ca7687849f100461a6750f6fc87c8561",
+      "AdvancedSkillVisual": "a5c463d31ca9661e5fa5e77c4aefc387a0438705805d0e3a179396ec89fe75d5",
+      "BombVisual": "56876dae15e3360738857f6dad6242ca095a85f762d582a11063843c6e9c7c00",
+      "HeroVFX": "62dfb6feeb1ba02e080fc89cd7d5d9b2c0e41abdd8f17eb1e6673c60890c1555",
+      "HeroVFXArt": "bd189495f799ccb3be18c21318457607f1c82766318b09dfa9751efc20c4cd07",
+      "HeroVFXPolish": "fc019384e0aa5d5552008cbe9c4724ae184cffeb9d76202ca7a1fda60c120ecd",
+      "K0BowMotion": "e44f916b27714874141b9d537fe5f39ffb88b53185dbc5fbaa13fcd4aa810dcd",
+      "RangedActionPoses": "8a096a91a0faffd1cb6d02ee88f8e718ea5db1de413cde663c5393e63e27ae98",
+      "SkillEffectGeometry": "1574913e7c2f01fc7ff019e8c1de5fe753fbb742fff8df607171d3a7127f0554",
+      "SkillVFXProfiles": "111fa7116625d0028c0e767105becd187237e13794c1fa23f23e338c1ea531c5"
+    }
+  },
+  "0.115.91": {
+    "sourceCommit": "14c439b507e3bff023373e71ca58ea3d4d76c599",
+    "sha256": "9d2596d1aa525afc1c2f83751b7b56df8e5e0519190351c7a698cdbd55fad0ab",
+    "modules": {
+      "AdvancedSkillMotion": "cf9de85ccf9d22d1917621ea78f772d57eec10f7034261f341a098915009111d",
+      "AdvancedSkillVisual": "6addbdbb165a693183dfd6d53bfc0f2978b00eda798ef2f365e55bde18857f5e",
+      "BombVisual": "94febb485fa4cfb341725127cac7f4a77d9145d92f1b61c0efe23ad0682181cb",
+      "HeroVFX": "3c3da4cfa18d89f046cbcfa0743bc62cb899a3aae67100df0dbb736b1bbdee9f",
+      "HeroVFXArt": "48a797899c860b47c916cc8da840649567d58110fa5b6d067bc5eb9c92cc9081",
+      "HeroVFXPolish": "457b6ce71392fa499e8c9ffda1fe2695c0c9578865b8fd4e4bbb177b7e43f58f",
+      "K0BowMotion": "0f644699f3d4d2cc8e0081bb395a1390f0cad9103177fd937a993ae27487b897",
+      "RangedActionPoses": "398c846ac090d323c674d66eca97e8dccbe2aeb089f402936e92ab3c4918e85a",
+      "SkillEffectGeometry": "2f3e0d575795d066e54119e2eb6f0b1537c8551ec1c50566f69d203ce5490736",
+      "SkillVFXProfiles": "4ca0140eaf2288cc81fcb7a935c17576d7a3af5e88afc353ce24b3106d676c53"
+    }
+  }
+}

@@ -82,10 +82,12 @@ local frost = Catalog.byId["mage.cryo.frost_ring"].definition
 local floorY = floor.Position.Y+floor.Size.Y*.5
 
 local ok, err = xpcall(function()
-    check(math.abs(Geometry.floor(target,actor).Y-floorY-.12)<.02, "Actor bodies do not cover the ground")
+    check(Geometry.floor and math.abs(Geometry.floor(target,actor).Y-floorY-.12)<.02,
+        "Actor bodies do not cover the ground")
     local platform = Instance.new("Part", stage)
     platform.Position,platform.Size,platform.Anchored = target-Vector3.yAxis*1.8,Vector3.new(3,.4,3),true
-    check(math.abs(Geometry.floor(target,actor).Y-platform.Position.Y-.32)<.02, "Solid scenery is a valid effect surface")
+    check(Geometry.floor and math.abs(Geometry.floor(target,actor).Y-platform.Position.Y-.32)<.02,
+        "Solid scenery is a valid effect surface")
     platform:Destroy()
     for _, compact in {false,true} do
         FX.isOtherHero = function() return compact end
