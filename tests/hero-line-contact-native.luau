@@ -35,19 +35,25 @@ for _, case in cases do
             check(distinct and rendered:GetAttribute("ContactStyle") == style, id .. " selects its contact silhouette")
             local _, beams, chips, glows, particles, faces = FX.count()
             check(beams == 2 and chips + glows + particles + faces == 0, id .. " spends two beams")
-            local count = 0
+            local count, lower, upper = 0, math.huge, -math.huge
             for _, beam in rendered:GetDescendants() do
                 if beam:IsA("Beam") and beam.Name == style then
                     count += 1
                     local delta = beam.Attachment1.WorldPosition - beam.Attachment0.WorldPosition
                     check(delta:Dot(heading) * sign > .65, id .. " follows the confirmed attack axis")
-                    check(rise == 0 and math.abs(delta.Y) < .13 or rise > 0 and delta.Y > rise
-                        or rise < 0 and delta.Y < rise, id .. " has the intended vertical shape")
+                    lower, upper = math.min(lower, delta.Y), math.max(upper, delta.Y)
+                    if class ~= "mage" then
+                        check(rise == 0 and math.abs(delta.Y) < .13 or rise < 0 and delta.Y < rise,
+                            id .. " has the intended vertical shape")
+                    end
                     check(beam.Segments == (class == "mage" and 2 or 4) and math.abs(beam.CurveSize0) > .03,
                         id .. " preserves its contact profile")
                 end
             end
             check(count == 2, id .. " keeps both edges")
+            if class == "mage" and count == 2 then
+                check(lower < .45 and upper > rise, id .. " separates the high and low branches")
+            end
             FX.clear()
         end
     end
