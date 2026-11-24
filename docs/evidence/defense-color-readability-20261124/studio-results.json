@@ -1,0 +1,95 @@
+{
+  "mode": "Isolated Roblox Studio place with native GUI instances and an actual Deepwood scene",
+  "baseline": "0.115.75",
+  "candidate": "0.115.76",
+  "passedSuites": 11,
+  "passedChecks": 287737,
+  "suites": {
+    "k0-resource-ui-native": {
+      "checks": 28420,
+      "pass": false,
+      "baselineChecksBeforeFailure": 28414,
+      "baselinePass": false,
+      "firstFailedCondition": "Quick-key overlay priority for Skill1",
+      "newColorAssertionsPassed": 5
+    },
+    "mobile-menu-stats-native": {
+      "pass": true,
+      "checks": 920
+    },
+    "hero-contact-materials-native": {
+      "checks": 51,
+      "pass": true
+    },
+    "hero-vfx-flourish-native": {
+      "checks": 84,
+      "pass": true
+    },
+    "hero-vfx-priority-native": {
+      "checks": 28,
+      "pass": true
+    },
+    "rpg-vfx-gap-native": {
+      "checks": 16,
+      "pass": false,
+      "baselineChecksBeforeFailure": 16,
+      "baselinePass": false,
+      "firstFailedCondition": "CalderaCentralPlume fixture lookup"
+    },
+    "projectile-vfx-timing-native": {
+      "checks": 312,
+      "pass": true
+    },
+    "element-vfx-native": {
+      "checks": 84,
+      "pass": true
+    },
+    "hero-skill-impact-native": {
+      "checks": 761,
+      "skills": 128,
+      "pass": true
+    },
+    "hero-skills-native": {
+      "checks": 244520,
+      "skills": 256,
+      "pass": true
+    },
+    "enemy-combat-presentation-native": {
+      "checks": 15904,
+      "attacks": 584,
+      "pass": true
+    },
+    "gloamwood-enemy-outline-native": {
+      "checks": 35,
+      "pass": true
+    },
+    "story-terrain-fixes-native": {
+      "checks": 25038,
+      "paths": 6457,
+      "zones": 44,
+      "pass": true
+    }
+  },
+  "screenSample": {
+    "sizePixels": [
+      640,
+      437
+    ],
+    "patchPixels": [
+      410,
+      155,
+      530,
+      181
+    ],
+    "medianRgbBefore": [
+      56,
+      89,
+      30
+    ],
+    "medianRgbAfter": [
+      58,
+      124,
+      31
+    ]
+  }
+}
