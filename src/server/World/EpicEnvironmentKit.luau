@@ -37,11 +37,11 @@ local function blocksWalkable(model)
 end
 local C=Color3.fromRGB
 Kit.palette={
- Deepwood={rock=C(94,112,91),trim=C(166,175,139),ground=C(89,146,64),leaf=C(101,152,64),wood=C(88,69,43),accent=C(237,187,87)},
- FrozenVale={rock=C(72,100,128),trim=C(172,210,229),ground=C(222,236,242),leaf=C(57,99,103),wood=C(77,74,78),accent=C(255,189,94)},
- EmberCaldera={rock=C(62,55,65),trim=C(116,99,102),ground=C(78,66,70),leaf=C(96,69,70),wood=C(61,56,64),accent=C(246,129,54)},
- Gloamwood={rock=C(64,77,99),trim=C(142,155,177),ground=C(73,91,87),leaf=C(29,48,62),wood=C(48,45,55),accent=C(158,116,196)},
- HauntedGraveyard={rock=C(76,81,99),trim=C(155,160,174),ground=C(89,105,98),leaf=C(69,79,83),wood=C(66,63,75),accent=C(157,223,202)},
+ Deepwood={rock=C(94,112,91),trim=C(181,190,143),ground=C(89,146,64),leaf=C(101,152,64),wood=C(93,69,42),accent=C(255,191,66)},
+ FrozenVale={rock=C(74,115,154),trim=C(164,215,238),ground=C(214,235,247),leaf=C(48,110,117),wood=C(77,74,78),accent=C(255,184,71)},
+ EmberCaldera={rock=C(75,62,77),trim=C(154,113,96),ground=C(89,70,78),leaf=C(108,71,63),wood=C(74,56,51),accent=C(255,126,45)},
+ Gloamwood={rock=C(68,88,112),trim=C(145,175,181),ground=C(62,105,95),leaf=C(33,78,72),wood=C(54,47,66),accent=C(187,124,245)},
+ HauntedGraveyard={rock=C(83,81,112),trim=C(169,170,196),ground=C(85,97,116),leaf=C(59,77,87),wood=C(73,66,91),accent=C(102,239,199)},
 }
 function Kit.part(parent,name,size,cf,color,material,shape)
  local p=Instance.new(shape=='Wedge' and 'WedgePart' or shape=='Corner' and 'CornerWedgePart' or 'Part');p.Name=name;p.Size=size;p.CFrame=typeof(cf)=='CFrame' and cf or CFrame.new(cf)
@@ -138,7 +138,8 @@ function Kit.lantern(parent,p,pal)
  Kit.part(parent,'LampPlinth',Vector3.new(3,1,3),p+Vector3.new(0,.5,0),pal.rock)
  Kit.part(parent,'LampPost',Vector3.new(.65,8,.65),p+Vector3.new(0,4,0),pal.wood,Enum.Material.Wood)
  Kit.part(parent,'LanternHousing',Vector3.new(2.6,3,2.6),p+Vector3.new(0,8,0),pal.rock,Enum.Material.Metal)
- Kit.part(parent,'LanternWindow',Vector3.new(2.7,1.8,2.7),p+Vector3.new(0,8,0),pal.accent,Enum.Material.Neon)
+ Kit.part(parent,'LanternWindow',Vector3.new(2.7,1.64,2.7),p+Vector3.new(0,8,0),pal.accent,Enum.Material.Neon)
+ Kit.part(parent,'LanternSill',Vector3.new(2.94,.24,2.94),p+Vector3.new(0,7.11,0),pal.trim,Enum.Material.Metal)
  Kit.part(parent,'LanternCap',Vector3.new(3.5,.7,3.5),p+Vector3.new(0,10,0),pal.trim)
  -- No per-lamp point light or particle emitter: luminous navigation at low graphics levels.
 end

@@ -16,16 +16,16 @@ local HALF = FLOOR_SIZE.X / 2
 local BOUNDARY_HEIGHT = 32
 
 local COLORS = {
-	stone = Color3.fromRGB(154, 159, 171),
-	stoneLight = Color3.fromRGB(192, 195, 198),
-	stoneDark = Color3.fromRGB(91, 106, 131),
-	plaza = Color3.fromRGB(188, 174, 143),
-	grass = Color3.fromRGB(77, 122, 80),
-	gold = Color3.fromRGB(216, 174, 76),
-	blue = Color3.fromRGB(40, 85, 176),
-	green = Color3.fromRGB(47, 131, 82),
-	copper = Color3.fromRGB(174, 102, 49),
-	violet = Color3.fromRGB(112, 74, 166),
+	stone = Color3.fromRGB(169, 174, 185),
+	stoneLight = Color3.fromRGB(218, 219, 210),
+	stoneDark = Color3.fromRGB(65, 91, 139),
+	plaza = Color3.fromRGB(204, 189, 156),
+	grass = Color3.fromRGB(85, 155, 70),
+	gold = Color3.fromRGB(247, 190, 70),
+	blue = Color3.fromRGB(31, 99, 215),
+	green = Color3.fromRGB(44, 167, 94),
+	copper = Color3.fromRGB(200, 113, 56),
+	violet = Color3.fromRGB(146, 77, 212),
 	warmLight = Color3.fromRGB(255, 213, 143),
 	text = Color3.fromRGB(255, 245, 214),
 }
@@ -192,6 +192,7 @@ local function courtyard(model)
  part(scenery, "RoyalProcessional", Vector3.new(14, .04, 224), Vector3.new(0, .1, -8), COLORS.blue, Enum.Material.Fabric, false)
  for _, x in ipairs({-7.3, 7.3}) do
   part(scenery, "ProcessionalGoldBorder", Vector3.new(.22, .04, 224), Vector3.new(x, .13, -8), COLORS.gold, Enum.Material.Metal, false)
+  part(scenery, "ProcessionalBlueInlay", Vector3.new(.46, .03, 224), Vector3.new(x-.62*math.sign(x), .12, -8), COLORS.stoneDark:Lerp(COLORS.blue,.65), Enum.Material.SmoothPlastic, false)
  end
  for i = 0, 31 do
   local angle = i * math.pi * 2 / 32

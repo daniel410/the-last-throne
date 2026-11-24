@@ -71,6 +71,13 @@ local ok,err=xpcall(function()
     check(handle.Transparency==1,'owned hat hair or enclosing headwear masks original hair')
     local torso=character:FindFirstChild('UpperTorso')or character:FindFirstChild('Torso')
     check(torso.Transparency==1,'opaque body clothing masks original torso')
+    local shell=character.TLTArmor_body.UpperTorso
+    local insignia=shell:FindFirstChild('HeroInsignia')
+    check(insignia and #insignia:GetChildren()==4,'front and back class accents follow each equipped torso')
+    for _,piece in ipairs(insignia:GetChildren())do
+     check(piece:FindFirstChildOfClass('WeldConstraint').Part0==shell and piece.Massless and not piece.CanCollide
+      and not piece.CanTouch and not piece.CanQuery,'insignia stays cosmetic on the equipped model')
+    end
     -- Drive the existing production action renderer; weld anchors must follow
     -- its skeleton rather than root-locking the sleeves, cuffs and skirt.
     local localFrames={}

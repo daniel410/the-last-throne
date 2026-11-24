@@ -8,6 +8,12 @@ local hidden = setmetatable({}, {__mode = "k"})
 local syncing = setmetatable({}, {__mode = "k"})
 local SLOTS = {head = "Head", body = "Body", hands = "Hands", feet = "Feet"}
 local SUPPORTED = {knight=true, dwarf=true, elf=true, mage=true}
+local INSIGNIA = {
+ knight={color=Color3.fromRGB(49,147,255), width=.25, height=.25, angle=0},
+ elf={color=Color3.fromRGB(62,223,142), width=.19, height=.25, angle=math.rad(35)},
+ dwarf={color=Color3.fromRGB(255,158,55), width=.30, height=.17, angle=0},
+ mage={color=Color3.fromRGB(181,103,255), width=.17, height=.30, angle=math.rad(16)},
+}
 local R6 = {
  UpperTorso={"Torso",Vector3.new(0,0,0)}, LowerTorso={"Torso",Vector3.new(0,0,0)},
  LeftUpperArm={"Left Arm",Vector3.new(-1.5,0,0)},LeftLowerArm={"Left Arm",Vector3.new(-1.5,0,0)},LeftHand={"Left Arm",Vector3.new(-1.5,0,0)},
@@ -33,6 +39,35 @@ local function sizeScale(character, slot, r15)
  return Vector3.new(torso.Size.X/(r15 and 1.9432 or 2),
   r15 and (torso.Size.Y+(lower and lower:IsA("BasePart") and lower.Size.Y or .4))/2.0987 or torso.Size.Y/2,
   torso.Size.Z/(r15 and 1.004 or 1))
+end
+local function attachInsignia(clone,classId)
+ local shell=clone:FindFirstChild("UpperTorso")
+ if not shell or not shell:IsA("MeshPart") then return end
+ local spec=INSIGNIA[classId]
+ local folder=Instance.new("Folder");folder.Name="HeroInsignia";folder.Parent=shell
+ local weld=shell.ArmorWeld
+ local pose=weld.Part0.CFrame
+ local relative=pose:ToObjectSpace(shell.CFrame)
+ local halfDepth=(math.abs(relative.RightVector.Z)*shell.Size.X
+  + math.abs(relative.UpVector.Z)*shell.Size.Y+math.abs(relative.LookVector.Z)*shell.Size.Z)*.5
+ local scale=math.min(shell.Size.X,shell.Size.Y*1.5)
+ local trim=Color3.fromRGB(217,181,105)
+ local function piece(name,size,cf,color,material)
+  local part=Instance.new("Part")
+  part.Name,part.Size,part.CFrame=name,size*scale,cf
+  part.Color,part.Material=color,material
+  part.Massless,part.CastShadow=true,false
+  part.CanCollide,part.CanTouch,part.CanQuery=false,false,false
+  local connection=Instance.new("WeldConstraint")
+  connection.Part0,connection.Part1,connection.Parent=shell,part,part
+  part.Parent=folder
+ end
+ for _,side in ipairs({-1,1})do
+  local center=relative.Position+Vector3.new(0,shell.Size.Y*.18,side*halfDepth)
+  local plate=pose*CFrame.new(center)*CFrame.Angles(0,0,spec.angle*side)
+  piece("InsigniaSetting",Vector3.new(spec.width+.06,spec.height+.06,.06),plate,trim,Enum.Material.Metal)
+  piece("ClassEnamel",Vector3.new(spec.width,spec.height,.025),plate*CFrame.new(0,0,.037*scale*side),spec.color,Enum.Material.SmoothPlastic)
+ end
 end
 local function build(character, slot, key, classId, definitionId, r15)
  local folder=Storage:FindFirstChild(Visuals.folderName)
@@ -96,6 +131,7 @@ local function build(character, slot, key, classId, definitionId, r15)
  clone:SetAttribute("ArmorScale",scale)
  clone:SetAttribute("ArmorFitVersion",Visuals.version)
  clone:SetAttribute("ArmorPartCount",count)
+ if slot=="body" then attachInsignia(clone,classId) end
  return clone
 end
 local function refreshVisibility(character)
@@ -163,6 +199,8 @@ function Armor.sync(character)
      end
     end
     if count~=existing:GetAttribute("ArmorPartCount") then healthy=false end
+    if healthy and slot=="body" and existing:FindFirstChild("UpperTorso")
+     and not existing.UpperTorso:FindFirstChild("HeroInsignia") then attachInsignia(existing,classId) end
    end
    if not key then
     for _,child in old do child:Destroy() end

@@ -1,6 +1,7 @@
 -- Approved Meshy surfaces; identity, interaction anchors and routes stay server-owned.
 local Storage=game:GetService('ServerStorage')
 local Tags=game:GetService('CollectionService')
+local Nameplate=require(script.Parent.NPCNameplate)
 local V={}
 
 function V.tryCreate(parent,c,position,options)
@@ -29,13 +30,7 @@ function V.tryCreate(parent,c,position,options)
    if p~=root then p:SetAttribute('NPCMeshRest',root.CFrame:ToObjectSpace(p.CFrame)) end
   end
  end
- if options.label~=false then
-  local gui=Instance.new('BillboardGui');gui.Name='NPCLabel';gui.Size=UDim2.fromOffset(220,44)
-  gui.StudsOffset=Vector3.new(0,height+.8,0);gui.MaxDistance=55;gui.Parent=root
-  local label=Instance.new('TextLabel');label.Size=UDim2.fromScale(1,1);label.BackgroundTransparency=1
-  label.Text=c.name..' · '..c.role;label.Font=Enum.Font.GothamBold;label.TextSize=12
-  label.TextColor3=Color3.fromHex(c.accent);label.TextStrokeTransparency=.2;label.AutoLocalize=false;label.Parent=gui
- end
+ if options.label~=false then Nameplate.create(root,c,height+.8) end
  m:PivotTo(CFrame.new(position)*CFrame.Angles(0,options.yaw or 0,0));m.Parent=parent
  Tags:AddTag(m,'TLTAnimatedNPC')
  return m

@@ -11,7 +11,7 @@ local Config=require(game:GetService('ReplicatedStorage').Shared.K0Config)
 local PixelFX=require(script.Parent.PixelFX)
 local PatternFX=require(script.Parent.EnemyPatternEffects)
 local Mood = require(script.Parent.DeepwoodAtmosphere)
-local EnemyOutline = require(script.Parent.GloamwoodEnemyOutline)
+local EnemyOutline = require(script.Parent.EnemySilhouettes)
 function EnemyVisual.statusText(model,current)
  local lines={}
  if (model:GetAttribute('K0EnemyGuardUntil')or 0)>current then table.insert(lines,PatternText.Guarding)end
@@ -79,18 +79,14 @@ local function mount(enemies)
     end
 
 			end
-			if Mood.currentMode() == "Gloamwood" then
-				outlineElapsed += dt
-				if outlineElapsed >= 0.125 then
-					outlineElapsed = 0
-					local character = Players.LocalPlayer.Character
-					local human = character and character:FindFirstChildOfClass("Humanoid")
-					local root = character and character:FindFirstChild("HumanoidRootPart")
-					local origin = root and human and human.Health > 0 and root.Position or nil
-					EnemyOutline.update(outlines, models, origin)
-				end
-			elseif next(outlines) then
-				EnemyOutline.clear(outlines)
+			outlineElapsed += dt
+			if outlineElapsed >= 0.125 then
+				outlineElapsed = 0
+				local character = Players.LocalPlayer.Character
+				local human = character and character:FindFirstChildOfClass("Humanoid")
+				local root = character and character:FindFirstChild("HumanoidRootPart")
+				local origin = root and human and human.Health > 0 and root.Position or nil
+				EnemyOutline.update(outlines, models, origin, Mood.currentMode())
 			end
 		end)
  local ancestry

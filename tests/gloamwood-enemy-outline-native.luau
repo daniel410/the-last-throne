@@ -1,6 +1,6 @@
 assert(game.PlaceId == 0 and #game:GetService("Players"):GetPlayers() == 0)
 local client = game:GetService("StarterPlayer").StarterPlayerScripts.Client
-local EnemyOutline = require(client.GloamwoodEnemyOutline)
+local EnemyOutline = require(client.EnemySilhouettes)
 local Mood = require(client.DeepwoodAtmosphere)
 local Lighting = game:GetService("Lighting")
 local checks = 0
@@ -9,7 +9,7 @@ local function check(condition, message)
 	checks += 1
 end
 
-for _, module in ipairs({client.GloamwoodEnemyOutline, client.K0EnemyVisual, client.DeepwoodAtmosphere}) do
+for _, module in ipairs({client.EnemySilhouettes, client.K0EnemyVisual, client.DeepwoodAtmosphere}) do
 	check(loadstring(module.Source), module.Name .. " compiles")
 end
 local originalAmbient = Lighting.Ambient
@@ -26,6 +26,7 @@ folder.Parent = workspace
 local function spawnModel(name, x, y, z)
 	local model = Instance.new("Model")
 	model.Name = name
+	model:SetAttribute("EnemyKind", name)
 	local root = Instance.new("Part")
 	root.Name = "HumanoidRootPart"
 	root.Anchored = true
@@ -37,11 +38,11 @@ local function spawnModel(name, x, y, z)
 	return model
 end
 local outlines = {}
-local function refresh(origin)
-	EnemyOutline.update(outlines, folder:GetChildren(), origin)
+local function refresh(origin,region)
+	EnemyOutline.update(outlines, folder:GetChildren(), origin, region or "Gloamwood")
 end
 local function highlight(model)
-	return model:FindFirstChild("GloamwoodEnemyOutline")
+	return model:FindFirstChild("EnemySilhouette")
 end
 
 local spider = spawnModel("Webling", 0, 0, 48)
@@ -68,6 +69,18 @@ for _, effectName in ipairs({"K0TargetHighlight", "ProvokeEffect", "GravityEffec
 	refresh(Vector3.zero)
 	check(highlight(spider), "outline returns after " .. effectName)
 end
+refresh(Vector3.zero,"Deepwood")
+check(not highlight(spider),"clearer daytime regions use a shorter outline distance")
+local fire=spawnModel("MagmaGolem",0,0,8)
+local frost=spawnModel("IceGolem",0,0,9)
+refresh(Vector3.zero,"EmberCaldera")
+check(highlight(fire).OutlineColor ~= highlight(frost).OutlineColor,"creatures carry their own elemental color in the same region")
+local normalAlpha=highlight(fire).OutlineTransparency
+fire:SetAttribute("StoryBoss",true);refresh(Vector3.zero,"HauntedGraveyard")
+check(highlight(fire).OutlineTransparency<normalAlpha,"boss and moonlit palettes give a stronger edge")
+refresh(Vector3.zero,"Lobby")
+check(next(outlines)==nil,"lobby clears combat silhouettes")
+fire:Destroy();frost:Destroy()
 
 local crowd = {}
 for distance = 12, 1, -1 do
@@ -90,4 +103,4 @@ EnemyOutline.clear(outlines)
 check(next(outlines) == nil and not highlight(crowd[12]), "region or folder teardown removes all outlines")
 crowd[2]:Destroy()
 folder:Destroy()
-print("Gloamwood enemy visibility: " .. checks .. " checks passed")
+print("Regional enemy visibility: " .. checks .. " checks passed")

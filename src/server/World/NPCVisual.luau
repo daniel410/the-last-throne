@@ -1,5 +1,6 @@
 -- Block bodies with Blender-authored heads and concept-inspired face decals.
 local Catalog=require(game:GetService('ReplicatedStorage').Shared.NPCCatalog)
+local Nameplate=require(script.Parent.NPCNameplate)
 local V={}
 local function color(hex) return Color3.fromHex(hex) end
 function V.create(parent,id,position,options)
@@ -12,6 +13,7 @@ function V.create(parent,id,position,options)
  m:SetAttribute('NPCNameKey',c.nameKey);m:SetAttribute('NPCRoleKey',c.roleKey)
  m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
  local skin,coat,hair,accent=color(c.skin),color(c.coat),color(c.hair),color(c.accent)
+ coat=coat:Lerp(accent,.13)
  local dwarf=c.race=='dwarf';local child=c.race=='child';local ghost=c.race=='spirit'
  local scale=options.scale or (dwarf and .88 or child and .74 or 1)
  local width=dwarf and 1.24 or 1
@@ -86,10 +88,7 @@ function V.create(parent,id,position,options)
   if c.prop=='herbs' then for i=-1,1 do part('HerbLeaf',Vector3.new(.18,.5,.18),Vector3.new(-1.07*width+i*.18,2.99,-.48),color('96B66B'),true) end end
  end
  if ghost then m:SetAttribute('NPCSpirit',true) end
- if options.label~=false then
-  local gui=Instance.new('BillboardGui');gui.Name='NPCLabel';gui.Size=UDim2.fromOffset(220,44);gui.StudsOffset=Vector3.new(0,7.3,0);gui.MaxDistance=55;gui.Parent=root
-  local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.Text=c.name..' · '..c.role;t.Font=Enum.Font.GothamBold;t.TextSize=12;t.TextColor3=accent;t.TextStrokeTransparency=.2;t.AutoLocalize=false;t.Parent=gui
- end
+ if options.label~=false then Nameplate.create(root,c,7.3) end
  require(script.Parent.NPCArticulation).prepare(m,c,width)
  m:ScaleTo(scale)
  require(script.Parent.NPCArticulation).capture(m)

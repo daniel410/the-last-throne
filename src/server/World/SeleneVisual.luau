@@ -46,10 +46,7 @@ function V.create(parent,position,name,options)
  end
  model:SetAttribute('SeleneSkinned',true)
  model:SetAttribute('SeleneMotionScale',options.scale or 1)
- if options.label~=false then
-  local gui=Instance.new('BillboardGui');gui.Name='NPCLabel';gui.Size=UDim2.fromOffset(220,44);gui.StudsOffset=Vector3.new(0,BASE_HEIGHT*(options.scale or 1)+.8,0);gui.MaxDistance=55;gui.Parent=anchor
-  local label=Instance.new('TextLabel');label.Size=UDim2.fromScale(1,1);label.BackgroundTransparency=1;label.Font=Enum.Font.GothamBold;label.TextSize=12;label.TextColor3=Color3.fromHex(c.accent);label.TextStrokeTransparency=.2;label.Text=c.name..' · '..c.role;label.AutoLocalize=false;label.Parent=gui
- end
+ if options.label~=false then require(script.Parent.NPCNameplate).create(anchor,c,BASE_HEIGHT*(options.scale or 1)+.8) end
  model.Parent=parent
  return model
 end

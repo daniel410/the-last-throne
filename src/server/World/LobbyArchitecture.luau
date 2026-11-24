@@ -1,8 +1,8 @@
 -- Native, bounded geometry derived from the Dawnspire concept. No remote assets.
 local A={}
-A.color={stone=Color3.fromRGB(187,183,165),pale=Color3.fromRGB(226,220,197),dark=Color3.fromRGB(61,76,101),
- gold=Color3.fromRGB(229,181,70),blue=Color3.fromRGB(27,65,136),wood=Color3.fromRGB(98,62,36),iron=Color3.fromRGB(66,72,83),
- purple=Color3.fromRGB(172,86,255),cream=Color3.fromRGB(255,240,199),fire=Color3.fromRGB(255,151,54)}
+A.color={stone=Color3.fromRGB(204,192,169),pale=Color3.fromRGB(241,231,209),dark=Color3.fromRGB(57,77,119),
+ gold=Color3.fromRGB(249,187,61),blue=Color3.fromRGB(28,79,174),wood=Color3.fromRGB(119,72,41),iron=Color3.fromRGB(66,72,83),
+ purple=Color3.fromRGB(177,91,255),cream=Color3.fromRGB(255,243,206),fire=Color3.fromRGB(255,155,58)}
 function A.builder(model,origin)
  return function(name,size,offset,color,material,solid,rotation)
   local p=Instance.new('Part');p.Name=name;p.Size=size;p.CFrame=CFrame.new(origin+offset)*(rotation or CFrame.identity)

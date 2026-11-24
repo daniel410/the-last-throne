@@ -8,10 +8,10 @@ local TdMonsterAppearance = require(script.Parent.TdMonsterAppearance)
 local TrainingField = {}
 
 local COLORS = {
-	grass = Color3.fromRGB(89, 143, 70),
-	path = Color3.fromRGB(175, 153, 105),
-	stone = Color3.fromRGB(133, 139, 118),
-	moss = Color3.fromRGB(101, 127, 79),
+	grass = Color3.fromRGB(88, 155, 65),
+	path = Color3.fromRGB(192, 169, 113),
+	stone = Color3.fromRGB(153, 154, 134),
+	moss = Color3.fromRGB(104, 143, 77),
 	trunk = Color3.fromRGB(104, 76, 49),
 	leaf = Color3.fromRGB(65, 132, 63),
 	leafLight = Color3.fromRGB(100, 165, 76),
@@ -235,10 +235,10 @@ function TrainingField.create(runtime)
 		baseplate.CanQuery = false
 	end
 
-	Lighting.Brightness = 2.5
+	Lighting.Brightness = 2.7
 	Lighting.ClockTime = 14
-	Lighting.Ambient = Color3.fromRGB(118, 122, 105)
-	Lighting.OutdoorAmbient = Color3.fromRGB(154, 166, 137)
+	Lighting.Ambient = Color3.fromRGB(130, 138, 123)
+	Lighting.OutdoorAmbient = Color3.fromRGB(167, 180, 151)
 	Lighting.GlobalShadows = true
 
 	local folder = existing or Instance.new("Model")

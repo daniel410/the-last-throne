@@ -4,7 +4,7 @@ local Lighting=game:GetService('Lighting')
 local Mood={fogStart=180,fogEnd=620}
 local profiles={
  Lobby={FogStart=10000,FogEnd=100000,FogColor=Color3.fromRGB(188,221,250),
-  Brightness=3.2,Ambient=Color3.fromRGB(157,169,177),OutdoorAmbient=Color3.fromRGB(189,208,218),
+  Brightness=3.35,Ambient=Color3.fromRGB(170,181,190),OutdoorAmbient=Color3.fromRGB(198,215,226),
   ClockTime=13,ExposureCompensation=.16,ColorShift_Top=Color3.fromRGB(20,33,48)},
  Deepwood={FogStart=Mood.fogStart,FogEnd=Mood.fogEnd,FogColor=Color3.fromRGB(192,225,246),
   Brightness=3,Ambient=Color3.fromRGB(135,151,123),OutdoorAmbient=Color3.fromRGB(170,190,149),
@@ -18,10 +18,18 @@ local function clearOwned()
  if atmosphere then atmosphere:Destroy();atmosphere=nil end
  if bloom then bloom:Destroy();bloom=nil end
 end
-profiles.FrozenVale={FogStart=180,FogEnd=700,FogColor=Color3.fromRGB(180,208,227),Brightness=2.4,Ambient=Color3.fromRGB(130,154,178),OutdoorAmbient=Color3.fromRGB(157,183,207),ClockTime=10.2,ExposureCompensation=0,ColorShift_Top=Color3.fromRGB(12,26,43)}
-profiles.EmberCaldera={FogStart=165,FogEnd=650,FogColor=Color3.fromRGB(177,132,109),Brightness=2.5,Ambient=Color3.fromRGB(145,116,109),OutdoorAmbient=Color3.fromRGB(176,139,116),ClockTime=16.4,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(30,15,8)}
+profiles.FrozenVale={FogStart=180,FogEnd=700,FogColor=Color3.fromRGB(173,219,245),Brightness=2.65,Ambient=Color3.fromRGB(141,167,190),OutdoorAmbient=Color3.fromRGB(173,200,221),ClockTime=10.2,ExposureCompensation=.05,ColorShift_Top=Color3.fromRGB(12,26,43)}
+profiles.EmberCaldera={FogStart=165,FogEnd=650,FogColor=Color3.fromRGB(171,118,104),Brightness=2.75,Ambient=Color3.fromRGB(153,129,136),OutdoorAmbient=Color3.fromRGB(187,152,141),ClockTime=16.4,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(30,15,8)}
 profiles.Gloamwood={FogStart=145,FogEnd=680,FogColor=Color3.fromRGB(88,110,147),Brightness=2.4,Ambient=Color3.fromRGB(122,138,162),OutdoorAmbient=Color3.fromRGB(131,148,177),ClockTime=0,ExposureCompensation=.25,ColorShift_Top=Color3.fromRGB(12,19,35)}
 profiles.HauntedGraveyard={FogStart=140,FogEnd=660,FogColor=Color3.fromRGB(104,124,155),Brightness=2.3,Ambient=Color3.fromRGB(122,137,160),OutdoorAmbient=Color3.fromRGB(148,161,183),ClockTime=.1,ExposureCompensation=.3,ColorShift_Top=Color3.fromRGB(21,22,35)}
+local grades={
+ Lobby={tint=Color3.fromRGB(255,254,247),contrast=.025,saturation=.24},
+ Deepwood={tint=Color3.fromRGB(255,252,245),contrast=.06,saturation=.17,density=.09,haze=.11},
+ Gloamwood={tint=Color3.fromRGB(227,247,255),contrast=.075,saturation=.14,density=.16,haze=.28},
+ FrozenVale={tint=Color3.fromRGB(239,251,255),contrast=.07,saturation=.12,density=.21,haze=.39},
+ EmberCaldera={tint=Color3.fromRGB(255,244,238),contrast=.09,saturation=.17,density=.17,haze=.52},
+ HauntedGraveyard={tint=Color3.fromRGB(232,239,255),contrast=.08,saturation=.14,density=.17,haze=.32},
+}
 function Mood.currentMode() return current end
 function Mood.update(mode)
  -- Preserve the previous boolean API used by scenery tests and other callers.
@@ -49,16 +57,16 @@ function Mood.update(mode)
  -- The built-in daylight sky needs no externally hosted or permissioned assets.
  -- Atmosphere overrides distance fog, so retain FogStart/FogEnd for Deepwood.
  sky=Instance.new('Sky');sky.Name='TLTClearDaySky';sky.CelestialBodiesShown=true;sky.StarCount=(mode=='Gloamwood' or mode=='HauntedGraveyard') and 900 or 0;sky.MoonAngularSize=11;sky.Parent=Lighting
+ local grade=grades[mode]
  correction=Instance.new('ColorCorrectionEffect');correction.Name='TLTVividDaylight'
- correction.Brightness=.015;correction.Contrast=mode=='Lobby' and .025 or mode=='Deepwood' and .06 or .09
- correction.Saturation=mode=='Lobby' and .24 or mode=='Deepwood' and .17 or .04
- correction.TintColor=mode=='Deepwood'and Color3.fromRGB(255,252,245)or mode=='Gloamwood' and Color3.fromRGB(211,226,249) or mode=='HauntedGraveyard' and Color3.fromRGB(216,228,246) or Color3.fromRGB(244,250,255);correction.Parent=Lighting
- if mode~='Lobby' then
+ correction.Brightness=.015;correction.Contrast=grade.contrast
+ correction.Saturation=grade.saturation;correction.TintColor=grade.tint;correction.Parent=Lighting
+ if grade.density then
   -- Atmosphere blends sky and terrain; a short white fog curtain hid the authored skyline.
   atmosphere=Instance.new('Atmosphere');atmosphere.Name='TLTRegionalAtmosphere'
   atmosphere.Color=profiles[mode].FogColor;atmosphere.Decay=profiles[mode].Ambient
-  atmosphere.Density=mode=='Deepwood'and .09 or(mode=='Gloamwood' or mode=='HauntedGraveyard') and .22 or .24
-  atmosphere.Offset=.1;atmosphere.Haze=mode=='Deepwood'and .11 or mode=='EmberCaldera' and .9 or .45;atmosphere.Glare=.03;atmosphere.Parent=Lighting
+  atmosphere.Density=grade.density
+  atmosphere.Offset=.1;atmosphere.Haze=grade.haze;atmosphere.Glare=.03;atmosphere.Parent=Lighting
   bloom=Instance.new('BloomEffect');bloom.Name='TLTLocalGlow';bloom.Intensity=.14;bloom.Size=14;bloom.Threshold=1.2;bloom.Parent=Lighting
  end
  current=mode
@@ -66,8 +74,8 @@ end
 function Mood.restoration(s)
  valleyRestored=s and s.clears and s.clears['FV-07']==true or false
  if current=='FrozenVale'and atmosphere then
-  atmosphere.Density=valleyRestored and .12 or .24
-  atmosphere.Haze=valleyRestored and .25 or .45
+  atmosphere.Density=valleyRestored and .10 or grades.FrozenVale.density
+  atmosphere.Haze=valleyRestored and .21 or grades.FrozenVale.haze
   Lighting.FogStart=valleyRestored and 400 or profiles.FrozenVale.FogStart
   Lighting.FogEnd=valleyRestored and 1200 or profiles.FrozenVale.FogEnd
  end

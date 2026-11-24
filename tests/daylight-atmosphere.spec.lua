@@ -9,7 +9,7 @@ local created={};local checks=0
 local function check(v,msg)checks=checks+1;assert(v,msg)end
 Instance={new=function(class)local o={class=class,Destroy=function(self)self.destroyed=true;self.Parent=nil end};created[#created+1]=o;return o end}
 local mood=dofile('src/client/DeepwoodAtmosphere.luau')
-mood.update('Lobby');check(lighting.Brightness==3.2,'existing lobby exposure');check(originalSky.Parent==nil and originalAtmosphere.Parent==nil,'original environment detached')
+mood.update('Lobby');check(lighting.Brightness==3.35 and lighting.Ambient.r==170,'brighter Dawnspire shade');check(originalSky.Parent==nil and originalAtmosphere.Parent==nil,'original environment detached')
 check(#created==2 and created[2].Saturation==.24,'lobby has unchanged correction and no regional atmosphere')
 local prior={table.unpack(created)}
 mood.update('Deepwood');check(lighting.ClockTime>=12 and lighting.ClockTime<=17 and lighting.FogEnd==620,'forest remains daylight with a readable skyline')
@@ -17,6 +17,7 @@ for _,p in ipairs(prior)do check(p.destroyed,'old owned effects removed')end
 check(created[5].class=='Atmosphere'and created[6].class=='BloomEffect','regional haze and restrained local glow')
 check(lighting.Ambient.r==135 and lighting.OutdoorAmbient.g==190,'Deepwood fills shaded grass and props')
 check(created[4].Saturation==.17 and created[5].Haze==.11 and created[6].Intensity==.14,'daylight contrast comes from tint and haze with the same bloom intensity')
+local expectedHaze={FrozenVale=.39,EmberCaldera=.52,Gloamwood=.28,HauntedGraveyard=.32}
 for _,name in ipairs({'FrozenVale','EmberCaldera','Gloamwood','HauntedGraveyard','Lobby'})do
  prior={};for _,p in ipairs(created)do if not p.destroyed then prior[#prior+1]=p end end
  mood.update(name)
@@ -24,10 +25,16 @@ for _,name in ipairs({'FrozenVale','EmberCaldera','Gloamwood','HauntedGraveyard'
  local active=0;for _,p in ipairs(created)do if not p.destroyed then active=active+1 end end
  check(active==(name=='Lobby'and 2 or 4),'no effect accumulation')
  check(mood.currentMode()==name,'active lighting mode follows the region')
+ if expectedHaze[name]then check(created[#created-1].Haze==expectedHaze[name],'each region retains its own haze '..name)end
  if name=='Gloamwood'or name=='HauntedGraveyard'then check(lighting.ClockTime<1 and lighting.Ambient.r>=98,'moonlit region keeps readable ambient light')end
  if name=='Gloamwood'then
   check(lighting.Ambient.r==122 and lighting.Ambient.g==138 and lighting.Ambient.b==162,'Gloamwood canopy retains enough ambient light to read enemies')
   check(lighting.Ambient.r<lighting.OutdoorAmbient.r and lighting.Ambient.g<lighting.OutdoorAmbient.g and lighting.Ambient.b<lighting.OutdoorAmbient.b,'Gloamwood retains a shaded canopy')
+ end
+ if name=='FrozenVale'then
+  local atmosphere=created[#created-1]
+  mood.restoration({clears={['FV-07']=true}});check(atmosphere.Haze==.21 and lighting.FogEnd==1200,'restored valley opens the view')
+  mood.restoration(nil);check(atmosphere.Haze==.39 and lighting.FogEnd==700,'unrestored valley retains the local storm')
  end
  local count=#created;mood.update(name);check(#created==count,'same mode is idempotent')
 end
