@@ -1,0 +1,148 @@
+{
+  "mode": "Isolated Roblox Studio",
+  "candidate": "0.115.72",
+  "baseline": "0.115.70",
+  "passedSuites": 12,
+  "passedChecks": 273287,
+  "suites": {
+    "hero-release-shapes-native": {
+      "checks": 188,
+      "pass": true
+    },
+    "hero-skills-native": {
+      "checks": 244520,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "hero-skill-impact-native": {
+      "checks": 761,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "hero-skill-direction-native": {
+      "checks": 31,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "hero-vfx-priority-native": {
+      "checks": 28,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "hero-release-alignment-native": {
+      "checks": 26,
+      "pass": false,
+      "baselineSuitePass": false
+    },
+    "hero-force-feedback-native": {
+      "checks": 81,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "hero-windup-interrupt-native": {
+      "checks": 217,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "hero-skill-beats-native": {
+      "checks": 75,
+      "pass": false,
+      "baselineSuitePass": false
+    },
+    "hero-vfx-native": {
+      "checks": 551,
+      "pass": false,
+      "baselineSuitePass": false
+    },
+    "vfx-art-hero-fixes-native": {
+      "checks": 2299,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "hero-ultimate-finish-native": {
+      "checks": 88,
+      "pass": false,
+      "baselineSuitePass": false
+    },
+    "elf-confirmed-release-native": {
+      "checks": 13,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "enemy-combat-native": {
+      "checks": 3685,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "enemy-combat-presentation-native": {
+      "checks": 15904,
+      "pass": true,
+      "baselineSuitePass": true
+    },
+    "skill-advancement-native": {
+      "checks": 5560,
+      "pass": true,
+      "baselineSuitePass": true
+    }
+  },
+  "isolatedRechecks": {
+    "hero-release-alignment-native": {
+      "0.115.70": {
+        "pass": true,
+        "checks": 26
+      },
+      "0.115.72": {
+        "pass": true,
+        "checks": 26
+      }
+    },
+    "hero-skill-beats-native": {
+      "0.115.70": {
+        "pass": true,
+        "checks": 75
+      },
+      "0.115.72": {
+        "pass": true,
+        "checks": 75
+      }
+    },
+    "hero-ultimate-finish-native": {
+      "0.115.70": {
+        "pass": true,
+        "checks": 88
+      },
+      "0.115.72": {
+        "pass": true,
+        "checks": 88
+      }
+    },
+    "hero-vfx-native": {
+      "0.115.70": {
+        "pass": false,
+        "checks": 551,
+        "failedConditions": [
+          "elemental contact dwarf.iron_axe.mountain_sweep"
+        ]
+      },
+      "0.115.72": {
+        "pass": false,
+        "checks": 551,
+        "failedConditions": [
+          "elemental contact dwarf.iron_axe.mountain_sweep"
+        ]
+      }
+    }
+  },
+  "baselineFocused": {
+    "checks": 160,
+    "assertionsNotMet": 63
+  },
+  "cpuChecks": {
+    "Advanced skills": 1435,
+    "Level-only advancement": 539,
+    "Skill effects CPU": 12614,
+    "enemy-pack-rules": 1366,
+    "enemy-combat-profiles": 59598
+  },
+  "artifactStaticChecks": 336
+}

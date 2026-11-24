@@ -1,0 +1,53 @@
+{
+  "version": "0.115.72",
+  "sourceCommit": "58094acded5e531c1ff1fbccc1ef34752faaefbf",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-58094acd-glrfredg",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-58094acd-glrfredg/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.115.72/TheLastThrone-0.115.72.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.72.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.72/TheLastThrone-0.115.72.rbxlx",
+      "sha256": "cc2169f6a932c8df2087e81f6fd7a27223f1cc56598b0c4a11bce74bb71ee4fb",
+      "bytes": 26890902
+    }
+  ],
+  "moduleSourcesSHA256": {
+    "src/client/AdvancedSkillMotion.luau": "e4a0e4ccb0631808a45decad1f3de3f8710c73f6ff57ca99f06c194c87cd5c35",
+    "src/client/AdvancedSkillVisual.luau": "05f39efa94e434012f7488507a9a220f3a70b658af5c7adc55ac1a70121c18eb",
+    "src/client/HeroVFX.luau": "9a7efb02421a517ad9353726ff9aa136681f9c43929a42556187db98530fa896",
+    "src/client/HeroVFXArt.luau": "de54f5f51b278b8ac54b07f99d1eee7b1efd5267ee20084efaf8219e6f04be80",
+    "src/client/RangedActionPoses.luau": "ceec6ed49a4a4a69f3d613d98829edef0c7a713891d5d6428cd7de2954ccc73c",
+    "src/client/SkillEffectGeometry.luau": "1574913e7c2f01fc7ff019e8c1de5fe753fbb742fff8df607171d3a7127f0554",
+    "src/server/Combat/AdvancedCombat.luau": "2421dece4bc31da99c529f8c682f2db9abf1372cf24cc2b3ba33eddd9960f959",
+    "src/server/Combat/CombatService.luau": "e82e3b903d6243508577bed36f30d19cba3e797d0ab0e4b3c0e9b7a7687f60ea",
+    "src/shared/SkillPresentation.luau": "ff7c2947a45a5bcbc2e6af79d1cc13920bfac0652d352834af931e4fb864d239"
+  },
+  "baseline": {
+    "version": "0.115.70",
+    "sourceCommit": "50bcee30d06d17b78b33e050ac04dd04ec4341d1",
+    "moduleSourcesSHA256": {
+      "src/client/AdvancedSkillMotion.luau": "04e9b03608adfcd755e8c4f3a9e626c52243e8d843913ddce60099646c5ff7ec",
+      "src/client/AdvancedSkillVisual.luau": "605eff2efa42dfe97de2fe254053de6122489cbf85f8ffc2de98f925ebf6b3b3",
+      "src/client/HeroVFX.luau": "4881db36a1910e6edd5479d7fda32e9e36caea31e2c0ae1ac63024b5ef5d40ab",
+      "src/client/HeroVFXArt.luau": "ebee0e39c2f8f8a88b713c174c1581897683e96a4d4b679b511ecf64aa04335a",
+      "src/client/RangedActionPoses.luau": "2540754c480182ff0a8f1c19dc755e4ce4be903a4277a32e3ba8bf30524b9408",
+      "src/client/SkillEffectGeometry.luau": "59f5e4e8e9a5f3daae6ec1d9eb24dfe1af00693e76951c3395f1911608a204a9",
+      "src/server/Combat/AdvancedCombat.luau": "36192d6cb11acf4d727899a1483746fd0f0e822ce90e2c2ea26c11c1ae611d6b",
+      "src/server/Combat/CombatService.luau": "d92e2d226b7c6b8bce4a19eaffd77f0b743dff50636ace3b61752ff6c9dce2dc",
+      "src/shared/SkillPresentation.luau": "30687129f9798b40bf1501fda87edd74afef54e00db9273281d1b00a5df06c1a"
+    },
+    "sha256": "e167504add01e7128df4414093bc1cd3ce1fa5aefa69cc2cad2a5589afa49b17"
+  }
+}
