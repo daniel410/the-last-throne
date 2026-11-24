@@ -574,6 +574,7 @@ function Art.connectOverland(world)
    floor.Material=groundMaterial(names[edge[2]:sub(1,2)]);floor.Color=K.palette[names[edge[2]:sub(1,2)]].ground
    floor.CanTouch=false;floor.Parent=root
    require(script.Parent.OverlandRoadShoulders).build(floor,edge[1],a,b)
+   require(script.Parent.OverlandApproachFixtures).build(floor,edge,a,b)
    pass(root,edge,index)
    require(script.Parent.CampaignRouteClearance).apply(world,root)
    root:SetAttribute('BuildComplete',true)
