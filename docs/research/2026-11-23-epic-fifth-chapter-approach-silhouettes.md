@@ -2,7 +2,7 @@
 
 2026-11-23 Toronto · TLT-061/DW-05 · TLT-065/GW-05 · TLT-062/FV-05 · TLT-063/EC-05 · TLT-064/HG-05 · G5
 
-조사 지물 가까이 가기 전에 어떤 시설이나 흔적인지 알아볼 수 있는지 검토했다. 기존 Studio 비교판 10쌍에서 DW는 낮은 평판처럼 보이고 GW는 밤에 밝은 상판부터 읽힌다. FV 차륜은 접근과 귀환 모두에서 보이지만 압설 홈과의 연결이 희미하다. EC의 포집조는 귀환 화면에서도 밝은 상자에 가깝고 HG는 방어선보다 도관과 받침을 식별하기 어렵다. [기존 전후 화면과 측정](../evidence/epic-fifth-chapter-landmark-profiles-20261121/README.md)
+조사 지물 가까이 가기 전에 어떤 시설이나 흔적인지 알아볼 수 있는지 검토했다. 기존 Studio 비교판 10쌍에서 DW는 낮은 평판처럼 보이고 GW는 밤에 밝은 상판부터 읽힌다. FV 차륜은 접근과 귀환 모두에서 보이지만 압설 홈과의 연결이 희미하다. EC의 포집조는 귀환 화면에서도 밝은 상자에 가깝고 HG는 방어선보다 도관과 받침을 식별하기 어렵다. [5장 최초 배치와 검증](../evidence/epic-fifth-chapter-landmarks-20261120/README.md) · [직전 조형 변경](https://github.com/daniel410/the-last-throne/commit/11c67d82)
 
 ## 공식 사례
 
