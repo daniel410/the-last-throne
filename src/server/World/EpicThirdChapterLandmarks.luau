@@ -19,12 +19,13 @@ local function reliefRosterStand(pal, part, beam)
 	end
 	local boardTilt = V(-.16, 0, 0)
 	part('RosterBackBoard', V(4.25, 1.84, .32), V(0, 3.12, .09), oak, M.WoodPlanks, nil, boardTilt)
-	part('RosterRecessedWritingFace', V(3.07, 1.40, .14), V(0, 3.10, -.09),
-		oak:Lerp(wornOak, .38), M.WoodPlanks, nil, boardTilt)
+	part('RosterRecessedWritingFace', V(3.35, 1.40, .19), V(0, 3.10, -.11),
+		oak:Lerp(wornOak, .60), M.WoodPlanks, nil, boardTilt)
 	part('WornRosterCap', V(4.55, .32, 1.12), V(0, 4.11, .23), wornOak, M.Wood, 'Wedge')
 	part('RosterLowerLip', V(4.24, .23, .91), V(0, 2.20, -.26), wornOak, M.Wood)
 	part('RosterPaperStop', V(3.19, .15, .18), V(0, 2.37, -.61), oak, M.Wood)
 	part('RosterShelfLedger', V(3.64, .32, .46), V(0, 2.01, -.15), oak:Lerp(iron, .18), M.Wood)
+	part('RosterShelfWritingLedge', V(3.33, .16, .43), V(0, 2.39, -.36), wornOak, M.Wood)
 	part('RosterCappedDripEdge', V(4.42, .19, .24), V(0, 3.99, -.37), wornOak, M.Wood)
 	for _, x in ipairs({-1.6, 1.6}) do
 		part('RosterForgedClip', V(.25, 1.33, .20), V(x, 3.18, -.12), iron, M.CorrodedMetal, nil, boardTilt)
@@ -33,16 +34,18 @@ end
 
 local function refugeReturnRootMarker(pal, part, beam)
 	local shale = pal.rock:Lerp(C(141, 147, 143), .61)
-	local fracturedShale = shale:Lerp(C(170, 177, 172), .54)
+	local fracturedShale = shale:Lerp(C(174, 181, 174), .70)
 	local bark = pal.wood:Lerp(C(118, 97, 75), .60)
 	local grain = bark:Lerp(C(178, 151, 111), .67)
 	local weatheredEnd = grain:Lerp(C(202, 174, 131), .73)
-	local exposedWood = C(152, 137, 115)
+	local exposedWood = C(177, 151, 116)
 	local iron = C(111, 110, 93)
 	part('ExposedOverlookShale', V(5.35, .68, 8.2), V(0, .24, .14), shale:Lerp(pal.rock, .55),
 		M.Slate, 'Wedge', V(0, math.pi, 0))
-	part('OverlookShaleToe', V(2.42, .66, 4.1), V(.88, .23, -1.56), shale:Lerp(pal.rock, .30), M.Slate,
+	part('OverlookShaleToe', V(2.42, .66, 4.1), V(.88, .23, -1.56), shale, M.Slate,
 		'Corner', V(0, -.44, 0))
+	part('OverlookApproachFault', V(3.42, .45, 1.89), V(.11, .40, -2.51), fracturedShale,
+		M.Slate, 'Wedge', V(0, .14, 0))
 	part('OverlookShaleBreak', V(3.31, .49, 3.19), V(-.37, .39, 1.56), shale, M.Slate,
 		'Corner', V(0, .31, 0))
 	part('OverlookShaleSplitToe', V(1.96, .45, 2.20), V(.53, .46, 2.22), fracturedShale,
@@ -50,8 +53,10 @@ local function refugeReturnRootMarker(pal, part, beam)
 	beam('ScouredMarkerRoot', V(-1.66, .19, 3.55), V(-1.01, 1.9, -.47), 1.05, bark, M.Wood)
 	beam('MarkerRootFork', V(-1.01, 1.9, -.47), V(.85, .31, -3.57), .75, bark, M.Wood)
 	local rootCrest = V(-.96, 2.24, -.41)
-	beam('ExposedMarkerRootGrain', V(-1.45, .94, 2.54), rootCrest, .64, exposedWood, M.Wood)
-	beam('MarkerRootForkGrain', rootCrest, V(.59, .88, -3.12), .57, exposedWood:Lerp(grain, .24), M.Wood)
+	beam('ExposedMarkerRootGrain', V(-1.45, .94, 2.54), rootCrest, .73, exposedWood, M.Wood)
+	beam('MarkerRootForkGrain', rootCrest, V(.59, .88, -3.12), .69, exposedWood, M.Wood)
+	beam('MarkerRootScouredShoulder', V(-.30, 1.88, -1.10), V(1.04, .54, -2.35), .59,
+		exposedWood:Lerp(bark, .31), M.Wood)
 	beam('NotchedMarkerStake', V(.35, .39, .57), V(.55, 4.05, .57), .68, bark, M.Wood)
 	part('ReturnMarkerCrossband', V(2.68, .75, .47), V(.53, 3.25, .20), weatheredEnd, M.WoodPlanks,
 		nil, V(0, .11, -.09))
@@ -72,11 +77,13 @@ local function ravineWalkRailAnchor(pal, part, beam)
 	part('WalkRailScouredGlacialFoot', V(4.95, .94, 8.18), V(0, .36, .12), shale, M.Slate, 'Wedge')
 	part('WalkRailLeewardSnow', V(2.79, .55, 4.51), V(-1.05, .36, 1.14), snow, M.Snow, 'Corner',
 		V(0, .44, 0))
-	part('WalkRailPackedSnowCut', V(1.23, .29, 3.49), V(-1.42, .49, .48), snow:Lerp(shale, .44),
+	part('WalkRailPackedSnowCut', V(1.61, .29, 3.49), V(-1.23, .49, .48), snow:Lerp(shale, .18),
 		M.Snow, 'Wedge', V(0, .23, 0))
 	part('WalkRailSocketStone', V(2.86, .79, 5.94), V(.29, .43, -.67), shale, M.Slate)
 	part('WalkRailExposedSocketCourse', V(2.75, .33, 5.69), V(.29, .70, -.67),
 		shale:Lerp(iron, .60), M.Slate, 'Wedge', V(0, math.pi, 0))
+	part('WalkRailSocketIceShadow', V(.56, .16, 3.34), V(-1.13, .69, -.43),
+		shale:Lerp(edge, .31), M.Ice, 'Wedge')
 	for _, z in ipairs({-2.68, 1.42}) do
 		part('WalkRailSolePlate', V(1.79, .22, 1.53), V(.39, .94, z), iron, M.Metal)
 		part('WalkRailForgedUpright', V(.47, 2.36, .49), V(.39, 2.20, z), iron, M.Metal)
@@ -105,10 +112,12 @@ local function belowRailCoolantInspectionHead(pal, part)
 		part('InspectionHeadFirebrickCheek', V(1.05, 1.56, 2.41), V(x, 1.37, .94), refractory, M.Brick)
 		part('InspectionRefractoryReturn', V(.28, 1.31, 1.76), V(x * .54, 1.31, .79),
 			basalt:Lerp(refractory, .33), M.Brick)
-		part('CoolantRunMineralWear', V(.17, .16, 2.85), V(x * .80, .29, -1.79), mineralScale, M.Limestone)
+		part('CoolantRunMineralWear', V(.23, .16, 3.21), V(x * .79, .29, -1.79), mineralScale, M.Limestone)
 	end
 	part('InspectionMouthSill', V(1.46, .29, .92), V(0, .65, -.18), basalt, M.Basalt, 'Wedge')
 	part('InspectionMouthScale', V(1.34, .13, .31), V(0, .71, -.39), mineralScale, M.Limestone)
+	part('CoolantRunSillDeposit', V(1.28, .16, 1.35), V(.09, .33, -1.02),
+		mineralScale:Lerp(refractory, .16), M.Limestone, 'Wedge', V(0, math.pi, 0))
 	part('InspectionHeadBackstone', V(2.10, 1.55, .63), V(0, 1.37, 1.75), basalt, M.Basalt)
 	local dryScale = mineralScale:Lerp(basalt, .28)
 	part('InspectionHeadDryScaleLine', V(1.13, .14, .11), V(0, .76, 1.40), dryScale, M.Limestone)
@@ -125,7 +134,7 @@ local function keeperServiceDoorJamb(pal, part)
 	local slate = pal.rock:Lerp(C(119, 126, 122), .58)
 	local limestone = slate:Lerp(C(170, 160, 135), .62)
 	local dressedStone = limestone:Lerp(C(181, 176, 156), .44)
-	local wornLimestone = dressedStone:Lerp(C(191, 181, 157), .56)
+	local wornLimestone = dressedStone:Lerp(C(202, 191, 168), .67)
 	local rust = C(106, 91, 76)
 	part('ServiceDoorMossFoot', V(5.72, .43, 5.8), V(0, .14, .28), pal.ground:Lerp(slate, .63), M.Ground,
 		'Corner', V(0, .30, 0))
@@ -134,17 +143,20 @@ local function keeperServiceDoorJamb(pal, part)
 		'Wedge', V(0, math.pi, 0))
 	part('ServiceDoorThresholdEnd', V(4.08, .22, .55), V(.15, .70, -1.34), dressedStone, M.Limestone,
 		'Wedge', V(0, math.pi, 0))
-	part('ServiceDoorReturnStep', V(3.76, .33, .81), V(.38, .68, 1.83), wornLimestone, M.Limestone,
+	part('ServiceDoorReturnStep', V(4.38, .41, .96), V(.23, .68, 1.76), wornLimestone, M.Limestone,
 		'Wedge')
 	for i = 0, 2 do
 		local x = -1.47 - .13 * i
 		part('ServiceDoorJambCourse', V(1.84 - .12 * i, 1.15, 1.92), V(x, 1.16 + i * 1.13, .73), slate, M.Slate)
 		part('ServiceDoorDressedReturn', V(.32, 1.05, 2.10), V(x + .94 - .06 * i, 1.16 + i * 1.13, .72),
 			dressedStone, M.Limestone)
-		local returnWidth = 1.24 - .19 * i
-		part('ServiceDoorRearQuoin', V(returnWidth, .99, .36),
-			V(x + .94 - .06 * i - returnWidth / 2, 1.13 + i * 1.13, 1.75), wornLimestone, M.Limestone)
+		local returnWidth = 1.59 - .15 * i
+		part('ServiceDoorRearQuoin', V(returnWidth, 1.04, .41),
+			V(x + .94 - .06 * i - returnWidth / 2, 1.13 + i * 1.13, 1.75),
+			wornLimestone:Lerp(dressedStone, .15 * i), M.Limestone)
 	end
+	part('ServiceDoorRearImpostReturn', V(1.69, .34, .37), V(-1.75, 3.72, 1.73),
+		wornLimestone, M.Limestone, 'Wedge', V(0, math.pi / 2, 0))
 	part('ServiceDoorSpalledImpost', V(2.43, .61, 2.18), V(-1.54, 3.98, .71), limestone, M.Slate,
 		'Wedge', V(0, math.pi / 2, 0))
 	part('ServiceDoorHingePlate', V(.25, .58, .54), V(-.60, 2.18, .47), rust, M.CorrodedMetal)
