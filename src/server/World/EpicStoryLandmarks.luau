@@ -11,6 +11,7 @@ local ForestAndGraveyard = require(script.Parent.ForestAndGraveyardLandmarks)
 
 local RescueRoute = require(script.Parent.RescueRouteLandmarks)
 local Finale = require(script.Parent.EpicFinaleScenery)
+local FinaleReturn = require(script.Parent.EpicFinaleReturnFixtures)
 
 local Landmarks = {version = 1}
 local V = Vector3.new
@@ -379,6 +380,13 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 		buildModel(site, id, center, size, palette, safe, ground, world, finale,
 			function(_, colors, part, beam)
 				Finale.compose(id, colors, part, beam)
+			end)
+	end
+	local returnFixture = FinaleReturn.profiles[id]
+	if returnFixture then
+		buildModel(site, id, center, size, palette, safe, ground, world, returnFixture,
+			function(_, colors, part, beam)
+				FinaleReturn.compose(id, colors, part, beam)
 			end)
 	end
 end
