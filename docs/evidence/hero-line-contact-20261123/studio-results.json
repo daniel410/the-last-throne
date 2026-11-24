@@ -1,0 +1,30 @@
+{
+  "baselineVersion": "0.115.63",
+  "candidateVersion": "0.115.66",
+  "baselineTargeted": {
+    "checks": 90,
+    "unmet": 53
+  },
+  "candidateStudio": {
+    "hero-line-contact-native": 158,
+    "hero-force-feedback-native": 81,
+    "hero-release-alignment-native": 26,
+    "elf-confirmed-release-native": 13,
+    "hero-skill-impact-native": 761,
+    "hero-skill-direction-native": 31,
+    "hero-vfx-priority-native": 28,
+    "hero-skills-native": 244520,
+    "hero-slow-presentation-native": 157,
+    "hero-ground-impact-native": 128,
+    "hero-contact-weight-native": 53,
+    "hero-posture-break-native": 187,
+    "hero-skill-sockets-native": 16
+  },
+  "totalStudioChecks": 246159,
+  "cpu": {
+    "advancedSkills": 1435,
+    "skillEffects": 12632,
+    "singleBuildRole": 10,
+    "singleBuildLoading": 326
+  }
+}
