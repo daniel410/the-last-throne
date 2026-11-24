@@ -11,6 +11,7 @@ mt.__sub=function(a,b)return V.new(a.X-b.X,a.Y-b.Y,a.Z-b.Z)end
 mt.__unm=function(a)return V.new(-a.X,-a.Y,-a.Z)end
 mt.__mul=function(a,b)if type(a)=='number'then a,b=b,a end;return V.new(a.X*b,a.Y*b,a.Z*b)end
 mt.__div=function(a,b)return a*(1/b)end
+function V:Dot(b)return self.X*b.X+self.Y*b.Y+self.Z*b.Z end
 function V:Cross(b)return V.new(self.Y*b.Z-self.Z*b.Y,self.Z*b.X-self.X*b.Z,self.X*b.Y-self.Y*b.X)end
 Vector3=V;V.zero=V.new();V.one=V.new(1,1,1);V.xAxis=V.new(1,0,0);V.yAxis=V.new(0,1,0)
 local cf={};cf.__index=cf;cf.__mul=function(a,b)return CFrame.new(a.Position+b.Position)end
@@ -85,7 +86,8 @@ check(count==116,'execute all advanced skills and all pulses')
 local expectedPulses=0
 for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do
  local usesSocketTrace=d.id=='elf.marksman.crossfire' or d.id=='dwarf.gunner.quickfire' or d.id=='elf.magic_archer.echo_arrows'
- if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and not usesSocketTrace then
+ local usesAuthoredRelease=P.get(d).fanLanes or d.id=='knight.steel_knight.rallying_slash' or d.id=='mage.pyro.steam_burst'
+ if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and not usesSocketTrace and not usesAuthoredRelease then
   expectedPulses=expectedPulses+d.pulses
  end
 end end

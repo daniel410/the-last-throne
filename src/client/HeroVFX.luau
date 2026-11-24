@@ -746,6 +746,8 @@ local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
  local pellet=r.key=="gun"
  local narrow=d.id=="elf.marksman.piercing_volley"
  local name=pellet and "ScatterPelletTrace" or narrow and "PiercingVolleyShaft" or "FanBreakShaft"
+ local hold=pellet and .045 or .060
+ local traceColor=pellet and r.color:Lerp(r.hot,.25) or r.color
  for i=1,lanes do
   local target=endpoints[i]
   if vector(target) and (target-first).Magnitude>.15 and (target-first).Magnitude<=d.range+.01 then
@@ -753,10 +755,11 @@ local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
    local delta=target-start
    if delta.Magnitude>.1 then
     local tip=target
-    local width=pellet and .115 or narrow and .065 or .09
+    local width=pellet and .135 or narrow and .075 or .09
     line(r,name,function(u)
-     return start+delta*(1-(1-u)^(pellet and 4 or 2.4)),tip
-    end,width,pellet and r.hot or r.color,pellet and .035 or width*.8,true)
+     local falloff=math.clamp((u*r.life-hold)/(r.life-hold),0,1)
+     return start+delta*(1-(1-falloff)^(pellet and 3.8 or 2.4)),tip
+    end,width,traceColor,pellet and .04 or width*.8,true)
     if pellet and not r.compact then
      Surfaces.bar(r,"ShotPelletBody",tip-delta.Unit*math.min(.5,delta.Magnitude*.5),tip,
       .1,Color3.fromRGB(200,207,214),.15,Enum.Material.Metal)
@@ -1220,14 +1223,14 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end,10,width)end
  elseif shape=="steam"then
   local at=floor
-  local span=math.min(radius*.56,3.2)
+  local span=math.min(radius*.63,4.2)
   for side=-1,1,2 do
    curve(r,"SteamFlashLip",function(t,u)
     local angle=math.pi*((t-.5)*.86+(side>0 and 1 or 0))
     local radial=flat*math.cos(angle)+right*math.sin(angle)
-    local reach=span*(.22+.78*(1-(1-u)^4))
+    local reach=span*(.34+.66*(1-(1-u)^4))
     return at+radial*reach+Vector3.yAxis*(.16+math.sin(t*math.pi)*.22)
-   end,3,.13,r.hot)
+   end,3,.17,r.hot)
    local pos=at+right*side*.75
    atmosphere(r,"SteamVapor",pos,false,3,1.1)
    curve(r,"SteamWisp",function(t,u)

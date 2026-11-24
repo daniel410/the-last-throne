@@ -142,9 +142,46 @@ local function measureLanes()
             local expect = (endpoint-endpoints[3]).Magnitude < .01 and origin or muzzle
             check((beam.Attachment0.WorldPosition-expect).Magnitude < .01, id.." clipped lane cannot start past wall")
         end
+        local started=workspace:GetServerTimeNow()
+        FX.step(started+.028)
+        for _, beam in strokes do
+            local endpoint = beam.Attachment1.WorldPosition
+            local expect = (endpoint-endpoints[3]).Magnitude < .01 and origin or muzzle
+            check((beam.Attachment0.WorldPosition-expect).Magnitude < .01, id.." readable launch connection at 28ms")
+        end
+        FX.step(started+.13)
+        for _, beam in strokes do
+            local endpoint = beam.Attachment1.WorldPosition
+            local expect = (endpoint-endpoints[3]).Magnitude < .01 and origin or muzzle
+            check((beam.Attachment0.WorldPosition-expect).Magnitude > .5, id.." trace recedes after release connection")
+        end
         FX.step(workspace:GetServerTimeNow()+1)
         check(FX.count()==0, id.." releases expire")
     end
+end
+
+local function measureCulledRelease()
+    FX.isOtherHero = function() return true end
+    local character = actor(origin)
+    local filler = "elf.marksman.piercing_volley"
+    for _ = 1, 13 do FX.skill(character,filler,origin,origin+aim*8,1,{},nil,aim) end
+    local id = "dwarf.gunner.scatter_shot"
+    local d = Catalog.byId[id].definition
+    local endpoints = Geometry.sector(origin,aim,d.range,d.angle,4)
+    endpoints[3] = origin+aim*2
+    local before = {}
+    for _, node in workspace:GetChildren() do before[node] = true end
+    Visual.play(character,id,origin,origin+aim*3,1,{},nil,nil,nil,aim,nil,nil,endpoints)
+    check(releaseModel(id)==nil,"Fixture saturates the optional effect budget")
+    local count, short = 0, 0
+    for _, node in workspace:GetChildren() do
+        if not before[node] and node.Name=="ShotPellet" then
+            count += 1
+            if math.abs(node.Size.Z-2)<.01 and (node.Position-origin-aim).Magnitude<.01 then short += 1 end
+        end
+    end
+    check(count==5 and short==1,"Fallback pellet traces keep the clipped center lane")
+    FX.clear()
 end
 
 local function measureOtherReleases()
@@ -214,6 +251,7 @@ end
 camera.CFrame = CFrame.lookAt(origin + Vector3.new(8,13,18),origin)
 local ok, err = xpcall(function()
     measureLanes()
+    measureCulledRelease()
     measureOtherReleases()
 end, debug.traceback)
 clean()
