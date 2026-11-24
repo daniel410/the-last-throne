@@ -18,7 +18,11 @@ local function watchtowerCableAbutment(pal, part, beam)
 	part('PierBeddedUpright', V(.69, 3.25, .78), V(.05, 3.29, .52), oak, M.Wood)
 	beam('PierBeddedBrace', V(-1.31, 1.72, .53), V(.06, 3.71, .53), .45, oak, M.Wood)
 	part('CableCrossarm', V(2.20, .49, .67), V(.05, 4.17, .51), grain, M.Wood)
-	part('AbutmentIronStaple', V(.48, .44, .19), V(.76, 4.16, .09), iron, M.CorrodedMetal)
+	part('AbutmentGuideBackplate', V(.70, .48, .14), V(.76, 4.16, .12), iron, M.CorrodedMetal)
+	for _, x in ipairs({.53, .99}) do
+		part('AbutmentGuideCheek', V(.16, .35, .35), V(x, 4.16, -.08), wornIron, M.CorrodedMetal)
+	end
+	part('AbutmentGuideLip', V(.61, .13, .20), V(.76, 4.05, -.21), wornIron, M.Metal)
 	beam('SlackCableUpper', V(.79, 4.19, -.02), V(.93, 2.95, -.19), .17, wornIron, M.CorrodedMetal)
 	beam('SlackCableLower', V(.93, 2.95, -.19), V(.80, 1.58, -1.02), .19, wornIron, M.CorrodedMetal)
 	beam('SlackCableAtPier', V(.80, 1.58, -1.02), V(.38, .68, -1.00), .19, wornIron, M.CorrodedMetal)
@@ -39,7 +43,7 @@ local function crushedLanternSill(pal, part, beam)
 	local loam = pal.ground:Lerp(C(77, 66, 51), .61)
 	local bark = pal.wood:Lerp(C(102, 82, 63), .51)
 	local rootGrain = bark:Lerp(C(159, 133, 105), .49)
-	local socketGrain = C(195, 165, 121)
+	local socketGrain = C(211, 180, 142)
 	local splitShale = shale:Lerp(C(178, 184, 174), .77)
 
 	part('RootHeaveLoam', V(6.33, .78, 7.54), V(.11, .24, .21), loam, M.Ground, 'Wedge')
@@ -61,19 +65,21 @@ local function crushedLanternSill(pal, part, beam)
 	beam('HeaveExposedGrain', V(-1.25, 1.04, 2.03), V(.43, 1.80, .93), .38, rootGrain, M.Wood)
 	part('DisplacedLanternSocket', V(1.34, .51, 1.35), V(-1.85, .80, -2.11), shale, M.Cobblestone,
 		nil, V(0, .14, -.35))
-	beam('SnappedSocketTimber', V(-1.85, .91, -2.11), V(-2.15, 1.98, -2.37), .66, bark, M.Wood)
-	part('BrokenSocketEndgrain', V(.72, .52, .62), V(-2.18, 1.94, -2.45), socketGrain,
-		M.Wood, 'Wedge', V(.24, .31, .32))
-	part('SocketSplitFace', V(.37, .68, .32), V(-2.34, 1.72, -2.45), socketGrain:Lerp(bark, .24),
-		M.Wood, 'Wedge', V(.26, 2.45, .37))
-	part('SocketFrontSplinter', V(.27, .59, .29), V(-1.94, 1.73, -2.49), socketGrain:Lerp(bark, .43),
-		M.Wood, 'Wedge', V(.36, .64, .42))
+	beam('SnappedSocketTimber', V(-1.85, .91, -2.11), V(-2.12, 1.83, -2.37), .71, bark, M.Wood)
+	part('BrokenSocketEndgrain', V(.84, .46, .68), V(-2.12, 1.92, -2.47), socketGrain,
+		M.Wood, 'Wedge', V(.27, -.16, .31))
+	part('SocketSplitFace', V(.43, .85, .35), V(-2.24, 1.63, -2.60), socketGrain:Lerp(bark, .18),
+		M.Wood, 'Wedge', V(.21, 2.67, .33))
+	part('SocketFrontSplinter', V(.29, .73, .33), V(-1.87, 1.55, -2.62), socketGrain:Lerp(bark, .36),
+		M.Wood, 'Wedge', V(.29, -.12, -.26))
+	part('SocketBrokenStrap', V(.73, .15, .14), V(-1.96, 1.24, -2.52), C(107, 103, 91),
+		M.CorrodedMetal, nil, V(.13, -.10, .24))
 end
 
 local function relayReturnHallSkirting(pal, part)
 	local schist = pal.rock:Lerp(C(108, 128, 144), .53)
 	local dressed = schist:Lerp(C(156, 171, 175), .63)
-	local packedSnow = pal.ground:Lerp(schist, .35)
+	local packedSnow = pal.ground:Lerp(schist, .23)
 	local iron = C(62, 76, 85)
 	local wornIron = C(154, 164, 159)
 
@@ -94,8 +100,11 @@ local function relayReturnHallSkirting(pal, part)
 	end
 	part('ReturnHallAxleJournalFace', V(.13, .48, .48), V(-.46, 1.27, -1.61),
 		wornIron:Lerp(dressed, .42), M.Metal, 'Cylinder', V(0, math.pi / 2, 0))
-	part('ReturnHallNearBearingShoulder', V(.45, .54, 1.04), V(-1.42, .93, -1.16), dressed, M.Slate,
+	local bearingStone = dressed:Lerp(C(151, 143, 124), .58)
+	part('ReturnHallNearBearingShoulder', V(.78, .54, 1.12), V(-1.36, .93, -1.16), bearingStone, M.Slate,
 		'Wedge', V(0, math.pi / 2, 0))
+	part('ReturnHallBearingCheek', V(.55, .62, 1.03), V(.33, .95, -1.26), bearingStone, M.Slate,
+		'Wedge', V(0, -math.pi / 2, 0))
 	part('ReturnHallPlowedSnowLip', V(1.43, .42, 3.07), V(.86, .38, .13), packedSnow, M.Snow,
 		'Wedge', V(0, math.pi / 2, 0))
 	part('ReturnHallPackedBearingEdge', V(.82, .28, 1.78), V(-1.59, .25, -1.60),
@@ -110,7 +119,8 @@ local function fracturedCoolantJunction(pal, part)
 	local scale = C(154, 136, 111)
 	local iron = C(89, 82, 77)
 	local darkIron = iron:Lerp(C(40, 36, 31), .74)
-	local fracture = iron:Lerp(scale, .55)
+	local dryIron = iron:Lerp(scale, .72)
+	local oxidizedIron = iron:Lerp(refractory, .60)
 	local alongRun = V(0, math.pi / 2, 0)
 
 	part('JunctionAshShoulder', V(5.79, .56, 9.51), V(-.12, .17, .16), pal.ground:Lerp(basalt, .55),
@@ -123,24 +133,25 @@ local function fracturedCoolantJunction(pal, part)
 		part('JunctionIronSleeve', V(2.07, 1.55, 1.55), V(pipeX, 1.75, direction * 2.39), iron, M.CorrodedMetal,
 			'Cylinder', alongRun)
 		-- The back wall sits behind the broken collar, leaving a visible bore at the opening.
-		part('JunctionBoreShadow', V(.10, 1.28, 1.28), V(pipeX, 1.75, direction * 1.30), darkIron, M.Metal,
+		part('JunctionBoreShadow', V(.10, 1.28, 1.28), V(pipeX, 1.75, direction * 1.32), darkIron, M.Metal,
 			'Cylinder', alongRun)
 		part('JunctionBeddedSleeveBand', V(.22, 1.62, 1.62), V(pipeX, 1.75, direction * 2.42),
 			iron:Lerp(basalt, .47), M.Metal, 'Cylinder', alongRun)
+		local fracture = direction < 0 and dryIron or oxidizedIron
 		for facet = 0, 5 do
-			local angle = (facet + direction * .16) * math.pi / 3
+			local angle = (facet + direction * .24) * math.pi / 3
 			local chipped = direction == -1 and facet == 1 or direction == 1 and facet == 4
 			local shorter = direction == -1 and facet == 0 or direction == 1 and facet == 5
-			local length = chipped and .10 or (shorter and .29 or .60)
+			local length = chipped and .10 or (shorter and .27 or .60)
 			local edgeZ = direction * (1.45 - length / 2)
-			part('JunctionBrokenRim', V(.88, .22, length),
+			part('JunctionBrokenRim', V(.85, .18, length),
 				V(pipeX - math.sin(angle) * .74, 1.75 + math.cos(angle) * .74, edgeZ),
 				chipped and iron or fracture, M.CorrodedMetal, nil, V(0, 0, angle))
 		end
 	end
 	part('JunctionMineralStain', V(2.16, .12, 1.27), V(.05, .72, .04), scale, M.Limestone,
 		'Corner', V(0, .28, 0))
-	part('JunctionMineralRunoff', V(.75, .15, 2.35), V(.89, .71, -.19), scale:Lerp(refractory, .22),
+	part('JunctionMineralRunoff', V(.97, .15, 2.35), V(.81, .71, -.19), scale:Lerp(refractory, .11),
 		M.Limestone, 'Wedge', V(0, .52, 0))
 	part('JunctionLeachFan', V(1.58, .12, .73), V(1.32, .71, .70), scale:Lerp(basalt, .28),
 		M.Limestone, 'Corner', V(0, -.32, 0))
@@ -156,7 +167,9 @@ local function allianceLandingGuardCourse(pal, part)
 	part('LandingSiltApron', V(6.05, .47, 8.83), V(-.06, .13, -.12), loam, M.Ground, 'Corner',
 		V(0, -.19, 0))
 	part('LandingGuardFoundation', V(3.50, .72, 8.24), V(.12, .32, .13), slate, M.Cobblestone)
-	part('LandingGuardLongCourse', V(2.83, .88, 4.08), V(.37, 1.12, 1.10), slate, M.Slate)
+	part('LandingGuardLowerBed', V(2.83, .35, 4.08), V(.37, .855, 1.10), slate, M.Slate)
+	part('LandingGuardUpperBedNear', V(2.83, .53, 1.96), V(.37, 1.295, .04), slate:Lerp(coping, .27), M.Slate)
+	part('LandingGuardUpperBedFar', V(2.71, .53, 2.00), V(.34, 1.295, 2.14), slate:Lerp(coping, .10), M.Slate)
 	part('LandingGuardEndCourse', V(2.68, .71, 2.74), V(.41, 1.03, -2.31), slate, M.Slate)
 	local wornCoping = coping:Lerp(C(181, 176, 159), .57)
 	part('LandingGuardLongCoping', V(2.53, .36, 2.11), V(.11, 1.74, 2.18), coping, M.Limestone)
