@@ -248,7 +248,7 @@ local function offsets(decorative)
 	return result
 end
 
-local function buildModel(site, id, center, size, palette, safe, ground, world, profile, builder)
+local function buildModel(site, id, center, size, palette, safe, ground, world, profile, builder, reserved)
 	local existing = site:FindFirstChild(profile.name)
 	if existing then return existing end
 
@@ -287,6 +287,10 @@ local function buildModel(site, id, center, size, palette, safe, ground, world, 
 	local function eligible(at)
 		if math.abs(at.X - center.X) > size[1] / 2 - pad or math.abs(at.Z - center.Z) > size[2] / 2 - pad
 			or Bounds.region(at.X, at.Z, pad, id) or Bounds.connection(at.X, at.Z, pad) then return nil end
+		if reserved then
+			local origin = reserved:GetPivot().Position
+			if distance(at, origin, origin) < pad + reserved:GetAttribute('PlacementRadius') then return nil end
+		end
 		-- Low visual-only works can sit closer to a route than solid structures.
 		if decorativeOnly then
 			if distance(at, spawn, spawn) < pad + 24 then return nil end
@@ -315,8 +319,11 @@ local function buildModel(site, id, center, size, palette, safe, ground, world, 
 				if not valid or math.abs(sample.Y - base.Y) > .6 then return nil end
 			end
 		end
-		local test = pivot * CFrame.new(bounds.X, (bounds.Y + span.Y / 2 + 2) / 2, bounds.Z)
-		if #workspace:GetPartBoundsInBox(test, V(span.X + 8, bounds.Y + span.Y / 2 - 2, span.Z + 8), overlap) > 0 then
+		local top = bounds.Y + span.Y / 2
+		-- Keep a positive overlap height for low fixtures while ignoring the buried base.
+		local bottom = top <= 2 and .05 or 2
+		local test = pivot * CFrame.new(bounds.X, (top + bottom) / 2, bounds.Z)
+		if #workspace:GetPartBoundsInBox(test, V(span.X + 8, top - bottom, span.Z + 8), overlap) > 0 then
 			return nil
 		end
 		-- Non-queryable scene dressing also needs an unobstructed silhouette.
@@ -376,8 +383,9 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 		buildModel(site, id, center, size, palette, safe, ground, world, profile, ArchiveAndCanal.compose)
 	end
 	local finale = Finale.profiles[id]
+	local finaleLandmark
 	if finale then
-		buildModel(site, id, center, size, palette, safe, ground, world, finale,
+		finaleLandmark = buildModel(site, id, center, size, palette, safe, ground, world, finale,
 			function(_, colors, part, beam)
 				Finale.compose(id, colors, part, beam)
 			end)
@@ -387,7 +395,7 @@ function Landmarks.build(site, id, center, size, palette, safe, ground, world)
 		buildModel(site, id, center, size, palette, safe, ground, world, returnFixture,
 			function(_, colors, part, beam)
 				FinaleReturn.compose(id, colors, part, beam)
-			end)
+			end, finaleLandmark)
 	end
 end
 
