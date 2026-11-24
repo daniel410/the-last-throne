@@ -86,7 +86,9 @@ check(count==116,'execute all advanced skills and all pulses')
 local expectedPulses=0
 for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do
  local usesSocketTrace=d.id=='elf.marksman.crossfire' or d.id=='dwarf.gunner.quickfire' or d.id=='elf.magic_archer.echo_arrows'
+  or d.id=='dwarf.iron_axe.returning_echo'
  local usesAuthoredRelease=P.get(d).fanLanes or d.id=='knight.steel_knight.rallying_slash' or d.id=='mage.pyro.steam_burst'
+  or d.id=='knight.steel_knight.twin_cyclone' or d.id=='mage.pyro.cinder_ring'
  if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and not usesSocketTrace and not usesAuthoredRelease then
   expectedPulses=expectedPulses+d.pulses
  end

@@ -1,0 +1,86 @@
+{
+  "mode": "Isolated Roblox Studio with fixed local builds",
+  "baseline": "0.115.76",
+  "candidate": "0.115.77",
+  "passedSuites": 14,
+  "passedChecks": 253282,
+  "suites": {
+    "hero-pulse-rhythm-native": {
+      "checks": 219,
+      "pass": true
+    },
+    "skill-vfx-individual-native": {
+      "checks": 307,
+      "pass": true
+    },
+    "roblox-vfx-polish-native": {
+      "checks": 2117,
+      "pass": true
+    },
+    "hero-skill-impact-native": {
+      "checks": 761,
+      "pass": true
+    },
+    "hero-vfx-priority-native": {
+      "checks": 28,
+      "pass": true
+    },
+    "hero-skills-native": {
+      "checks": 244520,
+      "pass": true
+    },
+    "hero-skill-windup-native": {
+      "checks": 1400,
+      "pass": true
+    },
+    "skill-vfx-art-native": {
+      "checks": 43,
+      "pass": true
+    },
+    "vfx-art-hero-fixes-native": {
+      "checks": 2299,
+      "pass": true
+    },
+    "vfx-review-followup-native": {
+      "checks": 1292,
+      "pass": true
+    },
+    "hero-skill-direction-native": {
+      "checks": 31,
+      "pass": true
+    },
+    "hero-release-shapes-native": {
+      "checks": 188,
+      "pass": true
+    },
+    "hero-release-alignment-native": {
+      "checks": 26,
+      "pass": true
+    },
+    "hero-contact-materials-native": {
+      "checks": 51,
+      "pass": true
+    },
+    "enemy-patterns-native": {
+      "error": "boss contact expires",
+      "pass": false,
+      "runModeRetry": "Studio connection timeout before fixture execution"
+    }
+  },
+  "cpu": {
+    "passedChecks": 14234,
+    "advanced-skills": 1435,
+    "skill-effects": 12584,
+    "auto-target": 215
+  },
+  "screenshots": {
+    "baseline": 8,
+    "candidate": 8,
+    "rig": "R15",
+    "comparison": "comparison.jpg"
+  },
+  "baselinePulseRhythm": {
+    "checks": 285,
+    "failed": 198
+  }
+}

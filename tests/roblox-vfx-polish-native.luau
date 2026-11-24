@@ -98,8 +98,12 @@ local ok,err=xpcall(function()
   touch.clear();local m=assert(touch.skill(nil,id,first,last,1,{}));local faces=select(6,touch.count())
   check(faces<=80,'complete primary stays inside the existing touch face cap '..id)
   if id=='knight.steel_knight.twin_cyclone'then
-   local count=0;for _,v in ipairs(m:GetDescendants())do if v.Name=='BladeSurface'then count+=1 end end
-   check(count==32,'the confirmed pulse gets one complete eight-span blade surface on touch')
+   local faces,edges=0,0
+   for _,v in ipairs(m:GetDescendants())do
+    if v.Name=='BladeSurface'then faces+=1 end
+    if v.Name=='BladeRibbon'then edges+=1 end
+   end
+   check(edges==12 and faces>=24 and faces<=32,'the confirmed pulse gets one complete ribbon and one filled blade surface on touch')
   end
  end
  touch.clear();hero:Destroy();surface:Destroy()

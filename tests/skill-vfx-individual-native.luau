@@ -55,7 +55,7 @@ local ok,err=xpcall(function()
  m=cast('dwarf_low_sweep')
  for _,v in ipairs(beams(m,'LowSweep'))do check(v.Attachment0.WorldPosition.Y<.7,'Low Sweep stays at ankle height')end
  m=cast(A.branches.gunner.skills[7].id)
- check(#beams(m,'ArrowPressure')==5,'Scatter Shot has five authored fan lanes')
+ check(#beams(m,'ScatterPelletTrace')==5,'Scatter Shot has five authored fan lanes')
  m=cast('knight.common.bash',from,from+Vector3.xAxis*5)
  for _,v in ipairs(beams(m,'GuardHalo'))do check(math.abs(v.Attachment0.WorldPosition.X-2)<.01,'shield plane faces the actual attack direction')end
  for _,strike in ipairs({
