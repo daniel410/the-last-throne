@@ -7,6 +7,7 @@ local Theme = {color = {
 	navy=Color3.fromRGB(20,29,45), ink=Color3.fromRGB(8,16,30), blue=Color3.fromRGB(20,55,100),
 	gold=Color3.fromRGB(222,185,106), silver=Color3.fromRGB(156,185,210), text=Color3.fromRGB(242,239,224),
 	muted=Color3.fromRGB(161,179,199), green=Color3.fromRGB(155,225,174), error=Color3.fromRGB(255,174,145),
+	mana=Color3.fromRGB(53,223,255), selected=Color3.fromRGB(117,255,201),
 }}
 function Theme.sprite(parent, name, key, position, size, atlas)
 	local source = atlas or Art
@@ -82,5 +83,20 @@ function Theme.enabled(button,enabled)
 	button.Caption.TextTransparency=enabled and 0 or .45
 	button.BackgroundTransparency=enabled and 0 or .4
 	button.TDButtonArt.ImageTransparency=enabled and 0 or .4
+end
+function Theme.selectionMark(button)
+	local mark=Instance.new("Frame")
+	mark.Name,mark.Position,mark.Size="SelectionMark",UDim2.new(0,8,1,-5),UDim2.new(1,-16,0,2)
+	mark.BackgroundColor3,mark.BorderSizePixel=Color3.new(1,1,1),0
+	mark.Active,mark.Visible,mark.ZIndex=false,false,button.ZIndex+2
+	local gradient=Instance.new("UIGradient")
+	gradient.Color=ColorSequence.new(Theme.color.mana,Theme.color.selected)
+	gradient.Transparency=NumberSequence.new({
+		NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(.15,0),
+		NumberSequenceKeypoint.new(.85,0),NumberSequenceKeypoint.new(1,1),
+	})
+	gradient.Parent=mark
+	mark.Parent=button
+	return mark
 end
 return Theme

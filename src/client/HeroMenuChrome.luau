@@ -22,6 +22,10 @@ function Menu.node(parent,name,icon,position,size,unlocked,selected)
  local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(1,0);corner.Parent=node
  local ring=Instance.new('UIStroke');ring.Color=selected and Color3.fromRGB(255,204,74) or unlocked and Color3.fromRGB(169,211,255) or Color3.fromRGB(102,114,129);ring.Thickness=selected and 4 or 3;ring.ApplyStrokeMode=Enum.ApplyStrokeMode.Border;ring.Parent=node
  local gradient=Instance.new('UIGradient');gradient.Color=ColorSequence.new(Color3.new(1,1,1),Color3.fromRGB(40,53,85));gradient.Rotation=90;gradient.Parent=node
+ if unlocked and selected then
+  node.BackgroundColor3=Color3.new(1,1,1)
+  gradient.Color=ColorSequence.new(Color3.fromRGB(30,145,207),Color3.fromRGB(10,47,109))
+ end
  if icon~='' then local art=Theme.icon(node,icon,UDim2.fromOffset(7,7),UDim2.new(1,-14,1,-14));art.ImageTransparency=unlocked and 0 or .62 end
  for i,p in ipairs({UDim2.fromScale(.5,0),UDim2.fromScale(1,.5),UDim2.fromScale(.5,1),UDim2.fromScale(0,.5)}) do Chrome.diamond(node,'NodeGem'..i,p,size*.13,unlocked and Theme.color.gold or Theme.color.silver) end
  return node

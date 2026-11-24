@@ -18,6 +18,14 @@ local ok,err=xpcall(function()
   elseif v:IsA('BillboardGui')then flare+=1;check(not v.AlwaysOnTop and v.MaxDistance<=100,'flare obeys world occlusion')end
  end
  check(core>0 and glow>0 and emitters==2 and flare==1,'fire cast has core, halo, sparks, flame and flash')
+ local wake=assert(m:FindFirstChild('SoftGlow',true))
+ local body
+ for _,beam in ipairs(m:GetDescendants())do
+  if beam:IsA('Beam') and beam~=wake and beam.Attachment0==wake.Attachment0 then body=beam;break end
+ end
+ check(body and body.LightEmission<.8 and body.Color.Keypoints[1].Value.R>body.Color.Keypoints[1].Value.B,
+  'the main beam has a visible colored body with room for the additive rim')
+ check(wake.Width0<body.Width0*2 and wake.Transparency.Keypoints[1].Value>.72,'the rim is narrow and subordinate to its body')
  FX.step(workspace:GetServerTimeNow()+.1)
  local image=m:FindFirstChild('ElementalFlare',true);check(image.ImageTransparency>0,'flash fades within the cast')
  FX.clear()

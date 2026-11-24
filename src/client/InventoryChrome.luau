@@ -29,12 +29,16 @@ end
 function Chrome.card(parent,name,position,size,selected,occupied)
 	local frame=Instance.new("TextButton")
 	frame.Name,frame.Position,frame.Size,frame.Text=name,position,size,""
-	frame.BackgroundColor3,frame.BorderSizePixel=selected and Color3.fromRGB(11,44,76) or Color3.fromRGB(7,17,29),0
+	frame.BackgroundColor3,frame.BorderSizePixel=selected and Color3.new(1,1,1) or Color3.fromRGB(7,17,29),0
 	frame.AutoButtonColor,frame.Selectable=false,occupied
 	frame.Parent=parent
 	local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(0,7); corner.Parent=frame
-	local line=Instance.new("UIStroke"); line.Name="SelectionOutline"; line.ApplyStrokeMode=Enum.ApplyStrokeMode.Border; line.Color=selected and Color3.fromRGB(57,195,255) or Color3.fromRGB(116,140,163); line.Thickness=selected and 3 or 1.5; line.Transparency=occupied and 0 or .55; line.Parent=frame
+	local line=Instance.new("UIStroke"); line.Name="SelectionOutline"; line.ApplyStrokeMode=Enum.ApplyStrokeMode.Border; line.Color=selected and Base.color.selected or Color3.fromRGB(116,140,163); line.Thickness=selected and 3 or 1.5; line.Transparency=occupied and 0 or .55; line.Parent=frame
 	if selected then
+		local fill=Instance.new("UIGradient")
+		fill.Name,fill.Rotation="SelectionFill",90
+		fill.Color=ColorSequence.new(Color3.fromRGB(26,101,99),Color3.fromRGB(10,36,55))
+		fill.Parent=frame
 		for i,p in ipairs({UDim2.fromOffset(3,3),UDim2.new(1,-3,0,3),UDim2.new(0,3,1,-3),UDim2.new(1,-3,1,-3)}) do Chrome.diamond(frame,"SelectedGem"..i,p,7,Base.color.gold) end
 	end
 	return frame

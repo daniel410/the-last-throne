@@ -99,14 +99,32 @@ local ok, failure = xpcall(function()
 	hud.setMana(85, 100)
 	check(label.Visible and value.Visible and track.Visible, "mage mana bar is visible")
 	check(value.Text == "85 / 100" and status.Size.Y.Offset == 145, "mana amount and panel size are correct")
+	local Theme=require(client.TDInventoryTheme)
+	local fill=track.FillWindow.Fill
+	check(math.abs(fill.Size.X.Scale-.85)<.0001 and fill.ManaSheen.Color.Keypoints[2].Value==Theme.color.mana,
+		"the cyan gradient belongs to the visible portion of the pool")
+	check(track.TDResourceFrame.Image==status.HEALTHTrack.TDResourceFrame.Image and status.HEALTHTrack.FillWindow.Fill:FindFirstChild("TDFill"),
+		"mana keeps the original TD frame and health keeps the original fill")
 	hud.setMana(0, 100)
-	check(value.Text == "0 / 100" and label.Visible, "empty mana pool remains visible")
+	check(value.Text == "0 / 100" and label.Visible and fill.Size.X.Scale==0, "empty mana label remains visible and its accent stays clipped")
 	hud.setMana(nil, nil)
 	check(not label.Visible and status.Size.Y.Offset == 100, "changing heroes hides stale mana")
 	-- Capability-driven display does not itself grant Elf a pool or advancement.
 	hud.setClass("elf")
 	hud.setMana(25, 40)
 	check(label.Visible and value.Text == "25 / 40", "replicated mana capability controls the bar")
+	local tab=Theme.button(status,"SelectionFixture","STATS",UDim2.new(),UDim2.fromOffset(120,35))
+	local mark=Theme.selectionMark(tab)
+	check(not mark.Visible and not mark.Active and mark.ZIndex>tab.TDButtonArt.ZIndex,"tab marker is a non-interactive layer above the original art")
+	mark.Visible=true
+	check(mark.Visible and tab.TDButtonArt.ImageColor3==Color3.new(1,1,1),"selection does not tint TD art")
+	local Chrome=require(client.InventoryChrome)
+	local selected=Chrome.card(tab,"SelectedFixture",UDim2.new(),UDim2.fromOffset(96,64),true,true)
+	local idle=Chrome.card(tab,"IdleFixture",UDim2.new(),UDim2.fromOffset(96,64),false,true)
+	check(selected.SelectionOutline.Color==Theme.color.selected and selected:FindFirstChild("SelectionFill")
+		and selected:FindFirstChild("SelectedGem1") and not idle:FindFirstChild("SelectionFill"),
+		"mint outline and accent fill distinguish occupied selected slots while retaining gold fittings")
+	tab:Destroy()
 	for _, child in ipairs(status:GetDescendants()) do
 		check(not string.find(string.lower(child.Name), "stamina", 1, true), "status has no stamina control")
 	end

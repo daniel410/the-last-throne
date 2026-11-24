@@ -20,13 +20,14 @@ function Gui.create(onVisibility)
 	local launch=Theme.button(gui,"OpenHero",Navigation.statsButton,UDim2.new(1,-278,0,0),UDim2.fromOffset(128,44))
 	launch.Visible=false -- Hidden before any constructor waits or phase replication.
 	require(script.Parent.TopMenuLayout).bind(gui,launch,2)
-	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
+	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Theme.color.ink; overlay.BackgroundTransparency=.52; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
 	local panel=Menu.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
 	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(1240,800); limit.Parent=panel
 	local title=Menu.plaque(panel,"TitlePlaque",Navigation.statsSkills,UDim2.new(.5,-180,0,-24),UDim2.fromOffset(360,58))
 	local close=Theme.button(panel,"Close","X",UDim2.new(1,-62,0,10),UDim2.fromOffset(44,44))
 	local statsTab=Theme.button(panel,"StatsTab","STATS",UDim2.fromOffset(18,54),UDim2.new(.5,-24,0,38))
 	local skillsTab=Theme.button(panel,"SkillsTab","SKILLS",UDim2.new(.5,6,0,54),UDim2.new(.5,-24,0,38))
+	local statsMark,skillsMark=Theme.selectionMark(statsTab),Theme.selectionMark(skillsTab)
 	local body=Instance.new("ScrollingFrame"); body.Name="Content"; body.Position=UDim2.fromOffset(18,104); body.Size=UDim2.new(1,-36,1,-166); body.BackgroundTransparency=1; body.BorderSizePixel=0; body.ScrollBarThickness=5; body.Parent=panel
 	local message=Theme.label(panel,"Message","",UDim2.new(0,18,1,-54),UDim2.new(1,-36,0,42),12,Theme.color.muted)
 	local function resizeChrome()
@@ -113,6 +114,7 @@ function Gui.create(onVisibility)
 	render=function()
 		for _,child in ipairs(body:GetChildren()) do child:Destroy() end
 		body.ScrollingEnabled=true
+		statsMark.Visible,skillsMark.Visible=tab=="Stats",tab=="Skills"
 		local hero=snapshot and snapshot.heroes[snapshot.heroId]
 		local g=hero and hero.progression
 		if not g then
@@ -126,7 +128,6 @@ function Gui.create(onVisibility)
 		end
 		local classId=hero.baseClassId
 		title.Caption.Text=Navigation.statsSkills
-		for _,entry in ipairs({{statsTab,"Stats"},{skillsTab,"Skills"}}) do entry[1].TDButtonArt.ImageColor3=tab==entry[2] and Color3.fromRGB(132,206,255) or Color3.new(1,1,1) end
 		if tab=="Skills" then
 			treeState.retry=function() if pending then remote:FireServer(pending);show("Checking the same save...") end end
 			local height=SkillTree.render(body,hero,snapshot,treeState,send,render,pending)

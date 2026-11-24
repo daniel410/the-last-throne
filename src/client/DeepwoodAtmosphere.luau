@@ -7,7 +7,7 @@ local profiles={
   Brightness=3.2,Ambient=Color3.fromRGB(157,169,177),OutdoorAmbient=Color3.fromRGB(189,208,218),
   ClockTime=13,ExposureCompensation=.16,ColorShift_Top=Color3.fromRGB(20,33,48)},
  Deepwood={FogStart=Mood.fogStart,FogEnd=Mood.fogEnd,FogColor=Color3.fromRGB(192,225,246),
-  Brightness=2.7,Ambient=Color3.fromRGB(107,126,95),OutdoorAmbient=Color3.fromRGB(149,171,127),
+  Brightness=3,Ambient=Color3.fromRGB(135,151,123),OutdoorAmbient=Color3.fromRGB(170,190,149),
   ClockTime=15.6,ExposureCompensation=.14,ColorShift_Top=Color3.fromRGB(15,27,40)},
 }
 local saved,environment,sky,correction,current,atmosphere,bloom
@@ -50,14 +50,15 @@ function Mood.update(mode)
  -- Atmosphere overrides distance fog, so retain FogStart/FogEnd for Deepwood.
  sky=Instance.new('Sky');sky.Name='TLTClearDaySky';sky.CelestialBodiesShown=true;sky.StarCount=(mode=='Gloamwood' or mode=='HauntedGraveyard') and 900 or 0;sky.MoonAngularSize=11;sky.Parent=Lighting
  correction=Instance.new('ColorCorrectionEffect');correction.Name='TLTVividDaylight'
- correction.Brightness=.015;correction.Contrast=mode=='Lobby' and .025 or .09;correction.Saturation=mode=='Lobby' and .24 or mode=='Deepwood' and .10 or .04
- correction.TintColor=mode=='Deepwood'and Color3.fromRGB(255,247,229)or mode=='Gloamwood' and Color3.fromRGB(211,226,249) or mode=='HauntedGraveyard' and Color3.fromRGB(216,228,246) or Color3.fromRGB(244,250,255);correction.Parent=Lighting
+ correction.Brightness=.015;correction.Contrast=mode=='Lobby' and .025 or mode=='Deepwood' and .06 or .09
+ correction.Saturation=mode=='Lobby' and .24 or mode=='Deepwood' and .17 or .04
+ correction.TintColor=mode=='Deepwood'and Color3.fromRGB(255,252,245)or mode=='Gloamwood' and Color3.fromRGB(211,226,249) or mode=='HauntedGraveyard' and Color3.fromRGB(216,228,246) or Color3.fromRGB(244,250,255);correction.Parent=Lighting
  if mode~='Lobby' then
   -- Atmosphere blends sky and terrain; a short white fog curtain hid the authored skyline.
   atmosphere=Instance.new('Atmosphere');atmosphere.Name='TLTRegionalAtmosphere'
   atmosphere.Color=profiles[mode].FogColor;atmosphere.Decay=profiles[mode].Ambient
-  atmosphere.Density=mode=='Deepwood'and .12 or(mode=='Gloamwood' or mode=='HauntedGraveyard') and .22 or .24
-  atmosphere.Offset=.1;atmosphere.Haze=mode=='Deepwood'and .18 or mode=='EmberCaldera' and .9 or .45;atmosphere.Glare=.03;atmosphere.Parent=Lighting
+  atmosphere.Density=mode=='Deepwood'and .09 or(mode=='Gloamwood' or mode=='HauntedGraveyard') and .22 or .24
+  atmosphere.Offset=.1;atmosphere.Haze=mode=='Deepwood'and .11 or mode=='EmberCaldera' and .9 or .45;atmosphere.Glare=.03;atmosphere.Parent=Lighting
   bloom=Instance.new('BloomEffect');bloom.Name='TLTLocalGlow';bloom.Intensity=.14;bloom.Size=14;bloom.Threshold=1.2;bloom.Parent=Lighting
  end
  current=mode

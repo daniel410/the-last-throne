@@ -54,7 +54,7 @@ function InventoryGui.create(onVisibility, feedback)
 	badge.Visible = false
 	local shade = Instance.new("Frame")
 	shade.Name, shade.Size, shade.BackgroundColor3 = "InventoryOverlay", UDim2.fromScale(1,1), Color.ink
-	shade.BackgroundTransparency, shade.BorderSizePixel, shade.Active, shade.Visible = .2,0,true,false
+	shade.BackgroundTransparency, shade.BorderSizePixel, shade.Active, shade.Visible = .46,0,true,false
 	shade.Parent = gui
 	local shell = Theme.frame(shade,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-24))
 	shell.AnchorPoint = Vector2.new(.5,.5)
@@ -74,6 +74,7 @@ function InventoryGui.create(onVisibility, feedback)
 	local filterButtons = {}
 	for index, category in ipairs({"All","Equipment","Consumables","Materials"}) do
 		filterButtons[category] = Theme.button(filters,"Filter_"..category,Text[category],UDim2.new(),UDim2.new())
+		Theme.selectionMark(filterButtons[category])
 	end
 	local sort = Theme.button(shell,"SortItems","SORT: NAME",UDim2.new(),UDim2.fromOffset(130,40))
 	local content = Instance.new("Frame"); content.Name="Content"; content.BackgroundTransparency=1; content.Parent=shell
@@ -522,7 +523,7 @@ function InventoryGui.create(onVisibility, feedback)
 		gear.Caption.Text=gearMode and Text.ViewBag or Text.ViewGear
 		bag.heading.Text=sourceTab=="pending" and Text.Pending or snapshot and string.format(Text.BagCount,snapshot.bagUsed,snapshot.bagCapacity) or Text.BagTab
 		storage.heading.Text=snapshot and string.format(Text.StorageCount,snapshot.storageUsed,snapshot.storageCapacity) or Text.StorageTab
-		for key,button in pairs(filterButtons) do button.TDButtonArt.ImageColor3=key==category and Color3.fromRGB(150,205,255) or Color3.new(1,1,1) end
+		for key,button in pairs(filterButtons) do button.SelectionMark.Visible=key==category end
 		if sourceTab=="pending" then renderList(bag,"pending")
 		else renderList(bag,"bag") end
 		renderList(storage,"storage")

@@ -27,6 +27,7 @@ local glowCount=0
 local particleCount=0
 local lightCount=0
 local WHITE=Color3.fromRGB(248,248,229)
+local GLOW_WIDTH=1.8
 local palette=Palette.colors
 local SHIELD_BREAKER="knight.steel_knight.shield_breaker"
 local SHIELD_VERDICT="knight.paladin.shield_verdict"
@@ -102,13 +103,13 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  local a=Instance.new("Attachment");a.Parent=r.carrier
  local b=Instance.new("Attachment");b.Parent=r.carrier
  local beam=Instance.new("Beam");beam.Name=name;beam.Attachment0=a;beam.Attachment1=b;beam.FaceCamera=true;beam.Segments=1
- local primary=color==WHITE and r.color:Lerp(r.hot,.72)or color or r.color
- beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(primary,r.color:Lerp(r.hot,r.key=='lightning'and .7 or .35))
- beam.LightEmission=1;beam.LightInfluence=0;beam.Transparency=NumberSequence.new(.18);beam.Parent=r.carrier
+ local primary=color==WHITE and r.color:Lerp(r.hot,.34)or color or r.color
+ beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(primary,r.color:Lerp(r.hot,r.key=='lightning'and .45 or .18))
+ beam.LightEmission=.62;beam.LightInfluence=0;beam.Transparency=NumberSequence.new(.18);beam.Parent=r.carrier
  local glow
  if not noGlow and not r.compact and not r.incoming and glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
-  glow=beam:Clone();glow.Name="SoftGlow";glow.Width0=width*2.6;glow.Width1=endWidth*2.6
-  glow.Color=ColorSequence.new(r.color);glow.Texture="rbxasset://textures/particles/smoke_main.dds";glow.TextureMode=Enum.TextureMode.Stretch;glow.Transparency=NumberSequence.new(.62);glow.Parent=r.carrier
+  glow=beam:Clone();glow.Name="SoftGlow";glow.Width0=width*GLOW_WIDTH;glow.Width1=endWidth*GLOW_WIDTH
+  glow.LightEmission=1;glow.Color=ColorSequence.new(r.color);glow.Texture="rbxasset://textures/particles/smoke_main.dds";glow.TextureMode=Enum.TextureMode.Stretch;glow.Transparency=NumberSequence.new(.74);glow.Parent=r.carrier
   table.insert(r.glows,glow);glowCount+=1
  end
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
@@ -206,7 +207,7 @@ function FX.step(now)
    if r.incoming then fade=.16*(1-u) end
    local bucket=math.floor(fade*24)
    local changed=r.fadeBucket~=bucket
-   if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.7+fade^.65*.3)end
+   if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.74+math.min(1,fade*1.55)^.7*.26)end
    local cutFront=.18+.82*(1-(1-math.min(1,u/.76))^2)
    for _,s in ipairs(r.lines)do
     if s.span then
@@ -228,7 +229,7 @@ function FX.step(now)
      end
     elseif changed then s.beam.Transparency=r.alpha end
     if s.glow then
-     s.glow.Width0=s.beam.Width0*2.6;s.glow.Width1=s.beam.Width1*2.6
+     s.glow.Width0=s.beam.Width0*GLOW_WIDTH;s.glow.Width1=s.beam.Width1*GLOW_WIDTH
      if changed then s.glow.Transparency=r.glowAlpha end
     end
    end
@@ -243,7 +244,7 @@ function FX.step(now)
     local age=now-r.at;local burstFade=math.clamp(age/.14,0,1)
     local coreFade=math.clamp(age/.075,0,1)
     local size=s.size*(.65+math.sin(math.min(u*4,1)*math.pi/2)*.35)
-    s.gui.Size=UDim2.fromScale(size,size);s.halo.ImageTransparency=.25+burstFade*.75;s.core.ImageTransparency=coreFade;s.aura.ImageTransparency=.7+math.clamp(age/.24,0,1)*.3
+    s.gui.Size=UDim2.fromScale(size,size);s.halo.ImageTransparency=.25+burstFade*.75;s.core.ImageTransparency=coreFade;s.aura.ImageTransparency=.78+math.clamp(age/.20,0,1)*.22
    end
    for _,s in ipairs(r.chips)do
     local p=s.part

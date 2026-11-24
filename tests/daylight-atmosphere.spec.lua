@@ -15,6 +15,8 @@ local prior={table.unpack(created)}
 mood.update('Deepwood');check(lighting.ClockTime>=12 and lighting.ClockTime<=17 and lighting.FogEnd==620,'forest remains daylight with a readable skyline')
 for _,p in ipairs(prior)do check(p.destroyed,'old owned effects removed')end
 check(created[5].class=='Atmosphere'and created[6].class=='BloomEffect','regional haze and restrained local glow')
+check(lighting.Ambient.r==135 and lighting.OutdoorAmbient.g==190,'Deepwood fills shaded grass and props')
+check(created[4].Saturation==.17 and created[5].Haze==.11 and created[6].Intensity==.14,'daylight contrast comes from tint and haze with the same bloom intensity')
 for _,name in ipairs({'FrozenVale','EmberCaldera','Gloamwood','HauntedGraveyard','Lobby'})do
  prior={};for _,p in ipairs(created)do if not p.destroyed then prior[#prior+1]=p end end
  mood.update(name)

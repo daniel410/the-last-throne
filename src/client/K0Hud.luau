@@ -85,10 +85,20 @@ local function bar(parent, title, top, color)
 	fill.BorderSizePixel = 0
 	fill.Parent = window
 	round(fill, 5)
-	-- TD's authored red fill stays red; MP uses a blue native fill with the same silver frame.
+	-- The TD resource frame surrounds both the original HP art and the native MP fill.
 	if title == Text.Health then
 		local art=Theme.sprite(fill, "TDFill", "healthFill", UDim2.new(), UDim2.fromScale(1, 1), BattleArt)
 		art.SliceScale=.15
+	else
+		fill.BackgroundColor3=Color3.new(1,1,1)
+		local sheen=Instance.new("UIGradient")
+		sheen.Name,sheen.Rotation="ManaSheen",90
+		sheen.Color=ColorSequence.new({
+			ColorSequenceKeypoint.new(0,Color3.fromRGB(139,249,255)),
+			ColorSequenceKeypoint.new(.38,color),
+			ColorSequenceKeypoint.new(1,Color3.fromRGB(21,115,217)),
+		})
+		sheen.Parent=fill
 	end
 	local resourceFrame=Theme.sprite(track, "TDResourceFrame", "healthFrame", UDim2.new(), UDim2.fromScale(1,1), BattleArt)
 	resourceFrame.SliceScale=.18
@@ -179,7 +189,7 @@ function Hud.create()
 	local xpLabel=text(status,"XP","",UDim2.fromOffset(14,19),UDim2.new(1,-28,0,12),10,COLORS.gold)
 	local growthPoints=Instance.new("TextButton");growthPoints.Name="GrowthPoints";growthPoints.BackgroundTransparency=1;growthPoints.Size=UDim2.new(1,0,0,26);growthPoints.Position=UDim2.new(0,0,1,3);growthPoints.TextColor3=COLORS.gold;growthPoints.Font=Enum.Font.GothamBold;growthPoints.TextSize=11;growthPoints.TextStrokeTransparency=.2;growthPoints.AutoLocalize=false;growthPoints.Visible=false;growthPoints.Parent=status
  local setHealth = bar(status, Text.Health, 32, COLORS.red)
-	local setManaValue = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
+	local setManaValue = bar(status, Text.Mana, 77, Theme.color.mana)
 	for _, suffix in ipairs({ "Label", "Value", "Track" }) do
 		status[Text.Mana .. suffix].Visible = false
 	end
