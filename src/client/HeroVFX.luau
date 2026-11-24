@@ -1728,6 +1728,15 @@ local function contactStroke(r,name,path,width,color,duration)
  return stroke
 end
 
+local function curvedContactStroke(r,name,path,width,color,duration)
+ local stroke=contactStroke(r,name,function(t)return path(0,t),path(1,t)end,width,color,duration)
+ if stroke then
+  stroke.span=function(u)return Style.span(path,0,1,math.min(1,u*r.life/duration))end
+  stroke.beam.Segments=4
+  stroke.beam.LightEmission=.65
+ end
+end
+
 local function fluidContact(r,at,cf,size)
  local water=r.key=="water"
  local right,up,dir=cf.RightVector,cf.UpVector,cf.LookVector
@@ -1735,28 +1744,31 @@ local function fluidContact(r,at,cf,size)
  for side=-1,1,2 do
   local lateral=right*side
   if water then
-   contactStroke(r,"WaterContact",function(t)
+   curvedContactStroke(r,"WaterContact",function(along,t)
     local push=1-(1-t)^3
-    return at+(lateral*(.12+.47*push)+dir*.25*push)*size,
-     at+(lateral*(.78+.5*push)+up*(.24+push*.58-t*t*.45)+dir*(.22+push*.55))*size
-   end,.29*size,side==1 and r.hot or r.color,.17)
+    local root=lateral*(.09+.31*push)-dir*.12
+    local tip=lateral*(1.04+.65*push)+up*(.21+push*.62-t*t*.52)+dir*.22
+    return at+(root:Lerp(tip,along)+up*(math.sin(along*math.pi)*(.35+push*.27)))*size
+   end,.36*size,side==1 and r.color:Lerp(r.hot,.35) or r.color,.17)
   else
-   contactStroke(r,"GravityContact",function(t)
+   curvedContactStroke(r,"GravityContact",function(along,t)
     local pull=1-t*t
-    return at+(lateral*(.18+pull*.88)-up*.45*side*pull-dir*.26*pull)*size,
-     at+(lateral*(.08+pull*.28)+up*.4*side*pull)*size
-   end,.23*size,r.color,.15)
+    local outside=lateral*(.16+pull*1.06)-up*.46*side*pull-dir*.28
+    local center=lateral*(.02+pull*.15)+up*.21*side*pull-dir*.14
+    local turn=(lateral*.38+up*.57*side)*math.sin(along*math.pi)*pull
+    return at+(outside:Lerp(center,along)+turn)*size
+   end,.31*size,r.color,.15)
   end
  end
  if water and not r.compact then
   for i,offset in ipairs({-1,0,1})do
-   local drift=(right*offset*.86+dir*.8+up*(offset==0 and 1.15 or .67))*size
-   local atBase=at+drift*.3
-   local p=Surfaces.volume(r,"WaterContactDrop",atBase,Vector3.new(.19,.36,.19)*size,r.color:Lerp(r.hot,i==2 and .65 or .36),.12,"ball",Enum.Material.SmoothPlastic)
+   local drift=(right*offset*1.42+dir*.34+up*(offset==0 and 1.6 or .85))*size
+   local atBase=at-dir*.20*size+drift*.40
+   local p=Surfaces.volume(r,"WaterContactDrop",atBase,Vector3.new(.22,.43,.22)*size,r.color:Lerp(r.hot,i==2 and .65 or .36),.10,"ball",Enum.Material.Neon)
    if p then
     local face=r.faces[#r.faces]
     face.cf=CFrame.lookAt(atBase,atBase+drift)*CFrame.Angles(math.pi/2,0,0)
-    face.drift=drift*1.35;face.fadeDuration=.22
+    face.drift=drift*1.4;face.fadeDuration=.22
    end
   end
  end

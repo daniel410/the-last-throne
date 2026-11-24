@@ -976,8 +976,8 @@ local function consumeSpell(character)
 		orb.Parent, orb.Position = workspace, first
 		heldWeapon.LocalTransparencyModifier = 1
 	else
-		local bodyColor = gravityShot and color:Lerp(Color3.new(), .32) or color:Lerp(hot, .52)
-		orb = arrowPart(workspace, "K0VisualSpell", flight.size, bodyColor, Enum.Material.Neon)
+		local bodyColor = gravityShot and color:Lerp(Color3.new(), .32) or color:Lerp(hot, .28)
+		orb = arrowPart(workspace, "K0VisualSpell", flight.size, bodyColor, gravityShot and Enum.Material.Neon or Enum.Material.SmoothPlastic)
 		orb.Shape, orb.CFrame = Enum.PartType.Ball, pose
 	end
 	local waterDroplets

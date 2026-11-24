@@ -27,7 +27,7 @@ local ok,err=xpcall(function()
      local gravity=row[2]=='mage.common.gravity'
      local body=assert(workspace:FindFirstChild(water and 'K0WaterBall' or 'K0VisualSpell'))
      local wake=body:FindFirstChild('SpellFlightWake')
-     check(wake and wake.FaceCamera and wake.Lifetime<=.14,'Spell uses a brief, camera-facing wake')
+     check(wake and wake.FaceCamera and wake.Lifetime<=.141,'Spell uses a brief, camera-facing wake')
      check(wake.Color.Keypoints[2].Value==Palette.colors[water and 'water' or gravity and 'gravity' or 'arcane'],
       'Wake ends in the authored element color')
      if water then

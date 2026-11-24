@@ -51,6 +51,7 @@ for _, row in {
         local beams = findAll(hit, stroke)
         local drops = findAll(hit, "WaterContactDrop")
         check(#beams == 2 and #drops == (water and not compact and 3 or 0), id .. " has a bounded silhouette")
+        check(beams[1].CurveSize0 > 0 and beams[1].CurveSize1 > 0, id .. " reads as a curved stroke")
         local initial = snapshot(hit, stroke)
         FX.step(now + .10)
         local later = snapshot(hit, stroke)
