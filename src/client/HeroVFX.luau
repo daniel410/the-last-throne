@@ -1595,16 +1595,17 @@ local forceContacts={
 -- A cancelled windup scatters two short edges across the incoming face.
 -- Class silhouettes retain the difference between blade, axe, arrow and spell.
 local interruptContacts={
- knight={"SwordWindupCut",Vector3.new(.13,.44,-.22),Vector3.new(.96,-.36,-.78),-.33,.14,.12,Vector3.new(.82,.40,-.60)},
- dwarf={"AxeWindupBreak",Vector3.new(.13,.74,-.14),Vector3.new(1.07,-.49,-.63),-.36,.17,-.14,Vector3.new(.42,-.20,-.44),key="earth"},
- elf={"ArrowWindupSplit",Vector3.new(.12,.10,.02),Vector3.new(.91,.27,-1.42),-.48,.10,.10,Vector3.new(.55,.12,-.77)},
- mage={"SpellWindupDispel",Vector3.new(.12,-.46,-.15),Vector3.new(.80,.65,-.82),-.26,.14,.26,Vector3.new(1.04,-.01,-.48)},
+ knight={"SwordWindupCut",Vector3.new(.14,.56,-.22),Vector3.new(1.17,-.23,-.77),-.27,.23,.16,Vector3.new(.91,.63,-.64)},
+ dwarf={"AxeWindupBreak",Vector3.new(.13,.52,-.14),Vector3.new(1.15,-.62,-.64),-.28,.24,-.22,Vector3.new(.46,-.26,-.49),key="earth"},
+ elf={"ArrowWindupSplit",Vector3.new(.12,.10,.02),Vector3.new(1.02,.29,-1.42),-.41,.145,.11,Vector3.new(.61,.13,-.77)},
+ mage={"SpellWindupDispel",Vector3.new(.13,-.44,-.15),Vector3.new(.86,.67,-.82),-.26,.19,.29,Vector3.new(1.10,-.01,-.48)},
 }
-local function forceContact(r,at,cf,size,shape,noGlow)
+local function forceContact(r,at,cf,size,shape,interrupted)
  local name,base,tip,travel,width,lift,bend=unpack(shape)
  local dir,right,up=cf.LookVector,cf.RightVector,cf.UpVector
  local drift=(dir*travel+up*(lift or 0))*size
  for side=-1,1,2 do
+  local motion=interrupted and drift+right*(side*.72*size) or drift
   local edgeTip=side==1 and shape.lowerTip or tip
   local edgeBend=side==1 and shape.lowerBend or bend
   local a=at+(right*(base.X*side)+up*base.Y+dir*base.Z)*size
@@ -1613,11 +1614,12 @@ local function forceContact(r,at,cf,size,shape,noGlow)
   local function path(t,u)
    local progress=u*.20+(1-u*.20)*t
    local point=middle and a:Lerp(middle,progress):Lerp(middle:Lerp(b,progress),progress) or a:Lerp(b,progress)
-   return point+drift*u
+   return point+motion*(interrupted and 1-(1-u)^3 or u)
   end
   local stroke=line(r,name,function(u)
    return path(0,u),path(1,u)
-  end,width or .085,(shape.angular or width and side==-1) and r.color or r.hot,shape.angular and .075 or .035,noGlow or shape.angular)
+  end,width or .085,(shape.angular or width and side==-1) and r.color or r.hot,
+   shape.angular and .075 or interrupted and .06 or .035,interrupted or shape.angular)
   if stroke and middle then
    stroke.span=function(u)return Style.span(path,0,1,u)end
    local segments=shape.angular and 2 or 4
@@ -1785,7 +1787,8 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
   return r.model,drawn
  end
  if interrupt then
-  local drawn=forceContact(r,at-dir*.25,cf,math.clamp(size,.8,1.35),interrupt,true)
+  local height=classId=="knight" and .62 or .29
+  local drawn=forceContact(r,at-dir*.25+Vector3.yAxis*height,cf,math.clamp(size,.8,1.35),interrupt,true)
   FX.step(r.at)
   return r.model,drawn
  end

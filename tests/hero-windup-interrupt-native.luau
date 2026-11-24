@@ -1,6 +1,7 @@
 assert(game.PlaceId == 0 and #game.Players:GetPlayers() == 0, "Isolated Studio place required")
 local client = game.StarterPlayer.StarterPlayerScripts.Client
 local catalog = require(game.ReplicatedStorage.Shared.PixelFXCatalog)
+local presentation = require(game.ReplicatedStorage.Shared.SkillPresentation)
 local FX = require(client.HeroVFX)
 local Hits = require(client.K0HitEffects)
 local Melee = require(client.AdvancedSkillMotion)
@@ -107,25 +108,41 @@ for _, case in cases do
             check(style(effect, interruptStyle), id .. " keeps the readable interrupt in both densities")
             local _, beams, chips, glows, particles, faces = FX.count()
             check(beams == 2 and chips + glows + particles + faces == 0, id .. " spends two bare beams")
+            local right = heading:Cross(Vector3.yAxis)
+            local initial = {}
             for _, beam in effect:GetDescendants() do
                 if beam:IsA("Beam") then
                     local a = beam.Attachment0.WorldPosition - at
                     local b = beam.Attachment1.WorldPosition - at
+                    initial[beam] = math.abs(b:Dot(right))
                     check(a:Dot(heading) < -.1 and b:Dot(heading) < -.7, id .. " shows the interrupted edge on the incoming face")
                     check(beam.Width0 >= .1 and math.abs(beam.CurveSize0) > .01, id .. " keeps its tapered shape")
                 end
+            end
+            FX.step(workspace:GetServerTimeNow() + .05)
+            for beam, width in initial do
+                local b = beam.Attachment1.WorldPosition - at
+                check(math.abs(b:Dot(right)) > width + .30, id .. " opens the interrupted silhouette")
             end
             FX.step(workspace:GetServerTimeNow() + .21)
             check(FX.count() == 0, id .. " expires within 210 ms")
         end
     end
     if class == "knight" or class == "dwarf" then
+        local neutral = table.clone(d)
+        neutral.id = "fixture:" .. id
+        presentation.byId[neutral.id] = presentation.get(d)
+        local loadAge = d.windup * .62
+        local recoveryAge = d.windup + .07
         for _, rig in {Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15} do
-            local load = Melee.sample(class, d, d.windup * .62, rig)
-            local follow = Melee.sample(class, d, d.windup + .07, rig)
-            check(load.angles.left.Z * (class == "knight" and -1 or 1) > 12, id .. " prepares off-hand " .. rig.Name)
-            check(follow.angles.leftKnee.X > 24, id .. " checks the swing on the lead knee " .. rig.Name)
+            local load = Melee.sample(class, d, loadAge, rig).angles.left
+            local neutralLoad = Melee.sample(class, neutral, loadAge, rig).angles.left
+            local follow = Melee.sample(class, d, recoveryAge, rig).angles.leftKnee
+            local neutralFollow = Melee.sample(class, neutral, recoveryAge, rig).angles.leftKnee
+            check((load.Z - neutralLoad.Z) * (class == "knight" and -1 or 1) > 12, id .. " prepares off-hand " .. rig.Name)
+            check(follow.X - neutralFollow.X > 20, id .. " checks the swing on the lead knee " .. rig.Name)
         end
+        presentation.byId[neutral.id] = nil
     elseif class == "elf" then
         local first, last, redraw = {angles = {}}, {angles = {}}, {angles = {}}
         Ranged.bow(first, d, d.windup + .035, .035, true, 1)
