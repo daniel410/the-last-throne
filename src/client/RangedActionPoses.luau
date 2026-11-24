@@ -190,11 +190,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftKnee",v(23,0,0)*recoil)
     end
     if s==bow.echo and since and pulse then
-        -- Keep the bow hand aimed while the draw hand opens on each successive shot.
+        -- Bank the draw arm on the first two shots and plant on the third.
         local extension = (.50+.25*pulse)*recoil
-        add(pose,"right",v(-7,14,-15)*extension)
+        local bank = (pulse-2)*recoil
+        add(pose,"right",v(-7,14,-15)*extension+v(5,0,16)*bank)
         add(pose,"elbow",v(17,0,0)*extension)
-        add(pose,"leftKnee",v(9,0,0)*extension)
+        add(pose,"torso",v(5,0,-11)*bank)
+        add(pose,"leftKnee",v(pulse==3 and 22 or 9,0,0)*extension)
     end
     if d.id=="elf.marksman.precision_volley" then
         -- Keep the eye on the target through three small draw-hand recoveries.
@@ -302,10 +304,11 @@ function Poses.mage(pose,d,profile,age)
     local phase = age/d.windup
     local wind = smooth(phase/.58)*(1-smooth((phase-.58)/.42))
     local guide = smooth((phase-.48)/.52)
-    local follow, finish = 0, 0
+    local follow, finish, beat = 0, 0, 0
     local recovery = 1-smooth((age-d.windup-d.active)/d.recovery)
     if age>=d.windup+(d.hitDelay or 0) then
         local pulse,since = Presentation.beat(d,age)
+        beat = pulse
         finish = FinalBeat.weight(d,pulse,since)
         local span = math.min(.22,d.interval or .22)
         follow = smooth(since/(span*.28))*(1-smooth((since/span-.28)/.72))
@@ -427,6 +430,14 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"left",v(-14,0,13)*follow)
         add(pose,"torso",v(11,-8,5)*follow)
         add(pose,"leftKnee",v(18,0,0)*follow)
+    end
+    if d.id=="mage.pyro.cinder_ring" then
+        -- Rake low, sweep across the chest, then lift from the planted foot.
+        local lift = beat == d.pulses and follow or 0
+        local sweep = beat == 2 and follow or 0
+        add(pose,"left",v(-16,12,-14)*wind+v(18,-24,-11)*sweep+v(33,11,23)*lift)
+        add(pose,"torso",v(11,-8,4)*wind+v(-17,9,-5)*lift)
+        add(pose,"leftKnee",v(14*wind+19*lift,0,0))
     end
     if finish>0 then
         if s == spells.caldera then

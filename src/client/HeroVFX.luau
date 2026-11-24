@@ -800,10 +800,24 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local fanProfile=Presentation.get(d)
  local fanLanes=fanProfile.fanLanes
  local rallyingSlash=id=="knight.steel_knight.rallying_slash"
+ local cyclone=id=="knight.steel_knight.twin_cyclone"
+ local returningEcho=id=="dwarf.iron_axe.returning_echo"
+ local cinderRing=id=="mage.pyro.cinder_ring"
+ local compact=FX.isOtherHero(character)
  local final=FinalBeat.isFinal(d,pulse)
  local life=profile.signature and not final and math.min(profile.life,d.interval) or profile.life
- local minBeams=fanLanes and fanLanes*(row.key=="gun" and 1 or 3) or 2
- local r=make(first,last,life,row.key,id,FX.isOtherHero(character),false,minBeams);if not r then return end
+ local minBeams=fanLanes and fanLanes*(row.key=="gun" and 1 or 3)
+  or (cyclone or cinderRing) and (compact and 8 or 12)
+  or returningEcho and (compact and 5 or 7) or 2
+ if returningEcho and pulse==2 and character then
+  -- The same axe comes back even when both release events arrive together.
+  for i=#active,1,-1 do
+   local previous=active[i]
+   if previous.outgoingEcho==character then erase(i) end
+  end
+ end
+ local r=make(first,last,life,row.key,id,compact,false,minBeams);if not r then return end
+ if returningEcho and pulse==1 then r.outgoingEcho=character end
  r.color,r.hot=Palette.get(row.key,row.classId)
  r.model:SetAttribute("Silhouette",profile.shape);r.model:SetAttribute("Pulse",pulse)
  local dir=forward(first,last)
@@ -811,7 +825,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local root=character and character:FindFirstChild("HumanoidRootPart")
   dir=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
- if (d.form=="cone" or d.form=="melee") and vector(castDirection) and castDirection.Magnitude>.01 then
+ if (d.form=="cone" or d.form=="melee" or cyclone) and vector(castDirection) and castDirection.Magnitude>.01 then
   dir=castDirection.Unit
  end
  local flat=Vector3.new(dir.X,0,dir.Z);flat=flat.Magnitude>.01 and flat.Unit or Vector3.new(0,0,-1)
@@ -846,20 +860,19 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local quickfire=id=="dwarf.gunner.quickfire"
  local echoArrows=id=="elf.magic_archer.echo_arrows"
  local crosscutReturn=shape=="axe" and d.crosscut and pulse%2==0
- local spinStyle=id=='knight.steel_knight.twin_cyclone'and 'CrossingCyclones'
+ local spinStyle=cyclone and 'CrossingCyclones'
   or id=='knight.steel_knight.blade_storm'and 'BrokenBladeStorm' or 'WaistWhirlwind'
- local spinLanes=spinStyle=='WaistWhirlwind'and 1 or count
- local function spinNormal(lane)
-  return spinStyle=='CrossingCyclones'and CFrame.fromAxisAngle(flat,lane==1 and .48 or -.48):VectorToWorldSpace(Vector3.yAxis)or Vector3.yAxis
- end
+ local cycloneBank=pulse==2 and -1 or 1
+ local spinLanes=spinStyle=='BrokenBladeStorm' and count or 1
+ local spinBank=cyclone and CFrame.fromAxisAngle(flat,cycloneBank*.40) or CFrame.identity
  local function spinPath(lane,t,u)
   local storm=spinStyle=='BrokenBladeStorm'
   local finalSweep=storm and emphasis
-  local sign=spinStyle=='CrossingCyclones'and lane==2 and -1 or 1
+  local sign=cyclone and cycloneBank or 1
   local turn=u and (1-(1-u)^3-.5)*sign*2.4 or 0
-  local a=t*math.rad(finalSweep and 116 or storm and 78 or spinStyle=="CrossingCyclones" and 360 or 246)+phase+(lane-1)*math.pi*2/spinLanes+turn
+  local a=t*math.rad(finalSweep and 116 or storm and 78 or cyclone and 266 or 246)+phase+(lane-1)*math.pi*2/spinLanes+turn
   local offset=(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*(finalSweep and .91 or storm and .78 or .8)
-  if spinStyle=='CrossingCyclones'then offset=CFrame.fromAxisAngle(flat,lane==1 and .48 or -.48):VectorToWorldSpace(offset)end
+  if cyclone then offset=spinBank:VectorToWorldSpace(offset) end
   return first+offset+Vector3.yAxis*(finalSweep and (-.65+(lane-2)*.14) or storm and (lane-2)*.3 or 0)
  end
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w or width,color)end
@@ -932,8 +945,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end,12,width)end
  elseif shape=='spin'then
   r.model:SetAttribute('SpinStyle',spinStyle)
+  if cyclone then r.model:SetAttribute("PrimaryIconCue",true) end
   for lane=1,spinLanes do
-   curve(r,'BladeRibbon',function(t,u)return spinPath(lane,t,u)end,spinStyle=='BrokenBladeStorm'and 10 or 12,width)
+   curve(r,'BladeRibbon',function(t,u)return spinPath(lane,t,u)end,cyclone and r.compact and 8 or spinStyle=='BrokenBladeStorm'and 10 or 12,width)
   end
  elseif counterSlash then
   curve(r,"IconCounterSlashEdge",function(t)return counterPath(t)end,r.compact and 6 or 10,width,WHITE)
@@ -990,7 +1004,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  elseif shape=="axe"then
   local from,to=first,last;if d.returning and pulse%2==0 then from,to=last,first end
   r.model:SetAttribute("Returning",d.returning and pulse%2==0 or false)
-  if d.braced then
+  local axis,approach
+  if crosscutReturn or returningEcho then from,to,axis,approach=Art.axeFlight(artContext) end
+  if returningEcho then
+   r.model:SetAttribute("PrimaryIconCue",true)
+   line(r,"ReturningEchoWake",function(u)
+    local remaining=approach and (1-math.clamp(u*r.life/Art.axeCatchSeconds,0,1))^2 or 0
+    local tip=to+(approach or Vector3.zero)*remaining
+    return tip-axis*math.min((tip-from).Magnitude,1.65)*(1-u),tip
+   end,width*.55,r.hot,width*.92,true)
+  elseif d.braced then
    local length=(to-from).Magnitude
    local launch=vector(muzzle) and (muzzle-from):Dot(dir)<length-.2 and (muzzle-from).Magnitude<=6 and muzzle or from
    line(r,"BracedThrowWake",function(u)
@@ -1000,8 +1023,6 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   else
    stroke(d.crosscut and "IconCrosscutWake" or "AxeWake",from,to,width*.45)
   end
-  local axis,approach
-  if crosscutReturn then from,to,axis,approach=Art.axeFlight(artContext) end
   if d.crosscut then r.model:SetAttribute("PrimaryIconCue",true) end
   axis=axis or forward(from,to)
   local basis=CFrame.lookAt(to,to+axis)
@@ -1011,7 +1032,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    local a=t*math.pi*1.6+turn*(approach and math.pi or 7)+phase
    local pivot=approach and to+approach*turn or to
    return pivot+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
-  end,8,width)
+  end,returningEcho and (r.compact and 4 or 6) or 8,width)
  elseif crossfire then
   local length=(last-first).Magnitude
   if length>.1 then
@@ -1057,8 +1078,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   if length>.1 then
    local trace=line(r,quickfire and "QuickfireTracer" or "EchoArrowWake",function(u)
     return start:Lerp(last,(quickfire and .88 or .75)*u),last
-   end,width*.58,quickfire and WHITE or r.hot,width*.34)
+   end,width*(quickfire and .58 or .45+.13*pulse),quickfire and WHITE or r.hot,width*.34)
    if trace then
+    if echoArrows then
+     local bank=(pulse-2)*.42
+     local function echoPath(t,u)
+      local base=start:Lerp(last,.75*u)
+      local waviness=math.min(length*.045,.62)*(1-u)*math.sin(t*math.pi)
+      return base:Lerp(last,t)+(right*bank+Vector3.yAxis*.5)*waviness
+     end
+     trace.span=function(u)return Style.span(echoPath,0,1,u)end
+     trace.beam.Segments=4
+    end
     r.model:SetAttribute("PrimaryIconCue",true)
     r.model:SetAttribute("ReleaseTrace",true)
    end
@@ -1260,6 +1291,17 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    end,5,.07,r.hot)
   else ring(r,"TidalLip",at,area and radius or 1.8,width,false,false)end
   debris(r,at,math.min(count,6),"WaterSpray",1)
+ elseif cinderRing then
+  local beat=math.clamp(pulse-1,0,2)
+  local height=.08+.14*beat^2
+  local crest=.07+.18*beat^2
+  curve(r,"CinderRing",function(t,u)
+   local a=t*math.pi*2
+   local reach=radius*(.30+.70*(1-(1-u)^5))
+   local rise=height+crest*(.35+.65*math.sin(a*3)^2)*math.sin(u*math.pi*.85)
+   return floor+(flat*math.cos(a)+right*math.sin(a))*reach+Vector3.yAxis*rise
+  end,r.compact and 8 or 12,width*(.60+.18*beat),r.hot)
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="fire"or shape=="arcane"then
   local at=area and floorAt(last,character)or first
   local emberStep=id=='mage.pyro.ember_step'
@@ -1291,10 +1333,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  elseif shape=='spin'then
   for lane=1,spinLanes do
    local start=#r.faces
-   local normal=spinNormal(lane)
-   local segments=spinStyle=='BrokenBladeStorm'and 4 or spinStyle=='CrossingCyclones'and Input.TouchEnabled and 8 or 12
+   local normal=spinBank.UpVector
+   local segments=spinStyle=='BrokenBladeStorm'and 4 or cyclone and (r.compact or Input.TouchEnabled) and 8 or 12
    Surfaces.ribbon(r,'BladeSurface',function(t)return spinPath(lane,t)end,normal,spinStyle=='BrokenBladeStorm'and .65 or .85,.46,r.color:Lerp(r.hot,.18),segments,Enum.Material.SmoothPlastic)
-   local sign=spinStyle=='CrossingCyclones'and lane==2 and -1 or 1
+   local sign=cyclone and cycloneBank or 1
    Surfaces.animate(r,start,first,normal,-sign*2.4,false,r.life)
   end
  elseif counterSlash then
@@ -1358,6 +1400,15 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   for i=1,#verts do
    local a,b=verts[i],verts[i%#verts+1]
    Surfaces.triangle(r,"GuardSurface",at,at+right*a.X+Vector3.yAxis*a.Y,at+right*b.X+Vector3.yAxis*b.Y,nil,.62)
+  end
+ elseif cinderRing then
+  -- Keep the outer hazard outline clear of the rising flame tongues.
+  if not r.compact then
+   for i=1,3 do
+    local a=(i-.5)*math.pi*2/3+phase
+    local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*(.40+.08*pulse)
+    tongue(r,"AreaFlameTongue",at,.35+pulse*.62,.40+pulse*.08,a,r.color)
+   end
   end
  elseif shape=="fire"or shape=="arcane"or shape=="stone"or(shape=="frost"and not area)then
   if area then
@@ -1539,7 +1590,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  Art.accents(r,artContext)
  Polish.finish(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
- if not bomb and shape~="steam" and not rallyingSlash and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
+ if not bomb and not cinderRing and shape~="steam" and not rallyingSlash and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   local scale=quickfire and .85 or echoArrows and .72 or (fanLanes and row.key=="gun") and 1.25
    or id=="knight.paladin.oathbound_assault" and .55

@@ -326,6 +326,11 @@ local function axeCatch(d,age,contact,ending,base,sample,classId)
  if d.crosscut then
   offset(pose,"rightKnee",v(21*absorb))
   offset(pose,"leftHip",v(-14*absorb))
+ elseif d.id=="dwarf.iron_axe.returning_echo" then
+  -- Tuck the hand toward the ribs and take the straight catch on the lead leg.
+  offset(pose,"right",v(-14,-10,16)*absorb)
+  offset(pose,"leftKnee",v(23*absorb))
+  offset(pose,"leftHip",v(-13*absorb))
  end
  return pose
 end
@@ -406,6 +411,13 @@ function Motion.sample(classId,d,age,rigType)
   else turns=smooth((age-contact+.06)/math.max(.1,d.active+.06)) end
   pose.root=CFrame.Angles(0,-math.pi*2*turns,0)
   pose.torso=rot(v(0,0,0));pose.angles.torso=v()
+  if d.id=="knight.steel_knight.twin_cyclone" then
+   local load=pulse==0 and smooth(age/(contact*.54))*(1-smooth((age/contact-.68)/.32)) or 0
+   local follow=pulse>0 and smooth(since/.055)*(1-smooth((since-.055)/.18)) or 0
+   local bank=pulse==2 and -1 or 1
+   offset(pose,"torso",v(9*load+12*follow,0,bank*(12*load+18*follow)))
+   offset(pose,pulse==2 and "leftKnee" or "rightKnee",v(16*load+21*follow))
+  end
  elseif kind=="thrust" then
   local brake=smooth((age-contact+.075)/.11)*(1-smooth((age-contact-.035)/.20))
   local weight=d.id=="knight.steel_knight.vanguard_strike" and 1.35 or 1

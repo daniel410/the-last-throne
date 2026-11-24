@@ -1,4 +1,4 @@
--- Four distinct pulse presentations at the same server-authored contact times.
+-- Distinct pulse presentations at the same server-authored contact times.
 assert(game.PlaceId==0 and #game.Players:GetPlayers()==0)
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local Shared=game.ReplicatedStorage.Shared
@@ -23,6 +23,7 @@ camera.CFrame=CFrame.lookAt(first+Vector3.new(8,15,17),first)
 local ids={
     "knight.paladin.oathblade", "dwarf.gunner.quickfire",
     "elf.magic_archer.echo_arrows", "mage.pyro.molten_line",
+    "knight.steel_knight.twin_cyclone", "dwarf.iron_axe.returning_echo", "mage.pyro.cinder_ring",
 }
 local report={checks=0,failures={},beamCounts={}}
 local function check(ok,message)
@@ -52,6 +53,7 @@ end
 
 local ok,err=xpcall(function()
     local oath,gun,echo,molten=get(1),get(2),get(3),get(4)
+    local cyclone,axe,cinder=get(5),get(6),get(7)
     for _,rigType in {Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15} do
         local opening=Motion.sample("knight",oath,oath.windup+.05,rigType)
         local returning=Motion.sample("knight",oath,oath.windup+oath.interval+.05,rigType)
@@ -66,6 +68,15 @@ local ok,err=xpcall(function()
             check(kick.offhand and kick.angles.leftElbow.X < held.angles.leftElbow.X-12
                 and kick.angles.rightKnee.X > Motion.sample("dwarf",generic(gun),at+.024,rigType).angles.rightKnee.X+10,"Quickfire left elbow kicks from a low stance "..rigType.Name..pulse)
         end
+        local firstTurn=Motion.sample("knight",cyclone,cyclone.windup+.055,rigType)
+        local secondTurn=Motion.sample("knight",cyclone,cyclone.windup+cyclone.interval+.055,rigType)
+        check(firstTurn.angles.torso.Z>15 and secondTurn.angles.torso.Z< -15,
+            "Twin Cyclone banks into each pulse on opposing sides "..rigType.Name)
+        local catchAge=axe.windup+axe.interval+.055
+        local catch=Motion.sample("dwarf",axe,catchAge,rigType)
+        local plainCatch=Motion.sample("dwarf",generic(axe),catchAge,rigType)
+        check(catch.angles.leftKnee.X>plainCatch.angles.leftKnee.X+20 and catch.angles.right.Z>plainCatch.angles.right.Z+14,
+            "Returning Echo plants and tucks the receiving arm "..rigType.Name)
     end
     local actor=Instance.new("Model",stage)
     Instance.new("Humanoid",actor)
@@ -83,9 +94,11 @@ local ok,err=xpcall(function()
         Bow.confirmPulse(actor,echo.id,pulse,1,at,started,at)
         local pose=Bow.forCharacter(actor,at+.05)
         check(pulse==3 and pose.time>=.9 or pulse<3 and pose.time<.3,"Echo " .. pulse .. " recovers after the confirmed release")
-        follow[pulse]=pose.angles.elbow.X
+        follow[pulse]=pose
     end
-    check(follow[3]>follow[1]+4,"Echo Arrows extends the final draw-elbow follow-through")
+    check(follow[3].angles.elbow.X>follow[1].angles.elbow.X+4,"Echo Arrows extends the final draw-elbow follow-through")
+    check(follow[3].angles.leftKnee.X>follow[1].angles.leftKnee.X+12
+        and follow[1].angles.torso.Z>follow[3].angles.torso.Z+12,"Echo Arrows banks and plants on the final shot")
     for pulse=1,3 do
         local at=molten.windup+(pulse-1)*molten.interval+.062
         local pose=Mage.sample(molten,Mage.profile(molten),at)
@@ -93,6 +106,10 @@ local ok,err=xpcall(function()
         check(pose.angles.leftElbow.X>other.angles.leftElbow.X+18 and pose.angles.leftKnee.X>other.angles.leftKnee.X+17,
             "Molten Line presses down through the palm and front knee on pulse "..pulse)
     end
+    local firstHeat=Mage.sample(cinder,Mage.profile(cinder),cinder.windup+.062)
+    local lastHeat=Mage.sample(cinder,Mage.profile(cinder),cinder.windup+2*cinder.interval+.062)
+    check(lastHeat.angles.left.X>firstHeat.angles.left.X+24 and lastHeat.angles.leftKnee.X>firstHeat.angles.leftKnee.X+13,
+        "Cinder Ring lifts the palm through the final flame")
 
     for _,compact in {false,true} do
         FX.isOtherHero=function() return compact end
@@ -125,6 +142,8 @@ local ok,err=xpcall(function()
                     "No duplicate projectile shapes "..key..name..pulse)
                 if i==3 then
                     check((#find(model,"EchoArrowLeaf","WedgePart")>0)==not compact,"Echo leaf is a caster detail "..key..pulse)
+                    check(trace and trace.Segments==4 and math.abs(trace.CurveSize0)>.5,
+                        "Echo uses a single continuous bow-to-target curve "..key..pulse)
                 end
             end
         end
@@ -147,6 +166,50 @@ local ok,err=xpcall(function()
             end
         end
         check(#find(cast(4,1,first),"MoltenFlowCore","BasePart")==0,"Blocked zero-length line cannot leave a burning seam")
+
+        for pulse=1,2 do
+            local blades=find(cast(5,pulse,first),"BladeRibbon","Beam")
+            check(#blades==(compact and 8 or 12),"One steel ribbon represents one pulse "..key..pulse)
+            local sign=pulse==1 and 1 or -1
+            for _,blade in blades do
+                local offset=blade.Attachment0.WorldPosition-first
+                check(math.abs(offset.Y+offset.Z*math.tan(.4)*sign)<.01,"Only the active blade plane renders "..key..pulse)
+            end
+        end
+        FX.clear()
+        local hand=Instance.new("Part",actor)
+        hand.Name,hand.Anchored,hand.Position="RightHand",true,first+Vector3.zAxis*.85
+        local catchTime=workspace:GetServerTimeNow()
+        local outbound=assert(FX.skill(actor,axe.id,first,last,1,{},socket,heading))
+        local thrown=assert(FX.skill(actor,axe.id,first,last,2,{},socket,heading))
+        check(not outbound.Parent,"Second pulse retires the outgoing copy of the same axe "..key)
+        local wake=find(thrown,"ReturningEchoWake","Beam")[1]
+        local hub=thrown:FindFirstChild("ThrownAxeBronzeHub",true)
+        check(wake and hub and (wake.Attachment1.WorldPosition-hub.Position).Magnitude<.5
+            and wake.Attachment1.WorldPosition.X>first.X+2,"Axe head and wake share the incoming approach "..key)
+        FX.step(catchTime+.10)
+        check(wake and hub and (wake.Attachment1.WorldPosition-hand.Position).Magnitude<.01
+            and (hub.Position-hand.Position).Magnitude<.5,"Wake and axe finish at the right hand "..key)
+        hand:Destroy()
+
+        local previousHeight=0
+        for pulse=1,3 do
+            local at=workspace:GetServerTimeNow()
+            local heat=cast(7,pulse,first)
+            local edges=find(heat,"CinderRing","Beam")
+            FX.step(at+.12)
+            check(#edges==(compact and 8 or 12) and #find(heat,"FlameTongue","Beam")==0,
+                "One flame front with no duplicate helix "..key..pulse)
+            local high=0
+            for _,edge in edges do
+                local offset=edge.Attachment0.WorldPosition-Vector3.new(first.X,floor.Position.Y+.5,first.Z)
+                high=math.max(high,offset.Y)
+                local reach=Vector3.new(offset.X,0,offset.Z).Magnitude
+                check(reach>cinder.range*.85 and reach<=cinder.range+.01,"The flame front stays inside the server radius "..key..pulse)
+            end
+            check(high>previousHeight+.1,"Each flame front climbs higher "..key..pulse)
+            previousHeight=high
+        end
     end
 
     FX.clear()

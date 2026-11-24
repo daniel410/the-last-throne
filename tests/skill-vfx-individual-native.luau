@@ -26,8 +26,10 @@ local ok,err=xpcall(function()
  local m=cast(echo,nil,nil,2)
  check(m:GetAttribute('Returning')==true,'Returning Echo reverses the second flight')
  for _,v in ipairs(m:GetDescendants())do if v.Name=='ProjectileSurface'then check(v.Position.Z>-6,'returning axe filled surface also returns to caster')end end
- local wake=beams(m,'AxeWake')[1]
- check((wake.Attachment0.WorldPosition-target).Magnitude<.001 and(wake.Attachment1.WorldPosition-from).Magnitude<.001,'return endpoints reverse')
+ local wake=assert(beams(m,'ReturningEchoWake')[1])
+ check(wake.Attachment0.WorldPosition.Z<wake.Attachment1.WorldPosition.Z,'catch wake reverses the outgoing direction')
+ FX.step(workspace:GetServerTimeNow()+.10)
+ check((wake.Attachment1.WorldPosition-from).Magnitude<.01,'wake reaches the catch point when the hand is unavailable')
  local chain=A.branches.cryo.skills[5].id
  m=cast(chain,nil,nil,1,{target,target+Vector3.xAxis*4})
  local links=beams(m,'ElectricCore')

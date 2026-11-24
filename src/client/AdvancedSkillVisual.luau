@@ -280,7 +280,9 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local fanLanes=profile.fanLanes
  local rallyingSlash=id=="knight.steel_knight.rallying_slash"
  local steamBurst=id=="mage.pyro.steam_burst"
- local authoredRelease=fanLanes or rallyingSlash or steamBurst
+ local cyclone=id=="knight.steel_knight.twin_cyclone"
+ local authoredRelease=fanLanes or rallyingSlash or steamBurst or id=="mage.pyro.cinder_ring"
+  or cyclone or id=="dwarf.iron_axe.returning_echo" or id=="elf.magic_archer.echo_arrows"
  if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse>d.pulses or pulse%1~=0 then return end
  local now=workspace:GetServerTimeNow()
  if type(firedAt)=="number" and (firedAt~=firedAt or now-firedAt>.6 or firedAt-now>.5) then return end
@@ -309,7 +311,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
  local findFloor=bomb and Bomb.floor or ground
  local direction=center-origin
- if (d.form=="cone" or d.form=="melee") and typeof(castDirection)=="Vector3"
+ if (d.form=="cone" or d.form=="melee" or cyclone) and typeof(castDirection)=="Vector3"
   and castDirection.Magnitude>.01 and castDirection.Magnitude<math.huge then
   direction=castDirection.Unit
  end
@@ -318,7 +320,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   direction=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
  if pulse~=0 and not compact and not bomb and d.form~="chain" and id~="elf.marksman.crossfire"
-  and id~="dwarf.gunner.quickfire" and id~="elf.magic_archer.echo_arrows" and not authoredRelease then
+  and id~="dwarf.gunner.quickfire" and not authoredRelease then
   PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt,direction)
  end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end

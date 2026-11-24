@@ -245,8 +245,12 @@ local ok, err = xpcall(function()
     check(countParts("SkillContact") == contacts and countParts("ImpactBoundary") >= 12,
         "Compact artillery, frost and shield casts keep their outlines without generic flashes")
     Visual.play(owner, "mage.pyro.cinder_ring", at, at, 1, {at})
-    check(FX.count() == 4 and select(5, FX.count()) > 0, "Fourth cast keeps full local impact")
-    check(countParts("SkillContact") == contacts + 1, "Local cast keeps its impact accent")
+    local flames=0
+    for _, object in workspace:GetDescendants() do
+        if object:IsA("BasePart") and object.Name=="AreaFlameTongue" then flames+=1 end
+    end
+    check(FX.count() == 4 and flames > 0, "Fourth cast keeps the owner's full flame silhouette")
+    check(countParts("SkillContact") == contacts, "The local fire wave carries the impact without another flash")
     warnings.update()
     local edges = 0
     for _, edge in workspace.K0LocalTelegraphs:GetDescendants() do

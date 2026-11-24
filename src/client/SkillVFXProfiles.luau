@@ -36,7 +36,7 @@ local Profiles = {byId = {
  ["dwarf.common.throw"] = {shape="axe",lanes=1,width=.14,life=.38},
  ["dwarf.common.ground"] = {shape="earth",lanes=4,width=.18,life=.48},
  ["dwarf.iron_axe.armor_splitter"] = {shape="cleave",lanes=1,width=.32,life=.38},
- ["dwarf.iron_axe.returning_echo"] = {shape="axe",lanes=1,width=.14,life=.40},
+ ["dwarf.iron_axe.returning_echo"] = {shape="axe",lanes=1,width=.14,life=.28},
  ["dwarf.iron_axe.mountain_sweep"] = {shape="earth",lanes=3,width=.16,life=.46},
  ["dwarf.iron_axe.crag_cleave"] = {shape="cleave",lanes=2,width=.25,life=.42},
  ["dwarf.iron_axe.breaker_throw"] = {shape="axe",lanes=1,width=.22,life=.42},

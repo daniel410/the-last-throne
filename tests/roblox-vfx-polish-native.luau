@@ -99,7 +99,7 @@ local ok,err=xpcall(function()
   check(faces<=80,'complete primary stays inside the existing touch face cap '..id)
   if id=='knight.steel_knight.twin_cyclone'then
    local count=0;for _,v in ipairs(m:GetDescendants())do if v.Name=='BladeSurface'then count+=1 end end
-   check(count==64,'both touch cyclones are complete eight-span surfaces, not one truncated lane')
+   check(count==32,'the confirmed pulse gets one complete eight-span blade surface on touch')
   end
  end
  touch.clear();hero:Destroy();surface:Destroy()
