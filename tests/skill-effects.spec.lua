@@ -91,6 +91,8 @@ for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do
   or d.id=='knight.steel_knight.twin_cyclone' or d.id=='mage.pyro.cinder_ring'
   or d.id=='knight.steel_knight.steel_sweep' or d.id=='dwarf.iron_axe.crag_cleave'
   or d.id=='elf.magic_archer.vine_burst' or d.id=='mage.pyro.lava_eruption'
+  or d.id=='knight.steel_knight.warcry_assault' or d.id=='dwarf.iron_axe.twin_axe_path'
+  or d.id=='elf.magic_archer.storm_arrow' or d.id=='mage.cryo.froststorm'
  if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and not usesSocketTrace and not usesAuthoredRelease then
   expectedPulses=expectedPulses+d.pulses
  end

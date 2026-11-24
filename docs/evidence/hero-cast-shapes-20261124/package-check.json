@@ -1,0 +1,28 @@
+{
+  "0.115.84": {
+    "sourceCommit": "b6df65e5ca6bac97fb4b312f4b7e68381edb1f23",
+    "sha256": "05b8d94ee6099918af2595211053c196d7d3069839ee6108bc6019905ae6ff91",
+    "modules": {
+      "AdvancedSkillMotion": "d2a184b7bd74abf23c09134ea252a37f1e0fa7160c872a971d74049961e55d8a",
+      "AdvancedSkillVisual": "cae8ebb918fb984bb5cd6ab6109bea76a837b372eecb9e13fbafddad9682ac1e",
+      "HeroVFX": "01f8f009d154a7a049ffc1701ff6b4be0771dfa2ab7d79ab0ab3c91371ace3b5",
+      "HeroVFXArt": "de54f5f51b278b8ac54b07f99d1eee7b1efd5267ee20084efaf8219e6f04be80",
+      "HeroVFXPolish": "bb968d8f1d9b0ed388b4d3caf7dfe1a73a96fdfb00f624bc362c013d747da79a",
+      "K0BowMotion": "e783097630ef95cbd6620e24cf6c8354b65a630de69c92eaabb6fc77a15f509b",
+      "RangedActionPoses": "f3d3b564bf975316fcbbd0bdc2619d4c3bab8aa6403047fa3348472f2c43d8c9"
+    }
+  },
+  "0.115.87": {
+    "sourceCommit": "8b327a237fa85ea1fcf5f7e3d833ba4d048ac61a",
+    "sha256": "a6f575df7947c771e3e73f9b8becdb253454e3081b8e54850682ed04cf65a6bb",
+    "modules": {
+      "AdvancedSkillMotion": "cb6be6c71e2882f52186f9eee5431605ca7687849f100461a6750f6fc87c8561",
+      "AdvancedSkillVisual": "a5c463d31ca9661e5fa5e77c4aefc387a0438705805d0e3a179396ec89fe75d5",
+      "HeroVFX": "62dfb6feeb1ba02e080fc89cd7d5d9b2c0e41abdd8f17eb1e6673c60890c1555",
+      "HeroVFXArt": "bd189495f799ccb3be18c21318457607f1c82766318b09dfa9751efc20c4cd07",
+      "HeroVFXPolish": "fc019384e0aa5d5552008cbe9c4724ae184cffeb9d76202ca7a1fda60c120ecd",
+      "K0BowMotion": "e44f916b27714874141b9d537fe5f39ffb88b53185dbc5fbaa13fcd4aa810dcd",
+      "RangedActionPoses": "8a096a91a0faffd1cb6d02ee88f8e718ea5db1de413cde663c5393e63e27ae98"
+    }
+  }
+}
