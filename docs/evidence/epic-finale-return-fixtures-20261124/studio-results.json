@@ -1,0 +1,646 @@
+{
+  "fixtures": {
+    "DW-07": {
+      "story": "DW-07",
+      "landmarkClearance": 43.54290437698364,
+      "buriedDepth": 0.24999958276748657,
+      "name": "AltarRoadWaitingBay",
+      "approach": [
+        -792,
+        54,
+        -3342
+      ],
+      "goal": "core_record",
+      "routeClearance": 47.0975456237793,
+      "bounds": [
+        10.887866020202637,
+        1.9700003862380981,
+        5.925163269042969
+      ],
+      "footprintHeightDeltas": [
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06
+      ],
+      "ground": [
+        -748.4285888671875,
+        54.07999801635742,
+        -3366.526123046875
+      ],
+      "parts": 10
+    },
+    "GW-07": {
+      "story": "GW-07",
+      "landmarkClearance": 3.801137924194336,
+      "buriedDepth": 0.26000142097473145,
+      "name": "NorthernRoadWitnessStones",
+      "approach": [
+        -959.8499755859375,
+        78,
+        -7079.39990234375
+      ],
+      "goal": "exit",
+      "routeClearance": 22.948894500732422,
+      "bounds": [
+        9.294203758239746,
+        3.7851548194885254,
+        6.368086338043213
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -963.524658203125,
+        78,
+        -7053.6611328125
+      ],
+      "parts": 9
+    },
+    "FV-07": {
+      "story": "FV-07",
+      "landmarkClearance": 107.95945358276367,
+      "buriedDepth": 0.1899937391281128,
+      "name": "ReunionTerraceBench",
+      "approach": [
+        -952.8499755859375,
+        124,
+        -10847.900390625
+      ],
+      "goal": "reunion",
+      "routeClearance": 12.366024017333984,
+      "bounds": [
+        9.869999885559082,
+        2.4849984645843506,
+        6.811941623687744
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -890.942138671875,
+        124,
+        -10851.2802734375
+      ],
+      "parts": 10
+    },
+    "EC-07": {
+      "story": "EC-07",
+      "landmarkClearance": 5.399657726287842,
+      "buriedDepth": 0.17000794410705566,
+      "name": "DispatchMapRail",
+      "approach": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "goal": "courier",
+      "routeClearance": 19.030580520629883,
+      "bounds": [
+        8.760000228881836,
+        4.000446796417236,
+        5.70168399810791
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -897.2481079101562,
+        172,
+        -14658.6015625
+      ],
+      "parts": 13
+    },
+    "HG-07": {
+      "story": "HG-07",
+      "landmarkClearance": 14.319569110870361,
+      "buriedDepth": 0.25499582290649414,
+      "name": "AlliedExitWaymarker",
+      "approach": [
+        -917.8499755859375,
+        196,
+        -18343.400390625
+      ],
+      "goal": "portal",
+      "routeClearance": 11.095147132873535,
+      "bounds": [
+        9.162260055541992,
+        4.393139839172363,
+        5.883688449859619
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -902.2481079101562,
+        196,
+        -18322.6015625
+      ],
+      "parts": 10
+    }
+  },
+  "existingFinaleModels": {
+    "DW-07": {
+      "story": "DW-07",
+      "buriedDepth": 0.519999623298645,
+      "approach": [
+        -792,
+        54,
+        -3342
+      ],
+      "goal": "core_record",
+      "name": "ConvoyRoadLoadingSill",
+      "bounds": [
+        14.350086212158203,
+        2.859998941421509,
+        10.2849702835083
+      ],
+      "footprintHeightDeltas": [
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06,
+        3.814697265625e-06
+      ],
+      "ground": [
+        -806.1581420898438,
+        54.07999801635742,
+        -3377.263916015625
+      ],
+      "parts": 16
+    },
+    "GW-07": {
+      "story": "GW-07",
+      "buriedDepth": 0.4199995994567871,
+      "approach": [
+        -959.8499755859375,
+        78,
+        -7079.39990234375
+      ],
+      "goal": "exit",
+      "name": "NorthernWindgapStrata",
+      "bounds": [
+        17.630596160888672,
+        4.214999198913574,
+        9.709518432617188
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -944.2481079101562,
+        78,
+        -7058.60107421875
+      ],
+      "parts": 9
+    },
+    "FV-07": {
+      "story": "FV-07",
+      "buriedDepth": 0.32000577449798584,
+      "approach": [
+        -952.8499755859375,
+        124,
+        -10847.900390625
+      ],
+      "goal": "reunion",
+      "name": "FreightSledLanding",
+      "bounds": [
+        15.100000381469727,
+        3.020001173019409,
+        9.630126953125
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -1014.2276000976562,
+        124,
+        -10856.6630859375
+      ],
+      "parts": 13
+    },
+    "EC-07": {
+      "story": "EC-07",
+      "buriedDepth": 0.4600095748901367,
+      "approach": [
+        -912.8499755859375,
+        172,
+        -14679.400390625
+      ],
+      "goal": "courier",
+      "name": "DispatchCarrierCradle",
+      "bounds": [
+        15.699999809265137,
+        4.690008163452148,
+        9.279999732971191
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -887.1109619140625,
+        172,
+        -14675.7255859375
+      ],
+      "parts": 27
+    },
+    "HG-07": {
+      "story": "HG-07",
+      "buriedDepth": 0.39499497413635254,
+      "approach": [
+        -917.8499755859375,
+        196,
+        -18343.400390625
+      ],
+      "goal": "portal",
+      "name": "AlliedReturnParapet",
+      "bounds": [
+        16.750003814697266,
+        4.549999713897705,
+        6.305273532867432
+      ],
+      "footprintHeightDeltas": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ground": [
+        -931.0947875976562,
+        196,
+        -18321.02734375
+      ],
+      "parts": 13
+    }
+  },
+  "walks": {
+    "0.115.87": {
+      "DW-07": {
+        "story": "DW-07",
+        "name": "ConvoyRoadLoadingSill",
+        "from": [
+          -834.0363159179688,
+          54.08000183105469,
+          -3258.387939453125
+        ],
+        "target": [
+          -827,
+          54,
+          -3322
+        ],
+        "retreat": {
+          "elapsed": 3.46797016664641,
+          "arrived": true,
+          "gap": 4.594825267791748,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.7330785833182745,
+          "arrived": true,
+          "gap": 4.326349258422852,
+          "closestToContacts": []
+        },
+        "goal": "core_record"
+      },
+      "GW-07": {
+        "story": "GW-07",
+        "name": "NorthernWindgapStrata",
+        "from": [
+          -985.1547241210938,
+          78,
+          -7138.18505859375
+        ],
+        "target": [
+          -959.8499755859375,
+          78,
+          -7079.39990234375
+        ],
+        "retreat": {
+          "elapsed": 3.4705322083318606,
+          "arrived": true,
+          "gap": 4.628231525421143,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.733022041647928,
+          "arrived": true,
+          "gap": 4.279249668121338,
+          "closestToContacts": []
+        },
+        "goal": "exit"
+      },
+      "FV-07": {
+        "story": "FV-07",
+        "name": "FreightSledLanding",
+        "from": [
+          -890.7034301757812,
+          124,
+          -10832.609375
+        ],
+        "target": [
+          -952.8499755859375,
+          124,
+          -10847.900390625
+        ],
+        "retreat": {
+          "elapsed": 3.4723117083194666,
+          "arrived": true,
+          "gap": 4.66033411026001,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.732985833339626,
+          "arrived": true,
+          "gap": 4.3443756103515625,
+          "closestToContacts": []
+        },
+        "goal": "reunion"
+      },
+      "EC-07": {
+        "story": "EC-07",
+        "name": "DispatchCarrierCradle",
+        "from": [
+          -943.623291015625,
+          172,
+          -14623.2841796875
+        ],
+        "target": [
+          -912.8499755859375,
+          172,
+          -14679.400390625
+        ],
+        "retreat": {
+          "elapsed": 3.4737597916682716,
+          "arrived": true,
+          "gap": 4.556596279144287,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.7329590000153985,
+          "arrived": true,
+          "gap": 4.205109119415283,
+          "closestToContacts": []
+        },
+        "goal": "courier"
+      },
+      "HG-07": {
+        "story": "HG-07",
+        "name": "AlliedReturnParapet",
+        "from": [
+          -855.7879638671875,
+          196,
+          -18327.76953125
+        ],
+        "target": [
+          -917.8499755859375,
+          196,
+          -18343.400390625
+        ],
+        "retreat": {
+          "elapsed": 3.475174374994822,
+          "arrived": true,
+          "gap": 4.596219062805176,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.7329154166509397,
+          "arrived": true,
+          "gap": 4.30885648727417,
+          "closestToContacts": []
+        },
+        "goal": "portal"
+      }
+    },
+    "0.115.89": {
+      "DW-07": {
+        "story": "DW-07",
+        "name": "ConvoyRoadLoadingSill",
+        "from": [
+          -834.0363159179688,
+          54.08000183105469,
+          -3258.387939453125
+        ],
+        "target": [
+          -827,
+          54,
+          -3322
+        ],
+        "retreat": {
+          "elapsed": 3.465715750004165,
+          "arrived": true,
+          "gap": 4.661391735076904,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.734556250012247,
+          "arrived": true,
+          "gap": 4.326349258422852,
+          "closestToContacts": []
+        },
+        "goal": "core_record"
+      },
+      "GW-07": {
+        "story": "GW-07",
+        "name": "NorthernWindgapStrata",
+        "from": [
+          -985.1547241210938,
+          78,
+          -7138.18505859375
+        ],
+        "target": [
+          -959.8499755859375,
+          78,
+          -7079.39990234375
+        ],
+        "retreat": {
+          "elapsed": 3.467818625009386,
+          "arrived": true,
+          "gap": 4.628255844116211,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.7346487499889918,
+          "arrived": true,
+          "gap": 4.345712184906006,
+          "closestToContacts": []
+        },
+        "goal": "exit"
+      },
+      "FV-07": {
+        "story": "FV-07",
+        "name": "FreightSledLanding",
+        "from": [
+          -890.7034301757812,
+          124,
+          -10832.609375
+        ],
+        "target": [
+          -952.8499755859375,
+          124,
+          -10847.900390625
+        ],
+        "retreat": {
+          "elapsed": 3.4699229583202396,
+          "arrived": true,
+          "gap": 4.727182865142822,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.734645708318567,
+          "arrived": true,
+          "gap": 4.3443756103515625,
+          "closestToContacts": []
+        },
+        "goal": "reunion"
+      },
+      "EC-07": {
+        "story": "EC-07",
+        "name": "DispatchCarrierCradle",
+        "from": [
+          -943.623291015625,
+          172,
+          -14623.2841796875
+        ],
+        "target": [
+          -912.8499755859375,
+          172,
+          -14679.400390625
+        ],
+        "retreat": {
+          "elapsed": 3.471604999998817,
+          "arrived": true,
+          "gap": 4.623467445373535,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.7346507083275355,
+          "arrived": true,
+          "gap": 4.205109119415283,
+          "closestToContacts": []
+        },
+        "goal": "courier"
+      },
+      "HG-07": {
+        "story": "HG-07",
+        "name": "AlliedReturnParapet",
+        "from": [
+          -855.7879638671875,
+          196,
+          -18327.76953125
+        ],
+        "target": [
+          -917.8499755859375,
+          196,
+          -18343.400390625
+        ],
+        "retreat": {
+          "elapsed": 3.473215124977287,
+          "arrived": true,
+          "gap": 4.663600444793701,
+          "closestToContacts": []
+        },
+        "approach": {
+          "elapsed": 3.7346540833241306,
+          "arrived": true,
+          "gap": 4.30885648727417,
+          "closestToContacts": []
+        },
+        "goal": "portal"
+      }
+    }
+  },
+  "expansionRegression": {
+    "0.115.87": {
+      "generationSeconds": 30.790632999996888,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57133
+    },
+    "0.115.89": {
+      "generationSeconds": 30.3558097500063,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57185
+    }
+  },
+  "frameSHA256": {
+    "DW-07_goal-side": [
+      "b3d549104fd6dc90ab8808edadfced18db6f5ba2e2e4cb27c3acec8786f82d87",
+      "f87d8d0309220d6fe08be490fda1d0ad11e35f713909e8f2dc22a172db876e51"
+    ],
+    "DW-07_return-side": [
+      "24e925e0b992ea5e9871cb27451c3f4fb6af0556d929935a4a0287cff350e0d8",
+      "15a1ff120a3ef7db98ffd4dd334dd36d0d913cfef2860fc5c1895f4f25ac8ec8"
+    ],
+    "GW-07_goal-side": [
+      "b349171ca213f6f4556c8f46580ac74d72f9d900e012b586682fd046898ce31e",
+      "93e5e6aff83d060beefc04fba3bcb3ded7491483672f2f1a10e0c2aade4825cd"
+    ],
+    "GW-07_return-side": [
+      "1fe1e4c531c724d58f645a6003319ec108e13049e134e7b4db61aa2a46038bea",
+      "7d0123c815948f0a94960ec8fba7b3be20df29d3827de298f39197cc83f2238d"
+    ],
+    "FV-07_goal-side": [
+      "a138829bf838439a283f507ac395c8307ad27291a65e16d1eb7cd42558d36727",
+      "a4cbc45f361bb1585c9bac425b5cff72e22de05bbaef7befad9267e32afcb3d3"
+    ],
+    "FV-07_return-side": [
+      "7fa3cd20bea9fdfc60f034a5c47259f513d6b9488710895e97dccf6aac39e0fd",
+      "fd54bdb56c5d2277398f414061484707f470a5af9a4706d098a303102ca94849"
+    ],
+    "EC-07_goal-side": [
+      "ee306b50b6beeb9be2004ca4144df9c3ccbdd79fef81b8e54d5708e83860e21a",
+      "f15c9a50dcfb35faeb4c1fc2dd14a5875af0e3200f7da145491610a53019f5a2"
+    ],
+    "EC-07_return-side": [
+      "3e81039bdb66216a56b811bad5950e39c088a08b32f5494d17c8e707d922d7b3",
+      "0472063543b51b60b758aa9c5868c5e9c10251c6ce622febecbd4a6592f235c6"
+    ],
+    "HG-07_goal-side": [
+      "cc4ac83f465001441157a1c229dc7602dfeb713b3833ed87b9ca372fa56eca90",
+      "b1dd31bf4ef94e3c6f94dc923d5cf7e280005abe5c2ffd3de4eb18b8fd76b8e5"
+    ],
+    "HG-07_return-side": [
+      "0ee8c26e624c565a6ce523403fcb6d6c38dc86c7beee62f7cd7c6ddc2ebdfa7f",
+      "9a0735d871afca49ec69977b7b9a58b6da55af1ef037c25f5e8655596c12337e"
+    ]
+  }
+}
