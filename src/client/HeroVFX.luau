@@ -115,7 +115,7 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, CragCleaveEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -918,8 +918,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end
   if cragCleave then
    local scale=math.min(radius,7)/7
-   local reach=(3.35+math.sin(t*math.pi*.82)*2.16)*scale
-   return first+flat*reach+right*((.5-t)*5.5*scale)+Vector3.yAxis*(2.35-4.2*t)
+   local reach=(2.8+.4*t+1.65*math.sin(t*math.pi))*scale
+   return first+flat*reach+right*((.5-t)*7.4*scale)+Vector3.yAxis*(2.55-4.2*t)
   end
   local lateral=id=="dwarf_hooking_chop" and -.85 or 0
   return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8+right*(t-.5)*lateral
