@@ -6,6 +6,7 @@ local ThirdChapter = require(script.Parent.EpicThirdChapterLandmarks)
 local FourthChapter = require(script.Parent.EpicFourthChapterLandmarks)
 local FifthChapter = require(script.Parent.EpicFifthChapterLandmarks)
 local SixthChapter = require(script.Parent.EpicSixthChapterLandmarks)
+local SixthChapterRoutes = require(script.Parent.EpicSixthChapterRouteLandmarks)
 
 local Assemblies = {}
 local V = Vector3.new
@@ -258,14 +259,7 @@ local profiles = {
 	['HG-04'] = {goal = 'exp_1', name = 'GateWinchAnchorPlinth', offset = V(-3, 0, -1), compose = gateAnchor, useResult = true},
 }
 
-function Assemblies.create(scene, chapter, goal, context, area)
-	local profile = profiles[chapter.id]
-	if not profile or goal.id ~= profile.goal then
-		profile = Midchapter[chapter.id] or ThirdChapter[chapter.id] or FourthChapter[chapter.id]
-			or FifthChapter[chapter.id] or SixthChapter[chapter.id]
-	end
-	if not profile or goal.id ~= profile.goal then return end
-
+local function place(scene, chapter, goal, context, area, profile)
 	local activity = goal.activity
 	local step = profile.step and activity.steps[profile.step]
 	local finish = activity.finish
@@ -337,6 +331,25 @@ function Assemblies.create(scene, chapter, goal, context, area)
 	model:SetAttribute('PartCount', #model:GetChildren())
 	model.Parent = parent
 	return model
+end
+
+function Assemblies.create(scene, chapter, goal, context, area)
+	local profile = profiles[chapter.id]
+	if not profile or goal.id ~= profile.goal then
+		profile = Midchapter[chapter.id] or ThirdChapter[chapter.id] or FourthChapter[chapter.id]
+			or FifthChapter[chapter.id] or SixthChapter[chapter.id]
+	end
+	local main
+	if profile and goal.id == profile.goal then
+		main = place(scene, chapter, goal, context, area, profile)
+	end
+
+	local routeProfile = SixthChapterRoutes[chapter.id]
+	if routeProfile and goal.id == routeProfile.goal then
+		local route = place(scene, chapter, goal, context, area, routeProfile)
+		return main or route
+	end
+	return main
 end
 
 return Assemblies
