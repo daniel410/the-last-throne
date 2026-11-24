@@ -1,0 +1,38 @@
+{
+  "version": "0.115.70",
+  "sourceCommit": "50bcee30d06d17b78b33e050ac04dd04ec4341d1",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-50bcee30-7jjk6_q5",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-50bcee30-7jjk6_q5/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.115.70/TheLastThrone-0.115.70.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.70.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.70/TheLastThrone-0.115.70.rbxlx",
+      "sha256": "e167504add01e7128df4414093bc1cd3ce1fa5aefa69cc2cad2a5589afa49b17",
+      "bytes": 26883046
+    }
+  ],
+  "moduleSourcesSHA256": {
+    "src/server/World/EpicThirdChapterLandmarks.luau": "a3ae7c71c6eefb5509bc8d8a576e8fa6557d15f0d340ab1b5c84905f379a3d43"
+  },
+  "rojoVersion": "Rojo 7.7.1",
+  "baseline": {
+    "sourceCommit": "9931210da7e67a0ad2b8c4cd6e734e101b78971d",
+    "version": "0.115.69",
+    "moduleSourcesSHA256": {
+      "src/server/World/EpicThirdChapterLandmarks.luau": "c6f6a1b5533b8396ec109e2d29b847d4028d7216a79f2412f70c788ea793fa93"
+    },
+    "sha256": "defcb18d4021439e6346d20a16dab0e3af9be7487027442dd1ec68650be3d09c"
+  }
+}
