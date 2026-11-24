@@ -281,8 +281,12 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local rallyingSlash=id=="knight.steel_knight.rallying_slash"
  local steamBurst=id=="mage.pyro.steam_burst"
  local cyclone=id=="knight.steel_knight.twin_cyclone"
+ local steelSweep=id=="knight.steel_knight.steel_sweep"
+ local cragCleave=id=="dwarf.iron_axe.crag_cleave"
+ local groundBurst=id=="elf.magic_archer.vine_burst" or id=="mage.pyro.lava_eruption"
  local authoredRelease=fanLanes or rallyingSlash or steamBurst or id=="mage.pyro.cinder_ring"
   or cyclone or id=="dwarf.iron_axe.returning_echo" or id=="elf.magic_archer.echo_arrows"
+  or steelSweep or cragCleave or groundBurst
  if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse>d.pulses or pulse%1~=0 then return end
  local now=workspace:GetServerTimeNow()
  if type(firedAt)=="number" and (firedAt~=firedAt or now-firedAt>.6 or firedAt-now>.5) then return end
@@ -397,7 +401,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    -- HeroVFX owns ground-planted roots; no duplicate upright helix.
   elseif effect=="earth" or effect=="lava" or effect=="frost" then
    if not primary then spikes(targetFloor,direction,d.radius,360,color,effect)end
-   if effect=="lava" and decorate and not ultimateSignature then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
+   if effect=="lava" and decorate and not ultimateSignature and not (groundBurst and primary) then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
   elseif effect=="steam" then
    -- HeroVFX owns short translucent rising vapor.
   end
@@ -405,7 +409,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local burst=targetFloor+Vector3.yAxis*Bomb.radius
    if not primary then impact(burst,color,.75) end
    Audio.play("impact",burst,"dwarf",id,character,Players.LocalPlayer~=nil and Players.LocalPlayer.Character==character)
-  elseif decorate and not ultimateSignature and not (steamBurst and primary) then
+  elseif decorate and not ultimateSignature and not ((steamBurst or groundBurst) and primary) then
    impact(center,color,2)
   end
  elseif effect=="vine" then
@@ -452,8 +456,10 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
   if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
-  elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"
-   and not (primary and (primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))) then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
+  elseif effect=="slash" and ((cragCleave and not primary) or (profile.motion~="spin" and profile.motion~="chop"
+   and profile.motion~="cross" and profile.motion~="thrust" and profile.motion~="counter" and id~="dwarf_low_sweep"
+   and not (primary and (steelSweep or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
+   arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local chargeEdge=id=="knight.steel_knight.breaker_charge" and primary and primary:GetAttribute("PrimaryIconCue")
    if not primary or (not ultimateSignature and not chargeEdge and id~="dwarf.iron_axe.iron_shoulder") then

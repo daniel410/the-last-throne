@@ -115,7 +115,7 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, CragCleaveEdge=true}
 local function curve(r,name,path,count,width,color)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -545,20 +545,20 @@ local function rootBranch(r,first,last,width,delay)
   return first,first+(last-first)*math.max(.01,growth)
  end,width*.65,palette.nature:Lerp(r.hot,.22))
 end
-local function roots(r,at,flat,right,radius,angle,count)
+local function roots(r,at,flat,right,radius,angle,count,burst)
  for lane=1,math.min(count,5)do
   local a=angle<359 and math.rad(-angle/2+angle*(lane-.5)/count)or lane/count*math.pi*2
   local radial=flat*math.cos(a)+right*math.sin(a)
   local from=at+radial*math.min(radius*.1,.6)+Vector3.yAxis*.12
   local bend=at+radial*radius*.38+right*math.sin(lane*2.4)*.18+Vector3.yAxis*.3
-  local tip=at+radial*radius*.7+Vector3.yAxis*.4
+  local tip=at+radial*radius*(burst and .8 or .7)+Vector3.yAxis*.4
   rootBranch(r,from,bend,.38,0);rootBranch(r,bend,tip,.28,.025)
   local side=Vector3.new(-radial.Z,0,radial.X)*(lane%2==0 and -1 or 1)
   local fork=bend+radial*radius*.13+side*math.min(radius*.18,1.2)
   rootBranch(r,bend,fork,.22,.045)
-  local upTip=tip+radial*.2+Vector3.yAxis*(.7+(lane%2)*.25)
+  local upTip=tip+radial*.2+Vector3.yAxis*(burst and (1.55+lane%2*.55) or (.7+lane%2*.25))
   local stem=Surfaces.bar(r,'RootAscendingTip',tip,upTip,.24,palette.nature:Lerp(r.hot,.28),.2,Enum.Material.Neon)
-  if stem then Surfaces.growLine(r,tip,upTip,.12,.02)end
+  if stem then Surfaces.growLine(r,tip,upTip,.12,burst and .075 or .02)end
   for n=1,2 do
    local pos=bend+(tip-bend)*(n*.25)
    local thorn=Surfaces.volume(r,'RootThorn',pos+Vector3.yAxis*.35,Vector3.new(.24,.85,.25),palette.nature:Lerp(r.hot,.2),.2,'wedge',Enum.Material.SmoothPlastic)
@@ -803,11 +803,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local cyclone=id=="knight.steel_knight.twin_cyclone"
  local returningEcho=id=="dwarf.iron_axe.returning_echo"
  local cinderRing=id=="mage.pyro.cinder_ring"
+ local steelSweep=id=="knight.steel_knight.steel_sweep"
+ local cragCleave=id=="dwarf.iron_axe.crag_cleave"
+ local vineBurst=id=="elf.magic_archer.vine_burst"
+ local lavaEruption=id=="mage.pyro.lava_eruption"
  local compact=FX.isOtherHero(character)
  local final=FinalBeat.isFinal(d,pulse)
  local life=profile.signature and not final and math.min(profile.life,d.interval) or profile.life
  local minBeams=fanLanes and fanLanes*(row.key=="gun" and 1 or 3)
   or (cyclone or cinderRing) and (compact and 8 or 12)
+  or (steelSweep or cragCleave) and (compact and 6 or 9)
+  or vineBurst and (compact and 9 or 12)
+  or lavaEruption and (compact and 2 or 3)
   or returningEcho and (compact and 5 or 7) or 2
  if returningEcho and pulse==2 and character then
   -- The same axe comes back even when both release events arrive together.
@@ -897,6 +904,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local reach=math.min(radius,6)*(.79+.15*math.sin(t*math.pi))
   return first+(flat*math.cos(arc)+right*math.sin(arc))*reach+Vector3.yAxis*(-.8+2.15*t)
  end
+ local function steelSweepPath(t,u)
+  local bearing=math.rad(angle)*(.46-.92*t)
+  local reach=radius*(.73+.15*math.sin(t*math.pi)+.09*u)
+  return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*(.05-.46*t)
+ end
  local function cleavePath(t)
   local a=t*math.pi*.8
   if id==ARMOR_SPLITTER then
@@ -904,8 +916,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    return first+flat*(.65+math.sin(a)*math.min(radius*.72,3.6))
     +Vector3.yAxis*(math.cos(a)*2.65)+right*(.28-.56*t)
   end
-  local lateral=id=="dwarf_hooking_chop" and -.85
-   or id=="dwarf.iron_axe.crag_cleave" and 1.35 or 0
+  if cragCleave then
+   local bearing=math.rad(angle)*(.36-.72*t)
+   local reach=math.min(radius,7)*(.38+.49*math.sin(t*math.pi*.66))
+   return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*(2.35-4.2*t)
+  end
+  local lateral=id=="dwarf_hooking_chop" and -.85 or 0
   return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8+right*(t-.5)*lateral
  end
  local shieldCenter=first+flat*1.7
@@ -939,6 +955,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   for lane=1,count do local side=lane%2==0 and -1 or 1
    stroke("ThrustPressure",thrustBase+right*side*.27,thrustTip+right*side*.08,width*.4)
   end
+ elseif cragCleave then
+  curve(r,"CragCleaveEdge",function(t,u)return cleavePath(t)-Vector3.yAxis*u*.35 end,compact and 6 or 9,.34,WHITE)
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="cleave"then
   for lane=1,count do curve(r,"DescendingCleave",function(t,u)
    return cleavePath(t)-Vector3.yAxis*u*.5+right*(lane-(count+1)/2)*.3
@@ -951,6 +970,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end
  elseif counterSlash then
   curve(r,"IconCounterSlashEdge",function(t)return counterPath(t)end,r.compact and 6 or 10,width,WHITE)
+  r.model:SetAttribute("PrimaryIconCue",true)
+ elseif steelSweep then
+  curve(r,"SteelSweepEdge",steelSweepPath,compact and 6 or 9,.28,WHITE)
   r.model:SetAttribute("PrimaryIconCue",true)
  elseif rallyingSlash then
   curve(r,"RallyingSlashEdge",function(t,u)
@@ -1168,6 +1190,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end
   if shape=="hail" then debris(r,floor,4,"IceShard",.82)
   elseif shape=="ash" then debris(r,floor,4,"Ember",.76) end
+ elseif lavaEruption then
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="blast"or shape=="earth"or shape=="lava"then
   local at=floor
   if area or angle>=359 then ring(r,"GroundPressure",at,radius,width*.6,false,false)
@@ -1251,8 +1275,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    end
   end
  elseif shape=="vine"then
-  local rootRadius=id=='elf.magic_archer.vine_trap' and math.min(radius,3.2)or id=='elf.magic_archer.vine_burst' and math.min(radius,3.8)or radius
-  roots(r,area and floorAt(last,character)or floor,flat,right,rootRadius,d.form=='cone'and angle or 360,count)
+  local rootRadius=id=='elf.magic_archer.vine_trap' and math.min(radius,3.2)or vineBurst and math.min(radius,5)or radius
+  roots(r,floor,flat,right,rootRadius,d.form=='cone'and angle or 360,vineBurst and (compact and 3 or 4) or count,vineBurst)
+  if vineBurst then r.model:SetAttribute("PrimaryIconCue",true) end
  elseif shape=="gravity"then
   local at=floorAt(last,character)
   local gravityRadius=math.min(radius*.45,2.4)
@@ -1343,6 +1368,14 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   Surfaces.ribbon(r,"CounterSlashSteel",counterPath,Vector3.yAxis,.62,.46,r.color:Lerp(r.hot,.18),r.compact and 5 or 9,Enum.Material.SmoothPlastic)
  elseif crossfire then
   -- The narrow beam and paired fletching carry this shot across the arena.
+ elseif steelSweep then
+  local start=#r.faces
+  Surfaces.ribbon(r,"SteelSweepRibbon",function(t)return steelSweepPath(t,0)end,Vector3.yAxis,.68,.52,r.color,compact and 4 or 6)
+  for i=start+1,#r.faces do r.faces[i].drift=flat*radius*.09;r.faces[i].fadeDuration=.17 end
+ elseif cragCleave then
+  local start=#r.faces
+  Surfaces.ribbon(r,"CragCleaveRibbon",cleavePath,right,.94,.42,r.color,compact and 4 or 7)
+  for i=start+1,#r.faces do r.faces[i].fadeDuration=.19 end
  elseif rallyingSlash or fanLanes then
   -- The open cutting edge and narrow projectile traces carry the release.
  elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="low"or shape=="counter"then
@@ -1456,6 +1489,28 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
       end
      end
     end
+   end
+  end
+ elseif lavaEruption then
+  local hot=Color3.fromRGB(255,174,47)
+  for lane=1,(compact and 2 or 3) do
+   local heading=(lane-1)*math.pi*2/3
+   local radial=flat*math.cos(heading)+right*math.sin(heading)
+   local base=floor+radial*radius*.23+Vector3.yAxis*.07
+   local tip=base+radial*.48+Vector3.yAxis*(lane==1 and 4.9 or 3.35)
+   local vent=Surfaces.bar(r,"LavaVent",base,tip,lane==1 and .44 or .32,hot,.14,Enum.Material.Neon)
+   if vent then Surfaces.growLine(r,base,tip,.14,(lane-1)*.027) end
+   local seamStart=floor+radial*radius*.10+Vector3.yAxis*.06
+   local seamEnd=floor+radial*radius*.59+Vector3.yAxis*.06
+   local seam=Surfaces.bar(r,"MoltenSeam",seamStart,seamEnd,.20,hot,.16,Enum.Material.Neon)
+   if seam then Surfaces.growLine(r,seamStart,seamEnd,.11,0) end
+   line(r,"EruptionJet",function(u)
+    local rise=math.clamp((u*r.life-(lane-1)*.027)/.14,0,1)
+    return base:Lerp(tip,rise*.37),base:Lerp(tip,math.max(.01,rise))
+   end,.33,palette.fire,.54,true)
+   if not compact then
+    local crust=Surfaces.volume(r,"EruptionBasalt",base+Vector3.yAxis*.38,Vector3.new(1.28,1.15,1.42),Color3.fromRGB(79,53,43),.12,"wedge",Enum.Material.Slate)
+    if crust then r.faces[#r.faces].emerge={duration=.13,delay=(lane-1)*.027} end
    end
   end
  elseif shape=="earth"or shape=="lava"or shape=="blast"or shape=="mortar"then
@@ -1590,7 +1645,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  Art.accents(r,artContext)
  Polish.finish(r,artContext)
  if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
- if not bomb and not cinderRing and shape~="steam" and not rallyingSlash and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
+ if not bomb and not cinderRing and shape~="steam" and not rallyingSlash and not steelSweep and not cragCleave
+  and not vineBurst and not lavaEruption and (d.damage or 1)>0 and(d.form~="chain"or type(points)=="table"and #points>0)then
   local at=Art.kind(id)=="MoltenLine" and floorAt(last,character)+Vector3.yAxis*.2 or area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   local scale=quickfire and .85 or echoArrows and .72 or (fanLanes and row.key=="gun") and 1.25
    or id=="knight.paladin.oathbound_assault" and .55
@@ -1696,6 +1752,10 @@ local contactStyles={
 -- Each edge is expressed as lateral, vertical and forward offsets from the
 -- confirmed contact. A pair stays readable when party effects are compact.
 local forceContacts={
+ ["knight.steel_knight.steel_sweep"]={"SteelSweepContact",Vector3.new(.15,-.37,-.64),Vector3.new(1.24,-.05,-.45),.48,.14,.06,Vector3.new(.66,-.44,-.92)},
+ ["dwarf.iron_axe.crag_cleave"]={"CragCleaveContact",Vector3.new(.13,.65,-.47),Vector3.new(.81,-.63,-.69),.16,.16,-.12,Vector3.new(.43,.08,-.83)},
+ ["elf.magic_archer.vine_burst"]={"VineBurstContact",Vector3.new(.11,-.73,-.62),Vector3.new(.65,.57,-.75),.12,.12,.17,Vector3.new(.56,-.27,-.81)},
+ ["mage.pyro.lava_eruption"]={"LavaEruptionContact",Vector3.new(.16,-.62,-.52),Vector3.new(.42,1.16,-.47),.08,.13,.32,Vector3.new(.43,.36,-.60),key="fire"},
  ["knight.steel_knight.rallying_slash"]={"RallyingSlashContact",Vector3.new(.14,-.38,-.52),Vector3.new(1.15,.64,-.64),.28,.16,.13,Vector3.new(.68,-.12,-.88)},
  ["dwarf.gunner.scatter_shot"]={"ScatterPelletContact",Vector3.new(.12,.02,-.63),Vector3.new(.76,.43,-.46),.17,.10,.04},
  ["elf.marksman.piercing_volley"]={"PiercingVolleyContact",Vector3.new(.26,.12,-1.15),Vector3.new(.11,.02,.48),.42,.082},

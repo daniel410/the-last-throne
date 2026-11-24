@@ -41,12 +41,14 @@ local bow = {
     glide=stance(v(14,-19,12), 32, 22, 25),
     sky=stance(v(-16,-12,-10), -23, 24, 32),
     vineTrap=stance(v(11,17,-9), 19, 27, 19),
+    vineBurst=stance(v(7,-24,12), 14, 29, 30),
     weave=stance(v(-6,24,-14), 25, 19, 28),
     warden=stance(v(-3,16,-17), 18, 22, 24),
     canopy=stance(v(-24,20,-15), 34, 30, 38),
 }
 local function bowStance(d)
     if d.id=="elf.magic_archer.vine_trap" then return bow.vineTrap end
+    if d.id=="elf.magic_archer.vine_burst" then return bow.vineBurst end
     if d.form=="ground" then return d.ultimate and bow.canopy or bow.sky end
     if d.ultimate and d.form=="cone" then return bow.broadside end
     if d.id=="elf.magic_archer.gliding_shot" then return bow.glide end
@@ -213,6 +215,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"elbow",v(-15,0,0)*recoil)
         add(pose,"leftKnee",v(16,0,0)*recoil)
     end
+    if s==bow.vineBurst then
+        -- Keep the nock on target and open the draw hand as the roots spring up.
+        add(pose,"right",v(-12,17,-23)*recoil)
+        add(pose,"elbow",v(24*recoil,0,0))
+        add(pose,"torso",v(-10,8,-5)*recoil)
+        add(pose,"leftKnee",v(20*recoil,0,0))
+    end
     local finish = since and FinalBeat.weight(d,pulse,since) or 0
     if finish>0 then
         if d.form=="ground" then
@@ -257,6 +266,7 @@ local spells = {
     moltenLine=gesture(v(-20,22,24),v(24,-16,-28),v(19,-12,-8),v(29,-18,-27),27),
     cinder=gesture(v(-27,-20,15),v(16,26,22),v(17,-18,-6),v(41,24,18),27),
     earth=gesture(v(-34,16,-14),v(-22,18,23),v(21,12,-11),v(47,-8,19),32),
+    eruption=gesture(v(-38,13,-22),v(-30,18,20),v(25,9,-8),v(55,-11,25),34),
     stone=gesture(v(-32,-19,12),v(22,17,34),v(17,-19,-7),v(50,-14,5),26),
     ward=gesture(v(13,-24,17),v(47,-16,-28),v(11,14,-10),v(34,12,30),23),
     iceWard=gesture(v(15,12,-21),v(30,-27,19),v(5,-18,8),v(42,-19,-20),24),
@@ -271,6 +281,7 @@ local function spellGesture(d,profile)
     if d.id=="mage.cryo.ice_ward" then return spells.iceWard end
     if d.id=="mage_tidal_ring" then return spells.tidalRing end
     if d.id=="mage.pyro.steam_burst" then return spells.steam end
+    if d.id=="mage.pyro.lava_eruption" then return spells.eruption end
     if profile=="ward" then return spells.ward end
     local cue = Presentation.get(d)
     if not cue then return spells.bolt end
@@ -365,6 +376,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(-18*wind+25*follow,0,0))
         add(pose,"right",v(11,5,-8)*follow)
         add(pose,"torso",v(-9,3,4)*follow)
+    end
+    if s == spells.eruption then
+        -- The staff braces low while the free palm and chest lift off the crouch.
+        add(pose,"left",v(42,-10,18)*follow)
+        add(pose,"leftElbow",v(-19*wind+31*follow,0,0))
+        add(pose,"torso",v(-19,4,0)*follow)
+        add(pose,"rightKnee",v(-21*follow,0,0))
     end
     if d.id=="mage.cryo.frost_lance" then
         add(pose,"leftElbow",v(24,0,0)*follow)

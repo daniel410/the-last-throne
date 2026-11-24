@@ -523,6 +523,16 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-9,0,7)*load+v(12,0,-6)*plant)
   offset(pose,"leftKnee",v(9*load+19*plant))
   offset(pose,"leftHip",v(-8*plant))
+ elseif d.id=="knight.steel_knight.steel_sweep" then
+  -- Wind behind the shield, then let the lead foot take the horizontal cut.
+  local phase=age/contact
+  local wind=smooth(phase/.52)*(1-smooth((phase-.64)/.36))
+  local plant=pulse>0 and smooth(since/.052)*(1-smooth((since-.052)/.18)) or 0
+  offset(pose,"torso",v(3,-22,7)*wind+v(9,15,-8)*plant)
+  offset(pose,"left",v(24,-8,-17)*wind+v(-18,6,17)*plant)
+  offset(pose,"rightKnee",v(17*wind))
+  offset(pose,"leftHip",v(-14*plant,0,-6*plant))
+  offset(pose,"leftKnee",v(26*plant))
  elseif d.id=="knight.steel_knight.sweeping_break" then
   -- Lower the sword-side shoulder into contact, then brake over the front leg.
   local coil=smooth(age/(contact*.57))*(1-smooth((age/contact-.57)/.43))
@@ -619,13 +629,16 @@ function Motion.sample(classId,d,age,rigType)
  elseif d.id=="dwarf.iron_axe.crag_cleave" then
   local phase=age/contact
   local wind=smooth(phase/.52)*(1-smooth((phase-.58)/.42))
-  local catch=smooth((age-contact)/.07)*(1-smooth((age-contact-.07)/.19))
-  -- Load the axe to one side and let the opposite leg take the cleave.
-  offset(pose,"torso",v(-6,-19,11)*wind+v(12,18,-12)*catch)
+  local catch=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.14))
+  local pull=smooth((age-contact-.06)/.09)*(1-smooth((age-contact-.15)/.18))
+  -- Sink through the diagonal cut, then recover by folding the axe elbow.
+  offset(pose,"torso",v(-6,-19,11)*wind+v(22,18,-16)*catch+v(-9,-6,4)*pull)
   offset(pose,"left",v(20,-11,19)*wind+v(-11,12,-9)*catch)
   offset(pose,"rightHip",v(-13,0,6)*wind)
   offset(pose,"rightKnee",v(20*wind))
-  offset(pose,"leftKnee",v(24*catch))
+  offset(pose,"leftHip",v(-13*catch))
+  offset(pose,"leftKnee",v(31*catch))
+  offset(pose,"elbow",v(-25*pull))
  elseif d.id=="dwarf.iron_axe.armor_splitter" then
   -- Draw the free elbow in while the axe loads. Pull the axe back after the bite.
   local phase=age/contact
