@@ -5,7 +5,7 @@
 
 - 최신 비공개 게시 빌드 0.115.33은 로비 118·배틀 43에 반영했다. Roblox Player에서 Dawnspire 진입과 기존 영웅 표시를 확인했다. [게시 및 빈 로비 복구 확인](../evidence/release-0.115.33-20261121/README.md)
 
-- 영웅 기술 후보 0.115.66은 네 영웅의 직선 공격에 무기·원소별 명중 실루엣과 반동을 적용했다. 고정 빌드 Studio 검사와 R15 전후 비교를 마쳤으며, 게시 4인 교전과 터치 실기기 수용은 후속이다. [직선 공격](../evidence/hero-line-contact-20261123/README.md) · [감속 공격](../evidence/hero-slow-presentation-20261123/README.md) · [자세 붕괴](../evidence/hero-posture-break-20261123/README.md) · [이동 공격 잔상](../evidence/hero-step-wakes-20261123/README.md) · [표식 부여](../evidence/hero-mark-application-20261123/README.md)
+- 영웅 기술 후보 0.115.69는 네 영웅의 준비·회수와 명중을 다듬고 적의 공격 준비가 차단될 때 무기·속성별 획을 표시한다. 고정 빌드 Studio 검사를 마쳤으며 게시 4인 교전과 터치 실기기 수용은 후속이다. [준비 차단](../evidence/hero-windup-interrupt-20261123/README.md) · [직선 공격](../evidence/hero-line-contact-20261123/README.md) · [감속 공격](../evidence/hero-slow-presentation-20261123/README.md) · [자세 붕괴](../evidence/hero-posture-break-20261123/README.md) · [이동 공격 잔상](../evidence/hero-step-wakes-20261123/README.md) · [표식 부여](../evidence/hero-mark-application-20261123/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
 - 에픽 환경 후보 0.115.47은 다섯 에픽 1장·3장의 지물 10개를 최신 소스에 통합하고, GW 피난처 표식 아래 뿌리와 HG 관리 통로 귀환 문턱을 조형했다. 후보 미게시·G5 진행 중. [통합 빌드와 검증](../evidence/epic-early-story-integration-20261122/README.md) · [2장 길목](../evidence/epic-second-chapter-landmark-readability-20261122/README.md) · [4장 복구 지물](../evidence/epic-fourth-chapter-readability-20261121/README.md) · [7장 결말 접근면](../evidence/epic-finale-route-profiles-20261121/README.md)

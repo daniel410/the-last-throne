@@ -1,0 +1,81 @@
+{
+  "version": "0.115.69",
+  "mode": "Isolated Studio",
+  "candidateChecks": 266564,
+  "cases": {
+    "hero-windup-interrupt-native": {
+      "pass": true,
+      "checks": 217,
+      "run": "server damage handler and client renderer fixture"
+    },
+    "hero-skills-native": {
+      "checks": 244520,
+      "pass": true
+    },
+    "hero-skill-impact-native": {
+      "checks": 761,
+      "pass": true
+    },
+    "hero-line-contact-native": {
+      "checks": 158,
+      "pass": true
+    },
+    "hero-vfx-priority-native": {
+      "checks": 28,
+      "pass": true
+    },
+    "hero-skill-direction-native": {
+      "checks": 31,
+      "pass": true
+    },
+    "hero-posture-break-native": {
+      "checks": 187,
+      "pass": true
+    },
+    "hero-slow-presentation-native": {
+      "checks": 157,
+      "pass": true
+    },
+    "hero-shield-grant-native": {
+      "checks": 139,
+      "pass": true
+    },
+    "hero-mark-application-native": {
+      "checks": 432,
+      "pass": true
+    },
+    "elf-confirmed-release-native": {
+      "checks": 13,
+      "pass": true
+    },
+    "enemy-combat-native": {
+      "checks": 3685,
+      "pass": true
+    },
+    "enemy-combat-presentation-native": {
+      "checks": 15904,
+      "pass": true
+    },
+    "knight-stun-and-control-effects-native": {
+      "checks": 296,
+      "pass": true
+    },
+    "dwarf-stun-native": {
+      "checks": 36,
+      "pass": true
+    }
+  },
+  "baselineFocused": {
+    "version": "0.115.67",
+    "checks": 253,
+    "assertionsNotMet": 205
+  },
+  "cpuChecks": {
+    "advanced-skills": 1435,
+    "advancement-level-only": 539,
+    "skill-effects": 12632,
+    "enemy-pack-rules": 1366,
+    "enemy-combat-profiles": 59598
+  },
+  "artifactStaticChecks": 336
+}

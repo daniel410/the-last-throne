@@ -1,0 +1,45 @@
+{
+  "version": "0.115.69",
+  "sourceCommit": "9931210da7e67a0ad2b8c4cd6e734e101b78971d",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-9931210d-hep0ig4v",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-9931210d-hep0ig4v/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.115.69/TheLastThrone-0.115.69.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.69.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.69/TheLastThrone-0.115.69.rbxlx",
+      "sha256": "defcb18d4021439e6346d20a16dab0e3af9be7487027442dd1ec68650be3d09c",
+      "bytes": 26882319
+    }
+  ],
+  "moduleSourcesSHA256": {
+    "src/client/AdvancedSkillMotion.luau": "04e9b03608adfcd755e8c4f3a9e626c52243e8d843913ddce60099646c5ff7ec",
+    "src/client/RangedActionPoses.luau": "2540754c480182ff0a8f1c19dc755e4ce4be903a4277a32e3ba8bf30524b9408",
+    "src/client/HeroVFX.luau": "4881db36a1910e6edd5479d7fda32e9e36caea31e2c0ae1ac63024b5ef5d40ab",
+    "src/client/K0HitEffects.luau": "408baaea51d66030736e8c991d134f0901ab5f71ab175a4c1f5809959ca76d8d",
+    "src/server/Combat/CombatService.luau": "d92e2d226b7c6b8bce4a19eaffd77f0b743dff50636ace3b61752ff6c9dce2dc"
+  },
+  "baseline": {
+    "version": "0.115.67",
+    "sourceCommit": "a205c7636a277d9c445687b8a4a14acfb86a064d",
+    "moduleSourcesSHA256": {
+      "src/client/AdvancedSkillMotion.luau": "4eb1c0567ffa8b9673ee202e06e9feefa902b9221c0ccc2f3c34a0bf04d31491",
+      "src/client/RangedActionPoses.luau": "11f9149d6342297d093f506da3b0b35bdb150dc5b59de4e2a2f2b3a7f226a85f",
+      "src/client/HeroVFX.luau": "9bcca4356a03ee6bbeb6169568d30d0db797c58fdf90c1ef91d8b58d01335e55",
+      "src/client/K0HitEffects.luau": "5651fba3845677927afc9571996f5e7f7811cf751bdf2c4c44af3ace3638b702",
+      "src/server/Combat/CombatService.luau": "c3dae2ff884c88107391a9fbb51e21c93b69aebb95c93f878add85a87f77f7e0"
+    },
+    "sha256": "b9210b579728e17a5a19ad07304268c2fb0e73d8534cb6ade56150ab9efdedb8"
+  }
+}
