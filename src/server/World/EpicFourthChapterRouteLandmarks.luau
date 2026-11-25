@@ -13,8 +13,13 @@ local function returnRopeGuide(pal, part, beam)
 		part('GuidePost', V(.59, 1.65, .62), V(x, 1.22, .22), oak, M.Wood)
 		part('GuideRopeWrap', V(.69, .33, .74), V(x, 1.87, .22), rope, M.Fabric)
 	end
-	beam('GuideRopeLeft', V(-1.51, 1.88, .22), V(0, 1.5, .22), .19, rope, M.Fabric)
-	beam('GuideRopeRight', V(0, 1.5, .22), V(1.51, 1.88, .22), .19, rope, M.Fabric)
+	local ropeLine = {
+		V(-1.51, 1.88, .22), V(-.76, 1.61, .22), V(0, 1.52, .22),
+		V(.76, 1.61, .22), V(1.51, 1.88, .22),
+	}
+	for i = 1, #ropeLine - 1 do
+		beam('GuideRopeSpan', ropeLine[i], ropeLine[i + 1], .19, rope, M.Fabric)
+	end
 end
 
 local function refugeBoardRest(pal, part, beam)
@@ -25,9 +30,13 @@ local function refugeBoardRest(pal, part, beam)
 	part('BoardRestSplitStone', V(3.77, .81, 1.98), V(-.42, .49, .28), shale, M.Slate, 'Wedge', V(0, .4, 0))
 	beam('BoardRestRoot', V(-1.9, .46, .65), V(.65, 1.46, .42), .67, root, M.Wood)
 	part('BoardRestUpright', V(.44, 1.88, .46), V(.71, 1.29, .36), root:Lerp(cut, .38), M.Wood)
-	part('BoardRestCrossbar', V(2.65, .34, .52), V(.14, 2.11, .30), cut, M.WoodPlanks, nil, V(0, 0, -.12))
-	for _, x in ipairs({-.71, .92}) do
-		part('BoardRestPin', V(.23, .23, .14), V(x, 2.11 - x * .12, -.02), C(115, 111, 89), M.CorrodedMetal)
+	part('BoardRestCrossbar', V(2.65, .28, .52), V(.14, 2.08, .30), root, M.WoodPlanks)
+	for i, x in ipairs({-.59, .14, .87}) do
+		part('RefugeDirectionBoard', V(.70, .69, .18), V(x, 2.02, -.02),
+			cut:Lerp(shale, (i - 1) * .12), M.WoodPlanks, nil, V(.10, 0, 0))
+	end
+	for _, x in ipairs({-.59, .87}) do
+		part('BoardRestPin', V(.17, .17, .13), V(x, 2.08, -.15), C(115, 111, 89), M.CorrodedMetal)
 	end
 end
 
@@ -42,8 +51,9 @@ local function relayPlateCradle(pal, part)
 	for _, x in ipairs({-.32, 1.56}) do
 		part('RelayPlateGuide', V(.32, .43, 1.56), V(x, .99, .22), steel, M.Metal)
 	end
-	part('StowedRelayPlate', V(1.58, .17, 1.42), V(.62, 1.13, .19), steel:Lerp(snow, .25), M.Metal, nil, V(.16, 0, 0))
-	part('RelayPlateHandle', V(.63, .16, .19), V(.62, 1.29, -.10), stone, M.Metal)
+	part('RelayCradleBedding', V(1.62, .10, 1.46), V(.62, .86, .19), pal.wood, M.Wood)
+	part('StowedRelayPlate', V(1.55, .21, 1.42), V(.62, 1.00, .19), steel:Lerp(snow, .34), M.Metal)
+	part('RelayPlateHandle', V(.63, .15, .19), V(.62, 1.17, -.10), stone, M.Metal)
 end
 
 local function pressureLineSaddle(pal, part)
@@ -55,9 +65,17 @@ local function pressureLineSaddle(pal, part)
 		part('PressureSaddleBasaltFoot', V(1.67, .50, 1.58), V(x, .40, .26), basalt, M.Basalt)
 		part('PressureSaddleFirebrick', V(1.28, .66, 1.34), V(x, .95, .26), brick, M.Brick)
 	end
-	part('PressureLineSpareCoupling', V(4.28, .92, .92), V(0, 1.65, .26), iron, M.CorrodedMetal, 'Cylinder')
-	for _, x in ipairs({-.53, .53}) do
-		part('PressureLineCollar', V(.22, 1.23, 1.23), V(x, 1.65, .26), iron:Lerp(brick, .27), M.Metal, 'Cylinder')
+	for i = 0, 7 do
+		local angle = i * math.pi / 4
+		local dy, dz = math.cos(angle), math.sin(angle)
+		part('PressureCouplingWall', V(4.28, .18, .39), V(0, 1.63 + dy * .39, .26 + dz * .39), iron,
+			M.CorrodedMetal, nil, V(angle, 0, 0))
+		if i % 2 == 0 then
+			for _, x in ipairs({-1.78, 1.78}) do
+				part('PressureCouplingFlangeLug', V(.26, .18, .30), V(x, 1.63 + dy * .49, .26 + dz * .49),
+					iron:Lerp(brick, .38), M.Metal, nil, V(angle, 0, 0))
+			end
+		end
 	end
 end
 
@@ -69,7 +87,9 @@ local function gateSurveyLedge(pal, part, beam)
 	part('SurveyLedgeBack', V(3.94, 1.52, .67), V(0, .87, .83), stone, M.Limestone)
 	part('SurveyLedgeSlab', V(4.21, .35, 1.77), V(0, 1.74, .28), cut, M.Limestone)
 	for _, x in ipairs({-1.30, 1.30}) do
-		beam('SurveyLedgeBrace', V(x, .75, .71), V(x, 1.60, -.40), .28, iron, M.CorrodedMetal)
+		part('SurveyLedgeBraceSocket', V(.55, .50, .20), V(x, .84, .40), cut:Lerp(stone, .35), M.Limestone)
+		beam('SurveyLedgeBrace', V(x, .81, .36), V(x, 1.60, -.40), .31,
+			iron:Lerp(cut, .28), M.CorrodedMetal)
 	end
 	part('SurveyLedgeWearStrip', V(2.59, .12, .32), V(.05, 1.93, -.29), cut:Lerp(stone, .22), M.Slate)
 	part('SurveyLedgeSpall', V(.98, .31, .86), V(1.69, .31, -.76), stone, M.Slate, 'Corner', V(0, -.41, 0))
