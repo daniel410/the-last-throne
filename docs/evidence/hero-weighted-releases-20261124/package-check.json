@@ -1,0 +1,26 @@
+{
+  "0.115.95": {
+    "sourceCommit": "e63c7080984e0ccddf0e962382579f17143311d4",
+    "sha256": "0f9bb649cf421b4555464b805c835b17061e21ab03bb09624233528ebda99c04",
+    "modules": {
+      "AdvancedSkillMotion": "a18ed432acd40a6b1161a4b40866aca75c1bf7e959a3323b39b600c8cb60e09d",
+      "AdvancedSkillVisual": "3050937e67c710d5ce6489392d791a422339a47358f0a72e722d0be6db6d36dd",
+      "HeroVFX": "03f5435f6b8ff9dee21da91997090b079346605a8e2cd490453136728405881d",
+      "HeroVFXArt": "b5814f983f3e71c37fa38edc953936a4798a100958fa24018ec95c8a418c802c",
+      "RangedActionPoses": "53bb8425103d593d3fe7c76db71020a1cdebbc9fab4752d7c06cc880e55eda63",
+      "SkillVFXProfiles": "78405d3f199e63cebc8a4eb643fbc564c4ede0fad786d2f74a9cc08161ce0065"
+    }
+  },
+  "0.115.99": {
+    "sourceCommit": "b31b8d0e40069b02f1f0d28d8c4f909a28e4191e",
+    "sha256": "88dd792229609c3166df4e7905029d36cbc2393b69b39d128818eeceb0f2ed48",
+    "modules": {
+      "AdvancedSkillMotion": "684631001e051ff446b35bd2e8f1eebc26ed0ec8a5acf9c5af55cbcc1d1600ac",
+      "AdvancedSkillVisual": "81dfc47646a491af2bce3dae3662563d3f6f05c894da8bb2271571ee2c60f2ab",
+      "HeroVFX": "6ee228af5f164682878eb3dd01294b3b4f2174a611334001f41870bedf8c931c",
+      "HeroVFXArt": "9a7ac97c969e996bb497ff6359716b0bd1c991533fcd46020dfc7efdeeeab1fb",
+      "RangedActionPoses": "7d2964522a0136e81dcb4e35f6246a5afd8080372e2571fe36bd7e8e1ee1897f",
+      "SkillVFXProfiles": "7af5ba105cd093eba643572e728469b7a55cca20b591a982ff6d8b284281bb5d"
+    }
+  }
+}

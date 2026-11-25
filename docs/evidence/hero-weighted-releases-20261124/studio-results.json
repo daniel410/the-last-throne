@@ -1,0 +1,436 @@
+{
+  "baseline": "0.115.95",
+  "baselineFocused": {
+    "failures": [
+      "Knight catches the strike on the lead leg R6",
+      "Dwarf rolls from the lower offhand R6",
+      "Dwarf catches the roll on a deeper lead knee R6",
+      "Knight catches the strike on the lead leg R15",
+      "Dwarf rolls from the lower offhand R15",
+      "Dwarf catches the roll on a deeper lead knee R15",
+      "Heavy Draw holds weight on the rear heel",
+      "Heavy Draw snaps the draw elbow rearward",
+      "Shatter Dart folds then snaps the free elbow",
+      "One authored sword edge and ribbon",
+      "Sword keeps its sector and omits the duplicate crescent",
+      "Sword omits the generic flash",
+      "Sword cuts from high to low",
+      "Sword follows the supplied heading within range",
+      "Sword follows the supplied heading within range",
+      "Sword follows the supplied heading within range",
+      "Sword follows the supplied heading within range",
+      "Sword follows the supplied heading within range",
+      "Sword follows the supplied heading within range",
+      "Sword follows the supplied heading within range",
+      "Rolling Charge leaves two low fuse traces",
+      "Fuse trace travels on the floor with the charge",
+      "Impact has an open two-sided shape",
+      "Blast starts at the confirmed ground point and opens forward",
+      "Blast visual remains inside the blast radius",
+      "Blast starts at the confirmed ground point and opens forward",
+      "Blast visual remains inside the blast radius",
+      "HeavyDrawPressure starts at a usable socket",
+      "HeavyDrawPressure stops at the confirmed endpoint",
+      "HeavyDrawPressure retracts toward the confirmed endpoint",
+      "HeavyDrawPressure omits the generic flash",
+      "HeavyDrawPressure starts at a usable socket",
+      "HeavyDrawPressure stops at the confirmed endpoint",
+      "HeavyDrawPressure retracts toward the confirmed endpoint",
+      "HeavyDrawPressure omits the generic flash",
+      "ShatterDartWake starts at a usable socket",
+      "ShatterDartWake stops at the confirmed endpoint",
+      "ShatterDartWake retracts toward the confirmed endpoint",
+      "ShatterDartWake omits the generic flash",
+      "ShatterDartWake starts at a usable socket",
+      "ShatterDartWake stops at the confirmed endpoint",
+      "ShatterDartWake retracts toward the confirmed endpoint",
+      "ShatterDartWake omits the generic flash",
+      "Shatter Dart is still readable between the staff and the enemy after the first frames",
+      "Party view preserves the arrow path with one beam",
+      "Shatter Dart splinters leave the impact at different heights"
+    ],
+    "pass": false,
+    "checks": 50
+  },
+  "candidate": "0.115.99",
+  "candidateChecks": 255693,
+  "candidateSuiteCount": 22,
+  "candidateSuites": {
+    "hero-crossed-releases": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 42
+      },
+      "pass": true
+    },
+    "element-vfx": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 84
+      },
+      "pass": true
+    },
+    "hero-skills": {
+      "report": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      },
+      "pass": true
+    },
+    "hero-skill-impact": {
+      "report": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      },
+      "pass": true
+    },
+    "hero-skill-windup": {
+      "report": {
+        "styles": {
+          "CrystalTips": 9,
+          "WardPetals": 3,
+          "WaterCurl": 2,
+          "SwordPoint": 2,
+          "RisingGrit": 15,
+          "BoreBrackets": 4,
+          "ShieldBrace": 10,
+          "GatheringFork": 4,
+          "SightDraw": 14,
+          "LeafDraw": 12,
+          "MortarBrace": 5,
+          "DrawnEdge": 17,
+          "AxeCoil": 5,
+          "HighDraw": 2,
+          "EmberCurl": 7,
+          "FuseCurl": 4
+        },
+        "skills": 115,
+        "pass": true,
+        "checks": 1400
+      },
+      "pass": true
+    },
+    "skill-vfx-individual": {
+      "report": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 307
+      },
+      "pass": true
+    },
+    "hero-skill-direction": {
+      "report": {
+        "pass": true,
+        "checks": 31
+      },
+      "pass": true
+    },
+    "hero-contact-weight": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 53
+      },
+      "pass": true
+    },
+    "skill-vfx-art": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 43
+      },
+      "pass": true
+    },
+    "elf-late-shot-motion": {
+      "report": {
+        "timeline": {
+          "elf.marksman.heavy_draw": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9325581395348818
+          },
+          "elf.marksman.crossfire": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "basic": {
+            "release": 0.8,
+            "snap": 0.8499999999999919,
+            "after": 0.9534210158586968
+          },
+          "elf.common.rapid": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.7999999999999647
+          },
+          "elf.marksman.grand_volley": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.5138461538461478
+          },
+          "elf.common.aimed": {
+            "release": 0.8,
+            "snap": 0.8499999999999901,
+            "after": 0.9388888888888871
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 39
+      },
+      "pass": true
+    },
+    "hero-ground-beats": {
+      "report": {
+        "failures": [],
+        "checks": 103
+      },
+      "pass": true
+    },
+    "hero-ultimate-finish": {
+      "report": {
+        "budget": {
+          "elf.marksman.grand_volley": {
+            "ally": {
+              "beams": 6,
+              "particles": 0,
+              "surfaces": 0
+            },
+            "own": {
+              "beams": 37,
+              "particles": 16,
+              "surfaces": 28
+            }
+          },
+          "dwarf.iron_axe.mountain_collapse": {
+            "ally": {
+              "beams": 6,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 27,
+              "particles": 16,
+              "surfaces": 13
+            }
+          },
+          "dwarf.gunner.siege_barrage": {
+            "ally": {
+              "beams": 2,
+              "particles": 0,
+              "surfaces": 0
+            },
+            "own": {
+              "beams": 12,
+              "particles": 23,
+              "surfaces": 0
+            }
+          },
+          "mage.cryo.eternal_tempest": {
+            "ally": {
+              "beams": 8,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 39,
+              "particles": 16,
+              "surfaces": 43
+            }
+          },
+          "elf.magic_archer.spirit_arrowfall": {
+            "ally": {
+              "beams": 9,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 19,
+              "particles": 16,
+              "surfaces": 24
+            }
+          },
+          "mage.pyro.caldera_s_judgment": {
+            "ally": {
+              "beams": 10,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 42,
+              "particles": 35,
+              "surfaces": 58
+            }
+          },
+          "knight.steel_knight.unyielding_front": {
+            "ally": {
+              "beams": 3,
+              "particles": 0,
+              "surfaces": 6
+            },
+            "own": {
+              "beams": 30,
+              "particles": 16,
+              "surfaces": 18
+            }
+          },
+          "knight.paladin.oath_of_dawn": {
+            "ally": {
+              "beams": 9,
+              "particles": 0,
+              "surfaces": 4
+            },
+            "own": {
+              "beams": 24,
+              "particles": 16,
+              "surfaces": 18
+            }
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 88
+      },
+      "pass": true
+    },
+    "hero-vfx-priority": {
+      "report": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      },
+      "pass": true
+    },
+    "hero-skill-beats": {
+      "report": {
+        "checks": 75,
+        "scatter": {
+          "secondSegments": 24,
+          "afterDodgeSegments": 0,
+          "openingSegments": 24
+        },
+        "rhythm": {
+          "dwarf": [
+            true,
+            true
+          ],
+          "mage": [
+            true,
+            true,
+            true
+          ],
+          "knight": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "elf": [
+            true,
+            true,
+            true
+          ]
+        },
+        "pass": true,
+        "failures": []
+      },
+      "pass": true
+    },
+    "roblox-vfx-polish": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 2117
+      },
+      "pass": true
+    },
+    "vfx-art-hero-fixes": {
+      "report": {
+        "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+        "failures": [],
+        "pass": true,
+        "checks": 2277
+      },
+      "pass": true
+    },
+    "hero-hit-feedback": {
+      "report": {
+        "kind": "HERO_HIT_FEEDBACK_NATIVE",
+        "pass": true,
+        "checks": 1667
+      },
+      "pass": true
+    },
+    "hero-release-shapes": {
+      "report": {
+        "failures": [],
+        "checks": 188
+      },
+      "pass": true
+    },
+    "hero-weighted-releases": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 50
+      },
+      "pass": true
+    },
+    "projectile-vfx-timing": {
+      "report": {
+        "pass": true,
+        "checks": 312
+      },
+      "pass": true
+    },
+    "vfx-review-followup": {
+      "report": {
+        "attacks": 146,
+        "checks": 1291,
+        "failures": [],
+        "pass": true,
+        "dashes": 11
+      },
+      "pass": true
+    },
+    "hero-windup-interrupt": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 217
+      },
+      "pass": true
+    }
+  },
+  "cpuChecks": 15366,
+  "staticChecks": 336,
+  "r15Captures": {
+    "baseline": 8,
+    "candidate": 8
+  }
+}
