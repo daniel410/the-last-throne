@@ -121,13 +121,11 @@ function Art.strokes(r,c,line,curve)
   local length=terminal and 1.25 or math.min(span.Magnitude,2.4)
   local axis=terminal and c.dir or span.Unit
   local frame=CFrame.lookAt(c.last,c.last+axis)
-  if length>.05 then
-   for side=-1,1,2 do
-    curve(r,'ManaBoltEdge',function(t,u)
-     local spread=math.sin(t*math.pi)*math.min(length*.47,.86)*(.72+.55*u)
-     return c.last-axis*length*(1-t+.33*u)+(frame.RightVector*side+frame.UpVector*.5)*spread
-    end,1,.29,side==1 and r.hot or r.color,true)
-   end
+  for side=-1,1,2 do
+   curve(r,'ManaBoltEdge',function(t,u)
+    local spread=math.sin(t*math.pi)*math.min(length*.47,.86)*(.72+.55*u)
+    return c.last-axis*length*(1-t+.33*u)+(frame.RightVector*side+frame.UpVector*.5)*spread
+   end,1,.29,side==1 and r.hot or r.color,true)
   end
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='DawnBurst'then

@@ -211,6 +211,19 @@ local ok, err = xpcall(function()
     local burst = model(mana.id)
     check(burst and near(burst.VFXCarrier.Position,endpoint) and #find(burst,"ManaBoltEdge")==2,
         "Normal projectile arrival creates one short burst at the server stop")
+    check(not workspace:FindFirstChild("K0VisualImpact"),"Authored Mana arrival avoids the generic impact flash")
+    clearEffects()
+
+    FX.isOtherHero = function() return true end
+    for _ = 1, 12 do FX.skill(gunActor,gun.id,origin,gunEnd,1,{},muzzle.WorldPosition) end
+    mage:SetAttribute("K0SpellVisual",string.format("2|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f",
+        origin.X,origin.Y,origin.Z,endpoint.X,endpoint.Y,endpoint.Z))
+    Flight.renderCharacter(mage,1/60)
+    Flight.advanceQA(.10)
+    Flight.advanceQA(.10)
+    local fallback = workspace:FindFirstChild("K0VisualImpact")
+    check(not model(mana.id) and fallback and near(fallback.Position,endpoint),
+        "A full ally budget still gives Mana Bolt one fallback impact at the server stop")
 end,debug.traceback)
 clearEffects()
 stage:Destroy()

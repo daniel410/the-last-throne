@@ -1059,12 +1059,14 @@ local function advanceSpells(dt)
 				poseWaterDroplet(droplet, spell.part.CFrame, i, spell.elapsed)
 			end
 			if spell.elapsed >= spell.duration then
-				if not spell.heldWeapon and not spell.manaBolt then impact(position, spell.part.Color) end
-    -- Flight owns the path. Arrival can only create a local terminal burst;
-    -- it must never redraw a path from the caster after the projectile lands.
-    if not spell.heldWeapon and commonDefinitions[spell.skillId]and spell.skillId~="mage.common.gravity"then
-     HeroVFX.skill(spell.character,spell.skillId,position,position,1,nil,nil,spell.direction)
-    end
+				if not spell.heldWeapon then
+					-- Arrival draws only at the endpoint. Fall back to the small impact if the effect budget is full.
+					local terminal
+					if commonDefinitions[spell.skillId] and spell.skillId ~= "mage.common.gravity" then
+						terminal = HeroVFX.skill(spell.character, spell.skillId, position, position, 1, nil, nil, spell.direction)
+					end
+					if not spell.manaBolt or not terminal then impact(position, spell.part.Color) end
+				end
 				destroySpell(spell); table.remove(spells, index)
 			end
 		end
