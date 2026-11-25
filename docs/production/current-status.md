@@ -10,7 +10,7 @@
 - 월드·캐릭터 후보 0.115.78은 Dawnspire와 다섯 지역·훈련장의 조명과 팔레트를 조정하고 몬스터 윤곽, 영웅 갑옷 표식, NPC 이름표를 보강했다. [고정 빌드와 검증](../evidence/world-and-character-color-20261124/README.md)
 
 - 에픽 퀘스트 0.115.29 후보는 11장의 반복 방문·조작 26회를 줄이고 다섯 결말과 다음 지역으로 이어지는 대사를 다듬었다. 후보 미게시·G5 진행 중. [Studio와 기존 저장 검증](../evidence/campaign-story-variety-20261121/README.md) · [1차 대표 행동과 현장 지물](../evidence/epic-quest-landmarks-20261119/README.md)
-- 에픽 환경 후보 0.115.117은 다섯 에픽 3장 사건 입구에 관측틀, 뿌리 쉼터, 방풍문, 갱구, 요새 측문을 적용했다. 미게시·G5 진행 중이며 입구와 Gloamwood 3장 조사 지물의 최초 발견, 4장 방향판 대비의 실제 입력 수용은 후속이다. [3장 입구 조형](../evidence/epic-third-chapter-entry-silhouettes-20261125/README.md) · [3장 구조길](../evidence/epic-third-chapter-route-profiles-20261125/README.md) · [4장 정비길](../evidence/epic-fourth-chapter-maintenance-profiles-20261125/README.md)
+- 에픽 환경 후보 0.115.121은 다섯 에픽 2장 사건 입구를 구조소 처마, 뿌리 선반, 구호 저장고 문틀, 냉각 전망대 안내틀, 묘역 등잔 벽감으로 조형했다. 미게시·G5 진행 중이며 입구와 기존 조사 표식의 실제 입력 수용은 후속이다. [2장 입구 조형](../evidence/epic-second-chapter-entry-silhouettes-20261125/README.md) · [3장 입구 조형](../evidence/epic-third-chapter-entry-silhouettes-20261125/README.md) · [3장 구조길](../evidence/epic-third-chapter-route-profiles-20261125/README.md) · [4장 정비길](../evidence/epic-fourth-chapter-maintenance-profiles-20261125/README.md)
 - 에픽 7장 환경 후보 0.115.89는 다섯 결말길에 대기 터, 셰일 경계석, 재회 벤치, 출하 지도 받침, 귀환 표석을 추가했다. 미게시·G5 진행 중. [고정 빌드와 Studio 검증](../evidence/epic-finale-return-fixtures-20261124/README.md)
 - 에픽 6장 환경 후보 0.115.79는 다섯 피난·정찰·관측 경로에 배수 턱, 유도줄, 방풍턱, 냉각측 레일, 기록 벽감을 추가했다. [고정 빌드·Studio 비교·보행과 회귀](../evidence/epic-sixth-chapter-route-fixtures-20261124/README.md). 미게시·G5 진행 중.
 - 에픽 5장 환경 후보 0.115.67은 다섯 조사 구간의 지형 접합과 설비를 보강했다. [고정 빌드·Studio 전후 화면·보행과 회귀](../evidence/epic-fifth-chapter-approaches-20261123/README.md). 미게시·G5 진행 중.
