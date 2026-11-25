@@ -1,5 +1,6 @@
 -- ART review: readable primary silhouettes, using the existing world-space budgets.
 local S=require(script.Parent.HeroVFXSurfaces)
+local Geometry=require(script.Parent.SkillEffectGeometry)
 local Art={axeCatchSeconds=.075}
 local UP=Vector3.yAxis
 local types={
@@ -90,6 +91,15 @@ function Art.strokes(r,c,line,curve)
      return start:Lerp(c.last,1-(1-falloff)^2),c.last
     end,.19,r.color,.065,true)
     if wake then wake.fadeDuration=.18 end
+   end
+  elseif kind=='ShatterDart'then
+   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+   local distance=(c.last-start).Magnitude
+   if distance>.05 then
+    local wake=line(r,'ShatterDartWake',function(u)
+     return start:Lerp(c.last,.94*(1-(1-math.min(u*2.5,1))^2)),c.last
+    end,.10,r.hot,.04,true)
+    if wake then wake.fadeDuration=.13 end
    end
   end
   for side=-1,1,2 do

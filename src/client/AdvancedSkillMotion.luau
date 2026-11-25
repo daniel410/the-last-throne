@@ -90,6 +90,12 @@ local bombPoses={
   rightHip=v(-19),rightKnee=v(34),leftHip=v(-28),leftKnee=v(37)},
  lowFollow={right=v(57,27,15),elbow=v(-15),left=v(20,-11,36),torso=v(24,23,-8),
   rightHip=v(-21),rightKnee=v(24),leftHip=v(-24),leftKnee=v(28)},
+ rollLoad={right=v(-62,-13,13),elbow=v(-38),left=v(34,-18,32),torso=v(30,-23,10),
+  rightHip=v(-38),rightKnee=v(53),leftHip=v(-25),leftKnee=v(31)},
+ rollRelease={right=v(31,14,8),elbow=v(-6),left=v(29,-24,34),torso=v(35,14,-11),
+  rightHip=v(-19),rightKnee=v(27),leftHip=v(-43),leftKnee=v(55)},
+ rollFollow={right=v(44,24,12),elbow=v(-19),left=v(21,-10,27),torso=v(20,25,-6),
+  rightHip=v(-13),rightKnee=v(19),leftHip=v(-34),leftKnee=v(43)},
 }
 local opposite={
  right="left",left="right",elbow="leftElbow",leftElbow="elbow",
@@ -108,10 +114,11 @@ end
 local function bombToss(d,age,profile)
  local launch=d.windup+(d.hitDelay or 0)-profile.flight
  local loaded=launch*.61
- local low=profile.path=="bounce" or profile.path=="roll"
- local load=low and bombPoses.lowLoad or bombPoses.load
- local release=low and bombPoses.lowRelease or bombPoses.release
- local follow=low and bombPoses.lowFollow or bombPoses.follow
+ local roll=profile.path=="roll"
+ local bounce=profile.path=="bounce"
+ local load=roll and bombPoses.rollLoad or bounce and bombPoses.lowLoad or bombPoses.load
+ local release=roll and bombPoses.rollRelease or bounce and bombPoses.lowRelease or bombPoses.release
+ local follow=roll and bombPoses.rollFollow or bounce and bombPoses.lowFollow or bombPoses.follow
  local followTime=d.pulses>1 and .09 or .13
  local rest=resting("dwarf")
  local a,b,u
@@ -466,15 +473,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"leftKnee",v(19*brace+17*release))
  end
  if d.id=="knight.steel_knight.challenging_strike" then
-  -- Lead with the shield, then take the cut on the front leg.
+  -- Cover the sword shoulder, then open the shield as the blade cuts down.
   local phase=age/contact
-  local brace=smooth(phase/.52)*(1-smooth((phase-.60)/.40))
-  local plant=smooth((age-contact)/.07)*(1-smooth((age-contact-.07)/.16))
-  offset(pose,"left",v(23,-11,-16)*brace+v(10,0,-8)*plant)
-  offset(pose,"leftElbow",v(19*brace+12*plant))
-  offset(pose,"torso",v(4,-16,-6)*brace+v(13,10,6)*plant)
-  offset(pose,"leftHip",v(-12*plant))
-  offset(pose,"leftKnee",v(12*brace+23*plant))
+  local brace=smooth(phase/.50)*(1-smooth((phase-.65)/.35))
+  local plant=smooth((age-contact+.035)/.088)*(1-smooth((age-contact-.053)/.19))
+  offset(pose,"left",v(38,-19,-23)*brace+v(-12,16,17)*plant)
+  offset(pose,"leftElbow",v(24*brace+11*plant))
+  offset(pose,"right",v(8,-13,12)*brace+v(-15,12,-10)*plant)
+  offset(pose,"torso",v(9,-19,-7)*brace+v(17,12,7)*plant)
+  offset(pose,"rightKnee",v(17*brace))
+  offset(pose,"leftHip",v(-18*plant))
+  offset(pose,"leftKnee",v(14*brace+31*plant))
  elseif d.id=="knight.steel_knight.warcry_assault" then
   -- Rally behind the shield, answer across the chest, then plant for the last shout.
   local phase=age/contact

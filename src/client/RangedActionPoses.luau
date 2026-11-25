@@ -113,6 +113,14 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     add(pose,"leftHip",v(-.36*knees,0,-7*support))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(knees*.65,0,0))
+    if s == bow.heavy then
+        -- Hold the rear heel under the draw, then let the elbow snap past it.
+        add(pose,"rightHip",v(-12,0,8)*load)
+        add(pose,"rightKnee",v(18,0,0)*load)
+        add(pose,"right",v(-5,17,-12)*recoil)
+        add(pose,"elbow",v(22,0,0)*recoil)
+        add(pose,"leftKnee",v(16,0,0)*recoil)
+    end
     if s == bow.crossfire and since then
         -- Transfer to the other foot as the confirmed aim changes lanes.
         local second = pulse == 2
@@ -421,6 +429,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"right",v(-12,-8,11)*wind+v(10,0,-9)*follow)
         add(pose,"torso",v(11,-7,7)*wind+v(-12,8,-6)*follow)
         add(pose,"leftKnee",v(16*wind+19*follow,0,0))
+    end
+    if s == spells.shatter then
+        -- Hold the staff back while the free forearm folds and snaps outward.
+        add(pose,"leftElbow",v(-28*wind+24*follow,0,0))
+        add(pose,"left",v(10,17,-14)*wind+v(-18,10,13)*follow)
+        add(pose,"right",v(-10,-8,18)*guide)
+        add(pose,"torso",v(9,-10,8)*wind+v(-5,13,-8)*follow)
     end
     if s == spells.frostStep then
         -- Sweep the guiding palm back as the front leg checks the slide.

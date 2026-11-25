@@ -97,7 +97,7 @@ local function source(character,origin,d)
   tip=grip and grip:FindFirstChild("WeaponTip")
  end
  if tip and tip:IsA("Attachment") then return tip.WorldPosition end
- if d.id=="elf.marksman.crossfire" then
+ if d.id=="elf.marksman.crossfire" or d.id=="elf.marksman.heavy_draw" then
   local nocked=character:FindFirstChild("NockedArrow",true)
   if nocked and nocked:IsA("BasePart") then return nocked.Position end
  end
@@ -443,7 +443,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then
    local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake")
     or primary:GetAttribute("ReleaseTrace"))
-   local launch=id=="elf.marksman.crossfire" and Geometry.fanLaunch(origin,first,center) or first
+   local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw"
+   local launch=alignSocket and Geometry.fanLaunch(origin,first,center) or first
    arrow(launch,center,color,character,hasWake)
   end
  elseif effect=="axe" then
@@ -470,7 +471,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
   elseif effect=="slash" and ((cragCleave and not primary) or (profile.motion~="spin" and profile.motion~="chop"
    and profile.motion~="cross" and profile.motion~="thrust" and profile.motion~="counter" and id~="dwarf_low_sweep"
-   and not (primary and (steelSweep or warcryAssault or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
+   and not (primary and (steelSweep or warcryAssault or id=="knight.steel_knight.challenging_strike"
+    or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local chargeEdge=id=="knight.steel_knight.breaker_charge" and primary and primary:GetAttribute("PrimaryIconCue")

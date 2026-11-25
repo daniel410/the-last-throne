@@ -122,7 +122,7 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, ChallengingStrikeEdge=true}
 local function curve(r,name,path,count,width,color,noGlow)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -500,6 +500,20 @@ function FX.bombFlight(character,d,profile,launch,target,seq,pulse,landingAt,val
  r.payload=function(u)
   model:PivotTo(Bomb.flightFrame(profile.path,launch,landing,groundPoint,u))
  end
+ local rollSide=Vector3.yAxis:Cross(landing-launch.Position)
+ if profile.path=="roll" and rollSide.Magnitude>.15 then
+  local path=landing-groundPoint
+  local lateral=rollSide.Unit
+  for i=1,r.compact and 1 or 2 do
+   local offset=lateral*(i==2 and .23 or -.23)
+   line(r,"RollingFuseSkid",function(u)
+    local progress=math.clamp((u-.18)/.82,0,1)
+    local tail=math.max(0,progress-.18)
+    local height=Vector3.yAxis*(Bomb.radius-.10)
+    return groundPoint+path*tail+offset-height,groundPoint+path*progress+offset-height
+   end,.09,r.hot,.035,true)
+  end
+ end
  r.model:SetAttribute("PayloadPath",profile.path)
  FX.step(now)
  return r.model
@@ -811,6 +825,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local fanProfile=Presentation.get(d)
  local fanLanes=fanProfile.fanLanes
  local rallyingSlash=id=="knight.steel_knight.rallying_slash"
+ local challengingStrike=id=="knight.steel_knight.challenging_strike"
+ local rollingCharge=bomb and bomb.path=="roll"
+ local heavyDraw=id=="elf.marksman.heavy_draw"
  local cyclone=id=="knight.steel_knight.twin_cyclone"
  local returningEcho=id=="dwarf.iron_axe.returning_echo"
  local cinderRing=id=="mage.pyro.cinder_ring"
@@ -942,6 +959,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local reach=radius*(.73+.15*math.sin(t*math.pi)+.09*u)
   return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*(.05-.46*t)
  end
+ local function challengingPath(t,u)
+  local bearing=math.rad(angle)*(.46-.92*t)
+  local reach=radius*(.55+.30*math.sin(t*math.pi)+.05*u)
+  local height=1.95-3.42*t+.37*math.sin(t*math.pi)-.20*u
+  return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*height
+ end
  local function cleavePath(t)
   local a=t*math.pi*.8
   if id==ARMOR_SPLITTER then
@@ -1014,6 +1037,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*(-1.10+2.42*t)
   end,r.compact and 6 or 9,.24,r.hot)
   r.model:SetAttribute("RallyingSlashEdge",true)
+  r.model:SetAttribute("PrimaryIconCue",true)
+ elseif challengingStrike then
+  curve(r,"ChallengingStrikeEdge",challengingPath,r.compact and 5 or 7,width,r.hot,true)
   r.model:SetAttribute("PrimaryIconCue",true)
  elseif id=="knight_crescent_cut" then
   local segments=r.compact and 6 or 10
@@ -1190,6 +1216,29 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end
  elseif fanLanes then
   drawFan(r,d,fanProfile,first,flat,launch,fanEndpoints)
+ elseif heavyDraw then
+  local start=Geometry.fanLaunch(first,launch,last)
+  local path=last-start
+  local length=path.Magnitude
+  if length>.05 then
+   local axis=path/length
+   local lateral=CFrame.lookAt(start,last).RightVector
+   local wake=line(r,"HeavyDrawPressure",function(u)
+    return start:Lerp(last,.88*(1-(1-math.min(u*2,1))^2)),last
+   end,.11,r.hot,.035,true)
+   if wake then
+    wake.fadeDuration=.16
+    r.model:SetAttribute("ReleaseTrace",true)
+   end
+   if not r.compact then
+    local span=math.min(length,3.3)
+    for side=-1,1,2 do
+     line(r,"HeavyDrawFletching",function(u)
+      return last-axis*span*(1-.55*u)+lateral*side*span*.16*(1+u),last-axis*span*.17
+     end,.115,r.color,.035,true)
+    end
+   end
+  end
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"then
   local targets={last}
   if shape=="fan"then
@@ -1219,11 +1268,6 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    local axis=forward(first,last);local side=axis:Cross(Vector3.yAxis);side=side.Magnitude>.01 and side.Unit or right
    for sign=-1,1,2 do
     stroke('WeakpointBracket',last+side*sign*.65-Vector3.yAxis*.35,last+side*sign*.65+Vector3.yAxis*.35,.075)
-   end
-  elseif id=='elf.marksman.heavy_draw'then
-   local axis=forward(first,last);local basis=CFrame.lookAt(last,last+axis)
-   for sign=-1,1,2 do
-    stroke('HeavyDrawFletching',last-axis*3+basis.RightVector*sign*.55,last-axis*.8,.13,r.hot)
    end
   end
   if row.key~="arrow"and shape~="bullet"and shape~="fan"then
@@ -1263,6 +1307,22 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   if shape=="hail" then debris(r,floor,4,"IceShard",.82)
   elseif shape=="ash" then debris(r,floor,4,"Ember",.76) end
  elseif lavaEruption then
+  r.model:SetAttribute("PrimaryIconCue",true)
+ elseif rollingCharge then
+  local at=floor+Vector3.yAxis*.18
+  local reach=math.min(radius*.72,3.9)
+  for side=-1,1,2 do
+   local wing=line(r,"RollingChargeBlastWing",function(u)
+    local advance=1-(1-math.min(u*2.25,1))^2
+    local root=at+flat*reach*.09*advance
+    local tip=at+(flat*.65+right*side*.76)*reach*advance+Vector3.yAxis*math.sin(advance*1.5)*.64
+    return root,tip
+   end,.44,r.hot,.065,true)
+   if wing then wing.fadeDuration=.23 end
+  end
+  line(r,"RollingChargeBurstCore",function(u)
+   return at,at+Vector3.yAxis*(.22+math.min(u*3,1)*1.18)
+  end,.24,r.hot,.065,true)
   r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="blast"or shape=="earth"or shape=="lava"then
   local at=floor
@@ -1489,6 +1549,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local start=#r.faces
   Surfaces.ribbon(r,"SteelSweepRibbon",function(t)return steelSweepPath(t,0)end,Vector3.yAxis,.68,.52,r.color,compact and 4 or 6)
   for i=start+1,#r.faces do r.faces[i].drift=flat*radius*.09;r.faces[i].fadeDuration=.17 end
+ elseif challengingStrike then
+  if not compact then
+   local start=#r.faces
+   Surfaces.ribbon(r,"ChallengingStrikeRibbon",function(t)return challengingPath(t,0)end,flat,.78,.38,r.color:Lerp(r.hot,.18),6)
+   for i=start+1,#r.faces do r.faces[i].fadeDuration=.14 end
+  end
  elseif cragCleave then
   local start=#r.faces
   Surfaces.ribbon(r,"CragCleaveRibbon",cleavePath,flat,1.05,.38,r.color:Lerp(r.hot,.22),compact and 4 or 7)
@@ -1648,17 +1714,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    if bomb then
     local flash=Surfaces.volume(r,'BombContactFlash',at,Vector3.one*.6,WHITE,.18,'ball')
     if flash then r.faces[#r.faces].fadeDuration=.09 end
-    local fragments=r.compact and 3 or bomb.path=="scatter" and 7 or 5
+   local fragments=r.compact and 3 or bomb.path=="scatter" and 7 or rollingCharge and 4 or 5
     for i=1,fragments do
-     local a=i*math.pi*2/fragments
-     local direction=Vector3.new(math.cos(a),bomb.path=="scatter" and .48 or .2,math.sin(a))
+     local a=rollingCharge and math.rad(-67+134*(i-1)/(fragments-1)) or i*math.pi*2/fragments
+     local direction=rollingCharge and (flat*math.cos(a)+right*math.sin(a)+Vector3.yAxis*.13)
+      or Vector3.new(math.cos(a),bomb.path=="scatter" and .48 or .2,math.sin(a))
      local fragment=Surfaces.volume(r,'BombCasingFragment',at+direction*.25,Vector3.new(.15,.3,.6),Color3.fromRGB(95,75,58),.15,'wedge',Enum.Material.Slate)
      if fragment then
       local face=r.faces[#r.faces];face.cf=CFrame.lookAt(fragment.Position,fragment.Position+direction);fragment.CFrame=face.cf
       face.drift=direction*2.4
      end
     end
-    atmosphere(r,"BombGroundSmoke",at,false,6,1.4)
+    atmosphere(r,"BombGroundSmoke",at,false,rollingCharge and 3 or 6,1.4)
    else
    local flash=Surfaces.volume(r,"BlastCore",at,Vector3.one*.9,r.hot,.2,'ball')
    if flash then r.faces[#r.faces].fadeDuration=.09 end
@@ -1727,7 +1794,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     Surfaces.volume(r,"WaterFoam",at+Vector3.yAxis*.18,Vector3.new(.8,.08,.12),Color3.fromRGB(192,235,255),.35,'ball',nil,false,.35)
    end
   end
- elseif quickfire or echoArrows then
+ elseif quickfire or echoArrows or heavyDraw then
   -- The trace and equipped arrow already carry these releases.
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"or shape=="axe"then
   local targets={last}
@@ -1869,9 +1936,10 @@ local function skillContact(r,at,cf,size,style)
    end,.075,r.hot,.04)
   else
    line(r,style,function(u)
-    local split=lateral*(.28+u*.85)+up*(.36+.42*u)+dir*.24
-    return at+split*.38*size,at+split*size
-   end,.15,r.color,.035)
+    local seam=at-dir*.25*size
+    local split=lateral*(.32+u*.98)+up*(.35+side*.19+u*.50)+dir*.20
+    return seam+split*.18*size,seam+split*size
+   end,.125,side==1 and r.hot or r.color,.027,true)
   end
  end
  if #r.lines==0 then return false end
