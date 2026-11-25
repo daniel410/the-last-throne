@@ -90,7 +90,8 @@ local function arrow(first,last,color,character,hasWake)
 end
 local function source(character,origin,d)
  if not character then return origin end
- if d.id=="elf.marksman.mark_breaker" or d.id=="elf.magic_archer.bloom_shot" or d.id=="elf.magic_archer.spark_volley" then
+ if d.id=="elf.marksman.mark_breaker" or d.id=="elf.magic_archer.bloom_shot" or d.id=="elf.magic_archer.spark_volley"
+  or d.id=="elf.magic_archer.warden_arrow" then
   local nock=character:FindFirstChild("NockedArrow",true)
   if nock and nock:IsA("BasePart") then return nock.Position end
  elseif d.id=="dwarf.iron_axe.breaker_throw" then
@@ -456,6 +457,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
     or primary:GetAttribute("ReleaseTrace"))
    local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw" or id=="elf.magic_archer.gliding_shot"
     or id=="elf.marksman.mark_breaker" or id=="elf.magic_archer.bloom_shot" or id=="elf.magic_archer.spark_volley"
+    or id=="elf.magic_archer.warden_arrow"
    local launch=alignSocket and Geometry.fanLaunch(origin,first,center) or first
    arrow(launch,center,color,character,hasWake)
   end
@@ -491,6 +493,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    and profile.motion~="cross" and profile.motion~="thrust" and profile.motion~="counter" and id~="dwarf_low_sweep"
    and not (primary and (steelSweep or warcryAssault or id=="knight.steel_knight.challenging_strike"
     or id=="knight.paladin.oath_challenge" or id=="knight.paladin.oathbreaker_strike"
+    or primary:GetAttribute("HolyMotion")=="RadiantFan"
     or primary:GetAttribute("HolyMotion")=="GuardianWing"
     or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")

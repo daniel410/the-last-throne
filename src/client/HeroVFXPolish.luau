@@ -1,7 +1,14 @@
 -- Art-direction refinements inside the existing renderer's budgets and clock.
 local S=require(script.Parent.HeroVFXSurfaces)
+local Geometry=require(script.Parent.SkillEffectGeometry)
 local P={}
 local variants={['knight.paladin.radiant_sweep']='RadiantFan',['knight.paladin.guardian_slash']='GuardianWing',['knight.paladin.oathbound_assault']='OathboundAdvance'}
+local function radiantPath(c,t,u)
+ local bearing=math.rad(c.angle)*(.92*t-.46)
+ local reach=c.radius*(.34+.37*math.sin(t*math.pi)+.13*(1-(1-u)^3))
+ return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach
+  +Vector3.yAxis*(-1.05+2.35*t+.54*math.sin(t*math.pi))
+end
 local function guardianPath(c,t,u)
  local bearing=math.rad(c.angle)*(.46-.92*t)
  local sweep=math.sin(t*math.pi)
@@ -48,7 +55,64 @@ local function frostRing(r,c,curve)
  end
 end
 local groundStrokes={DawnSpiral=dawnSpiral,ShatterBlow=shatterBlow,FrostRing=frostRing}
+local function tremorGuard(r,c,line,curve)
+ local strike=c.floor+c.flat*c.radius*.18
+ for side=-1,1,2 do
+  line(r,"TremorGuardStrike",function(u)
+   return strike+c.right*side*.20+Vector3.yAxis*(.10+.22*u),
+    strike+c.right*side*(.80+.64*u)+c.flat*.36+Vector3.yAxis*(.85+.34*u)
+  end,.23,r.hot,.035,true)
+ end
+ for bank=0,1 do
+  curve(r,"TremorGuardFault",function(t,u)
+   local a=bank*math.pi+math.rad(153)*(t-.46)
+   local reach=c.radius*(.24+.60*(1-(1-u)^3))*(.88+.12*math.sin(t*math.pi))
+   local ripple=.12*math.sin(t*math.pi*5)^2*(1-u)
+   return c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*reach+Vector3.yAxis*(.08+ripple)
+  end,3,.30,r.color:Lerp(r.hot,.38),true)
+ end
+end
+local function wardenArrow(r,c,line)
+ local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+ local span=c.last-start
+ if span.Magnitude<=.05 then return end
+ local wake=line(r,"WardenArrowStem",function(u)
+  return start:Lerp(c.last,.92*(1-(1-u)^3)),c.last
+ end,.12,r.color:Lerp(r.hot,.22),.08,true)
+ if wake then r.model:SetAttribute("ReleaseTrace",true) end
+ local axis=span.Unit
+ local basis=CFrame.lookAt(start,c.last)
+ local length=math.min(span.Magnitude*.76,1.8)
+ for side=-1,1,2 do
+  line(r,"WardenArrowVein",function(u)
+   local base=c.last-axis*length*(1-.40*u)
+   return base+basis.RightVector*side*length*(.18+.11*u)+basis.UpVector*length*.10,
+    c.last-axis*length*.12
+  end,.14,r.hot,.055,true)
+ end
+end
+local function searingWard(r,c,_,curve)
+ for side=0,1 do
+  curve(r,"SearingWardFront",function(t,u)
+   local a=side*math.pi+math.rad(143)*(t-.5)+.45*u
+   local reach=c.radius*(.30+.53*(1-(1-u)^4))
+   local crest=math.sin(t*math.pi)*(.52+.20*math.sin(t*math.pi*4)^2)*(1-.65*u)
+   return c.floor+(c.right*math.cos(a)+c.flat*math.sin(a))*reach+Vector3.yAxis*(.16+crest)
+  end,r.compact and 3 or 4,.34,r.color:Lerp(r.hot,.30),true)
+ end
+end
+local releases={
+ ["dwarf.iron_axe.tremor_guard"]=tremorGuard,
+ ["elf.magic_archer.warden_arrow"]=wardenArrow,
+ ["mage.pyro.searing_ward"]=searingWard,
+}
 function P.strokes(r,c,line,curve)
+ local release=releases[c.id]
+ if release then
+  release(r,c,line,curve)
+  r.model:SetAttribute("PrimaryIconCue",true)
+  return true
+ end
  local groundStroke=groundStrokes[c.groundShape]
  if groundStroke then
   groundStroke(r,c,curve)
@@ -71,11 +135,9 @@ function P.strokes(r,c,line,curve)
  local kind=variants[c.id];if not kind then return false end
  r.model:SetAttribute('HolyMotion',kind)
  if kind=='RadiantFan'then
-  for lane=3,3 do curve(r,'RadiantOpeningFan',function(t,u)
-   local a=math.rad(-c.angle*.48+c.angle*.96*t)
-   local radius=math.min(c.radius,8)*(.35+lane*.18)*(.7+u*.3)
-   return c.first+(c.flat*math.cos(a)+c.right*math.sin(a))*radius+Vector3.yAxis*(lane*.13)
-  end,6,.34,r.color)end
+  curve(r,"RadiantOpeningFan",function(t,u)return radiantPath(c,t,u)end,
+   r.compact and 5 or 7,.42,r.hot,true)
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif kind=='GuardianWing'then
   curve(r,'GuardianShelteringWing',function(t,u)return guardianPath(c,t,u)end,
    r.compact and 5 or 8,.36,r.hot,true)
@@ -89,6 +151,7 @@ function P.strokes(r,c,line,curve)
  return true
 end
 function P.surfaces(r,c)
+ if releases[c.id] then return true end
  if c.groundShape=="DawnSpiral" then return true end
  if c.groundShape=="ShatterBlow" then
   for lane=1,r.compact and 2 or 3 do
@@ -121,18 +184,13 @@ function P.surfaces(r,c)
   S.ribbon(r,'OathboundAdvancingVeil',function(t)return oathboundPath(c,t,emphasis)end,
    c.flat,emphasis and .58 or .45,.58,r.color,3)
   for i=start+1,#r.faces do r.faces[i].drift=c.flat*1.2;r.faces[i].fadeDuration=r.life*(.6+c.pulse*.12)end
- else
-  S.ribbon(r,'RadiantFanVeil',function(t)
-   local a=math.rad(-c.angle*.48+c.angle*.96*t)
-   return c.first+(c.flat*math.cos(a)+c.right*math.sin(a))*math.min(c.radius*.7,5)
-  end,Vector3.yAxis,.8,.44,r.color,10)
  end
  return true
 end
 function P.finish(r,c)
  for _,v in ipairs(r.lines)do
   local name=v.beam.Name
-  if name=='BladeRibbon'or name=='RadiantOpeningFan'or name=='FroststormFlow'then
+  if name=='BladeRibbon'or name=='FroststormFlow'then
    if v.glow then v.glow.Texture='rbxassetid://8196169974';v.glow.TextureMode=Enum.TextureMode.Wrap;v.glow.TextureLength=4;v.glow.TextureSpeed=.8 end
   elseif name=='TidalLip'or name=='TempestSpiral'or name=='CalderaLivingJet'then
    v.beam.Texture=name=='CalderaLivingJet'and'rbxasset://textures/particles/fire_main.dds'or name=='TempestSpiral'and'rbxasset://textures/particles/smoke_main.dds'or'rbxassetid://8196169974'

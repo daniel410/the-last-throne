@@ -193,10 +193,12 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"rightKnee",v(11,0,0)*load)
     end
     if s == bow.warden then
-        -- The draw hand folds back toward the chest while the bow stays on target.
-        add(pose,"right",v(-10,-22,24)*recoil)
-        add(pose,"elbow",v(-33,0,0)*recoil)
-        add(pose,"leftKnee",v(12,0,0)*recoil)
+        -- Keep sight through release, then fold the draw hand back into guard.
+        local close = since and smooth((since-.026)/.10)*(1-smooth((since-.126)/.19)) or 0
+        add(pose,"right",v(-8,-16,18)*recoil+v(-18,-22,22)*close)
+        add(pose,"elbow",v(-14*recoil-41*close,0,0))
+        add(pose,"torso",v(-9,11,-7)*close)
+        add(pose,"leftKnee",v(15*recoil+9*close,0,0))
     end
     if s == bow.bloom then
         -- The bow stays on aim as the empty draw hand opens above the shoulder.
@@ -426,6 +428,14 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"elbow",v(26*wind-19*follow,0,0))
         add(pose,"leftElbow",v(-18*wind+16*follow,0,0))
         add(pose,"leftKnee",v(10*follow,0,0))
+    end
+    if d.id=="mage.pyro.searing_ward" then
+        -- Draw the free palm low to the staff, then sweep it outward along the flame front.
+        add(pose,"left",v(-30,19,-17)*wind+v(-21,9,28)*follow)
+        add(pose,"leftElbow",v(-18*wind+23*follow,0,0))
+        add(pose,"right",v(-18,3,-11)*follow)
+        add(pose,"torso",v(14,-11,5)*wind+v(-13,10,-7)*follow)
+        add(pose,"leftKnee",v(18*follow,0,0))
     end
     if d.id=="mage.pyro.ember_lance" then
         -- Gather the ember near the staff, then turn the open palm through the release.

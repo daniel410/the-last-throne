@@ -616,14 +616,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"rightKnee",v(23*gather))
   offset(pose,"leftKnee",v(25*plant))
  elseif d.id=="knight.paladin.radiant_sweep" then
-  -- Load the cut behind the shield, then open the shield arm along the sweep.
+  -- Coil low behind the shield and rise through the lead leg as the blade opens.
   local phase=age/contact
-  local load=smooth(phase/.52)*(1-smooth((phase-.52)/.48))
-  local release=pulse>0 and smooth(since/.065)*(1-smooth((since-.065)/.15)) or 0
-  offset(pose,"torso",v(-7,-19,8)*load+v(-8,16,9)*release)
-  offset(pose,"left",v(19,-13,-15)*load+v(-16,12,21)*release)
-  offset(pose,"rightKnee",v(18*load))
-  offset(pose,"leftKnee",v(20*release))
+  local load=smooth(phase/.56)*(1-smooth((phase-.66)/.34))
+  local release=smooth((age-contact+.018)/.079)*(1-smooth((age-contact-.061)/.16))
+  offset(pose,"torso",v(12,-22,7)*load+v(-16,13,-5)*release)
+  offset(pose,"right",v(-13,-7,10)*load+v(19,4,-12)*release)
+  offset(pose,"elbow",v(-15*load+12*release))
+  offset(pose,"left",v(26,-12,-15)*load+v(-15,12,19)*release)
+  offset(pose,"rightHip",v(-14*load))
+  offset(pose,"rightKnee",v(26*load))
+  offset(pose,"leftKnee",v(23*release))
  elseif d.id=="knight.paladin.oathblade" then
   local settle=pulse>0 and smooth(since/.05)*(1-smooth((since-.05)/.15)) or 0
   if pulse==1 then
@@ -756,11 +759,14 @@ function Motion.sample(classId,d,age,rigType)
   local phase=age/contact
   local load=smooth(phase/.50)*(1-smooth((phase-.65)/.35))
   local stomp=pulse>0 and smooth(since/.05)*(1-smooth((since-.05)/.17)) or 0
-  -- The axe stays in its ground strike while the free forearm braces.
-  offset(pose,"left",v(33,-17,14)*load+v(17,9,-19)*stomp)
-  offset(pose,"torso",v(-9,-7,8)*load+v(15,0,-5)*stomp)
-  offset(pose,"leftKnee",v(14*load+22*stomp))
-  offset(pose,"rightKnee",v(10*load+15*stomp))
+  local recover=pulse>0 and smooth((since-.052)/.095)*(1-smooth((since-.147)/.20)) or 0
+  -- Keep the empty forearm braced while the axe settles and lifts away.
+  offset(pose,"left",v(33,-17,14)*load+v(17,9,-19)*stomp+v(12,-7,4)*recover)
+  offset(pose,"elbow",v(-24*recover))
+  offset(pose,"torso",v(-9,-7,8)*load+v(20,0,-5)*stomp+v(-11,0,5)*recover)
+  offset(pose,"leftHip",v(-11*stomp))
+  offset(pose,"leftKnee",v(14*load+29*stomp+9*recover))
+  offset(pose,"rightKnee",v(10*load+21*stomp))
  elseif d.id=="dwarf.iron_axe.shatter_blow" then
   -- Brace under the raised axe, then check its rebound through both planted legs.
   local phase=age/contact

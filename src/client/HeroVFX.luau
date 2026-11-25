@@ -1643,9 +1643,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    local a=t*math.pi*3+lane*math.pi*2/count+u*4+phase
    if area then
     local heading=lane*math.pi*2/count+phase+math.sin(t*math.pi)*.18+u*.25
-    local ward=id=='mage.pyro.searing_ward'
-    local rad=radius*(ward and(.35-t*.12)or(.65+t*.12))
-    return at+Vector3.new(math.cos(heading)*rad,t*(ward and 3.2 or 2.2),math.sin(heading)*rad)
+    local rad=radius*(.65+t*.12)
+    return at+Vector3.new(math.cos(heading)*rad,t*2.2,math.sin(heading)*rad)
    end
    return first+(last-first)*t+basis.RightVector*math.cos(a)*.32+basis.UpVector*math.sin(a)*.32
   end,8,width)end
@@ -1758,15 +1757,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end
  elseif shape=="fire"or shape=="arcane"or shape=="stone"or(shape=="frost"and not area)then
   if area then
-   local fireStyle=id=='mage.pyro.searing_ward'and 'SearingCrown'or 'RisingCinders'
-   r.model:SetAttribute('FireAreaStyle',fireStyle)
+   r.model:SetAttribute('FireAreaStyle','RisingCinders')
    local start=#r.faces
-   Surfaces.arc(r,"CinderShockwave",floor,radius*(fireStyle=='SearingCrown'and .42 or .78),math.min(radius*.1,.65),nil,.6,nil,360)
+   Surfaces.arc(r,"CinderShockwave",floor,radius*.78,math.min(radius*.1,.65),nil,.6,nil,360)
    Surfaces.animate(r,start,floor,Vector3.yAxis,.3,true,r.life)
    for i=1,3 do
     local a=i*math.pi*2/3+phase;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.56
     local height=1.8+(i%2)*.6
-    if fireStyle=='SearingCrown'then at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.34;height=2.8+(i%2)*.35 end
     tongue(r,'AreaFlameTongue',at,height,.8,a,r.color)
     if shape=='fire'then atmosphere(r,'AreaFire',at,true,2,.8)end
    end

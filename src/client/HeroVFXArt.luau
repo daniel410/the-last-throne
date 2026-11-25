@@ -700,7 +700,7 @@ function Art.accents(r,c)
     leaf(r,tip-c.dir*length,c.dir,side,length,'EchoArrowLeaf')
    end
   end
- elseif id=='elf.magic_archer.elemental_arrow' or id=='elf.magic_archer.warden_arrow' or id=='elf.magic_archer.elemental_pierce'then
+ elseif id=='elf.magic_archer.elemental_arrow' or id=='elf.magic_archer.elemental_pierce'then
   leaf(r,c.last-c.dir*.5,c.dir,c.right,1.15,'NatureArrowLeaf')
  elseif c.shape=='vine'then
   local burst=id=='elf.magic_archer.vine_burst'
@@ -721,9 +721,7 @@ function Art.accents(r,c)
  elseif c.key=='gun' and types[id]~='PiercingRound' and types[id]~='GunnerShot'then
   local flash=S.volume(r,'CompactMuzzleFlash',c.first+c.dir*.25,Vector3.new(.22,.22,.55),Color3.fromRGB(255,203,83),.2,'wedge')
   if flash then r.faces[#r.faces].fadeDuration=.07 end
- elseif id=='mage.pyro.searing_ward'then
-  S.volume(r,'SearingWardDome',c.first,Vector3.new(3.1,3.7,3.1),Color3.fromRGB(255,180,65),.89,'ball',Enum.Material.Glass)
- elseif id:find('knight.paladin.',1,true) and c.definition.mark=='oath'then
+ elseif id~='knight.paladin.radiant_sweep' and id:find('knight.paladin.',1,true) and c.definition.mark=='oath'then
   gem(r,'OathFacet',c.first+c.flat*1.5+UP*.6,UP,.85,.3,r.color,Enum.Material.SmoothPlastic)
  end
 end
