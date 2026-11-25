@@ -1,0 +1,286 @@
+{
+  "models": [
+    {
+      "chapter": "EC-05",
+      "maxFloorError": 0,
+      "step": "step2",
+      "version": 3,
+      "height": 2.755006790161133,
+      "bounds": [
+        5.276784420013428,
+        2.755006790161133,
+        4.2920966148376465
+      ],
+      "goal": "exp_1",
+      "model": "EmergencyReturnFlume",
+      "anchor": [
+        -326.1700134277344,
+        146,
+        -13649.48046875
+      ],
+      "routeClearance": 9.361474990844727,
+      "ground": [
+        -327.3475646972656,
+        146,
+        -13661.4228515625
+      ],
+      "parts": 9
+    },
+    {
+      "chapter": "GW-05",
+      "maxFloorError": 0,
+      "step": "step2",
+      "version": 3,
+      "height": 1.7892584800720215,
+      "bounds": [
+        6.531152248382568,
+        1.7892584800720215,
+        5.079999923706055
+      ],
+      "goal": "exp_1",
+      "model": "HuntingBankShaleCut",
+      "anchor": [
+        -238.0500030517578,
+        70,
+        -6154.47998046875
+      ],
+      "routeClearance": 6.283904552459717,
+      "ground": [
+        -237.67105102539062,
+        70,
+        -6142.48583984375
+      ],
+      "parts": 7
+    },
+    {
+      "chapter": "DW-05",
+      "maxFloorError": 0,
+      "step": "step2",
+      "version": 3,
+      "height": 1.440002202987671,
+      "bounds": [
+        6.541173934936523,
+        1.440002202987671,
+        4.934130668640137
+      ],
+      "goal": "exp_1",
+      "model": "PrisonWalkwayWheelStop",
+      "anchor": [
+        890.1500244140625,
+        38,
+        -3085.39990234375
+      ],
+      "routeClearance": 5.458131313323975,
+      "ground": [
+        902.1500244140625,
+        38,
+        -3085.39990234375
+      ],
+      "parts": 8
+    },
+    {
+      "chapter": "FV-05",
+      "maxFloorError": 0,
+      "step": "step2",
+      "version": 3,
+      "height": 3.7049999237060547,
+      "bounds": [
+        6.316627025604248,
+        3.7049999237060547,
+        4.858868598937988
+      ],
+      "goal": "exp_2",
+      "model": "TunnelHandrailFooting",
+      "anchor": [
+        534.3499755859375,
+        108,
+        -9716.1396484375
+      ],
+      "routeClearance": 8.841686248779297,
+      "ground": [
+        534.3499755859375,
+        108,
+        -9704.1396484375
+      ],
+      "parts": 8
+    },
+    {
+      "chapter": "HG-05",
+      "maxFloorError": 0,
+      "step": "step2",
+      "version": 3,
+      "height": 3.410001754760742,
+      "bounds": [
+        6.2159905433654785,
+        3.410001754760742,
+        4.233555793762207
+      ],
+      "goal": "exp_1",
+      "model": "WesternConduitWallSleeve",
+      "anchor": [
+        -301.8900146484375,
+        188,
+        -17309.400390625
+      ],
+      "routeClearance": 5.4522881507873535,
+      "ground": [
+        -297.91015625,
+        188,
+        -17298.080078125
+      ],
+      "parts": 11
+    }
+  ],
+  "unchangedModels": [
+    "AllianceLandingGuardCourse",
+    "AllianceRigBlocking",
+    "AntechamberRailFooting",
+    "ArchiveSignalObservationSill",
+    "BarracksFreightBreach",
+    "BelowRailCoolantInspectionHead",
+    "BuriedConvoyWheelTrace",
+    "CellarDryLoadSill",
+    "CircuitModelCatchBasin",
+    "CitadelServiceCoping",
+    "ColdSideRailSaddle",
+    "CoolingDraftBench",
+    "CreekCargoSill",
+    "CreekCrossingShoulder",
+    "CrewPlanWorktableFootings",
+    "CrushedLanternSill",
+    "EasternGalleryConduitSaddle",
+    "FracturedCoolantJunction",
+    "FreightCarrierWheelSeat",
+    "GateWinchAnchorPlinth",
+    "HeatworksObservationBaffle",
+    "KeeperRailAnchor",
+    "KeeperReturnLanternNiche",
+    "KeeperServiceDoorJamb",
+    "LiftLandingGuide",
+    "MineFreightLineSeat",
+    "OuterWebRootShelf",
+    "RavineWalkRailAnchor",
+    "RearguardLanternRootBank",
+    "RearguardRopeTurnFooting",
+    "RecoveryRainShelf",
+    "RefugePathDrain",
+    "RefugeReturnRootMarker",
+    "RefugeWindbreakPocket",
+    "RelayReturnHallSkirting",
+    "ReliefRosterStand",
+    "RoyalRecordWallRecess",
+    "ScoutApproachStoneFooting",
+    "ScoutCrouchNotch",
+    "ScoutExtractionSkid",
+    "ScoutLandingStoneAbutment",
+    "ScoutLanternRootCradle",
+    "ShelterAwningFooting",
+    "ShelterMarkRootPocket",
+    "StragglerBendDrainageShoulder",
+    "TwinBeaconTerraceSill",
+    "VillageRelayWindbreak",
+    "WatchtowerCableAbutment",
+    "WheeltrackForkRootCut",
+    "WindbreakAscentBank"
+  ],
+  "walks": {
+    "baseline": [
+      {
+        "chapter": "DW-05",
+        "inbound": 1.6826171875,
+        "distance": 16,
+        "outbound": 2.18603515625
+      },
+      {
+        "chapter": "EC-05",
+        "inbound": 1.9332656860351562,
+        "distance": 16.000036239624023,
+        "outbound": 1.8779079914093018
+      },
+      {
+        "chapter": "FV-05",
+        "inbound": 1.69219970703125,
+        "distance": 16,
+        "outbound": 2.259033203125
+      },
+      {
+        "chapter": "GW-05",
+        "inbound": 1.6786696910858154,
+        "distance": 16.000001907348633,
+        "outbound": 2.187073230743408
+      },
+      {
+        "chapter": "HG-05",
+        "inbound": 1.9356991052627563,
+        "distance": 16.00006103515625,
+        "outbound": 1.9340858459472656
+      }
+    ],
+    "candidate": [
+      {
+        "chapter": "DW-05",
+        "inbound": 1.416015625,
+        "distance": 16,
+        "outbound": 2.3193359375
+      },
+      {
+        "chapter": "EC-05",
+        "inbound": 1.666675090789795,
+        "distance": 16.000036239624023,
+        "outbound": 2.0110156536102295
+      },
+      {
+        "chapter": "FV-05",
+        "inbound": 1.69219970703125,
+        "distance": 16,
+        "outbound": 2.12567138671875
+      },
+      {
+        "chapter": "GW-05",
+        "inbound": 1.4120151996612549,
+        "distance": 16.000001907348633,
+        "outbound": 2.3204007148742676
+      },
+      {
+        "chapter": "HG-05",
+        "inbound": 1.669991374015808,
+        "distance": 16.00006103515625,
+        "outbound": 2.064899206161499
+      }
+    ]
+  },
+  "framePairs": [
+    "DW-05-approach",
+    "DW-05-return-side",
+    "GW-05-approach",
+    "GW-05-return-side",
+    "FV-05-approach",
+    "FV-05-return-side",
+    "EC-05-approach",
+    "EC-05-return-side",
+    "HG-05-approach",
+    "HG-05-return-side"
+  ],
+  "expansionRegression": {
+    "baseline": {
+      "generationSeconds": 30.70898512500571,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57268
+    },
+    "candidate": {
+      "generationSeconds": 30.60848241666099,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57311
+    }
+  }
+}
