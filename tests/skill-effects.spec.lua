@@ -88,18 +88,14 @@ local expectedPulses=0
 for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do
  local usesSocketTrace=d.id=='elf.marksman.crossfire' or d.id=='dwarf.gunner.quickfire' or d.id=='elf.magic_archer.echo_arrows'
   or d.id=='dwarf.iron_axe.returning_echo'
- local usesAuthoredRelease=P.get(d).fanLanes or d.id=='knight.steel_knight.rallying_slash' or d.id=='mage.pyro.steam_burst'
+ local vfx=modules.SkillVFXProfiles.get(d.id)
+ local usesAuthoredRelease=(vfx and (vfx.authoredRelease or vfx.groundShape)) or P.get(d).fanLanes
+  or d.id=='knight.steel_knight.rallying_slash' or d.id=='mage.pyro.steam_burst'
   or d.id=='knight.steel_knight.twin_cyclone' or d.id=='mage.pyro.cinder_ring'
   or d.id=='knight.steel_knight.steel_sweep' or d.id=='dwarf.iron_axe.crag_cleave'
   or d.id=='elf.magic_archer.vine_burst' or d.id=='mage.pyro.lava_eruption'
   or d.id=='knight.steel_knight.warcry_assault' or d.id=='dwarf.iron_axe.twin_axe_path'
   or d.id=='elf.magic_archer.storm_arrow' or d.id=='mage.cryo.froststorm'
-  or d.id=='knight.paladin.dawn_spiral' or d.id=='dwarf.iron_axe.shatter_blow'
-  or d.id=='elf.magic_archer.vine_trap' or d.id=='mage.cryo.frost_ring'
-  or d.id=='knight.paladin.sunward_cross' or d.id=='dwarf.iron_axe.crosscut_axe' or d.id=='mage.cryo.glacial_spike'
-  or d.id=='knight.steel_knight.challenging_strike' or d.id=='elf.marksman.heavy_draw' or d.id=='mage.cryo.shatter_dart'
-  or d.id=='knight.paladin.radiant_charge' or d.id=='dwarf.gunner.blast_step'
-  or d.id=='elf.magic_archer.gliding_shot' or d.id=='mage.pyro.ember_step'
  if d.advanced and not modules.Bomb.get(d.id) and d.form~='chain' and not usesSocketTrace and not usesAuthoredRelease then
   expectedPulses=expectedPulses+d.pulses
  end

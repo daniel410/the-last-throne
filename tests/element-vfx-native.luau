@@ -47,7 +47,7 @@ local ok,err=xpcall(function()
   holyCount+=1;check(row.key=='holy','holy element wins over generic shield mapping: '..id)
   local m=cast(id)
   local edge=m:FindFirstChild('SunwardCross',true) or m:FindFirstChild('DawnSpiralSweep',true)
-   or m:FindFirstChild('RadiantChargeEdge',true)
+   or m:FindFirstChild('RadiantChargeEdge',true) or m:FindFirstChild('OathChallengeCrown',true)
   if edge then
    local colors=edge.Color.Keypoints
    check(colors[1].Value.R>.9 and colors[1].Value.G>.6 and colors[1].Value.B<.6,'holy edge is golden: '..id)
@@ -58,9 +58,10 @@ local ok,err=xpcall(function()
    check(core and core.ImageColor3.B<.6 and core.ImageColor3.G>.8,'holy highlight stays warm gold: '..id)
   end
   local contact=assert(Hero.contact(last,'knight',id,Vector3.new(0,0,-1),1))
-  if id=='knight.paladin.oathbreaker_strike'then
-   local cleft=contact:FindFirstChild('OathbreakerContactCleft',true)
-   check(cleft and cleft:IsA('Beam') and cleft.Color.Keypoints[1].Value.B<.6,'holy cleft stays gold')
+  local contactEdge=contact:FindFirstChild('OathbreakerContactCleft',true)
+   or contact:FindFirstChild('OathChallengeContact',true)
+  if contactEdge or id=='knight.paladin.oathbreaker_strike'then
+   check(contactEdge and contactEdge:IsA('Beam') and contactEdge.Color.Keypoints[1].Value.B<.6,'holy contact edge stays gold: '..id)
   else
    local volume=contact:FindFirstChild('ContactVolume',true)
    check(volume and volume.Color.B<.6,'holy contact stays gold: '..id)

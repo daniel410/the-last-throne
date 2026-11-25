@@ -1,0 +1,195 @@
+{
+  "baseline": "0.115.103",
+  "candidate": "0.115.105",
+  "studioPassCount": 18,
+  "studioChecks": 253112,
+  "studioSuites": {
+    "hero-skills": {
+      "failures": [],
+      "checks": 244520,
+      "rigs": [
+        "R6/knight",
+        "R6/dwarf",
+        "R6/elf",
+        "R6/mage",
+        "R15/knight",
+        "R15/dwarf",
+        "R15/elf",
+        "R15/mage"
+      ],
+      "kind": "HERO_SKILLS_NATIVE",
+      "pass": true,
+      "skills": 256
+    },
+    "hero-mark-impact": {
+      "checks": 341,
+      "skills": 22,
+      "pass": true,
+      "failures": []
+    },
+    "hero-mark-application": {
+      "failures": [],
+      "checks": 432,
+      "pass": true
+    },
+    "hero-skill-impact": {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 761
+    },
+    "hero-skill-windup": {
+      "styles": {
+        "CrystalTips": 9,
+        "WardPetals": 3,
+        "WaterCurl": 2,
+        "SwordPoint": 2,
+        "RisingGrit": 15,
+        "BoreBrackets": 4,
+        "ShieldBrace": 10,
+        "GatheringFork": 4,
+        "SightDraw": 14,
+        "LeafDraw": 12,
+        "MortarBrace": 5,
+        "DrawnEdge": 17,
+        "AxeCoil": 5,
+        "HighDraw": 2,
+        "EmberCurl": 7,
+        "FuseCurl": 4
+      },
+      "skills": 115,
+      "pass": true,
+      "checks": 1400
+    },
+    "hero-skill-direction": {
+      "pass": true,
+      "checks": 31
+    },
+    "hero-vfx-priority": {
+      "releases": {
+        "mage.cryo.chain_lightning": true,
+        "elf.marksman.grand_volley": true,
+        "dwarf.iron_axe.returning_echo": true,
+        "knight.steel_knight.vanguard_strike": true
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 28
+    },
+    "hero-windup-interrupt": {
+      "failures": [],
+      "pass": true,
+      "checks": 217
+    },
+    "hero-posture-break": {
+      "failures": [],
+      "checks": 187,
+      "pass": true
+    },
+    "hero-mobile-releases": {
+      "beams": {
+        "ally": {
+          "blast": 1,
+          "radiant": 2,
+          "ember": 4
+        },
+        "owner": {
+          "blast": 4,
+          "radiant": 4,
+          "ember": 6
+        }
+      },
+      "checks": 60,
+      "failures": [],
+      "pass": true,
+      "overlap": {
+        "beams": 13,
+        "active": 4,
+        "warningSegments": 16,
+        "surfaces": 16,
+        "particles": 0,
+        "glows": 0
+      }
+    },
+    "vfx-art-hero-fixes": {
+      "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 2255
+    },
+    "projectile-vfx-timing": {
+      "pass": true,
+      "checks": 312
+    },
+    "ranged-action-poses": {
+      "checks": 158,
+      "pass": true,
+      "maxRedrawJumpDegrees": 0.011101223528385162,
+      "actions": 132,
+      "rigs": [
+        "R6",
+        "R15"
+      ]
+    },
+    "melee-action-beats": {
+      "rigActions": 140,
+      "contacts": 204,
+      "pass": true,
+      "checks": 2147
+    },
+    "element-vfx": {
+      "failures": [],
+      "pass": true,
+      "checks": 84
+    },
+    "hero-crossed-releases": {
+      "failures": [],
+      "pass": true,
+      "checks": 42
+    },
+    "skill-vfx-art": {
+      "failures": [],
+      "pass": true,
+      "checks": 43
+    },
+    "hero-mark-break-releases": {
+      "overlap": {
+        "beams": 9,
+        "active": 4,
+        "warningSegments": 16,
+        "surfaces": 12,
+        "particles": 0,
+        "glows": 0
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 94
+    }
+  },
+  "baselineFocused": {
+    "checks": 94,
+    "unmet": 60,
+    "overlap": {
+      "beams": 98,
+      "active": 4,
+      "warningSegments": 16,
+      "surfaces": 80,
+      "particles": 12,
+      "glows": 22
+    }
+  },
+  "cpuChecks": {
+    "advancedSkills": 1435,
+    "skillEffects": 12512,
+    "skillStatPreview": 1392
+  },
+  "staticArtifactChecks": {
+    "placeRole": 10,
+    "arrivalLoading": 326
+  },
+  "other": {
+    "skillPresentationLua": "Both builds: K0MeleeMotion.luau:142, stock Lua cannot parse the Luau compound assignment.",
+    "firstCandidate": "0.115.104 compared in Studio. The image review prompted 0.115.105.",
+    "studioRetry": "An orphaned local capture window and a port collision blocked initial launches. Completed the listed suites on the frozen candidate after retry."
+  }
+}
