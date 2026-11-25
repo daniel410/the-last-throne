@@ -542,6 +542,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"left",v(27,-14,-12)*coil+v(-13,12,16)*rise)
   offset(pose,"leftKnee",v(16*coil+19*drive))
   offset(pose,"rightKnee",v(15*coil+(pulse==2 and 19 or 5)*drive))
+ elseif d.id=="knight.paladin.oath_challenge" then
+  -- Brace under the shield, then open the chest and plant as the challenge goes out.
+  local phase=age/contact
+  local gather=smooth(phase/.54)*(1-smooth((phase-.66)/.34))
+  local plant=smooth((age-contact+.026)/.073)*(1-smooth((age-contact-.047)/.16))
+  offset(pose,"left",v(33,-12,-22)*gather+v(-15,17,19)*plant)
+  offset(pose,"leftElbow",v(26*gather-10*plant))
+  offset(pose,"torso",v(16,-17,-8)*gather+v(-14,14,9)*plant)
+  offset(pose,"neck",v(9*gather-15*plant))
+  offset(pose,"rightKnee",v(23*gather))
+  offset(pose,"leftKnee",v(25*plant))
  elseif d.id=="knight.paladin.radiant_sweep" then
   -- Load the cut behind the shield, then open the shield arm along the sweep.
   local phase=age/contact
@@ -627,6 +638,18 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"elbow",v(-21*drag))
   offset(pose,"torso",v(0,-10,9)*drag)
   offset(pose,"rightKnee",v(12*drag))
+ elseif d.id=="dwarf.iron_axe.breaker_throw" then
+  -- Wind the axe shoulder high, then stop the throwing arm across the body.
+  local phase=age/contact
+  local gather=smooth(phase/.60)*(1-smooth((phase-.70)/.30))
+  local follow=smooth((age-contact)/.064)*(1-smooth((age-contact-.064)/.17))
+  offset(pose,"right",v(-20,-16,20)*gather+v(14,22,-24)*follow)
+  offset(pose,"elbow",v(-22*gather-24*follow))
+  offset(pose,"left",v(19,-14,24)*gather+v(-11,12,17)*follow)
+  offset(pose,"torso",v(-10,-20,12)*gather+v(19,20,-10)*follow)
+  offset(pose,"rightKnee",v(24*gather))
+  offset(pose,"leftHip",v(-14,0,-6)*follow)
+  offset(pose,"leftKnee",v(26*follow))
  elseif d.id=="dwarf_braced_throw" then
   local phase=age/contact
   local plant=smooth(phase/.46)*(1-smooth((phase-.55)/.45))

@@ -14,6 +14,8 @@ local types={
  ['mage.cryo.shatter_dart']='ShatterDart',['mage.cryo.glacial_spike']='GlacialSpike',
  ['mage.cryo.thunder_spear']='ThunderSpear',['mage.cryo.lightning_line']='LightningLine',
  ['mage.cryo.ice_ward']='IceWard',['mage.cryo.froststorm']='Froststorm',
+ ['knight.paladin.oath_challenge']='OathChallenge',
+ ['dwarf.iron_axe.breaker_throw']='BreakerThrow',['elf.marksman.mark_breaker']='MarkBreaker',
 }
 function Art.kind(id)return types[id]end
 local function orient(r,p,cf)
@@ -41,10 +43,50 @@ local function spearStart(c)
  if socket and (c.last-socket):Dot(c.dir)>.1 then return socket end
  return c.first
 end
+local function releaseWake(r,c,line,name,width,hold,duration)
+ local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+ if (c.last-start).Magnitude<=.05 then return end
+ local wake=line(r,name,function(u)
+  local retract=math.clamp((u*r.life-hold)/duration,0,1)
+  return start:Lerp(c.last,1-(1-retract)^2),c.last
+ end,width,r.color,width*.55,true)
+ if wake then wake.fadeDuration=hold+duration end
+ return wake
+end
 function Art.strokes(r,c,line,curve)
  local kind=types[c.id]
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w,color)end
- if kind=='ChallengeVoice'then
+ if kind=='OathChallenge'then
+  curve(r,'OathChallengeCrown',function(t,u)
+   local bearing=math.rad(c.angle)*(.45-.90*t)
+   local range=c.radius*(.39+.45*(1-(1-u)^3)-.12*math.abs(2*t-1))
+   local height=.40+1.53*math.sin(t*math.pi)^1.4-.34*u
+   return c.floor+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*range+UP*height
+  end,r.compact and 4 or 6,.27,r.hot,true)
+  r.model:SetAttribute('ForwardOnly',true)
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='BreakerThrow' or kind=='MarkBreaker' or kind=='MagmaSpear'then
+  local name=kind=='BreakerThrow' and 'BreakerThrowWake' or kind=='MarkBreaker' and 'MarkBreakerWake' or 'MagmaSpearWake'
+  local wake=releaseWake(r,c,line,name,kind=='MagmaSpear' and .24 or kind=='BreakerThrow' and .15 or .085,.045,.12)
+  if wake then r.model:SetAttribute('ReleaseTrace',true) end
+  if kind=='MagmaSpear'then
+   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+   local span=c.last-start
+   local length=math.min(span.Magnitude,4.2)
+   if span.Magnitude>.05 then
+    local axis=span.Unit
+    local basis=CFrame.lookAt(c.last,c.last+axis)
+    for side=-1,1,2 do
+     local edge=line(r,'MagmaSpearLip',function(u)
+      local lift=math.sin(u*math.pi)*.24
+      return c.last-axis*(length*(1-.70*u))+basis.RightVector*side*(.43+lift),c.last
+     end,.16,r.hot,.035,true)
+     if edge then edge.fadeDuration=.16 end
+    end
+   end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='ChallengeVoice'then
   for lane=1,3 do curve(r,'IconChallengeVoice',function(t,u)
    local a=t*math.pi
    local radius=.7+lane*.3+u*.45
@@ -131,6 +173,8 @@ function Art.axeFlight(c)
   from,to=to,from
   local hand=c.character and (c.character:FindFirstChild("RightHand") or c.character:FindFirstChild("Right Arm"))
   if hand and hand:IsA("BasePart") and (hand.Position-to).Magnitude<6 then to=hand.Position end
+ elseif types[c.id]=='BreakerThrow'then
+  from=Geometry.fanLaunch(from,c.muzzle,to)
  end
  local axis=(to-from).Magnitude>.01 and (to-from).Unit or c.flat
  local reach=c.definition.crosscut and 5 or 2.4
@@ -154,10 +198,12 @@ function Art.axe(r,c)
   if p then
    orient(r,p,CFrame.new(to)*source.CFrame.Rotation)
    cloned=true
-   if c.id=='dwarf.iron_axe.crosscut_axe' and source.LocalTransparencyModifier<1 and (c.last-c.first).Magnitude>.15 then
+   if (c.id=='dwarf.iron_axe.crosscut_axe' or types[c.id]=='BreakerThrow')
+    and source.LocalTransparencyModifier<1 and (c.last-c.first).Magnitude>.15 then
     r.heldAxe,r.heldAxeAlpha=source,source.LocalTransparencyModifier
     source.LocalTransparencyModifier=1
     if returning then r.catchAxe=p end
+    if types[c.id]=='BreakerThrow' then r.heldAxeUntil=r.at+.15 end
    end
   end
  end
@@ -182,6 +228,11 @@ function Art.axe(r,c)
    face.spin.turn=c.pulse==1 and math.pi*1.8 or -math.pi*2.4
   end
   if returning then face.fadeDuration=.16 end
+  if types[c.id]=='BreakerThrow'then
+   face.spin.axis=(frame.RightVector*.87+axis*.50).Unit
+   face.spin.turn=math.pi*1.15
+   face.fadeDuration=.15
+  end
  end
  r.model:SetAttribute('ArtSilhouette','ThrownAxe');r.model:SetAttribute('AxeSource',cloned and 'Equipped' or 'Fallback')
 end
@@ -190,7 +241,21 @@ function Art.surfaces(r,c)
  if c.shape=='axe'then Art.axe(r,c);return true end
  if not kind then return false end
  r.model:SetAttribute('ArtSilhouette',kind)
- if kind=='MoltenLine'then
+ if kind=='OathChallenge' or kind=='MarkBreaker'then
+  -- The gold edge and the equipped arrow each carry the full release.
+ elseif kind=='MagmaSpear'then
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local span=c.last-start
+  if span.Magnitude>.15 then
+   local axis=span.Unit
+   local length=math.min(span.Magnitude,3.9)
+   local center=c.last-axis*length*.53
+   local crust=S.volume(r,'MagmaBasaltCrust',center,Vector3.new(.65,.58,length*.94),
+    Color3.fromRGB(119,63,41),.14,'wedge',Enum.Material.Slate)
+   orient(r,crust,CFrame.lookAt(center,center+axis))
+   if crust then r.faces[#r.faces].fadeDuration=.15 end
+  end
+ elseif kind=='MoltenLine'then
   local first=Vector3.new(c.first.X,c.floor.Y+.11,c.first.Z)
   local delta=Vector3.new(c.last.X-c.first.X,0,c.last.Z-c.first.Z)
   if delta.Magnitude<=.1 then return true end
@@ -356,9 +421,9 @@ function Art.surfaces(r,c)
     end
    end
   end
- elseif kind=='EmberLance' or kind=='FlameDart' or kind=='MagmaSpear'then
-  local length=kind=='FlameDart' and 1.5 or kind=='MagmaSpear' and 4.4 or 3.2
-  local width=kind=='FlameDart' and .28 or kind=='MagmaSpear' and .65 or .42
+ elseif kind=='EmberLance' or kind=='FlameDart'then
+  local length=kind=='FlameDart' and 1.5 or 3.2
+  local width=kind=='FlameDart' and .28 or .42
   local basis=CFrame.lookAt(c.last,c.last+c.dir)
   for side=-1,1,2 do
    local start=#r.faces
@@ -370,10 +435,6 @@ function Art.surfaces(r,c)
   end
   local jet=S.volume(r,'FlameJet',c.last-c.dir*.45,Vector3.new(width,width,.9),Color3.fromRGB(255,167,39),.25,'wedge')
   orient(r,jet,CFrame.lookAt(c.last-c.dir*.45,c.last))
-  if kind=='MagmaSpear'then
-   gem(r,'MagmaBasaltCrust',c.last-c.dir*.15,c.dir,length*.85,width,Color3.fromRGB(85,48,37),Enum.Material.Slate)
-   S.bar(r,'MagmaMoltenSpine',c.last-c.dir*length,c.last,.2,Color3.fromRGB(255,130,35),.1,Enum.Material.Neon)
-  end
  end
  return true
 end

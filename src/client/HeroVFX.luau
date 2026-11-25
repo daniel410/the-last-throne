@@ -34,14 +34,14 @@ local SHIELD_VERDICT="knight.paladin.shield_verdict"
 local ARMOR_SPLITTER="dwarf.iron_axe.armor_splitter"
 local function finite(n)return type(n)=="number" and n==n and math.abs(n)<math.huge end
 local function vector(v)return typeof(v)=="Vector3" and finite(v.X)and finite(v.Y)and finite(v.Z)and math.abs(v.X)<1e7 and math.abs(v.Y)<1e7 and math.abs(v.Z)<1e7 end
-local function restoreCrosscutAxe(r)
+local function restoreHeldAxe(r)
  local held=r.heldAxe
  if not held then return end
  if held.Parent and held.LocalTransparencyModifier==1 then held.LocalTransparencyModifier=r.heldAxeAlpha end
  r.heldAxe=nil
 end
 local function erase(i)
- local r=table.remove(active,i);restoreCrosscutAxe(r)
+ local r=table.remove(active,i);restoreHeldAxe(r)
  if r.light then lightCount-=1 end;beams-=#r.lines;chips-=#r.chips;glowCount-=#r.glows;particleCount-=r.particles;Surfaces.release(r);r.model:Destroy()
 end
 local function atmosphere(r,name,at,flame,count,scale)
@@ -249,8 +249,9 @@ function FX.step(now)
    if r.catchAxe and now>=r.at+Art.axeCatchSeconds then
     r.catchAxe.LocalTransparencyModifier=1
     r.catchAxe=nil
-    restoreCrosscutAxe(r)
+    restoreHeldAxe(r)
    end
+   if r.heldAxe and r.heldAxeUntil and now>=r.heldAxeUntil then restoreHeldAxe(r) end
    if r.payload then r.payload(u) end
    for _,s in ipairs(r.flares)do
     local age=now-r.at;local burstFade=math.clamp(age/.14,0,1)
@@ -1998,6 +1999,10 @@ local contactStyles={
 -- Each edge is expressed as lateral, vertical and forward offsets from the
 -- confirmed contact. A pair stays readable when party effects are compact.
 local forceContacts={
+ ["knight.paladin.oath_challenge"]={"OathChallengeContact",Vector3.new(.12,-.38,-.58),Vector3.new(1.18,.74,-.72),.34,.15,.11,Vector3.new(.63,.01,-.82),key="holy"},
+ ["dwarf.iron_axe.breaker_throw"]={"BreakerThrowContact",Vector3.new(.18,.65,-.73),Vector3.new(.79,-.72,.18),.22,.12,-.26,Vector3.new(.91,-.10,-.62),key="earth"},
+ ["elf.marksman.mark_breaker"]={"MarkBreakerContact",Vector3.new(.28,.19,-1.40),Vector3.new(.06,.025,.73),.55,.073},
+ ["mage.pyro.magma_spear"]={"MagmaSpearContact",Vector3.new(.18,-.43,-.74),Vector3.new(.97,.95,.27),.39,.14,.21,Vector3.new(.78,.14,-.38)},
  ["knight.steel_knight.steel_sweep"]={"SteelSweepContact",Vector3.new(.15,-.37,-.64),Vector3.new(1.24,-.05,-.45),.48,.14,.06,Vector3.new(.66,-.44,-.92)},
  ["dwarf.iron_axe.crag_cleave"]={"CragCleaveContact",Vector3.new(.13,.65,-.47),Vector3.new(.81,-.63,-.69),.16,.16,-.12,Vector3.new(.43,.08,-.83)},
  ["elf.magic_archer.vine_burst"]={"VineBurstContact",Vector3.new(.11,-.73,-.62),Vector3.new(.65,.57,-.75),.12,.12,.17,Vector3.new(.56,-.27,-.81)},

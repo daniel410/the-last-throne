@@ -90,6 +90,10 @@ local function arrow(first,last,color,character,hasWake)
 end
 local function source(character,origin,d)
  if not character then return origin end
+ if d.id=="elf.marksman.mark_breaker" then
+  local nock=character:FindFirstChild("NockedArrow",true)
+  if nock and nock:IsA("BasePart") then return nock.Position end
+ end
  local prop=character:FindFirstChild("BranchSkillProp")
  local tip=prop and prop:FindFirstChild("SkillMuzzle",true)
  if not tip then
@@ -444,6 +448,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake")
     or primary:GetAttribute("ReleaseTrace"))
    local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw" or id=="elf.magic_archer.gliding_shot"
+    or id=="elf.marksman.mark_breaker"
    local launch=alignSocket and Geometry.fanLaunch(origin,first,center) or first
    arrow(launch,center,color,character,hasWake)
   end
@@ -472,7 +477,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="slash" and ((cragCleave and not primary) or (profile.motion~="spin" and profile.motion~="chop"
    and profile.motion~="cross" and profile.motion~="thrust" and profile.motion~="counter" and id~="dwarf_low_sweep"
    and not (primary and (steelSweep or warcryAssault or id=="knight.steel_knight.challenging_strike"
-    or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
+    or id=="knight.paladin.oath_challenge" or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local chargeEdge=primary and ((id=="knight.steel_knight.breaker_charge" and primary:GetAttribute("PrimaryIconCue"))

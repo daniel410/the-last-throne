@@ -166,11 +166,14 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftKnee",v(17,0,0)*recoil)
     end
     if s == bow.markBreaker then
-        -- Hold the sight line, then let the draw hand snap away from the cheek.
-        add(pose,"neck",v(3,-6,1)*coil)
-        add(pose,"right",v(-9,19,-17)*recoil)
-        add(pose,"elbow",v(20,0,0)*recoil)
-        add(pose,"leftKnee",v(16,0,0)*recoil)
+        -- Set the eye behind the nock and draw the hand back along the cheek.
+        add(pose,"neck",v(9,-13,-4)*coil)
+        add(pose,"rightKnee",v(14,0,0)*coil)
+        add(pose,"right",v(-13,29,-23)*recoil)
+        add(pose,"elbow",v(29,0,0)*recoil)
+        local settle = since and smooth((since-.025)/.065)*(1-smooth((since-.09)/.16)) or 0
+        add(pose,"torso",v(6,8,-7)*settle)
+        add(pose,"leftKnee",v(21*recoil+11*settle,0,0))
     end
     if d.id=="elf.marksman.weakpoint_shot" then
         -- Set the eye behind the arrow, then pull the draw hand straight back.
@@ -498,11 +501,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftKnee",v(17,0,0)*follow)
     end
     if s==spells.magmaSpear then
-        -- Scoop with the guiding hand, then drive the release through the front knee.
-        add(pose,"leftElbow",v(-14*wind+22*follow,0,0))
-        add(pose,"left",v(-14,0,13)*follow)
-        add(pose,"torso",v(11,-8,5)*follow)
-        add(pose,"leftKnee",v(18,0,0)*follow)
+        -- Lift from the rear knee, then drive the spear past the guiding hand.
+        add(pose,"leftElbow",v(-29*wind+23*follow,0,0))
+        add(pose,"left",v(-24,14,-12)*wind+v(14,-18,20)*follow)
+        add(pose,"right",v(18,-11,-9)*follow)
+        add(pose,"torso",v(-11,-14,8)*wind+v(19,12,-7)*follow)
+        add(pose,"rightKnee",v(22,0,0)*wind)
+        add(pose,"leftKnee",v(27,0,0)*follow)
     end
     if d.id=="mage.pyro.cinder_ring" then
         -- Rake low, sweep across the chest, then lift from the planted foot.
