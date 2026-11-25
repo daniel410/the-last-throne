@@ -911,6 +911,7 @@ end
 
 local spellFlight = {
 	bolt = {size = Vector3.new(.46, .46, .95), width = .27, wake = .105, emission = .65},
+	mana = {size = Vector3.new(.42, .42, 1.20), width = .23, wake = .085, emission = .68},
 	water = {size = Vector3.one * 1.35, width = .46, wake = .14, emission = .32},
 	gravity = {size = Vector3.new(.88, .88, .88), width = .30, wake = .095, emission = .38},
 }
@@ -941,9 +942,10 @@ local function consumeSpell(character)
 	end
 	if #spells >= 32 then destroySpell(table.remove(spells, 1)) end
 	local skillId = character:GetAttribute("K0SkillId")
+	local manaBolt = classId == "mage" and skillId == "mage.common.mana_bolt"
 	local water = classId == "mage" and skillId == "mage.common.water_ball"
 	local gravityShot = classId == "mage" and skillId == "mage.common.gravity"
-	local flight = water and spellFlight.water or gravityShot and spellFlight.gravity or spellFlight.bolt
+	local flight = manaBolt and spellFlight.mana or water and spellFlight.water or gravityShot and spellFlight.gravity or spellFlight.bolt
 	local color, hot = VFXPalette.get(water and "water" or gravityShot and "gravity" or "arcane", classId)
 	local pose = CFrame.lookAt(first, last)
 	local orb, launchRotation, heldWeapon, heldTransparency
@@ -979,6 +981,10 @@ local function consumeSpell(character)
 		local bodyColor = gravityShot and color:Lerp(Color3.new(), .32) or color:Lerp(hot, .28)
 		orb = arrowPart(workspace, "K0VisualSpell", flight.size, bodyColor, gravityShot and Enum.Material.Neon or Enum.Material.SmoothPlastic)
 		orb.Shape, orb.CFrame = Enum.PartType.Ball, pose
+		if manaBolt then
+			orb.Shape, orb.Material = Enum.PartType.Block, Enum.Material.Neon
+			orb.CFrame = pose * CFrame.new(0, 0, orb.Size.Z*.5) * CFrame.Angles(0, 0, math.pi*.25)
+		end
 	end
 	local waterDroplets
 	if water then
@@ -993,7 +999,7 @@ local function consumeSpell(character)
 			table.insert(waterDroplets, droplet)
 		end
 	end
-	if not heldWeapon and not HeroVFX.isOtherHero(character) then
+	if not heldWeapon and not manaBolt and not HeroVFX.isOtherHero(character) then
 		local light = Instance.new("PointLight"); light.Color = color; light.Brightness = 1.2; light.Range = 6; light.Parent = orb
 	end
 	local front = Instance.new("Attachment"); front.Position = Vector3.new(-flight.width, 0, 0); front.Parent = orb
@@ -1015,7 +1021,7 @@ local function consumeSpell(character)
 	trail.Parent = orb
 	local distance = (last - first).Magnitude
 	table.insert(spells, { part = orb, character = character, owner = Players:GetPlayerFromCharacter(character),
-		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0, waterDroplets = waterDroplets, skillId = skillId,
+		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0, waterDroplets = waterDroplets, skillId = skillId, manaBolt = manaBolt,
 		launchRotation = launchRotation,
 		heldWeapon = heldWeapon, heldTransparency = heldTransparency,
 		arcHeight = heldWeapon and math.clamp(distance * 0.06, 0.45, 1.8) or 0,
@@ -1042,6 +1048,10 @@ local function advanceSpells(dt)
 				-- Keep the release pose, then tumble around the flight frame's lateral axis.
 				local flightFrame = CFrame.lookAt(position, position + spell.direction)
 				spell.part.CFrame = CFrame.new(position) * CFrame.fromAxisAngle(flightFrame.RightVector, spell.elapsed * math.pi * 8) * spell.launchRotation
+			elseif spell.manaBolt then
+				local frame = CFrame.lookAt(position, position + spell.direction)
+				spell.part.CFrame = frame * CFrame.new(0, 0, spell.part.Size.Z*.5)
+					* CFrame.Angles(0, 0, math.pi*.25 + spell.elapsed*9)
 			else
 				spell.part.CFrame = CFrame.lookAt(position, position + spell.direction)
 			end
@@ -1049,10 +1059,12 @@ local function advanceSpells(dt)
 				poseWaterDroplet(droplet, spell.part.CFrame, i, spell.elapsed)
 			end
 			if spell.elapsed >= spell.duration then
-				if not spell.heldWeapon then impact(position, spell.part.Color) end
+				if not spell.heldWeapon and not spell.manaBolt then impact(position, spell.part.Color) end
     -- Flight owns the path. Arrival can only create a local terminal burst;
     -- it must never redraw a path from the caster after the projectile lands.
-    if not spell.heldWeapon and commonDefinitions[spell.skillId]and spell.skillId~="mage.common.gravity"then HeroVFX.skill(spell.character,spell.skillId,position,position,1)end
+    if not spell.heldWeapon and commonDefinitions[spell.skillId]and spell.skillId~="mage.common.gravity"then
+     HeroVFX.skill(spell.character,spell.skillId,position,position,1,nil,nil,spell.direction)
+    end
 				destroySpell(spell); table.remove(spells, index)
 			end
 		end

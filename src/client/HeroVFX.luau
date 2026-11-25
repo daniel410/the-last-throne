@@ -123,6 +123,7 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
 local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, ChallengingStrikeEdge=true, GuardianShelteringWing=true, GuardianCounterEdge=true}
+cuttingStrokes.OathbreakerEdge=true
 local function curve(r,name,path,count,width,color,noGlow)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -957,7 +958,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local root=character and character:FindFirstChild("HumanoidRootPart")
   dir=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
- if (d.form=="cone" or d.form=="melee" or cyclone or emberStep) and vector(castDirection) and castDirection.Magnitude>.01 then
+ if (d.form=="cone" or d.form=="melee" or cyclone or emberStep or id=="mage.common.mana_bolt")
+  and vector(castDirection) and castDirection.Magnitude>.01 then
   dir=castDirection.Unit
  elseif emberStep and (last-first).Magnitude>.01 then
   dir=-dir

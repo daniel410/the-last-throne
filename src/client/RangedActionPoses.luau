@@ -29,6 +29,7 @@ local bow = {
     elementalPierce=stance(v(9,-25,13), 23, 24, 35),
     heavy=stance(v(15,-32,-13), -17, 31, 34),
     snap=stance(v(5,14,9), 20, 15, 23),
+    spark=stance(v(6,16,-8), 21, 19, 30),
     echo=stance(v(2,22,-10), 27, 18, 28),
     crossfire=stance(v(9,-8,8), 12, 24, 26),
     fan=stance(v(10,-20,15), 39, 22, 32),
@@ -63,6 +64,7 @@ local function bowStance(d)
     if d.form=="cone" or d.effect=="multi" then return bow.fan end
     if d.crosscut then return bow.crossfire end
     if d.id=="elf.magic_archer.echo_arrows" then return bow.echo end
+    if d.id=="elf.magic_archer.spark_volley" then return bow.spark end
     if d.effect=="rapid" or (d.pulses or 1)>1 then return bow.snap end
     if d.id=="elf.marksman.heavy_draw" then return bow.heavy end
     if d.id=="elf.marksman.mark_breaker" then return bow.markBreaker end
@@ -90,7 +92,7 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     local recoil, redraw = 0,0
     if since then
         local recoilTime = s == bow.heavy and .29 or s == bow.sky and .26
-            or s == bow.snap and .15 or s == bow.pin and .13 or .22
+            or (s == bow.snap or s == bow.spark) and .15 or s == bow.pin and .13 or .22
         local span = math.min(recoilTime, d.interval or d.shotInterval or recoilTime)
         recoil = smooth(since/(span*.23))*(1-smooth((since/span-.23)/.77))
         if betweenShots then
@@ -238,6 +240,14 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"torso",v(5,0,-11)*bank)
         add(pose,"leftKnee",v(pulse==3 and 22 or 9,0,0)*extension)
     end
+    if s==bow.spark then
+        -- Keep the bow hand steady while the draw arm snaps back on each pulse.
+        local last = pulse == d.pulses and recoil or 0
+        add(pose,"right",v(-7,16,-12)*recoil+v(8,-9,6)*redraw)
+        add(pose,"elbow",v(18*recoil-14*redraw,0,0))
+        add(pose,"weapon",v(0,0,(pulse==2 and -9 or 7)*recoil))
+        add(pose,"leftKnee",v(19*last,0,0))
+    end
     if d.id=="elf.marksman.precision_volley" then
         -- Keep the eye on the target through three small draw-hand recoveries.
         local finalRecoil = pulse == d.pulses and recoil or 0
@@ -291,6 +301,7 @@ end
 local spells = {
     strike=gesture(v(22,-29,-14),v(33,11,24),v(12,-24,-9),v(-16,-8,21),22),
     bolt=gesture(v(-12,16,-10),v(22,-20,12),v(5,14,-5),v(21,5,-14),13),
+    manaBolt=gesture(v(-27,16,-13),v(25,-25,21),v(9,17,-8),v(22,3,-19),21),
     lance=gesture(v(-25,-21,10),v(39,7,22),v(9,-21,7),v(37,-10,-17),22),
     magmaSpear=gesture(v(-31,-12,13),v(23,22,28),v(19,-15,8),v(41,-13,-7),29),
     dart=gesture(v(8,18,-22),v(-13,-18,10),v(-4,15,6),v(13,23,-6),12),
@@ -336,6 +347,7 @@ local function spellGesture(d,profile)
     if not cue then return spells.bolt end
     if cue.motion=="rain" then return cue.effect=="hail" and spells.hailfall or spells.ashfall end
     if d.form=="chain" then return spells.chain end
+    if d.id=="mage.common.mana_bolt" then return spells.manaBolt end
     if d.id=="mage.pyro.stone_lance" then return spells.stone end
     if d.id=="mage.pyro.molten_line" then return spells.moltenLine end
     if d.id=="mage.pyro.magma_spear" then return spells.magmaSpear end
@@ -408,6 +420,13 @@ function Poses.mage(pose,d,profile,age)
     add(pose,"leftHip",v(-.4*knees,0,7*wind))
     add(pose,"rightKnee",v(knees,0,0))
     add(pose,"leftKnee",v(.7*knees,0,0))
+    if s == spells.manaBolt then
+        -- Gather the bolt beside the staff and drive the staff tip through the release.
+        add(pose,"right",v(23,-8,9)*follow)
+        add(pose,"elbow",v(26*wind-19*follow,0,0))
+        add(pose,"leftElbow",v(-18*wind+16*follow,0,0))
+        add(pose,"leftKnee",v(10*follow,0,0))
+    end
     if d.id=="mage.pyro.ember_lance" then
         -- Gather the ember near the staff, then turn the open palm through the release.
         add(pose,"left",v(-14,22,11)*wind+v(20,-17,-18)*follow)

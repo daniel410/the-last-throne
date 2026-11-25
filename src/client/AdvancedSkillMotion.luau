@@ -199,7 +199,15 @@ local function gunner(d,kind,age)
  local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
   torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
   rightKnee=v(10+brace*1.5),leftKnee=v(8+brace+14*retreat),weapon=v()}
- if d.id=="dwarf.gunner.piercing_round" then
+ if d.id=="dwarf.gunner.gunner_shot" then
+  -- Seat the left-hand gun against the line of sight, then take one recoil on the rear leg.
+  local lower=pulse>0 and smooth((since-.046)/.072)*(1-smooth((since-.118)/.145)) or 0
+  angles.right+=v(-11*load+18*kick-24*lower,3*load,-4*kick)
+  angles.elbow+=v(10*load-26*kick+21*lower)
+  angles.neck+=v(7*load,-10*load,4*load)
+  angles.torso+=v(7*load-12*kick+8*lower,0,5*kick)
+  angles.rightKnee+=v(17*load+20*kick)
+ elseif d.id=="dwarf.gunner.piercing_round" then
   -- The off hand stays on the sight line through discharge, then lowers.
   local settle=pulse>0 and smooth((since-.035)/.075)*(1-smooth((since-.11)/.15)) or 0
   angles.neck+=v(6*load,-12*load,5*load)
@@ -642,9 +650,12 @@ function Motion.sample(classId,d,age,rigType)
  elseif d.id=="knight.paladin.oathbreaker_strike" then
   local load=smooth(age/(contact*.56))*(1-smooth((age/contact-.56)/.44))
   local plant=smooth((age-contact)/.055)*(1-smooth((age-contact-.055)/.17))
-  -- Leave the authored sword contact intact and put the weight through the lead leg.
-  offset(pose,"torso",v(-9,0,7)*load+v(12,0,-6)*plant)
-  offset(pose,"leftKnee",v(9*load+19*plant))
+  -- Lift the sword above the shield and drop the shoulder into the planted cut.
+  offset(pose,"right",v(28,-12,11)*load+v(-19,7,-8)*plant)
+  offset(pose,"left",v(23,-10,-14)*load+v(-12,7,14)*plant)
+  offset(pose,"leftElbow",v(16*load-8*plant))
+  offset(pose,"torso",v(-13,-12,7)*load+v(17,12,-8)*plant)
+  offset(pose,"leftKnee",v(9*load+24*plant))
   offset(pose,"leftHip",v(-8*plant))
  elseif d.id=="knight.steel_knight.steel_sweep" then
   -- Wind behind the shield, then let the lead foot take the horizontal cut.

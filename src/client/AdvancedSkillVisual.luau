@@ -90,7 +90,7 @@ local function arrow(first,last,color,character,hasWake)
 end
 local function source(character,origin,d)
  if not character then return origin end
- if d.id=="elf.marksman.mark_breaker" or d.id=="elf.magic_archer.bloom_shot" then
+ if d.id=="elf.marksman.mark_breaker" or d.id=="elf.magic_archer.bloom_shot" or d.id=="elf.magic_archer.spark_volley" then
   local nock=character:FindFirstChild("NockedArrow",true)
   if nock and nock:IsA("BasePart") then return nock.Position end
  elseif d.id=="dwarf.iron_axe.breaker_throw" then
@@ -455,7 +455,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake")
     or primary:GetAttribute("ReleaseTrace"))
    local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw" or id=="elf.magic_archer.gliding_shot"
-    or id=="elf.marksman.mark_breaker" or id=="elf.magic_archer.bloom_shot"
+    or id=="elf.marksman.mark_breaker" or id=="elf.magic_archer.bloom_shot" or id=="elf.magic_archer.spark_volley"
    local launch=alignSocket and Geometry.fanLaunch(origin,first,center) or first
    arrow(launch,center,color,character,hasWake)
   end
@@ -473,13 +473,16 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  elseif effect=="bullet" then
   local piercing=id=="dwarf.gunner.piercing_round"
+  local gunnerShot=id=="dwarf.gunner.gunner_shot"
   if d.form=="cone" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do segment(first,target,color,.12,.07,"ShotPellet") end
   elseif not (primary and primary:GetAttribute("ReleaseTrace")) then
-   local launch=piercing and Geometry.fanLaunch(origin,first,center) or first
+   local launch=(piercing or gunnerShot) and Geometry.fanLaunch(origin,first,center) or first
    segment(launch,center,color,.12,.08,"RifleTracer")
   end
-  if decorate and not piercing then impact(first,color,.8) end
+  if decorate and not piercing and (not gunnerShot or not primary) then
+   impact(gunnerShot and Geometry.fanLaunch(origin,first,center) or first,color,.8)
+  end
  elseif d.form=="area" or d.form=="cone" or d.form=="melee" then
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
@@ -487,7 +490,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="slash" and ((cragCleave and not primary) or (profile.motion~="spin" and profile.motion~="chop"
    and profile.motion~="cross" and profile.motion~="thrust" and profile.motion~="counter" and id~="dwarf_low_sweep"
    and not (primary and (steelSweep or warcryAssault or id=="knight.steel_knight.challenging_strike"
-    or id=="knight.paladin.oath_challenge" or primary:GetAttribute("HolyMotion")=="GuardianWing"
+    or id=="knight.paladin.oath_challenge" or id=="knight.paladin.oathbreaker_strike"
+    or primary:GetAttribute("HolyMotion")=="GuardianWing"
     or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then

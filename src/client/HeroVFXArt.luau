@@ -20,6 +20,8 @@ local types={
  ['elf.magic_archer.bloom_shot']='BloomShot',
  ['knight.steel_knight.guardian_counter']='GuardianCounter',
  ['dwarf.gunner.piercing_round']='PiercingRound',
+ ['knight.paladin.oathbreaker_strike']='OathbreakerStrike',
+ ['dwarf.gunner.gunner_shot']='GunnerShot',['elf.magic_archer.spark_volley']='SparkVolley',
 }
 function Art.kind(id)return types[id]end
 local function orient(r,p,cf)
@@ -60,7 +62,75 @@ end
 function Art.strokes(r,c,line,curve)
  local kind=types[c.id]
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w,color)end
- if kind=='DawnBurst'then
+ if kind=='OathbreakerStrike'then
+  curve(r,'OathbreakerEdge',function(t,u)
+   local bearing=math.rad(c.angle)*(.46-.91*t)
+   local reach=c.radius*(.39+.32*math.sin(t*math.pi)+.08*u)
+   return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach
+    +UP*(2.6-3.9*t-.40*u)
+  end,r.compact and 4 or 6,.47,r.hot,true)
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='GunnerShot'then
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local delta=c.last-start
+  if delta.Magnitude>.05 then
+   local tracer=line(r,'GunnerShotTracer',function(u)
+    local retract=math.clamp((u*r.life-.039)/.08,0,1)
+    return start:Lerp(c.last,.97*(1-(1-retract)^2)),c.last
+   end,.13,r.color,.053,true)
+   if tracer then tracer.fadeDuration=.13;r.model:SetAttribute('ReleaseTrace',true) end
+   if not r.compact then
+    local flash=line(r,'GunnerShotMuzzle',function(u)
+     return start,start+delta.Unit*math.min(delta.Magnitude,.94)*(1-.5*u)
+    end,.64,Color3.fromRGB(255,174,58),.092,true)
+    if flash then flash.fadeDuration=.072 end
+   end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='SparkVolley'then
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local delta=c.last-start
+  if delta.Magnitude>.05 then
+   local side=c.pulse==2 and -1 or 1
+   local rise=math.min(delta.Magnitude*.12,c.pulse==3 and .47 or .32)
+   local wake=releaseWake(r,c,line,'SparkVolleyWake',.115,.03,.105)
+   if wake then r.model:SetAttribute('ReleaseTrace',true) end
+   curve(r,'SparkVolleyFork',function(t,u)
+    local age=math.clamp(u*r.life/.13,0,1)
+    local head=.45+.55*age
+    local along=head-t*math.min(.36,2.9/delta.Magnitude)
+    local corner=1-math.abs(2*t-1)
+    return start+delta*along+(c.right*side+UP*.58)*rise*corner*(1-.55*age)
+   end,2,c.pulse==3 and .22 or .16,r.hot,true)
+   if not r.compact and c.pulse==3 then
+    local fork=line(r,'SparkVolleyTip',function(u)
+     return c.last-delta.Unit*math.min(delta.Magnitude*.23,1.25)+UP*rise*(1+u),c.last
+    end,.13,r.color,.045,true)
+    if fork then fork.fadeDuration=.12 end
+   end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='ManaCrystal'then
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local span=c.last-start
+  local terminal=span.Magnitude<=.05
+  if not terminal then
+   local wake=releaseWake(r,c,line,'ManaBoltWake',.11,.036,.084)
+   if wake then r.model:SetAttribute('ReleaseTrace',true) end
+  end
+  local length=terminal and 1.25 or math.min(span.Magnitude,2.4)
+  local axis=terminal and c.dir or span.Unit
+  local frame=CFrame.lookAt(c.last,c.last+axis)
+  if length>.05 then
+   for side=-1,1,2 do
+    curve(r,'ManaBoltEdge',function(t,u)
+     local spread=math.sin(t*math.pi)*math.min(length*.47,.86)*(.72+.55*u)
+     return c.last-axis*length*(1-t+.33*u)+(frame.RightVector*side+frame.UpVector*.5)*spread
+    end,1,.29,side==1 and r.hot or r.color,true)
+   end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='DawnBurst'then
   local count=r.compact and 4 or 6
   local at=c.floor+UP*.16
   for i=1,count do
@@ -361,7 +431,8 @@ function Art.surfaces(r,c)
  if not kind then return false end
  r.model:SetAttribute('ArtSilhouette',kind)
  if kind=='OathChallenge' or kind=='MarkBreaker' or kind=='DawnBurst' or kind=='BloomShot'
-  or kind=='GuardianCounter' or kind=='PiercingRound'then
+  or kind=='GuardianCounter' or kind=='PiercingRound' or kind=='OathbreakerStrike'
+  or kind=='GunnerShot' or kind=='SparkVolley'then
   -- The authored strokes and equipped arrow carry the silhouette.
  elseif kind=='ShellBurst'then
   if not r.compact then
@@ -555,7 +626,13 @@ function Art.surfaces(r,c)
    S.volume(r,'WaterFoam',at,Vector3.new(.3,.09,.13),r.hot,.45,'ball')
   end
  elseif kind=='ManaCrystal'then
-  gem(r,'ManaBoltFacet',c.last,c.dir,1.8,.48,r.color,Enum.Material.SmoothPlastic)
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local span=c.last-start
+  local terminal=span.Magnitude<=.05
+  local length=terminal and .98 or math.min(span.Magnitude,1.65)
+  if length>.05 then
+   gem(r,'ManaBoltFacet',c.last,terminal and c.dir or span.Unit,length,length*.29,r.color,Enum.Material.Neon)
+  end
  elseif kind=='FrostLance' or kind=='ShatterDart' or kind=='GlacialSpike'then
   local length=kind=='ShatterDart' and 1.15 or kind=='GlacialSpike' and 5.3 or 3.6
   local width=kind=='ShatterDart' and .3 or kind=='GlacialSpike' and .95 or .42
@@ -643,7 +720,7 @@ function Art.accents(r,c)
    local pos=c.last+radial*.55
    S.bar(r,'AimTargetNotch',pos,pos+radial*.25,.1,gold,.3,Enum.Material.Neon)
   end
- elseif c.key=='gun' and types[id]~='PiercingRound'then
+ elseif c.key=='gun' and types[id]~='PiercingRound' and types[id]~='GunnerShot'then
   local flash=S.volume(r,'CompactMuzzleFlash',c.first+c.dir*.25,Vector3.new(.22,.22,.55),Color3.fromRGB(255,203,83),.2,'wedge')
   if flash then r.faces[#r.faces].fadeDuration=.07 end
  elseif id=='mage.pyro.searing_ward'then
