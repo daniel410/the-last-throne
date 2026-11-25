@@ -59,10 +59,10 @@ function Art.strokes(r,c,line,curve)
  if kind=='OathChallenge'then
   curve(r,'OathChallengeCrown',function(t,u)
    local bearing=math.rad(c.angle)*(.45-.90*t)
-   local range=c.radius*(.39+.45*(1-(1-u)^3)-.12*math.abs(2*t-1))
-   local height=.40+1.53*math.sin(t*math.pi)^1.4-.34*u
+   local range=c.radius*(.48+.40*(1-(1-u)^3)-.12*math.abs(2*t-1))
+   local height=.68+2.10*math.sin(t*math.pi)^1.4-.34*u
    return c.floor+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*range+UP*height
-  end,r.compact and 4 or 6,.27,r.hot,true)
+  end,r.compact and 4 or 6,.34,r.hot,true)
   r.model:SetAttribute('ForwardOnly',true)
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='BreakerThrow' or kind=='MarkBreaker' or kind=='MagmaSpear'then
@@ -77,11 +77,11 @@ function Art.strokes(r,c,line,curve)
     local axis=span.Unit
     local basis=CFrame.lookAt(c.last,c.last+axis)
     for side=-1,1,2 do
-     local edge=line(r,'MagmaSpearLip',function(u)
-      local lift=math.sin(u*math.pi)*.24
-      return c.last-axis*(length*(1-.70*u))+basis.RightVector*side*(.43+lift),c.last
-     end,.16,r.hot,.035,true)
-     if edge then edge.fadeDuration=.16 end
+     curve(r,'MagmaSpearLip',function(t,u)
+      local distance=length*(1-.65*u)*(1-t)
+      local lift=math.sin(t*math.pi)*(.68+.20*u)
+      return c.last-axis*distance+(basis.RightVector*side+basis.UpVector*.38)*lift
+     end,1,.32,side==1 and r.hot or r.color,true)
     end
    end
   end
@@ -182,8 +182,10 @@ function Art.axeFlight(c)
  return from,to,axis,approach
 end
 function Art.axe(r,c)
- local _,to,axis,approach=Art.axeFlight(c)
+ local from,to,axis,approach=Art.axeFlight(c)
  local returning=approach~=nil
+ local breaker=types[c.id]=='BreakerThrow'
+ local breakerApproach=breaker and -axis*math.min((to-from).Magnitude*.78,3.5)
  local frame=CFrame.lookAt(to,to+axis)
  local source
  if c.character then for _,model in ipairs(c.character:GetChildren())do
@@ -198,12 +200,12 @@ function Art.axe(r,c)
   if p then
    orient(r,p,CFrame.new(to)*source.CFrame.Rotation)
    cloned=true
-   if (c.id=='dwarf.iron_axe.crosscut_axe' or types[c.id]=='BreakerThrow')
+   if (c.id=='dwarf.iron_axe.crosscut_axe' or breaker)
     and source.LocalTransparencyModifier<1 and (c.last-c.first).Magnitude>.15 then
     r.heldAxe,r.heldAxeAlpha=source,source.LocalTransparencyModifier
     source.LocalTransparencyModifier=1
     if returning then r.catchAxe=p end
-    if types[c.id]=='BreakerThrow' then r.heldAxeUntil=r.at+.15 end
+    if breaker then r.heldAxeUntil=r.at+.15 end
    end
   end
  end
@@ -228,9 +230,11 @@ function Art.axe(r,c)
    face.spin.turn=c.pulse==1 and math.pi*1.8 or -math.pi*2.4
   end
   if returning then face.fadeDuration=.16 end
-  if types[c.id]=='BreakerThrow'then
+  if breaker then
    face.spin.axis=(frame.RightVector*.87+axis*.50).Unit
-   face.spin.turn=math.pi*1.15
+   face.spin.turn=math.pi*1.25
+   face.spin.approach=breakerApproach
+   face.spin.duration=.085
    face.fadeDuration=.15
   end
  end
@@ -254,6 +258,17 @@ function Art.surfaces(r,c)
     Color3.fromRGB(119,63,41),.14,'wedge',Enum.Material.Slate)
    orient(r,crust,CFrame.lookAt(center,center+axis))
    if crust then r.faces[#r.faces].fadeDuration=.15 end
+   if not r.compact then
+    local lateral=CFrame.lookAt(center,center+axis).RightVector
+    local tail=c.last-axis*length*.89
+    local waist=c.last-axis*length*.44
+    local firstFace=#r.faces+1
+    for side=-1,1,2 do
+     S.triangle(r,'MagmaMoltenEdge',tail,waist+lateral*side*.48,c.last,
+      side==1 and Color3.fromRGB(255,170,64) or r.color,.24,Enum.Material.Neon)
+    end
+    for i=firstFace,#r.faces do r.faces[i].fadeDuration=.13 end
+   end
   end
  elseif kind=='MoltenLine'then
   local first=Vector3.new(c.first.X,c.floor.Y+.11,c.first.Z)

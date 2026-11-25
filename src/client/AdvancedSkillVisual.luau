@@ -93,6 +93,9 @@ local function source(character,origin,d)
  if d.id=="elf.marksman.mark_breaker" then
   local nock=character:FindFirstChild("NockedArrow",true)
   if nock and nock:IsA("BasePart") then return nock.Position end
+ elseif d.id=="dwarf.iron_axe.breaker_throw" then
+  local grip=character:FindFirstChild("WeaponGrip",true)
+  if grip and grip:IsA("BasePart") then return grip.Position end
  end
  local prop=character:FindFirstChild("BranchSkillProp")
  local tip=prop and prop:FindFirstChild("SkillMuzzle",true)
@@ -455,6 +458,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  elseif effect=="axe" then
   if not primary then
   local from,to=origin,center;if d.returning and pulse==2 then from,to=center,origin end
+  if id=="dwarf.iron_axe.breaker_throw" then from=Geometry.fanLaunch(origin,first,to) end
   segment(from,to,color,.2,.08,"AxeWake")
   local axis=to-from
   if axis.Magnitude>.01 then
