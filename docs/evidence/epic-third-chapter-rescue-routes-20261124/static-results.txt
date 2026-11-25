@@ -1,0 +1,6 @@
+DW-03 OutpostSightRest: 10 parts, floor 28.00, route clearance >= 10.56 studs
+GW-03 RefugeLanternReturn: 9 parts, floor 62.00, route clearance >= 10.57 studs
+FV-03 RavineSupplyBank: 7 parts, floor 92.00, route clearance >= 10.26 studs
+EC-03 MineRescueRailSeat: 9 parts, floor 140.00, route clearance >= 10.44 studs
+HG-03 FortressStoneRailSeat: 9 parts, floor 180.00, route clearance >= 10.55 studs
+44 authored parts; 405 static floor samples passed
