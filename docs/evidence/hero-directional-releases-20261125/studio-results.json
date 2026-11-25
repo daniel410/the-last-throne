@@ -1,0 +1,214 @@
+{
+  "studio": "0.748.0.7481526",
+  "mode": "Studio Edit, isolated fixed local Place files",
+  "summary": {
+    "passedSuites": 15,
+    "passedChecks": 252360,
+    "failedSuites": 1
+  },
+  "baseline": {
+    "version": "0.115.106",
+    "suites": {
+      "hero-directional-releases": {
+        "overlap": {
+          "beams": 50,
+          "redSegments": 16,
+          "surfaces": 16,
+          "particles": 8,
+          "glows": 14
+        },
+        "failures": [
+          "R6 guardian covers the sword shoulder",
+          "R6 guardian weights the front foot",
+          "R6 scatter transfers weight from the rear foot to the lead foot",
+          "R15 guardian covers the sword shoulder",
+          "R15 guardian weights the front foot",
+          "R15 scatter transfers weight from the rear foot to the lead foot",
+          "Fan Break opens the elbow over the lead foot",
+          "Lightning Line drives the palm through a planted stance",
+          "Guardian Slash uses one cut with the expected segment count",
+          "Guardian Slash removes the overlapping veil and generic second cut",
+          "Scatter Shot local muzzle flash stays before close cover",
+          "dwarf.gunner.scatter_shot pellet traces clear before the arrow wake",
+          "Lightning Line first frame starts near the caster",
+          "Lightning Line head travels along the confirmed axis",
+          "Lightning Line keeps fewer branches for allies",
+          "Lightning Line avoids a duplicate static core",
+          "Guardian Slash uses one cut with the expected segment count",
+          "Guardian Slash removes the overlapping veil and generic second cut",
+          "dwarf.gunner.scatter_shot pellet traces clear before the arrow wake",
+          "Lightning Line first frame starts near the caster",
+          "Lightning Line head travels along the confirmed axis",
+          "Lightning Line keeps fewer branches for allies",
+          "Lightning Line avoids a duplicate static core",
+          "Four releases retain their core shapes with no extra glow or particles"
+        ],
+        "pass": false,
+        "checks": 110
+      },
+      "rpg-vfx-gap": {
+        "failures": [
+          "CalderaCentralPlume has no BillboardGui (tests/rpg-vfx-gap-native.luau:30)"
+        ],
+        "pass": false,
+        "checks": 16
+      }
+    }
+  },
+  "candidate": {
+    "version": "0.115.108",
+    "suites": {
+      "hero-directional-releases": {
+        "overlap": {
+          "beams": 31,
+          "redSegments": 16,
+          "surfaces": 19,
+          "particles": 0,
+          "glows": 0
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 72
+      },
+      "hero-release-shapes": {
+        "failures": [],
+        "checks": 188,
+        "pass": true
+      },
+      "hero-shield-grant": {
+        "checks": 139,
+        "partySkills": 6,
+        "failures": [],
+        "shieldSkills": 13,
+        "pass": true
+      },
+      "skill-vfx-art": {
+        "failures": [],
+        "pass": true,
+        "checks": 43
+      },
+      "rpg-vfx-gap": {
+        "failures": [
+          "CalderaCentralPlume has no BillboardGui (tests/rpg-vfx-gap-native.luau:30)"
+        ],
+        "pass": false,
+        "checks": 16
+      },
+      "hero-skills": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      },
+      "ranged-action-poses": {
+        "checks": 158,
+        "pass": true,
+        "maxRedrawJumpDegrees": 0.011101223528385162,
+        "actions": 132,
+        "rigs": [
+          "R6",
+          "R15"
+        ]
+      },
+      "melee-action-beats": {
+        "rigActions": 140,
+        "contacts": 204,
+        "pass": true,
+        "checks": 2147
+      },
+      "hero-skill-impact": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      },
+      "hero-vfx-priority": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      },
+      "hero-skill-direction": {
+        "pass": true,
+        "checks": 31
+      },
+      "hero-skill-windup": {
+        "styles": {
+          "CrystalTips": 9,
+          "WardPetals": 3,
+          "WaterCurl": 2,
+          "SwordPoint": 2,
+          "RisingGrit": 15,
+          "BoreBrackets": 4,
+          "ShieldBrace": 10,
+          "GatheringFork": 4,
+          "SightDraw": 14,
+          "LeafDraw": 12,
+          "MortarBrace": 5,
+          "DrawnEdge": 17,
+          "AxeCoil": 5,
+          "HighDraw": 2,
+          "EmberCurl": 7,
+          "FuseCurl": 4
+        },
+        "skills": 115,
+        "pass": true,
+        "checks": 1400
+      },
+      "hero-windup-interrupt": {
+        "failures": [],
+        "pass": true,
+        "checks": 217
+      },
+      "hero-mark-break-releases": {
+        "overlap": {
+          "beams": 9,
+          "active": 4,
+          "warningSegments": 16,
+          "surfaces": 12,
+          "particles": 0,
+          "glows": 0
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 94
+      },
+      "vfx-art-hero-fixes": {
+        "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+        "failures": [],
+        "pass": true,
+        "checks": 2255
+      },
+      "skill-vfx-individual": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 307
+      }
+    }
+  },
+  "cpu": {
+    "advanced-skills.spec.lua": 1435,
+    "skill-effects.spec.lua": 12506
+  },
+  "static": {
+    "single-build.spec.py": 336,
+    "luau-compiled-files": 8
+  }
+}

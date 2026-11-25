@@ -1,0 +1,28 @@
+{
+  "0.115.106": {
+    "source": "50ea6b0221e0ae2e8ab2a1b5c5714c19e37eb8c1",
+    "buildSHA256": "52f3653368bcb1daacc5f9c570489a2f786a55105eac32b7ddca177e5869f435",
+    "matchedClientModules": {
+      "AdvancedSkillMotion": "9891750376d7283fe777747bc782169fc1183073a3300f646e57f1ced0a4e64b",
+      "AdvancedSkillVisual": "d73015764ec687623f6b7b43928f73ef53c6f4c5b0249bd9075b6a6f46ccdf43",
+      "HeroVFX": "eefdfd7322c81c0d1668b85d4e8ac77d194a2d8da9bfb4bdfc32933c754860ff",
+      "HeroVFXArt": "8f20f50fa484499e4f8bf0f67aecdc1de3bb5b0144aa863bcaa647b34544b3dd",
+      "HeroVFXPolish": "457b6ce71392fa499e8c9ffda1fe2695c0c9578865b8fd4e4bbb177b7e43f58f",
+      "RangedActionPoses": "2e75f16a464127b9e9dad83d57f4b4b60b169519af36057a59936b7989b39aef",
+      "SkillVFXProfiles": "4957cee4eef93553feb8808550d73d318fbcfe5a56fcd46ece5c3512f8eee9ac"
+    }
+  },
+  "0.115.108": {
+    "source": "78b9992d46ed597088826824546e1139aff3676d",
+    "buildSHA256": "1edcc81336ac968ee7c8be23cc725a6fa325b700e9425254502f794dc6e1af4b",
+    "matchedClientModules": {
+      "AdvancedSkillMotion": "8c94e78f5af49f9a91775d1ed6ccee06c545ba78ecb891f5a6da455554e13e8d",
+      "AdvancedSkillVisual": "2aacb545bb48e5057811c75ef69cce497f6b0f521e75a56e4fca0b7f97420624",
+      "HeroVFX": "df4a2e54e4612845ee90bc3fc1660b1e412460dcf8017152e5f0a15ded6a8f91",
+      "HeroVFXArt": "fe31ba5fdce2a15ee351a2240ef308089c39475c9fff9193b6921ba91f4dfbf8",
+      "HeroVFXPolish": "ac192f6b744a120e94156b2e91a8ca9fcc0825d2c6349b89944499a522883941",
+      "RangedActionPoses": "ad3ca5f21ac1959f71d506a3cdbd69fd2845d8f0e6dd23d2240d09dd25e5ea8c",
+      "SkillVFXProfiles": "0eaaf8e288e90c0e7d93f14f14706e6e6dc973fda8f48d2b9664954a7133689a"
+    }
+  }
+}
