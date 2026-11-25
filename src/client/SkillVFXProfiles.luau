@@ -106,7 +106,7 @@ local Profiles = {byId = {
  ["mage.pyro.earth_rise"] = {shape="earth",lanes=5,width=.18,life=.48},
  ["mage.pyro.ember_step"] = {shape="fire",lanes=3,width=.16,life=.38,authoredRelease=true},
  ["mage.pyro.stone_lance"] = {shape="stone",lanes=1,width=.23,life=.42},
- ["mage.pyro.searing_ward"] = {shape="fire",lanes=2,width=.15,life=.32,authoredRelease=true,minBeams=8},
+ ["mage.pyro.searing_ward"] = {shape="fire",lanes=2,width=.15,life=.32,authoredRelease=true,minBeams=10},
  ["mage.pyro.lava_eruption"] = {shape="lava",lanes=5,width=.24,life=.60},
  ["mage.pyro.magma_spear"] = {shape="fire",lanes=3,width=.18,life=.25,minBeams=3,authoredRelease=true},
  ["mage.pyro.molten_line"] = {shape="fire",lanes=2,width=.14,life=.34},

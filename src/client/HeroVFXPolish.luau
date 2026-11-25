@@ -7,7 +7,7 @@ local function radiantPath(c,t,u)
  local bearing=math.rad(c.angle)*(.92*t-.46)
  local reach=c.radius*(.34+.37*math.sin(t*math.pi)+.13*(1-(1-u)^3))
  return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach
-  +Vector3.yAxis*(-1.05+2.35*t+.54*math.sin(t*math.pi))
+  +Vector3.yAxis*(-1.05+2.45*t+1.18*math.sin(t*math.pi))
 end
 local function guardianPath(c,t,u)
  local bearing=math.rad(c.angle)*(.46-.92*t)
@@ -66,8 +66,8 @@ local function tremorGuard(r,c,line,curve)
  for bank=0,1 do
   curve(r,"TremorGuardFault",function(t,u)
    local a=bank*math.pi+math.rad(153)*(t-.46)
-   local reach=c.radius*(.24+.60*(1-(1-u)^3))*(.88+.12*math.sin(t*math.pi))
-   local ripple=.12*math.sin(t*math.pi*5)^2*(1-u)
+   local reach=c.radius*(.24+.60*(1-(1-u)^3))*(.90+.07*math.cos(t*math.pi*5)+.03*math.sin(t*math.pi))
+   local ripple=.11*math.sin(t*math.pi*5)^2*(1-u)
    return c.floor+(c.flat*math.cos(a)+c.right*math.sin(a))*reach+Vector3.yAxis*(.08+ripple)
   end,3,.30,r.color:Lerp(r.hot,.38),true)
  end
@@ -77,7 +77,8 @@ local function wardenArrow(r,c,line)
  local span=c.last-start
  if span.Magnitude<=.05 then return end
  local wake=line(r,"WardenArrowStem",function(u)
-  return start:Lerp(c.last,.92*(1-(1-u)^3)),c.last
+  local fade=math.clamp((u*r.life-.042)/.16,0,1)
+  return start:Lerp(c.last,.92*(1-(1-fade)^2)),c.last
  end,.12,r.color:Lerp(r.hot,.22),.08,true)
  if wake then r.model:SetAttribute("ReleaseTrace",true) end
  local axis=span.Unit
@@ -91,14 +92,22 @@ local function wardenArrow(r,c,line)
   end,.14,r.hot,.055,true)
  end
 end
-local function searingWard(r,c,_,curve)
+local function searingWard(r,c,line,curve)
  for side=0,1 do
-  curve(r,"SearingWardFront",function(t,u)
+  local function front(t,u)
    local a=side*math.pi+math.rad(143)*(t-.5)+.45*u
    local reach=c.radius*(.30+.53*(1-(1-u)^4))
    local crest=math.sin(t*math.pi)*(.52+.20*math.sin(t*math.pi*4)^2)*(1-.65*u)
    return c.floor+(c.right*math.cos(a)+c.flat*math.sin(a))*reach+Vector3.yAxis*(.16+crest)
-  end,r.compact and 3 or 4,.34,r.color:Lerp(r.hot,.30),true)
+  end
+  curve(r,"SearingWardFront",front,r.compact and 3 or 4,.36,r.color,true)
+  if not r.compact then
+   line(r,"SearingWardEmber",function(u)
+    local crest=front(.43,u)
+    local wind=(crest-c.floor)*.09
+    return front(.34,u),crest+wind+Vector3.yAxis*(.57-.32*u)
+   end,.23,r.hot,.035,true)
+  end
  end
 end
 local releases={
@@ -136,7 +145,7 @@ function P.strokes(r,c,line,curve)
  r.model:SetAttribute('HolyMotion',kind)
  if kind=='RadiantFan'then
   curve(r,"RadiantOpeningFan",function(t,u)return radiantPath(c,t,u)end,
-   r.compact and 5 or 7,.42,r.hot,true)
+   r.compact and 5 or 7,.55,r.hot,true)
   r.model:SetAttribute("PrimaryIconCue",true)
  elseif kind=='GuardianWing'then
   curve(r,'GuardianShelteringWing',function(t,u)return guardianPath(c,t,u)end,
@@ -151,7 +160,24 @@ function P.strokes(r,c,line,curve)
  return true
 end
 function P.surfaces(r,c)
- if releases[c.id] then return true end
+ if releases[c.id] then
+  if c.id=="dwarf.iron_axe.tremor_guard" and not r.compact then
+   local strike=c.floor+c.flat*c.radius*.18
+   for side=-1,1,2 do
+    local at=strike+c.right*side*.53+c.flat*.28+Vector3.yAxis*.33
+    local shard=S.volume(r,"TremorGuardSlate",at,Vector3.new(.55,.66,.84),
+     Color3.fromRGB(143,119,96),.15,"wedge",Enum.Material.Slate)
+    if shard then
+     local face=r.faces[#r.faces]
+     face.cf=CFrame.lookAt(at,at+c.flat)*CFrame.Angles(.15,side*.28,side*.36)
+     shard.CFrame=face.cf
+     face.emerge={duration=.075,delay=0}
+     face.fadeDuration=.25
+    end
+   end
+  end
+  return true
+ end
  if c.groundShape=="DawnSpiral" then return true end
  if c.groundShape=="ShatterBlow" then
   for lane=1,r.compact and 2 or 3 do
