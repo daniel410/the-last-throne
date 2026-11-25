@@ -150,15 +150,52 @@ function Art.strokes(r,c,line,curve)
    stroke('IconCrystalRear',c.last-c.dir*length,waist+c.right*side*width,.045,r.color)
   end
   r.model:SetAttribute('PrimaryIconCue',true);return true
- elseif kind=='ThunderSpear' or kind=='LightningLine' then
-  local first,last=kind=='ThunderSpear' and spearStart(c) or c.first,c.last
-  if kind=='LightningLine'then first=Vector3.new(first.X,c.floor.Y+.16,first.Z);last=Vector3.new(last.X,c.floor.Y+.16,last.Z)end
-  stroke(kind=='ThunderSpear' and 'IconThunderSpearAxis' or 'IconLightningCorridor',first,last,.17,r.hot)
+ elseif kind=='LightningLine' then
+  local first=Vector3.new(c.first.X,c.floor.Y+.18,c.first.Z)
+  local last=Vector3.new(c.last.X,c.floor.Y+.18,c.last.Z)
+  local span=(last-first).Magnitude
+  if span>.05 then
+   local travel=.104
+   local function front(u)
+    local elapsed=u*r.life
+    return .10+.90*(1-(1-math.min(1,elapsed/travel))^2)
+   end
+   local spine=line(r,'IconLightningCorridor',function(u)
+    local head=front(u)
+    local tail=math.max(0,head-.46+math.max(0,u*r.life-travel)*2.9)
+    return first:Lerp(last,tail),first:Lerp(last,head)
+   end,.24,r.hot,.36,true)
+   if spine then spine.fadeDuration=.20 end
+   local count=r.compact and 2 or 3
+   for i=1,count do
+    local distance=i/(count+1)
+    local side=i%2==1 and -1 or 1
+    local at=first:Lerp(last,distance)
+    -- The fork trails the advancing head. Its centerline projection stays inside the cast.
+    local reach=math.min(1.35,span*.22)
+    local elbow=at+c.right*side*reach*.53+UP*.56-c.flat*reach*.24
+    local tip=at+c.right*side*reach+UP*.87-c.flat*reach*.58
+    local function forkGrowth(u) return math.clamp((front(u)-distance)*7,0,1) end
+    local base=line(r,'LightningLineFork',function(u)return at,at:Lerp(elbow,forkGrowth(u))end,
+     .16,r.color,.10,true)
+    if base then base.fadeDuration=.21 end
+    if not r.compact then
+     local prong=line(r,'LightningLineForkTip',function(u)
+      local growth=forkGrowth(u)
+      return at:Lerp(elbow,growth),at:Lerp(elbow,growth):Lerp(tip,growth)
+     end,.10,r.hot,.045,true)
+     if prong then prong.fadeDuration=.21 end
+    end
+   end
+  end
+  r.model:SetAttribute('ArtSilhouette',kind);r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='ThunderSpear' then
+  local first,last=spearStart(c),c.last
+  stroke('IconThunderSpearAxis',first,last,.17,r.hot)
   for i=1,3 do
-   local at=first:Lerp(last,kind=='ThunderSpear' and (.43+i*.12) or i/4)
-   local span=kind=='ThunderSpear' and .55 or .85
+   local at=first:Lerp(last,.43+i*.12)
    for side=-1,1,2 do
-    local elbow=at+c.right*span*side-c.dir*(kind=='ThunderSpear' and .65 or .18)
+    local elbow=at+c.right*.55*side-c.dir*.65
     stroke('ElectricSpearProng',at,elbow,.08,r.color)
    end
   end
@@ -294,15 +331,16 @@ function Art.surfaces(r,c)
     r.faces[#r.faces].fadeDuration=.22
    end
   end
- elseif kind=='ThunderSpear' or kind=='LightningLine'then
-  local first,last=kind=='ThunderSpear' and spearStart(c) or c.first,c.last
-  if kind=='LightningLine'then first=Vector3.new(first.X,c.floor.Y+.16,first.Z);last=Vector3.new(last.X,c.floor.Y+.16,last.Z)end
+ elseif kind=='LightningLine'then
+  -- The traveling beam and its branches show the corridor without a static duplicate.
+ elseif kind=='ThunderSpear'then
+  local first,last=spearStart(c),c.last
   local spine=S.bar(r,'ElectricSpearSpine',first,last,.12,r.hot,.28,Enum.Material.Neon)
   if spine then r.faces[#r.faces].fadeDuration=.16 end
   for lane=1,3 do
-   local at=first:Lerp(last,kind=='ThunderSpear' and (.43+lane*.12) or lane/4)
+   local at=first:Lerp(last,.43+lane*.12)
    for side=-1,1,2 do
-    local branch=kind=='ThunderSpear' and c.right*side*.55-c.dir*.65 or c.right*side*.85-c.dir*.18
+    local branch=c.right*side*.55-c.dir*.65
     S.triangle(r,'LightningBranch',at-UP*.06,at+branch,at+UP*.06,r.color,.25)
     for i=math.max(1,#r.faces-1),#r.faces do r.faces[i].fadeDuration=.16 end
    end

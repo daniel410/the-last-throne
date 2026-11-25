@@ -146,11 +146,14 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"leftKnee",v(24,0,0)*recoil)
     end
     if s == bow.fanBreak then
-        -- Brace the lead leg through the spread while the draw hand opens.
-        add(pose,"torso",v(-7,10,-8)*recoil)
-        add(pose,"leftHip",v(-9,0,-6)*recoil)
-        add(pose,"leftKnee",v(15,0,0)*recoil)
-        add(pose,"right",v(-4,16,12)*recoil)
+        -- Keep the bow on aim as the draw shoulder and elbow open into the fan.
+        local plant = since and smooth(since/.052)*(1-smooth((since-.052)/.14)) or 0
+        add(pose,"torso",v(4,-10,8)*load+v(-9,13,-12)*recoil)
+        add(pose,"rightKnee",v(14*load,0,0))
+        add(pose,"leftHip",v(-13,0,-7)*plant)
+        add(pose,"leftKnee",v(25*plant,0,0))
+        add(pose,"right",v(-10,23,22)*recoil)
+        add(pose,"elbow",v(19*recoil,0,0))
     end
     if s == bow.piercingVolley then
         -- Keep the bow upright and draw back along the sight line.
@@ -488,11 +491,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(21,0,0)*follow)
     end
     if s == spells.lightningLine then
-        -- Gather across the staff, then check the recoil with the guiding arm.
-        add(pose,"right",v(-28,15,-12)*follow)
-        add(pose,"left",v(-22,13,21)*follow)
-        add(pose,"leftElbow",v(26,0,0)*follow)
-        add(pose,"leftKnee",v(18,0,0)*follow)
+        -- Raise the staff, then drive the free palm down the corridor.
+        add(pose,"right",v(15,-9,15)*wind+v(-35,14,-15)*follow)
+        add(pose,"left",v(-16,18,9)*wind+v(-31,11,26)*follow)
+        add(pose,"leftElbow",v(-9*wind+34*follow,0,0))
+        add(pose,"torso",v(-8,-5,7)*wind+v(19,9,-8)*follow)
+        add(pose,"leftHip",v(-12,0,-5)*follow)
+        add(pose,"leftKnee",v(27,0,0)*follow)
     end
     if s==spells.moltenLine then
         -- Press the guiding palm toward the ground and let the front leg absorb each pulse.

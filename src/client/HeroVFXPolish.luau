@@ -2,6 +2,13 @@
 local S=require(script.Parent.HeroVFXSurfaces)
 local P={}
 local variants={['knight.paladin.radiant_sweep']='RadiantFan',['knight.paladin.guardian_slash']='GuardianWing',['knight.paladin.oathbound_assault']='OathboundAdvance'}
+local function guardianPath(c,t,u)
+ local bearing=math.rad(c.angle)*(.46-.92*t)
+ local sweep=math.sin(t*math.pi)
+ local reach=c.radius*(.28+.30*sweep+.13*(1-(1-u)^2))
+ return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach
+  +Vector3.yAxis*(-.9+1.55*t+.68*sweep-.2*u)
+end
 local function oathboundPath(c,t,emphasis)
  local sign=c.pulse%2==0 and -1 or 1
  local span=emphasis and 3.8 or 2.2
@@ -70,10 +77,9 @@ function P.strokes(r,c,line,curve)
    return c.first+(c.flat*math.cos(a)+c.right*math.sin(a))*radius+Vector3.yAxis*(lane*.13)
   end,6,.34,r.color)end
  elseif kind=='GuardianWing'then
-  for side=-1,1,2 do curve(r,'GuardianShelteringWing',function(t,u)
-   local a=t*math.pi*.85
-   return c.first+c.flat*(1.6+math.sin(a)*1.6)+c.right*side*math.sin(a)*2.3+Vector3.yAxis*(math.cos(a)*1.9+.2+u*.2)
-  end,8,.17,r.color)end
+  curve(r,'GuardianShelteringWing',function(t,u)return guardianPath(c,t,u)end,
+   r.compact and 5 or 8,.36,r.hot,true)
+  r.model:SetAttribute('PrimaryIconCue',true)
  else
   local emphasis=c.final and not r.compact
   curve(r,'OathboundForwardCut',function(t,u)
@@ -103,11 +109,11 @@ function P.surfaces(r,c)
  end
  local kind=variants[c.id];if not kind then return false end
  if kind=='GuardianWing'then
-  for side=-1,1,2 do
-  local at=c.first+c.flat*1.7+c.right*side*.95
-  local top=at+Vector3.yAxis*1.3;local bottom=at-Vector3.yAxis*1.1
-  S.triangle(r,'GuardianShieldVeil',top,at+c.right*.7,bottom,r.color,.64)
-  S.triangle(r,'GuardianShieldVeil',top,bottom,at-c.right*.7,r.color,.64)
+  if not r.compact then
+   local firstFace=#r.faces+1
+   S.ribbon(r,'GuardianCutRibbon',function(t)return guardianPath(c,t,.20)end,
+    c.flat,.62,.54,r.color,5)
+   for i=firstFace,#r.faces do r.faces[i].fadeDuration=.17 end
   end
  elseif kind=='OathboundAdvance'then
   local start=#r.faces

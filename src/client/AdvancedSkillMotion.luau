@@ -188,15 +188,23 @@ local function gunner(d,kind,age)
   right+=v(9*kick)
   torso+=v(2-5*kick,0,-5*kick)
  elseif d.id=="dwarf.gunner.scatter_shot" then
-  -- Plant before the spread and let the firing elbow take the sharp kick.
-  brace+=12*load+11*kick
-  elbow-=v(22*kick)
-  torso+=v(8*load-6*kick,4*kick,-7*load)
+  -- Shoulder the offhand gun low, then rock onto the rear foot at discharge.
+  brace+=11*load+8*kick
+  right+=v(-9*load+18*kick,-6*load,7*kick)
+  elbow-=v(12*load+29*kick)
+  torso+=v(12*load-13*kick,5*kick,-9*load+6*kick)
  end
  local retreat=(d.move or 0)<0 and kick or 0
  local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
   torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
   rightKnee=v(10+brace*1.5),leftKnee=v(8+brace+14*retreat),weapon=v()}
+ if d.id=="dwarf.gunner.scatter_shot" then
+  local settle=pulse>0 and smooth((since-.045)/.075)*(1-smooth((since-.12)/.13)) or 0
+  angles.rightKnee+=v(14*load+18*kick)
+  angles.leftHip+=v(-13*settle,0,5*settle)
+  angles.leftKnee+=v(16*settle)
+  angles.torso+=v(10*settle,0,-4*settle)
+ end
  if d.id=="dwarf.gunner.blast_step" then
   -- Take the backward skid on the rear leg while the offhand fires forward.
   angles.rightHip+=v(19*load-13*kick,0,-5*load)
@@ -514,6 +522,18 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(15,-9,5)*brace+v(-10,17*answer,-9*answer)*drive*weight)
   offset(pose,"neck",v(12*brace-15*drive))
   offset(pose,pulse==2 and "rightKnee" or "leftKnee",v(17*brace+22*drive*weight))
+ elseif d.id=="knight.paladin.guardian_slash" then
+  -- Cover the sword shoulder, step through the cut, then bring the guard back.
+  local phase=age/contact
+  local cover=smooth(phase/.47)*(1-smooth((phase-.67)/.33))
+  local open=smooth((age-contact+.055)/.105)*(1-smooth((age-contact-.05)/.14))
+  local recover=pulse>0 and smooth((since-.065)/.08)*(1-smooth((since-.145)/.18)) or 0
+  offset(pose,"left",v(37,-13,-22)*cover+v(-18,19,24)*open+v(24,-11,-13)*recover)
+  offset(pose,"leftElbow",v(24*cover+17*recover))
+  offset(pose,"torso",v(9,-16,-8)*cover+v(9,14,7)*open)
+  offset(pose,"leftHip",v(-16,0,-6)*open)
+  offset(pose,"leftKnee",v(21*open+10*recover))
+  offset(pose,"rightKnee",v(17*cover))
  elseif d.id=="knight.steel_knight.rallying_slash" then
   -- Coil behind the shield, then rise through the horizontal sword clip.
   local phase=age/contact

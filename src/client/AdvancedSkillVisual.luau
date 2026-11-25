@@ -481,7 +481,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="slash" and ((cragCleave and not primary) or (profile.motion~="spin" and profile.motion~="chop"
    and profile.motion~="cross" and profile.motion~="thrust" and profile.motion~="counter" and id~="dwarf_low_sweep"
    and not (primary and (steelSweep or warcryAssault or id=="knight.steel_knight.challenging_strike"
-    or id=="knight.paladin.oath_challenge" or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
+    or id=="knight.paladin.oath_challenge" or primary:GetAttribute("HolyMotion")=="GuardianWing"
+    or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local chargeEdge=primary and ((id=="knight.steel_knight.breaker_charge" and primary:GetAttribute("PrimaryIconCue"))

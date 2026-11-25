@@ -122,7 +122,7 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, ChallengingStrikeEdge=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, ChallengingStrikeEdge=true, GuardianShelteringWing=true}
 local function curve(r,name,path,count,width,color,noGlow)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -784,7 +784,7 @@ local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
  local pellet=r.key=="gun"
  local narrow=d.id=="elf.marksman.piercing_volley"
  local name=pellet and "ScatterPelletTrace" or narrow and "PiercingVolleyShaft" or "FanBreakShaft"
- local hold=pellet and .045 or .060
+ local hold=pellet and .023 or narrow and .060 or .043
  local traceColor=pellet and r.color:Lerp(r.hot,.25) or r.color
  for i=1,lanes do
   local target=endpoints[i]
@@ -793,26 +793,46 @@ local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
    local delta=target-start
    if delta.Magnitude>.1 then
     local tip=target
-    local width=pellet and .135 or narrow and .075 or .09
-    line(r,name,function(u)
-     local falloff=math.clamp((u*r.life-hold)/(r.life-hold),0,1)
+    local width=pellet and .16 or narrow and .075 or .10
+    local duration=pellet and .095 or narrow and r.life-hold or .16
+    local trace=line(r,name,function(u)
+     local falloff=math.clamp((u*r.life-hold)/duration,0,1)
      return start+delta*(1-(1-falloff)^(pellet and 3.8 or 2.4)),tip
-    end,width,traceColor,pellet and .04 or width*.8,true)
+    end,width,traceColor,pellet and .045 or width*.8,true)
+    if trace and not narrow then trace.fadeDuration=hold+duration end
     if pellet and not r.compact then
-     Surfaces.bar(r,"ShotPelletBody",tip-delta.Unit*math.min(.5,delta.Magnitude*.5),tip,
+     local body=Surfaces.bar(r,"ShotPelletBody",tip-delta.Unit*math.min(.5,delta.Magnitude*.5),tip,
       .1,Color3.fromRGB(200,207,214),.15,Enum.Material.Metal)
+     if body then r.faces[#r.faces].fadeDuration=.106 end
     elseif not pellet then
      local axis=delta.Unit
      local cross=axis:Cross(Vector3.yAxis)
      local lateral=cross.Magnitude>.001 and cross.Unit or Vector3.xAxis
      local length=math.min(delta.Magnitude*.5,narrow and 1.25 or .74)
      for side=-1,1,2 do
-      line(r,"VolleyArrowhead",function(u)
-       local tail=tip-axis*(length*(1-.35*u))+lateral*(side*length*(narrow and .15 or .32))
+      local fletching=line(r,"VolleyArrowhead",function(u)
+       local tail=tip-axis*(length*(1-.35*u))+lateral*(side*length*(narrow and .15 or .38))
        return tail,tip
-      end,narrow and .085 or .10,r.hot,.038,true)
+      end,narrow and .085 or .12,r.hot,.038,true)
+      if fletching and not narrow then fletching.fadeDuration=.21 end
      end
     end
+   end
+  end
+ end
+ if pellet and not r.compact then
+  local center=endpoints[math.ceil(lanes/2)]
+  if vector(center) and (center-first).Magnitude<=d.range+.01 then
+   local start=Geometry.fanLaunch(first,muzzle,center)
+   local delta=center-start
+   if delta.Magnitude>.08 then
+    local axis=delta.Unit
+    local length=math.min(delta.Magnitude,.92)
+    local flash=line(r,"ScatterMuzzleKick",function(u)
+     local head=length*(.55+.45*math.min(u*3,1))
+     return start+axis*(head*u*.7),start+axis*head
+    end,.34,traceColor,.08,true)
+    if flash then flash.fadeDuration=.055 end
    end
   end
  end
@@ -855,7 +875,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local final=FinalBeat.isFinal(d,pulse) or warcryAssault and pulse==d.pulses
  local life=(profile.signature and not final or twinAxe and pulse==1 or warcryAssault and not final)
   and math.min(profile.life,d.interval) or profile.life
- local minBeams=fanLanes and fanLanes*(row.key=="gun" and 1 or 3)
+ local minBeams=fanLanes and (row.key=="gun" and fanLanes+(compact and 0 or 1) or fanLanes*3)
   or (cyclone or cinderRing) and (compact and 8 or 12)
   or (steelSweep or cragCleave) and (compact and 6 or 9)
   or vineBurst and (compact and 9 or 12)
