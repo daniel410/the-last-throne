@@ -90,12 +90,15 @@ local function arrow(first,last,color,character,hasWake)
 end
 local function source(character,origin,d)
  if not character then return origin end
- if d.id=="elf.marksman.mark_breaker" then
+ if d.id=="elf.marksman.mark_breaker" or d.id=="elf.magic_archer.bloom_shot" then
   local nock=character:FindFirstChild("NockedArrow",true)
   if nock and nock:IsA("BasePart") then return nock.Position end
  elseif d.id=="dwarf.iron_axe.breaker_throw" then
   local grip=character:FindFirstChild("WeaponGrip",true)
   if grip and grip:IsA("BasePart") then return grip.Position end
+ elseif d.id=="mage.cryo.ice_shard" then
+  local hand=character:FindFirstChild("LeftHand") or character:FindFirstChild("Left Arm")
+  if hand and hand:IsA("BasePart") then return hand.Position end
  end
  local prop=character:FindFirstChild("BranchSkillProp")
  local tip=prop and prop:FindFirstChild("SkillMuzzle",true)
@@ -427,7 +430,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local burst=targetFloor+Vector3.yAxis*Bomb.radius
    if not primary then impact(burst,color,.75) end
    Audio.play("impact",burst,"dwarf",id,character,Players.LocalPlayer~=nil and Players.LocalPlayer.Character==character)
-  elseif decorate and not ultimateSignature and not ((steamBurst or groundBurst or stormArrow or froststorm or groundShape) and primary) then
+  elseif decorate and not ultimateSignature and not ((steamBurst or groundBurst or stormArrow or froststorm or groundShape
+   or vfxProfile and vfxProfile.authoredRelease) and primary) then
    impact(center,color,2)
   end
  elseif effect=="vine" then
@@ -451,7 +455,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake")
     or primary:GetAttribute("ReleaseTrace"))
    local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw" or id=="elf.magic_archer.gliding_shot"
-    or id=="elf.marksman.mark_breaker"
+    or id=="elf.marksman.mark_breaker" or id=="elf.magic_archer.bloom_shot"
    local launch=alignSocket and Geometry.fanLaunch(origin,first,center) or first
    arrow(launch,center,color,character,hasWake)
   end
@@ -496,7 +500,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif effect=="fire"then
    -- HeroVFX owns the cinder circle, ember wake and searing crown. A second
    -- full ring would erase their silhouettes; the SkillSector above remains.
-  elseif (effect=="holy" or effect=="water") and not ultimateSignature and not (groundShape and primary) then
+  elseif (effect=="holy" or effect=="water") and not ultimateSignature
+   and not (primary and (groundShape or id=="knight.paladin.dawn_burst")) then
    arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave")
   end
  else
@@ -505,7 +510,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif primary and primary:GetAttribute("ArtSilhouette")then
    -- The primary owns its length/shape; a full legacy ray would hide the new silhouette.
   else
-   segment(first,center,color,.2,effect=="frost" and .2 or .16,"ElementalTrail")
+   local launch=id=="mage.cryo.ice_shard" and Geometry.fanLaunch(origin,first,center) or first
+   segment(launch,center,color,.2,effect=="frost" and .2 or .16,"ElementalTrail")
    if not primary and(effect=="earth" or effect=="frost")then spikes(targetFloor,direction,1,100,color,effect)end
    impact(center,color,1.2)
   end

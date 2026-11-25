@@ -2213,7 +2213,8 @@ local markGrants={
  ember={name="EmberSealSet",from=Vector3.new(.06,-.53,0),bend=Vector3.new(.91,-.05,-.13),to=Vector3.new(.19,.91,0),drift=Vector3.new(.49,-.22,-.24)},
  frost={name="FrostSealSet",from=Vector3.new(.07,-.38,0),bend=Vector3.new(.99,-.38,-.12),to=Vector3.new(.33,.61,0),drift=Vector3.new(.63,.23,-.18)},
 }
-local function markContact(r,at,cf,size,mark,grant)
+local function markContact(r,at,cf,size,mark,grant,bloom)
+ local firstLine=#r.lines+1
  local function offset(point,side)
   return (cf.RightVector*(point.X*side)+cf.UpVector*point.Y+cf.LookVector*point.Z)*size
  end
@@ -2235,7 +2236,8 @@ local function markContact(r,at,cf,size,mark,grant)
    stroke.beam.Segments=5
   end
  end
- if #r.lines==0 then return false end
+ if #r.lines<firstLine then return false end
+ if bloom then Art.bloomContact(r,at,cf,size) end
  r.model:SetAttribute("ContactStyle",mark.name)
  return true
 end
@@ -2287,6 +2289,7 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  local mark=d and consumedMark and consumedMark==d.consume and markContacts[consumedMark]
  local grant=d and appliedMark and appliedMark==d.mark and markGrants[appliedMark]
  local seal=mark or grant
+ local bloom=mark and id=="elf.magic_archer.bloom_shot"
  local interrupt=d and windupInterrupted and not postureBroken and not seal and interruptContacts[classId]
  local force=interrupt or forceContacts[id]
  local key=mark and mark.key or grant and markContacts[appliedMark].key or force and force.key or row.key
@@ -2306,12 +2309,12 @@ function FX.contact(at,classId,id,direction,scale,compact,consumedMark,appliedMa
  if postureBroken then
   local breakSize=math.clamp(size,.7,1.35)
   postureContact(r,at-dir*.36,cf,breakSize,classId)
-  if seal then markContact(r,at-dir*.37+Vector3.yAxis*.16,cf,breakSize*.78,seal,not mark) end
+  if seal then markContact(r,at-dir*.37+Vector3.yAxis*.16,cf,breakSize*.78,seal,not mark,bloom) end
   FX.step(r.at)
   return r.model,true
  end
  if seal then
-  local drawn=markContact(r,at-dir*.37,cf,math.clamp(size,.7,1.35),seal,not mark)
+  local drawn=markContact(r,at-dir*.37,cf,math.clamp(size,.7,1.35),seal,not mark,bloom)
   FX.step(r.at)
   return r.model,drawn
  end

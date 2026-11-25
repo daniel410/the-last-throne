@@ -16,6 +16,8 @@ local types={
  ['mage.cryo.ice_ward']='IceWard',['mage.cryo.froststorm']='Froststorm',
  ['knight.paladin.oath_challenge']='OathChallenge',
  ['dwarf.iron_axe.breaker_throw']='BreakerThrow',['elf.marksman.mark_breaker']='MarkBreaker',
+ ['knight.paladin.dawn_burst']='DawnBurst',['dwarf.gunner.shell_burst']='ShellBurst',
+ ['elf.magic_archer.bloom_shot']='BloomShot',
 }
 function Art.kind(id)return types[id]end
 local function orient(r,p,cf)
@@ -56,7 +58,45 @@ end
 function Art.strokes(r,c,line,curve)
  local kind=types[c.id]
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w,color)end
- if kind=='OathChallenge'then
+ if kind=='DawnBurst'then
+  local count=r.compact and 4 or 6
+  local at=c.floor+UP*.16
+  for i=1,count do
+   local a=(i-1)*math.pi*2/count
+   local radial=c.flat*math.cos(a)+c.right*math.sin(a)
+   local reach=c.radius*(i%2==0 and .71 or .88)
+   local ray=line(r,'DawnBurstRay',function(u)
+    local t=1-(1-math.min(u*r.life/.155,1))^2
+    return at+radial*reach*(.10+.57*t),
+     at+radial*reach*(.25+.75*t)+UP*(.45+.62*t)
+   end,.28,i%2==0 and r.color or r.hot,.11,true)
+   if ray then ray.fadeDuration=.25 end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='ShellBurst'then
+  local at=c.floor+UP*.16
+  local jet=line(r,'ShellBurstJet',function(u)
+   local swell=1-(1-math.min(u*r.life/.095,1))^3
+   return at+UP*(.16+swell*.58),at+UP*(.92+swell*2.0)
+  end,.50,r.hot,.10,true)
+  if jet then jet.fadeDuration=.15 end
+  for side=-1,1,2 do
+   local heading=c.right*side*.88+c.flat*.35
+   local blast=line(r,'ShellBurstPressure',function(u)
+    local t=1-(1-math.min(u*r.life/.12,1))^3
+    return at+heading*c.radius*(.1+.24*t),
+     at+heading*c.radius*(.30+.55*t)+UP*(.31+.44*t)
+   end,.37,r.color,.07,true)
+   if blast then blast.fadeDuration=.21 end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='BloomShot' or kind=='IceShard'then
+  local bloom=kind=='BloomShot'
+  local wake=releaseWake(r,c,line,bloom and 'BloomShotWake' or 'IceShardWake',
+   bloom and .115 or .15,.039,.105)
+  if wake then r.model:SetAttribute('ReleaseTrace',true) end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='OathChallenge'then
   curve(r,'OathChallengeCrown',function(t,u)
    local bearing=math.rad(c.angle)*(.45-.90*t)
    local range=c.radius*(.48+.40*(1-(1-u)^3)-.12*math.abs(2*t-1))
@@ -121,9 +161,9 @@ function Art.strokes(r,c,line,curve)
    end,.095,Color3.fromRGB(243,172,89),.04)
   end
   r.model:SetAttribute('PrimaryIconCue',true);return true
- elseif kind=='IceShard' or kind=='ShatterDart' or kind=='FrostLance' or kind=='GlacialSpike'then
-  local length=kind=='IceShard' and 1.65 or kind=='ShatterDart' and 1.15 or kind=='GlacialSpike' and 5.3 or 3.6
-  local width=kind=='IceShard' and .7 or kind=='ShatterDart' and .3 or kind=='GlacialSpike' and .95 or .42
+ elseif kind=='ShatterDart' or kind=='FrostLance' or kind=='GlacialSpike'then
+  local length=kind=='ShatterDart' and 1.15 or kind=='GlacialSpike' and 5.3 or 3.6
+  local width=kind=='ShatterDart' and .3 or kind=='GlacialSpike' and .95 or .42
   local waist=c.last-c.dir*length*.62
   if kind=='GlacialSpike'then
    local start=spearStart(c)
@@ -282,8 +322,34 @@ function Art.surfaces(r,c)
  if c.shape=='axe'then Art.axe(r,c);return true end
  if not kind then return false end
  r.model:SetAttribute('ArtSilhouette',kind)
- if kind=='OathChallenge' or kind=='MarkBreaker'then
-  -- The gold edge and the equipped arrow each carry the full release.
+ if kind=='OathChallenge' or kind=='MarkBreaker' or kind=='DawnBurst' or kind=='BloomShot'then
+  -- The authored strokes and equipped arrow carry the silhouette.
+ elseif kind=='ShellBurst'then
+  if not r.compact then
+   for side=-1,1,2 do
+    local heading=c.right*side+c.flat*.32
+    local at=c.floor+UP*.42+heading*.45
+    local fragment=S.volume(r,'ShellBurstCasing',at,Vector3.new(.26,.17,.52),
+     Color3.fromRGB(117,102,86),.16,'wedge',Enum.Material.Metal)
+    if fragment then
+     orient(r,fragment,CFrame.lookAt(at,at+heading+UP*.42))
+     local face=r.faces[#r.faces]
+     face.drift=heading*4+UP*2.6;face.fadeDuration=.20
+    end
+   end
+  end
+ elseif kind=='IceShard'then
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local span=c.last-start
+  local length=math.min(2.25,span.Magnitude)
+  if length>.05 then
+   local axis=span.Unit
+   local width=math.min(.53,length*.5)
+   local before=#r.faces+1
+   gem(r,'IceShardFacet',c.last,axis,length,width,r.color,Enum.Material.Ice)
+   for i=before,#r.faces do r.faces[i].fadeDuration=.17 end
+   r.model:SetAttribute('CrystalLength',length);r.model:SetAttribute('CrystalWidth',width)
+  end
  elseif kind=='MagmaSpear'then
   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
   local span=c.last-start
@@ -451,9 +517,9 @@ function Art.surfaces(r,c)
   end
  elseif kind=='ManaCrystal'then
   gem(r,'ManaBoltFacet',c.last,c.dir,1.8,.48,r.color,Enum.Material.SmoothPlastic)
- elseif kind=='FrostLance' or kind=='IceShard' or kind=='ShatterDart' or kind=='GlacialSpike'then
-  local length=kind=='IceShard' and 1.65 or kind=='ShatterDart' and 1.15 or kind=='GlacialSpike' and 5.3 or 3.6
-  local width=kind=='IceShard' and .7 or kind=='ShatterDart' and .3 or kind=='GlacialSpike' and .95 or .42
+ elseif kind=='FrostLance' or kind=='ShatterDart' or kind=='GlacialSpike'then
+  local length=kind=='ShatterDart' and 1.15 or kind=='GlacialSpike' and 5.3 or 3.6
+  local width=kind=='ShatterDart' and .3 or kind=='GlacialSpike' and .95 or .42
   r.model:SetAttribute('CrystalLength',length);r.model:SetAttribute('CrystalWidth',width)
   local core=S.volume(r,'IceLanceVolume',c.last-c.dir*length*.5,Vector3.new(width*.75,width*.75,length),r.color,.4,'wedge',Enum.Material.Ice)
   orient(r,core,CFrame.lookAt(c.last-c.dir*length*.5,c.last))
@@ -491,6 +557,20 @@ function Art.surfaces(r,c)
  end
  return true
 end
+function Art.bloomContact(r,at,cf,size)
+ local count=r.compact and 1 or 3
+ for i=1,count do
+  local angle=(i-1)*math.pi*.55
+  local axis=cf.UpVector*math.cos(angle)+cf.RightVector*math.sin(angle)
+  local side=cf.RightVector*math.cos(angle)-cf.UpVector*math.sin(angle)
+  local first=#r.faces+1
+  leaf(r,at+axis*.20*size,axis,side,(i==1 and 1.07 or .77)*size,'BloomShotPetal')
+  for j=first,#r.faces do
+   r.faces[j].drift=(axis*2.4-cf.LookVector*.5)*size
+   r.faces[j].fadeDuration=.19
+  end
+ end
+end
 function Art.accents(r,c)
  -- Nature magic is a filled leaf, not a hair-thin line or a plain triangle.
  local id=c.id
@@ -506,14 +586,8 @@ function Art.accents(r,c)
     leaf(r,tip-c.dir*length,c.dir,side,length,'EchoArrowLeaf')
    end
   end
- elseif id=='elf.magic_archer.elemental_arrow' or id=='elf.magic_archer.bloom_shot' or id=='elf.magic_archer.warden_arrow' or id=='elf.magic_archer.elemental_pierce'then
-  local n=id=='elf.magic_archer.bloom_shot' and 5 or 1
-  for i=1,n do
-   local angle=i*math.pi*2/n
-   local axis=n==5 and(c.right*math.cos(angle)+UP*math.sin(angle))or c.dir
-   local at=c.last-c.dir*.5+(n==5 and axis*.28 or Vector3.zero)
-   leaf(r,at,axis,n==5 and(c.right*-math.sin(angle)+UP*math.cos(angle))or c.right,n==5 and 1.4 or 1.15,'NatureArrowLeaf')
-  end
+ elseif id=='elf.magic_archer.elemental_arrow' or id=='elf.magic_archer.warden_arrow' or id=='elf.magic_archer.elemental_pierce'then
+  leaf(r,c.last-c.dir*.5,c.dir,c.right,1.15,'NatureArrowLeaf')
  elseif c.shape=='vine'then
   local burst=id=='elf.magic_archer.vine_burst'
   if c.groundShape=="VineTrap" then return end

@@ -74,6 +74,7 @@ local gunRecoil={
  ["dwarf.gunner.scatter_shot"]={gain=1.45,settle=.22},
  ["dwarf.gunner.piercing_round"]={gain=1.20,settle=.23},
  ["dwarf.gunner.blast_step"]={gain=1.30,settle=.23},
+ ["dwarf.gunner.shell_burst"]={gain=1.18,settle=.18},
  ["dwarf.gunner.siege_barrage"]={gain=1.25,settle=.30},
 }
 local bombPoses={
@@ -204,6 +205,16 @@ local function gunner(d,kind,age)
   angles.leftHip+=v(-13*settle,0,5*settle)
   angles.leftKnee+=v(16*settle)
   angles.torso+=v(10*settle,0,-4*settle)
+ end
+ if d.id=="dwarf.gunner.shell_burst" then
+  -- Lift the left-hand tube from a crouch and lower it after the single shell.
+  local sight=smooth((phase-.16)/.42)*(1-smooth((phase-.68)/.32))
+  local settle=pulse>0 and smooth((since-.045)/.065)*(1-smooth((since-.11)/.16)) or 0
+  angles.right+=v(24*sight-29*settle,-8*sight,8*kick)
+  angles.elbow+=v(-21*sight-16*kick+20*settle)
+  angles.torso+=v(13*sight-8*kick+15*settle,0,7*kick)
+  angles.leftKnee+=v(22*sight+25*kick)
+  angles.rightKnee+=v(17*settle)
  end
  if d.id=="dwarf.gunner.blast_step" then
   -- Take the backward skid on the rear leg while the offhand fires forward.
@@ -376,6 +387,7 @@ function Motion.sample(classId,d,age,rigType)
  if type(age)~="number" or age~=age then return nil end
  local profile=Presentation.get(d);if not profile then return nil end
  local kind=profile.motion
+ if d.id=="knight.paladin.dawn_burst" then kind="chop" end
  local bomb=Bomb.get(d.id)
  if bomb then return bombToss(d,age,bomb) end
  if d.branch=="gunner" then return gunner(d,d.form=="cone" and "shoot" or kind,age) end
@@ -551,6 +563,17 @@ function Motion.sample(classId,d,age,rigType)
   offset(pose,"torso",v(-5,17,6)*gather+v(9,-15,-8)*finish)
   offset(pose,"left",v(13,9,-12)*gather+v(-8,-6,13)*finish)
   offset(pose,"leftKnee",v(12*gather+16*finish))
+ elseif d.id=="knight.paladin.dawn_burst" then
+  -- Gather behind the shield, then drop the sword into a planted stance.
+  local phase=age/contact
+  local load=smooth(phase/.49)*(1-smooth((phase-.72)/.28))
+  local plant=smooth((age-contact+.024)/.071)*(1-smooth((age-contact-.047)/.18))
+  offset(pose,"left",v(32,-12,-21)*load+v(-18,12,18)*plant)
+  offset(pose,"leftElbow",v(24*load-9*plant))
+  offset(pose,"right",v(25,-10,8)*load+v(-16,6,-11)*plant)
+  offset(pose,"torso",v(-9,-12,5)*load+v(24,9,-6)*plant)
+  offset(pose,"leftKnee",v(17*load+35*plant))
+  offset(pose,"rightKnee",v(21*load+18*plant))
  elseif d.id=="knight.paladin.dawn_spiral" then
   local phase=age/contact
   local coil=smooth(phase/.59)*(1-smooth((phase-.69)/.31))

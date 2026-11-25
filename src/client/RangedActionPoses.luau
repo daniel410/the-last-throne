@@ -44,6 +44,7 @@ local bow = {
     vineBurst=stance(v(7,-24,12), 14, 29, 30),
     stormArrow=stance(v(-23,13,-8), -9, 26, 32),
     weave=stance(v(-6,24,-14), 25, 19, 28),
+    bloom=stance(v(9,-12,16), 33, 25, 23),
     warden=stance(v(-3,16,-17), 18, 22, 24),
     canopy=stance(v(-24,20,-15), 34, 30, 38),
 }
@@ -68,6 +69,7 @@ local function bowStance(d)
     if d.id=="elf_pinning_shot" then return bow.pin end
     if d.id=="elf.magic_archer.elemental_pierce" then return bow.elementalPierce end
     if d.id=="elf.magic_archer.warden_arrow" then return bow.warden end
+    if d.id=="elf.magic_archer.bloom_shot" then return bow.bloom end
     if d.form=="line" then return bow.pierce end
     if d.branch=="magic_archer" then return bow.weave end
     return d.id and bow.sight or bow.field
@@ -191,6 +193,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"elbow",v(-33,0,0)*recoil)
         add(pose,"leftKnee",v(12,0,0)*recoil)
     end
+    if s == bow.bloom then
+        -- The bow stays on aim as the empty draw hand opens above the shoulder.
+        add(pose,"right",v(8,-12,16)*load+v(21,12,-26)*recoil)
+        add(pose,"elbow",v(-19,0,0)*load+v(23,0,0)*recoil)
+        add(pose,"torso",v(-6,5,9)*recoil)
+        add(pose,"leftKnee",v(13*recoil,0,0))
+    end
     if d.id=="elf_retreating_shot" then
         -- Leave the bow on the sight line while the rear leg takes the step.
         add(pose,"torso",v(-11,-4,8)*load+v(12,6,-4)*recoil)
@@ -288,6 +297,7 @@ local spells = {
     ring=gesture(v(-11,-33,-14),v(13,20,33),v(8,-29,-7),v(18,19,37),22),
     tidalRing=gesture(v(-9,-31,20),v(-16,25,32),v(13,-28,9),v(27,10,43),23),
     frost=gesture(v(17,19,-14),v(35,-19,-24),v(-8,16,-8),v(25,-15,3),16),
+    iceShard=gesture(v(10,-17,26),v(24,29,-12),v(12,-18,8),v(15,-23,-20),19),
     glacialSpike=gesture(v(-26,24,-18),v(31,-28,-12),v(15,10,6),v(42,-16,-10),27),
     storm=gesture(v(29,-20,19),v(48,13,27),v(-14,-18,10),v(47,-18,-14),20),
     lightningLine=gesture(v(38,-17,27),v(19,34,-34),v(-9,-23,12),v(43,-12,-28),24),
@@ -340,6 +350,7 @@ local function spellGesture(d,profile)
         return spells.ring
     end
     if d.id=="mage.cryo.shatter_dart" then return spells.shatter end
+    if d.id=="mage.cryo.ice_shard" then return spells.iceShard end
     if d.id=="mage.cryo.glacial_spike" then return spells.glacialSpike end
     if d.id:find("dart",1,true) then return spells.dart end
     if cue.effect=="frost" then return spells.frost end
@@ -431,6 +442,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(24,0,0)*follow)
         add(pose,"left",v(-12,-8,-14)*follow)
         add(pose,"torso",v(-5,8,-3)*follow)
+    end
+    if s == spells.iceShard then
+        -- Form one shard beside the staff and cast it low with the free hand.
+        add(pose,"leftElbow",v(-18*wind+26*follow,0,0))
+        add(pose,"left",v(13,16,-20)*wind+v(29,-17,-20)*follow)
+        add(pose,"torso",v(10,9,-7)*follow)
+        add(pose,"leftKnee",v(16*follow,0,0))
     end
     if s == spells.glacialSpike then
         -- Cradle the crystal by the staff, then lift the palm through the cast.
