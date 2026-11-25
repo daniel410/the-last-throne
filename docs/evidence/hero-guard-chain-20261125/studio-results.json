@@ -1,0 +1,379 @@
+{
+  "baselineVersion": "0.115.114",
+  "candidateVersion": "0.115.116",
+  "focus": {
+    "baseline": {
+      "budget": {
+        "self": {
+          "beams": 143,
+          "faces": 160,
+          "particles": 32,
+          "glows": 57
+        },
+        "ally": {
+          "beams": 135,
+          "faces": 115,
+          "particles": 0,
+          "glows": 0
+        }
+      },
+      "failures": [
+        "R6 counter retracts its shield",
+        "R6 rifle lowers after firing",
+        "R15 counter retracts its shield",
+        "R15 rifle lowers after firing",
+        "rooting release follows through over the lead foot",
+        "chain closes and extends the free elbow",
+        "server sends independently clipped root lanes",
+        "counter has one rising cut and a brief shield edge",
+        "counter avoids stacking the legacy shield plate",
+        "rifle has a single tracer and a local muzzle accent",
+        "rifle avoids a second legacy tracer",
+        "rooting fan has two growing spans per visible lane",
+        "the first connection lights before the second",
+        "chain advances in server order",
+        "staggered chain uses a single set of world strokes",
+        "chain skips generic muzzle flash and particles",
+        "point-blank cover clips the visible rifle line safely",
+        "counter has one rising cut and a brief shield edge",
+        "counter avoids stacking the legacy shield plate",
+        "rifle has a single tracer and a local muzzle accent",
+        "rifle avoids a second legacy tracer",
+        "rooting fan has two growing spans per visible lane",
+        "the first connection lights before the second",
+        "chain advances in server order",
+        "point-blank cover clips the visible rifle line safely"
+      ],
+      "pass": false,
+      "checks": 43
+    },
+    "candidate": {
+      "budget": {
+        "self": {
+          "beams": 55,
+          "faces": 0,
+          "particles": 0,
+          "glows": 0
+        },
+        "ally": {
+          "beams": 38,
+          "faces": 0,
+          "particles": 0,
+          "glows": 0
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 53
+    }
+  },
+  "overlap": {
+    "baseline": {
+      "overlap": {
+        "beams": 135,
+        "redSegments": 16,
+        "surfaces": 115,
+        "particles": 8,
+        "glows": 24
+      },
+      "failures": [
+        "Four releases retain their core shapes with no extra glow or particles"
+      ],
+      "pass": false,
+      "checks": 3
+    },
+    "candidate": {
+      "overlap": {
+        "beams": 40,
+        "redSegments": 16,
+        "surfaces": 0,
+        "particles": 0,
+        "glows": 0
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 3
+    },
+    "expectedDamageNumber": 42
+  },
+  "passingRegressionSuiteCount": 22,
+  "passingRegressionChecks": 253731,
+  "regression": {
+    "hero-directional-releases": {
+      "report": {
+        "overlap": {
+          "beams": 31,
+          "redSegments": 16,
+          "surfaces": 19,
+          "particles": 0,
+          "glows": 0
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 72
+      },
+      "status": "pass"
+    },
+    "hero-release-shapes": {
+      "report": {
+        "failures": [],
+        "checks": 188
+      },
+      "status": "pass"
+    },
+    "hero-shield-grant": {
+      "report": {
+        "checks": 139,
+        "partySkills": 6,
+        "failures": [],
+        "shieldSkills": 13,
+        "pass": true
+      },
+      "status": "pass"
+    },
+    "hero-skills": {
+      "report": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      },
+      "status": "pass"
+    },
+    "ranged-action-poses": {
+      "report": {
+        "checks": 158,
+        "pass": true,
+        "maxRedrawJumpDegrees": 0.011101223528385162,
+        "actions": 132,
+        "rigs": [
+          "R6",
+          "R15"
+        ]
+      },
+      "status": "pass"
+    },
+    "melee-action-beats": {
+      "report": {
+        "rigActions": 140,
+        "contacts": 204,
+        "pass": true,
+        "checks": 2147
+      },
+      "status": "pass"
+    },
+    "hero-skill-impact": {
+      "report": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      },
+      "status": "pass"
+    },
+    "hero-vfx-priority": {
+      "report": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      },
+      "status": "pass"
+    },
+    "hero-skill-direction": {
+      "report": {
+        "pass": true,
+        "checks": 31
+      },
+      "status": "pass"
+    },
+    "hero-skill-windup": {
+      "report": {
+        "styles": {
+          "CrystalTips": 9,
+          "WardPetals": 3,
+          "WaterCurl": 2,
+          "SwordPoint": 2,
+          "RisingGrit": 15,
+          "BoreBrackets": 4,
+          "ShieldBrace": 10,
+          "GatheringFork": 4,
+          "SightDraw": 14,
+          "LeafDraw": 12,
+          "MortarBrace": 5,
+          "DrawnEdge": 17,
+          "AxeCoil": 5,
+          "HighDraw": 2,
+          "EmberCurl": 7,
+          "FuseCurl": 4
+        },
+        "skills": 115,
+        "pass": true,
+        "checks": 1400
+      },
+      "status": "pass"
+    },
+    "hero-windup-interrupt": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 217
+      },
+      "status": "pass"
+    },
+    "hero-mark-break-releases": {
+      "report": {
+        "overlap": {
+          "beams": 9,
+          "active": 4,
+          "warningSegments": 16,
+          "surfaces": 12,
+          "particles": 0,
+          "glows": 0
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 94
+      },
+      "status": "pass"
+    },
+    "vfx-art-hero-fixes": {
+      "status": "pass",
+      "report": {
+        "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+        "failures": [],
+        "pass": true,
+        "checks": 2211
+      },
+      "run": "standalone with updated Rooting Fan shape checks"
+    },
+    "skill-vfx-individual": {
+      "report": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 307
+      },
+      "status": "pass"
+    },
+    "hero-mark-impact": {
+      "report": {
+        "checks": 341,
+        "skills": 22,
+        "pass": true,
+        "failures": []
+      },
+      "status": "pass"
+    },
+    "hero-mark-application": {
+      "report": {
+        "failures": [],
+        "checks": 432
+      },
+      "status": "pass"
+    },
+    "projectile-vfx-timing": {
+      "report": {
+        "pass": true,
+        "checks": 312
+      },
+      "status": "pass"
+    },
+    "rpg-element-motion": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 42
+      },
+      "status": "pass"
+    },
+    "hero-control-attacks": {
+      "report": {
+        "failures": [],
+        "checks": 178
+      },
+      "status": "pass"
+    },
+    "hero-contact-weight": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 53
+      },
+      "status": "pass"
+    },
+    "hero-burst-contact": {
+      "report": {
+        "castBudgets": {
+          "self": {
+            "beams": 11,
+            "glows": 0,
+            "particles": 0,
+            "surfaces": 18
+          },
+          "ally": {
+            "beams": 9,
+            "glows": 0,
+            "particles": 0,
+            "surfaces": 16
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 56
+      },
+      "status": "pass"
+    },
+    "skill-vfx-art": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 44
+      },
+      "status": "pass"
+    }
+  },
+  "knownFailure": {
+    "suite": "rpg-vfx-gap",
+    "reason": "Caldera Central Plume has no BillboardGui at line 30",
+    "baseline": {
+      "failures": [
+        "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30: assertion failed!\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+      ],
+      "pass": false,
+      "checks": 16
+    },
+    "candidate": {
+      "failures": [
+        "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30: assertion failed!\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+      ],
+      "pass": false,
+      "checks": 16
+    }
+  },
+  "static": {
+    "packagedRoleAndArrivalChecks": 336,
+    "CPUChecks": 15319,
+    "CPUSuites": [
+      "advanced-skills",
+      "skill-effects",
+      "skill-stat-preview"
+    ]
+  }
+}

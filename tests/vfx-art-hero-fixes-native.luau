@@ -36,11 +36,23 @@ local ok,err=xpcall(function()
  local y=body.Position.Y;Hero.step(workspace:GetServerTimeNow()+.15)
  check(body.Position.Y<y-.3,'shell body descends');check((tail.Attachment0.WorldPosition-tail.Attachment1.WorldPosition).Magnitude<.8,'mortar wake remains short')
  for _,id in ipairs({'elf.magic_archer.vine_trap','elf.magic_archer.rooting_fan','elf.magic_archer.vine_burst'})do
-  local m=cast(id);check(m:FindFirstChild('GroundRootBody',true)and m:FindFirstChild('RootThorn',true),'root has grounded branches and thorns '..id)
+  local m=cast(id)
   check(not m:FindFirstChild('VineSurface',true),'large spring silhouette removed '..id)
-  local root=assert(m:FindFirstChild('GroundRootBody',true));local tip=assert(m:FindFirstChild('RootAscendingTip',true))
-  check(root.Size.X>=.22 and root.Color.G>.6,'ground root retains readable body width and contrast '..id)
-  check(tip.Color.G>.85 and tip.Material==Enum.Material.Neon,'root tip has a local mint contrast cue '..id)
+  if id=='elf.magic_archer.rooting_fan'then
+   local root=assert(m:FindFirstChild('RootingFanRunner',true))
+   local shoot=assert(m:FindFirstChild('RootingFanShoot',true))
+   check(root.Width0>=.22 and root.Color.Keypoints[1].Value.G>.6,'growing root retains readable body width and contrast')
+   check(shoot.Color.Keypoints[1].Value.G>.85 and shoot.LightEmission>.5,'root shoot retains mint contrast')
+   check(not shoot.Enabled,'root shoot waits for the ground runner')
+   Hero.step(workspace:GetServerTimeNow()+.16)
+   check(shoot.Enabled and shoot.Attachment1.WorldPosition.Y-shoot.Attachment0.WorldPosition.Y>.8,
+    'root shoot grows upward from the ground runner')
+  else
+   check(m:FindFirstChild('GroundRootBody',true)and m:FindFirstChild('RootThorn',true),'root has grounded branches and thorns '..id)
+   local root=assert(m:FindFirstChild('GroundRootBody',true));local tip=assert(m:FindFirstChild('RootAscendingTip',true))
+   check(root.Size.X>=.22 and root.Color.G>.6,'ground root retains readable body width and contrast '..id)
+   check(tip.Color.G>.85 and tip.Material==Enum.Material.Neon,'root tip has a local mint contrast cue '..id)
+  end
  end
  local steam=cast('mage.pyro.steam_burst');local vapor=assert(steam:FindFirstChild('SteamVapor',true))
  check(not steam:FindFirstChild('WaterVolume',true)and not steam:FindFirstChild('SteamJet',true),'steam does not reuse a water mass or white rods')
