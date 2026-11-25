@@ -75,13 +75,19 @@ function Art.strokes(r,c,line,curve)
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='ShellBurst'then
   local at=c.floor+UP*.16
+  local camera=workspace.CurrentCamera
+  local side=camera and camera.CFrame.RightVector or c.right
+  side=Vector3.new(side.X,0,side.Z)
+  side=side.Magnitude>.01 and side.Unit or c.right
   local jet=line(r,'ShellBurstJet',function(u)
    local swell=1-(1-math.min(u*r.life/.095,1))^3
-   return at+UP*(.16+swell*.58),at+UP*(.92+swell*3.62)-c.flat*(swell*.65)
+   -- Leave the base on the impact and show the top alongside the target.
+   return at+UP*(.16+swell*.58),
+    at+UP*(.92+swell*3.62)+(side*1.85-c.flat*.65)*swell
   end,.64,r.hot,.15,true)
   if jet then jet.fadeDuration=.17 end
-  for side=-1,1,2 do
-   local heading=c.right*side*.88+c.flat*.35
+  for wing=-1,1,2 do
+   local heading=c.right*wing*.88+c.flat*.35
    local blast=line(r,'ShellBurstPressure',function(u)
     local t=1-(1-math.min(u*r.life/.12,1))^3
     return at+heading*c.radius*(.1+.24*t),
