@@ -2,7 +2,7 @@
 
 2026-11-24 Toronto · TLT-061/DW-03 · TLT-065/GW-03 · TLT-062/FV-03 · TLT-063/EC-03 · TLT-064/HG-03 · G5 진행 중
 
-[제작표와 RPG 사례](../../research/2026-11-24-epic-third-chapter-rescue-routes.md) · [기준 0.115.102](../hero-mobile-releases-20261124/build.json) · [후보 0.115.103](build.json) · [배치 계산 결과](static-results.txt)
+[제작표와 RPG 사례](../../research/2026-11-24-epic-third-chapter-rescue-routes.md) · [기준 0.115.102](../hero-mobile-releases-20261124/build.json) · [후보 0.115.103](build.json) · [배치 계산 결과](static-results.txt) · [동일 카메라 비교](comparison.jpg) · [Studio 측정](studio-results.json)
 
 ## 빌드와 정적 검증
 
@@ -12,9 +12,14 @@
 
 ## Studio와 수용
 
-기준 캠페인 회귀, 기준 카메라·보행, 별도 포트의 후보 카메라·보행 실행은 모두 Studio 준비 단계에서 시간 초과했다. 시작 로그는 이미 다른 Studio 프로세스 11개가 열려 있음을 기록했다. 기존 세션은 그대로 두었다. 카메라 비교, R15 자동 왕복, 엔진 내 겹침 및 캠페인 회귀는 미검증이다. 게시 클라이언트, 터치 실기기, 파티 스트리밍, 전투 카메라, 사용자 미술 수용도 미검증이다.
+11월 25일에 고정 Place 두 개를 기본 실행기에서 순차 실행해 전날의 Studio 준비 시간 초과 이후 검증을 재개했다. 양쪽 Place SHA-256이 빌드 기록과 일치했고, 기존 Studio 세션은 유지했다.
 
-환경 아트와 QA는 Studio에서 다섯 지점의 같은 카메라 비교와 왕복을 먼저 수행한다. Gloamwood의 목재 절단면과 묘지 난간이 야간 접근에서 읽히는지, Ember Caldera의 난간이 기존 구조 동작을 가리는지 확인한다.
+- 새 조립체 5개는 고정 비충돌 장식 44부품으로 구성되며 각 외곽 중심과 모서리 25점의 바닥 오차는 0스터드였다. 목표 경로와 외곽의 최소 수평 이격은 10.69스터드였다. 기존 지물 55개의 조사점, 피벗, 부품 수와 외곽 치수가 일치했다. 새 조립체에서 충돌 가능한 주변 지물과 기존 퀘스트 랜드마크에 대한 외곽 검사도 각각 통과했다.
+- 점프를 끈 R15가 양쪽에서 다섯 조사점 앞 16스터드를 왕복했다. 후보의 최대 수평 도착 오차는 2.26스터드였다.
+- 캠페인 회귀는 양쪽에서 9,310건씩 통과했다. 사건 82개와 단계 246개를 전개했으며 바닥·보행 표본 3,981개에서 차단은 0건이었다. 전체 부품 순증 44개는 새 조립체의 부품 수와 일치했다.
+- 지역 조명을 적용한 접근·귀환 카메라 10쌍에서 Deepwood의 열린 관측 홈, Frozen Vale의 보급길 표지, Ember Caldera의 내화벽돌 위 난간, Haunted Graveyard의 밝은 석재 난간을 확인했다. Gloamwood는 접근에서 기존 지도 차양 옆으로 선반 끝이 보이고, 귀환 방향에서는 차양 기둥이 선반 일부를 가렸다. 화면 캡처에서는 상호작용 UI를 숨겼다.
+
+환경 아트와 QA는 Gloamwood에서 실제 입력으로 선반의 첫 발견 지점을 확인한다. 게시 클라이언트, 터치 실기기, 파티 스트리밍, 전투 카메라, 사용자 미술 수용은 미검증이다.
 
 ## 재현
 
@@ -31,6 +36,8 @@ work=$(mktemp -d)
 cat "$evidence/camera-setup.luau" \
     docs/evidence/epic-approach-readability-20261118/capture-approaches.luau \
     docs/evidence/epic-second-chapter-landmarks-20261120/walk-approaches.luau > "$work/audit.luau"
+sed 's/FOURTH_CHAPTER_LANDMARK_OVERLAP_CLEAR/THIRD_CHAPTER_LANDMARK_OVERLAP_CLEAR/' \
+    docs/evidence/epic-fourth-chapter-maintenance-routes-20261125/check-landmark-overlap.luau >> "$work/audit.luau"
 # Copy the version-specific expansion scripts to "$work" before continuing.
 for version in 0.115.102 0.115.103; do
     place="$PWD/builds/$version/TheLastThrone-$version.rbxlx"
