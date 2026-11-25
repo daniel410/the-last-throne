@@ -155,7 +155,8 @@ local ok, errorText = xpcall(function()
 
     FX.isOtherHero = function() return true end
     local shot = FX.skill(nil, bow.id, origin, target, 1, {}, origin+direction)
-    check(shot and shot:GetAttribute("ReleaseTrace") and #named(shot, "HeavyDrawFletching")==0,
+    local _, beamCount = FX.count()
+    check(shot and shot:GetAttribute("ReleaseTrace") and beamCount==1,
         "Party view preserves the arrow path with one beam")
     local hit = FX.contact(target, "mage", ice.id, direction, 1, true)
     local splits = named(hit, "ShatterDartSplinters")

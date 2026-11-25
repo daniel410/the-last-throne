@@ -1229,6 +1229,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    if wake then
     wake.fadeDuration=.16
     r.model:SetAttribute("ReleaseTrace",true)
+    r.model:SetAttribute("PrimaryIconCue",true)
    end
    if not r.compact then
     local span=math.min(length,3.3)
