@@ -59,7 +59,8 @@ local ok,err=xpcall(function()
  check(not vapor.Enabled and vapor.Rate==0 and vapor.EmissionDirection==Enum.NormalId.Top and vapor.Lifetime.Max<=.32,'steam is a short bounded upward burst')
  for _,id in ipairs({'mage.pyro.cinder_ring','mage.pyro.ember_step','mage.pyro.searing_ward'})do
   local m=cast(id)
-  local flame=id=='mage.pyro.ember_step' and 'EmberDepartureEdge' or 'AreaFlameTongue'
+  local flame=id=='mage.pyro.ember_step' and 'EmberDepartureEdge'
+   or id=='mage.pyro.searing_ward' and 'SearingWardFront' or 'AreaFlameTongue'
   check(m:FindFirstChild(flame,true)and not m:FindFirstChild('FlameVolume',true),'authored flame replaces upright panels '..id)
  end
  local lava=cast('mage.pyro.lava_eruption');check(lava:FindFirstChild('LavaVent',true)and lava:FindFirstChild('MoltenSeam',true),'lava combines hot seams and rising vents')
