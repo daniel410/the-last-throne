@@ -7,15 +7,17 @@ local function outpostSightRest(pal, part, beam)
 	local clay = pal.ground:Lerp(C(121, 96, 67), .62)
 	local rock = pal.rock:Lerp(C(143, 133, 100), .52)
 	local wood = pal.wood:Lerp(C(151, 106, 67), .71)
-	part('TerracePackedShoulder', V(5.8, .72, 3.5), V(0, .13, .03), clay, M.Ground, 'Corner', V(0, .13, 0))
+	part('TerracePackedShoulder', V(7.4, .72, 4.6), V(0, .13, .03), clay, M.Ground, 'Corner', V(0, .13, 0))
 	for _, x in ipairs({-1.45, 1.45}) do
+		part('TerraceExposedSett', V(2.56, .42, 2.14), V(x, .13, -.62), rock, M.Cobblestone,
+			'Wedge', V(0, math.pi, 0))
 		part('SightRestStoneSeat', V(1.46, .66, 1.49), V(x, .41, .43), rock, M.Cobblestone)
 		part('SightRestUpright', V(.55, 1.44, .66), V(x, 1.41, .43), wood, M.Wood)
 		beam('SightRestBrace', V(x, .72, -.84), V(x, 1.68, .43), .31, wood, M.Wood)
 	end
-	part('SightRestCrosspiece', V(3.92, .25, .72), V(0, 2.18, .43), wood, M.WoodPlanks)
-	for _, x in ipairs({-.47, .47}) do
-		part('BearingNotchCheek', V(.26, .32, .62), V(x, 2.44, .43), pal.trim:Lerp(wood, .45), M.Wood)
+	part('SightRestCrosspiece', V(3.92, .35, .72), V(0, 2.18, .43), wood, M.WoodPlanks)
+	for _, x in ipairs({-.66, .66}) do
+		part('BearingNotchCheek', V(.44, .48, .74), V(x, 2.59, .43), pal.trim:Lerp(wood, .45), M.Wood)
 	end
 end
 
@@ -33,6 +35,12 @@ local function refugeLanternReturn(pal, part, beam)
 		part('RecoveredLanternPeg', V(.23, .22, .66), V(x, 1.94 + x * .42, .08), iron, M.CorrodedMetal)
 		part('RecoveredLanternPegLip', V(.23, .25, .16), V(x, 2.08 + x * .42, -.23), iron, M.CorrodedMetal)
 	end
+	-- A fixed shelter lamp marks the shelf while the recovered lantern remains a quest object.
+	local housing = iron:Lerp(root, .45)
+	beam('ShelfLampHanger', V(1.08, 2.38, .45), V(1.08, 3.40, .08), .22, housing, M.Metal)
+	part('ShelfLampBase', V(.66, .20, .65), V(1.08, 2.65, -.02), housing, M.Metal)
+	part('ShelfLampPane', V(.43, .47, .44), V(1.08, 2.98, -.02), C(219, 171, 96), M.Neon)
+	part('ShelfLampHood', V(.72, .24, .70), V(1.08, 3.32, -.02), housing, M.Metal)
 end
 
 local function ravineSupplyBank(pal, part)
@@ -40,10 +48,11 @@ local function ravineSupplyBank(pal, part)
 	local snow = pal.ground:Lerp(C(212, 232, 238), .76)
 	local ice = stone:Lerp(C(127, 180, 192), .50)
 	local wood = pal.wood:Lerp(C(143, 109, 82), .61)
-	part('RavineBankFoot', V(6.19, .86, 3.67), V(0, .18, .12), ice, M.Glacier, 'Corner', V(0, -.13, 0))
-	part('ExposedRavineCut', V(4.77, 1.40, 2.80), V(-.33, .62, .31), stone, M.Slate, 'Wedge', V(0, math.pi / 2, 0))
-	part('GlazedRavineSeam', V(3.82, .27, .47), V(-.52, .55, -.85), ice, M.Glacier, nil, V(0, 0, -.12))
-	part('RavinePackedDrift', V(3.73, .57, 2.53), V(-.82, 1.00, .43), snow, M.Snow, 'Wedge', V(0, math.pi / 2, 0))
+	part('RavineBankFoot', V(7.15, .86, 4.17), V(0, .18, .12), ice, M.Glacier, 'Corner', V(0, -.13, 0))
+	part('ExposedRavineCut', V(5.72, 1.40, 3.08), V(-.33, .62, .31), stone, M.Slate, 'Wedge', V(0, math.pi / 2, 0))
+	part('GlazedRavineSeam', V(4.80, .36, .51), V(-.63, .54, -1.20), ice, M.Glacier, nil, V(0, 0, -.10))
+	part('RavinePackedDrift', V(4.23, .67, 2.67), V(-.90, 1.03, .49), snow, M.Snow, 'Wedge', V(0, math.pi / 2, 0))
+	part('RavineDriftToe', V(2.30, .46, 1.80), V(-2.13, .27, -.70), snow, M.Snow, 'Corner', V(0, -.33, 0))
 	part('SupplyStakeSocket', V(1.20, .54, 1.17), V(1.44, .75, .30), stone, M.Slate)
 	part('SupplyBankStake', V(.43, 2.18, .49), V(1.44, 1.82, .30), wood, M.Wood, nil, V(.07, 0, -.12))
 	part('SupplyStakeReflectiveCap', V(.59, .28, .59), V(1.60, 2.76, .38), snow:Lerp(ice, .32), M.Slate)
@@ -55,6 +64,9 @@ local function mineRescueRailSeat(pal, part, beam)
 	local iron = C(109, 103, 94)
 	part('EvacuationAshBedding', V(6.06, .69, 3.42), V(0, .13, .06), basalt, M.Basalt, 'Corner', V(0, .1, 0))
 	for _, x in ipairs({-1.68, 1.68}) do
+		part('RescueRailBasaltSill', V(2.10, .50, 2.44), V(x, .23, .12), basalt, M.Basalt)
+		part('RescueRailRefractoryToe', V(1.74, .32, .90), V(x, .37, -.90), firebrick, M.Brick,
+			'Wedge', V(0, math.pi, 0))
 		part('RescueRailMasonryPier', V(1.28, .93, 1.51), V(x, .56, .26), firebrick, M.Brick)
 		part('RescueRailShoe', V(.96, .26, .86), V(x, 1.1, .26), iron, M.CorrodedMetal)
 		part('RescueRailStanchion', V(.40, 1.36, .41), V(x, 1.71, .26), iron, M.Metal)
@@ -68,8 +80,10 @@ local function fortressStoneRailSeat(pal, part)
 	local stone = pal.rock:Lerp(C(141, 140, 131), .62)
 	local coping = pal.trim:Lerp(C(191, 178, 152), .64)
 	part('LandingSettBed', V(5.77, .68, 3.58), V(0, .12, .04), stone, M.Cobblestone, 'Corner', V(0, -.10, 0))
-	part('LandingRailPlinth', V(4.89, .60, 1.82), V(0, .49, .40), stone, M.Limestone)
+	part('LandingRailPlinth', V(4.89, .60, 2.36), V(0, .39, .23), stone, M.Limestone)
 	for _, x in ipairs({-1.59, 1.59}) do
+		part('LandingRakedButtress', V(1.39, .99, 2.07), V(x, .66, -.48), stone:Lerp(coping, .31),
+			M.Limestone, 'Wedge')
 		part('WornLandingRailPier', V(1.08, 1.46, 1.07), V(x, 1.40, .40), stone, M.Limestone)
 		part('LandingPierShoulder', V(1.32, .32, 1.29), V(x, 2.06, .40), coping, M.Limestone)
 	end
@@ -81,7 +95,7 @@ end
 
 return {
 	['DW-03'] = {goal = 'exp_2', step = 2, name = 'OutpostSightRest', side = 14, compose = outpostSightRest},
-	['GW-03'] = {goal = 'exp_1', step = 2, name = 'RefugeLanternReturn', side = 14, compose = refugeLanternReturn},
+	['GW-03'] = {goal = 'exp_1', step = 2, name = 'RefugeLanternReturn', side = -14, compose = refugeLanternReturn},
 	['FV-03'] = {goal = 'exp_1', step = 2, name = 'RavineSupplyBank', side = -14, compose = ravineSupplyBank},
 	['EC-03'] = {goal = 'exp_1', step = 2, name = 'MineRescueRailSeat', side = 14, compose = mineRescueRailSeat},
 	['HG-03'] = {goal = 'exp_2', step = 2, name = 'FortressStoneRailSeat', side = -14, compose = fortressStoneRailSeat},
