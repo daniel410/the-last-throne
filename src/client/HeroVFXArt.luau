@@ -77,9 +77,9 @@ function Art.strokes(r,c,line,curve)
   local at=c.floor+UP*.16
   local jet=line(r,'ShellBurstJet',function(u)
    local swell=1-(1-math.min(u*r.life/.095,1))^3
-   return at+UP*(.16+swell*.58),at+UP*(.92+swell*2.0)
-  end,.50,r.hot,.10,true)
-  if jet then jet.fadeDuration=.15 end
+   return at+UP*(.16+swell*.58),at+UP*(.92+swell*3.62)-c.flat*(swell*.65)
+  end,.64,r.hot,.15,true)
+  if jet then jet.fadeDuration=.17 end
   for side=-1,1,2 do
    local heading=c.right*side*.88+c.flat*.35
    local blast=line(r,'ShellBurstPressure',function(u)
