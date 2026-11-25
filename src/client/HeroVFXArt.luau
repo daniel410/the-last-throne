@@ -341,7 +341,7 @@ function Art.surfaces(r,c)
  elseif kind=='IceShard'then
   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
   local span=c.last-start
-  local length=math.min(2.25,span.Magnitude)
+  local length=math.min(2.08,span.Magnitude)
   if length>.05 then
    local axis=span.Unit
    local width=math.min(.53,length*.5)
@@ -558,9 +558,9 @@ function Art.surfaces(r,c)
  return true
 end
 function Art.bloomContact(r,at,cf,size)
- local count=r.compact and 1 or 3
+ local count=r.compact and 1 or 5
  for i=1,count do
-  local angle=(i-1)*math.pi*.55
+  local angle=(i-1)*math.pi*2/count
   local axis=cf.UpVector*math.cos(angle)+cf.RightVector*math.sin(angle)
   local side=cf.RightVector*math.cos(angle)-cf.UpVector*math.sin(angle)
   local first=#r.faces+1
