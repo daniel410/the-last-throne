@@ -18,6 +18,8 @@ local types={
  ['dwarf.iron_axe.breaker_throw']='BreakerThrow',['elf.marksman.mark_breaker']='MarkBreaker',
  ['knight.paladin.dawn_burst']='DawnBurst',['dwarf.gunner.shell_burst']='ShellBurst',
  ['elf.magic_archer.bloom_shot']='BloomShot',
+ ['knight.steel_knight.guardian_counter']='GuardianCounter',
+ ['dwarf.gunner.piercing_round']='PiercingRound',
 }
 function Art.kind(id)return types[id]end
 local function orient(r,p,cf)
@@ -101,6 +103,36 @@ function Art.strokes(r,c,line,curve)
   local wake=releaseWake(r,c,line,bloom and 'BloomShotWake' or 'IceShardWake',
    bloom and .115 or .15,.039,.105)
   if wake then r.model:SetAttribute('ReleaseTrace',true) end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='GuardianCounter'then
+  curve(r,'GuardianCounterEdge',function(t,u)
+   local bearing=math.rad(c.angle)*(.43-.86*t)
+   local reach=c.radius*(.49+.29*math.sin(t*math.pi)+.08*u)
+   return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach
+    +UP*(-1.03+2.80*t+.25*math.sin(t*math.pi))
+  end,r.compact and 4 or 6,.36,r.hot,true)
+  local guard=c.first+c.flat*1.45-c.right*.74
+  for side=-1,1,2 do
+   local beat=line(r,'GuardianCounterGuard',function(u)
+    local at=guard+c.flat*(.42*math.min(u*4,1))
+    return at+UP*.45,at+c.right*side*.70-UP*.49
+   end,.19,r.color,.08,true)
+   if beat then beat.fadeDuration=.087 end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='PiercingRound'then
+  local wake=releaseWake(r,c,line,'PiercingRoundTracer',.18,.044,.095)
+  if wake then
+   r.model:SetAttribute('ReleaseTrace',true)
+   if not r.compact then
+    local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+    local delta=c.last-start
+    local flash=line(r,'PiercingRoundMuzzle',function(u)
+     return start,start+delta.Unit*math.min(delta.Magnitude,.84)*(1-.36*u)
+    end,.38,r.hot,.07,true)
+    if flash then flash.fadeDuration=.065 end
+   end
+  end
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='OathChallenge'then
   curve(r,'OathChallengeCrown',function(t,u)
@@ -328,7 +360,8 @@ function Art.surfaces(r,c)
  if c.shape=='axe'then Art.axe(r,c);return true end
  if not kind then return false end
  r.model:SetAttribute('ArtSilhouette',kind)
- if kind=='OathChallenge' or kind=='MarkBreaker' or kind=='DawnBurst' or kind=='BloomShot'then
+ if kind=='OathChallenge' or kind=='MarkBreaker' or kind=='DawnBurst' or kind=='BloomShot'
+  or kind=='GuardianCounter' or kind=='PiercingRound'then
   -- The authored strokes and equipped arrow carry the silhouette.
  elseif kind=='ShellBurst'then
   if not r.compact then
@@ -596,7 +629,7 @@ function Art.accents(r,c)
   leaf(r,c.last-c.dir*.5,c.dir,c.right,1.15,'NatureArrowLeaf')
  elseif c.shape=='vine'then
   local burst=id=='elf.magic_archer.vine_burst'
-  if c.groundShape=="VineTrap" then return end
+  if c.groundShape=="VineTrap" or id=='elf.magic_archer.rooting_fan' then return end
   for lane=1,3 do
    local angle=c.definition.form=='cone' and math.rad(-c.angle*.35+lane*c.angle*.7/4) or lane*math.pi*2/3
    local radial=c.flat*math.cos(angle)+c.right*math.sin(angle)
@@ -610,7 +643,7 @@ function Art.accents(r,c)
    local pos=c.last+radial*.55
    S.bar(r,'AimTargetNotch',pos,pos+radial*.25,.1,gold,.3,Enum.Material.Neon)
   end
- elseif c.key=='gun'then
+ elseif c.key=='gun' and types[id]~='PiercingRound'then
   local flash=S.volume(r,'CompactMuzzleFlash',c.first+c.dir*.25,Vector3.new(.22,.22,.55),Color3.fromRGB(255,203,83),.2,'wedge')
   if flash then r.faces[#r.faces].fadeDuration=.07 end
  elseif id=='mage.pyro.searing_ward'then

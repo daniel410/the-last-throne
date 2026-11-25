@@ -122,7 +122,7 @@ local function line(r,name,path,width,color,endWidth,noGlow)
  local stroke={a=a,b=b,beam=beam,glow=glow,path=path,width=width,endWidth=endWidth}
  table.insert(r.lines,stroke);beams+=1;return stroke
 end
-local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, ChallengingStrikeEdge=true, GuardianShelteringWing=true}
+local cuttingStrokes={BladeRibbon=true, DescendingCleave=true, LowSweep=true, SunwardCross=true, OathbladeEdge=true, RadiantOpeningFan=true, IconCounterSlashEdge=true, CrescentCutEdge=true, RallyingSlashEdge=true, SteelSweepEdge=true, ChallengingStrikeEdge=true, GuardianShelteringWing=true, GuardianCounterEdge=true}
 local function curve(r,name,path,count,width,color,noGlow)
  for i=1,count do
   local from,to=(i-1)/count,i/count
@@ -228,7 +228,9 @@ function FX.step(now)
     end
     s.beam.Width0=startWidth;s.beam.Width1=endWidth
     if s.fadeDuration then
-     local t=math.clamp((now-r.at)/s.fadeDuration,0,1)
+     local age=now-r.at-(s.delay or 0)
+     if s.delay then s.beam.Enabled=age>=0 end
+     local t=math.clamp(age/s.fadeDuration,0,1)
      local step=math.floor(t*24)
      if s.fadeStep~=step then
       s.fadeStep=step
@@ -839,6 +841,42 @@ local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
  r.model:SetAttribute("FanRelease",true)
  r.model:SetAttribute("PrimaryIconCue",true)
 end
+local function rootingFan(r,d,first,direction,endpoints,character)
+ if type(endpoints)~="table" then
+  endpoints=Geometry.sector(first,direction,d.range,d.angle,4)
+ end
+ for lane=1,5,r.compact and 2 or 1 do
+  local target=endpoints[lane]
+  local reach=vector(target) and (target-first).Magnitude or 0
+  if reach>.45 and reach<=d.range+.01 then
+   local base=floorAt(first:Lerp(target,.07),character)
+   local bend=floorAt(first:Lerp(target,.50),character)+Vector3.yAxis*.26
+   local tip=floorAt(first:Lerp(target,.93),character)+Vector3.yAxis*(lane%2==0 and .88 or 1.25)
+   for segmentIndex=1,2 do
+    local start=segmentIndex==1 and base or bend
+    local finish=segmentIndex==1 and bend or tip
+    local delay=(segmentIndex-1)*.031+math.abs(lane-3)*.009
+   local lateral=direction:Cross(Vector3.yAxis)
+    local curl=lateral*(lane<=2 and 1 or -1)*math.min(.58,reach*.06)*(segmentIndex==1 and 1 or .65)
+   local function path(t,u)
+    local progress=math.clamp((u*r.life-delay)/.067,0,1)
+    local along=t*(1-(1-progress)^2)
+    return start:Lerp(finish,along)+curl*math.sin(along*math.pi)
+   end
+    local root=line(r,"RootingFanRunner",function(u)
+     return start,path(1,u)
+    end,segmentIndex==1 and .32 or .24,lane==3 and r.hot or r.color,.13,true)
+   if root then
+    root.delay=delay;root.fadeDuration=.22
+    root.span=function(u)return Style.span(path,0,1,u)end
+    root.beam.Segments=5
+   end
+   end
+  end
+ end
+ r.model:SetAttribute("PrimaryIconCue",true)
+ r.model:SetAttribute("ForwardOnly",true)
+end
 -- Every authored skill resolves through the same stable server skill catalog.
 function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanEndpoints)
  local row=Catalog.byId[id];local profile=Profiles.get(id)
@@ -870,12 +908,14 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local blastStep=id=="dwarf.gunner.blast_step"
  local glidingShot=id=="elf.magic_archer.gliding_shot"
  local emberStep=id=="mage.pyro.ember_step"
+ local rootedFan=id=="elf.magic_archer.rooting_fan"
  local groundShape=profile.groundShape
  local compact=FX.isOtherHero(character)
  local final=FinalBeat.isFinal(d,pulse) or warcryAssault and pulse==d.pulses
  local life=(profile.signature and not final or twinAxe and pulse==1 or warcryAssault and not final)
   and math.min(profile.life,d.interval) or profile.life
- local minBeams=fanLanes and (row.key=="gun" and fanLanes+(compact and 0 or 1) or fanLanes*3)
+ local minBeams=rootedFan and (compact and 6 or 10)
+  or fanLanes and (row.key=="gun" and fanLanes+(compact and 0 or 1) or fanLanes*3)
   or (cyclone or cinderRing) and (compact and 8 or 12)
   or (steelSweep or cragCleave) and (compact and 6 or 9)
   or vineBurst and (compact and 9 or 12)
@@ -1253,6 +1293,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     r.model:SetAttribute("ReleaseTrace",true)
    end
   end
+ elseif rootedFan then
+  rootingFan(r,d,first,flat,fanEndpoints,character)
  elseif fanLanes then
   drawFan(r,d,fanProfile,first,flat,launch,fanEndpoints)
  elseif heavyDraw then
@@ -1463,10 +1505,20 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    end
   else table.insert(path,{d.form=="ground"and last+Vector3.yAxis*10 or first,last})end
   local segments=d.form=="chain" and r.compact and 4 or 6
-  if d.form=="chain" and #path>0 then
+  local chained=d.form=="chain"
+  if chained then
+   r.model:SetAttribute("PrimaryIconCue",true)
    local limit=Input.TouchEnabled and 144 or 240
-   if beams+#path*segments<=limit then r.model:SetAttribute("ChainCore",true)
+   if #path>0 and beams+#path*segments<=limit then r.model:SetAttribute("ChainCore",true)
    else table.clear(path) end
+  end
+  local function arcSegment(name,a,b,w,color,hop)
+   if chained then
+    local spark=line(r,name,function()return a,b end,w,color,w,true)
+    if spark then spark.delay=(hop-1)*.020;spark.fadeDuration=.105 end
+   else
+    stroke(name,a,b,w,color)
+   end
   end
   for hop,link in ipairs(path)do
    local bolts=Geometry.lightning(link[1],link[2],segments)
@@ -1481,11 +1533,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    end
    local coreWidth=d.form=="chain" and width*(1-.12*(hop-1)) or width
    table.insert(electricLinks,{bolts=bolts,forks=forks,side=side,width=coreWidth})
-   for i=1,#bolts-1 do stroke("ElectricCore",bolts[i],bolts[i+1],coreWidth,WHITE)end
+   for i=1,#bolts-1 do arcSegment("ElectricCore",bolts[i],bolts[i+1],coreWidth,WHITE,hop)end
   end
-  for _,link in ipairs(electricLinks)do
+  for hop,link in ipairs(electricLinks)do
    for _,fork in ipairs(link.forks)do
-    for i=1,2 do stroke("ElectricFork",fork[i],fork[i+1],link.width*.42,r.color)end
+    for i=1,2 do arcSegment("ElectricFork",fork[i],fork[i+1],link.width*.42,r.color,hop)end
    end
   end
  elseif shape=="vine"then
@@ -1881,12 +1933,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     end
    end
   end
- elseif shape=="lightning" and (d.form~="chain" or not r.compact) then
+ elseif shape=="lightning" and d.form~="chain" then
   for _,link in ipairs(electricLinks)do
     local bolt=link.bolts;local side=link.side
     for j=1,#bolt-1 do
      local a,b=bolt[j],bolt[j+1]
-     local span=d.form=="chain" and link.width*2 or .3
+     local span=.3
      Surfaces.triangle(r,"LightningSurface",a-side*span,b,a+side*span,nil,.24)
     end
     for _,fork in ipairs(link.forks)do for j=1,2 do

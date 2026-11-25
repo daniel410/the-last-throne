@@ -472,12 +472,14 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
   end
  elseif effect=="bullet" then
+  local piercing=id=="dwarf.gunner.piercing_round"
   if d.form=="cone" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do segment(first,target,color,.12,.07,"ShotPellet") end
   elseif not (primary and primary:GetAttribute("ReleaseTrace")) then
-   segment(first,center,color,.12,.08,"RifleTracer")
+   local launch=piercing and Geometry.fanLaunch(origin,first,center) or first
+   segment(launch,center,color,.12,.08,"RifleTracer")
   end
-  if decorate then impact(first,color,.8) end
+  if decorate and not piercing then impact(first,color,.8) end
  elseif d.form=="area" or d.form=="cone" or d.form=="melee" then
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
@@ -490,7 +492,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local chargeEdge=primary and ((id=="knight.steel_knight.breaker_charge" and primary:GetAttribute("PrimaryIconCue"))
-    or primary:GetAttribute("RadiantChargeEdge"))
+    or primary:GetAttribute("RadiantChargeEdge") or primary:GetAttribute("ArtSilhouette")=="GuardianCounter")
    if not primary or (not ultimateSignature and not chargeEdge and id~="dwarf.iron_axe.iron_shoulder") then
    local flat=Vector3.new(direction.X,0,direction.Z)
    local delta=flat.Magnitude>.001 and flat.Unit or Vector3.new(0,0,-1)

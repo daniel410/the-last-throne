@@ -199,6 +199,15 @@ local function gunner(d,kind,age)
  local angles={right=right,left=v(17+5*kick,-4,18),elbow=elbow,leftElbow=v(-12),wrist=v(),neck=v(6*retreat),
   torso=torso+v(-8*retreat),rightHip=v(-8-brace),leftHip=v(10-brace+12*retreat),
   rightKnee=v(10+brace*1.5),leftKnee=v(8+brace+14*retreat),weapon=v()}
+ if d.id=="dwarf.gunner.piercing_round" then
+  -- The off hand stays on the sight line through discharge, then lowers.
+  local settle=pulse>0 and smooth((since-.035)/.075)*(1-smooth((since-.11)/.15)) or 0
+  angles.neck+=v(6*load,-12*load,5*load)
+  angles.right-=v(26*settle)
+  angles.elbow+=v(-13*kick+17*settle)
+  angles.leftKnee+=v(20*kick)
+  angles.torso+=v(14*settle,0,-7*settle)
+ end
  if d.id=="dwarf.gunner.scatter_shot" then
   local settle=pulse>0 and smooth((since-.045)/.075)*(1-smooth((since-.12)/.13)) or 0
   angles.rightKnee+=v(14*load+18*kick)
@@ -505,11 +514,13 @@ function Motion.sample(classId,d,age,rigType)
  elseif d.id=="knight.steel_knight.guardian_counter" then
   local brace=smooth(age/(contact*.32))*(1-smooth((age/contact-.71)/.29))
   local release=pulse>0 and smooth(since/.055)*(1-smooth((since-.055)/.17)) or 0
-  -- Protect behind the left shoulder, then uncoil into the countercut.
-  offset(pose,"left",v(28,-10,-21)*brace+v(8,9,16)*release)
-  offset(pose,"leftElbow",v(19*brace))
-  offset(pose,"torso",v(10,-18,-7)*brace+v(-6,14,7)*release)
-  offset(pose,"leftKnee",v(19*brace+17*release))
+  -- Load behind the shield, then open it as the sword side rises.
+  offset(pose,"left",v(37,-17,-28)*brace+v(-10,18,22)*release)
+  offset(pose,"leftElbow",v(32*brace+5*release))
+  offset(pose,"torso",v(13,-22,-10)*brace+v(-11,19,10)*release)
+  offset(pose,"rightKnee",v(16*brace))
+  offset(pose,"leftHip",v(-14*release,0,-6*release))
+  offset(pose,"leftKnee",v(16*brace+27*release))
  end
  if d.id=="knight.steel_knight.challenging_strike" then
   -- Cover the sword shoulder, then open the shield as the blade cuts down.

@@ -165,10 +165,13 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"rightKnee",v(11,0,0)*recoil)
     end
     if s == bow.rootingFan then
-        -- Leave the bow on its aim line as the draw arm opens outward.
-        add(pose,"right",v(-17,18,-24)*recoil)
-        add(pose,"elbow",v(25,0,0)*recoil)
-        add(pose,"leftKnee",v(17,0,0)*recoil)
+        -- Pull the nock close before opening the hand low over the roots.
+        local settle = since and smooth((since-.03)/.065)*(1-smooth((since-.095)/.17)) or 0
+        add(pose,"torso",v(10,-4,6)*coil+v(17,8,-8)*settle)
+        add(pose,"right",v(-11,24,-33)*recoil+v(17,0,-13)*settle)
+        add(pose,"elbow",v(32*recoil,0,0))
+        add(pose,"rightKnee",v(15*coil,0,0))
+        add(pose,"leftKnee",v(18*recoil+14*settle,0,0))
     end
     if s == bow.markBreaker then
         -- Set the eye behind the nock and draw the hand back along the cheek.
@@ -507,6 +510,14 @@ function Poses.mage(pose,d,profile,age)
     if s == spells.thunderSpear then
         add(pose,"right",v(21,7,-14)*follow)
         add(pose,"leftElbow",v(21,0,0)*follow)
+    end
+    if s == spells.chain then
+        -- Draw the free palm beside the staff, then turn it across the first jump.
+        add(pose,"left",v(-11,22,-9)*wind+v(-6,-14,22)*follow)
+        add(pose,"leftElbow",v(-19*wind+25*follow,0,0))
+        add(pose,"right",v(10,-4,12)*wind)
+        add(pose,"torso",v(-4,-11,4)*wind+v(6,15,-7)*follow)
+        add(pose,"leftKnee",v(18*follow,0,0))
     end
     if s == spells.lightningLine then
         -- Raise the staff, then drive the free palm down the corridor.
