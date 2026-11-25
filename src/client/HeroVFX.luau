@@ -1937,7 +1937,7 @@ local function skillContact(r,at,cf,size,style)
   else
    line(r,style,function(u)
     local seam=at-dir*.25*size
-    local split=lateral*(.32+u*.98)+up*(.35+side*.19+u*.50)+dir*.20
+    local split=lateral*(.32+u*.98)+up*(.43+side*.16+u*.50)+dir*.20
     return seam+split*.18*size,seam+split*size
    end,.125,side==1 and r.hot or r.color,.027,true)
   end
