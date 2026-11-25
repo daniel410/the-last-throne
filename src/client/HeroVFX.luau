@@ -511,7 +511,7 @@ function FX.bombFlight(character,d,profile,launch,target,seq,pulse,landingAt,val
     local tail=math.max(0,progress-.18)
     local height=Vector3.yAxis*(Bomb.radius-.10)
     return groundPoint+path*tail+offset-height,groundPoint+path*progress+offset-height
-   end,.09,r.hot,.035,true)
+   end,r.compact and .09 or .15,r.hot,.05,true)
   end
  end
  r.model:SetAttribute("PayloadPath",profile.path)
@@ -961,7 +961,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  end
  local function challengingPath(t,u)
   local bearing=math.rad(angle)*(.46-.92*t)
-  local reach=radius*(.55+.30*math.sin(t*math.pi)+.05*u)
+  local reach=radius*(.53+.24*math.sin(t*math.pi)+.05*u)
   local height=1.95-3.42*t+.37*math.sin(t*math.pi)-.20*u
   return first+(flat*math.cos(bearing)+right*math.sin(bearing))*reach+Vector3.yAxis*height
  end

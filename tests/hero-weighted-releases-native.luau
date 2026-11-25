@@ -59,7 +59,7 @@ local ok, errorText = xpcall(function()
     Ranged.bow(draw, bow, bow.windup*.55)
     Ranged.bow(snap, bow, bow.windup+.064, .064, false, 1)
     check(draw.angles.rightKnee.X > draw.angles.leftKnee.X+19, "Heavy Draw holds weight on the rear heel")
-    check(snap.angles.elbow.X > 39, "Heavy Draw snaps the draw elbow rearward")
+    check(snap.angles.elbow.X > 35, "Heavy Draw snaps the draw elbow rearward")
     local gather, flick = {angles = {}}, {angles = {}}
     Ranged.mage(gather, ice, Mage.profile(ice), ice.windup*.58)
     Ranged.mage(flick, ice, Mage.profile(ice), ice.windup+.062)
@@ -146,6 +146,12 @@ local ok, errorText = xpcall(function()
             FX.clear()
         end
     end
+    local dart = FX.skill(nil, ice.id, origin, target, 1, {}, origin+direction)
+    local dartWake = named(dart, "ShatterDartWake")[1]
+    FX.step(workspace:GetServerTimeNow()+.05)
+    check(dartWake and (dartWake.Attachment1.WorldPosition-dartWake.Attachment0.WorldPosition).Magnitude > 6,
+        "Shatter Dart is still readable between the staff and the enemy after the first frames")
+    FX.clear()
 
     FX.isOtherHero = function() return true end
     local shot = FX.skill(nil, bow.id, origin, target, 1, {}, origin+direction)

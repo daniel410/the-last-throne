@@ -97,9 +97,10 @@ function Art.strokes(r,c,line,curve)
    local distance=(c.last-start).Magnitude
    if distance>.05 then
     local wake=line(r,'ShatterDartWake',function(u)
-     return start:Lerp(c.last,.94*(1-(1-math.min(u*2.5,1))^2)),c.last
-    end,.10,r.hot,.04,true)
-    if wake then wake.fadeDuration=.13 end
+     local retract=math.clamp((u*r.life-.027)/.105,0,1)
+     return start:Lerp(c.last,.94*(1-(1-retract)^2)),c.last
+    end,.145,r.hot,.06,true)
+    if wake then wake.fadeDuration=.16 end
    end
   end
   for side=-1,1,2 do
