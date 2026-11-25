@@ -3,6 +3,7 @@
 local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local K=require(script.Parent.EpicEnvironmentKit)
+local ThirdChapterEntrances=require(script.Parent.EpicThirdChapterEntrances)
 local W={}
 local V=Vector3.new
 local themes={DW='Deepwood',GW='Gloamwood',FV='FrozenVale',EC='EmberCaldera',HG='HauntedGraveyard'}
@@ -91,8 +92,8 @@ function W.create(world,scope)
     arch.WorldPivot=CFrame.new(threshold)
     marshArch(arch,threshold,pal)
    else
-    K.arch(arch,entry,80,26,pal)
-    -- The default arch opens along Z; east/west connectors need a quarter turn.
+    if not ThirdChapterEntrances.create(arch,c.id,g.id,entry,area,pal)then K.arch(arch,entry,80,26,pal)end
+    -- The arches open along Z; east/west connectors need a quarter turn.
     arch.WorldPivot=CFrame.new(entry)
     if area.axis=='x'then arch:PivotTo(CFrame.new(entry)*CFrame.Angles(0,math.pi/2,0))end
    end
