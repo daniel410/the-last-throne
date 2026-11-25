@@ -1,0 +1,16 @@
+DW-04 ReturnRopeGuide: 9 parts, floor 30.00, route clearance >= 10.55 studs
+GW-04 RefugeBoardRest: 7 parts, floor 66.00, route clearance >= 10.72 studs
+FV-04 RelayPlateCradle: 7 parts, floor 90.00, route clearance >= 10.54 studs
+EC-04 PressureLineSaddle: 8 parts, floor 148.00, route clearance >= 10.26 studs
+HG-04 GateSurveyLedge: 7 parts, floor 184.00, route clearance >= 10.62 studs
+38 authored parts; 405 static floor samples passed
+EPIC_MAP_NAVIGATION 105907 checks PASS; 488 active targets; 26352 moving samples
+Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger
+CAMPAIGN_EXPANSION_REVIEW 4048 checks passed; 82 outcome deliveries, safe circuit choices and connector routes
+place-role: 10 checks PASS
+arrival-loading: 326 checks PASS
+single-build: project mounts and compatibility alias PASS
+single-build: actual artifact role/config/loading checks PASS
+0.115.105 Place SHA-256 a263d02ca962cde1a23389019be94afc2800eb33487f3e6c7faebc5aa9563c9d matched build record
+0.115.106 Place SHA-256 52f3653368bcb1daacc5f9c570489a2f786a55105eac32b7ddca177e5869f435 matched build record
+Mounted landmark ModuleScripts matched committed sources (2)
