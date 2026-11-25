@@ -5,6 +5,7 @@ local FirstChapterRoutes = require(script.Parent.EpicFirstChapterRouteLandmarks)
 local SecondChapterRoutes = require(script.Parent.EpicSecondChapterRouteLandmarks)
 local Midchapter = require(script.Parent.EpicMidchapterLandmarks)
 local ThirdChapter = require(script.Parent.EpicThirdChapterLandmarks)
+local ThirdChapterRoutes = require(script.Parent.EpicThirdChapterRouteLandmarks)
 local FourthChapter = require(script.Parent.EpicFourthChapterLandmarks)
 local FifthChapter = require(script.Parent.EpicFifthChapterLandmarks)
 local FifthChapterRoutes = require(script.Parent.EpicFifthChapterRouteLandmarks)
@@ -348,7 +349,8 @@ function Assemblies.create(scene, chapter, goal, context, area)
 		main = place(scene, chapter, goal, context, area, profile)
 	end
 
-	local routeProfile = SecondChapterRoutes[chapter.id] or FifthChapterRoutes[chapter.id]
+	local routeProfile = SecondChapterRoutes[chapter.id] or ThirdChapterRoutes[chapter.id]
+		or FifthChapterRoutes[chapter.id]
 		or SixthChapterRoutes[chapter.id]
 	if routeProfile and goal.id == routeProfile.goal then
 		local route = place(scene, chapter, goal, context, area, routeProfile)
