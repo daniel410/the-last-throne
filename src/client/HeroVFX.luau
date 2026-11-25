@@ -784,7 +784,7 @@ local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
  local pellet=r.key=="gun"
  local narrow=d.id=="elf.marksman.piercing_volley"
  local name=pellet and "ScatterPelletTrace" or narrow and "PiercingVolleyShaft" or "FanBreakShaft"
- local hold=pellet and .023 or narrow and .060 or .043
+ local hold=pellet and .040 or narrow and .060 or .043
  local traceColor=pellet and r.color:Lerp(r.hot,.25) or r.color
  for i=1,lanes do
   local target=endpoints[i]
@@ -794,7 +794,7 @@ local function drawFan(r,d,profile,first,flat,muzzle,endpoints)
    if delta.Magnitude>.1 then
     local tip=target
     local width=pellet and .16 or narrow and .075 or .10
-    local duration=pellet and .095 or narrow and r.life-hold or .16
+    local duration=pellet and .078 or narrow and r.life-hold or .16
     local trace=line(r,name,function(u)
      local falloff=math.clamp((u*r.life-hold)/duration,0,1)
      return start+delta*(1-(1-falloff)^(pellet and 3.8 or 2.4)),tip
