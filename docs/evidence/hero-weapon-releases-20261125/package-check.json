@@ -1,0 +1,28 @@
+{
+  "0.115.117": {
+    "sourceCommit": "4a6a9f5a86a41d8a40e4a58df94d115ae887ac40",
+    "packageSHA256": "b58c4de16396c570fb83d826b006987aa87ec447811992302055e5d7be62a33f",
+    "moduleSHA256": {
+      "src/client/AdvancedSkillMotion.luau": "3c938287362357beb2e42c3219717213e7c724f960d8de364db1801c8b884cbe",
+      "src/client/AdvancedSkillVisual.luau": "bf2ff84480bbf9d9fdb704fb787284b68f3b964ac1a8429b1f2439740ddfe8e4",
+      "src/client/HeroVFX.luau": "cdb5d01f6db5e47ca76a450bdbc0f196a1557f0dd1d91dec68e9cc6768e053f6",
+      "src/client/HeroVFXArt.luau": "9ed3b0da37245d105dd25e3e64605070c617339413a08df847a0c29d72d10d40",
+      "src/client/K0SwordVisual.luau": "b09dcbb7f5815ff2173c5c36f452a0a98ca5fafeffc73810acfdeab8251e7f21",
+      "src/client/RangedActionPoses.luau": "ccfb40f32a7df97999576bd5f866dc4735736b4584c49d31bf8aaba930f3dd3d",
+      "src/client/SkillVFXProfiles.luau": "c5faef07a4dfb573b809713470d8b378eec5afe2b3c301cf0aac0449970e40bf"
+    }
+  },
+  "0.115.120": {
+    "sourceCommit": "9302c46dd4ffd74a4047f25fadc1f7325d0d2331",
+    "packageSHA256": "b8110e6fc9ad49b9b71c0fc22c4f631af43f0b9ba34aa065d92191ec26059ae0",
+    "moduleSHA256": {
+      "src/client/AdvancedSkillMotion.luau": "8ed287774ad8b5d838b2bbd1b8452610a2b37983cb6bbfb23f6bf7fed3c0d035",
+      "src/client/AdvancedSkillVisual.luau": "b68c6442edff965bc1c14fde6e9255b00332fbe081dc3f9238c37b593306d96f",
+      "src/client/HeroVFX.luau": "1957f06dd1824d27276554318793be186a5caa7ff0ff376ef84307425abd0c7e",
+      "src/client/HeroVFXArt.luau": "d73b9b5a6cd0188eca88b99829c2afee4dcf77436f905131c7c2408d5e6deab8",
+      "src/client/K0SwordVisual.luau": "83142c7c7919dd5c3c72a5b1284010475a8cc311209509e5740c42240adac321",
+      "src/client/RangedActionPoses.luau": "977451a8797fa4fa1f993754e3192764ced720e6c8b559877492c77c32243722",
+      "src/client/SkillVFXProfiles.luau": "26bd32d1a0903506430bdf21fee5cd3477e45ddcdc7ee962081fd0931021daab"
+    }
+  }
+}
