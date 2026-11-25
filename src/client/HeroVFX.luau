@@ -849,15 +849,15 @@ local function rootingFan(r,d,first,direction,endpoints,character)
   local target=endpoints[lane]
   local reach=vector(target) and (target-first).Magnitude or 0
   if reach>.45 and reach<=d.range+.01 then
+   local lateral=direction:Cross(Vector3.yAxis)*(lane<=2 and 1 or -1)
    local base=floorAt(first:Lerp(target,.07),character)
    local bend=floorAt(first:Lerp(target,.50),character)+Vector3.yAxis*.26
-   local tip=floorAt(first:Lerp(target,.93),character)+Vector3.yAxis*(lane%2==0 and .88 or 1.25)
+   local tip=floorAt(first:Lerp(target,.93),character)+Vector3.yAxis*(lane%2==0 and .91 or 1.52)
    for segmentIndex=1,2 do
     local start=segmentIndex==1 and base or bend
     local finish=segmentIndex==1 and bend or tip
     local delay=(segmentIndex-1)*.031+math.abs(lane-3)*.009
-   local lateral=direction:Cross(Vector3.yAxis)
-    local curl=lateral*(lane<=2 and 1 or -1)*math.min(.58,reach*.06)*(segmentIndex==1 and 1 or .65)
+    local curl=lateral*math.min(1.05,reach*.08)*(segmentIndex==1 and 1 or .62)
    local function path(t,u)
     local progress=math.clamp((u*r.life-delay)/.067,0,1)
     local along=t*(1-(1-progress)^2)
@@ -865,12 +865,22 @@ local function rootingFan(r,d,first,direction,endpoints,character)
    end
     local root=line(r,"RootingFanRunner",function(u)
      return start,path(1,u)
-    end,segmentIndex==1 and .32 or .24,lane==3 and r.hot or r.color,.13,true)
+    end,segmentIndex==1 and .48 or .39,r.color,.16,true)
    if root then
     root.delay=delay;root.fadeDuration=.22
     root.span=function(u)return Style.span(path,0,1,u)end
     root.beam.Segments=5
    end
+   end
+   if reach>=3 and (lane==3 or not r.compact and lane%2==1) then
+    local start=bend:Lerp(tip,.62)+lateral*math.min(.61,reach*.047)
+    local finish=start+lateral*math.min(1.15,reach*.15)+Vector3.yAxis*1.06
+    local delay=.072+math.abs(lane-3)*.009
+    local fork=line(r,"RootingFanShoot",function(u)
+     local t=math.clamp((u*r.life-delay)/.065,0,1)
+     return start,start:Lerp(finish,1-(1-t)^2)
+    end,.29,r.color:Lerp(r.hot,.35),.06,true)
+    if fork then fork.delay=delay;fork.fadeDuration=.17 end
    end
   end
  end
@@ -914,7 +924,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local final=FinalBeat.isFinal(d,pulse) or warcryAssault and pulse==d.pulses
  local life=(profile.signature and not final or twinAxe and pulse==1 or warcryAssault and not final)
   and math.min(profile.life,d.interval) or profile.life
- local minBeams=rootedFan and (compact and 6 or 10)
+ local minBeams=rootedFan and (compact and 7 or 13)
   or fanLanes and (row.key=="gun" and fanLanes+(compact and 0 or 1) or fanLanes*3)
   or (cyclone or cinderRing) and (compact and 8 or 12)
   or (steelSweep or cragCleave) and (compact and 6 or 9)

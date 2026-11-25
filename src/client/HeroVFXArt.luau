@@ -106,12 +106,12 @@ function Art.strokes(r,c,line,curve)
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='GuardianCounter'then
   curve(r,'GuardianCounterEdge',function(t,u)
-   local bearing=math.rad(c.angle)*(.43-.86*t)
-   local reach=c.radius*(.49+.29*math.sin(t*math.pi)+.08*u)
+   local bearing=math.rad(c.angle)*(.49-.98*t)
+   local reach=c.radius*(.40+.23*math.sin(t*math.pi)+.09*u)
    return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach
-    +UP*(-1.03+2.80*t+.25*math.sin(t*math.pi))
-  end,r.compact and 4 or 6,.36,r.hot,true)
-  local guard=c.first+c.flat*1.45-c.right*.74
+    +UP*(-1.03+3.36*t+.26*math.sin(t*math.pi))
+  end,r.compact and 4 or 6,.49,r.hot,true)
+  local guard=c.first+c.flat*1.45-c.right*1.02
   for side=-1,1,2 do
    local beat=line(r,'GuardianCounterGuard',function(u)
     local at=guard+c.flat*(.42*math.min(u*4,1))
