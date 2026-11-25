@@ -32,7 +32,7 @@ end
 -- Server defaults, before the first snapshot or client presentation exists.
 for _,m in ipairs(scenes)do inspect(m,false)end
 for _,m in ipairs(lobby.folder:GetDescendants())do if m:IsA('Model')and m:GetAttribute('TLTNPC')then report.actors+=1 end end
-check(report.decals>11,'actual face and hair decals exercised')
+check(report.actors>=17,'actual lobby and reunion actors exercised')
 local presentation=require(Client.CampaignExpansionPresentation)
 presentation.updateLobby(nil)
 for _,m in ipairs(scenes)do inspect(m,false)end
@@ -47,12 +47,14 @@ for _,m in ipairs(scenes)do inspect(m,true)end
 check(lumi.Enabled and storage.Enabled,'the completed hero can use both prompts')
 presentation.update({training=true,journal={}})
 check(lumi.Enabled,'battle snapshots do not hide a completed lobby reunion')
-local spirit=lobby.folder.HomecomingReunion.Lumi.FaceRig.Head.FaceDecal
-check(math.abs(spirit.Transparency-.12)<.00001,'spirit face restores its original translucency')
+local lumiActor=scenes[1].Lumi
+local spirit=lumiActor:FindFirstChild('FaceDecal',true)
+if spirit then check(math.abs(spirit.Transparency-.12)<.00001,'fallback spirit face restores its original translucency')
+else check(lumiActor:GetAttribute('NPCMeshySkinned')==true,'Lumi uses the approved mesh when the fallback face is absent') end
 -- A late decal/texture must immediately inherit the selected hero state.
 presentation.updateLobby({})
 check(not lumi.Enabled and storage.Enabled,'switching to an unfinished hero hides Lumi')
-local face=lobby.folder.HomecomingReunion.Lumi.FaceRig.Head
+local face=spirit and spirit.Parent or lumiActor.PrimaryPart
 for _,class in ipairs({'Decal','Texture'})do
  local v=Instance.new(class);v.Name='LateSurface';v:SetAttribute('ExpansionTransparency',.37);v.Transparency=1;v.Parent=face
  task.wait()
@@ -67,8 +69,14 @@ inspect(clone,false)
 presentation.updateLobby(completed);inspect(clone,true)
 presentation.updateLobby(nil);inspect(clone,false)
 -- Normal residents remain visible throughout personal scene transitions.
-check(lobby.folder.DawnspireResidents.Nia.FaceRig.Head.FaceDecal.Transparency==0,'normal Nia face remains visible')
-check(lobby.folder.DawnspireResidents.Nia.Torso.Transparency==0,'normal Nia body remains visible')
+local nia=lobby.folder.DawnspireResidents.Nia
+local niaSurface=nia:FindFirstChildWhichIsA('MeshPart',true)
+if nia:GetAttribute('NPCMeshySkinned')==true then
+ check(niaSurface and niaSurface.Transparency<1,'normal Nia mesh remains visible')
+else
+ check(nia.FaceRig.Head.FaceDecal.Transparency==0,'normal Nia face remains visible')
+ check(nia.Torso.Transparency==0,'normal Nia body remains visible')
+end
 -- Exercise the regional incident authoring path with actual actors as well.
 local c=Content.byId['GW-06'];local g=c.expansionGoals[2];local area
 for _,a in ipairs(Content.zones[c.zone].expansionAreas)do if a.id==g.area then area=a end end
@@ -76,8 +84,8 @@ local regional=Instance.new('Model');regional.Name='RegionalFixture';regional.Pa
 require(World.CampaignIncidentScenes).create(regional,c,g,area)
 local count=0
 for _,m in ipairs(regional:GetChildren())do if m:GetAttribute('ExpansionEvent')then
- for _,v in ipairs(m:GetDescendants())do if v:IsA('Decal')or v:IsA('Texture')then
-  count+=1;check(v:GetAttribute('ExpansionTransparency')~=nil,'regional face stores original opacity')
+ for _,v in ipairs(m:GetDescendants())do if v:IsA('Decal')or v:IsA('Texture')or v:IsA('MeshPart')then
+  count+=1;check(v:GetAttribute('ExpansionTransparency')~=nil,'regional actor surface stores original opacity')
  end end
 end end
 check(count>0,'regional fixture includes actual NPC surfaces')

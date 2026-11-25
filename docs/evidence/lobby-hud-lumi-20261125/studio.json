@@ -1,0 +1,361 @@
+{
+  "dock-result": {
+    "status": "passed",
+    "kind": "LOBBY_HERO_DOCK_NATIVE",
+    "checks": 550
+  },
+  "npc-result": {
+    "actors": 17,
+    "decals": 0,
+    "pass": true,
+    "checks": 402
+  },
+  "npc-fallback-result": {
+    "actors": 17,
+    "decals": 126,
+    "pass": true,
+    "checks": 12092
+  },
+  "mode-result": {
+    "modes": 4,
+    "kind": "MODE_CONSUMER_REGRESSION",
+    "pass": true,
+    "checks": 64
+  },
+  "throne-result": {
+    "pass": true,
+    "checks": 3229
+  },
+  "empty-play": {
+    "hasRestoredThrone": false,
+    "errors": [],
+    "promptUI": [],
+    "lumienabled": false,
+    "title": "Create a hero to begin.",
+    "storageRadius": 12,
+    "promptSeparation": 27.238941192626953,
+    "cards": {
+      "Hero_elf": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "645, 634",
+        "size": "153, 136"
+      },
+      "Hero_dwarf": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "816, 634",
+        "size": "153, 136"
+      },
+      "Hero_mage": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "987, 634",
+        "size": "153, 136"
+      },
+      "Hero_knight": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "474, 634",
+        "size": "153, 136"
+      }
+    },
+    "lumiRadius": 10
+  },
+  "created-play": {
+    "hasRestoredThrone": false,
+    "errors": [],
+    "promptUI": [],
+    "lumienabled": false,
+    "title": "Knight Hero Lv.10",
+    "storageRadius": 12,
+    "promptSeparation": 27.238941192626953,
+    "cards": {
+      "Hero_elf": {
+        "visible": false,
+        "active": false,
+        "loaded": true,
+        "selected": false,
+        "position": "645, 634",
+        "size": "153, 136"
+      },
+      "Hero_dwarf": {
+        "visible": false,
+        "active": false,
+        "loaded": true,
+        "selected": false,
+        "position": "816, 634",
+        "size": "153, 136"
+      },
+      "Hero_mage": {
+        "visible": false,
+        "active": false,
+        "loaded": true,
+        "selected": false,
+        "position": "987, 634",
+        "size": "153, 136"
+      },
+      "Hero_knight": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": true,
+        "position": "730, 634",
+        "size": "153, 136"
+      }
+    },
+    "lumiRadius": 10
+  },
+  "completed-start-0": {
+    "hasRestoredThrone": true,
+    "errors": [],
+    "promptUI": [],
+    "lumienabled": true,
+    "title": "Mage Hero Lv.9",
+    "storageRadius": 12,
+    "promptSeparation": 27.238941192626953,
+    "cards": {
+      "Hero_elf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_dwarf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_mage": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": true,
+        "position": "816, 634",
+        "size": "153, 136"
+      },
+      "Hero_knight": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "645, 634",
+        "size": "153, 136"
+      }
+    },
+    "lumiRadius": 10
+  },
+  "lumi-prompt": {
+    "hasRestoredThrone": true,
+    "errors": [],
+    "promptUI": [
+      "Lumi · Welcome Home"
+    ],
+    "lumienabled": true,
+    "title": "Mage Hero Lv.9",
+    "storageRadius": 12,
+    "promptSeparation": 27.238941192626953,
+    "cards": {
+      "Hero_elf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_dwarf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_mage": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": true,
+        "position": "816, 634",
+        "size": "153, 136"
+      },
+      "Hero_knight": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "645, 634",
+        "size": "153, 136"
+      }
+    },
+    "lumiRadius": 10
+  },
+  "lumi-trigger": {
+    "dialogue": true,
+    "body": "You found a friend even in the old crypt. I will keep a little light here for the next traveler.",
+    "storageOpen": false,
+    "speaker": "Lumi · Welcome Home"
+  },
+  "storage-prompt": {
+    "hasRestoredThrone": true,
+    "errors": [],
+    "promptUI": [
+      "Oren · Account Storage"
+    ],
+    "lumienabled": true,
+    "title": "Mage Hero Lv.9",
+    "storageRadius": 12,
+    "promptSeparation": 27.238941192626953,
+    "cards": {
+      "Hero_elf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_dwarf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_mage": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": true,
+        "position": "816, 634",
+        "size": "153, 136"
+      },
+      "Hero_knight": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "645, 634",
+        "size": "153, 136"
+      }
+    },
+    "lumiRadius": 10
+  },
+  "storage-trigger": {
+    "dialogue": false,
+    "body": "You found a friend even in the old crypt. I will keep a little light here for the next traveler.",
+    "storageOpen": true,
+    "speaker": "Lumi · Welcome Home"
+  },
+  "switch-unlocked-to-locked": {
+    "hasRestoredThrone": false,
+    "errors": [],
+    "promptUI": [],
+    "lumienabled": false,
+    "title": "Knight Hero Lv.1",
+    "storageRadius": 12,
+    "promptSeparation": 27.238941192626953,
+    "cards": {
+      "Hero_elf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_dwarf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_mage": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "816, 634",
+        "size": "153, 136"
+      },
+      "Hero_knight": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": true,
+        "position": "645, 634",
+        "size": "153, 136"
+      }
+    },
+    "lumiRadius": 10
+  },
+  "locked-trigger": {
+    "dialogue": false,
+    "body": "You found a friend even in the old crypt. I will keep a little light here for the next traveler.",
+    "storageOpen": false,
+    "speaker": "Lumi · Welcome Home"
+  },
+  "switch-locked-to-unlocked": {
+    "hasRestoredThrone": true,
+    "errors": [],
+    "promptUI": [
+      "Lumi · Welcome Home"
+    ],
+    "lumienabled": true,
+    "title": "Mage Hero Lv.9",
+    "storageRadius": 12,
+    "promptSeparation": 27.238941192626953,
+    "cards": {
+      "Hero_elf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_dwarf": {
+        "visible": false,
+        "active": false,
+        "loaded": false,
+        "selected": false,
+        "position": "474, 520",
+        "size": "153, 136"
+      },
+      "Hero_mage": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": true,
+        "position": "816, 634",
+        "size": "153, 136"
+      },
+      "Hero_knight": {
+        "visible": true,
+        "active": true,
+        "loaded": true,
+        "selected": false,
+        "position": "645, 634",
+        "size": "153, 136"
+      }
+    },
+    "lumiRadius": 10
+  }
+}
