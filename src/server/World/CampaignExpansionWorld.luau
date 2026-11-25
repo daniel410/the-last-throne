@@ -3,6 +3,7 @@
 local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local K=require(script.Parent.EpicEnvironmentKit)
+local SecondChapterEntrances=require(script.Parent.EpicSecondChapterEntrances)
 local ThirdChapterEntrances=require(script.Parent.EpicThirdChapterEntrances)
 local W={}
 local V=Vector3.new
@@ -92,7 +93,9 @@ function W.create(world,scope)
     arch.WorldPivot=CFrame.new(threshold)
     marshArch(arch,threshold,pal)
    else
-    if not ThirdChapterEntrances.create(arch,c.id,g.id,entry,area,pal)then K.arch(arch,entry,80,26,pal)end
+    local authored=SecondChapterEntrances.create(arch,c.id,g.id,entry,area,pal)
+     or ThirdChapterEntrances.create(arch,c.id,g.id,entry,area,pal)
+    if not authored then K.arch(arch,entry,80,26,pal)end
     -- The arches open along Z; east/west connectors need a quarter turn.
     arch.WorldPivot=CFrame.new(entry)
     if area.axis=='x'then arch:PivotTo(CFrame.new(entry)*CFrame.Angles(0,math.pi/2,0))end
