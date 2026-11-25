@@ -1,15 +1,20 @@
 -- Personal, saved scene stages. Never changes collision or authoritative progress.
 local State=require(game.ReplicatedStorage.Shared.CampaignSceneState)
-local M={};local models={};local current
+local M={};local models={};local current,lobbyJournal
+local function journalFor(record)
+ if record.lobby then return lobbyJournal end
+ return current and not current.training and current.journal
+end
 local function paint(m,record)
  if not m.Parent then models[m]=nil;return end
- local s=current and not current.training and current.journal
+ local s=journalFor(record)
  local event=m:GetAttribute('ExpansionEvent');local chapter=m:GetAttribute('ExpansionChapter')
  local count=State.count(s,event,chapter)
  local first=m:GetAttribute('ExpansionMin');local last=m:GetAttribute('ExpansionMax')or 3
  local visible=first~=nil and count>=first and count<=last
  if first==nil then visible=m:GetAttribute('ExpansionAfter')==(count==3)end
  visible=visible and State.requires(s,m:GetAttribute('ExpansionRequires'))
+ if record.lobby then visible=s~=nil and s.clears~=nil and s.clears[chapter]==true end
  if record.count~=count or record.visible~=visible then
   local pose=m:GetAttribute('ExpansionPose'..count)
   if pose then
@@ -45,7 +50,7 @@ local function start()
  if started then return end;started=true
  local function add(v)
   if v:IsA('Model')and v:GetAttribute('ExpansionEvent')then
-   models[v]=models[v]or {};paint(v,models[v])
+   models[v]=models[v]or {lobby=v:GetAttribute('ExpansionLobby')==true};paint(v,models[v])
   elseif v:IsA('Model')and v:GetAttribute('ExpansionStepEvent')then
    models[v]=models[v]or {step=true};paintStep(v)
   end
@@ -68,7 +73,17 @@ local function start()
 end
 function M.update(value)
  current=value;start()
- for m,record in pairs(models)do if m.Parent then if record.step then paintStep(m)else paint(m,record)end else models[m]=nil end end
+ for m,record in pairs(models)do
+  if not m.Parent then models[m]=nil
+  elseif record.step then paintStep(m)
+  elseif not record.lobby then paint(m,record)end
+ end
  require(script.Parent.DeepwoodAtmosphere).restoration(value and value.journal)
+end
+function M.updateLobby(journal)
+ start()
+ if lobbyJournal==journal then return end
+ lobbyJournal=journal
+ for m,record in pairs(models)do if record.lobby then paint(m,record)end end
 end
 return M

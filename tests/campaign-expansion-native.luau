@@ -142,9 +142,9 @@ for _,part in ipairs(reunion:GetDescendants())do
  if part:IsA('BasePart') and (part:GetAttribute('ExpansionTransparency')or 1)<1 then reunionBody=part;break end
 end
 check(reunionBody~=nil,'current reunion assets have a visible body part')
-presentation.update({journal=P.new()});check(reunionBody.Transparency==1,'reunion locked before final clear')
+presentation.updateLobby(P.new());check(reunionBody.Transparency==1,'reunion locked before final clear')
 local all=P.new();for _,c in ipairs(C.mainChapters)do all=finish(all,c)end
-presentation.update({journal=all});check(reunionBody.Transparency<1,'old completed hero sees reunion without replay')
+presentation.updateLobby(all);check(reunionBody.Transparency<1,'old completed hero sees reunion without replay')
 for i=1,5 do check(residents['homecoming'..i]and residents['homecoming'..i].text~='','five actual reunion dialogues')end
 lobby.folder:Destroy()
 -- Saved mechanical stages and two-option circuit UI through the real server engine.

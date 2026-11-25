@@ -21,12 +21,14 @@ function R.create(lobby,facilities,storagePrompt)
  -- Reunion scenes are personal cosmetics, unlocked by the existing final clear.
  local reunion=Instance.new('Model');reunion.Name='HomecomingReunion';reunion.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
  reunion:SetAttribute('ExpansionEvent','HG-07:portal');reunion:SetAttribute('ExpansionChapter','HG-07');reunion:SetAttribute('ExpansionAfter',true)
+ reunion:SetAttribute('ExpansionLobby',true)
  local greetings={
   {'Eryn',-20,38,'The convoy and the forest camp are safe. You brought our friends home, and now the Crownheart is home too!'},
   {'Tali',-10,42,'Every scout made it back. Finn is showing everyone the safe lantern trail. Thank you for finding us!'},
   {'Freya',10,42,'Our village roads are open again. The travelers asked me to bring you their thanks.'},
   {'Brann',20,38,'The workshops are running again. We kept your way home open, just as you kept our city safe.'},
-  {'Lumi',0,34,'You found a friend even in the old crypt. I will keep a little light here for the next traveler.'},
+  -- Keep Lumi on the center path, past the spawn and outside the storage prompt radius.
+  {'Lumi',0,12,'You found a friend even in the old crypt. I will keep a little light here for the next traveler.'},
  }
  for index,row in ipairs(greetings)do
   local npc=Visual.actor(reunion,row[1],lobby.origin+Vector3.new(row[2],0,row[3]),row[1]=='Lumi')

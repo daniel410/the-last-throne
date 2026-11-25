@@ -9,7 +9,7 @@ local M={}
 local ORDER={'knight','elf','dwarf','mage'}
 local NAMES={knight='Knight',elf='Elf',dwarf='Dwarf',mage='Mage'}
 local PORTRAITS={knight='rbxassetid://103255177842108',elf='rbxassetid://80894238854345',dwarf='rbxassetid://74628903359757'}
-local TEXT={play='PLAY',heroes='HEROES',choose='Select a hero to begin.',loading='Loading Hero Progress...',waiting='Saving hero selection...',level='%s Hero Lv.%d',xp='%d / %d XP',max='MAX XP'}
+local TEXT={play='PLAY',heroes='HEROES',create='Create a hero to begin.',choose='Select a hero to begin.',loading='Loading Hero Progress...',waiting='Saving hero selection...',level='%s Hero Lv.%d',xp='%d / %d XP',max='MAX XP'}
 local BLOCKERS={'TLTHeroSelectionOpen','TLTInventoryOpen','TLTProgressionOpen','TLTSettingsOpen','TLTLobbyPanelOpen','TLTLobbyTopMenuOpen','TLTTravelLock'}
 local function caption(parent,name,text)
  local label=Instance.new('TextLabel')
@@ -126,16 +126,17 @@ function M.create(parent,player,chooseHero,playAction,world)
   root.Visible=allowed() or busy and state~=nil and state.phase=='Lobby' and not suppressed
   for _,key in ipairs(BLOCKERS) do if player:GetAttribute(key) then root.Visible=false end end
   if world:GetAttribute('TLTServerRole')=='Battle' then root.Visible=false end
+  local firstHero=state and state.canManage==true and #state.heroes==0
   for _,classId in ipairs(ORDER) do
    local card=cards[classId];local selected,owned=false,false
    for _,hero in ipairs(state and state.heroes or {}) do
     if hero.classId==classId then owned=true;if hero.heroId==state.selectedHeroId then selected=true end end
    end
-   card.Visible=owned
+   card.Visible=owned or firstHero==true
    card:SetAttribute('HeroSelected',selected);card.HeroSelectedMarker.Visible=selected
-   card.HeroPortrait.ImageColor3=selected and Color3.new(1,1,1) or Color3.fromRGB(185,195,210)
+   card.HeroPortrait.ImageColor3=(selected or firstHero) and Color3.new(1,1,1) or Color3.fromRGB(185,195,210)
    card.HeroSelectionBorder.Color=selected and Color3.fromRGB(255,225,115) or Color3.fromRGB(120,145,175)
-   card.Active=owned and allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
+   card.Active=card.Visible and allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
   end
   play.Active=allowed();play.Selectable=play.Active;play.AutoButtonColor=play.Active
   local hero=inventory and inventory.ready==true and state and inventory.heroes[state.selectedHeroId] or nil
@@ -143,7 +144,7 @@ function M.create(parent,player,chooseHero,playAction,world)
   local ready=type(g)=='table' and inventory.heroId==state.selectedHeroId
   local selectedClass
   for _,entry in ipairs(state and state.heroes or {}) do if entry.heroId==state.selectedHeroId then selectedClass=entry.classId;break end end
-  xp.Text=notice or (busy and TEXT.waiting) or (ready and string.format(TEXT.level,NAMES[selectedClass] or 'Hero',g.level)) or (state and not state.selectedHeroId and TEXT.choose) or TEXT.loading
+  xp.Text=notice or (busy and TEXT.waiting) or (ready and string.format(TEXT.level,NAMES[selectedClass] or 'Hero',g.level)) or (firstHero and TEXT.create) or (state and state.canManage and not state.selectedHeroId and TEXT.choose) or TEXT.loading
   track.Visible=ready and not busy and not notice;amount.Visible=track.Visible
   xp:SetAttribute('ProgressReady',track.Visible)
   if ready then local max=Growth.xpToNext(g.level);amount.Text=g.level>=Growth.maxLevel and TEXT.max or string.format(TEXT.xp,g.xp,max);fill.Size=UDim2.fromScale(max>0 and math.clamp(g.xp/max,0,1) or 0,1) end

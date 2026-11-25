@@ -10,6 +10,13 @@ local function check(value,message) report.checks+=1;assert(value,message) end
 local ok,err=xpcall(function()
  local view=require(client.LobbyHeroDock).create(gui,player,function() error('Unexpected hero intention') end,function() error('Unexpected play intention') end,world)
  for _,card in pairs(view.cards) do check(not card.Visible and not card.Active and not card.Selectable,'loading has no hero shortcuts') end
+ view.update({phase='Lobby',canManage=false,heroes={}},false)
+ for _,card in pairs(view.cards) do check(not card.Visible and not card.Active and not card.Selectable,'unavailable profile does not offer creation') end
+ check(view.root.HomeDock.HomeHeroProgress.Text=='Loading Hero Progress...','unavailable roster is not treated as a new profile')
+ view.update({phase='Lobby',canManage=true,heroes={}},false)
+ check(view.root.HomeDock.HomeHeroProgress.Text=='Create a hero to begin.','empty ready roster explains the first action')
+ view.update({phase='Lobby',canManage=true,heroes={}},true)
+ for _,card in pairs(view.cards) do check(card.Visible and not card.Active and not card.Selectable,'pending creation keeps the row visible and blocks repeat input') end
  local state={phase='Lobby',canManage=true,canStart=true,selectedHeroId='h1',heroes={{heroId='h1',classId='knight',level=1},{heroId='h2',classId='mage',level=5}}}
  view.update(state,false)
  view.layout(Vector2.new(1920,1080))
@@ -77,14 +84,15 @@ local ok,err=xpcall(function()
    local previous,first,last
    for i,classId in ipairs(order) do
     local card=view.cards[classId];local owned=bit32.band(mask,2^(i-1))~=0
-    check(card.Visible==owned and card.Active==owned and card.Selectable==owned,'roster visibility/input '..mask..' '..classId)
-    if owned then
+    local shown=owned or mask==0
+    check(card.Visible==shown and card.Active==shown and card.Selectable==shown,'roster visibility/input '..mask..' '..classId)
+    if shown then
      first=first or card;last=card
      if previous then check(card.Position.X.Offset-previous.Position.X.Offset==card.Size.X.Offset+(dock.Size.X.Offset-4*card.Size.X.Offset)/3,'compact roster spacing') end
      previous=card
     end
    end
-   check(dock.HeroesHeading.Visible==(#heroes>0),'empty roster hides heading')
+   check(dock.HeroesHeading.Visible,'loaded roster has a heading, including first hero creation')
    if first then check(math.abs(first.Position.X.Offset-(dock.Size.X.Offset-last.Position.X.Offset-last.Size.X.Offset))<=1,'all roster sizes centered within pixel rounding') end
   end
  end

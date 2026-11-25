@@ -10,6 +10,7 @@ local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Te
 local Config = require(ReplicatedStorage.Shared.K0Config)
 local Theme=require(script.Parent.TDInventoryTheme)
 local Menu=require(script.Parent.HeroMenuChrome)
+local Homecoming=require(script.Parent.DawnspireHomecoming)
 
 local LobbyGui = {}
 local CLASS_ORDER = { "knight", "elf", "dwarf", "mage" }
@@ -117,8 +118,15 @@ function LobbyGui.create(request,onManage)
 	grid.Parent = cards
 	local cardViews = {}
 	local current
+	local inventorySnapshot
 	local busy = false
 	local refresh
+	local function updateLobbyScenes()
+		local heroId=current and current.phase=="Lobby" and current.canManage and current.selectedHeroId
+		local snapshot=inventorySnapshot
+		local confirmed=heroId and snapshot and snapshot.ready==true and snapshot.heroId==heroId
+		Homecoming.update(confirmed and snapshot or nil)
+	end
 	local dock=require(script.Parent.LobbyHeroDock).create(gui,Players.LocalPlayer,function(classId)
 		if busy or not current or not current.canManage then return end
 		local owned
@@ -130,7 +138,13 @@ function LobbyGui.create(request,onManage)
 		else minimized=false;shade.Visible=not suppressed end
 	end)
 	local inventoryRemote=ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("InventoryState")
-	local inventoryConnection=inventoryRemote.OnClientEvent:Connect(dock.inventory)
+	local inventoryConnection=inventoryRemote.OnClientEvent:Connect(function(snapshot)
+		if type(snapshot)~="table" or type(snapshot.revision)~="number" or type(snapshot.heroes)~="table"
+			or inventorySnapshot and snapshot.revision<inventorySnapshot.revision then return end
+		inventorySnapshot=snapshot
+		dock.inventory(snapshot)
+		updateLobbyScenes()
+	end)
 	gui.Destroying:Connect(function() inventoryConnection:Disconnect() end)
 	for index, classId in ipairs(CLASS_ORDER) do
 		local card = Instance.new("Frame")
@@ -361,6 +375,7 @@ function LobbyGui.create(request,onManage)
 		setState = function(value, errorCode)
 			if type(value) ~= "table" or type(value.heroes) ~= "table" then return end
 			current = value
+			updateLobbyScenes()
 			if value.phase=="SpawnFailed" then minimized=false end
 			if errorCode then errorLabel.Text = Text.Lobby.Errors[errorCode] or Text.Lobby.Errors.InvalidRequest
 			elseif value.phase == "LoadingLobby" then errorLabel.Text = Text.Lobby.Loading

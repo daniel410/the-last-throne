@@ -5,10 +5,11 @@ local R={};local V=Vector3.new
 local messages={['DW-Q2']='A PROPER CAMP MEAL\nLiora: More than warm water this time!',
  ['FV-Q1']='WELCOME BACK, NELL\nA name, a badge, and friends waiting.',
  ['EC-Q1']='JORI · BACK ON THE CREW\nKetta kept this place for you.'}
-function R.create(parent,at,id)
+function R.create(parent,at,id,inLobby)
  local name='ReturnStory_'..id;local previous=parent:FindFirstChild(name);if previous then return previous end
  local c=C.byId[id];local m=Instance.new('Model');m.Name=name;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
  m:SetAttribute('ExpansionEvent',id..':'..c.quest.turnIn);m:SetAttribute('ExpansionChapter',id);m:SetAttribute('ExpansionMin',3);m:SetAttribute('ExpansionMax',3)
+ if inLobby then m:SetAttribute('ExpansionLobby',true)end
  local function part(name,size,offset,color,material)
   local p=Instance.new('Part');p.Name=name;p.Size=size;p.Position=at+offset;p.Color=color;p.Material=material or Enum.Material.Wood
   p.Anchored=true;p.CanCollide=false;p.CanQuery=false;p.CanTouch=false;p.Parent=m;return p
@@ -38,6 +39,6 @@ function R.create(parent,at,id)
 end
 function R.lobby(lobby)
  local folder=lobby.folder:FindFirstChild('SideStoryHomecomings')or Instance.new('Folder');folder.Name='SideStoryHomecomings';folder.Parent=lobby.folder
- for _,row in ipairs({{'DW-Q2',-42,-35},{'FV-Q1',-42,15},{'EC-Q1',42,15}})do R.create(folder,lobby.origin+V(row[2],0,row[3]),row[1])end
+ for _,row in ipairs({{'DW-Q2',-42,-35},{'FV-Q1',-42,15},{'EC-Q1',42,15}})do R.create(folder,lobby.origin+V(row[2],0,row[3]),row[1],true)end
 end
 return R
