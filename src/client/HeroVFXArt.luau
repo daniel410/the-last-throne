@@ -65,10 +65,10 @@ function Art.strokes(r,c,line,curve)
  if kind=='OathbreakerStrike'then
   curve(r,'OathbreakerEdge',function(t,u)
    local bearing=math.rad(c.angle)*(.46-.91*t)
-   local reach=c.radius*(.39+.32*math.sin(t*math.pi)+.08*u)
+   local reach=c.radius*(.50+.24*math.sin(t*math.pi)+.08*u)
    return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach
-    +UP*(2.6-3.9*t-.40*u)
-  end,r.compact and 4 or 6,.47,r.hot,true)
+    +UP*(3.6-4.9*t-.40*u)
+  end,r.compact and 4 or 6,r.compact and .48 or .76,r.hot,true)
   r.model:SetAttribute('PrimaryIconCue',true);return true
  elseif kind=='GunnerShot'then
   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
@@ -105,8 +105,8 @@ function Art.strokes(r,c,line,curve)
    if not r.compact and c.pulse==3 then
     local fork=line(r,'SparkVolleyTip',function(u)
      return c.last-delta.Unit*math.min(delta.Magnitude*.23,1.25)+UP*rise*(1+u),c.last
-    end,.13,r.color,.045,true)
-    if fork then fork.fadeDuration=.12 end
+    end,.22,r.hot,.063,true)
+    if fork then fork.fadeDuration=.18 end
    end
   end
   r.model:SetAttribute('PrimaryIconCue',true);return true
