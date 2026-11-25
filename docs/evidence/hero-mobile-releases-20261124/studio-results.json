@@ -1,0 +1,417 @@
+{
+  "baseline": "0.115.100",
+  "candidate": "0.115.102",
+  "studioPassCount": 25,
+  "studioChecks": 256214,
+  "studioSuites": {
+    "hero-crossed-releases": {
+      "failures": [],
+      "pass": true,
+      "checks": 42
+    },
+    "hero-skills": {
+      "failures": [],
+      "checks": 244520,
+      "rigs": [
+        "R6/knight",
+        "R6/dwarf",
+        "R6/elf",
+        "R6/mage",
+        "R15/knight",
+        "R15/dwarf",
+        "R15/elf",
+        "R15/mage"
+      ],
+      "kind": "HERO_SKILLS_NATIVE",
+      "pass": true,
+      "skills": 256
+    },
+    "hero-skill-impact": {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 761
+    },
+    "hero-skill-windup": {
+      "styles": {
+        "CrystalTips": 9,
+        "WardPetals": 3,
+        "WaterCurl": 2,
+        "SwordPoint": 2,
+        "RisingGrit": 15,
+        "BoreBrackets": 4,
+        "ShieldBrace": 10,
+        "GatheringFork": 4,
+        "SightDraw": 14,
+        "LeafDraw": 12,
+        "MortarBrace": 5,
+        "DrawnEdge": 17,
+        "AxeCoil": 5,
+        "HighDraw": 2,
+        "EmberCurl": 7,
+        "FuseCurl": 4
+      },
+      "skills": 115,
+      "pass": true,
+      "checks": 1400
+    },
+    "hero-skill-direction": {
+      "pass": true,
+      "checks": 31
+    },
+    "hero-contact-weight": {
+      "failures": [],
+      "pass": true,
+      "checks": 53
+    },
+    "skill-vfx-art": {
+      "failures": [],
+      "pass": true,
+      "checks": 43
+    },
+    "elf-late-shot-motion": {
+      "timeline": {
+        "elf.marksman.heavy_draw": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.9325581395348818
+        },
+        "elf.marksman.crossfire": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.5138461538461478
+        },
+        "basic": {
+          "release": 0.8,
+          "snap": 0.8499999999999919,
+          "after": 0.9534210158586968
+        },
+        "elf.common.rapid": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.7999999999999647
+        },
+        "elf.marksman.grand_volley": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.5138461538461478
+        },
+        "elf.common.aimed": {
+          "release": 0.8,
+          "snap": 0.8499999999999901,
+          "after": 0.9388888888888871
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 39
+    },
+    "hero-ground-beats": {
+      "failures": [],
+      "checks": 103
+    },
+    "hero-ultimate-finish": {
+      "budget": {
+        "elf.marksman.grand_volley": {
+          "ally": {
+            "beams": 6,
+            "particles": 0,
+            "surfaces": 0
+          },
+          "own": {
+            "beams": 37,
+            "particles": 16,
+            "surfaces": 28
+          }
+        },
+        "dwarf.iron_axe.mountain_collapse": {
+          "ally": {
+            "beams": 6,
+            "particles": 0,
+            "surfaces": 4
+          },
+          "own": {
+            "beams": 27,
+            "particles": 16,
+            "surfaces": 13
+          }
+        },
+        "dwarf.gunner.siege_barrage": {
+          "ally": {
+            "beams": 2,
+            "particles": 0,
+            "surfaces": 0
+          },
+          "own": {
+            "beams": 12,
+            "particles": 23,
+            "surfaces": 0
+          }
+        },
+        "mage.cryo.eternal_tempest": {
+          "ally": {
+            "beams": 8,
+            "particles": 0,
+            "surfaces": 6
+          },
+          "own": {
+            "beams": 39,
+            "particles": 16,
+            "surfaces": 43
+          }
+        },
+        "elf.magic_archer.spirit_arrowfall": {
+          "ally": {
+            "beams": 9,
+            "particles": 0,
+            "surfaces": 6
+          },
+          "own": {
+            "beams": 19,
+            "particles": 16,
+            "surfaces": 24
+          }
+        },
+        "mage.pyro.caldera_s_judgment": {
+          "ally": {
+            "beams": 10,
+            "particles": 0,
+            "surfaces": 4
+          },
+          "own": {
+            "beams": 42,
+            "particles": 35,
+            "surfaces": 58
+          }
+        },
+        "knight.steel_knight.unyielding_front": {
+          "ally": {
+            "beams": 3,
+            "particles": 0,
+            "surfaces": 6
+          },
+          "own": {
+            "beams": 30,
+            "particles": 16,
+            "surfaces": 18
+          }
+        },
+        "knight.paladin.oath_of_dawn": {
+          "ally": {
+            "beams": 9,
+            "particles": 0,
+            "surfaces": 4
+          },
+          "own": {
+            "beams": 24,
+            "particles": 16,
+            "surfaces": 18
+          }
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 88
+    },
+    "hero-vfx-priority": {
+      "releases": {
+        "mage.cryo.chain_lightning": true,
+        "elf.marksman.grand_volley": true,
+        "dwarf.iron_axe.returning_echo": true,
+        "knight.steel_knight.vanguard_strike": true
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 28
+    },
+    "hero-skill-beats": {
+      "checks": 75,
+      "scatter": {
+        "secondSegments": 24,
+        "afterDodgeSegments": 0,
+        "openingSegments": 24
+      },
+      "rhythm": {
+        "dwarf": [
+          true,
+          true
+        ],
+        "mage": [
+          true,
+          true,
+          true
+        ],
+        "knight": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "elf": [
+          true,
+          true,
+          true
+        ]
+      },
+      "pass": true,
+      "failures": []
+    },
+    "roblox-vfx-polish": {
+      "failures": [],
+      "pass": true,
+      "checks": 2117
+    },
+    "hero-hit-feedback": {
+      "kind": "HERO_HIT_FEEDBACK_NATIVE",
+      "pass": true,
+      "checks": 1667
+    },
+    "hero-release-shapes": {
+      "failures": [],
+      "checks": 188
+    },
+    "hero-weighted-releases": {
+      "failures": [],
+      "pass": true,
+      "checks": 50
+    },
+    "projectile-vfx-timing": {
+      "pass": true,
+      "checks": 312
+    },
+    "hero-windup-interrupt": {
+      "failures": [],
+      "pass": true,
+      "checks": 217
+    },
+    "hero-step-wakes": {
+      "checks": 475
+    },
+    "hero-movement-skills": {
+      "failures": [],
+      "pass": true,
+      "checks": 67
+    },
+    "element-vfx": {
+      "failures": [],
+      "pass": true,
+      "checks": 84
+    },
+    "skill-vfx-individual": {
+      "failures": [],
+      "skills": 128,
+      "pass": true,
+      "checks": 307
+    },
+    "vfx-art-hero-fixes": {
+      "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+      "failures": [],
+      "pass": true,
+      "checks": 2277
+    },
+    "vfx-review-followup": {
+      "attacks": 146,
+      "checks": 1210,
+      "failures": [],
+      "pass": true,
+      "dashes": 11
+    },
+    "hero-mobile-releases": {
+      "beams": {
+        "ally": {
+          "blast": 1,
+          "radiant": 2,
+          "ember": 4
+        },
+        "owner": {
+          "blast": 4,
+          "radiant": 4,
+          "ember": 6
+        }
+      },
+      "checks": 60,
+      "failures": [],
+      "pass": true,
+      "overlap": {
+        "beams": 13,
+        "active": 4,
+        "warningSegments": 16,
+        "surfaces": 16,
+        "particles": 0,
+        "glows": 0
+      }
+    }
+  },
+  "baselineFocused": {
+    "beams": {
+      "ally": {
+        "blast": 22,
+        "radiant": 0,
+        "ember": 0
+      },
+      "owner": {
+        "blast": 22,
+        "radiant": 0,
+        "ember": 0
+      }
+    },
+    "checks": 42,
+    "failures": [
+      "Radiant Charge tucks shield R6",
+      "Radiant Charge first lead leg R6",
+      "Radiant Charge second lead leg R6",
+      "Blast Step recovers the firing elbow R6",
+      "Radiant Charge tucks shield R15",
+      "Radiant Charge first lead leg R15",
+      "Radiant Charge second lead leg R15",
+      "Blast Step recovers the firing elbow R15",
+      "Ember Step looks back over a planted leg",
+      "knight.paladin.radiant_charge movement beam budget",
+      "elf.magic_archer.gliding_shot movement beam budget",
+      "Radiant Charge both pulse silhouettes",
+      "Radiant Charge removes duplicate shield geometry",
+      "Blast Step fires forward through the left muzzle",
+      "Blast Step uses one forward pressure wave",
+      "Gliding Shot has a single release streak",
+      "Ember Step keeps a single back-sweeping flame edge",
+      "Ember Step removes the duplicate fire ring and particles",
+      "knight.paladin.radiant_charge movement beam budget",
+      "elf.magic_archer.gliding_shot movement beam budget",
+      "Radiant Charge both pulse silhouettes",
+      "Radiant Charge removes duplicate shield geometry",
+      "Blast Step fires forward through the left muzzle",
+      "Blast Step uses one forward pressure wave",
+      "Gliding Shot has a single release streak",
+      "Ember Step keeps a single back-sweeping flame edge",
+      "Ember Step removes the duplicate fire ring and particles",
+      "Three compact allies and the owner keep their releases without extra glow or particles"
+    ],
+    "pass": false,
+    "overlap": {
+      "beams": 75,
+      "active": 4,
+      "warningSegments": 16,
+      "surfaces": 131,
+      "particles": 18,
+      "glows": 7
+    }
+  },
+  "cpuChecks": {
+    "advanced-skills": 1435,
+    "skill-effects": 12524,
+    "skill-stat-preview": 1392
+  },
+  "staticChecks": 336,
+  "separateTimingFixture": {
+    "baseline": {
+      "error": "dwarf.gunner.rolling_charge no full-length shot line during flight",
+      "pass": false,
+      "checks": 6
+    },
+    "candidate": {
+      "error": "dwarf.gunner.rolling_charge no full-length shot line during flight",
+      "pass": false,
+      "checks": 6
+    }
+  }
+}

@@ -39,9 +39,14 @@ local ok,err=xpcall(function()
  m=cast(chain,nil,nil,1,{})
  check(#beams(m)==0,'empty chain never fabricates a hit')
  m=cast(A.branches.pyro.skills[6].id,Vector3.new(15,3,0),Vector3.new(0,3,0))
- local sum=Vector3.zero;local list=beams(m,'CinderRing')
- for _,v in ipairs(list)do sum+=v.Attachment0.WorldPosition end
- check(math.abs((sum/#list).X)<.01,'Ember Step remains at server departure center')
+ local list=beams(m,'EmberDepartureEdge')
+ local rear,front=math.huge,-math.huge
+ for _,v in ipairs(list)do
+  for _,at in ipairs({v.Attachment0.WorldPosition,v.Attachment1.WorldPosition})do
+   rear,front=math.min(at.X,rear),math.max(at.X,front)
+  end
+ end
+ check(#list==6 and rear<-.5 and front<1.5,'Ember Step stays near the server departure and curls back')
  m=cast(A.branches.pyro.skills[7].id)
  check(#beams(m,'StoneLanceAxis')==1 and #beams(m,'EarthFissure')==0,'Stone Lance is airborne rather than a ground earthquake')
  local cross=A.branches.paladin.skills[11].id

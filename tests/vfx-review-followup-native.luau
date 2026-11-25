@@ -97,10 +97,16 @@ for _,id in ipairs({'knight.common.whirlwind','knight.steel_knight.twin_cyclone'
 end
 for _,id in ipairs({'mage.pyro.cinder_ring','mage.pyro.ember_step','mage.pyro.searing_ward'})do
  local m=cast(id);local minX,maxX,minZ,maxZ,high=math.huge,-math.huge,math.huge,-math.huge,-math.huge
- for _,v in ipairs(m:GetDescendants())do if v:IsA('BasePart')and v.Name=='AreaFlameTongue'then
-  minX=math.min(minX,v.Position.X);maxX=math.max(maxX,v.Position.X)
-  minZ=math.min(minZ,v.Position.Z);maxZ=math.max(maxZ,v.Position.Z);high=math.max(high,v.Position.Y)
- end end
+ local function include(at)
+  minX=math.min(minX,at.X);maxX=math.max(maxX,at.X)
+  minZ=math.min(minZ,at.Z);maxZ=math.max(maxZ,at.Z);high=math.max(high,at.Y)
+ end
+ for _,v in ipairs(m:GetDescendants())do
+  if v:IsA('BasePart')and v.Name=='AreaFlameTongue'then include(v.Position)
+  elseif v:IsA('Beam')and v.Name=='EmberDepartureEdge'then
+   include(v.Attachment0.WorldPosition);include(v.Attachment1.WorldPosition)
+  end
+ end
  if id=='mage.pyro.ember_step'then check(maxX-minX>(maxZ-minZ)*2,'ember step leaves a short transverse wake')
  elseif id=='mage.pyro.searing_ward'then check(high>2,'searing ward rises into a protective crown')
  else check(maxZ-minZ>1 and maxX-minX>1,'cinder flames retain radial distribution')end

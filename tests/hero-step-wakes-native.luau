@@ -30,8 +30,10 @@ fixture.Parent = Combat
 
 local cases = {
     {"knight", "knight.paladin.valiant_advance", "ValiantBootWake"},
+    {"knight", "knight.paladin.radiant_charge", "RadiantBootWake", true},
     {"dwarf", "dwarf.gunner.blast_step", "BlastRecoilSkid"},
     {"elf", "elf.marksman.retreating_fire", "RetreatFletchedWake"},
+    {"elf", "elf.magic_archer.gliding_shot", "GlidingHeelWake", true},
     {"mage", "mage.pyro.ember_step", "EmberStepWake"},
 }
 local function part(name, size, cf, parent)
@@ -100,12 +102,12 @@ local ok, err = xpcall(function()
     api.connect({ FireAllClients = function(_, ...) packet = table.pack(...) end })
     local floor = part("TestFloor", Vector3.new(40, 1, 40), CFrame.new(at - Vector3.yAxis * 3), stage)
     for _, case in cases do
-        local classId, id, style = table.unpack(case)
+        local classId, id, style, singleForAllies = table.unpack(case)
         local index, d
         for i, definition in Config.Skills[classId] do
             if definition.id == id then index, d = i, definition; break end
         end
-        checkPose(classId, d)
+        if not singleForAllies then checkPose(classId, d) end
         for _, scenario in {"open", "clipped", "blocked", "ledge"} do
             for _, compact in {false, true} do
                 FX.clear()
@@ -148,7 +150,7 @@ local ok, err = xpcall(function()
                                 id .. " trace remains on the confirmed segment")
                         end
                     end
-                    check(beams == 2, id .. " fits the two-beam budget")
+                    check(beams == (singleForAllies and compact and 1 or 2), id .. " fits its beam budget")
                     Visual.play(table.unpack(packet, 1, packet.n))
                     check(wake() == m, id .. " ignores the duplicate opening")
                     FX.step(packet[9] + .23)

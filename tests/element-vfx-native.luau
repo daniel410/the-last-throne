@@ -47,6 +47,7 @@ local ok,err=xpcall(function()
   holyCount+=1;check(row.key=='holy','holy element wins over generic shield mapping: '..id)
   local m=cast(id)
   local edge=m:FindFirstChild('SunwardCross',true) or m:FindFirstChild('DawnSpiralSweep',true)
+   or m:FindFirstChild('RadiantChargeEdge',true)
   if edge then
    local colors=edge.Color.Keypoints
    check(colors[1].Value.R>.9 and colors[1].Value.G>.6 and colors[1].Value.B<.6,'holy edge is golden: '..id)

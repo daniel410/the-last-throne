@@ -209,6 +209,8 @@ local player = Instance.new("Folder", stage)
 player:SetAttribute("K0SessionPhase", "Tutorial")
 actor.Name = "Character"
 actor.Parent = player
+local humanoid = Instance.new("Humanoid", actor)
+humanoid.RequiresNeck = false
 local warnings = Telegraphs.create(enemies, player)
 FX.isOtherHero = function(character) return character ~= nil and character ~= actor end
 local allies = {}
