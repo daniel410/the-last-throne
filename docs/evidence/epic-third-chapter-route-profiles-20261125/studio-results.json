@@ -1,0 +1,531 @@
+{
+  "landmarks": {
+    "before": [
+      {
+        "chapter": "HG-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 2.8449974060058594,
+        "bounds": [
+          6.098577976226807,
+          2.8449974060058594,
+          4.138154029846191
+        ],
+        "goal": "exp_2",
+        "model": "FortressStoneRailSeat",
+        "anchor": [
+          722.1500244140625,
+          180,
+          -16260.6796875
+        ],
+        "routeClearance": 10.950711250305176,
+        "ground": [
+          722.1500244140625,
+          180,
+          -16246.6796875
+        ],
+        "parts": 9
+      },
+      {
+        "chapter": "EC-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 2.7699902057647705,
+        "bounds": [
+          6.371156692504883,
+          2.7699902057647705,
+          4.08856201171875
+        ],
+        "goal": "exp_1",
+        "model": "MineRescueRailSeat",
+        "anchor": [
+          217.14999389648438,
+          140,
+          -13057.7197265625
+        ],
+        "routeClearance": 10.814193725585938,
+        "ground": [
+          203.59466552734375,
+          140,
+          -13061.2197265625
+        ],
+        "parts": 9
+      },
+      {
+        "chapter": "DW-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 2.8300013542175293,
+        "bounds": [
+          6.204779624938965,
+          2.8300013542175293,
+          4.222344398498535
+        ],
+        "goal": "exp_2",
+        "model": "OutpostSightRest",
+        "anchor": [
+          -196.0399932861328,
+          28,
+          -1203
+        ],
+        "routeClearance": 10.89759635925293,
+        "ground": [
+          -184.5694580078125,
+          28,
+          -1194.973388671875
+        ],
+        "parts": 10
+      },
+      {
+        "chapter": "FV-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 3.19232177734375,
+        "bounds": [
+          6.613526344299316,
+          3.19232177734375,
+          4.7951860427856445
+        ],
+        "goal": "exp_1",
+        "model": "RavineSupplyBank",
+        "anchor": [
+          297.8500061035156,
+          92,
+          -9167.7197265625
+        ],
+        "routeClearance": 10.692920684814453,
+        "ground": [
+          308.5184326171875,
+          92,
+          -9158.654296875
+        ],
+        "parts": 7
+      },
+      {
+        "chapter": "GW-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 2.961487054824829,
+        "bounds": [
+          6.084496021270752,
+          2.961487054824829,
+          4.196873188018799
+        ],
+        "goal": "exp_1",
+        "model": "RefugeLanternReturn",
+        "anchor": [
+          -222.64999389648438,
+          62,
+          -5129.39990234375
+        ],
+        "routeClearance": 10.95760440826416,
+        "ground": [
+          -228.11056518554688,
+          62,
+          -5116.5087890625
+        ],
+        "parts": 9
+      }
+    ],
+    "after": [
+      {
+        "chapter": "HG-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 2.8449974060058594,
+        "bounds": [
+          6.098577976226807,
+          2.8449974060058594,
+          4.138154029846191
+        ],
+        "goal": "exp_2",
+        "model": "FortressStoneRailSeat",
+        "anchor": [
+          722.1500244140625,
+          180,
+          -16260.6796875
+        ],
+        "routeClearance": 10.950711250305176,
+        "ground": [
+          722.1500244140625,
+          180,
+          -16246.6796875
+        ],
+        "parts": 11
+      },
+      {
+        "chapter": "EC-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 2.7699902057647705,
+        "bounds": [
+          6.371156692504883,
+          2.7699902057647705,
+          4.08856201171875
+        ],
+        "goal": "exp_1",
+        "model": "MineRescueRailSeat",
+        "anchor": [
+          217.14999389648438,
+          140,
+          -13057.7197265625
+        ],
+        "routeClearance": 10.814193725585938,
+        "ground": [
+          203.59466552734375,
+          140,
+          -13061.2197265625
+        ],
+        "parts": 13
+      },
+      {
+        "chapter": "DW-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 3.0600008964538574,
+        "bounds": [
+          7.9338765144348145,
+          3.0600008964538574,
+          5.520477294921875
+        ],
+        "goal": "exp_2",
+        "model": "OutpostSightRest",
+        "anchor": [
+          -196.0399932861328,
+          28,
+          -1203
+        ],
+        "routeClearance": 10.033048629760742,
+        "ground": [
+          -184.5694580078125,
+          28,
+          -1194.973388671875
+        ],
+        "parts": 12
+      },
+      {
+        "chapter": "FV-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 3.19232177734375,
+        "bounds": [
+          7.630242824554443,
+          3.19232177734375,
+          5.719998836517334
+        ],
+        "goal": "exp_1",
+        "model": "RavineSupplyBank",
+        "anchor": [
+          297.8500061035156,
+          92,
+          -9167.7197265625
+        ],
+        "routeClearance": 10.184447288513184,
+        "ground": [
+          308.5184326171875,
+          92,
+          -9158.654296875
+        ],
+        "parts": 8
+      },
+      {
+        "chapter": "GW-03",
+        "maxFloorError": 0,
+        "step": "step2",
+        "version": 3,
+        "height": 3.6799988746643066,
+        "bounds": [
+          6.084496021270752,
+          3.6799988746643066,
+          4.196873188018799
+        ],
+        "goal": "exp_1",
+        "model": "RefugeLanternReturn",
+        "anchor": [
+          -222.64999389648438,
+          62,
+          -5129.39990234375
+        ],
+        "routeClearance": 6.193542003631592,
+        "ground": [
+          -217.18942260742188,
+          62,
+          -5142.291015625
+        ],
+        "parts": 13
+      }
+    ]
+  },
+  "unchangedLandmarks": [
+    "AllianceLandingGuardCourse",
+    "AllianceRigBlocking",
+    "AntechamberRailFooting",
+    "ArchiveSignalObservationSill",
+    "BarracksFreightBreach",
+    "BelowRailCoolantInspectionHead",
+    "BuriedConvoyWheelTrace",
+    "CellarDryLoadSill",
+    "CircuitModelCatchBasin",
+    "CitadelServiceCoping",
+    "ColdSideRailSaddle",
+    "CoolingDraftBench",
+    "CreekCargoSill",
+    "CreekCrossingShoulder",
+    "CrewPlanWorktableFootings",
+    "CrushedLanternSill",
+    "EasternGalleryConduitSaddle",
+    "EmergencyReturnFlume",
+    "FracturedCoolantJunction",
+    "FreightCarrierWheelSeat",
+    "GateSurveyLedge",
+    "GateWinchAnchorPlinth",
+    "HeatworksObservationBaffle",
+    "HuntingBankShaleCut",
+    "KeeperRailAnchor",
+    "KeeperReturnLanternNiche",
+    "KeeperServiceDoorJamb",
+    "LiftLandingGuide",
+    "MineFreightLineSeat",
+    "OuterWebRootShelf",
+    "PressureLineSaddle",
+    "PrisonWalkwayWheelStop",
+    "RavineWalkRailAnchor",
+    "RearguardLanternRootBank",
+    "RearguardRopeTurnFooting",
+    "RecoveryRainShelf",
+    "RefugeBoardRest",
+    "RefugePathDrain",
+    "RefugeReturnRootMarker",
+    "RefugeWindbreakPocket",
+    "RelayPlateCradle",
+    "RelayReturnHallSkirting",
+    "ReliefRosterStand",
+    "ReturnRopeGuide",
+    "RoyalRecordWallRecess",
+    "ScoutApproachStoneFooting",
+    "ScoutCrouchNotch",
+    "ScoutExtractionSkid",
+    "ScoutLandingStoneAbutment",
+    "ScoutLanternRootCradle",
+    "ShelterAwningFooting",
+    "ShelterMarkRootPocket",
+    "StragglerBendDrainageShoulder",
+    "TunnelHandrailFooting",
+    "TwinBeaconTerraceSill",
+    "VillageRelayWindbreak",
+    "WatchtowerCableAbutment",
+    "WesternConduitWallSleeve",
+    "WheeltrackForkRootCut",
+    "WindbreakAscentBank"
+  ],
+  "landmarkOverlapClear": [
+    "FortressStoneRailSeat",
+    "MineRescueRailSeat",
+    "OutpostSightRest",
+    "RavineSupplyBank",
+    "RefugeLanternReturn"
+  ],
+  "walks": {
+    "before": [
+      {
+        "chapter": "DW-03",
+        "inbound": 0.9096055030822754,
+        "distance": 15.999948501586914,
+        "outbound": 1.958357572555542
+      },
+      {
+        "chapter": "EC-03",
+        "inbound": 1.4207433462142944,
+        "distance": 16.00037956237793,
+        "outbound": 1.4096859693527222
+      },
+      {
+        "chapter": "FV-03",
+        "inbound": 0.8999823331832886,
+        "distance": 15.999918937683105,
+        "outbound": 2.0558125972747803
+      },
+      {
+        "chapter": "GW-03",
+        "inbound": 0.8791117668151855,
+        "distance": 16.000022888183594,
+        "outbound": 1.9870442152023315
+      },
+      {
+        "chapter": "HG-03",
+        "inbound": 1.409423828125,
+        "distance": 16,
+        "outbound": 1.455322265625
+      }
+    ],
+    "after": [
+      {
+        "chapter": "DW-03",
+        "inbound": 1.0429307222366333,
+        "distance": 15.999948501586914,
+        "outbound": 1.691698431968689
+      },
+      {
+        "chapter": "EC-03",
+        "inbound": 1.021390676498413,
+        "distance": 16.00037956237793,
+        "outbound": 1.6759324073791504
+      },
+      {
+        "chapter": "FV-03",
+        "inbound": 1.0332611799240112,
+        "distance": 15.999918937683105,
+        "outbound": 1.7892942428588867
+      },
+      {
+        "chapter": "GW-03",
+        "inbound": 1.012608528137207,
+        "distance": 16.000022888183594,
+        "outbound": 1.7203114032745361
+      },
+      {
+        "chapter": "HG-03",
+        "inbound": 1.00933837890625,
+        "distance": 16,
+        "outbound": 1.7220458984375
+      }
+    ]
+  },
+  "gloamwoodShelterSightlines": {
+    "before": {
+      "fromPrevious": [
+        {
+          "distance": 8,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 16,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 24,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 32,
+          "samples": 5,
+          "blocked": 0
+        }
+      ],
+      "fromNext": [
+        {
+          "distance": 8,
+          "samples": 5,
+          "blocked": 5
+        },
+        {
+          "distance": 16,
+          "samples": 5,
+          "blocked": 2
+        },
+        {
+          "distance": 24,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 32,
+          "samples": 5,
+          "blocked": 0
+        }
+      ]
+    },
+    "after": {
+      "fromPrevious": [
+        {
+          "distance": 8,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 16,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 24,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 32,
+          "samples": 5,
+          "blocked": 0
+        }
+      ],
+      "fromNext": [
+        {
+          "distance": 8,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 16,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 24,
+          "samples": 5,
+          "blocked": 0
+        },
+        {
+          "distance": 32,
+          "samples": 5,
+          "blocked": 0
+        }
+      ]
+    }
+  },
+  "framePairs": [
+    "DW-03-approach",
+    "DW-03-return-side",
+    "GW-03-approach",
+    "GW-03-return-side",
+    "FV-03-approach",
+    "FV-03-return-side",
+    "EC-03-approach",
+    "EC-03-return-side",
+    "HG-03-approach",
+    "HG-03-return-side"
+  ],
+  "campaignRegression": {
+    "before": {
+      "generationSeconds": 30.62036970834015,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57414
+    },
+    "after": {
+      "generationSeconds": 30.5070984166814,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57427
+    }
+  }
+}
