@@ -1,0 +1,324 @@
+{
+  "baselineVersion": "0.115.109",
+  "candidateVersion": "0.115.113",
+  "focus": {
+    "baseline": {
+      "castBudgets": {
+        "self": {
+          "beams": 99,
+          "glows": 15,
+          "particles": 36,
+          "surfaces": 96
+        },
+        "ally": {
+          "beams": 84,
+          "glows": 0,
+          "particles": 0,
+          "surfaces": 96
+        }
+      },
+      "failures": [
+        "R6 Dawn Burst stays forward through contact",
+        "R6 Dawn Burst draws the shield in during preparation",
+        "R6 Dawn Burst plants the front knee",
+        "R6 Shell Burst lowers the tube after recoil",
+        "R6 Shell Burst braces the rear leg on contact",
+        "R15 Dawn Burst stays forward through contact",
+        "R15 Dawn Burst draws the shield in during preparation",
+        "R15 Dawn Burst plants the front knee",
+        "R15 Shell Burst lowers the tube after recoil",
+        "R15 Shell Burst braces the rear leg on contact",
+        "Bloom Shot opens the draw elbow",
+        "Ice Shard snaps the casting elbow open",
+        "Dawn Burst has one set of outward rays",
+        "Dawn Burst keeps the range line without a second wave",
+        "Shell Burst reads as one upward jet and two low wings",
+        "Only the local caster sees casing",
+        "Shell Burst preserves its boundary without a second explosion",
+        "Bloom Shot draws one line from the nock",
+        "Bloom Shot release does not imply a mark consumption",
+        "Only a confirmed nature spend opens petals",
+        "Bloom Shot can show a simultaneous posture break and spend",
+        "Ice Shard falls back before point-blank cover",
+        "Ice Shard clamps the crystal to the visible path",
+        "Ice Shard connects the palm to the confirmed endpoint",
+        "Ice Shard renders one faceted crystal",
+        "Four releases stay within the Beam cap without particle or glow layers",
+        "Dawn Burst has one set of outward rays",
+        "Dawn Burst keeps the range line without a second wave",
+        "Shell Burst reads as one upward jet and two low wings",
+        "Bloom Shot draws one line from the nock",
+        "Bloom Shot release does not imply a mark consumption",
+        "Only a confirmed nature spend opens petals",
+        "Bloom Shot can show a simultaneous posture break and spend",
+        "Ice Shard falls back before point-blank cover",
+        "Ice Shard clamps the crystal to the visible path",
+        "Ice Shard connects the palm to the confirmed endpoint",
+        "Ice Shard renders one faceted crystal",
+        "Four releases stay within the Beam cap without particle or glow layers"
+      ],
+      "pass": false,
+      "checks": 52
+    },
+    "candidate": {
+      "castBudgets": {
+        "self": {
+          "beams": 11,
+          "glows": 0,
+          "particles": 0,
+          "surfaces": 18
+        },
+        "ally": {
+          "beams": 9,
+          "glows": 0,
+          "particles": 0,
+          "surfaces": 16
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "checks": 56
+    }
+  },
+  "passingRegressionSuiteCount": 19,
+  "passingRegressionChecks": 253549,
+  "regression": {
+    "hero-directional-releases": {
+      "report": {
+        "overlap": {
+          "beams": 31,
+          "redSegments": 16,
+          "surfaces": 19,
+          "particles": 0,
+          "glows": 0
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 72
+      },
+      "status": "pass"
+    },
+    "hero-release-shapes": {
+      "report": {
+        "failures": [],
+        "checks": 188
+      },
+      "status": "pass"
+    },
+    "hero-shield-grant": {
+      "report": {
+        "checks": 139,
+        "partySkills": 6,
+        "failures": [],
+        "shieldSkills": 13,
+        "pass": true
+      },
+      "status": "pass"
+    },
+    "hero-skills": {
+      "report": {
+        "failures": [],
+        "checks": 244520,
+        "rigs": [
+          "R6/knight",
+          "R6/dwarf",
+          "R6/elf",
+          "R6/mage",
+          "R15/knight",
+          "R15/dwarf",
+          "R15/elf",
+          "R15/mage"
+        ],
+        "kind": "HERO_SKILLS_NATIVE",
+        "pass": true,
+        "skills": 256
+      },
+      "status": "pass"
+    },
+    "ranged-action-poses": {
+      "report": {
+        "checks": 158,
+        "pass": true,
+        "maxRedrawJumpDegrees": 0.011101223528385162,
+        "actions": 132,
+        "rigs": [
+          "R6",
+          "R15"
+        ]
+      },
+      "status": "pass"
+    },
+    "melee-action-beats": {
+      "report": {
+        "rigActions": 140,
+        "contacts": 204,
+        "pass": true,
+        "checks": 2147
+      },
+      "status": "pass"
+    },
+    "hero-skill-impact": {
+      "report": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 761
+      },
+      "status": "pass"
+    },
+    "hero-vfx-priority": {
+      "report": {
+        "releases": {
+          "mage.cryo.chain_lightning": true,
+          "elf.marksman.grand_volley": true,
+          "dwarf.iron_axe.returning_echo": true,
+          "knight.steel_knight.vanguard_strike": true
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 28
+      },
+      "status": "pass"
+    },
+    "hero-skill-direction": {
+      "report": {
+        "pass": true,
+        "checks": 31
+      },
+      "status": "pass"
+    },
+    "hero-skill-windup": {
+      "report": {
+        "styles": {
+          "CrystalTips": 9,
+          "WardPetals": 3,
+          "WaterCurl": 2,
+          "SwordPoint": 2,
+          "RisingGrit": 15,
+          "BoreBrackets": 4,
+          "ShieldBrace": 10,
+          "GatheringFork": 4,
+          "SightDraw": 14,
+          "LeafDraw": 12,
+          "MortarBrace": 5,
+          "DrawnEdge": 17,
+          "AxeCoil": 5,
+          "HighDraw": 2,
+          "EmberCurl": 7,
+          "FuseCurl": 4
+        },
+        "skills": 115,
+        "pass": true,
+        "checks": 1400
+      },
+      "status": "pass"
+    },
+    "hero-windup-interrupt": {
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 217
+      },
+      "status": "pass"
+    },
+    "hero-mark-break-releases": {
+      "report": {
+        "overlap": {
+          "beams": 9,
+          "active": 4,
+          "warningSegments": 16,
+          "surfaces": 12,
+          "particles": 0,
+          "glows": 0
+        },
+        "failures": [],
+        "pass": true,
+        "checks": 94
+      },
+      "status": "pass"
+    },
+    "vfx-art-hero-fixes": {
+      "report": {
+        "coverage": "Procedural engine geometry and motion; not final art/device acceptance",
+        "failures": [],
+        "pass": true,
+        "checks": 2255
+      },
+      "status": "pass"
+    },
+    "skill-vfx-individual": {
+      "report": {
+        "failures": [],
+        "skills": 128,
+        "pass": true,
+        "checks": 307
+      },
+      "status": "pass"
+    },
+    "hero-mark-impact": {
+      "report": {
+        "checks": 341,
+        "skills": 22,
+        "pass": true,
+        "failures": []
+      },
+      "status": "pass"
+    },
+    "hero-mark-application": {
+      "report": {
+        "failures": [],
+        "checks": 432
+      },
+      "status": "pass"
+    },
+    "projectile-vfx-timing": {
+      "report": {
+        "pass": true,
+        "checks": 312
+      },
+      "status": "pass"
+    },
+    "skill-vfx-art": {
+      "status": "pass",
+      "report": {
+        "failures": [],
+        "pass": true,
+        "checks": 44
+      }
+    },
+    "hero-ground-beats": {
+      "status": "pass",
+      "report": {
+        "failures": [],
+        "checks": 103
+      }
+    }
+  },
+  "knownFailure": {
+    "suite": "rpg-vfx-gap",
+    "reason": "CalderaCentralPlume has no BillboardGui at line 30",
+    "baseline": {
+      "failures": [
+        "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30: assertion failed!\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+      ],
+      "pass": false,
+      "checks": 16
+    },
+    "candidate": {
+      "failures": [
+        "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30: assertion failed!\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:30\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+      ],
+      "pass": false,
+      "checks": 16
+    }
+  },
+  "static": {
+    "packagedRoleAndArrivalChecks": 336,
+    "compiledLuauFiles": 9,
+    "cpuPassedChecks": 15321,
+    "existingCpuFailures": [
+      "advanced-mode-damage: expects difficulty rules version 18",
+      "skill-presentation: Lua cannot parse a Luau compound assignment"
+    ]
+  }
+}

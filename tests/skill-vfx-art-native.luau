@@ -31,13 +31,14 @@ local ok,err=xpcall(function()
  local ring=cast('mage_tidal_ring');check(ring:FindFirstChild('TidalLip',true)~=nil,'Tidal Ring retains its ground wave')
  local dimensions={}
  for _,id in ipairs({'frost_lance','ice_shard','shatter_dart','glacial_spike'})do
-  local crystal=cast('mage.cryo.'..id);local p=assert(crystal:FindFirstChild('IceLanceVolume',true))
-  dimensions[id]=p.Size
-  check(#parts(crystal,'IceLanceFacet')>=8,'crystal has filled hard facets '..id)
+  local crystal=cast('mage.cryo.'..id)
+  dimensions[id]={length=crystal:GetAttribute('CrystalLength'),width=crystal:GetAttribute('CrystalWidth')}
+  local facet=id=='ice_shard' and 'IceShardFacet' or 'IceLanceFacet'
+  check(#parts(crystal,facet)>=8,'crystal has filled hard facets '..id)
  end
- check(dimensions.ice_shard.Z<dimensions.frost_lance.Z*.6 and dimensions.ice_shard.X>dimensions.frost_lance.X,'Ice Shard is short and wide relative to Frost Lance')
- check(dimensions.glacial_spike.Z>dimensions.frost_lance.Z*1.3 and dimensions.glacial_spike.X>dimensions.frost_lance.X*2,'Glacial Spike is visibly heavier than Frost Lance')
- check(dimensions.shatter_dart.Z<dimensions.ice_shard.Z,'Shatter Dart remains compact')
+ check(dimensions.ice_shard.length<dimensions.frost_lance.length*.6 and dimensions.ice_shard.width>dimensions.frost_lance.width,'Ice Shard is short and wide relative to Frost Lance')
+ check(dimensions.glacial_spike.length>dimensions.frost_lance.length*1.3 and dimensions.glacial_spike.width>dimensions.frost_lance.width*2,'Glacial Spike is visibly heavier than Frost Lance')
+ check(dimensions.shatter_dart.length<dimensions.ice_shard.length,'Shatter Dart remains compact')
  local ward=cast('mage.cryo.ice_ward');check(#parts(ward,'IceWardPanel')>=6 and ward:FindFirstChild('IceWardCrest',true),'ice ward encloses the body with panels and a crest')
  local edge=assert(ward:FindFirstChild('IceWardPanelEdge',true))
  check(edge.Shape==Enum.PartType.Block and edge.Size.Z>edge.Size.X*10,'linear guard edges have elongated geometry rather than separate round dots')
@@ -67,7 +68,11 @@ local ok,err=xpcall(function()
  check(copy:IsA('MeshPart')and not copy:FindFirstChildWhichIsA('BaseScript')and not copy:FindFirstChildWhichIsA('WeldConstraint'),'equipped mesh clone strips code and joints')
  FX.step(workspace:GetServerTimeNow()+.1);check(source.CFrame==pose and source.Parent==owner,'source weapon pose and ownership stay unchanged')
  FX.clear();character:Destroy()
- local leaves=cast('elf.magic_archer.bloom_shot');check(#parts(leaves,'NatureArrowLeaf')>=10,'Bloom Shot has five filled leaf petals')
+ local bloom='elf.magic_archer.bloom_shot'
+ local shot=cast(bloom);check(#parts(shot,'BloomShotPetal')==0,'Bloom Shot releases a single arrow without petals')
+ local leaves=FX.contact(last,'elf',bloom,-Vector3.zAxis,1,false,'nature')
+ check(#parts(leaves,'LeafMidrib')==5 and #parts(leaves,'BloomShotPetal')==20,
+  'A confirmed Nature spend opens five filled leaf petals')
  local rise=cast('mage.pyro.earth_rise');check(#parts(rise,'RisingCrag')==3,'Earth Rise has three height-varied pillars')
  local provoke=cast('knight.common.provoke');check(not provoke:FindFirstChild('ImpactFlare',true)and not provoke:FindFirstChild('WarcryOpenPressure',true),'zero-damage Provoke has voice cues without an impact explosion')
  FX.clear()

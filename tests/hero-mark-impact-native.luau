@@ -123,8 +123,10 @@ local ok, err = xpcall(function()
                 end
             end
             local _, beams, chips, glows, particles, faces = FX.count()
+            local petals = id == "elf.magic_archer.bloom_shot" and (compact and 5 or 25) or 0
             check(effect and effect:GetAttribute("ContactStyle") == style and count == 2 and spread and shaped
-                and beams == 2 and chips + glows + particles + faces == 0, id .. " splits into two bounded strokes")
+                and beams == 2 and chips + glows + particles == 0 and faces == petals,
+                id .. " splits into two bounded strokes with skill-specific petals")
             check(holder and holder.K0DamageNumber.Amount.Text == tostring(markedHit[3])
                 and not holder:FindFirstChild("K0ImpactFlash"), id .. " keeps damage legible without a duplicate flash")
             FX.step(workspace:GetServerTimeNow() + .24)
