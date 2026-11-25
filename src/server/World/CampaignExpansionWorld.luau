@@ -5,6 +5,7 @@ local Content=require(Shared.CampaignContent)
 local K=require(script.Parent.EpicEnvironmentKit)
 local SecondChapterEntrances=require(script.Parent.EpicSecondChapterEntrances)
 local ThirdChapterEntrances=require(script.Parent.EpicThirdChapterEntrances)
+local FourthChapterEntrances=require(script.Parent.EpicFourthChapterEntrances)
 local W={}
 local V=Vector3.new
 local themes={DW='Deepwood',GW='Gloamwood',FV='FrozenVale',EC='EmberCaldera',HG='HauntedGraveyard'}
@@ -95,6 +96,7 @@ function W.create(world,scope)
    else
     local authored=SecondChapterEntrances.create(arch,c.id,g.id,entry,area,pal)
      or ThirdChapterEntrances.create(arch,c.id,g.id,entry,area,pal)
+     or FourthChapterEntrances.create(arch,c.id,g.id,entry,area,pal)
     if not authored then K.arch(arch,entry,80,26,pal)end
     -- The arches open along Z; east/west connectors need a quarter turn.
     arch.WorldPivot=CFrame.new(entry)
