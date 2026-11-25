@@ -1,0 +1,444 @@
+{
+  "unchangedModels": [
+    "AllianceLandingGuardCourse",
+    "AllianceRigBlocking",
+    "AntechamberRailFooting",
+    "ArchiveSignalObservationSill",
+    "BarracksFreightBreach",
+    "BelowRailCoolantInspectionHead",
+    "BuriedConvoyWheelTrace",
+    "CellarDryLoadSill",
+    "CircuitModelCatchBasin",
+    "CitadelServiceCoping",
+    "ColdSideRailSaddle",
+    "CoolingDraftBench",
+    "CreekCargoSill",
+    "CreekCrossingShoulder",
+    "CrewPlanWorktableFootings",
+    "CrushedLanternSill",
+    "EasternGalleryConduitSaddle",
+    "EmergencyReturnFlume",
+    "FortressStoneRailSeat",
+    "FracturedCoolantJunction",
+    "FreightCarrierWheelSeat",
+    "GateWinchAnchorPlinth",
+    "HeatworksObservationBaffle",
+    "HuntingBankShaleCut",
+    "KeeperRailAnchor",
+    "KeeperReturnLanternNiche",
+    "KeeperServiceDoorJamb",
+    "LiftLandingGuide",
+    "MineFreightLineSeat",
+    "MineRescueRailSeat",
+    "OuterWebRootShelf",
+    "OutpostSightRest",
+    "PrisonWalkwayWheelStop",
+    "RavineSupplyBank",
+    "RavineWalkRailAnchor",
+    "RearguardLanternRootBank",
+    "RearguardRopeTurnFooting",
+    "RecoveryRainShelf",
+    "RefugeLanternReturn",
+    "RefugePathDrain",
+    "RefugeReturnRootMarker",
+    "RefugeWindbreakPocket",
+    "RelayReturnHallSkirting",
+    "ReliefRosterStand",
+    "RoyalRecordWallRecess",
+    "ScoutApproachStoneFooting",
+    "ScoutCrouchNotch",
+    "ScoutExtractionSkid",
+    "ScoutLandingStoneAbutment",
+    "ScoutLanternRootCradle",
+    "ShelterAwningFooting",
+    "ShelterMarkRootPocket",
+    "StragglerBendDrainageShoulder",
+    "TunnelHandrailFooting",
+    "TwinBeaconTerraceSill",
+    "VillageRelayWindbreak",
+    "WatchtowerCableAbutment",
+    "WesternConduitWallSleeve",
+    "WheeltrackForkRootCut",
+    "WindbreakAscentBank"
+  ],
+  "framePairs": [
+    "DW-04-approach",
+    "DW-04-return-side",
+    "GW-04-approach",
+    "GW-04-return-side",
+    "FV-04-approach",
+    "FV-04-return-side",
+    "EC-04-approach",
+    "EC-04-return-side",
+    "HG-04-approach",
+    "HG-04-return-side"
+  ],
+  "versions": {
+    "0.115.108": {
+      "models": [
+        {
+          "chapter": "DW-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.2749996185302734,
+          "bounds": [
+            5.800001621246338,
+            2.2749996185302734,
+            3.299999713897705
+          ],
+          "goal": "exp_2",
+          "model": "ReturnRopeGuide",
+          "anchor": [
+            1109.800048828125,
+            30,
+            -1876.199951171875
+          ],
+          "routeClearance": 11.099842071533203,
+          "ground": [
+            1109.980712890625,
+            30,
+            -1890.19873046875
+          ],
+          "parts": 9
+        },
+        {
+          "chapter": "GW-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.6473982334136963,
+          "bounds": [
+            5.94796895980835,
+            2.6473982334136963,
+            4.307033538818359
+          ],
+          "goal": "exp_2",
+          "model": "RefugeBoardRest",
+          "anchor": [
+            1432.27001953125,
+            66,
+            -5583.7998046875
+          ],
+          "routeClearance": 11.025583267211914,
+          "ground": [
+            1442.2093505859375,
+            66,
+            -5593.6591796875
+          ],
+          "parts": 7
+        },
+        {
+          "chapter": "FV-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 1.5950015783309937,
+          "bounds": [
+            5.900000095367432,
+            1.5950015783309937,
+            3.6953511238098145
+          ],
+          "goal": "exp_1",
+          "model": "RelayPlateCradle",
+          "anchor": [
+            709.9500122070312,
+            90,
+            -9736.6396484375
+          ],
+          "routeClearance": 11.050000190734863,
+          "ground": [
+            695.9500122070312,
+            90,
+            -9736.6396484375
+          ],
+          "parts": 7
+        },
+        {
+          "chapter": "EC-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.499997615814209,
+          "bounds": [
+            6.842721939086914,
+            2.499997615814209,
+            4.6697235107421875
+          ],
+          "goal": "exp_2",
+          "model": "PressureLineSaddle",
+          "anchor": [
+            947.6099853515625,
+            148,
+            -12748
+          ],
+          "routeClearance": 10.578639030456543,
+          "ground": [
+            961.6099853515625,
+            148,
+            -12748
+          ],
+          "parts": 8
+        },
+        {
+          "chapter": "HG-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.204986572265625,
+          "bounds": [
+            5.449999809265137,
+            2.204986572265625,
+            3.5099995136260986
+          ],
+          "goal": "exp_1",
+          "model": "GateSurveyLedge",
+          "anchor": [
+            436.07000732421875,
+            184,
+            -16849.720703125
+          ],
+          "routeClearance": 11.274999618530273,
+          "ground": [
+            436.07000732421875,
+            184,
+            -16863.720703125
+          ],
+          "parts": 7
+        }
+      ],
+      "walks": [
+        {
+          "chapter": "GW-04",
+          "inbound": 1.9665645360946655,
+          "distance": 16.00006103515625,
+          "outbound": 2.4938783645629883
+        },
+        {
+          "chapter": "EC-04",
+          "inbound": 1.4033203125,
+          "distance": 16,
+          "outbound": 2.4580078125
+        },
+        {
+          "chapter": "DW-04",
+          "inbound": 1.947802186012268,
+          "distance": 15.999988555908203,
+          "outbound": 0.920246958732605
+        },
+        {
+          "chapter": "FV-04",
+          "inbound": 1.916015625,
+          "distance": 16,
+          "outbound": 0.7490234375
+        },
+        {
+          "chapter": "HG-04",
+          "inbound": 1.412567138671875,
+          "distance": 16,
+          "outbound": 0.8426513671875
+        }
+      ],
+      "overlapClear": [
+        "ReturnRopeGuide",
+        "RefugeBoardRest",
+        "RelayPlateCradle",
+        "PressureLineSaddle",
+        "GateSurveyLedge"
+      ],
+      "expansionRegression": {
+        "generationSeconds": 30.750421749980887,
+        "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+        "blockers": [],
+        "checks": 9310,
+        "steps": 246,
+        "samples": 3981,
+        "incidents": 82,
+        "parts": 57393
+      }
+    },
+    "0.115.109": {
+      "models": [
+        {
+          "chapter": "DW-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.2749996185302734,
+          "bounds": [
+            5.800001621246338,
+            2.2749996185302734,
+            3.299999713897705
+          ],
+          "goal": "exp_2",
+          "model": "ReturnRopeGuide",
+          "anchor": [
+            1109.800048828125,
+            30,
+            -1876.199951171875
+          ],
+          "routeClearance": 11.099842071533203,
+          "ground": [
+            1109.980712890625,
+            30,
+            -1890.19873046875
+          ],
+          "parts": 11
+        },
+        {
+          "chapter": "GW-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.5822594165802,
+          "bounds": [
+            5.94796895980835,
+            2.5822594165802,
+            4.307033538818359
+          ],
+          "goal": "exp_2",
+          "model": "RefugeBoardRest",
+          "anchor": [
+            1432.27001953125,
+            66,
+            -5583.7998046875
+          ],
+          "routeClearance": 11.025583267211914,
+          "ground": [
+            1442.2093505859375,
+            66,
+            -5593.6591796875
+          ],
+          "parts": 10
+        },
+        {
+          "chapter": "FV-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 1.469998836517334,
+          "bounds": [
+            5.900000095367432,
+            1.469998836517334,
+            3.6953511238098145
+          ],
+          "goal": "exp_1",
+          "model": "RelayPlateCradle",
+          "anchor": [
+            709.9500122070312,
+            90,
+            -9736.6396484375
+          ],
+          "routeClearance": 11.050000190734863,
+          "ground": [
+            695.9500122070312,
+            90,
+            -9736.6396484375
+          ],
+          "parts": 8
+        },
+        {
+          "chapter": "EC-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.4449987411499023,
+          "bounds": [
+            6.842721939086914,
+            2.4449987411499023,
+            4.6697235107421875
+          ],
+          "goal": "exp_2",
+          "model": "PressureLineSaddle",
+          "anchor": [
+            947.6099853515625,
+            148,
+            -12748
+          ],
+          "routeClearance": 10.578639030456543,
+          "ground": [
+            961.6099853515625,
+            148,
+            -12748
+          ],
+          "parts": 21
+        },
+        {
+          "chapter": "HG-04",
+          "maxFloorError": 0,
+          "step": "step2",
+          "version": 3,
+          "height": 2.204986572265625,
+          "bounds": [
+            5.449999809265137,
+            2.204986572265625,
+            3.5099995136260986
+          ],
+          "goal": "exp_1",
+          "model": "GateSurveyLedge",
+          "anchor": [
+            436.07000732421875,
+            184,
+            -16849.720703125
+          ],
+          "routeClearance": 11.274999618530273,
+          "ground": [
+            436.07000732421875,
+            184,
+            -16863.720703125
+          ],
+          "parts": 9
+        }
+      ],
+      "walks": [
+        {
+          "chapter": "DW-04",
+          "inbound": 1.947802186012268,
+          "distance": 15.999988555908203,
+          "outbound": 2.186711549758911
+        },
+        {
+          "chapter": "GW-04",
+          "inbound": 1.8998411893844604,
+          "distance": 16.00006103515625,
+          "outbound": 2.226984977722168
+        },
+        {
+          "chapter": "FV-04",
+          "inbound": 1.916015625,
+          "distance": 16,
+          "outbound": 2.2880859375
+        },
+        {
+          "chapter": "EC-04",
+          "inbound": 1.8720703125,
+          "distance": 16,
+          "outbound": 2.1904296875
+        },
+        {
+          "chapter": "HG-04",
+          "inbound": 2.212554931640625,
+          "distance": 16,
+          "outbound": 1.91973876953125
+        }
+      ],
+      "overlapClear": [
+        "ReturnRopeGuide",
+        "RefugeBoardRest",
+        "RelayPlateCradle",
+        "PressureLineSaddle",
+        "GateSurveyLedge"
+      ],
+      "expansionRegression": {
+        "generationSeconds": 30.605096291663358,
+        "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+        "blockers": [],
+        "checks": 9310,
+        "steps": 246,
+        "samples": 3981,
+        "incidents": 82,
+        "parts": 57414
+      }
+    }
+  }
+}
