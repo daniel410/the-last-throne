@@ -1,0 +1,1164 @@
+{
+  "versions": {
+    "before": "0.115.116",
+    "after": "0.115.117"
+  },
+  "models": {
+    "before": {
+      "DW-03_exp_2": {
+        "solid": 9,
+        "parts": 11,
+        "scene": "DW-03_exp_2",
+        "size": [
+          101,
+          29,
+          14
+        ]
+      },
+      "EC-03_exp_1": {
+        "solid": 9,
+        "parts": 11,
+        "scene": "EC-03_exp_1",
+        "size": [
+          101,
+          29,
+          14
+        ]
+      },
+      "FV-03_exp_1": {
+        "solid": 9,
+        "parts": 11,
+        "scene": "FV-03_exp_1",
+        "size": [
+          101,
+          29.000001907348633,
+          14
+        ]
+      },
+      "GW-03_exp_1": {
+        "solid": 9,
+        "parts": 11,
+        "scene": "GW-03_exp_1",
+        "size": [
+          101,
+          29.000001907348633,
+          14.000003814697266
+        ]
+      },
+      "HG-03_exp_2": {
+        "solid": 9,
+        "parts": 11,
+        "scene": "HG-03_exp_2",
+        "size": [
+          101,
+          29,
+          14
+        ]
+      }
+    },
+    "after": {
+      "DW-03_exp_2": {
+        "solid": 7,
+        "parts": 12,
+        "scene": "DW-03_exp_2",
+        "size": [
+          30.600000381469727,
+          21.661781311035156,
+          4.600000381469727
+        ]
+      },
+      "EC-03_exp_1": {
+        "solid": 7,
+        "parts": 16,
+        "scene": "EC-03_exp_1",
+        "size": [
+          31.300006866455078,
+          21.17000389099121,
+          5.449999809265137
+        ]
+      },
+      "FV-03_exp_1": {
+        "solid": 7,
+        "parts": 13,
+        "scene": "FV-03_exp_1",
+        "size": [
+          30.850000381469727,
+          16.27294921875,
+          5.350000381469727
+        ]
+      },
+      "GW-03_exp_1": {
+        "solid": 6,
+        "parts": 13,
+        "scene": "GW-03_exp_1",
+        "size": [
+          31.200389862060547,
+          20.940685272216797,
+          5.199999809265137
+        ]
+      },
+      "HG-03_exp_2": {
+        "solid": 11,
+        "parts": 18,
+        "scene": "HG-03_exp_2",
+        "size": [
+          31.049999237060547,
+          19.59848976135254,
+          6
+        ]
+      }
+    }
+  },
+  "unchangedEntrances": [
+    "DW-01_exp_1",
+    "DW-01_exp_2",
+    "DW-02_exp_1",
+    "DW-02_exp_2",
+    "DW-03_exp_1",
+    "DW-04_exp_1",
+    "DW-04_exp_2",
+    "DW-05_exp_1",
+    "DW-05_exp_2",
+    "DW-06_exp_1",
+    "DW-06_exp_2",
+    "DW-07_exp_1",
+    "DW-07_exp_2",
+    "DW-Q1_exp_1",
+    "DW-Q2_exp_1",
+    "DW-Q3_exp_1",
+    "DW-Q4_exp_1",
+    "EC-01_exp_1",
+    "EC-01_exp_2",
+    "EC-02_exp_1",
+    "EC-02_exp_2",
+    "EC-03_exp_2",
+    "EC-04_exp_1",
+    "EC-04_exp_2",
+    "EC-05_exp_1",
+    "EC-05_exp_2",
+    "EC-06_exp_1",
+    "EC-06_exp_2",
+    "EC-07_exp_1",
+    "EC-07_exp_2",
+    "EC-Q1_exp_1",
+    "EC-Q2_exp_1",
+    "EC-Q3_exp_1",
+    "EC-Q4_exp_1",
+    "FV-01_exp_1",
+    "FV-01_exp_2",
+    "FV-02_exp_1",
+    "FV-02_exp_2",
+    "FV-03_exp_2",
+    "FV-04_exp_1",
+    "FV-04_exp_2",
+    "FV-05_exp_1",
+    "FV-05_exp_2",
+    "FV-06_exp_1",
+    "FV-06_exp_2",
+    "FV-07_exp_1",
+    "FV-07_exp_2",
+    "FV-Q1_exp_1",
+    "FV-Q2_exp_1",
+    "FV-Q3_exp_1",
+    "FV-Q4_exp_1",
+    "GW-01_exp_1",
+    "GW-01_exp_2",
+    "GW-02_exp_1",
+    "GW-02_exp_2",
+    "GW-03_exp_2",
+    "GW-04_exp_1",
+    "GW-04_exp_2",
+    "GW-05_exp_1",
+    "GW-05_exp_2",
+    "GW-06_exp_1",
+    "GW-06_exp_2",
+    "GW-07_exp_1",
+    "GW-07_exp_2",
+    "HG-01_exp_1",
+    "HG-01_exp_2",
+    "HG-02_exp_1",
+    "HG-02_exp_2",
+    "HG-03_exp_1",
+    "HG-04_exp_1",
+    "HG-04_exp_2",
+    "HG-05_exp_1",
+    "HG-05_exp_2",
+    "HG-06_exp_1",
+    "HG-06_exp_2",
+    "HG-07_exp_1",
+    "HG-07_exp_2"
+  ],
+  "entryRoutes": {
+    "DW-03_exp_2": {
+      "path": [
+        {
+          "color": [
+            0.45490196347236633,
+            0.6235294342041016,
+            0.34117648005485535
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Grass",
+          "frame": [
+            -179,
+            18.049999237060547,
+            -1372,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            20
+          ]
+        },
+        {
+          "color": [
+            0.45490196347236633,
+            0.6235294342041016,
+            0.34117648005485535
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Grass",
+          "frame": [
+            -179,
+            23.049999237060547,
+            -1334.5,
+            -0.9999999403953552,
+            0,
+            0,
+            0,
+            0.9838698506355286,
+            -0.17888544499874115,
+            0,
+            -0.17888543009757996,
+            -0.9838699102401733
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            55.90169906616211
+          ]
+        },
+        {
+          "color": [
+            0.45490196347236633,
+            0.6235294342041016,
+            0.34117648005485535
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Grass",
+          "frame": [
+            -179,
+            28.049999237060547,
+            -1274.5,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            65
+          ]
+        }
+      ],
+      "scene": "DW-03_exp_2",
+      "board": {
+        "color": [
+          0.364705890417099,
+          0.2705882489681244,
+          0.16470588743686676
+        ],
+        "class": "Part",
+        "alpha": 0,
+        "solid": false,
+        "name": "IncidentBoard",
+        "material": "Enum.Material.Wood",
+        "frame": [
+          -167,
+          21,
+          -1382,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "shape": "Enum.PartType.Block",
+        "size": [
+          5,
+          4,
+          0.5
+        ]
+      },
+      "id": "DW-03",
+      "samples": 65,
+      "floorError": 0.07999801635742188,
+      "distance": 32,
+      "boardText": "Outpost Signal Terrace",
+      "steps": [
+        [
+          -137.82000732421875,
+          29,
+          -1286.199951171875
+        ],
+        [
+          -196.0399932861328,
+          29,
+          -1203
+        ],
+        [
+          -221.60000610351562,
+          29,
+          -1277.0999755859375
+        ]
+      ],
+      "pivot": [
+        -179,
+        18,
+        -1382,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "objective": [
+        -137.82000732421875,
+        29,
+        -1286.199951171875
+      ]
+    },
+    "GW-03_exp_1": {
+      "path": [
+        {
+          "color": [
+            0.33725491166114807,
+            0.4941176474094391,
+            0.47058823704719543
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Grass",
+          "frame": [
+            -58.849998474121094,
+            62.04999923706055,
+            -5129.39990234375,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            20
+          ]
+        },
+        {
+          "color": [
+            0.33725491166114807,
+            0.4941176474094391,
+            0.47058823704719543
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Grass",
+          "frame": [
+            -96.3499984741211,
+            62.04999923706055,
+            -5129.39990234375,
+            0,
+            0,
+            0.9999999403953552,
+            0,
+            0.9999999403953552,
+            0,
+            -1,
+            0,
+            0
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            55
+          ]
+        },
+        {
+          "color": [
+            0.33725491166114807,
+            0.4941176474094391,
+            0.47058823704719543
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Grass",
+          "frame": [
+            -156.35000610351562,
+            62.04999923706055,
+            -5129.39990234375,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            65.00000762939453
+          ]
+        }
+      ],
+      "scene": "GW-03_exp_1",
+      "board": {
+        "color": [
+          0.21176470816135406,
+          0.18431372940540314,
+          0.25882354378700256
+        ],
+        "class": "Part",
+        "alpha": 0,
+        "solid": false,
+        "name": "IncidentBoard",
+        "material": "Enum.Material.Wood",
+        "frame": [
+          -36.849998474121094,
+          65,
+          -5129.39990234375,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "shape": "Enum.PartType.Block",
+        "size": [
+          5,
+          4,
+          0.5
+        ]
+      },
+      "id": "GW-03",
+      "samples": 65,
+      "floorError": 0,
+      "distance": 32,
+      "boardText": "Lantern Refuge Arrivals",
+      "steps": [
+        [
+          -144.64999389648438,
+          63,
+          -5096.35986328125
+        ],
+        [
+          -222.64999389648438,
+          63,
+          -5129.39990234375
+        ],
+        [
+          -149.85000610351562,
+          63,
+          -5160.080078125
+        ]
+      ],
+      "pivot": [
+        -48.849998474121094,
+        62,
+        -5129.39990234375,
+        -4.371138828673793e-08,
+        0,
+        1,
+        0,
+        1,
+        0,
+        -1,
+        0,
+        -4.371138828673793e-08
+      ],
+      "objective": [
+        -144.64999389648438,
+        63,
+        -5096.35986328125
+      ]
+    },
+    "FV-03_exp_1": {
+      "path": [
+        {
+          "color": [
+            0.7803921699523926,
+            0.8980392217636108,
+            0.95686274766922
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Snow",
+          "frame": [
+            277.1499938964844,
+            92.05000305175781,
+            -9049.900390625,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            20
+          ]
+        },
+        {
+          "color": [
+            0.7803921699523926,
+            0.8980392217636108,
+            0.95686274766922
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Snow",
+          "frame": [
+            277.1499938964844,
+            92.05000305175781,
+            -9076.400390625,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            33
+          ]
+        },
+        {
+          "color": [
+            0.7803921699523926,
+            0.8980392217636108,
+            0.95686274766922
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Snow",
+          "frame": [
+            277.1499938964844,
+            92.05000305175781,
+            -9136.400390625,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            87
+          ]
+        }
+      ],
+      "scene": "FV-03_exp_1",
+      "board": {
+        "color": [
+          0.3019607961177826,
+          0.29019609093666077,
+          0.30588236451148987
+        ],
+        "class": "Part",
+        "alpha": 0,
+        "solid": false,
+        "name": "IncidentBoard",
+        "material": "Enum.Material.Wood",
+        "frame": [
+          289.1499938964844,
+          95,
+          -9039.900390625,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "shape": "Enum.PartType.Block",
+        "size": [
+          5,
+          4,
+          0.5
+        ]
+      },
+      "id": "FV-03",
+      "samples": 65,
+      "floorError": 0,
+      "distance": 32,
+      "boardText": "Lower Ravine Rescue",
+      "steps": [
+        [
+          256.45001220703125,
+          93,
+          -9119
+        ],
+        [
+          297.8500061035156,
+          93,
+          -9167.7197265625
+        ],
+        [
+          256.45001220703125,
+          93,
+          -9216.4404296875
+        ]
+      ],
+      "pivot": [
+        277.1499938964844,
+        92,
+        -9039.900390625,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "objective": [
+        277.1499938964844,
+        93,
+        -9039.900390625
+      ]
+    },
+    "EC-03_exp_1": {
+      "path": [
+        {
+          "color": [
+            0.42352941632270813,
+            0.32156863808631897,
+            0.32549020648002625
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Basalt",
+          "frame": [
+            217.14999389648438,
+            140.0500030517578,
+            -12871.400390625,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            20
+          ]
+        },
+        {
+          "color": [
+            0.42352941632270813,
+            0.32156863808631897,
+            0.32549020648002625
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Basalt",
+          "frame": [
+            217.14999389648438,
+            140.0500030517578,
+            -12897.400390625,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            32
+          ]
+        },
+        {
+          "color": [
+            0.42352941632270813,
+            0.32156863808631897,
+            0.32549020648002625
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Basalt",
+          "frame": [
+            217.14999389648438,
+            140.0500030517578,
+            -12957.400390625,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            88
+          ]
+        }
+      ],
+      "scene": "EC-03_exp_1",
+      "board": {
+        "color": [
+          0.29019609093666077,
+          0.21960784494876862,
+          0.20000000298023224
+        ],
+        "class": "Part",
+        "alpha": 0,
+        "solid": false,
+        "name": "IncidentBoard",
+        "material": "Enum.Material.Wood",
+        "frame": [
+          229.14999389648438,
+          143,
+          -12861.400390625,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "shape": "Enum.PartType.Block",
+        "size": [
+          5,
+          4,
+          0.5
+        ]
+      },
+      "id": "EC-03",
+      "samples": 65,
+      "floorError": 0,
+      "distance": 32,
+      "boardText": "Mine Rescue Staging",
+      "steps": [
+        [
+          185.7899932861328,
+          141,
+          -12936.2802734375
+        ],
+        [
+          217.14999389648438,
+          141,
+          -13057.7197265625
+        ],
+        [
+          250.75,
+          141,
+          -12948.599609375
+        ]
+      ],
+      "pivot": [
+        217.14999389648438,
+        140,
+        -12861.400390625,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "objective": [
+        185.7899932861328,
+        141,
+        -12936.2802734375
+      ]
+    },
+    "HG-03_exp_2": {
+      "path": [
+        {
+          "color": [
+            0.4313725531101227,
+            0.4627451002597809,
+            0.5490196347236633
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Slate",
+          "frame": [
+            559.1500244140625,
+            180.0500030517578,
+            -16309.400390625,
+            0,
+            0,
+            -1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            20
+          ]
+        },
+        {
+          "color": [
+            0.4313725531101227,
+            0.4627451002597809,
+            0.5490196347236633
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Slate",
+          "frame": [
+            601.6500244140625,
+            180.0500030517578,
+            -16309.400390625,
+            0,
+            0,
+            -1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            65
+          ]
+        },
+        {
+          "color": [
+            0.4313725531101227,
+            0.4627451002597809,
+            0.5490196347236633
+          ],
+          "class": "Part",
+          "alpha": 0.11999999731779099,
+          "solid": false,
+          "name": "ExpansionWalkingLine",
+          "material": "Enum.Material.Slate",
+          "frame": [
+            661.6500244140625,
+            180.0500030517578,
+            -16309.400390625,
+            0,
+            0,
+            -0.9999999403953552,
+            0,
+            0.9999999403953552,
+            0,
+            1,
+            0,
+            0
+          ],
+          "shape": "Enum.PartType.Block",
+          "size": [
+            12,
+            0.07999999821186066,
+            55
+          ]
+        }
+      ],
+      "scene": "HG-03_exp_2",
+      "board": {
+        "color": [
+          0.2862745225429535,
+          0.25882354378700256,
+          0.35686275362968445
+        ],
+        "class": "Part",
+        "alpha": 0,
+        "solid": false,
+        "name": "IncidentBoard",
+        "material": "Enum.Material.Wood",
+        "frame": [
+          561.1500244140625,
+          183,
+          -16309.400390625,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "shape": "Enum.PartType.Block",
+        "size": [
+          5,
+          4,
+          0.5
+        ]
+      },
+      "id": "HG-03",
+      "samples": 65,
+      "floorError": 0,
+      "distance": 32,
+      "boardText": "Fortress Side Landing",
+      "steps": [
+        [
+          649.5499877929688,
+          181,
+          -16260.6796875
+        ],
+        [
+          722.1500244140625,
+          181,
+          -16260.6796875
+        ],
+        [
+          656.1500244140625,
+          181,
+          -16361.599609375
+        ]
+      ],
+      "pivot": [
+        549.1500244140625,
+        180,
+        -16309.400390625,
+        -4.371138828673793e-08,
+        0,
+        1,
+        0,
+        1,
+        0,
+        -1,
+        0,
+        -4.371138828673793e-08
+      ],
+      "objective": [
+        649.5499877929688,
+        181,
+        -16260.6796875
+      ]
+    }
+  },
+  "walks": {
+    "before": {
+      "DW-03": {
+        "chapter": "DW-03",
+        "inbound": 1.4481201171875,
+        "distance": 32,
+        "outbound": 1.3582763671875
+      },
+      "GW-03": {
+        "chapter": "GW-03",
+        "inbound": 1.67864990234375,
+        "distance": 32,
+        "outbound": 1.1204833984375
+      },
+      "FV-03": {
+        "chapter": "FV-03",
+        "inbound": 1.59375,
+        "distance": 32,
+        "outbound": 1.2177734375
+      },
+      "EC-03": {
+        "chapter": "EC-03",
+        "inbound": 1.2978515625,
+        "distance": 32,
+        "outbound": 1.6396484375
+      },
+      "HG-03": {
+        "chapter": "HG-03",
+        "inbound": 1.406005859375,
+        "distance": 32,
+        "outbound": 1.6553955078125
+      }
+    },
+    "after": {
+      "DW-03": {
+        "chapter": "DW-03",
+        "inbound": 1.6480712890625,
+        "distance": 32,
+        "outbound": 2.4913330078125
+      },
+      "GW-03": {
+        "chapter": "GW-03",
+        "inbound": 1.67864990234375,
+        "distance": 32,
+        "outbound": 2.4538345336914062
+      },
+      "FV-03": {
+        "chapter": "FV-03",
+        "inbound": 1.861328125,
+        "distance": 32,
+        "outbound": 2.2880859375
+      },
+      "EC-03": {
+        "chapter": "EC-03",
+        "inbound": 1.8330078125,
+        "distance": 32,
+        "outbound": 2.1748046875
+      },
+      "HG-03": {
+        "chapter": "HG-03",
+        "inbound": 1.939453125,
+        "distance": 32,
+        "outbound": 2.1888427734375
+      }
+    }
+  },
+  "framePairs": [
+    "DW-03-approach",
+    "DW-03-return",
+    "GW-03-approach",
+    "GW-03-return",
+    "FV-03-approach",
+    "FV-03-return",
+    "EC-03-approach",
+    "EC-03-return",
+    "HG-03-approach",
+    "HG-03-return"
+  ],
+  "partDelta": 17,
+  "campaignRegression": {
+    "before": {
+      "generationSeconds": 30.720798958354862,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57427
+    },
+    "after": {
+      "generationSeconds": 30.7158688333584,
+      "scope": "isolated geometry, server activities, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9310,
+      "steps": 246,
+      "samples": 3981,
+      "incidents": 82,
+      "parts": 57444
+    }
+  }
+}

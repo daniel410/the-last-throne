@@ -1,0 +1,17 @@
+EPIC_MAP_NAVIGATION 105907 checks PASS; 488 active targets; 26352 moving samples
+Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger
+CAMPAIGN_EXPANSION_REVIEW 4048 checks passed; 82 outcome deliveries, safe circuit choices and connector routes
+DW-03 OutpostSightRest: 12 parts, floor 28.00, route clearance >= 9.60 studs
+GW-03 RefugeLanternReturn: 13 parts, floor 62.00, route clearance >= 6.33 studs
+FV-03 RavineSupplyBank: 8 parts, floor 92.00, route clearance >= 9.72 studs
+EC-03 MineRescueRailSeat: 13 parts, floor 140.00, route clearance >= 10.44 studs
+HG-03 FortressStoneRailSeat: 11 parts, floor 180.00, route clearance >= 10.55 studs
+57 authored parts; 405 static floor samples passed
+0.115.116 (e209c82d36bc6ef0cdac54db539f22447d4de9a6) SHA-256 78aed706c0936a3e50e9e568f96c138b88d0caa91810366de6c6625d61aa1814
+place-role: 10 checks PASS
+arrival-loading: 326 checks PASS
+single-build: project mounts and compatibility alias PASS
+single-build: actual artifact role/config/loading checks PASS
+0.115.117 (4a6a9f5a86a41d8a40e4a58df94d115ae887ac40) SHA-256 b58c4de16396c570fb83d826b006987aa87ec447811992302055e5d7be62a33f
+CampaignExpansionWorld: exact source match
+EpicThirdChapterEntrances: exact source match
