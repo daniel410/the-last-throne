@@ -9,6 +9,8 @@ local Visual = require(Client.AdvancedSkillVisual)
 local Melee = require(Client.AdvancedSkillMotion)
 local Bow = require(Client.RangedActionPoses)
 local Mage = require(Client.K0MageMotion)
+local Telegraphs = require(Client.K0Telegraphs)
+local Hits = require(Client.K0HitEffects)
 
 local ids = {
     "knight.paladin.radiant_charge", "dwarf.gunner.blast_step",
@@ -107,8 +109,11 @@ for _, compact in {false, true} do
     FX.isOtherHero = function() return compact end
     for _, d in {radiant, glide} do
         local arrival = departure + aim*2 -- clipped but accepted movement
-        check(not FX.stepWake(actor, d, departure, departure, workspace:GetServerTimeNow()), d.id .. " no wake when blocked")
-        local wake = FX.stepWake(actor, d, departure, arrival, workspace:GetServerTimeNow())
+        Visual.play(actor, d.id, departure, departure + aim*6, 0)
+        check(not workspace:FindFirstChild("HeroStepWake"), d.id .. " no wake when blocked")
+        local startedAt = workspace:GetServerTimeNow()
+        Visual.play(actor, d.id, arrival, arrival + aim*6, 0, nil, nil, startedAt, startedAt, aim, nil, departure)
+        local wake = workspace:FindFirstChild("HeroStepWake")
         local label = d == radiant and "RadiantBootWake" or "GlidingHeelWake"
         local strokes = nodes(wake, label)
         check(#strokes == (compact and 1 or 2), d.id .. " movement beam budget")
@@ -134,6 +139,14 @@ for _, compact in {false, true} do
             return max - min
         end
         check(height(rise) - height(low) > 1.4, "Radiant Charge second contact rises clearly")
+        local lateral = aim:Cross(Vector3.yAxis)
+        local left, right = math.huge, -math.huge
+        for _, beam in low do
+            for _, p in {beam.Attachment0.WorldPosition, beam.Attachment1.WorldPosition} do
+                left, right = math.min(left, p:Dot(lateral)), math.max(right, p:Dot(lateral))
+            end
+        end
+        check(right-left > 4, "Radiant Charge first edge extends past the shield sides")
     end
     check(#nodes(first, "GuardHalo") == 0 and #nodes(second, "GuardSurface") == 0, "Radiant Charge removes duplicate shield geometry")
     FX.clear()
@@ -155,6 +168,7 @@ for _, compact in {false, true} do
     local trace = nodes(arrow, "GlidingShotWake")[1]
     check(trace and (trace.Attachment0.WorldPosition - departure).Magnitude < .01
         and (trace.Attachment1.WorldPosition - wall).Magnitude < .01, "Gliding Shot starts before close cover and stops at the packet endpoint")
+    check(#nodes(arrow, "ProjectileSurface") == 0 and #nodes(arrow, "GlidingShotFletching") == 0, "Gliding Shot has a single release streak")
     FX.clear()
 
     local arrival = departure + aim*ember.move
@@ -177,6 +191,53 @@ for _, compact in {false, true} do
     report.beams[compact and "ally" or "owner"] = { radiant = #low, blast = #front, ember = #edge }
     FX.clear()
 end
+local world = Instance.new("Folder", workspace)
+world.Name = "DeepwoodK0"
+local blockout = Instance.new("Folder", world)
+blockout.Name = "TerrainBlockout"
+floor.Parent = blockout
+local enemies = Instance.new("Folder", world)
+local target = Instance.new("Model", enemies)
+anchored("HumanoidRootPart", departure + aim*3, target)
+target:SetAttribute("K0EnemyState", "Windup")
+target:SetAttribute("K0Telegraph", "Unblockable")
+target:SetAttribute("K0AttackOrigin", departure + aim*3)
+target:SetAttribute("K0AttackDirection", aim)
+target:SetAttribute("K0AttackRange", 9)
+target:SetAttribute("K0AttackAngle", 360)
+local player = Instance.new("Folder", stage)
+player:SetAttribute("K0SessionPhase", "Tutorial")
+actor.Name = "Character"
+actor.Parent = player
+local warnings = Telegraphs.create(enemies, player)
+FX.isOtherHero = function(character) return character ~= nil and character ~= actor end
+local allies = {}
+for i = 1, 3 do
+    local ally = Instance.new("Model", stage)
+    local origin = departure - aim + Vector3.zAxis*(i-2)*2
+    anchored("HumanoidRootPart", origin, ally)
+    local endpoint = origin + aim*7
+    Visual.play(ally, ids[i], origin, endpoint, i == 1 and 2 or 1, {endpoint}, nil, nil, nil, aim)
+    allies[i] = ally
+end
+Visual.play(actor, ember.id, departure + aim*5, departure, 1, {}, nil, nil, nil, aim)
+local active, beams, _, glows, particles, surfaces = FX.count()
+check(active == 4 and glows + particles == 0, "Three compact allies and the owner keep their releases without extra glow or particles")
+warnings.update()
+local red = 0
+for _, edge in workspace.K0LocalTelegraphs:GetDescendants() do
+    if edge:IsA("BasePart") and edge.Transparency < 1 and edge.Color == Color3.fromRGB(255, 73, 58) then red += 1 end
+end
+check(red == 16, "All 16 enemy warning segments remain in the four-cast fixture")
+local hitAt = target.HumanoidRootPart.Position
+check(Hits.show(target, hitAt, 42, "elf", "Goblin", aim, glide.id, {attacker = allies[3]}), "Gliding Shot routes the confirmed hit")
+local number = workspace:FindFirstChild("K0HitEffect")
+check(number and number.K0DamageNumber.Amount.Text == "42", "The allied arrow keeps the confirmed damage number")
+if number then number:Destroy() end
+report.overlap = { active = active, beams = beams, glows = glows, particles = particles, surfaces = surfaces, warningSegments = red }
+warnings.destroy()
+world:Destroy()
+FX.clear()
 FX.isOtherHero, camera.CFrame = oldCompact, oldCamera
 stage:Destroy()
 report.pass = #report.failures == 0

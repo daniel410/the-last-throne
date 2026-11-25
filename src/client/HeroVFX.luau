@@ -847,6 +847,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local crosscutAxe=id=="dwarf.iron_axe.crosscut_axe"
  local radiantCharge=id=="knight.paladin.radiant_charge"
  local blastStep=id=="dwarf.gunner.blast_step"
+ local glidingShot=id=="elf.magic_archer.gliding_shot"
  local emberStep=id=="mage.pyro.ember_step"
  local groundShape=profile.groundShape
  local compact=FX.isOtherHero(character)
@@ -1085,11 +1086,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local segments=r.compact and 2 or 4
   local function edge(t,u)
    local side=t*2-1
-   local reach=1.6+.75*(1-(1-u)^3)-.45*side^2
-   local height=rise and (-.25+t*1.90) or (-.32+.28*(1-side^2))
-   return first+flat*reach+right*side*(rise and 1.8 or 1.28)+Vector3.yAxis*height
+   local reach=2.04+.90*(1-(1-u)^3)-.25*side^2
+   local height=rise and (-.30+t*2.1) or (-.54+.30*(1-side^2))
+   return first+flat*reach+right*side*(rise and 2.48 or 2.18)+Vector3.yAxis*height
   end
-  curve(r,"RadiantChargeEdge",edge,segments,rise and .32 or .27,r.hot,true)
+  curve(r,"RadiantChargeEdge",edge,segments,rise and .40 or .36,r.hot,true)
   if #r.lines==segments then r.model:SetAttribute("RadiantChargeEdge",true) end
  elseif shape=="guard"or shape=="warcry"or shape=="holy"or shape=="ward"then
   if shape=="guard"and d.form~="area"then
@@ -1200,21 +1201,14 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    return start:Lerp(last,.7*(1-(1-u)^2)),last
   end,.052,r.hot,.10)
   if trace then r.model:SetAttribute("RetreatingShotWake",true) end
- elseif id=="elf.magic_archer.gliding_shot" then
+ elseif glidingShot then
   local start=Geometry.fanLaunch(first,launch,last)
-  local length=(last-start).Magnitude
-  if length>.1 then
+  if (last-start).Magnitude>.1 then
    local trace=line(r,"GlidingShotWake",function(u)
     local fade=math.clamp((u*r.life-.05)/.19,0,1)
     return start:Lerp(last,.90*(1-(1-fade)^2)),last
    end,.095,r.hot,.052,true)
    if trace then r.model:SetAttribute("GlidingShotWake",true) end
-   if not r.compact then
-    line(r,"GlidingShotFletching",function(u)
-     local tail=start:Lerp(last,math.min(1.4/length,.3))
-     return start+right*(.25*(1-u)),tail
-    end,.045,r.color,.018)
-   end
   end
  elseif quickfire or echoArrows then
   local start=launch and (last-launch):Dot(dir)>.1 and launch or first
@@ -1355,11 +1349,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    return muzzle,muzzle+flat*(.62+math.min(u*5,1)*1.4)
   end,.31,r.hot,.09,true)
   curve(r,"BlastForwardPressure",function(t,u)
-   local a=math.rad(angle*.80)*(t-.5)
-   local reach=.55+math.min(radius*.30,3.6)*(1-(1-math.min(u*2.8,1))^3)
+   local a=math.rad(angle*.92)*(t-.5)
+   local reach=.55+math.min(radius*.40,4.8)*(1-(1-math.min(u*3.2,1))^3)
    local heading=flat*math.cos(a)+right*math.sin(a)
    return muzzle+heading*reach-Vector3.yAxis*(.12+.38*u)
-  end,r.compact and 1 or 4,.25,r.color:Lerp(r.hot,.3),true)
+  end,r.compact and 1 or 4,.37,r.color:Lerp(r.hot,.3),true)
  elseif shape=="blast"or shape=="earth"or shape=="lava"then
   local at=floor
   if area or angle>=359 then ring(r,"GroundPressure",at,radius,width*.6,false,false)
@@ -1543,10 +1537,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  elseif emberStep then
   local function sweep(t,u)
    local side=t*2-1
+   local crest=(1-side^2)*(.52+.76*u+.16*math.sin(t*math.pi*5))
    return floor+right*side*radius*.46+flat*radius*(.13-.37*(1-side^2)-.10*u)
-    +Vector3.yAxis*(.10+(1-side^2)*(.48+.58*u)+.48*t)
+    +Vector3.yAxis*(.10+crest+.48*t)
   end
-  curve(r,"EmberDepartureEdge",sweep,r.compact and 4 or 6,.28,r.hot,true)
+  curve(r,"EmberDepartureEdge",sweep,r.compact and 4 or 6,.35,r.color:Lerp(r.hot,.32),true)
   if not r.compact then
    for side=-1,1,2 do
     local at=floor+right*side*radius*.27-flat*radius*.23
@@ -1681,7 +1676,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    local fireStyle=id=='mage.pyro.searing_ward'and 'SearingCrown'or 'RisingCinders'
    r.model:SetAttribute('FireAreaStyle',fireStyle)
    local start=#r.faces
-   Surfaces.arc(r,"CinderShockwave",floor,radius*(fireStyle=='SearingCrown'and .42 or .78),math.min(radius*.1,.65),nil,.6)
+   Surfaces.arc(r,"CinderShockwave",floor,radius*(fireStyle=='SearingCrown'and .42 or .78),math.min(radius*.1,.65),nil,.6,nil,360)
    Surfaces.animate(r,start,floor,Vector3.yAxis,.3,true,r.life)
    for i=1,3 do
     local a=i*math.pi*2/3+phase;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.56
@@ -1842,7 +1837,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     Surfaces.volume(r,"WaterFoam",at+Vector3.yAxis*.18,Vector3.new(.8,.08,.12),Color3.fromRGB(192,235,255),.35,'ball',nil,false,.35)
    end
   end
- elseif quickfire or echoArrows or heavyDraw then
+ elseif quickfire or echoArrows or heavyDraw or glidingShot then
   -- The trace and equipped arrow already carry these releases.
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"or shape=="axe"then
   local targets={last}
