@@ -204,8 +204,12 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         -- Extend the trailing leg during the draw and catch the release on the lead foot.
         add(pose,"rightHip",v(24,0,8)*load)
         add(pose,"rightKnee",v(-17,0,0)*load)
-        add(pose,"leftHip",v(-18,0,-5)*recoil)
-        add(pose,"leftKnee",v(23,0,0)*recoil)
+        local plant = since and smooth((since-.025)/.065)*(1-smooth((since-.09)/.15)) or 0
+        add(pose,"torso",v(4,-7,9)*load+v(13,5,-10)*plant)
+        add(pose,"leftHip",v(-18,0,-5)*recoil+v(-11,0,-4)*plant)
+        add(pose,"leftKnee",v(23*recoil+16*plant,0,0))
+        add(pose,"right",v(-7,13,-8)*recoil)
+        add(pose,"elbow",v(15*recoil,0,0))
     end
     if s==bow.echo and since and pulse then
         -- Bank the draw arm on the first two shots and plant on the third.
@@ -445,11 +449,14 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftKnee",v(21,0,0)*follow)
     end
     if s == spells.emberStep then
-        -- Hold the staff across the body and sweep the free hand back over the fire.
-        add(pose,"left",v(-21,-24,15)*follow)
+        -- Sweep the open palm back over the departure point while the front foot lands.
+        add(pose,"left",v(-31,-34,20)*follow)
         add(pose,"leftElbow",v(-17,0,0)*wind+v(23,0,0)*follow)
+        add(pose,"right",v(12,13,-16)*wind+v(-14,-7,8)*follow)
+        add(pose,"torso",v(7,-10,-6)*wind+v(11,-17,9)*follow)
+        add(pose,"neck",v(-5,13,-6)*follow)
         add(pose,"rightHip",v(22,0,6)*wind)
-        add(pose,"leftKnee",v(19,0,0)*follow)
+        add(pose,"leftKnee",v(26,0,0)*follow)
     end
     if s == spells.frostRing then
         -- Close the free arm over the chest, then drive it down and out.

@@ -323,8 +323,10 @@ local floorAt=Geometry.floor
 -- Lateral spread and lift distinguish the footwork without filling the floor.
 local stepWakes={
  ["knight.paladin.valiant_advance"]={name="ValiantBootWake",from=.62,to=.38,arch=.13,width=.16},
+ ["knight.paladin.radiant_charge"]={name="RadiantBootWake",from=.53,to=.40,arch=.09,width=.13,singleForAllies=true},
  ["dwarf.gunner.blast_step"]={name="BlastRecoilSkid",from=.31,to=.85,arch=.12,width=.20},
  ["elf.marksman.retreating_fire"]={name="RetreatFletchedWake",from=.56,to=.19,arch=.34,width=.095},
+ ["elf.magic_archer.gliding_shot"]={name="GlidingHeelWake",from=.62,to=.24,arch=.21,width=.12,singleForAllies=true},
  ["mage.pyro.ember_step"]={name="EmberStepWake",from=.72,to=.13,arch=.57,width=.14},
 }
 function FX.stepWake(character,d,first,last,startedAt)
@@ -339,13 +341,15 @@ function FX.stepWake(character,d,first,last,startedAt)
  local a,b=floorAt(first,character),floorAt(last,character)
  if math.abs(a.Y-b.Y)>1.8 then return end
  local _,_,key=Palette.resolve(d.id:match("^(%a+)"),d.id)
- local r=make(first,last,startedAt+life-now,key,d.id,FX.isOtherHero(character),true,2)
+ local compact=FX.isOtherHero(character)
+ local single=compact and shape.singleForAllies
+ local r=make(first,last,startedAt+life-now,key,d.id,compact,true,single and 1 or 2)
  if not r then return end
  r.at=startedAt;r.life=life
  r.model.Name="HeroStepWake"
  r.model:SetAttribute("Style",shape.name)
  local right=horizontal.Unit:Cross(Vector3.yAxis)
- for side=-1,1,2 do
+ for side=single and 0 or -1,single and 0 or 1,2 do
   local function path(t,u)
    local progress=.46*u+(1-.46*u)*t
    local spread=shape.from+(shape.to-shape.from)*progress
@@ -841,6 +845,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
  local froststorm=id=="mage.cryo.froststorm"
  local sunwardCross=id=="knight.paladin.sunward_cross"
  local crosscutAxe=id=="dwarf.iron_axe.crosscut_axe"
+ local radiantCharge=id=="knight.paladin.radiant_charge"
+ local blastStep=id=="dwarf.gunner.blast_step"
+ local emberStep=id=="mage.pyro.ember_step"
  local groundShape=profile.groundShape
  local compact=FX.isOtherHero(character)
  local final=FinalBeat.isFinal(d,pulse) or warcryAssault and pulse==d.pulses
@@ -858,6 +865,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   or returningEcho and (compact and 5 or 7)
   or sunwardCross and (compact and 5 or 8)
   or crosscutAxe and (compact and 6 or 9)
+  or radiantCharge and (compact and 2 or 4)
+  or blastStep and (compact and 2 or 5)
+  or emberStep and (compact and 4 or 8)
   or profile.minBeams or 2
  if d.returning and pulse==2 and character then
   -- The same axe comes back even when both release events arrive together.
@@ -875,8 +885,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local root=character and character:FindFirstChild("HumanoidRootPart")
   dir=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
- if (d.form=="cone" or d.form=="melee" or cyclone) and vector(castDirection) and castDirection.Magnitude>.01 then
+ if (d.form=="cone" or d.form=="melee" or cyclone or emberStep) and vector(castDirection) and castDirection.Magnitude>.01 then
   dir=castDirection.Unit
+ elseif emberStep and (last-first).Magnitude>.01 then
+  dir=-dir
  end
  local flat=Vector3.new(dir.X,0,dir.Z);flat=flat.Magnitude>.01 and flat.Unit or Vector3.new(0,0,-1)
  local right=Vector3.new(-flat.Z,0,flat.X)
@@ -1068,6 +1080,17 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    line(r,"BreakerChargeEdge",function(u)return chargePath(side*.5,u),chargePath((side+1)*.5,u)end,width,WHITE,.08)
   end
   if #r.lines==2 then r.model:SetAttribute("PrimaryIconCue",true) end
+ elseif radiantCharge then
+  local rise=pulse==2
+  local segments=r.compact and 2 or 4
+  local function edge(t,u)
+   local side=t*2-1
+   local reach=1.6+.75*(1-(1-u)^3)-.45*side^2
+   local height=rise and (-.25+t*1.90) or (-.32+.28*(1-side^2))
+   return first+flat*reach+right*side*(rise and 1.8 or 1.28)+Vector3.yAxis*height
+  end
+  curve(r,"RadiantChargeEdge",edge,segments,rise and .32 or .27,r.hot,true)
+  if #r.lines==segments then r.model:SetAttribute("RadiantChargeEdge",true) end
  elseif shape=="guard"or shape=="warcry"or shape=="holy"or shape=="ward"then
   if shape=="guard"and d.form~="area"then
    local at=first+flat*2;local basis=CFrame.lookAt(at,at+flat)
@@ -1178,12 +1201,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end,.052,r.hot,.10)
   if trace then r.model:SetAttribute("RetreatingShotWake",true) end
  elseif id=="elf.magic_archer.gliding_shot" then
-  local start=launch and (last-launch):Dot(dir)>.1 and launch or first
+  local start=Geometry.fanLaunch(first,launch,last)
   local length=(last-start).Magnitude
   if length>.1 then
    local trace=line(r,"GlidingShotWake",function(u)
-    return start:Lerp(last,.86*u),last
-   end,.058,r.hot,.035)
+    local fade=math.clamp((u*r.life-.05)/.19,0,1)
+    return start:Lerp(last,.90*(1-(1-fade)^2)),last
+   end,.095,r.hot,.052,true)
    if trace then r.model:SetAttribute("GlidingShotWake",true) end
    if not r.compact then
     line(r,"GlidingShotFletching",function(u)
@@ -1325,6 +1349,17 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    return at,at+Vector3.yAxis*(.22+math.min(u*3,1)*1.18)
   end,.24,r.hot,.065,true)
   r.model:SetAttribute("PrimaryIconCue",true)
+ elseif blastStep then
+  local muzzle=launch or first+flat*.8
+  line(r,"BlastMuzzleKick",function(u)
+   return muzzle,muzzle+flat*(.62+math.min(u*5,1)*1.4)
+  end,.31,r.hot,.09,true)
+  curve(r,"BlastForwardPressure",function(t,u)
+   local a=math.rad(angle*.80)*(t-.5)
+   local reach=.55+math.min(radius*.30,3.6)*(1-(1-math.min(u*2.8,1))^3)
+   local heading=flat*math.cos(a)+right*math.sin(a)
+   return muzzle+heading*reach-Vector3.yAxis*(.12+.38*u)
+  end,r.compact and 1 or 4,.25,r.color:Lerp(r.hot,.3),true)
  elseif shape=="blast"or shape=="earth"or shape=="lava"then
   local at=floor
   if area or angle>=359 then ring(r,"GroundPressure",at,radius,width*.6,false,false)
@@ -1505,17 +1540,28 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    return floor+(flat*math.cos(a)+right*math.sin(a))*reach+Vector3.yAxis*rise
   end,r.compact and 8 or 12,width*(.60+.18*beat),r.hot)
   r.model:SetAttribute("PrimaryIconCue",true)
+ elseif emberStep then
+  local function sweep(t,u)
+   local side=t*2-1
+   return floor+right*side*radius*.46+flat*radius*(.13-.37*(1-side^2)-.10*u)
+    +Vector3.yAxis*(.10+(1-side^2)*(.48+.58*u)+.48*t)
+  end
+  curve(r,"EmberDepartureEdge",sweep,r.compact and 4 or 6,.28,r.hot,true)
+  if not r.compact then
+   for side=-1,1,2 do
+    local at=floor+right*side*radius*.27-flat*radius*.23
+    line(r,"EmberDepartureSpark",function(u)
+     return at-flat*.38*u,at+(-flat*.58+Vector3.yAxis*.92)*math.min(u*3,1)
+    end,.13,r.color,.055,true)
+   end
+  end
  elseif shape=="fire"or shape=="arcane"then
   local at=area and floorAt(last,character)or first
-  local emberStep=id=='mage.pyro.ember_step'
   if area then ring(r,"CinderRing",at,radius,width*(id=='mage.pyro.cinder_ring'and .6 or .28),false,false)end
   local basis=CFrame.lookAt(first,first+dir)
-  for lane=1,emberStep and 1 or count do curve(r,shape=="fire"and"FlameTongue"or"ArcaneHelix",function(t,u)
+  for lane=1,count do curve(r,shape=="fire"and"FlameTongue"or"ArcaneHelix",function(t,u)
    local a=t*math.pi*3+lane*math.pi*2/count+u*4+phase
    if area then
-    if emberStep then
-     return at+right*((t-.5)*radius*.65)-flat*radius*.18+Vector3.yAxis*(.15+math.sin(t*math.pi)*.8+u*.6)
-    end
     local heading=lane*math.pi*2/count+phase+math.sin(t*math.pi)*.18+u*.25
     local ward=id=='mage.pyro.searing_ward'
     local rad=radius*(ward and(.35-t*.12)or(.65+t*.12))
@@ -1613,6 +1659,8 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
    Surfaces.triangle(r,"BreakerChargeFace",chargePath(1,0),middle-up,middle+up,r.color,.5)
    for i=start+1,#r.faces do r.faces[i].drift=flat*.7 end
   end
+ elseif radiantCharge or blastStep or emberStep then
+  -- The moving strokes own the release. The shared sector shows the full range.
  elseif shape=="guard"then
   local at=first+flat*1.8;local verts={Vector2.new(-1.3,1.3),Vector2.new(1.3,1.3),Vector2.new(1,-.4),Vector2.new(0,-1.5),Vector2.new(-1,-.4)}
   for i=1,#verts do
@@ -1630,17 +1678,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   end
  elseif shape=="fire"or shape=="arcane"or shape=="stone"or(shape=="frost"and not area)then
   if area then
-   local fireStyle=id=='mage.pyro.ember_step'and 'EmberWake'or id=='mage.pyro.searing_ward'and 'SearingCrown'or 'RisingCinders'
+   local fireStyle=id=='mage.pyro.searing_ward'and 'SearingCrown'or 'RisingCinders'
    r.model:SetAttribute('FireAreaStyle',fireStyle)
    local start=#r.faces
-   Surfaces.arc(r,"CinderShockwave",floor,radius*(fireStyle=='SearingCrown'and .42 or .78),math.min(radius*.1,.65),nil,.6,nil,fireStyle=='EmberWake'and 220 or 360)
+   Surfaces.arc(r,"CinderShockwave",floor,radius*(fireStyle=='SearingCrown'and .42 or .78),math.min(radius*.1,.65),nil,.6)
    Surfaces.animate(r,start,floor,Vector3.yAxis,.3,true,r.life)
    for i=1,3 do
     local a=i*math.pi*2/3+phase;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.56
     local height=1.8+(i%2)*.6
-    if fireStyle=='EmberWake'then at=floor+right*(i-2)*radius*.34-flat*radius*.18;height=1.1+i*.3
-    elseif fireStyle=='SearingCrown'then at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.34;height=2.8+(i%2)*.35 end
-    tongue(r,'AreaFlameTongue',at,height,fireStyle=='EmberWake'and .55 or .8,a,r.color)
+    if fireStyle=='SearingCrown'then at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.34;height=2.8+(i%2)*.35 end
+    tongue(r,'AreaFlameTongue',at,height,.8,a,r.color)
     if shape=='fire'then atmosphere(r,'AreaFire',at,true,2,.8)end
    end
   else

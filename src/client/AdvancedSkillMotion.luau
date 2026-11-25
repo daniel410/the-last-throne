@@ -203,6 +203,13 @@ local function gunner(d,kind,age)
   angles.rightKnee+=v(18*load+25*kick)
   angles.leftKnee+=v(-11*load+7*kick)
   angles.torso+=v(9*load-6*kick,0,5*kick)
+  local settle=smooth((since-.04)/.06)*(1-smooth((since-.10)/.16))
+  if pulse>0 then
+   angles.elbow+=v(-18*kick+21*settle)
+   angles.leftHip+=v(-13*settle,0,-6*settle)
+   angles.leftKnee+=v(17*settle)
+   angles.torso+=v(14*settle,0,-8*settle)
+  end
  end
  local pose={angles={},cutting=false}
  for channel,a in pairs(Clips.rest.dwarf) do pose.angles[channel]=v(unpack(a)):Lerp(angles[channel],ready) end
@@ -289,6 +296,18 @@ local function shieldPose(d,age,rigType,contact,ending)
   offset(pose,"torso",v(12,-7,5)*stride+v(13,5,-5)*plant)
   offset(pose,"rightHip",v(21*stride-8*plant))
   offset(pose,"leftKnee",v(15*stride+23*plant))
+ elseif d.id=="knight.paladin.radiant_charge" then
+  -- Drive low with the shield and rise over the other leg on the second beat.
+  local load=smooth(age/(contact*.46))*(1-smooth((age/contact-.63)/.37))
+  local push=pulse>0 and smooth(since/.052)*(1-smooth((since-.052)/.14)) or 0
+  local first=pulse==1 and push or 0
+  local second=pulse==2 and push or 0
+  offset(pose,"torso",v(16,-9,-8)*load+v(15,-4,-7)*first+v(-14,12,9)*second)
+  offset(pose,"left",v(12,-8,-9)*load+v(-15,6,-13)*first+v(21,8,13)*second)
+  offset(pose,"leftElbow",v(24*load-12*first+16*second))
+  offset(pose,"leftKnee",v(17*load+24*first))
+  offset(pose,"rightHip",v(-14*load-13*second))
+  offset(pose,"rightKnee",v(23*second))
  end
  if age>=ending then pose=mix(pose,resting("knight"),smooth((age-ending)/d.recovery)) end
  local finish=FinalBeat.weight(d,pulse,since)

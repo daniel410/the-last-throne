@@ -97,7 +97,7 @@ local function source(character,origin,d)
   tip=grip and grip:FindFirstChild("WeaponTip")
  end
  if tip and tip:IsA("Attachment") then return tip.WorldPosition end
- if d.id=="elf.marksman.crossfire" or d.id=="elf.marksman.heavy_draw" then
+ if d.id=="elf.marksman.crossfire" or d.id=="elf.marksman.heavy_draw" or d.id=="elf.magic_archer.gliding_shot" then
   local nocked=character:FindFirstChild("NockedArrow",true)
   if nocked and nocked:IsA("BasePart") then return nocked.Position end
  end
@@ -443,7 +443,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif d.form~="cone" and not (primary and primary:GetAttribute("CrossfireTrace")) then
    local hasWake=primary and (primary:GetAttribute("RetreatingShotWake") or primary:GetAttribute("GlidingShotWake")
     or primary:GetAttribute("ReleaseTrace"))
-   local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw"
+   local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw" or id=="elf.magic_archer.gliding_shot"
    local launch=alignSocket and Geometry.fanLaunch(origin,first,center) or first
    arrow(launch,center,color,character,hasWake)
   end
@@ -475,7 +475,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
     or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
-   local chargeEdge=id=="knight.steel_knight.breaker_charge" and primary and primary:GetAttribute("PrimaryIconCue")
+   local chargeEdge=primary and ((id=="knight.steel_knight.breaker_charge" and primary:GetAttribute("PrimaryIconCue"))
+    or primary:GetAttribute("RadiantChargeEdge"))
    if not primary or (not ultimateSignature and not chargeEdge and id~="dwarf.iron_axe.iron_shoulder") then
    local flat=Vector3.new(direction.X,0,direction.Z)
    local delta=flat.Magnitude>.001 and flat.Unit or Vector3.new(0,0,-1)
