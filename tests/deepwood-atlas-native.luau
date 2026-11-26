@@ -50,6 +50,8 @@ local ok,err=xpcall(function()
   local discovered=Progress.copy(journal);discovered.explored['DW-02']={[66]=true}
   map.atlas.update({journal=discovered},root,root.Position)
   check(actualRows['DW-02'].relief.ImageColor3==original and actualRows['DW-02'].cells[66].BackgroundTransparency==1,'server discovery removes the region tint and clears the recorded cell')
+  local edgeFog=actualRows['DW-02'].cells[1]
+  check(edgeFog.Parent==actualRows['DW-02'].relief and edgeFog.BackgroundTransparency<.3,'first visit keeps the surrounding survey edge dark')
   map.atlas.update({journal=journal},root,root.Position)
   check(actualRows['DW-02'].relief.ImageColor3==unvisited,'switching back to unknown journal restores the fog')
   for _,name in ipairs({'Close','ZoomIn','ZoomOut','Fit','Center','NavigationTrail'}) do

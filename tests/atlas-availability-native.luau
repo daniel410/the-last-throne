@@ -58,9 +58,13 @@ local ok,err=xpcall(function()
  check(fallback:IsA('Frame') and calls==0,'default published settings never call the image API')
  check(#fallback:GetChildren()>54 and #fallback:GetChildren()<=288,'overview fallback has a denser bounded grid')
  local band=fallback:GetChildren()[1]
+ local overlay=Instance.new('Frame')
+ overlay.Name='FogCell';overlay.Parent=fallback
+ local overlayColor=overlay.BackgroundColor3
  local tint=Color3.new(.2,.25,.30)
  p.shade(fallback,tint)
  check(band.BackgroundColor3==tint,'default-security terrain accepts fog tint')
+ check(overlay.BackgroundColor3==overlayColor,'terrain shading leaves nested fog untouched')
  p.shade(fallback,Color3.new(1,1,1))
  check(band.BackgroundColor3==Color3.new(1,1,1),'clearing fallback tint restores the original terrain colors')
  fallback:Destroy()

@@ -43,6 +43,19 @@ for id,z in pairs(C.zones) do
  local anchorX,anchorZ=table.unpack(Survey.zones[id].signature.anchor)
  local x0,z0,x1,z1=require(shared.CampaignAreas).surveyExtent(C.zones[id])
  local relief=map.Relief
+ local fog={}
+ for _,child in ipairs(relief:GetChildren()) do
+  if child.Name=="FogCell" then table.insert(fog,child) end
+ end
+ check(#fog==144,id.." fog is inside its own relief")
+ local left,top,right,bottom=math.huge,math.huge,-math.huge,-math.huge
+ for _,cell in ipairs(fog) do
+  left=math.min(left,cell.Position.X.Scale-cell.Size.X.Scale/2)
+  top=math.min(top,cell.Position.Y.Scale-cell.Size.Y.Scale/2)
+  right=math.max(right,cell.Position.X.Scale+cell.Size.X.Scale/2)
+  bottom=math.max(bottom,cell.Position.Y.Scale+cell.Size.Y.Scale/2)
+ end
+ check(math.abs(left)<1e-5 and math.abs(top)<1e-5 and math.abs(right-1)<1e-5 and math.abs(bottom-1)<1e-5,id.." fog reaches the complete survey extent")
  local u=relief.Position.X.Scale + (anchorX-x0)/(x1-x0)*relief.Size.X.Scale
  local v=relief.Position.Y.Scale + (anchorZ-z0)/(z1-z0)*relief.Size.Y.Scale
  check(math.abs(map.SitePin1.Position.X.Scale-u)<1e-5 and math.abs(map.SitePin1.Position.Y.Scale-v)<1e-5,id.." numbered pin aligns with surveyed pixels")

@@ -53,6 +53,7 @@ local function drawTerrain(frame, data, width, height, detail)
  for y = 0, rows-1 do
   for x = 0, columns-1 do
    local band = Instance.new("Frame")
+   band.Name = "TerrainBand"
    band.BorderSizePixel = 0
    band.BackgroundColor3 = Color3.new(1,1,1)
    band.Position = UDim2.fromScale(x/columns, y/rows)
@@ -107,7 +108,7 @@ function Plate.shade(relief, tint)
   relief.ImageColor3 = tint
  else
   for _, band in ipairs(relief:GetChildren()) do
-   band.BackgroundColor3 = tint
+   if band.Name == "TerrainBand" then band.BackgroundColor3 = tint end
   end
  end
 end

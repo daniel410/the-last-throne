@@ -41,7 +41,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
   local px,pz=(maxX-minX)*.075,(maxZ-minZ)*.075;minX-=px;maxX+=px;minZ-=pz;maxZ+=pz
  end
  local width,height=maxX-minX,maxZ-minZ
- local fogDivisions=compact and 11.7 or 12
+ local fogPadding=compact and (1/11.7-1/12)/2 or 0
  local function point(x,z) return Vector2.new((x-minX)/width,(z-minZ)/height) end
  local function label(name,text,p,size,font,color,layer)
   local t=Theme.label(parent,name,text,UDim2.fromScale(p.X,p.Y),size,font,color)
@@ -117,9 +117,28 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
  for _,id in ipairs(ids) do
   local z=Content.zones[id];local survey=Survey.zones[id];local a=point(z.center[1]-z.size[1]/2,z.center[3]-z.size[2]/2)
   local size=Vector2.new(z.size[1]/width,z.size[2]/height);local center=point(z.center[1],z.center[3]);local cells={}
+  local relief=reliefs[id]
+  local fogOrigin,fogSpan=a,size
+  local backing=parent.Parent
+  local shade=fogColor
+  if relief then
+   local topLeft=Vector2.new(relief.Position.X.Scale,relief.Position.Y.Scale)
+   local fullSpan=Vector2.new(relief.Size.X.Scale,relief.Size.Y.Scale)
+   fogOrigin,fogSpan=(a-topLeft)/fullSpan,size/fullSpan
+   if backing and backing:IsA('GuiObject') and backing.BackgroundTransparency==0 then shade=backing.BackgroundColor3 end
+  end
   for zz=1,12 do for x=1,12 do
-   local origin=a+Vector2.new((x-.5)/12*size.X,(zz-.5)/12*size.Y)
-   local cell=Art.shape(parent,'FogCell',origin.X,origin.Y,size.X/fogDivisions,size.Y/fogDivisions,fogColor,6,compact and .5 or nil)
+   local left=fogOrigin.X+((x-1)/12-fogPadding)*fogSpan.X
+   local top=fogOrigin.Y+((zz-1)/12-fogPadding)*fogSpan.Y
+   local right=fogOrigin.X+(x/12+fogPadding)*fogSpan.X
+   local bottom=fogOrigin.Y+(zz/12+fogPadding)*fogSpan.Y
+   if relief then
+    -- Server discovery clamps positions outside the base grid into its edge cells.
+    if x==1 then left=0 elseif x==12 then right=1 end
+    if zz==1 then top=0 elseif zz==12 then bottom=1 end
+   end
+   local origin=Vector2.new((left+right)/2,(top+bottom)/2)
+   local cell=Art.shape(relief or parent,'FogCell',origin.X,origin.Y,right-left,bottom-top,shade,6,compact and .5 or nil)
    cells[(zz-1)*12+x]=cell
    if compact then cell.Visible=(origin-Vector2.new(.5,.5)).Magnitude<.44 end
   end end
@@ -142,7 +161,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
    hit=Instance.new('TextButton');hit.Name='SelectRegion';hit.Text='';hit.BackgroundTransparency=1;hit.Position=caption.Position;hit.AnchorPoint=Vector2.new(.5,.5);hit.Size=UDim2.fromOffset(164,48);hit.ZIndex=9;hit.AutoLocalize=false;hit.Parent=parent
    hit.Activated:Connect(function() selectRegion(id);if onInspect then onInspect(id)end end)
   end
-  rows[id]={span=size,cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark,relief=reliefs[id]}
+  rows[id]={span=size,cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark,relief=relief}
  end
  local waypoint=label('Waypoint',Text.PinSymbol,Vector2.zero,UDim2.fromOffset(22,22),15,Color3.fromRGB(235,176,255),15)
  waypoint.Visible=false;waypoint.Font=Enum.Font.GothamBold;waypoint.TextStrokeTransparency=0

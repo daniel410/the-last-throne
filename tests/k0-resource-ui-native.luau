@@ -67,7 +67,7 @@ local ok, failure = xpcall(function()
  check(atlas.rows['DW-01'].status.Text=='UNEXPLORED' and atlas.rows['DW-02'].status.Text=='LOCKED','map distinguishes accessible unknown and story lock')
  journal=assert(progress.reveal(journal,'DW-01',6,6));atlas.update({journal=journal},mapHero,nil)
  check(atlas.rows['DW-01'].name.Text==content.zones['DW-01'].name and not atlas.objective.Visible,'visited region uses friendly name and stale target clears')
- check(atlas.rows['DW-01'].cells[66].BackgroundColor3~=atlas.rows['DW-01'].cells[1].BackgroundColor3,'discovery clears only nearby fog')
+ check(atlas.rows['DW-01'].cells[66].BackgroundTransparency==1 and atlas.rows['DW-01'].cells[1].BackgroundTransparency<.3,'discovery clears only nearby fog')
  atlas.update({journal=progress.new()},nil,nil)
  check(not atlas.pin.Visible and atlas.rows['DW-01'].status.Text=='UNEXPLORED','hero switch clears previous discovery and pin')
  for _,d in ipairs(atlasParent:GetDescendants()) do
