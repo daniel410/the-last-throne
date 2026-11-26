@@ -74,6 +74,30 @@ for _, item in ipairs({
 end
 
 local rapid = specs["elf.common.rapid"]
+local function angularDelta(a,b)
+    local _, angle = a:ToObjectSpace(b):ToAxisAngle()
+    return math.abs(angle)
+end
+
+-- The legs and aim must still be at full draw when an overdue confirmation
+-- arrives. This also checks volleys that have yet to receive their first pulse.
+for _, id in {"elf.common.aimed", "elf.marksman.arrow_rain", rapid.id} do
+    local d = specs[id]
+    local character = archer(id, 150)
+    local firedAt = 150+d.windup
+    local late = firedAt+d.active+d.recovery*.22
+    local anchor = Motion.forCharacter(character, firedAt+.001)
+    local held = Motion.forCharacter(character, late)
+    check(held.nocked and angularDelta(anchor.rightKnee,held.rightKnee)<.001
+        and anchor.aimPitch==held.aimPitch, id .. " maintains the planted draw and elevation while awaiting release")
+    if id=="elf.common.aimed" then
+        confirmed(character,d,firedAt,late,1)
+        local release = Motion.forCharacter(character,late)
+        check(not release.nocked and angularDelta(anchor.rightKnee,release.rightKnee)<.001,
+            id .. " starts late release from the held stance")
+    end
+end
+
 local nearlyNext = archer(rapid.id, 200)
 local shot = 200+rapid.windup
 Motion.forCharacter(nearlyNext, shot+.03)

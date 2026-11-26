@@ -158,7 +158,10 @@ local function gunner(d,kind,age)
  local recoil=gunRecoil[d.id]
  local span=math.min(d.interval or .3,recoil and recoil.settle or .24)
  local gain=recoil and recoil.gain or 1
- local kick=pulse>0 and gain*smooth(since/(span*.18))*(1-smooth((since/span-.18)/.82)) or 0
+ -- LoT's quick draw snaps at the elbow. Mortar recoil travels through
+ -- the shoulder into the stance on a wider arc before the next lift.
+ local peak=kind=="mortar" and .31 or .15
+ local kick=pulse>0 and gain*smooth(since/(span*peak))*(1-smooth((since/span-peak)/(1-peak))) or 0
  local finish=FinalBeat.weight(d,pulse,since)
  local load=smooth(phase/.55)*(1-smooth((phase-.55)/.45))
  local right,elbow,torso
@@ -177,7 +180,7 @@ local function gunner(d,kind,age)
   elbow=v(-12*kick)
   torso=v(3-6*kick,0,0)
  end
- local brace=kind=="mortar" and (14*load+12*kick+9*finish) or kind=="shoot" and 7*kick or 0
+ local brace=kind=="mortar" and (14*load+16*kick+9*finish) or kind=="shoot" and 7*kick or 0
  if d.id=="dwarf.gunner.piercing_round" then
   -- Keep the burst on its socket axis while the stance takes the recoil.
   brace+=8*load+10*kick

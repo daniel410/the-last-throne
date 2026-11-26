@@ -155,6 +155,7 @@ function Motion.forCharacter(character,now)
  local ending=record.started+poseDuration/(record.rate or 1)
  local t
  local awaitingShot=false
+ local gestureAge=age
  local advancedMulti=d.advanced and type(d.pulses)=="number" and d.pulses>1 and not trap
  local repeated=d.effect=="rapid" or advancedMulti
  local count, at, sinceRelease
@@ -165,11 +166,12 @@ function Motion.forCharacter(character,now)
  end
  local moreShots=repeated and count<(advancedMulti and d.pulses or d.shotCount)
  if repeated and age>=d.windup then
-  if count<=0 or type(at)~="number" then t=.8
+  if count<=0 or type(at)~="number" then t=.8;awaitingShot=true
   else
    local due=moreShots and record.started+d.windup+count*(advancedMulti and d.interval or d.shotInterval) or ending
    local since=releaseElapsed(record,now,at,count,math.min(due,ending),record.pulseReceived)
    sinceRelease=since
+   gestureAge=at-record.started+since
    if since<.04 then t=.8+.1*since/.04
    elseif moreShots then
     local span=math.max(.04,due-(at+.04))
@@ -194,6 +196,7 @@ function Motion.forCharacter(character,now)
   else
    local since=releaseElapsed(record,now,firedAt,1,ending,record.pulseReceived)*(record.rate or 1)
    sinceRelease=since
+   gestureAge=(firedAt-record.started)*(record.rate or 1)+since
    local remaining=trap and .34 or poseDuration-(firedAt-record.started)*(record.rate or 1)
    t=since<.04 and .8+.1*since/.04 or .9+.1*math.clamp((since-.04)/math.max(.01,remaining-.04),0,1)
   end
@@ -251,11 +254,12 @@ function Motion.forCharacter(character,now)
   record.heldPulse=repeated and count+1 or 1
   record.heldAt=now
  end
- Gestures.bow(pose,d,awaitingShot and release or age,sinceRelease,moreShots,count)
+ gestureAge=awaitingShot and release or gestureAge
+ Gestures.bow(pose,d,gestureAge,sinceRelease,moreShots,count)
  -- Plant the trap with a shallow lob; rain shots still climb above the target.
  if d.form=="ground" then
-  local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)
-  local raise=math.clamp(age/math.max(.01,d.windup*.7),0,1)*fade
+  local fade=math.clamp((total-gestureAge)/math.max(.01,d.recovery),0,1)
+  local raise=math.clamp(gestureAge/math.max(.01,d.windup*.7),0,1)*fade
   if trap and sinceRelease then raise*=1-math.clamp(sinceRelease/.29,0,1) end
   local elevation=trap and 12 or d.id=="elf.magic_archer.storm_arrow" and 51
    or d.ultimate and 46 or d.id=="elf.marksman.arrow_rain" and 43

@@ -82,7 +82,11 @@ end
 function Poses.bow(pose,d,age,since,betweenShots,pulse)
     local s = bowStance(d)
     local phase = age/d.windup
-    local load = smooth(phase/.55)*(1-smooth((phase-.55)/.45))
+    -- LoT Archer reaches first, then rolls the shoulders into the draw.
+    -- Leave the quiver pickup free and build the draw around its anchor.
+    local reach = d.id and 0 or .26
+    local peak = (s == bow.snap or s == bow.spark) and .44 or .64
+    local load = smooth((phase-reach)/(peak-reach))*(1-smooth((phase-peak)/(1-peak)))
     if d.id=="elf.marksman.heavy_draw" then
         load = smooth(phase/.42)*(1-.6*smooth((phase-.48)/.52))
         load *= 1-smooth((age-d.windup)/.09)
@@ -103,6 +107,7 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         end
     end
     local settle = 1-smooth((age-d.windup-d.active)/d.recovery)
+    local anchor = smooth((phase-.62)/.38) * settle
     local coil = load+.44*redraw
     recoil *= settle
     -- The bow hand stays on the sight line while the release elbow travels
@@ -114,11 +119,15 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     add(pose,"right",v(13*coil-9*recoil,-15*coil+s.elbow*recoil,12*coil+9*recoil))
     add(pose,"elbow",v(-12*coil+18*recoil,0,0))
     add(pose,"weapon",v(0,0,s.cant*(.70*coil+.30*support-.20*recoil)))
-    local knees = s.bend*(.6*support+.4*coil+.26*recoil)
-    add(pose,"rightHip",v(-.65*knees,0,6*support))
-    add(pose,"leftHip",v(-.36*knees,0,-7*support))
-    add(pose,"rightKnee",v(knees,0,0))
-    add(pose,"leftKnee",v(knees*.65,0,0))
+    -- The rear leg sets the full draw. The bow-side leg takes the weight
+    -- after a release, with only a small reset between volley arrows.
+    local knees = s.bend*(.6*support+.4*coil)
+    local rearBend = knees + s.bend*(.26*anchor+.18*redraw-.22*recoil)
+    local frontBend = knees*.65 + s.bend*.65*recoil
+    add(pose,"rightHip",v(-.65*rearBend,0,6*support))
+    add(pose,"leftHip",v(-.56*frontBend,0,-7*support))
+    add(pose,"rightKnee",v(rearBend,0,0))
+    add(pose,"leftKnee",v(frontBend,0,0))
     if s == bow.heavy then
         -- Hold the rear heel under the draw, then let the elbow snap past it.
         add(pose,"rightHip",v(-12,0,8)*load)
@@ -389,12 +398,18 @@ local function spellGesture(d,profile)
 end
 function Poses.mage(pose,d,profile,age)
     local s = spellGesture(d,profile)
-    local phase = age/d.windup
-    local wind = smooth(phase/.58)*(1-smooth((phase-.58)/.42))
+    local contact = d.windup+(d.hitDelay or 0)
+    local phase = age/contact
+    local ground = d.form=="area" or d.form=="ground" or profile=="ground_area"
+    -- LoT Arcanist leads the cast with the staff, then opens the free hand.
+    -- The heavier ground cast gathers lower and reaches its load later.
+    local staffPeak = ground and .62 or profile=="ward" and .48 or .42
+    local wind = smooth(phase/staffPeak)*(1-smooth((phase-staffPeak)/(1-staffPeak)))
+    local gather = smooth((phase-.16)/.47)*(1-smooth((phase-.63)/.37))
     local guide = smooth((phase-.48)/.52)
     local follow, finish, beat = 0, 0, 0
     local recovery = 1-smooth((age-d.windup-d.active)/d.recovery)
-    if age>=d.windup+(d.hitDelay or 0) then
+    if age>=contact then
         local pulse,since = Presentation.beat(d,age)
         beat = pulse
         finish = FinalBeat.weight(d,pulse,since)
@@ -403,6 +418,7 @@ function Poses.mage(pose,d,profile,age)
         if pulse<(d.pulses or 1) then
             local cycle = since/d.interval
             wind = .52*smooth((cycle-.25)/.34)*(1-smooth((cycle-.59)/.41))
+            gather = .45*smooth((cycle-.38)/.31)*(1-smooth((cycle-.69)/.31))
         end
         local channel = (d.form=="area" or d.form=="ground") and (d.pulses or 1)>1
         guide = 1-(channel and .23 or .64)*wind
@@ -425,16 +441,23 @@ function Poses.mage(pose,d,profile,age)
         or s == spells.iceWard and v(-22,14,-30)
         or s == spells.steam and v(43,-15,18)
         or Vector3.zero
-    add(pose,"left",s.palm*wind+s.openPalm*guide+palmRelease*follow)
+    add(pose,"left",s.palm*gather+s.openPalm*guide+palmRelease*follow)
     add(pose,"torso",s.chest*(wind-.48*follow))
-    add(pose,"neck",s.chest*(-.45*wind+.21*follow))
+    add(pose,"neck",s.chest*(-.45*wind+.21*follow) + v((ground and 9 or 5)*gather,0,0))
     add(pose,"elbow",v(-16*wind+11*follow,0,0))
-    add(pose,"leftElbow",v(-22*wind+14*guide,0,0))
-    local knees = s.bend*(wind+.38*guide+.37*follow)
-    add(pose,"rightHip",v(-.64*knees,0,-7*wind))
-    add(pose,"leftHip",v(-.4*knees,0,7*wind))
-    add(pose,"rightKnee",v(knees,0,0))
-    add(pose,"leftKnee",v(.7*knees,0,0))
+    add(pose,"leftElbow",v(-22*gather+14*guide,0,0))
+    local rightBend = s.bend*(wind+.38*guide+.18*follow)
+    local leftBend = s.bend*((ground and .93 or .58)*gather+.28*guide+.66*follow)
+    add(pose,"rightHip",v(-.64*rightBend,0,-7*wind))
+    add(pose,"leftHip",v(-.58*leftBend,0,7*gather))
+    add(pose,"rightKnee",v(rightBend,0,0))
+    add(pose,"leftKnee",v(leftBend,0,0))
+    if profile=="staff_strike" then
+        -- Catch a staff hit across the body before the free hand returns to guard.
+        add(pose,"left",v(-16,9,-17)*follow)
+        add(pose,"leftElbow",v(-19*follow,0,0))
+        add(pose,"leftKnee",v(11*follow,0,0))
+    end
     if s == spells.manaBolt then
         -- Gather the bolt beside the staff and drive the staff tip through the release.
         add(pose,"right",v(23,-8,9)*follow)

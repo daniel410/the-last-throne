@@ -24,6 +24,20 @@ local skills = {
     shoot = stroke(4,8,3,13,-.10), mortar = stroke(12,10,5,26,-.16),
     lob = stroke(-6,-18,-8,20,.20,28), challenge = stroke(10,12,6,23,-.14),
 }
+-- LoT's sword/lance lead with the hips, its shield drives the arm first,
+-- and its axe chop has a late, low load followed by a longer catch.
+local loadPeaks = {
+    [skills.thrust] = .39, [skills.shield] = .55, [skills.chop] = .60,
+    [skills.throw] = .61, [skills.slam] = .62, [skills.challenge] = .60,
+    [basics.knight[1]] = .40, [basics.knight[2]] = .46, [basics.knight[3]] = .51,
+    [basics.dwarf[1]] = .46, [basics.dwarf[2]] = .58, [basics.dwarf[3]] = .62,
+}
+local catchPeaks = {
+    [skills.thrust] = .22, [skills.shield] = .24, [skills.chop] = .40,
+    [skills.throw] = .43, [skills.slam] = .45,
+    [basics.knight[1]] = .24, [basics.knight[2]] = .30, [basics.knight[3]] = .36,
+    [basics.dwarf[1]] = .30, [basics.dwarf[2]] = .39, [basics.dwarf[3]] = .46,
+}
 -- The weapon arm, shield/free arm and sternum have separate lead poses.
 -- A shoulder charge stays low; a rally raises the weapon above the group.
 local function lead(right, left, chest)
@@ -87,6 +101,10 @@ local function angles(x,y,z)
     return CFrame.Angles(math.rad(x),math.rad(y),math.rad(z))
 end
 
+local function accent(phase, peak, ending)
+    return smooth(phase/peak) * (1-smooth((phase-peak)/(ending-peak)))
+end
+
 function WeightShift.apply(pose, classId, skillId, combo, age)
     if not basics[classId] then return end
     local d, style
@@ -102,7 +120,9 @@ function WeightShift.apply(pose, classId, skillId, combo, age)
     -- The hips initiate the stroke. The chest catches up, the off hand
     -- balances the weapon, and the planted leg absorbs its momentum.
     local phase = age / contact
-    local load = smooth(phase/.48) * (1-smooth((phase-.48)/.49))
+    local peak = loadPeaks[style] or .48
+    local load = accent(phase,peak,.97)
+    local shoulder = accent(phase,math.min(.76,peak+.13),1)
     local since = age-contact
     local pulses = d.pulses or 1
     if pulses > 1 and since >= 0 then
@@ -110,18 +130,19 @@ function WeightShift.apply(pose, classId, skillId, combo, age)
         since -= index*d.interval
         if index < pulses-1 then
             local cycle = since/d.interval
-            load += .56*smooth((cycle-.28)/.35)*(1-smooth((cycle-.63)/.37))
+            load = .56*accent(cycle-.28,.35,.72)
+            shoulder = .56*accent(cycle-.28,.44,.72)
         end
     end
     local follow = d.active - (pulses-1)*(d.interval or 0)
     local brakeTime = math.min(follow + d.recovery*.35, d.interval or .32)
-    local brake = smooth(since/(brakeTime*.32))*(1-smooth((since/brakeTime-.32)/.68))
+    local brake = accent(since/brakeTime,catchPeaks[style] or .32,1)
     -- Drive forward out of a ram, sit back into a shot, and compress
     -- downward on an axe landing. Each offset starts after contact.
     local drive = skillId and d.move and math.clamp(d.move / 6, -1, 1) or 0
     local landing = skillId and classId == "dwarf" and style == skills.slam and .12 or 0
     local transfer = load - .68*brake
-    local coil = style.coil * transfer
+    local coil = style.coil * (shoulder - .68*brake)
     local shift = style.step * transfer
     local crouch = style.compression * (load+.85*brake)
     local center = Vector3.new(shift, -.006*crouch, .09*load-(.14+.15*drive)*brake)
@@ -143,25 +164,30 @@ function WeightShift.apply(pose, classId, skillId, combo, age)
     end
     pose.torso = CFrame.new(center) * angles(chest.X,chest.Y,chest.Z) * (pose.torso or CFrame.identity)
     pose.neck = (pose.neck or CFrame.identity) * angles(-coil.X*.5,-coil.Y*.62,-coil.Z*.5)
-    pose.rightHip = (pose.rightHip or CFrame.identity) * angles(-crouch*.72,0,-shift*32)
-    pose.leftHip = (pose.leftHip or CFrame.identity) * angles(-crouch*.35,0,shift*23)
-    pose.rightKnee = (pose.rightKnee or CFrame.identity) * angles(crouch,0,0)
-    pose.leftKnee = (pose.leftKnee or CFrame.identity) * angles(crouch*.64,0,0)
+    -- Meet the momentum on the other leg. The mirrored rising/backhand
+    -- strokes start and finish on opposite feet from the opening strike.
+    local plant = (style.step < 0 and -1 or 1) * (.50*load-.85*brake)
+    local rightBend = crouch*.84 + style.compression*.32*plant
+    local leftBend = crouch*.84 - style.compression*.32*plant
+    pose.rightHip = (pose.rightHip or CFrame.identity) * angles(-rightBend*.73,0,-shift*32)
+    pose.leftHip = (pose.leftHip or CFrame.identity) * angles(-leftBend*.73,0,shift*23)
+    pose.rightKnee = (pose.rightKnee or CFrame.identity) * angles(rightBend,0,0)
+    pose.leftKnee = (pose.leftKnee or CFrame.identity) * angles(leftBend,0,0)
     local leadPose = leads[skillId]
     if leadPose then
         -- Draw back a second time for a repeated strike, and let the weapon
         -- pull the shoulders through after contact. Keep the contact FK exact.
-        local armWeight = load-.36*brake
+        local armWeight = shoulder-.36*brake
         local r, l, c = leadPose.right*armWeight, leadPose.left*armWeight, leadPose.chest*transfer
         pose.right = angles(r.X,r.Y,r.Z) * pose.right
         pose.left = angles(l.X,l.Y,l.Z) * pose.left
         pose.torso = pose.torso * angles(c.X,c.Y,c.Z)
     end
     if classId == "knight" and not skillId then
-        pose.left = (pose.left or CFrame.identity) * angles(14*load,0,9*transfer)
+        pose.left = (pose.left or CFrame.identity) * angles(14*shoulder,0,9*transfer)
         pose.leftElbow = (pose.leftElbow or CFrame.identity) * angles(16*load-6*brake,0,0)
     elseif classId == "dwarf" and style.counterArm ~= 0 then
-        pose.left = (pose.left or CFrame.identity) * angles(9*load,0,style.counterArm*transfer)
+        pose.left = (pose.left or CFrame.identity) * angles(9*shoulder,0,style.counterArm*transfer)
         pose.leftElbow = (pose.leftElbow or CFrame.identity) * angles(14*load-8*brake,0,0)
     end
 end
