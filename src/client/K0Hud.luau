@@ -564,8 +564,9 @@ function Hud.create()
    if ultimateSkill then
     local remaining=math.max(0,(character:GetAttribute('K0UltimateReady') or 0)-Workspace:GetServerTimeNow())
     ultimate.Active=remaining<=0;ultimate.Caption.Text=remaining>0 and string.format('%.1fs',remaining) or Text.Ultimate
-    ultimateHint.Text=UserInputService.TouchEnabled and 'TAP' or UserInputService.GamepadEnabled and 'D-PAD UP' or 'T'
-    ultimateHint.Size=UDim2.fromOffset(#ultimateHint.Text>2 and 48 or 20,16)
+    local touch = UserInputService.TouchEnabled
+    ultimateHint.Text=touch and 'TAP' or UserInputService.GamepadEnabled and '↑' or 'T'
+    ultimateHint.Size=UDim2.fromOffset(touch and 30 or 20,16)
     ultimate.IconFrame.TDButtonArt.ImageTransparency=remaining>0 and .45 or 0
     SkillIcon.set(ultimate.SkillIcon,ultimateSkill,true,remaining>0)
    end
