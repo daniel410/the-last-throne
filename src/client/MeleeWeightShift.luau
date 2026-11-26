@@ -176,8 +176,10 @@ function WeightShift.apply(pose, classId, skillId, combo, age)
     local leadPose = leads[skillId]
     if leadPose then
         -- Draw back a second time for a repeated strike, and let the weapon
-        -- pull the shoulders through after contact. Keep the contact FK exact.
-        local armWeight = shoulder-.36*brake
+        -- pull the shoulders through after contact. Keep the early, authored
+        -- silhouette for skills that share the same shield or axe base clip.
+        local armLoad = phase < 1 and accent(phase,.48,.97) or shoulder
+        local armWeight = armLoad-.36*brake
         local r, l, c = leadPose.right*armWeight, leadPose.left*armWeight, leadPose.chest*transfer
         pose.right = angles(r.X,r.Y,r.Z) * pose.right
         pose.left = angles(l.X,l.Y,l.Z) * pose.left
