@@ -61,6 +61,18 @@ function Theme.label(parent, name, text, position, size, textSize, color)
 	value.Parent=parent
 	return value
 end
+-- Keep the authored font size on roomy controls and fit only bounded captions.
+function Theme.fitText(label)
+	local limit=Instance.new("UITextSizeConstraint")
+	limit.MinTextSize=8
+	local function sync()
+		limit.MaxTextSize=math.max(limit.MinTextSize,label.TextSize)
+	end
+	sync()
+	limit.Parent=label
+	label.TextScaled=true
+	label:GetPropertyChangedSignal("TextSize"):Connect(sync)
+end
 function Theme.button(parent,name,text,position,size,primary)
 	local button=Instance.new("TextButton")
 	button.Name,button.Position,button.Size,button.Text=name,position,size,""
@@ -70,8 +82,10 @@ function Theme.button(parent,name,text,position,size,primary)
 	local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(0,8); corner.Parent=button
 	local art=Theme.sprite(button,"TDButtonArt",primary and "shellUpgrade" or "shellDetails",UDim2.new(),UDim2.fromScale(1,1))
 	art.SliceScale=0.32
-	local title=Theme.label(button,"Caption",text,UDim2.fromOffset(14,2),UDim2.new(1,-28,1,-4),13)
+	local title=Theme.label(button,"Caption",text,UDim2.new(.025,8,0,6),UDim2.new(.95,-16,1,-12),13)
 	title.TextXAlignment,title.Font=Enum.TextXAlignment.Center,Enum.Font.GothamBold
+	title.ZIndex=art.ZIndex+1
+	Theme.fitText(title)
 	button.MouseEnter:Connect(function()
 		if button.Active then TweenService:Create(art,TweenInfo.new(.12),{ImageColor3=Color3.fromRGB(222,238,255)}):Play() end
 	end)

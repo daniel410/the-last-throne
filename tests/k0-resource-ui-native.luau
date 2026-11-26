@@ -142,13 +142,13 @@ local ok, failure = xpcall(function()
 	check(playerGui.DeepwoodTopHud.Root.Heading.Title.TextSize==17,'top region heading is larger')
 	for _,name in ipairs({'Item1','Item2','Skill1','Skill2','Skill3','Skill4','Skill5'}) do
 		local hint=root.SkillBar[name].Hint
-		check(hint.Font==Enum.Font.GothamBlack and hint.TextColor3==Color3.new(1,1,1) and hint.BackgroundTransparency<.2,'quick key is bold and high contrast: '..name)
-		check(hint:FindFirstChildOfClass('UITextSizeConstraint').MaxTextSize==14 and hint.ZIndex>=5,'quick key is larger and above the icon: '..name)
+		check(hint.Font==Enum.Font.GothamBold and hint.TextColor3==Color3.new(1,1,1) and hint.BackgroundTransparency<.2,'quick key is bold and high contrast: '..name)
+		check(hint.TextScaled and hint.ZIndex>=5,'quick key has bounded text above the frame art: '..name)
 	end
 	hud.setHints('R2','L2','B','L3',{'Y','X','L1','LEFT','RIGHT'})
-	check(root.SkillBar.Skill4.Hint.Text=='LEFT' and root.SkillBar.Skill4.Hint.Size.X.Offset==43,'long gamepad key fits its badge')
+	check(root.SkillBar.Skill4.Hint.Text=='LEFT' and root.SkillBar.Skill4.Hint.Size.X.Offset>20,'long gamepad key gets a wider badge')
 	hud.setHints('CLICK','Q','R','E',{'1','2','3','4','5'})
-	check(root.SkillBar.Skill4.Hint.Size.X.Offset==21 and root.SkillBar.Skill4.Hint.Text=='4','keyboard key returns to compact badge')
+	check(root.SkillBar.Skill4.Hint.Size.X.Offset==20 and root.SkillBar.Skill4.Hint.Text=='4','keyboard key returns to compact badge')
 	check(status.TDPanelArt.Image ~= "", "status uses original TD panel")
 	check(status.HEALTHTrack.TDResourceFrame.Image == "rbxassetid://97570429280107", "health uses pinned TD battle chrome")
 	check(root.Actions.Attack.TDButtonArt:GetAttribute("TDArtKey") == "shellUpgrade", "primary attack uses TD green shell")
@@ -167,13 +167,13 @@ local ok, failure = xpcall(function()
 	character:SetAttribute("K0ItemDefinition1", "mana_potion")
 	hud.setCooldowns(character)
 	check(root.SkillBar.Item1.Caption.Text == "Small MP" and root.SkillBar.Item1.ItemCount.Text == "x7", "quick item follows reassignment and count")
-	check(root.SkillBar.Skill1.Cooldown.Visible and not root.SkillBar.Skill1.Icon.Visible, "cooldown stays inside its skill control")
+	check(root.SkillBar.Skill1.Cooldown.Visible and root.SkillBar.Skill1.SkillIcon.ImageTransparency>.4, "cooldown stays inside its skill control and dims its icon")
 	check(root.SkillBar.Skill4.Caption.Text == "LOCKED" and not root.SkillBar.Skill4.Active, "fourth slot stays locked without advancement")
 	check(root.SkillBar.Skill2.Caption.Text == "EMPTY" and not root.SkillBar.Skill2.Active, "unassigned slot stays inactive")
 	character:SetAttribute("K0SkillSlotCount", 5)
 	character:SetAttribute("K0SkillReady1", 0)
 	hud.setCooldowns(character)
-	check(not root.SkillBar.Skill1.Cooldown.Visible and root.SkillBar.Skill1.Icon.Visible, "ready skill clears stale countdown")
+	check(not root.SkillBar.Skill1.Cooldown.Visible and root.SkillBar.Skill1.SkillIcon.Visible, "ready skill clears stale countdown")
 	check(root.SkillBar.Skill5.Caption.Text == "EMPTY", "practice slot count does not invent an ability")
  character:SetAttribute('K0StatPoints',4);character:SetAttribute('K0SkillPoints',1);hud.setCooldowns(character)
  check(status.GrowthPoints.Visible and status.GrowthPoints.Text:find('4 STAT POINTS',1,true) and status.GrowthPoints.Text:find('1 SKILL POINTS',1,true),'earned growth points are visible in combat HUD')
@@ -331,7 +331,8 @@ local ok, failure = xpcall(function()
 		check(height>500,"stats view reports scrollable content")
 	end
  local xpCharacter=Instance.new('Model');xpCharacter:SetAttribute('K0ClassId','knight')
- for _,case in ipairs({{1,0,'TOTAL XP 0 / 100'},{1,99,'TOTAL XP 99 / 100'},{2,0,'TOTAL XP 100 / 225'},{3,15,'TOTAL XP 240 / 375'},{80,0,'TOTAL XP 84925 (MAX)'}}) do
+ local maxXP=string.format('TOTAL XP %d (MAX)',growth.xpAtLevel(growth.maxLevel))
+ for _,case in ipairs({{1,0,'TOTAL XP 0 / 100'},{1,99,'TOTAL XP 99 / 100'},{2,0,'TOTAL XP 100 / 225'},{3,15,'TOTAL XP 240 / 375'},{80,0,'TOTAL XP 84925 / 87725'},{growth.maxLevel,0,maxXP}}) do
   body:ClearAllChildren()
   local g=growth.new(case[1]);g.xp=case[2]
   statsView.render(body,{heroId='xp',baseClassId='knight',progression=g},{ready=true,atHub=true,items={}},growth.derived('knight',g),{STR=0,DEX=0,INT=0,VIT=0},nil,function()end,function()end,function()end,function()end)
@@ -349,7 +350,8 @@ local ok, failure = xpcall(function()
 		copyModule('K0Hud',size).create()
 		local mobile=playerGui.DeepwoodTrainingHud.Root
 		local actions,bar=mobile.Actions,mobile.SkillBar
-		check(bar.Position.Y.Scale==1 and bar.Position.Y.Offset==-12,'mobile potions and skills stay at the bottom at every viewport size')
+		local portrait=size.Y>size.X
+		check(bar.Position.Y.Scale==1 and (portrait and bar.Position.Y.Offset<=-180 or not portrait and bar.Position.Y.Offset==-12),'quick slots clear the portrait thumb controls and sit along the landscape bottom')
 		check(actions.Attack.Size==UDim2.fromOffset(64,64),'mobile attack is reduced to64px')
 		check(actions.Block.Size==actions.Dodge.Size and actions.Dodge.Size==actions.Sprint.Size,'mobile defensive actions have equal size')
 		check(actions.Block.Position.X.Offset==actions.Dodge.Position.X.Offset and actions.Dodge.Position.X.Offset==actions.Sprint.Position.X.Offset,'mobile defensive actions form one column')

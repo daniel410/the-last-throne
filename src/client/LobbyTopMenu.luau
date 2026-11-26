@@ -8,10 +8,10 @@ function M.create(player,actions)
  local gui=Instance.new('ScreenGui');gui.Name='LobbyTopMenu';gui.ResetOnSpawn=false;gui.DisplayOrder=75;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
  local toggle=T.button(gui,'Menu','MENU',UDim2.new(1,-124,0,8),UDim2.fromOffset(112,44))
  toggle:SetAttribute('ChromeControl','menu');toggle.TDButtonArt.SliceScale=.25
- toggle.Caption.Position=UDim2.fromOffset(24,4);toggle.Caption.Size=UDim2.new(1,-36,1,-8)
+ toggle.Caption.Position=UDim2.fromOffset(36,6);toggle.Caption.Size=UDim2.new(1,-46,1,-12)
  toggle.Caption.TextSize=14;toggle.Caption.TextColor3=Color3.new(1,1,1)
  toggle.Caption.TextStrokeColor3=Color3.fromRGB(8,16,30);toggle.Caption.TextStrokeTransparency=.1
- T.icon(toggle,'settings',UDim2.new(0,2,.5,-10),UDim2.fromOffset(20,20))
+ T.icon(toggle,'settings',UDim2.new(0,10,.5,-10),UDim2.fromOffset(20,20))
  local menu=T.frame(gui,'Actions',UDim2.new(1,-244,0,56),UDim2.fromOffset(232,452));menu.Visible=false
  menu.TDPanelArt.SliceScale=.45
  local list=Instance.new('ScrollingFrame');list.Name='MenuList';list.Size=UDim2.fromScale(1,1);list.BackgroundTransparency=1;list.BorderSizePixel=0
@@ -60,7 +60,8 @@ function M.create(player,actions)
   else emblem=T.icon(b,row[4],UDim2.new(0,10,.5,0),UDim2.fromOffset(40,40))end
   emblem.AnchorPoint=Vector2.new(0,.5)
   artBackground(b,b.TDButtonArt)
-  b.Caption.Position=UDim2.fromOffset(60,2);b.Caption.Size=UDim2.new(1,-84,1,-4)
+  b.Caption.Position=UDim2.fromOffset(60,8);b.Caption.Size=UDim2.new(1,-72,1,-16)
+  b.Caption.TextXAlignment=Enum.TextXAlignment.Left
   b.Caption.Font=Enum.Font.GothamBold;b.Caption.TextSize=16;b.Caption.TextColor3=Color3.fromRGB(245,240,223)
   b.Caption.TextStrokeColor3=Color3.fromRGB(8,16,30);b.Caption.TextStrokeTransparency=.1
   buttons[row[2]]=b

@@ -13,8 +13,9 @@ function Menu.frame(parent,name,position,size)
 end
 function Menu.plaque(parent,name,text,position,size)
  local frame=Theme.sprite(parent,name,'shellDetails',position,size);frame.SliceScale=.32
- local caption=Theme.label(frame,'Caption',text,UDim2.fromOffset(18,3),UDim2.new(1,-36,1,-6),22,Theme.color.text)
+ local caption=Theme.label(frame,'Caption',text,UDim2.new(.025,8,0,6),UDim2.new(.95,-16,1,-12),22,Theme.color.text)
  caption.Font=Enum.Font.GothamBold;caption.TextXAlignment=Enum.TextXAlignment.Center
+ Theme.fitText(caption)
  return frame
 end
 function Menu.node(parent,name,icon,position,size,unlocked,selected)

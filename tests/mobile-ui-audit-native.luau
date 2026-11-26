@@ -66,12 +66,14 @@ end)
 case('lobby maps and quests',function()
  local map=require(client.LobbyAtlas).create(host)
  local quest=require(client.LobbyQuestJournal).create(host)
+ local journal=require(Shared.DeepwoodProgress).new()
+ local snapshot={heroId='h',heroes={h={expeditions={modeJournals={Easy=journal}}}}}
  for _,size in ipairs(sizes)do
   -- Match the shared panel footprint, including its desktop cap.
   local short=size.Y<400 or size.X<720
   host.Size=UDim2.fromOffset(math.min(800,size.X-(short and 24 or 120)),math.min(510,size.Y-(short and 24 or 164)));task.wait(.1)
   for epic=1,5 do
-   map.show({heroId='h',heroes={h={deepwood={main=35,explored={},clears={}}}}});map.selectEpic(epic)
+   map.show(snapshot);map.selectEpic(epic)
    quest.show(nil);quest.selectEpic(epic);task.wait(.1)
    local root=map.root;local area=root.Atlas
    inside(area,root,'lobby map inside '..tostring(size));check(area.AbsoluteSize.Y>=100,'lobby map usable height '..tostring(size))
@@ -143,14 +145,43 @@ case('combat HUD',function()
  source=source:gsub('local UserInputService = game:GetService%("UserInputService"%)','local UserInputService={TouchEnabled=true}')
  local module=copy('K0Hud',source);local hud=require(module).create()
  local root=game.CoreGui.DeepwoodTrainingHud.Root
+ local character=Instance.new('Model')
+ character:SetAttribute('K0ClassId','knight')
+ character:SetAttribute('K0SkillSlotCount',5)
+ local config=require(Shared.K0Config)
+ local longest
+ for _,ability in ipairs(config.Skills.knight)do
+  if not ability.ultimate and (not longest or #ability.name>#longest.name) then longest=ability end
+  if ability.ultimate then character:SetAttribute('K0UltimateId',ability.id)end
+ end
+ character:SetAttribute('K0EquippedSkill1',longest.id)
+ character:SetAttribute('K0SkillReady1',workspace:GetServerTimeNow()+99)
+ character:SetAttribute('K0ItemCount1',100)
+ hud.setHints('R2','L2','B','L3',{'RIGHT','X','L1','LEFT','RIGHT'})
+ hud.setCooldowns(character)
  for _,size in ipairs(sizes)do
   root.Size=UDim2.fromOffset(size.X,size.Y);game.CoreGui.DeepwoodTopHud.Root.Size=root.Size;task.wait(.1)
+  hud.setCooldowns(character);task.wait()
   local actions,bar=root.Actions,root.SkillBar
-  actions.Ultimate.Visible=true
   for _,group in ipairs({actions,bar})do for _,b in ipairs(group:GetChildren())do if b:IsA('GuiButton')and b.Visible then
    inside(b,root,'HUD button bounds '..b.Name..' '..tostring(size))
    local minimum=group==bar and size.X<390 and 35 or 44
    check(b.AbsoluteSize.X>=minimum and b.AbsoluteSize.Y>=minimum,'HUD touch target '..b.Name..' '..tostring(size))
+   inside(b.Caption,b,'HUD caption inside button '..b.Name)
+   check(b.Caption.TextFits and b.Caption.TextBounds.Y>0,'HUD caption renders '..b.Name..' '..tostring(size))
+   local icon=b:FindFirstChild('SkillIcon') or b:FindFirstChild('PotionIcon')
+   if icon and icon.Visible then
+    separate(b.Caption,icon,'HUD caption clears icon '..b.Name)
+    separate(b.Hint,icon,'HUD key clears icon '..b.Name)
+    local count=b:FindFirstChild('ItemCount') or b:FindFirstChild('Cooldown')
+    if count and count.Visible then
+     check(count.TextFits and count.TextBounds.Y>0,'HUD timer or count renders '..b.Name)
+     separate(count,b.Hint,'HUD timer or count clears key '..b.Name)
+     separate(count,icon,'HUD timer or count clears icon '..b.Name)
+    end
+   else
+    separate(b.Caption,b.Hint,'HUD action caption clears key '..b.Name)
+   end
    if group==bar then check(math.abs(b.AbsolutePosition.Y-bar.Item1.AbsolutePosition.Y)<1,'items and skills share one row '..b.Name..' '..tostring(size)) end
    for _,other in ipairs((group==actions and bar or actions):GetChildren())do if other:IsA('GuiButton')and other.Visible then separate(b,other,'HUD controls do not overlap '..b.Name..' / '..other.Name..' '..tostring(size))end end
   end end end
@@ -159,11 +190,15 @@ case('combat HUD',function()
   menu.Visible=true;task.wait(.1);inside(menu,top,'battle menu stays inside safe screen '..tostring(size))
   if size.X<900 or size.Y<540 then
    separate(menu,minimap.MapMenu,'popup keeps its toggle reachable')
-   for _,b in ipairs(menu:GetChildren())do if b:IsA('GuiButton')then inside(b,menu,'battle menu entry inside');check(b.AbsoluteSize.Y>=44,'battle menu touch target '..b.Name)end end
+   for _,b in ipairs(menu:GetChildren())do if b:IsA('GuiButton')then
+    inside(b,menu,'battle menu entry inside');check(b.AbsoluteSize.Y>=44,'battle menu touch target '..b.Name)
+    check(b.Caption.TextFits and b.Caption.TextBounds.Y>0,'battle menu caption renders '..b.Name)
+   end end
    check(minimap.MapMenu.AbsoluteSize.Y>=44 and minimap.WorldMap.AbsoluteSize.Y>=44,'minimap launchers remain touch sized')
   end
   menu.Visible=false
  end
+ character:Destroy()
  game.CoreGui.DeepwoodTrainingHud:Destroy();game.CoreGui.DeepwoodTopHud:Destroy()
 end)
 for _,m in ipairs(modules)do m:Destroy()end

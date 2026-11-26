@@ -6,10 +6,6 @@ function M.bind(gui,button,index)
   button.Size=UDim2.fromOffset(width,44)
   button.Position=UDim2.new(1,-14-width-(index-1)*(width+8),0,0)
  end
- if button.Name=='OpenHero' or button.Name=='OpenBag' or button.Name=='OpenSettings' then
-  button.Caption.TextScaled=true
-  local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=14;cap.MinTextSize=10;cap.Parent=button.Caption
- end
  local connection
  local function cameraChanged()
   if connection then connection:Disconnect() end

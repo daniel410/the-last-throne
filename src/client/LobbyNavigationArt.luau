@@ -33,13 +33,18 @@ function Art.layout(button)
  plate.Size=UDim2.fromOffset(width,plateHeight)
  local label=button.Caption
  label.Font=size.Y<64 and Enum.Font.GothamMedium or Enum.Font.GothamBlack
- label.Position=plate.Position
- label.Size=plate.Size
+ local horizontalInset=width*.06
+ local verticalInset=plateHeight*.1
+ label.Position=plate.Position+UDim2.fromOffset(horizontalInset,verticalInset)
+ label.Size=UDim2.fromOffset(width-2*horizontalInset,plateHeight-2*verticalInset)
  local textSize=size.Y<64 and 15 or size.X<100 and 17 or math.clamp(math.floor(size.X*.17),18,34)
- local bounds=TextService:GetTextSize(label.Text,textSize,label.Font,Vector2.new(10000,1000))
- local availableWidth=width*(button.Name=='Blacksmith' and .82 or .92)
- label.TextSize=math.max(1,math.floor(math.min(textSize,textSize*availableWidth/math.max(1,bounds.X),plateHeight*.95)))
- label.TextScaled=false;label.TextWrapped=false
+ local room=Vector2.new(label.Size.X.Offset,label.Size.Y.Offset)
+ while textSize>1 do
+  local bounds=TextService:GetTextSize(label.Text,textSize,label.Font,Vector2.new(10000,1000))
+  if bounds.X<=room.X and bounds.Y<=room.Y then break end
+  textSize-=1
+ end
+ label.TextSize=textSize
 end
 function Art.apply(button,id)
  local key=keys[id]

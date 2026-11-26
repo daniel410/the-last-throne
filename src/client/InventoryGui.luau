@@ -64,6 +64,8 @@ function InventoryGui.create(onVisibility, feedback)
 	local title = Theme.label(shell,"Title",Navigation.gearBag,UDim2.fromOffset(24,35),UDim2.new(1,-140,0,35),26,Color.gold)
 	title.Font = Enum.Font.GothamBlack
 	title.Parent=plaque; title.TextXAlignment=Enum.TextXAlignment.Center
+	title.Position,title.Size=UDim2.fromOffset(12,6),UDim2.new(1,-24,1,-12)
+	Theme.fitText(title)
 	local close = Theme.button(shell,"CloseBag","X",UDim2.new(1,-68,0,18),UDim2.fromOffset(44,44))
 	close.BackgroundColor3=Color3.fromRGB(155,24,40)
 	close.TDButtonArt.ImageColor3=Color3.fromRGB(255,170,180)
@@ -547,7 +549,10 @@ function InventoryGui.create(onVisibility, feedback)
 		local wideShort=short and width>=520
 		shell.Eyebrow.Visible=false
 		plaque.Position,plaque.Size=UDim2.new(.5,compact and -108 or -150,0,-20),UDim2.fromOffset(compact and 216 or 300,54)
-		title.Position,title.Size,title.TextSize=UDim2.fromOffset(12,4),UDim2.new(1,-24,1,-8),compact and 19 or 26
+		title.TextSize=compact and 19 or 26
+		if width<340 then
+			plaque.Position,plaque.Size=UDim2.fromOffset(12,2),UDim2.fromOffset(math.min(216,width-76),44)
+		end
 		close.Position,close.Size=UDim2.new(1,-56,0,8),UDim2.fromOffset(44,44)
 		sort.Position,sort.Size=UDim2.new(1,-174,0,12),UDim2.fromOffset(108,32)
 		sort.Caption.TextSize=11
@@ -584,7 +589,7 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 		filters.Position,filters.Size=UDim2.fromOffset(filterLeft,compact and 124 or 68),UDim2.fromOffset(filterWidth,compact and 44 or 38)
 		if short then
-			plaque.Position,plaque.Size=wideShort and UDim2.fromOffset(12,2) or UDim2.new(.5,-90,0,2),UDim2.fromOffset(180,40)
+			plaque.Position,plaque.Size=UDim2.fromOffset(12,2),UDim2.fromOffset(math.min(180,width-76),40)
 			title.TextSize=15
 			close.Position=UDim2.new(1,-52,0,1)
 			local x=wideShort and 198 or 12

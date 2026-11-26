@@ -11,7 +11,7 @@ local ok,err=xpcall(function()
  local list=view.root.Quests
  check(count(list)==11,'Deepwood shows seven main and four side quests')
  check(list['Quest_DW-01']:GetAttribute('QuestStatus')=='LOCKED','no selected hero locks quests')
- local journal=Progress.new();local snapshot={heroId='h',heroes={h={deepwood=journal}}};view.update(snapshot)
+ local journal=Progress.new();local snapshot={heroId='h',heroes={h={expeditions={modeJournals={Easy=journal}}}}};view.update(snapshot)
  check(list['Quest_DW-01']:GetAttribute('QuestStatus')=='IN PROGRESS','first main quest is active')
  check(list['Quest_DW-02']:GetAttribute('QuestStatus')=='LOCKED','future main quest remains locked')
  check(list['Quest_DW-02'].Hint.Text:find('Missing Supply Convoy',1,true)~=nil,'locked main quest explains actual prerequisite')
@@ -44,8 +44,14 @@ local ok,err=xpcall(function()
   for i=1,5 do
    local b=tabs:FindFirstChild('Epic'..i)
    check(b and b.AbsoluteSize.X>=44 and b.AbsoluteSize.Y>=44,'epic button touch size '..i)
+   check(b.Caption.TextFits,'epic label fits inside the frame '..i)
    check(b.AbsolutePosition.X>=tabs.AbsolutePosition.X and b.AbsolutePosition.X+b.AbsoluteSize.X<=tabs.AbsolutePosition.X+tabs.AbsoluteSize.X+1,'epic button visible '..i)
    check(b.AbsolutePosition.Y+b.AbsoluteSize.Y<=view.root.Summary.AbsolutePosition.Y,'epic button overlaps summary '..i)
+  end
+  for _,row in ipairs(list:GetChildren())do
+   if row.Name:sub(1,6)=='Quest_'then
+    check(row.Title.TextFits and row.Title.AbsolutePosition.Y+row.Title.AbsoluteSize.Y<=row.Status.AbsolutePosition.Y,'quest title fits above status '..row.Name)
+   end
   end
  end
 end,debug.traceback)

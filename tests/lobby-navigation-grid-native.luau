@@ -18,7 +18,6 @@ local ok,err=xpcall(function()
    check(button.AbsoluteSize==Vector2.new(expected.width,expected.height),name..' matches TD size')
    check(button.Caption.TextFits,name..' caption fits')
    check(button.Caption.TextSize>=(name=='Blacksmith' and 8 or 10),name..' caption remains readable')
-   if name=='Blacksmith'then check(button.Caption.TextBounds.X<=button.NavigationPlaqueArt.AbsoluteSize.X*.82+1,'blacksmith clears beveled nameplate corners')end
    check(button.NavigationPlaqueArt.Image==buttons[1].NavigationPlaqueArt.Image,name..' same TD plaque')
    local picture=button.PictureViewport.NavigationIcon
    local plate=button.NavigationPlaqueArt
@@ -35,8 +34,10 @@ local ok,err=xpcall(function()
    check(math.abs(plate.AbsoluteSize.X-tdPlaqueWidth)<1,name..' visible nameplate matches TD fitted size')
    check(math.abs(plate.AbsoluteSize.Y-plate.AbsoluteSize.X*plateCrop.Y/plateCrop.X)<=1,name..' plaque has no top fit padding')
    check(picture.AbsolutePosition.Y>=button.AbsolutePosition.Y-1 and plate.AbsolutePosition.Y+plate.AbsoluteSize.Y<=button.AbsolutePosition.Y+button.AbsoluteSize.Y+1,name..' complete art stays inside cell')
-   check(button.Caption.TextBounds.X<=plate.AbsoluteSize.X*.92+1,name..' text stays inside plaque corners')
-   check(button.Caption.AbsolutePosition.Y==plate.AbsolutePosition.Y and button.Caption.AbsoluteSize.Y==plate.AbsoluteSize.Y,name..' caption follows the fitted plaque')
+   check(button.Caption.TextBounds.X<=plate.AbsoluteSize.X*.88+1,name..' text stays inside plaque corners')
+   local caption=button.Caption
+   check(caption.AbsolutePosition.X>plate.AbsolutePosition.X and caption.AbsolutePosition.X+caption.AbsoluteSize.X<plate.AbsolutePosition.X+plate.AbsoluteSize.X,name..' caption clears both beveled ends')
+   check(caption.AbsolutePosition.Y>plate.AbsolutePosition.Y and caption.AbsolutePosition.Y+caption.AbsoluteSize.Y<plate.AbsolutePosition.Y+plate.AbsoluteSize.Y,name..' caption clears the top and bottom frame')
   end
   for index=1,6,2 do
    local left,right=buttons[index],buttons[index+1]
@@ -56,7 +57,22 @@ local ok,err=xpcall(function()
   nav.dailyAvailable(true);check(last.Caption.Text=='REWARDS','reward availability does not add punctuation')
   nav.dailyAvailable(false);check(last.Caption.Text=='REWARDS','reward caption remains stable')
   check(buttons[2].Caption.Text=='POTIONS' and buttons[6].Caption.Text=='DIAMONDS','requested icon-only captions')
+  nav.showGuide('Maps');task.wait()
+  local title,side,close=nav.panel.Title,nav.panel.TessaGuide,nav.panel.Close
+  check(title.TextFits and title.AbsolutePosition.X+title.AbsoluteSize.X<side.AbsolutePosition.X,'map heading fits beside the Tessa button')
+  check(side.Caption.TextFits and side.AbsolutePosition.X+side.AbsoluteSize.X<close.AbsolutePosition.X,'Tessa button clears close')
   table.insert(report.sizes,{width=viewport.X,height=viewport.Y,cell={expected.width,expected.height},captionSize=buttons[3].Caption.TextSize})
+ end
+ nav.panel.Visible=false
+ local player=Instance.new('Folder');player.Parent=gui
+ local dock=require(client.LobbyHeroDock).create(host,player,function()end,function()end)
+ dock.update({phase='Lobby',canManage=true,heroes={}},false)
+ for _,viewport in ipairs({Vector2.new(390,844),Vector2.new(390,568),Vector2.new(320,568)})do
+  host.Size=UDim2.fromOffset(viewport.X,viewport.Y);task.wait(.2)
+  check(nav.rail.AbsolutePosition.Y+nav.rail.AbsoluteSize.Y<=dock.play.AbsolutePosition.Y-4,'portrait rail clears PLAY at '..tostring(viewport))
+  for _,tile in ipairs(nav.rail:GetChildren())do
+   if tile:IsA('GuiButton')then check(tile.Caption.TextFits,'portrait nameplate fits '..tile.Name)end
+  end
  end
 end,debug.traceback)
 gui:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok

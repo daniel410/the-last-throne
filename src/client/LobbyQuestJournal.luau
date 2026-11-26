@@ -1,5 +1,6 @@
 -- Read-only account snapshot view. Accepting quests remains an adventure interaction.
 local RS=game:GetService('ReplicatedStorage')
+local TextService=game:GetService('TextService')
 local Content=require(RS.Shared.CampaignContent)
 local Progress=require(RS.Shared.DeepwoodProgress)
 local Modes=require(RS.Shared.CampaignModeProgress)
@@ -57,29 +58,30 @@ function Journal.create(panel)
     local recap=Guide.recap(journal,nextChapter)
     if recap and nextChapter and nextChapter.epic==epic then table.insert(lines,Guide.text.recap..' · '..recap)end
     local text=table.concat(lines,'\n')
-    local height=game:GetService('TextService'):GetTextSize(text,12,Enum.Font.GothamMedium,Vector2.new(math.max(120,root.AbsoluteSize.X-40),2000)).Y+22
+    local height=TextService:GetTextSize(text,12,Enum.Font.GothamMedium,Vector2.new(math.max(120,root.AbsoluteSize.X-40),2000)).Y+22
     local row=T.frame(list,'StoryContext',UDim2.new(),UDim2.new(1,-8,0,height));row.LayoutOrder=0
     T.label(row,'Purpose',text,UDim2.fromOffset(12,8),UDim2.new(1,-24,1,-16),12,T.color.gold)
    end
   end
   for i,c in ipairs(chapters)do
    local current,hint=status(journal,c)
-   local row=T.frame(list,'Quest_'..c.id,UDim2.new(),UDim2.new(1,-8,0,124));row.LayoutOrder=i;row:SetAttribute('QuestStatus',current)
-   local title=T.label(row,'Title',(c.side and Text.Side or Text.Main)..' · '..(c.quest.title or c.title),UDim2.fromOffset(12,5),UDim2.new(1,-24,0,24),13,T.color.gold)
-   title.TextTruncate=Enum.TextTruncate.AtEnd
-   local state=T.label(row,'Status',current,UDim2.fromOffset(12,29),UDim2.new(1,-24,0,20),11,current==Text.Locked and T.color.muted or current==Text.Completed and T.color.green or T.color.gold)
    local textWidth=math.max(1,list.AbsoluteSize.X-32)
-   local detailHeight=math.max(32,game:GetService('TextService'):GetTextSize(hint,11,Enum.Font.GothamMedium,Vector2.new(textWidth,2000)).Y+4)
-   local detail=T.label(row,'Hint',hint,UDim2.fromOffset(12,49),UDim2.new(1,-24,0,detailHeight),11,T.color.text);detail.TextYAlignment=Enum.TextYAlignment.Top
-   local reward=T.label(row,'Reward',Log.reward(c,active and (active.balanceVersion or 1)),UDim2.fromOffset(12,52+detailHeight),UDim2.new(1,-24,0,34),11,T.color.gold);reward.TextWrapped=true;reward.TextYAlignment=Enum.TextYAlignment.Top
-   local height=math.max(34,game:GetService('TextService'):GetTextSize(reward.Text,reward.TextSize,reward.Font,Vector2.new(textWidth,1000)).Y+4)
-   reward.Size=UDim2.new(1,-24,0,height);row.Size=UDim2.new(1,-8,0,58+detailHeight+height)
+   local titleText=(c.side and Text.Side or Text.Main)..' · '..(c.quest.title or c.title)
+   local titleHeight=math.max(24,TextService:GetTextSize(titleText,13,Enum.Font.GothamMedium,Vector2.new(textWidth,2000)).Y+4)
+   local row=T.frame(list,'Quest_'..c.id,UDim2.new(),UDim2.new(1,-8,0,124));row.LayoutOrder=i;row:SetAttribute('QuestStatus',current)
+   T.label(row,'Title',titleText,UDim2.fromOffset(12,5),UDim2.new(1,-24,0,titleHeight),13,T.color.gold)
+   T.label(row,'Status',current,UDim2.fromOffset(12,5+titleHeight),UDim2.new(1,-24,0,20),11,current==Text.Locked and T.color.muted or current==Text.Completed and T.color.green or T.color.gold)
+   local detailHeight=math.max(32,TextService:GetTextSize(hint,11,Enum.Font.GothamMedium,Vector2.new(textWidth,2000)).Y+4)
+   local detail=T.label(row,'Hint',hint,UDim2.fromOffset(12,25+titleHeight),UDim2.new(1,-24,0,detailHeight),11,T.color.text);detail.TextYAlignment=Enum.TextYAlignment.Top
+   local reward=T.label(row,'Reward',Log.reward(c,active and (active.balanceVersion or 1)),UDim2.fromOffset(12,28+titleHeight+detailHeight),UDim2.new(1,-24,0,34),11,T.color.gold);reward.TextYAlignment=Enum.TextYAlignment.Top
+   local height=math.max(34,TextService:GetTextSize(reward.Text,reward.TextSize,reward.Font,Vector2.new(textWidth,1000)).Y+4)
+   reward.Size=UDim2.new(1,-24,0,height);row.Size=UDim2.new(1,-8,0,34+titleHeight+detailHeight+height)
   end
   list.CanvasPosition=reset and Vector2.zero or previous
  end
  for i,spec in ipairs(epics)do
   local b=T.button(tabs,'Epic'..i,spec[1]:upper(),UDim2.new(),UDim2.fromOffset(44,44));b.Caption.TextSize=10;b.Caption.TextWrapped=true
-  b.Caption.Position,b.Caption.Size=UDim2.fromOffset(3,2),UDim2.new(1,-6,1,-4);buttons[i]=b
+  b.Caption.Position,b.Caption.Size=UDim2.fromOffset(6,6),UDim2.new(1,-12,1,-12);buttons[i]=b
   b.Activated:Connect(function()epic=i;render(true)end)
  end
  local function resizeTabs()

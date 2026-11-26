@@ -24,7 +24,8 @@ function M.create(parent,player,chooseHero,playAction,world)
  local root=Instance.new('Frame');root.Name='HomeRoot';root.Size=UDim2.fromScale(1,1);root.BackgroundTransparency=1;root.Parent=parent
  local dock=Instance.new('Frame');dock.Name='HomeDock';dock.BackgroundTransparency=1;dock.Parent=root
  local play=Instance.new('TextButton');play.Name='HomePlayButton';play.AutoLocalize=false;play.Parent=dock;Art.play(play)
- local playTitle=caption(play,'PlayTitle',TEXT.play);playTitle.Size=UDim2.fromScale(1,1)
+ local playTitle=caption(play,'PlayTitle',TEXT.play);playTitle.Position=UDim2.fromOffset(12,6);playTitle.Size=UDim2.new(1,-24,1,-12)
+ T.fitText(playTitle)
  local heading=caption(dock,'HeroesHeading',TEXT.heroes);heading.TextSize=14
  local cards={}
  local state,busy,inventory,notice=nil,false,nil,nil
@@ -43,15 +44,19 @@ function M.create(parent,player,chooseHero,playAction,world)
   if classId=='mage' then image=T.icon(card,'arcanist',UDim2.fromOffset(8,8),UDim2.new(1,-16,1,-16));image.Name='HeroPortrait'
   else image=Instance.new('ImageLabel');image.Name='HeroPortrait';image.BackgroundTransparency=1;image.Image=PORTRAITS[classId];image.Position=UDim2.fromOffset(8,8);image.Size=UDim2.new(1,-16,1,-16);image.ScaleType=Enum.ScaleType.Fit;image.Parent=card end
   image.ZIndex=card.ZIndex+1
-  local name=caption(card,'HeroName',NAMES[classId]);name.Position=UDim2.new(0,2,1,-18);name.Size=UDim2.new(1,-4,0,18);name.TextSize=14;name.Font=Enum.Font.GothamBold
+  local name=caption(card,'HeroName',NAMES[classId]);name.Position=UDim2.new(0,5,1,-21);name.Size=UDim2.new(1,-10,0,17);name.TextSize=14;name.Font=Enum.Font.GothamBold
+  T.fitText(name)
   name.BackgroundColor3=Color3.fromRGB(12,27,54);name.BackgroundTransparency=.15;name.ZIndex=image.ZIndex+1
   local marker=caption(card,'HeroSelectedMarker','');marker.Position=UDim2.new(1,-24,0,1);marker.Size=UDim2.fromOffset(20,20);marker.ZIndex=name.ZIndex+1;Check.apply(marker);marker.Visible=false
-  local selectedTag=caption(card,'HeroSelectedTag','SELECTED');selectedTag.Position=UDim2.fromOffset(4,3);selectedTag.Size=UDim2.new(1,-8,0,17);selectedTag.TextSize=11;selectedTag.TextColor3=Color3.fromRGB(12,27,54);selectedTag.TextStrokeTransparency=1;selectedTag.BackgroundColor3=Color3.fromRGB(255,215,90);selectedTag.BackgroundTransparency=0;selectedTag.ZIndex=marker.ZIndex+1;selectedTag.Visible=false
+  local selectedTag=caption(card,'HeroSelectedTag','SELECTED');selectedTag.Position=UDim2.fromOffset(6,5);selectedTag.Size=UDim2.new(1,-12,0,17);selectedTag.TextSize=11;selectedTag.TextColor3=Color3.fromRGB(12,27,54);selectedTag.TextStrokeTransparency=1;selectedTag.BackgroundColor3=Color3.fromRGB(255,215,90);selectedTag.BackgroundTransparency=0;selectedTag.ZIndex=marker.ZIndex+1;selectedTag.Visible=false
+  T.fitText(selectedTag)
   card.Activated:Connect(function() if card.Visible and allowed() and state.canManage then chooseHero(classId) end end)
   cards[classId]=card
  end
  local xp=caption(dock,'HomeHeroProgress',TEXT.loading)
  local amount=caption(dock,'HomeXPAmount','')
+ T.fitText(xp)
+ T.fitText(amount)
  local track=Instance.new('Frame');track.Name='HomeXPTrack';track.BackgroundColor3=Color3.fromRGB(12,27,54);track.BorderSizePixel=0;track.ClipsDescendants=true;track.Parent=dock
  local edge=Instance.new('UIStroke');edge.Color=Color3.fromRGB(170,207,250);edge.Thickness=2;edge.Parent=track
  local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(0,8);corner.Parent=track
@@ -96,9 +101,12 @@ function M.create(parent,player,chooseHero,playAction,world)
    -- replace the desktop's filled selection labels.
    card.HeroSelectedTag.Visible=selected and not compact
    card.HeroSelectedMarker.Size=UDim2.fromOffset(compact and 12 or 20,compact and 12 or 20)
-   card.HeroSelectedMarker.Position=compact and UDim2.new(1,-16,0,3) or UDim2.new(1,-24,0,1)
+   card.HeroSelectedMarker.Position=compact and UDim2.new(1,-16,0,3) or UDim2.new(1,-24,0,24)
    card.HeroSelectionBorder.Thickness=selected and (compact and 2 or 5) or 1
    local filled=selected and not compact
+   local portraitTop=filled and 24 or 3
+   card.HeroPortrait.Position=UDim2.fromOffset(5,portraitTop)
+   card.HeroPortrait.Size=UDim2.new(1,-10,1,-23-portraitTop)
    card.HeroName.BackgroundColor3=filled and Color3.fromRGB(255,215,90) or Color3.fromRGB(12,27,54)
    card.HeroName.TextColor3=filled and Color3.fromRGB(12,27,54) or Color3.new(1,1,1)
    card.HeroName.TextStrokeTransparency=filled and 1 or 0

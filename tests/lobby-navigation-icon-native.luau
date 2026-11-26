@@ -20,7 +20,7 @@ local ok,err=xpcall(function()
   check(entry.NavigationPlaqueArt.Image=='rbxassetid://127394633978202','same Maps nameplate for every entry')
   check(entry.NavigationPlaqueArt.AbsoluteSize.X<=entry.AbsoluteSize.X,'TD plaque stays inside tile')
   check(entry.PictureViewport.NavigationIcon.ScaleType==Enum.ScaleType.Fit,'TD picture keeps aspect ratio')
-  check(entry.Caption.Position==entry.NavigationPlaqueArt.Position,'caption on TD plaque')
+  check(entry.Caption.AbsolutePosition.Y>entry.NavigationPlaqueArt.AbsolutePosition.Y,'caption inset from TD plaque edge')
  end end
  check(nav.rail.LoginRewards.PictureViewport.NavigationIcon.Image=='rbxassetid://96946740539077','new RPG-only subjects use matching TD frame')
 end,debug.traceback)

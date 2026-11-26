@@ -15,6 +15,7 @@ local ok,err=xpcall(function()
  check(wallet.Wallet.AnchorPoint.X==1 and wallet.Wallet.Position.X.Offset==menuButton.Position.X.Offset+menuButton.Size.X.Offset,'wallet and MENU share the right edge')
  check(menuButton.Size==UDim2.fromOffset(112,44) and menuButton.Caption.Text=='MENU','TD lobby menu size and label')
  check(menuButton:FindFirstChild('TDIcon_settings')~=nil and menuButton.TDButtonArt.SliceScale==.25,'TD lobby menu artwork')
+ check(menuButton.Caption.Position.X.Offset>=menuButton.TDIcon_settings.Position.X.Offset+menuButton.TDIcon_settings.Size.X.Offset+6,'toggle leaves space between icon and caption')
  check(view.buttons.Journal.Caption.Text=='QUEST [J]','quest menu has the unified label')
  check(view.buttons.DiamondShop.Caption.Text=='Diamond Shop' and view.buttons.LoginRewards.Caption.Text=='Login Rewards','TD commerce entries use existing destinations')
  check(view.gui.Enabled and not view.menu.Visible and wallet.Enabled,'lobby menu starts closed and wallet visible')
@@ -32,6 +33,12 @@ local ok,err=xpcall(function()
  for _,size in ipairs({Vector2.new(1920,1080),Vector2.new(1280,720),Vector2.new(844,390),Vector2.new(390,844)})do
   view.resize(size);check(view.menu.Size.X.Offset<=size.X-24 and view.menu.Size.Y.Offset+56<=size.Y-12,'menu fits '..tostring(size))
  end
+ player:SetAttribute('TLTMailboxUnread',9999)
+ view.toggle();task.wait()
+ for _,button in pairs(view.buttons)do
+  check(button.Caption.TextFits and button.Caption.AbsolutePosition.Y>=button.AbsolutePosition.Y+6,'menu caption clears the frame '..button.Name)
+ end
+ view.toggle()
  view.toggle();check(not wallet.Enabled,'MENU click hides balances')
  view.toggle();check(wallet.Enabled,'closing MENU restores balances')
  view.toggle();player:SetAttribute('TLTSupporterOpen',true)

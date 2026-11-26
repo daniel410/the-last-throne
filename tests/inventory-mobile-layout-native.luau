@@ -26,6 +26,8 @@ local ok,err=xpcall(function()
  overlay.Size=UDim2.fromOffset(size.X,size.Y);task.wait(.1)
  view.qaSet(snapshot,false,false,nil);task.wait()
  local panel=overlay.InventoryPanel;local content=panel.Content;local bag=content.BagItems
+ local title,close=panel.TitlePlaque,panel.CloseBag
+ check(title.Title.TextFits and title.AbsolutePosition.X+title.AbsoluteSize.X<close.AbsolutePosition.X,'bag heading fits beside close '..tostring(size))
  check(bag.Items.AbsoluteSize.Y>=bag.Items.UIGridLayout.CellSize.Y.Offset,'bag shows a complete item row '..tostring(size))
  view.qaSet(snapshot,true,false,nil);task.wait()
  local preview=content.HeroPreview;check(preview.Visible and not panel.Filters.Visible,'gear view uses its own expanded area')
