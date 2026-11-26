@@ -171,6 +171,8 @@ case('combat HUD',function()
    check(b.Caption.TextFits and b.Caption.TextBounds.Y>0,'HUD caption renders '..b.Name..' '..tostring(size))
    local icon=b:FindFirstChild('SkillIcon') or b:FindFirstChild('PotionIcon')
    if icon and icon.Visible then
+    inside(icon,b,'HUD icon stays inside slot '..b.Name)
+    check(icon.AbsoluteSize.X>=b.AbsoluteSize.X*.6 and icon.AbsoluteSize.Y>=b.AbsoluteSize.X*.6,'HUD icon occupies at least 60% of slot width '..b.Name..' '..tostring(size))
     separate(b.Caption,icon,'HUD caption clears icon '..b.Name)
     separate(b.Hint,icon,'HUD key clears icon '..b.Name)
     local count=b:FindFirstChild('ItemCount') or b:FindFirstChild('Cooldown')

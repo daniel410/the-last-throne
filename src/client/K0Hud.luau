@@ -16,8 +16,11 @@ local MiniMap=require(script.Parent.BattleMinimap)
 local StoryHeading=require(script.Parent.StoryHeading)
 local TrainingTutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local Hud = {}
-local SLOT_HEIGHT = 80
-local TALL_SLOT_HEIGHT = 104
+local SLOT_ICON_POSITION = UDim2.fromOffset(12, 22)
+local SLOT_ICON_SIZE = UDim2.fromOffset(40, 40)
+local SLOT_HEIGHT = 94
+local TALL_SLOT_HEIGHT = 118
+local ULTIMATE_TOP = -SLOT_HEIGHT - 8
 local SLOT_ROW_WIDTH = 528
 local COMPACT_ROW_WIDTH = 472
 
@@ -163,8 +166,9 @@ local function quickKey(label)
 end
 
 local function slotCaption(label)
-	label.Position=UDim2.fromOffset(5,50)
-	label.Size=UDim2.new(1,-10,1,-56)
+	local top = SLOT_ICON_POSITION.Y.Offset + SLOT_ICON_SIZE.Y.Offset + 2
+	label.Position=UDim2.fromOffset(5,top)
+	label.Size=UDim2.new(1,-10,1,-top-6)
 	label.TextSize=12
 	label.TextWrapped=true
 	label.TextStrokeColor3=COLORS.ink
@@ -280,7 +284,7 @@ function Hud.create()
 		button.UICorner.CornerRadius = UDim.new(0, 8)
 		slotCaption(button.Caption)
 		quickKey(key)
-		SkillIcon.create(button, UDim2.fromOffset(19, 22), UDim2.fromOffset(26, 26))
+		SkillIcon.create(button, SLOT_ICON_POSITION, SLOT_ICON_SIZE)
 		local cooldown = text(button, "Cooldown", "", UDim2.new(1, -31, 0, 5), UDim2.fromOffset(26, 16), 11)
 		cooldown.TextXAlignment = Enum.TextXAlignment.Right
 		cooldown.TextStrokeTransparency = .2
@@ -291,9 +295,9 @@ function Hud.create()
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 0), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 132), 56)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
-	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey,UDim2.fromOffset(90,-88),64)
+	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey,UDim2.fromOffset(90,ULTIMATE_TOP),64)
 	ultimate.Size=UDim2.fromOffset(64,SLOT_HEIGHT)
-	SkillIcon.create(ultimate,UDim2.fromOffset(19,22),UDim2.fromOffset(26,26))
+	SkillIcon.create(ultimate,SLOT_ICON_POSITION,SLOT_ICON_SIZE)
 	slotCaption(ultimate.Caption)
 	quickKey(ultimateHint)
 	ultimate.Visible=false
@@ -388,7 +392,7 @@ function Hud.create()
 		if viewport.X < 548 and viewport.Y > viewport.X then
 			-- Keep the full row above the thumb controls in portrait.
 			skillScale.Scale=math.min(scale,(viewport.X-24)/rowWidth)
-			skillBar.Position=UDim2.new(.5,0,1,-math.max(180,276*actionScale.Scale+8))
+			skillBar.Position=UDim2.new(.5,0,1,-math.max(180,(actions.Size.Y.Offset-ULTIMATE_TOP)*actionScale.Scale+8))
 		elseif compactRow then
 			local left = touch and 76 or 12
 			local right = viewport.X-30-164*actionScale.Scale
@@ -518,7 +522,7 @@ function Hud.create()
 				if definition and definition.potionTier then
 					if button:GetAttribute("DefinitionId") ~= definition.id then
 						local old = button:FindFirstChild("PotionIcon"); if old then old:Destroy() end
-						PotionIcon.create(button, definition, UDim2.fromOffset(19, 22), UDim2.fromOffset(26, 26))
+						PotionIcon.create(button, definition, SLOT_ICON_POSITION, SLOT_ICON_SIZE)
 						button:SetAttribute("DefinitionId", definition.id)
 					end
 					button.Caption.Text = definition.potionSize .. " " .. definition.glyph
