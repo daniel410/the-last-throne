@@ -1,14 +1,51 @@
 -- Surveyed world surfaces, stored locally at build time.
 local encoding = game:GetService("EncodingService")
+local assets = game:GetService("AssetService")
+-- Published places must opt in after enabling Mesh / Image APIs.
+local useTextures = game:GetService("RunService"):IsStudio() or script:GetAttribute("EnableAtlasTextures") == true
 local Plate = {}
 
--- Render baked terrain with UI gradients so published maps work with the
--- default experience security settings.
+local paletteSize = 255
+local pixelOffset = 4 + paletteSize * 3 + 3
+
+local function drawTexture(data, width, height)
+ local size = Vector2.new(width, height)
+ local image, label
+ local ok = pcall(function()
+  image = assets:CreateEditableImage({Size = size})
+  if not image then return end
+  local palette = {}
+  for i = 0, paletteSize-1 do
+   palette[i] = buffer.readu32(data,4+i*3) % 0x1000000 + 0xFF000000
+  end
+  palette[255] = 0
+  local pixels = buffer.create(width*height*4)
+  for i = 0, width*height-1 do
+   buffer.writeu32(pixels,i*4,palette[buffer.readu8(data,pixelOffset+i)])
+  end
+  image:WritePixelsBuffer(Vector2.zero,size,pixels)
+  label = Instance.new("ImageLabel")
+  label.ImageContent = Content.fromObject(image)
+ end)
+ if not ok or not label then
+  if label then label:Destroy() end
+  if image then image:Destroy() end
+  return nil
+ end
+ label:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+  local displayed = label.AbsoluteSize
+  label.ResampleMode = (displayed.X > width or displayed.Y > height)
+   and Enum.ResamplerMode.Pixelated or Enum.ResamplerMode.Default
+ end)
+ label.Destroying:Connect(function() image:Destroy() end)
+ return label
+end
+
+-- Keep a bounded terrain layer for clients without editable-image support.
 local function drawTerrain(frame, data, width, height, detail)
- -- Bound the number of UI objects when several zones share the overview.
- local columns, rows, stops = detail and 8 or 3, detail and 64 or 18, 16
+ local columns, rows, stops = detail and 8 or 6, detail and 64 or 48, 16
  local colors = {}
- for i = 0, 254 do
+ for i = 0, paletteSize-1 do
   local p = 4 + i * 3
   colors[i] = Color3.fromRGB(buffer.readu8(data,p), buffer.readu8(data,p+1), buffer.readu8(data,p+2))
  end
@@ -25,7 +62,7 @@ local function drawTerrain(frame, data, width, height, detail)
    for i = 0, stops-1 do
     local u = (x + i/(stops-1))/columns
     local pixel = math.floor((y+.5)/rows * height)*width + math.round(u*(width-1))
-    local index = buffer.readu8(data,772+pixel)
+    local index = buffer.readu8(data,pixelOffset+pixel)
     keys[i+1] = ColorSequenceKeypoint.new(i/(stops-1), colors[index])
     alpha[i+1] = NumberSequenceKeypoint.new(i/(stops-1),index==255 and 1 or 0)
     if index~=255 then visible = true end
@@ -49,17 +86,20 @@ function Plate.draw(parent, zoneId, detail)
  local decoded, data = pcall(function()
   return encoding:DecompressBuffer(encoding:Base64Decode(buffer.fromstring(entry.Value)), Enum.CompressionAlgorithm.Zstd)
  end)
- if not decoded or buffer.len(data)<772 then return nil end
+ if not decoded or buffer.len(data)<pixelOffset then return nil end
  local width, height = buffer.readu16(data,0), buffer.readu16(data,2)
- if width<1 or height<1 or width>1024 or height>1024 or buffer.len(data)~=772+width*height then return nil end
- local frame = Instance.new("Frame")
- frame.Name = "Relief"
- frame.BackgroundTransparency = 1
- frame.ClipsDescendants = true
- frame.Size = UDim2.fromScale(1,1)
- drawTerrain(frame,data,width,height,detail)
- frame.Parent = parent
- return frame
+ if width<1 or height<1 or width>1024 or height>1024 or buffer.len(data)~=pixelOffset+width*height then return nil end
+ local relief = useTextures and drawTexture(data,width,height)
+ if not relief then
+  relief = Instance.new("Frame")
+  drawTerrain(relief,data,width,height,detail)
+ end
+ relief.Name = "Relief"
+ relief.BackgroundTransparency = 1
+ relief.ClipsDescendants = true
+ relief.Size = UDim2.fromScale(1,1)
+ relief.Parent = parent
+ return relief
 end
 
 return Plate

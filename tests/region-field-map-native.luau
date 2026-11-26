@@ -103,8 +103,8 @@ do
 local plates=require(client.AtlasPlate);local parent=Instance.new("Frame")
 local detail=plates.draw(parent,"GW-05",true)
 local overview=plates.draw(parent,"GW-05",false)
-assert(detail:IsA("Frame") and #detail:GetChildren()>0)
-assert(overview:IsA("Frame") and #overview:GetChildren()>0 and #overview:GetChildren()<#detail:GetChildren())
+assert(detail:IsA("ImageLabel") and detail.ImageContent.Object.Size.X>0)
+assert(overview:IsA("ImageLabel") and overview.ImageContent.Object.Size==detail.ImageContent.Object.Size)
 assert(#client.AtlasPlates:GetChildren()==44)
 parent:Destroy();print("ATLAS_TERRAIN_PASS",3)
 end
