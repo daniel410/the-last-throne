@@ -46,11 +46,11 @@ local function publish(player, requestId, errorCode)
 end
 function Service.ready(player)
 	local state = accounts[player]
-	return state ~= nil and state.valid and not state.busy
+	return state ~= nil and state.valid and not state.vitalsPending and not state.busy
 end
 function Service.available(player)
 	local state = accounts[player]
-	return state ~= nil and state.valid and not state.closing
+	return state ~= nil and state.valid and not state.vitalsPending and not state.closing
 end
 function Service.busy(player)
 	local state = accounts[player]
@@ -58,7 +58,7 @@ function Service.busy(player)
 end
 function Service.open(player)
 	local previous = accounts[player]
-	if previous and (previous.busy or previous.closing) then return nil, "AccountBusy" end
+	if previous and (previous.busy or previous.closing or previous.vitalsPending) then return nil, "AccountBusy" end
 	local state = previous or {
 		store = Store.new(adapter, Rules, Catalog, os.time, task.wait, HttpService:GenerateGUID(false)),
 		delivered = {}, tokens = 12, refillAt = os.clock(),
@@ -78,18 +78,48 @@ function Service.open(player)
 	player:SetAttribute("TLTInventoryMode", sessionOnly and "Studio session" or "RPG test save")
 	return profile and Rules.copy(profile.heroes), errorCode, profile and profile.lastSelectedHeroId
 end
+
+local function snapshotVitals(player)
+	if not options.combat.snapshotVitals then return end
+	local heroId, vitals = options.combat.snapshotVitals(player)
+	if heroId then return {heroId = heroId, vitals = Rules.copy(vitals)} end
+end
+
+local function savePendingVitals(player, state, recovering)
+	local pending = state.vitalsPending
+	local function save(current)
+		return Rules.saveVitals(current, pending.heroId, pending.vitals)
+	end
+	-- Recovery can extend an expired lease only if it is still the same token and epoch.
+	local profile, reason
+	if recovering then
+		profile, reason = state.store:renew(player.UserId, save)
+	else
+		profile, reason = state.store:transact(player.UserId, save)
+	end
+	if profile then
+		state.profile, state.renewPending = profile, nil
+	end
+	if reason ~= "SaveUnknown" and (reason ~= "AccountBusy" or recovering) then
+		state.vitalsPending = nil
+	end
+	state.valid, state.errorCode = profile ~= nil, reason
+	return reason
+end
+
 function Service.close(player)
 	local state = accounts[player]
 	if not state or state.closeStarted then return end
  state.closeStarted = true
- if state.transferPrepared then accounts[player]=nil;return end
+ if state.transferPrepared and not state.busy then accounts[player]=nil;return end
 	state.closing = true
 	-- Freeze combat eligibility before reading its final authoritative resources.
-	local heroId,vitals
-	if options.combat.snapshotVitals then heroId,vitals=options.combat.snapshotVitals(player) end
+	local finalVitals = not state.vitalsPending and snapshotVitals(player)
 	-- An in-flight committed mutation must settle before releasing its fence.
 	task.spawn(function()
 		while state.busy do task.wait(0.1) end
+		if accounts[player] ~= state then return end
+		if state.transferPrepared then accounts[player] = nil; return end
 		local deadline=os.clock()+10
 		while state.storyRewardTransaction and os.clock()<deadline do
 			local _,reason=commitStory(player,state,state.storyRewardTransaction.transform)
@@ -112,10 +142,14 @@ function Service.close(player)
 		end
 		if accounts[player] ~= state then return end
 		state.busy = true
-		if heroId and state.valid then
-			local p,e=state.store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
-			if not p then state.errorCode=e;accounts[player]=nil;return end
-			state.profile=p
+		local recovering = state.vitalsPending ~= nil
+		state.vitalsPending = state.vitalsPending or finalVitals or nil
+		while state.vitalsPending do
+			local reason = savePendingVitals(player, state, recovering)
+			if not reason then break end
+			if not state.vitalsPending or os.clock() >= deadline then accounts[player] = nil; return end
+			recovering = true
+			task.wait(0.5)
 		end
 		state.store:close(player.UserId)
 		accounts[player] = nil
@@ -178,17 +212,14 @@ function Service.vitals(player,heroId)
 end
 -- Only the combat service can supply a checkpoint; no client payload is accepted.
 function Service.captureVitals(player)
- local s=accounts[player]
- if not s or not s.valid or s.busy then return 'Unavailable' end
- local heroId,vitals
- if options.combat.snapshotVitals then heroId,vitals=options.combat.snapshotVitals(player) end
- if not heroId then return nil end
- s.busy=true
- local p,e=s.store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
- s.busy=false
- if not p then s.valid=false;s.errorCode=e;return e end
- s.profile=p
- return nil
+	local state = accounts[player]
+	if not state or not state.valid or state.vitalsPending or state.busy then return "Unavailable" end
+	state.vitalsPending = snapshotVitals(player)
+	if not state.vitalsPending then return end
+	state.busy = true
+	local reason = savePendingVitals(player, state, false)
+	state.busy = false
+	return reason
 end
 -- One account fence serializes items, point investments and XP. Unknown writes
 -- retry the exact command; no new reward sequence is issued during recovery.
@@ -644,9 +675,20 @@ function Service.start(settings)
 		while true do
 			task.wait(30)
 			for player, state in pairs(accounts) do
-				if (state.valid or state.renewPending) and not state.busy and not state.closing then
+				if state.transferRollback and not state.busy and not state.closeStarted then
+					task.spawn(function()
+						if accounts[player] == state and state.transferRollback then Service.resumeTransfer(player) end
+					end)
+				elseif (state.valid or state.renewPending or state.vitalsPending) and not state.busy and not state.closing then
 					state.busy = true
 					task.spawn(function()
+						if state.vitalsPending then
+							local reason = savePendingVitals(player, state, true)
+							state.busy = false
+							publish(player, nil, reason)
+							if not reason and not state.closeStarted then options.heroSession.refresh(player) end
+							return
+						end
 						local recovering = state.renewPending
 						local profile, errorCode = state.store:renew(player.UserId)
 						state.valid = profile ~= nil
@@ -668,38 +710,60 @@ function Service.start(settings)
 end
 -- Flush before releasing the account fence. Failure never starts a teleport.
 function Service.prepareTransfer(player)
- local s=accounts[player];if not s or not s.valid or s.closing then return false end
+ local s=accounts[player];if not s or not s.valid or s.vitalsPending or s.closing then return false end
  s.closing=true
  local deadline=os.clock()+15
  while s.busy and os.clock()<deadline do task.wait(.1) end
+ if s.closeStarted then return false end
  if s.busy or s.pending or s.growthPending or s.storyPending or s.shopPending or s.expeditionPending or s.sideQuestPending or options.storyPending and options.storyPending(player) then s.closing=false;return false end
  while s.rewards and #s.rewards>0 and os.clock()<deadline do
   local reason,count=Service.progress(player,s.rewards[1],true)
-  if not reason then for _=1,count do table.remove(s.rewards,1)end else s.closing=false;return false end
+  if not reason then for _=1,count do table.remove(s.rewards,1)end end
+  if s.closeStarted then return false end
+  if reason then s.closing=false;return false end
  end
  while s.revealJobs and #s.revealJobs>0 and os.clock()<deadline do
   s.busy=true
   local p,e=s.store:transact(player.UserId,function(current) return current end);s.busy=false
+  if s.closeStarted then return false end
   if not p then s.closing=false;s.valid=false;s.errorCode=e;return false end
   s.profile=p
  end
  if s.rewards and #s.rewards>0 or s.revealJobs and #s.revealJobs>0 or not s.valid then s.closing=false;return false end
- if Service.captureVitals(player) then s.closing=false;return false end
+ local vitalsError=Service.captureVitals(player)
+ if s.closeStarted then return false end
+ if vitalsError then s.closing=false;return false end
  s.busy=true;local p,e=s.store:close(player.UserId);s.busy=false
+ s.valid=false;s.transferPrepared=true
  if not p then
   -- A release may have committed without acknowledgement. Reacquire only if
-  -- no other server owns the account; never continue on the old cached fence.
-  local restored,reason=s.store:open(player.UserId)
-  s.closing=false;s.profile=restored or s.profile;s.valid=restored~=nil;s.errorCode=reason or e;publish(player);return false
+  -- the source still owns the lease or the saved release is ours.
+  s.errorCode=e
+  if not s.closeStarted then s.transferRollback=true;Service.resumeTransfer(player) end
+  return false
  end
- s.profile=p;s.valid=false;s.transferPrepared=true;publish(player);return true
+ s.profile=p;publish(player);return not s.closeStarted
 end
 function Service.resumeTransfer(player)
- local s=accounts[player];if not s then return false end
- if not s.transferPrepared then s.closing=false;return s.valid end
- local p,e=s.store:open(player.UserId)
- if not p then s.errorCode=e;publish(player);return false end
- s.profile=p;s.valid=true;s.errorCode=nil;s.closing=false;s.transferPrepared=nil;publish(player);return true
+	local state = accounts[player]
+	if not state or state.closeStarted then return false, "Unavailable" end
+	if state.busy then return false, "Busy" end
+	if not state.transferPrepared then return Service.available(player), state.errorCode end
+	local rollback = state.transferRollback
+	state.busy = true
+	local profile, reason = state.store:open(player.UserId, state.profile.epoch)
+	state.busy = false
+	state.transferRollback = rollback and reason == "SaveUnknown"
+	if not profile then
+		state.errorCode = reason
+		publish(player, nil, reason)
+		return false, reason
+	end
+	state.profile, state.valid, state.errorCode = profile, true, nil
+	state.closing, state.transferPrepared = state.closeStarted == true, nil
+	publish(player)
+	if rollback and not state.closeStarted then options.heroSession.refresh(player) end
+	return not state.closeStarted
 end
 -- The claim is committed with the RPG account wallet and retried with the same server time.
 function Service.dailyStatus(player)

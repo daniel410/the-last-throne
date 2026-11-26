@@ -32,6 +32,8 @@ end
 function Rules.saveVitals(profile,heroId,vitals)
  if not profile.heroes[heroId] then return nil,'HeroNotOwned' end
  if not Vitals.valid(vitals) then return nil,'InvalidRequest' end
+ local saved=profile.heroes[heroId].vitals
+ if saved and saved.health==vitals.health and saved.mana==vitals.mana and saved.level==vitals.level then return profile end
  local n=Rules.copy(profile)
  n.heroes[heroId].vitals=Rules.copy(vitals)
  n.revision=n.revision+1

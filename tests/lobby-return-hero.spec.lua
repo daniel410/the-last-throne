@@ -10,14 +10,18 @@ local C={lobbyPlaceId=10,battlePlaceId=20,lobbyCapacity=24,battleCapacity=4}
 local p={UserId=42,attributes={}}
 function p:SetAttribute(k,v) self.attributes[k]=v end
 function p:GetJoinData() return self.join end
-local sent,prepared,finished= nil,0,0
+local sent,prepared,finished,cancelled= nil,0,0,0
 local failSave,failFinish=false,false
 local inventory={expedition=function(_,id) check(id=='dwarf-hero','return uses admitted hero');return {completed=true} end,
  prepareTransfer=function() prepared=prepared+1;return not failSave end}
 local battle={}
 local returnEnv=setmetatable({Service=battle,studio=false,role='Battle',admitted={[p]={heroId='dwarf-hero',ticket='ticket'}},battleRun={id='run'},travel={},leaving={},C=C,
- o={inventory=inventory},store={finish=function(uid,id,ticket) finished=finished+1;check(uid==42 and id=='run' and ticket=='ticket','finish retains verified membership');return not failFinish end},
- unlock=function() end,send=function(_,attempt,ready) check(ready,'save completed before send');sent=attempt;return true end},{__index=_G})
+ o={inventory=inventory},store={finish=function(uid,id,ticket)
+  finished=finished+1;check(uid==42 and id=='run' and ticket=='ticket','finish retains verified membership')
+  return not failFinish,failFinish and 'NetworkUnavailable' or nil
+ end},
+ cancelTransfer=function(person,kind) check(person==p and kind=='return','unknown finish also rolls back the rejoin offer');cancelled=cancelled+1 end,
+ send=function(_,attempt,ready) check(ready,'save completed before send');sent=attempt;return true end},{__index=_G})
 assert(load(body('function Service.returnLobby','function Service.beforeHeroAction'),'returnLobby','t',returnEnv))()
 local handled,reason=battle.returnLobby(p)
 check(handled and reason==nil and prepared==1 and finished==1,'successful return saves and finishes once')
@@ -26,7 +30,7 @@ local returnData=sent.data
 sent=nil;failSave=true;battle.returnLobby(p)
 check(sent==nil and finished==1,'failed save cannot send return')
 failSave=false;failFinish=true;battle.returnLobby(p)
-check(sent==nil,'failed finish cannot send return')
+check(sent==nil and cancelled==1,'failed finish cannot send return and rolls back the prepared account')
 local lobby={}
 local env=setmetatable({Service=lobby,role='Lobby',C=C,seats={},seatCount=0,arrivals={},game={GameId=100},
  sourceValid=function(data) return data.SourceGameId==100 and (data.SourcePlaceId==10 or data.SourcePlaceId==20) end},{__index=_G})

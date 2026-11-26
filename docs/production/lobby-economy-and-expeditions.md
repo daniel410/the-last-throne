@@ -21,7 +21,7 @@ RPG 계정 지갑의 표시 재화는 **Gold / Diamonds**다. 종전 Coins/처�
 
 모집 중 파티장은 명단에서 다른 멤버의 **KICK**을 확인해 자리를 비울 수 있다. 남은 멤버의 준비 상태를 초기화하고 추천 임무를 다시 계산한다. 추방된 플레이어는 다른 파티에 참가할 수 있으며, 같은 파티에는 5분 뒤 다시 참가할 수 있다. 임시 참가 자리를 추방하면 진행 중이던 로비 이동으로 그 자리를 되살릴 수 없다. 구버전 서버가 잠금 검사를 건너뛰지 않도록 새 모집 ID의 접두사를 분리한다. [검증 및 남은 수용](../evidence/party-access-20261120/README.md).
 
-20명 로비·최대4명 전투로 역할을 나눈다. `default.project.json`은 Lobby, `battle.project.json`은 Battle을 만든다. 게시 Lobby는 Deepwood를 구성하지 않고 Battle은 Dawnspire 로비를 구성하지 않는다. Studio Lobby는 동일 프로세스 미리보기이며 실제 서버 이동 수용이 아니다.
+20명 로비·최대 4명 전투로 역할을 나눈다. 같은 빌드에서 런타임이 Place ID에 따라 로비와 배틀 역할을 선택한다. Studio 로비의 동일 프로세스 미리보기와 게시 클라이언트의 실제 서버 이동은 각각 검증한다.
 
 회원 인덱스·파티 키·원정 키·리조인 키는 MemoryStore에 두고 만료와 소유 토큰을 검사한다. 여러 키의 갱신을 다중 키 거래로 취급하지 않는다. 출발 전 전체 로컬 명단을 잠그고 최신 소유/영웅/진행/준비 상태를 재검사한다. 각 계정의 대기 지급을 마감하고 저장 lease를 해제한 뒤, 하나의 ReservedServerId와 각 인원 전용 입장 티켓으로 이동한다. 재화·아이템은 TeleportData에 싣지 않는다.
 
@@ -33,6 +33,6 @@ RPG 계정 지갑의 표시 재화는 **Gold / Diamonds**다. 종전 Coins/처�
 
 ## 배포와 다음 수용
 
-확인된 RPG Experience는 `10773575153`, 로비 Place는 `70829337938054`다. **2026-10-30 Creator Dashboard의 최대 방문 인원을50→20으로 저장하고 재확인했다.** 접근 공개 범위는 변경하지 않았다. 사용자 답변상 기존 전투 Place가 없어 새로 생성했다. Studio 강제 재시작 뒤 임시 API 생성 재시도는403으로 실패했고 API 접근은 OFF 저장/재열기로 복구했다. 사용자 승인 후 직접 새 Place 저장으로 같은 RPG Experience에 **The Last Throne Battles129388473517823**을 생성하고 이름/설명·최대4명·Secure within Universe only를 저장/재확인했다.0.37.2의 ExpeditionConfig에 새 ID를 연결하고 고정 Lobby/Battle 및 네이티브10/132/13개 검사를 통과했다. 실제 게시 클릭은 자동 승인 검토가 별도 명시적 승인 부족으로 거부하여 두 Place/0.37.2 게시 승인을 사용자에게 요청했다. 아직0.37.2는 미게시다. [과정·화면·해시/검증](../evidence/battle-place-provisioning/README.md).
+RPG Experience `10773575153`의 로비 Place는 `70829337938054`, 배틀 Place는 `129388473517823`이다. 게시 범위가 확정되면 검증된 소스에서 만든 단일 `.rbxlx` 파일을 두 Place에 각각 게시하고 두 게시 버전을 확인한다. 최신 게시 상태와 초기 Place 생성 증거는 각 기록에서 확인한다. [현재 상태](current-status.md) · [Place 생성 증거](../evidence/battle-place-provisioning/README.md) · [TLT 단일 빌드 절차](../development-workflow.md#6-tlt-단일-빌드-2026-11-04-사용자-지시)
 
-다음 담당 DIR/ENG는 실제 게시 승인 후 검증된0.37.2 Lobby를70829337938054에, Battle을129388473517823에 게시하고 게시 버전을 확인한다. TD의 기존 `Throne Defense Battles`를 이동시키면 안 된다. 실제 Roblox 클라이언트에서 솔로 왕복·타 로비 합류·2~4인 동시 출발·부분 이동 실패·저장 장애·재접속·의도적 복귀를 확인한다. Studio 통과만으로 이 게이트를 완료하지 않는다. 임시 API 설정은 이미 OFF 복구 확인했으며 게시하려고 다시 켜지 않는다.
+DIR/ENG는 RPG의 두 Place 게시를 확인한다. QA는 게시된 테스트 Experience의 Roblox Player에서 솔로 왕복, 타 로비 합류, 2~4인 동시 출발, 부분 이동 실패, 저장 장애, 재접속과 의도적 복귀를 검증한다. [경험 이동 및 수용 계약](../experience-integration.md)

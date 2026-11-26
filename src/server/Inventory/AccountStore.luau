@@ -28,8 +28,17 @@ function AccountStore:update(userId, transform)
 	end
 	return nil, "SaveUnknown"
 end
-function AccountStore:open(userId)
+function AccountStore:open(userId, releasedEpoch)
 	return self:update(userId, function(current, time)
+		if releasedEpoch then
+			-- A rolled-back transfer may see the release or our own unacknowledged reopen.
+			if not current then return nil, "AccountBusy" end
+			local lease, release = current.lease, current.release
+			local stillOwned = lease and lease.token == self.token
+				and (current.epoch == releasedEpoch or current.epoch == releasedEpoch + 1)
+			local released = not lease and release and release.token == self.token and release.epoch == releasedEpoch
+			if not stillOwned and not released then return nil, "AccountBusy" end
+		end
 		local profile = current or self.rules.new(userId)
 		local lease = profile.lease
 		if lease and lease.token ~= self.token and lease.expiresAt > time then return nil, "AccountBusy" end
@@ -56,7 +65,7 @@ function AccountStore:transact(userId, transform)
 		return nextProfile, nil, repeated
 	end)
 end
-function AccountStore:renew(userId)
+function AccountStore:renew(userId, transform)
 	local known = self.profiles[userId]
 	if not known then return nil, "Unavailable" end
 	-- An expired lease can only be renewed if nobody released or replaced this exact owner.
@@ -65,6 +74,12 @@ function AccountStore:renew(userId)
 			return nil, "AccountBusy"
 		end
 		local profile = self.rules.copy(current)
+		if transform then
+			local errorCode
+			profile, errorCode = transform(profile)
+			if not profile then return nil, errorCode end
+			if not self.rules.validate(profile, self.catalog) or not Delivery.valid(profile) then return nil, "Incompatible" end
+		end
 		profile.lease.expiresAt = time + self.leaseSeconds
 		return profile
 	end)

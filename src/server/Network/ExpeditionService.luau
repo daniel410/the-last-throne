@@ -163,10 +163,6 @@ local function advertise(id)
  if p.status~='forming' or count(p.members)==0 then pcall(function() index:RemoveAsync(id) end);return end
  pcall(function() index:SetAsync(id,Store.advertisement(p,count(p.members)),C.partyLease,os.time()) end)
 end
-local function unlock(p)
- if o.inventory.resumeTransfer(p) then p:SetAttribute('TLTTravelLock',false);o.heroSession.refresh(p);return true end
- return false
-end
 local function recoverTravel(p,attempt)
  if travel[p]~=attempt or p.Parent~=Players then return end
  local retry=false
@@ -182,12 +178,21 @@ local function recoverTravel(p,attempt)
   end
  end
  if travel[p]~=attempt or p.Parent~=Players then return end
- if retry or not unlock(p) then
+ if retry then
+  task.delay(2,function()recoverTravel(p,attempt)end)
+  return
+ end
+ local resumed,errorCode=o.inventory.resumeTransfer(p)
+ if travel[p]~=attempt or p.Parent~=Players then return end
+ if not resumed and (errorCode=='Busy' or errorCode=='SaveUnknown') then
   task.delay(2,function()recoverTravel(p,attempt)end)
   return
  end
  travel[p]=nil
  p:SetAttribute('TLTAdventureStarting',false)
+ if admitted[p] then updateBattleLock(p) else p:SetAttribute('TLTTravelLock',false) end
+ if not resumed then publish(p,errorCode or 'TravelFailed');return end
+ o.heroSession.refresh(p)
  if attempt.kind=='gather' and parties[p] then
   local party=parties[p];store.remove(party.id,p.UserId,party.token);store.releaseMembership(p.UserId,party.id,party.token);parties[p]=nil;advertise(party.id)
  elseif attempt.kind=='return' then
@@ -200,6 +205,14 @@ local function recoverTravel(p,attempt)
   advertise(attempt.partyId)
  end
  publish(p,'TravelFailed')
+end
+local function cancelTransfer(p,kind)
+ if p.Parent~=Players or travel[p] then return end
+ local party=parties[p]
+ local attempt={kind=kind or 'cancel',partyId=party and party.id,recovering=true}
+ travel[p]=attempt
+ p:SetAttribute('TLTTravelLock',true)
+ recoverTravel(p,attempt)
 end
 local function retryTravel(p,attempt)
  if travel[p]~=attempt or attempt.recovering or p.Parent~=Players then return end
@@ -325,7 +338,7 @@ local function startRunLocked(p,party,runId)
   for _,person in ipairs(participants) do o.heroSession.enterAdventure(person,members[tostring(person.UserId)].heroId) end
   return true
  end
- local r,e,prepared=Departure.prepare(store,o.inventory,participants,members,{id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=rulesVersion},unlock)
+ local r,e,prepared=Departure.prepare(store,o.inventory,participants,members,{id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=rulesVersion},cancelTransfer)
  if not r then if party then store.launchStatus(party.id,runId,'forming')end;return nil,e end
  for _,person in ipairs(prepared)do person:SetAttribute('TLTTravelLock',true)end
  if party then store.launchStatus(party.id,runId,'launched');advertise(party.id) end
@@ -357,7 +370,11 @@ local function startRun(p,party)
  end
  if not ok then
   if warn then warn('[Expedition] Departure exception: '..tostring(result))end
-  local moving=false;for person in pairs(locked) do if travel[person] then moving=true else unlock(person) end end
+  local moving=false
+  for person in pairs(locked) do
+   local attempt=travel[person]
+   if not attempt then cancelTransfer(person) elseif attempt.kind~='cancel' then moving=true end
+  end
   if party then store.launchStatus(party.id,runId,moving and 'launched' or 'forming') end
   return nil,'NetworkUnavailable'
  end
@@ -375,8 +392,8 @@ function Service.returnLobby(p)
  local m=admitted[p]
  local replay=o.inventory.expedition(p,m.heroId)
  if not o.inventory.prepareTransfer(p) then return true,'Unavailable' end
- local saved=store.finish(p.UserId,battleRun.id,m.ticket)
- if not saved then unlock(p);return true,'NetworkUnavailable' end
+ local saved,finishError=store.finish(p.UserId,battleRun.id,m.ticket)
+ if not saved then cancelTransfer(p,finishError=='NetworkUnavailable' and 'return' or nil);return true,'NetworkUnavailable' end
  leaving[p]=true
  local ok,e=send(p,{kind='return',placeId=C.lobbyPlaceId,data={returning=true,heroId=m.heroId,replay=replay and replay.completed==true or false}},true)
  return true,e
