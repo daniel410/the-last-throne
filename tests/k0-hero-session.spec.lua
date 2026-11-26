@@ -215,7 +215,7 @@ for classIndex, classId in ipairs({ "knight", "dwarf", "mage", "elf" }) do
 	value = request(first, "GetState")
 	local practiced
 	for _, hero in ipairs(value.heroes) do if hero.heroId == heroes[classId] then practiced = hero.practice end end
-	check(practiced.moved and practiced.attacked and practiced.dodged, "tutorial observes server movement and accepted combat actions")
+	check(not practiced.moved and not practiced.attacked and not practiced.cast and not practiced.dodged, "adventure actions do not fill training lessons")
 	if classIndex == 1 then
 		local calls = {}; local deny = true
 		sessionOptions.inventory = { busy = function() return false end, available = function() return true end, endSupport = function(person, heroId)
@@ -290,6 +290,30 @@ check(trainingLoad.destination==trainingSpawn,"training has its own server desti
 generation=generation+1
 local trainingLife=ready(first,trainingLoad.id,generation,Vector3.new(-20,4,56))
 check(Service.getActiveHero(first).training==true,"active hero identifies training route")
+local Tutorial = dofile("src/shared/TrainingTutorial.luau")
+local function trainingProgress()
+	local state = first.response.snapshot
+	for _, hero in ipairs(state.heroes) do
+		if hero.heroId == state.selectedHeroId then return hero.practice end
+	end
+end
+check(Tutorial.current(trainingProgress()) == "moved", "new practice starts with the waypoint")
+trainingLife:SetAttribute("K0AttackSeq", 1)
+trainingLife:SetAttribute("K0SkillStartedAt", 1)
+trainingLife:SetAttribute("K0State", "Dodge")
+check(not trainingProgress().attacked and not trainingProgress().cast and not trainingProgress().dodged, "starts and misses do not pass the hit lessons")
+trainingLife:FindFirstChild("HumanoidRootPart").Position = Vector3.new(Tutorial.waypoint.X, 9, Tutorial.waypoint.Z)
+runService.Heartbeat:Fire(0.2)
+check(not trainingProgress().moved, "waypoint rejects the wrong elevation")
+trainingLife:FindFirstChild("HumanoidRootPart").Position = Vector3.new(Tutorial.waypoint.X, 3, Tutorial.waypoint.Z)
+runService.Heartbeat:Fire(0.2)
+check(Tutorial.current(trainingProgress()) == "attacked", "walking to the marker opens the basic hit lesson")
+trainingLife:SetAttribute(Tutorial.hitAttribute.skill, true)
+check(trainingProgress().cast and Tutorial.current(trainingProgress()) == "attacked", "early skill hit counts without skipping the basic hit")
+trainingLife:SetAttribute(Tutorial.hitAttribute.basic, true)
+check(Tutorial.current(trainingProgress()) == "dodged", "confirmed basic and skill hits lead to dodge")
+trainingLife:SetAttribute("K0DodgeSeq", 1)
+check(Tutorial.current(trainingProgress()) == "complete", "confirmed dodge finishes practice")
 value,errorCode=request(first,"StartTutorial")
 check(errorCode==nil and value.training==false and Service.getCombatContext(first,trainingLife)==nil,"training can enter Deepwood and fences old life")
 local adventureLoad=spawnRequests[#spawnRequests]
@@ -302,6 +326,7 @@ request(first,"ReturnLobby");local lobbyAgain=spawnRequests[#spawnRequests];gene
 value,errorCode=request(first,"StartTraining")
 check(errorCode==nil and value.training==true,"training remains available after returning to lobby")
 local lastTraining=spawnRequests[#spawnRequests];generation=generation+1;local lastTrainingLife=ready(first,lastTraining.id,generation,Vector3.new(-20,4,56))
+check(Tutorial.current(trainingProgress()) == "complete", "reentry restores progress for the same hero and session")
 sessionOptions.inventory={available=function()return true end,penalizeDeath=function(p,id,key,training)table.insert(deathCalls,{training=training})end}
 lastTrainingLife:FindFirstChildOfClass('Humanoid').Health=0
 Service.onLifeEnded(first,lastTrainingLife,generation,lastTraining.id,'Died')

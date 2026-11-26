@@ -3,6 +3,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Advanced=ReplicatedStorage.Shared and require(ReplicatedStorage.Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
+local TrainingTutorial = ReplicatedStorage.Shared and require(ReplicatedStorage.Shared.TrainingTutorial) or dofile("src/shared/TrainingTutorial.luau")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 
@@ -42,7 +43,7 @@ local function snapshot(state)
 			heroId = hero.heroId, classId = hero.baseClassId,
 			level = growth and growth.level or (not settings.inventory and 1 or nil),
 			skillSlots = { table.unpack(hero.skillSlots) }, practiceAdvanced = hero.practiceAdvanced,
-			practice = { moved = hero.practice.moved, attacked = hero.practice.attacked, dodged = hero.practice.dodged },
+			practice = { moved = hero.practice.moved, attacked = hero.practice.attacked, cast = hero.practice.cast, dodged = hero.practice.dodged },
 		})
 	end
 	return {
@@ -190,7 +191,7 @@ local function execute(state, action, argument)
 		if #state.heroes >= MAX_HEROES then return "RosterFull" end
 		local hero = {
 			heroId = HttpService:GenerateGUID(false), baseClassId = argument,
-			practice = { moved = false, attacked = false, dodged = false },
+			practice = { moved = false, attacked = false, cast = false, dodged = false },
 			skillSlots = {1, 2, 3, 0, 0}, practiceAdvanced = false, skillReadyAt = {},
 		}
 		if settings.inventory then
@@ -303,7 +304,7 @@ local function bindPlayer(player)
 			if not connected(state) then return end
 			if roster then
 				for id, stored in pairs(roster) do
-					local hero = {heroId = id, baseClassId = stored.baseClassId, practice = {moved=false, attacked=false, dodged=false},
+					local hero = {heroId = id, baseClassId = stored.baseClassId, practice = {moved=false, attacked=false, cast=false, dodged=false},
 						skillSlots = {1,2,3,0,0}, practiceAdvanced = false, skillReadyAt = {}}
 					state.byId[id], state.byClass[hero.baseClassId] = hero, hero
 					table.insert(state.heroes, hero)
@@ -447,23 +448,22 @@ function HeroSessionService.onReady(player, character, generation, requestId)
 	if not human or human.Health <= 0 or state.ready then return end
 	state.ready = true
 	state.phase = state.mode
-	local root = character:FindFirstChild("HumanoidRootPart")
-	state.practiceOrigin = root and root.Position or nil
-	local hero = state.mode == "Tutorial" and selectedHero(state) or nil
+	local hero = state.mode == "Tutorial" and state.route == "Training" and selectedHero(state) or nil
 	if hero then
-		local function observe()
-			if not HeroSessionService.getCombatContext(player, character) then return end
-			local updated = false
-			if not hero.practice.attacked and (character:GetAttribute("K0AttackSeq") or 0) > 0 then
-				hero.practice.attacked, updated = true, true
-			end
-			if not hero.practice.dodged and character:GetAttribute("K0State") == "Dodge" then
-				hero.practice.dodged, updated = true, true
-			end
-			if updated then changed(state) end
+		local function watch(key, attribute, confirms)
+			if hero.practice[key] then return end
+			table.insert(state.lifeConnections, character:GetAttributeChangedSignal(attribute):Connect(function()
+				if not hero.practice[key] and confirms(character:GetAttribute(attribute))
+					and HeroSessionService.getCombatContext(player, character) then
+					hero.practice[key] = true
+					changed(state)
+				end
+			end))
 		end
-		table.insert(state.lifeConnections, character:GetAttributeChangedSignal("K0AttackSeq"):Connect(observe))
-		table.insert(state.lifeConnections, character:GetAttributeChangedSignal("K0State"):Connect(observe))
+		local function hit(value) return value == true end
+		watch("attacked", TrainingTutorial.hitAttribute.basic, hit)
+		watch("cast", TrainingTutorial.hitAttribute.skill, hit)
+		watch("dodged", "K0DodgeSeq", function(value) return type(value) == "number" and value > 0 end)
 	end
 	changed(state)
 end
@@ -495,9 +495,9 @@ function HeroSessionService.start(options)
 		for player, state in pairs(sessions) do
 			local hero = selectedHero(state)
 			local character = state.character
-			if hero and not hero.practice.moved and state.practiceOrigin and HeroSessionService.getCombatContext(player, character) then
+			if state.route == "Training" and hero and not hero.practice.moved and HeroSessionService.getCombatContext(player, character) then
 				local root = character:FindFirstChild("HumanoidRootPart")
-				if root and (root.Position - state.practiceOrigin).Magnitude >= 6 then
+				if root and TrainingTutorial.reached(root.Position) then
 					hero.practice.moved = true
 					changed(state)
 				end

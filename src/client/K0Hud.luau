@@ -14,6 +14,7 @@ local PotionIcon = require(script.Parent.PotionIcon)
 local SkillIcon = require(script.Parent.SkillIcon)
 local MiniMap=require(script.Parent.BattleMinimap)
 local StoryHeading=require(script.Parent.StoryHeading)
+local TrainingTutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local Hud = {}
 local SLOT_HEIGHT = 80
 local TALL_SLOT_HEIGHT = 104
@@ -319,7 +320,8 @@ function Hud.create()
 	local backCaption = text(back, "Caption", Text.BackToLobby, UDim2.fromOffset(12, 6), UDim2.new(1, -24, 1, -12), 12)
 	backCaption.TextXAlignment = Enum.TextXAlignment.Center
 	Theme.fitText(backCaption)
-	local storyTracker
+	local storyTracker, practiceProgress
+	local practiceInput = "keyboard"
 	local practice = Instance.new("Frame")
  practice.Name = "Practice"
  practice.Position = UDim2.fromOffset(16, 162)
@@ -327,18 +329,40 @@ function Hud.create()
  practice.BackgroundTransparency = 1
  practice.BorderSizePixel = 0
  practice.Parent = root
+ practice.Visible = false
+ local coachArt = Theme.sprite(practice, "TrainingPanelArt", "panel", UDim2.new(), UDim2.fromScale(1, 1))
+ coachArt.SliceScale = .3
+ coachArt.Visible = false
 	local practiceScale = Instance.new("UIScale")
 	practiceScale.Parent = practice
-	text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 20), 15, COLORS.gold)
-	local objective = text(practice, "Objective", Text.Practice.Move, UDim2.fromOffset(12, 31), UDim2.new(1, -24, 0, 48), 16)
+	local practiceTitle = text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 20), 15, COLORS.gold)
+	local objective = text(practice, "Objective", "", UDim2.fromOffset(12, 31), UDim2.new(1, -24, 0, 48), 16)
 	objective.TextWrapped = true
-	local note = text(practice, "Note", Text.Practice.Note, UDim2.fromOffset(12, 83), UDim2.new(1, -24, 0, 34), 13, COLORS.cream)
+	local note = text(practice, "Note", "", UDim2.fromOffset(12, 83), UDim2.new(1, -24, 0, 34), 13, COLORS.cream)
 	note.TextWrapped = true
  for _,label in ipairs(practice:GetChildren()) do if label:IsA("TextLabel") then
   label.TextStrokeColor3 = Color3.new(0,0,0)
   label.TextStrokeTransparency = .3
+  label.ZIndex = coachArt.ZIndex + 1
   Theme.fitText(label)
  end end
+
+	local function renderTracker()
+		local coaching = practiceProgress ~= nil
+		practice.Visible = coaching or storyTracker ~= nil
+		coachArt.Visible = coaching
+		practice.Size = UDim2.fromOffset(status.Size.X.Offset, coaching and 100 or 120)
+		objective.Size = UDim2.new(1, -24, 0, coaching and 24 or 48)
+		note.Position = UDim2.fromOffset(12, coaching and 55 or 83)
+		if practiceProgress then
+			local key, index = TrainingTutorial.current(practiceProgress)
+			local lesson = Text.Practice[key]
+			practiceTitle.Text = string.format(Text.Practice.Progress, index, #TrainingTutorial.order, Text.PracticeTitle)
+			objective.Text, note.Text = lesson.title, lesson[practiceInput] or lesson.keyboard
+		elseif storyTracker then
+			practiceTitle.Text, objective.Text, note.Text = storyTracker.title, storyTracker.objective, storyTracker.note
+		end
+	end
 
 	local function updateScale()
 		local camera = Workspace.CurrentCamera
@@ -405,7 +429,6 @@ function Hud.create()
 				end
 			end
 		end
-  practice.Size = UDim2.fromOffset(status.Size.X.Offset, 120)
   practice.Position = UDim2.fromOffset(status.Position.X.Offset, 16 + status.Size.Y.Offset * scale + 8 + (growthPoints.Visible and 30*scale or 0))
 		-- On narrow screens, keep the title clear of the status panel.
 		heading.Visible = viewport.X >= 860
@@ -451,21 +474,17 @@ function Hud.create()
 			classLabel.Text = Text.Class[classId] or ""
 		end,
 		setStory = function(value)
-   if not value then
-    headingTitle.Text,subtitle.Text=StoryHeading.resolve(nil)
-    if storyTracker then practice.Title.Text=Text.PracticeTitle;objective.Text=Text.Practice.Move;note.Text=Text.Practice.Note end
-    storyTracker=nil;return
-   end
    headingTitle.Text,subtitle.Text=StoryHeading.resolve(value)
    storyTracker=value
-   practice.Title.Text=value.title;objective.Text=value.objective;note.Text=value.note
+   renderTracker()
   end,
-  setPractice = function(value, classId)
-   if storyTracker then return end
-			value = value or {}
-			objective.Text = not value.moved and Text.Practice.Move
-				or not value.attacked and (classId == "elf" and Text.Practice.ElfAttack or Text.Practice.Attack)
-				or not value.dodged and Text.Practice.Dodge or Text.Practice.Complete
+  setPractice = function(value)
+			practiceProgress = value
+			renderTracker()
+		end,
+		setPracticeInput = function(value)
+			practiceInput = value
+			renderTracker()
 		end,
 		setHealth = setHealth,
 		setMana = function(current, maximum)

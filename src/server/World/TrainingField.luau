@@ -1,8 +1,10 @@
 -- Deepwood K0 is an isolated combat blockout, not the finished story map.
 local Lighting = game:GetService("Lighting")
+local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
 local Text = require(ReplicatedStorage.Shared.K0Text)
+local Tutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local TdMonsterAppearance = require(script.Parent.TdMonsterAppearance)
 
 local TrainingField = {}
@@ -270,6 +272,9 @@ function TrainingField.create(runtime)
 	-- Preserve each TD visual and its control rig at the same relative scale.
 	makeEnemy(enemies, "Orc", 42, 17, 1.65, 1.5)
 	makeEnemy(enemies, "Ogre", 20, -30, 2.475, 2.475 / 1.45)
+	for _, enemy in ipairs(enemies:GetChildren()) do
+		CollectionService:AddTag(enemy, Tutorial.enemyTag)
+	end
 
 	return { folder = folder, enemies = enemies, spawn = spawn }
 end

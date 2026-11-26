@@ -15,9 +15,11 @@ function Controller.start(services)
  local requestHero=services.requestHero
  local heroSnapshot=services.snapshot
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
+local TrainingTutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local Targeting = require(script.K0Targeting)
 local Settings = require(script.GameSettings)
 local hud = require(script.K0Hud).create()
+local showTrainingCue = require(script.TrainingCoach).create(player)
 hud.setVisible(false)
 local Presentation=require(script.BattlePresentation)
 local actionRemote
@@ -440,10 +442,13 @@ end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.R, Enum.KeyCode.
 local function updateHints()
 	local input = UserInputService:GetLastInputType()
 	if input.Name:match("^Gamepad") then
+		hud.setPracticeInput("gamepad")
 		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, "L3", {"Y", "X", "L1", "LEFT", "RIGHT"})
 	elseif UserInputService.TouchEnabled and (input == Enum.UserInputType.Touch or not UserInputService.KeyboardEnabled) then
+		hud.setPracticeInput("touch")
 		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintHold, {"1", "2", "3", "4", "5"})
 	else
+		hud.setPracticeInput("keyboard")
 		hud.setHints(Text.HintClick, "Q / RMB", Text.HintR, "E", {"1", "2", "3", "4", "5"})
 	end
 end
@@ -451,11 +456,6 @@ UserInputService.LastInputTypeChanged:Connect(updateHints)
 updateHints()
 
 hud.settingsMenu.Activated:Connect(settingsGui.open)
-local function routeCaption()
- local training=player:GetAttribute("TLTRoute")=="Training"
- if training then hud.setStory(nil) end
-end
-player:GetAttributeChangedSignal("TLTRoute"):Connect(routeCaption);routeCaption()
 hud.back.Activated:Connect(function() requestHero("ReturnLobby") end)
 hud.heroMenu.Activated:Connect(function() growthGui.open("Stats") end)
 hud.growthPoints.Activated:Connect(function() growthGui.open("Stats") end)
@@ -470,14 +470,20 @@ local function updateSessionView()
 	end
 	hud.setVisible(playing)
 	if not playing then endBlock(); endSprint(); clearAttacks(); clearTarget() end
-	if heroSnapshot then
+	local practice
+	if player:GetAttribute("TLTRoute") == "Training" then
+		hud.setStory(nil)
+	end
+	if phase == "Tutorial" and player:GetAttribute("TLTRoute") == "Training" and heroSnapshot and heroSnapshot.training then
 		for _, hero in ipairs(heroSnapshot.heroes) do
-			if hero.heroId == heroSnapshot.selectedHeroId then
-				hud.setPractice(hero.practice, hero.classId)
+			if hero.heroId == heroSnapshot.activeHeroId then
+				practice = hero.practice
 				break
 			end
 		end
 	end
+	hud.setPractice(practice)
+	showTrainingCue(practice and TrainingTutorial.current(practice))
 end
 
 task.spawn(function()

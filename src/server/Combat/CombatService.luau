@@ -20,6 +20,7 @@ local Config = require(ReplicatedStorage.Shared.K0Config)
 local BossTuning = require(ReplicatedStorage.Shared.BossCombatTuning)
 local Rules = require(script.Parent.K0Rules)
 local DodgeRules = require(ReplicatedStorage.Shared.DodgeRules)
+local TrainingTutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local TargetAssistRules = require(ReplicatedStorage.Shared.TargetAssistRules)
 local EnemyHealthBar = require(script.Parent.Parent.World.EnemyHealthBar)
 local Text = require(ReplicatedStorage.Shared.K0Text)
@@ -867,6 +868,10 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 	enemy.humanoid:TakeDamage(damage)
 	if enemy.humanoid.Health > 0 then enemy.lethalHitSet = nil end
 	local applied = math.max(0, healthBefore - math.max(0, enemy.humanoid.Health))
+	if applied > 0 and state.player:GetAttribute("TLTRoute") == "Training" and enemy.model:HasTag(TrainingTutorial.enemyTag) then
+		local attribute = attack.isSkill and TrainingTutorial.hitAttribute.skill or TrainingTutorial.hitAttribute.basic
+		state.character:SetAttribute(attribute, true)
+	end
 	local appliedMark = applied > 0 and enemy.humanoid.Health > 0 and d.advanced and d.mark or nil
 	if appliedMark then
 		enemy.branchMarks = enemy.branchMarks or {}
