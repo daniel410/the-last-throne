@@ -7,6 +7,7 @@ local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local Growth = require(ReplicatedStorage.Shared.HeroProgression)
 local Rules = require(script.Parent.InventoryRules)
 local Store = require(script.Parent.AccountStore)
+local DiamondReceipts = require(script.Parent.Parent.Lobby.DiamondReceiptRules)
 local Service = {}
 local accounts, options, adapter, stateRemote, openRemote
 accounts = {}
@@ -768,25 +769,32 @@ function Service.shop(player,command)
   return Rules.shop(current,command,{enhancementRoll=enhancementRoll,atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and ctx and ctx.heroId==command.heroId and ctx.atHub and player:GetAttribute('K0SessionPhase')=='Lobby'},Catalog)
  end)
  if p then s.profile=p;s.valid=true;s.errorCode=nil;s.shopPending=nil;Service.refreshCharacter(player);options.heroSession.refresh(player)
- elseif e=='SaveUnknown' or e=='AccountBusy' then s.valid=false;s.errorCode=e
- else s.shopPending=nil end
+ elseif e=='SaveUnknown' then s.valid=false;s.errorCode=e;s.renewPending=true
+ else
+  if e=='AccountBusy' then s.valid=false;s.errorCode=e end
+  s.shopPending=nil
+ end
  s.busy=false;publish(player,command.requestId,e);return e,p and p.operations[command.requestId] and p.operations[command.requestId].enhancementOutcome
 end
 function Service.grantDiamondReceipt(player,receipt)
  if sessionOnly then return 'StudioOnly'end
  local s=accounts[player]
  if not s or s.busy or s.closing then return 'Busy'end
- local pending=s.diamondReceiptPending
- if pending and (pending.PurchaseId~=receipt.PurchaseId or pending.ProductId~=receipt.ProductId or pending.PlayerId~=receipt.PlayerId)then return 'Busy'end
- if not s.valid and not pending then return s.errorCode or 'Unavailable'end
- s.diamondReceiptPending=Rules.copy(receipt);s.busy=true
+ if not s.profile then return s.errorCode=='AccountBusy' and 'Busy' or 'Unavailable'end
+ if not s.valid and not s.renewPending then return s.errorCode or 'Unavailable'end
+ -- Every attempt reads the current fenced account and replays by PurchaseId.
+ -- An unknown result for one receipt must not block a different paid receipt.
+ s.busy=true
  local profile,reason=s.store:transact(player.UserId,function(current)
-  return require(script.Parent.Parent.Lobby.DiamondReceiptRules).grant(current,receipt,Rules)
+  return DiamondReceipts.grant(current,receipt,Rules)
  end)
- if profile then s.profile=profile;s.valid=true;s.errorCode=nil;s.diamondReceiptPending=nil
- elseif reason=='SaveUnknown'or reason=='AccountBusy'then s.valid=false;s.errorCode=reason
- else s.diamondReceiptPending=nil end
- s.busy=false;publish(player,nil,reason)
+ if profile then
+  s.profile=profile;s.valid=true;s.errorCode=nil;s.renewPending=nil
+ elseif reason=='SaveUnknown'or reason=='AccountBusy'then
+  s.valid=false;s.errorCode=reason;s.renewPending=reason=='SaveUnknown'
+ end
+ s.busy=false
+ if profile or reason=='SaveUnknown'or reason=='AccountBusy'then publish(player,nil,reason)end
  return reason
 end
 -- Server-only durable run binding. No client can choose or complete a run here.

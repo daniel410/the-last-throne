@@ -2,16 +2,42 @@
 assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated local place only')
 local client=game.StarterPlayer.StarterPlayerScripts.Client
 local Items=require(game.ReplicatedStorage.Shared.ItemCatalog)
+local Economy=require(game.ReplicatedStorage.Shared.EconomyCatalog)
 local Rules=require(game.ServerScriptService.Server.Inventory.InventoryRules)
 local p=Rules.addHero(Rules.new(91),'hero','knight',Items)
 local report={kind='SHOP_AFFORDABILITY_NATIVE',checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local gui=Instance.new('ScreenGui');gui.Name='AffordabilityQA';gui.Parent=game.CoreGui
 local module=client.ArmoryView:Clone();module.Name='AffordabilityViewQA';module.Parent=client
-local sends=0
+-- Connect the production trade handlers to a test-only signal on real GUI buttons.
+module.Source=[=[
+local originalRequire=require
+local themeModule=script.Parent.TDInventoryTheme
+local theme=table.clone(originalRequire(themeModule))
+local createButton=theme.button
+function theme.button(parent,name,...)
+ local button=createButton(parent,name,...)
+ if name~='Trade'then return button end
+ local activation=Instance.new('BindableEvent');activation.Name='QAActivate';activation.Parent=button
+ return setmetatable({},{
+  __index=function(_,key)
+   if key=='Activated'then return activation.Event end
+   local value=button[key]
+   if type(value)=='function'then return function(_,...)return value(button,...)end end
+   return value
+  end,
+  __newindex=function(_,key,value)button[key]=value end,
+ })
+end
+local function require(target)
+ if target==themeModule then return theme end
+ return originalRequire(target)
+end
+]=]..module.Source
+local sends,lastTrade=0,nil
 local ok,err=xpcall(function()
  local View=require(module)
- local stock=View.create(gui,function()sends+=1 end,false,'items')
+ local stock=View.create(gui,function(command)sends+=1;lastTrade=command end,false,'items')
  local blacksmith=View.create(gui,function()sends+=1 end,false,'blacksmith')
  local diamond=View.create(gui,function()sends+=1 end,true)
  local snapshot={ready=true,heroId='hero',heroes=p.heroes,items={},revision=p.revision,wallet={gold=24,diamonds=9}}
@@ -29,10 +55,12 @@ local ok,err=xpcall(function()
  check(b.Caption.Text=='Need 1 more Gold','potion states exact shortfall')
  check(potion.Details.Text:find('Price: 25 Gold',1,true)~=nil,'price remains visible')
  local weapon=blacksmith.panel.Offers.knight_weapon_fine
- check(not weapon.Trade.Active and weapon.Trade.Caption.Text=='Need 226 more Gold','equipment shows its Gold shortfall')
+ local goldShortfall=Economy.offer('knight_weapon_fine').price-snapshot.wallet.gold
+ check(not weapon.Trade.Active and weapon.Trade.Caption.Text==string.format('Need %d more Gold',goldShortfall),'equipment shows its Gold shortfall')
  local premium=diamond.panel.Offers.knight_weapon_veteran_diamond
- check(not premium.Trade.Active and premium.Trade.Caption.Text=='Need 1 more Diamonds','diamond offer uses diamond balance')
- snapshot.wallet.gold=25;snapshot.wallet.diamonds=10
+ local premiumPrice=Economy.offer('knight_weapon_veteran_diamond').price
+ check(not premium.Trade.Active and premium.Trade.Caption.Text==string.format('Need %d more Diamonds',premiumPrice-snapshot.wallet.diamonds),'diamond offer uses diamond balance')
+ snapshot.wallet.gold=25;snapshot.wallet.diamonds=premiumPrice
  stock.render(snapshot);diamond.render(snapshot)
  check(stock.panel.Offers.health_potion.Trade.Active and stock.panel.Offers.health_potion.Trade.Selectable,'exact Gold enables purchase')
  check(stock.panel.Offers.health_potion.Trade.Caption.Text=='BUY · 25 Gold','affordable price is restored')
@@ -47,7 +75,28 @@ local ok,err=xpcall(function()
  check(not stock.panel.Offers.health_potion.Trade.Active and stock.panel.Offers.health_potion.Trade.Caption.Text=='Need 25 more Gold','lower wallet disables purchase again')
  snapshot.wallet=nil;stock.render(snapshot)
  check(stock.panel.Offers.health_potion.Trade.Caption.Text=='BUY · 25 Gold','unknown balance is not presented as zero')
+ check(not stock.panel.Offers.health_potion.Trade.Active,'unknown wallet disables purchases')
  check(sends==0,'rendering never submits a trade')
+ local function confirmPotion()
+  stock.panel.Offers.health_potion.Trade.QAActivate:Fire();task.wait()
+ end
+ snapshot.wallet={gold=25,diamonds=10}
+ stock.panel.Visible=true;stock.render(snapshot)
+ confirmPotion()
+ check(sends==0 and stock.notice.Text:find('CONFIRM',1,true),'first activation only confirms')
+ stock.render(snapshot)
+ check(stock.panel.Offers.health_potion.Trade.Caption.Text:find('CONFIRM',1,true),'same revision refresh preserves confirmation')
+ confirmPotion()
+ check(sends==1 and lastTrade.offerId=='health_potion' and lastTrade.revision==snapshot.revision,'second activation after refresh buys the displayed offer once')
+ stock.render(snapshot)
+ confirmPotion()
+ local changed=table.clone(snapshot);changed.revision+=1;stock.render(changed)
+ check(stock.panel.Offers.health_potion.Trade.Caption.Text=='BUY · 25 Gold','a new account revision cancels the old confirmation')
+ confirmPotion()
+ check(sends==1,'first activation on a changed account cannot submit')
+ stock.panel.Visible=false;task.wait();stock.panel.Visible=true
+ confirmPotion()
+ check(sends==1,'reopening the shop requires a fresh confirmation')
 end,debug.traceback)
 gui:Destroy();module:Destroy();if not ok then table.insert(report.failures,tostring(err))end
 report.pass=ok;return report

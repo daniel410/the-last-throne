@@ -125,14 +125,26 @@ function V.create(parent,send,diamondOnly,store)
  notice:GetPropertyChangedSignal('Text'):Connect(resize);resize()
  local state,mode,pending,category={},'Buy',nil,if store=='blacksmith' then 'Weapons' elseif store=='items' then 'Potions' else 'All'
  local transactionPending=false
+ local tradeMessage,productMessage='',nil
  local categoryButtons={}
  local render
- local productCards=diamondOnly and require(script.Parent.DiamondProductCards).create(panel,scroll,notice,function()if render then render()end end)
- local function command(action,fields)
-  if pending then return end
-  fields.action=action;fields.heroId=state.heroId;fields.revision=state.revision;pending=fields
-  notice.Text='CONFIRM: '..fields.review..' Press the same button again to complete the trade.'
+ local productCards=diamondOnly and require(script.Parent.DiamondProductCards).create(panel,scroll,function(message)
+  if message~=nil then productMessage=message end
+  if panel.Visible then render() end
+ end)
+ local function updateNotice()
+  if pending then
+   notice.Text='CONFIRM: '..pending.review..' Press the same button again to complete the trade.'
+  else
+   notice.Text=productMessage or tradeMessage
+  end
  end
+ panel:GetPropertyChangedSignal('Visible'):Connect(function()
+  if panel.Visible then return end
+  if pending and pending.button.Parent then pending.button.Caption.Text=pending.caption end
+  pending=nil;productMessage=nil
+  updateNotice()
+ end)
  local function row(name,title,description,def,caption,fields,shortfall,currency)
   local card=T.frame(scroll,name,UDim2.new(),UDim2.new(1,-8,0,184))
   card.LayoutOrder=#scroll:GetChildren()
@@ -151,31 +163,39 @@ function V.create(parent,send,diamondOnly,store)
    local textHeight=TextService:GetTextSize(description,details.TextSize,details.Font,Vector2.new(textWidth,10000)).Y
    card.Size=UDim2.new(1,-8,0,math.max(184,math.ceil(textHeight)+152))
   end
-  local b=T.button(card,'Trade',caption,UDim2.new(0,14,1,-52),UDim2.new(1,-28,0,44))
+  local confirming=pending and pending.offerId==fields.offerId and pending.instanceId==fields.instanceId
+  local b=T.button(card,'Trade',confirming and 'CONFIRM · '..caption or caption,UDim2.new(0,14,1,-52),UDim2.new(1,-28,0,44))
+  if confirming then pending.button=b end
   local insufficient=shortfall and shortfall>0
+  local available=state.ready and state.heroId and state.wallet and not transactionPending
   if insufficient then
    b.Caption.Text=string.format(ItemText.ShopInsufficient,shortfall,currency)
    b:SetAttribute('InsufficientFunds',true);T.enabled(b,false)
-  elseif transactionPending then T.enabled(b,false) end
-  local armed=false
+  elseif not available then T.enabled(b,false) end
   b.Activated:Connect(function()
-   if insufficient or transactionPending then return end
-   if not state.ready or not state.heroId then notice.Text='Select a hero and wait for your account to load.';return end
-   if not armed then
-    pending=nil;command(mode,fields);armed=true;b.Caption.Text='CONFIRM · '..caption
-   elseif pending==fields then
-    local c={store=diamondOnly and 'diamonds' or store~='all' and store or nil,action=fields.action,heroId=fields.heroId,revision=fields.revision,offerId=fields.offerId,instanceId=fields.instanceId,itemVersion=fields.itemVersion}
-    notice.Text='Saving transaction...';T.enabled(b,false);send(c);pending=nil
-   else armed=false;b.Caption.Text=caption end
+   if insufficient or not available or transactionPending or not panel.Visible or not b.Parent then return end
+   if pending and pending.button==b then
+    local c={store=diamondOnly and 'diamonds' or store~='all' and store or nil,action=mode,heroId=pending.heroId,revision=pending.revision,offerId=pending.offerId,instanceId=pending.instanceId,itemVersion=pending.itemVersion}
+    pending=nil
+    send(c)
+    return
+   end
+   if pending and pending.button.Parent then pending.button.Caption.Text=pending.caption end
+   fields.heroId=state.heroId;fields.revision=state.revision;fields.button=b;fields.caption=caption;pending=fields
+   b.Caption.Text='CONFIRM · '..caption
+   updateNotice()
   end)
  end
  render=function(snapshot,message,saving)
   help.Visible=store=='blacksmith' and (mode=='Enhance' or mode=='Guide')
-  state=snapshot or state;pending=nil;categories.Visible=mode~='Enhance'and mode~='Guide';panel:SetAttribute('EnhancementMode',mode=='Enhance');panel:SetAttribute('EnhancementGuideMode',mode=='Guide');guide.scroll.Visible=mode=='Guide';scroll.Visible=mode~='Guide'
+  if snapshot and (snapshot.revision~=state.revision or snapshot.heroId~=state.heroId or not snapshot.ready or not snapshot.wallet) then pending=nil end
+  if message~=nil then tradeMessage=message end
+  if saving then pending=nil;productMessage=nil end
+  state=snapshot or state;categories.Visible=mode~='Enhance'and mode~='Guide';panel:SetAttribute('EnhancementMode',mode=='Enhance');panel:SetAttribute('EnhancementGuideMode',mode=='Guide');guide.scroll.Visible=mode=='Guide';scroll.Visible=mode~='Guide'
   for id,b in pairs({Buy=buy,Sell=sell,Enhance=enhance})do b.TDButtonArt.ImageColor3=mode==id and Color3.fromRGB(160,220,255)or Color3.new(1,1,1);b.Caption.Text=(mode==id and '[X] 'or '')..id:upper() end
   resize();if saving~=nil then transactionPending=saving==true end
   for id,b in pairs(categoryButtons)do b.Caption.Text=(category==id and '[X] ' or '')..b:GetAttribute('CategoryLabel') end
-  local w=state.wallet;balance.Text=w and string.format('Gold: %d     Diamonds: %d',w.gold,w.diamonds) or 'Wallet unavailable. Rejoin before trading.'
+  local w=state.ready and state.wallet;balance.Text=w and string.format('Gold: %d     Diamonds: %d',w.gold,w.diamonds) or 'Wallet unavailable.'
   for _,child in ipairs(scroll:GetChildren()) do if child:IsA('GuiObject') then child:Destroy() end end
   local class=state.heroId and state.heroes and state.heroes[state.heroId] and state.heroes[state.heroId].baseClassId
   if mode=='Guide'then
@@ -237,16 +257,20 @@ function V.create(parent,send,diamondOnly,store)
    end
    if n==0 then T.label(scroll,'Empty','Nothing to sell in this category. Unequip and unlock purchased gear in BAG. Starter gear cannot be sold.',UDim2.new(),UDim2.new(1,-16,0,100),14) end
   end
-  notice.Text=message or ''
+  updateNotice()
+ end
+ local function changeCategory(id)
+  if category~=id then pending=nil;productMessage=nil end
+  category=id;render()
  end
  local function selectCategory(id)
   if store=='blacksmith' and id~='Weapons' and id~='Armor' and id~='Accessories' then return end
   if store=='items' then
-   if id=='Potions' or id=='Accessories' or id=='Etc' then category=id;render() end
+   if id=='Potions' or id=='Accessories' or id=='Etc' then changeCategory(id) end
    return
   end
-  if diamondOnly and (id=='Gold'or id=='Robux')then category=id;render();return end
-  for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
+  if diamondOnly and (id=='Gold'or id=='Robux')then changeCategory(id);return end
+  for _,entry in ipairs(Catalog.categories)do if entry.id==id then changeCategory(id);return end end
  end
  local displayedCategories=if store=='items' then {{id='Potions',label='POTIONS'},{id='Accessories',label='ACCESSORIES'},{id='Etc',label='ETC'}} else Catalog.categories
  for index,entry in ipairs(displayedCategories)do
@@ -257,9 +281,15 @@ function V.create(parent,send,diamondOnly,store)
   local robux=T.button(categories,'Category_Robux','ROBUX',UDim2.new(),UDim2.new());robux.Caption.TextSize=11;robux:SetAttribute('CategoryLabel','ROBUX');categoryButtons.Robux=robux;robux.Activated:Connect(function()selectCategory('Robux')end)
   local b=T.button(categories,'Category_Gold',ItemText.GoldCategory,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',ItemText.GoldCategory);categoryButtons.Gold=b;b.Activated:Connect(function()selectCategory('Gold')end)
  end
- help.Activated:Connect(function()mode=mode=='Guide'and 'Enhance'or 'Guide';render()end)
- enhance.Activated:Connect(function()mode='Enhance';render()end)
- buy.Activated:Connect(function() mode='Buy';render() end);sell.Activated:Connect(function() mode='Sell';render() end)
- return {panel=panel,render=render,notice=notice,selectCategory=selectCategory,setMode=function(value) if value=="Buy" or value=="Sell" or (value=="Enhance" or value=="Guide") and store=="blacksmith" then mode=value;render() end end}
+ local function setMode(value)
+  if value=="Buy" or value=="Sell" or (value=="Enhance" or value=="Guide") and store=="blacksmith" then
+   if mode~=value then pending=nil end
+   mode=value;render()
+  end
+ end
+ help.Activated:Connect(function()setMode(mode=='Guide' and 'Enhance' or 'Guide')end)
+ enhance.Activated:Connect(function()setMode('Enhance')end)
+ buy.Activated:Connect(function()setMode('Buy')end);sell.Activated:Connect(function()setMode('Sell')end)
+ return {panel=panel,render=render,notice=notice,selectCategory=selectCategory,setMode=setMode}
 end
 return V

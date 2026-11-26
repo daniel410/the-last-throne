@@ -34,5 +34,12 @@ local ui=setmetatable({pending=command,latest={revision=1},AdventureText={},Text
 assert(load(client:sub(a,b-1),'armory client','t',ui))()
 receive({requestId='unrelated',error='Busy'});assert(render==0 and ui.pending==command)
 receive({requestId=command.requestId,error='Busy'});assert(shown==ui.latest and ui.pending==command and ui.message=='Please wait')
+receive({requestId='read',inventory={revision=1}})
+assert(ui.pending==command and ui.message=='Please wait','background state refresh preserves the active trade notice')
+receive({requestId=command.requestId,error='SaveUnknown',inventory={revision=1}})
+assert(ui.pending==command,'unknown result retries the original request ID')
 receive(reply);assert(shown==reply.inventory and ui.pending==nil,'confirmed retry clears only its own pending trade')
+ui.pending=command
+receive({requestId=command.requestId,error='AccountBusy',inventory={revision=2}})
+assert(ui.pending==nil and ui.message:find('Rejoin',1,true),'lost account fence stops retries and directs the player to verify on reconnect')
 print('Merchant throttle: 100 rejected mutations, 0 extra snapshots; retry passed')

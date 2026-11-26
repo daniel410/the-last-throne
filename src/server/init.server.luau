@@ -7,6 +7,7 @@ local story=require(script.Story.DeepwoodService)
 local spawnService=require(script.Spawn.SpawnService)
 local heroSession=require(script.Lobby.HeroSessionService)
 local inventory=require(script.Inventory.InventoryService)
+require(script.Lobby.DiamondProductService).start(inventory)
 local combat=require(script.Combat.DeferredCombat).new(function()return require(script.Combat.CombatService)end)
 local expedition=require(script.Network.ExpeditionService)
 local world,deepwood,lobby,storyStarted
@@ -27,7 +28,6 @@ end
 inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents,supportCampAccess=story.supportCampAccess})
 require(script.Lobby.DailyLoginService).start(inventory)
 require(script.Lobby.DeliveryService).start(inventory)
-require(script.Lobby.DiamondProductService).start(inventory)
 local function startCombat()
  if not world then
   local folder=Instance.new('Model');folder.Name='DeepwoodK0';folder.Parent=workspace

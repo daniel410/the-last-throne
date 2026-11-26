@@ -22,9 +22,10 @@ local ok,err=xpcall(function()
   check(view.panel.Offers:FindFirstChild('rpg_gold_'..amount..'_diamond')~=nil,'Gold bundle visible '..amount)
  end
  view.selectCategory('Weapons')
- for _,tier in ipairs({'veteran','forged'})do
+ for _,tier in ipairs({'veteran','sentinel'})do
   check(view.panel.Offers:FindFirstChild('knight_weapon_'..tier..'_diamond')~=nil,'Diamond weapon visible '..tier)
  end
+ check(not view.panel.Offers:FindFirstChild('knight_weapon_forged_diamond'),'retired weapon remains out of stock')
  check(sent==0,'rendering and filtering never performs a trade')
 end,debug.traceback)
 gui:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok;return report

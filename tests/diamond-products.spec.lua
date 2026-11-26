@@ -60,4 +60,22 @@ check(other:transact(12,function(current)return Receipts.grant(current,receipt,R
 check(not store:transact(12,function(current)return Receipts.grant(current,receipt,R,fake)end),'old server fenced')
 local before=R.copy(data);offline=true
 check(not other:open(12)and data.wallet.diamonds==before.wallet.diamonds,'load failure preserves paid balance')
+
+-- Exercise the production account service entry point with the same fenced store.
+local file=assert(io.open('src/server/Inventory/InventoryService.luau'))
+local source=file:read('*a');file:close()
+local first=assert(source:find('function Service.grantDiamondReceipt',1,true))
+local nextFunction=assert(source:find('function Service.expeditionHero',first,true))
+local player={UserId=12}
+local account={store=other,profile=before,valid=true}
+local service={}
+local env=setmetatable({Service=service,accounts={[player]=account},DiamondReceipts=Receipts,Rules=R,publish=function()end},{__index=_G})
+assert(load(source:sub(first,nextFunction-1),'receipt account service','t',env))()
+local firstReceipt={PlayerId=12,ProductId=Products.packs[1].productId,PurchaseId='unknown-first'}
+local secondReceipt={PlayerId=12,ProductId=Products.packs[2].productId,PurchaseId='settled-second'}
+offline=false;lose=true
+check(service.grantDiamondReceipt(player,firstReceipt)=='SaveUnknown' and not account.valid and account.renewPending,'unknown response marks the wallet for recovery')
+lose=false
+check(service.grantDiamondReceipt(player,secondReceipt)==nil and account.valid and not account.renewPending,'a different paid receipt can settle during recovery')
+check(service.grantDiamondReceipt(player,firstReceipt)==nil and account.profile.wallet.diamonds==before.wallet.diamonds+600,'unknown first receipt replays without adding Diamonds again')
 print('diamond-products: '..checks..' checks passed')

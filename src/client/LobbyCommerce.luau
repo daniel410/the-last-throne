@@ -63,7 +63,11 @@ function M.start()
   if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
   local target=kind=='Blacksmith' and armory or kind=='DiamondShop' and diamonds or items;local wasOpen=target.panel.Visible
   closePanels();target.panel.Visible=not wasOpen
-  shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')})
+  if target.panel.Visible then
+   if not pending then message='' end
+   if latest then inventory(latest) end
+   shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')})
+  end
  end
  navigation=require(script.Parent.LobbyNavigation).create(gui,{close=closePanels,open=openStore})
  navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
@@ -114,10 +118,23 @@ function M.start()
    end
    return
   end
-  if data.open then closePanels();navigation.panel.Visible=false;(data.store=='items' and items or armory).panel.Visible=true end
-  local outcome=data.enhancementOutcome
-  message=not data.error and outcome and string.format(outcome.success and AdventureText.EnhancementSucceeded or AdventureText.EnhancementFailed,outcome.level,outcome.gold or 0) or data.error and (AdventureText[data.error] or Text[data.error] or InventoryText[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
-  if data.requestId==(pending and pending.requestId) and data.error~='SaveUnknown' and data.error~='Busy' and data.error~='AccountBusy' then pending=nil end
+  if data.open then
+   closePanels();navigation.panel.Visible=false;(data.store=='items' and items or armory).panel.Visible=true
+   if not pending then message='' end
+  end
+  if pending and data.requestId==pending.requestId then
+   local outcome=data.enhancementOutcome
+   if data.error=='AccountBusy' then
+    message='Your account is open in another server. Rejoin to check your wallet and items.'
+   elseif data.error then
+    message=AdventureText[data.error] or Text[data.error] or InventoryText[data.error] or Text.Unavailable
+   elseif outcome then
+    message=string.format(outcome.success and AdventureText.EnhancementSucceeded or AdventureText.EnhancementFailed,outcome.level,outcome.gold or 0)
+   else
+    message='Trade complete. Your wallet and items are saved.'
+   end
+   if data.error~='SaveUnknown' and data.error~='Busy' then pending=nil end
+  end
   inventory(data.inventory)
  end)
  remotes:WaitForChild('ExpeditionState').OnClientEvent:Connect(function(s)

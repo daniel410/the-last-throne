@@ -12,7 +12,7 @@ for _,offer in ipairs(Economy.offers)do
   local cmd={store='diamonds',action='Buy',requestId='weapon',heroId='h',revision=p.revision,offerId=offer.id}
   local bought=assert(R.shop(p,cmd,{atLobby=true},Items))
   check(bought.wallet.diamonds==0 and bought.wallet.gold==p.wallet.gold,'debit exact Diamonds '..offer.id)
-  check(bought.items['shop-weapon'].definitionId==Economy.offer(def.id).definitionId,'same gear as Gold purchase '..offer.id)
+  check(bought.items['shop-weapon'].definitionId==def.id,'exact weapon delivered '..offer.id)
   local replay=assert(R.shop(bought,cmd,{atLobby=true},Items))
   check(replay.revision==bought.revision and R.count(replay,'bag','h')==R.count(bought,'bag','h'),'retry grants no duplicate '..offer.id)
   p.wallet.diamonds=offer.price-1
@@ -23,8 +23,12 @@ for _,offer in ipairs(Economy.offers)do
   check(Economy.sell[def.id]<offer.price*50,'resale worse than direct Gold exchange '..offer.id)
  end
 end
-check(count==8,'existing Veteran and added Dawnforge for each of four classes')
+check(count==8,'Veteran and Sentinel weapon for each of four classes')
 for _,class in ipairs({'knight','elf','dwarf','mage'})do
  check(not Economy.offer(class..'_weapon_fine_diamond'),'free starter weapon is not added as a Diamond product')
+ local veteran=class..'_weapon_veteran'
+ check(Economy.offer(veteran..'_diamond').definitionId==Economy.offer(veteran).definitionId,'Veteran alternate currency grants the same weapon')
+ local sentinel=class..'_weapon_sentinel'
+ check(Economy.offer(sentinel..'_diamond').definitionId==sentinel and not Economy.offer(sentinel),'Sentinel weapon is Diamond-only')
 end
 print('Diamond weapons: '..checks..' checks passed')
