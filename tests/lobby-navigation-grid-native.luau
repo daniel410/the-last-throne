@@ -10,7 +10,7 @@ local ok,err=xpcall(function()
   host.Size=UDim2.fromOffset(viewport.X,viewport.Y)
   local expected=require(client.LobbyNavigationSizing).measure(viewport.X,viewport.Y)
   task.wait(.2)
-  local names={'Heroes','ItemShop','Blacksmith','Quest','Maps','DiamondShop','LoginRewards'}
+  local names={'Heroes','ItemShop','Blacksmith','Quest','Maps','DiamondShop','LoginRewards','Party'}
   local buttons={}
   for index,name in ipairs(names) do
    local button=nav.rail:FindFirstChild(name);check(button~=nil,name..' exists');buttons[index]=button
@@ -25,7 +25,7 @@ local ok,err=xpcall(function()
    local plateTop=plate.AbsolutePosition.Y
    check(pictureBottom>=plateTop and pictureBottom<=plateTop+plate.AbsoluteSize.X*.02+1,name..' picture touches the nameplate')
    check(math.abs(picture.AbsolutePosition.X+picture.AbsoluteSize.X*.5-plate.AbsolutePosition.X-plate.AbsoluteSize.X*.5)<1,name..' picture and plaque stay centered')
-   local crop=picture.ImageRectSize
+   local crop=button.PictureViewport:GetAttribute('PictureSize') or picture.ImageRectSize
    check(math.abs(picture.AbsoluteSize.Y-picture.AbsoluteSize.X*crop.Y/crop.X)<=1,name..' picture has no bottom fit padding')
    local plateCrop=plate.ImageRectSize
    local tdPictureWidth=math.min(button.AbsoluteSize.X*.98,button.AbsoluteSize.Y*.72*crop.X/crop.Y)
@@ -39,23 +39,27 @@ local ok,err=xpcall(function()
    check(caption.AbsolutePosition.X>plate.AbsolutePosition.X and caption.AbsolutePosition.X+caption.AbsoluteSize.X<plate.AbsolutePosition.X+plate.AbsoluteSize.X,name..' caption clears both beveled ends')
    check(caption.AbsolutePosition.Y>plate.AbsolutePosition.Y and caption.AbsolutePosition.Y+caption.AbsoluteSize.Y<plate.AbsolutePosition.Y+plate.AbsoluteSize.Y,name..' caption clears the top and bottom frame')
   end
-  for index=1,6,2 do
-   local left,right=buttons[index],buttons[index+1]
-   check(math.abs(left.AbsolutePosition.Y-right.AbsolutePosition.Y)<1,'paired icons share a row')
-   check(right.AbsolutePosition.X>=left.AbsolutePosition.X+left.AbsoluteSize.X-1,'columns do not overlap')
-   if index>1 then check(left.AbsolutePosition.Y>=buttons[index-2].AbsolutePosition.Y+buttons[index-2].AbsoluteSize.Y-1,'rows do not overlap') end
+  local columns=nav.rail.UIGridLayout.FillDirectionMaxCells
+  for index=2,#buttons do
+   local previous,button=buttons[index-1],buttons[index]
+   if (index-1)%columns==0 then
+    check(button.AbsolutePosition.Y>=previous.AbsolutePosition.Y+previous.AbsoluteSize.Y-1,'rows do not overlap')
+   else
+    check(math.abs(previous.AbsolutePosition.Y-button.AbsolutePosition.Y)<1,'icons share a row')
+    check(button.AbsolutePosition.X>=previous.AbsolutePosition.X+previous.AbsoluteSize.X-1,'columns do not overlap')
+   end
   end
-  local last=buttons[7]
+  local rewards=buttons[7]
+  local last=buttons[#buttons]
   local first=buttons[1]
   check(first.AbsolutePosition.Y>=64 or buttons[2].AbsolutePosition.X+buttons[2].AbsoluteSize.X<=viewport.X-340,'navigation clears the top wallet')
-  check(last.AbsolutePosition.Y>=buttons[5].AbsolutePosition.Y+buttons[5].AbsoluteSize.Y-1,'last icon has its own row')
   check(last.AbsolutePosition.Y+last.AbsoluteSize.Y<=viewport.Y-12,'navigation stays within safe bottom margin')
-  check(last.NavigationPlaqueArt.Image=='rbxassetid://127394633978202','login uses TD shared plaque')
+  check(rewards.NavigationPlaqueArt.Image=='rbxassetid://127394633978202','login uses TD shared plaque')
   check(not buttons[1].TDButtonArt.Visible,'framed navigation artwork does not get an extra background')
   local art=last.PictureViewport:FindFirstChild('NavigationIcon')
   check(art~=nil and art.ZIndex>last.TDButtonArt.ZIndex and last.Caption.ZIndex>art.ZIndex,'icon and caption appear above the background')
-  nav.dailyAvailable(true);check(last.Caption.Text=='REWARDS','reward availability does not add punctuation')
-  nav.dailyAvailable(false);check(last.Caption.Text=='REWARDS','reward caption remains stable')
+  nav.dailyAvailable(true);check(rewards.Caption.Text=='REWARDS','reward availability does not add punctuation')
+  nav.dailyAvailable(false);check(rewards.Caption.Text=='REWARDS','reward caption remains stable')
   check(buttons[2].Caption.Text=='POTIONS' and buttons[6].Caption.Text=='DIAMONDS','requested icon-only captions')
   nav.showGuide('Maps');task.wait()
   local title,side,close=nav.panel.Title,nav.panel.TessaGuide,nav.panel.Close

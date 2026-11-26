@@ -58,6 +58,12 @@ function M.start()
   delivery.close()
   armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false;daily.panel.Visible=false;if sideGuide then sideGuide.close()end
  end
+ local function openExpedition(tab)
+  closePanels();navigation.panel.Visible=false
+  expedition.showTab(tab)
+  expedition.panel.Visible=true
+  networkRequest:FireServer({action='GetState'})
+ end
  local function openStore(kind,mode)
   if kind=='Mailbox'or kind=='RedeemCode'then closePanels();delivery.open(kind);return end
   if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
@@ -71,7 +77,9 @@ function M.start()
    shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')})
   end
  end
- navigation=require(script.Parent.LobbyNavigation).create(gui,{close=closePanels,open=openStore})
+ navigation=require(script.Parent.LobbyNavigation).create(gui,{close=closePanels,open=function(kind)
+  if kind=='Party' then openExpedition('Party') else openStore(kind) end
+ end})
  navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
  sideGuide=require(script.Parent.LobbySideQuestGuide).create(gui,{player=p,
   close=function()closePanels();navigation.panel.Visible=false end,
@@ -89,12 +97,10 @@ function M.start()
   if action=='BlacksmithPractice'then navigation.panel.Visible=false;openStore('Blacksmith','Practice');return end
   if action=='Mailbox' or action=='RedeemCode' or action=='DiamondShop' or action=='LoginRewards' then navigation.panel.Visible=false;openStore(action);return end
   if action~='Play' then return end
-  closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
-  networkRequest:FireServer({action='GetState'})
+  openExpedition('Details')
  end)
  local rejoinButton=require(script.Parent.LobbyRejoinButton).create(gui,function()
-  closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
-  networkRequest:FireServer({action='GetState'})
+  openExpedition('Details')
  end)
  local function refreshNavigation()
   local visible=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle' and not Chrome.blocked(p)

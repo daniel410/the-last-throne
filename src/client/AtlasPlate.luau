@@ -42,8 +42,7 @@ local function drawTexture(data, width, height)
 end
 
 -- Keep a bounded terrain layer for clients without editable-image support.
-local function drawTerrain(frame, data, width, height, detail)
- local columns, rows, stops = detail and 8 or 6, detail and 64 or 48, 16
+local function drawBands(frame, data, width, height, columns, rows, stops)
  local colors = {}
  for i = 0, paletteSize-1 do
   local p = 4 + i * 3
@@ -53,7 +52,7 @@ local function drawTerrain(frame, data, width, height, detail)
  for y = 0, rows-1 do
   for x = 0, columns-1 do
    local band = Instance.new("Frame")
-   band.Name = "TerrainBand"
+   band.Name = "ArtBand"
    band.BorderSizePixel = 0
    band.BackgroundColor3 = Color3.new(1,1,1)
    band.Position = UDim2.fromScale(x/columns, y/rows)
@@ -78,11 +77,7 @@ local function drawTerrain(frame, data, width, height, detail)
  end
 end
 
-function Plate.draw(parent, zoneId, detail)
- -- A replicated sibling is not guaranteed to be available when the
- -- menu first opens. Let the canvas use its surveyed geometry until it is.
- local plates = script.Parent:FindFirstChild("AtlasPlates")
- local entry = plates and plates:FindFirstChild("Relief_"..zoneId)
+local function drawEntry(parent, entry, name, columns, rows, stops)
  if not entry or not entry:IsA("StringValue") or entry.Value == "" then return nil end
  local decoded, data = pcall(function()
   return encoding:DecompressBuffer(encoding:Base64Decode(buffer.fromstring(entry.Value)), Enum.CompressionAlgorithm.Zstd)
@@ -93,14 +88,26 @@ function Plate.draw(parent, zoneId, detail)
  local relief = useTextures and drawTexture(data,width,height)
  if not relief then
   relief = Instance.new("Frame")
-  drawTerrain(relief,data,width,height,detail)
+  drawBands(relief,data,width,height,columns,rows,stops)
  end
- relief.Name = "Relief"
+ relief.Name = name
  relief.BackgroundTransparency = 1
  relief.ClipsDescendants = true
  relief.Size = UDim2.fromScale(1,1)
  relief.Parent = parent
+ return relief, Vector2.new(width,height)
+end
+
+function Plate.draw(parent, zoneId, detail)
+ -- Let the canvas use its surveyed geometry until the art replicates.
+ local plates = script.Parent:FindFirstChild("AtlasPlates")
+ local entry = plates and plates:FindFirstChild("Relief_"..zoneId)
+ local relief = drawEntry(parent,entry,"Relief",detail and 8 or 6,detail and 64 or 48,16)
  return relief
+end
+
+function Plate.drawIcon(parent, entry)
+ return drawEntry(parent,entry,"LeaguePartyIcon",2,23,14)
 end
 
 function Plate.shade(relief, tint)
@@ -108,7 +115,7 @@ function Plate.shade(relief, tint)
   relief.ImageColor3 = tint
  else
   for _, band in ipairs(relief:GetChildren()) do
-   if band.Name == "TerrainBand" then band.BackgroundColor3 = tint end
+   if band.Name == "ArtBand" then band.BackgroundColor3 = tint end
   end
  end
 end

@@ -16,6 +16,13 @@ local ok,err=xpcall(function()
  check(hero.Image=='rbxassetid://101441413467224','uses actual TD hero override')
  check(nav.rail.Maps.PictureViewport.NavigationIcon.Image=='rbxassetid://127394633978202','uses actual TD map')
  check(shop.ImageRectSize.Y==262,'TD body crop excludes original plaque')
+ local party=nav.rail.Party
+ local partyPicture=party.PictureViewport.NavigationIcon
+ local leagueArt=partyPicture:FindFirstChild('LeaguePartyIcon')
+ check(party.Caption.Text=='PARTY','party uses the lobby caption')
+ check(leagueArt and partyPicture.ImageTransparency==1 and partyPicture:GetAttribute('NavigationSource')=='LeagueOfThrone','party displays the embedded LoT original')
+ check(party.PictureViewport:GetAttribute('PictureSize')==Vector2.new(126,86),'party uses the LoT crop ratio')
+ check(leagueArt:IsA('ImageLabel') and leagueArt.ImageContent.Object~=nil or #leagueArt:GetChildren()>0,'party has rendered pixels or fallback bands')
  for _,entry in ipairs(nav.rail:GetChildren())do if entry:IsA('TextButton')then
   check(entry.NavigationPlaqueArt.Image=='rbxassetid://127394633978202','same Maps nameplate for every entry')
   check(entry.NavigationPlaqueArt.AbsoluteSize.X<=entry.AbsoluteSize.X,'TD plaque stays inside tile')

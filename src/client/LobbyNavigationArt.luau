@@ -2,17 +2,18 @@
 local RS=game:GetService('ReplicatedStorage')
 local TextService=game:GetService('TextService')
 local T=require(script.Parent.TDInventoryTheme)
+local AtlasPlate=require(script.Parent.AtlasPlate)
 local TD=require(RS.Shared.TDUI.LobbyHomeArtAssets)
 local RPG=require(RS.Shared.RPGNavigationArt)
 local Art={}
-local keys={Heroes='hero',Quest='quests',Maps='maps',DiamondShop='shop'}
+local keys={Heroes='hero',Quest='quests',Maps='maps',DiamondShop='shop',Party='party'}
 function Art.layout(button)
  local size=button.AbsoluteSize
  if size.X<=0 or size.Y<=0 then return end
  local viewport=button.PictureViewport
  local picture=viewport.NavigationIcon
  local plate=button.NavigationPlaqueArt
- local crop,plaqueCrop=picture.ImageRectSize,plate.ImageRectSize
+ local crop,plaqueCrop=viewport:GetAttribute('PictureSize') or picture.ImageRectSize,plate.ImageRectSize
  -- Match TD LobbyHomeArt's fitted .98 x .72 picture and .98 x .30 plaque.
  -- Keep the RPG's joined edges, but never enlarge either visible surface to
  -- fill the unused space left by the other one's aspect ratio.
@@ -59,6 +60,17 @@ function Art.apply(button,id)
  local picture=T.sprite(viewport,'NavigationIcon','body',UDim2.new(),UDim2.fromScale(1,1),{
   image=source.image,width=source.width,height=source.height,renderWidth=source.renderWidth,renderHeight=source.renderHeight,regions={body=body}})
  picture.ZIndex=3;picture:SetAttribute('NavigationSource',key and 'TD' or 'RPG-TD-frame')
+ local embedded
+ if id=='Party' then
+  local size
+  embedded,size=AtlasPlate.drawIcon(picture,script.Parent:WaitForChild('LobbyPartyIcon',5))
+  if embedded then
+   picture.ImageTransparency=1
+   picture:SetAttribute('NavigationSource','LeagueOfThrone')
+   viewport:SetAttribute('PictureSize',size)
+   embedded.ZIndex=picture.ZIndex
+  end
+ end
  local plaque=TD.navigationPlaque
  local plate=T.sprite(button,'NavigationPlaqueArt','plate',UDim2.fromScale(.01,.70),UDim2.fromScale(.98,.30),{
   image=plaque.image,width=plaque.width,height=plaque.height,renderWidth=plaque.renderWidth,renderHeight=plaque.renderHeight,regions={plate=plaque.region}})
@@ -66,7 +78,10 @@ function Art.apply(button,id)
  local resizeConnection=button:GetPropertyChangedSignal('AbsoluteSize'):Connect(function()Art.layout(button)end)
  button.Destroying:Connect(function()resizeConnection:Disconnect()end)
  Art.layout(button)
- local function tint(value)picture.ImageColor3=value;plate.ImageColor3=value end
+ local function tint(value)
+  picture.ImageColor3=value;plate.ImageColor3=value
+  if embedded then AtlasPlate.shade(embedded,value) end
+ end
  button.MouseEnter:Connect(function()tint(Color3.fromRGB(222,238,255))end)
  button.MouseLeave:Connect(function()tint(Color3.new(1,1,1))end)
  button.SelectionGained:Connect(function()tint(Color3.fromRGB(222,238,255))end)
