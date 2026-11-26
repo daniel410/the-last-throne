@@ -174,12 +174,18 @@ case('combat HUD',function()
    if group==bar or b.Name=='Ultimate' then
     local frame=b:FindFirstChild('TDButtonArt')
     check(frame and frame.Size==UDim2.fromScale(1,1),'original HUD frame fills the slot '..b.Name)
-    local height=group==bar and (bar.UIScale.Scale<.85 and 110 or 90) or 96
-    check(b.Size==UDim2.fromOffset(64,height),'HUD slot keeps its width and reduced height '..b.Name)
+    local height=group==bar and 78 or 96
+    check(b.Size==UDim2.fromOffset(64,height),'HUD slot has the approved dimensions '..b.Name)
+    if group==bar then
+     check(b.Caption.Position.Y.Offset==54,'HUD caption starts at the approved offset '..b.Name)
+    end
    end
    local icon=b:FindFirstChild('SkillIcon') or b:FindFirstChild('PotionIcon')
    if icon and icon.Visible then
     inside(icon,b,'HUD icon stays inside slot '..b.Name)
+    if group==bar then
+     check(icon.Position==UDim2.fromOffset(8,6) and icon.Size==UDim2.fromOffset(48,48),'HUD icon has the approved size and position '..b.Name)
+    end
     check(icon.AbsoluteSize.X>=b.AbsoluteSize.X*.72 and icon.AbsoluteSize.Y>=b.AbsoluteSize.X*.72,'HUD icon occupies about three quarters of slot width '..b.Name..' '..tostring(size))
     if icon.Name=='PotionIcon' then
      check(icon.ItemIllustration.ImageRectSize.X<=102 and not icon:FindFirstChild('SizeMark',true),'HUD potion uses a tight crop and shows its size in the caption')
@@ -197,7 +203,7 @@ case('combat HUD',function()
     if count and count.Visible then
      check(count.TextFits and count.TextBounds.Y>0,'HUD timer or count renders '..b.Name)
      separate(count,b.Hint,'HUD timer or count clears key '..b.Name)
-     separate(count,icon,'HUD timer or count clears icon '..b.Name)
+     check(count.ZIndex>icon.ZIndex,'HUD timer or count stays above the icon '..b.Name)
     end
    else
     separate(b.Caption,b.Hint,'HUD action caption clears key '..b.Name)
