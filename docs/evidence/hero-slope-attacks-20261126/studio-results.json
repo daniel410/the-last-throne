@@ -1,0 +1,602 @@
+{
+  "studioMode": "isolated native fixtures",
+  "focus": {
+    "0.115.130": {
+      "observations": {
+        "Ally contact 3": {
+          "offRadius": 0,
+          "below": 10,
+          "segments": 12,
+          "above": 10
+        },
+        "Self contact 1": {
+          "offRadius": 0,
+          "below": 22,
+          "segments": 24,
+          "above": 22
+        },
+        "Ally contact 1": {
+          "offRadius": 0,
+          "below": 10,
+          "segments": 12,
+          "above": 10
+        },
+        "Self contact 3": {
+          "offRadius": 0,
+          "below": 22,
+          "segments": 24,
+          "above": 22
+        },
+        "Self contact 2": {
+          "offRadius": 0,
+          "below": 22,
+          "segments": 24,
+          "above": 22
+        },
+        "Ally windup 4": {
+          "offRadius": 0,
+          "below": 10,
+          "segments": 12,
+          "above": 10
+        },
+        "Self windup 3": {
+          "offRadius": 0,
+          "below": 22,
+          "segments": 24,
+          "above": 22
+        },
+        "Ally windup 3": {
+          "offRadius": 0,
+          "below": 10,
+          "segments": 12,
+          "above": 10
+        },
+        "Self windup 4": {
+          "offRadius": 0,
+          "below": 22,
+          "segments": 24,
+          "above": 22
+        },
+        "Ally contact 2": {
+          "offRadius": 0,
+          "below": 10,
+          "segments": 12,
+          "above": 10
+        },
+        "Ally contact 4": {
+          "offRadius": 0,
+          "below": 10,
+          "segments": 12,
+          "above": 10
+        },
+        "Self contact 4": {
+          "offRadius": 0,
+          "below": 22,
+          "segments": 24,
+          "above": 22
+        }
+      },
+      "checks": 105,
+      "failures": [
+        "Self contact 1 follows both sides of the incline",
+        "Self authored contact 1",
+        "Self uses one release silhouette 1",
+        "Self contact 2 follows both sides of the incline",
+        "Self authored contact 2",
+        "Self uses one release silhouette 2",
+        "Self windup 3 follows both sides of the incline",
+        "Self contact 3 follows both sides of the incline",
+        "Self authored contact 3",
+        "Self uses one release silhouette 3",
+        "Self windup 4 follows both sides of the incline",
+        "Self contact 4 follows both sides of the incline",
+        "Self authored contact 4",
+        "Self uses one release silhouette 4",
+        "Self three staged crags",
+        "Self crag starts at its own surface",
+        "Self crag starts at its own surface",
+        "Self crag starts at its own surface",
+        "Self matching descent/landing count 1",
+        "Self matching descent/landing count 2",
+        "Self matching descent/landing count 3",
+        "Self matching descent/landing count 4",
+        "Ally contact 1 follows both sides of the incline",
+        "Ally authored contact 1",
+        "Ally uses one release silhouette 1",
+        "Ally contact 2 follows both sides of the incline",
+        "Ally authored contact 2",
+        "Ally uses one release silhouette 2",
+        "Ally windup 3 follows both sides of the incline",
+        "Ally contact 3 follows both sides of the incline",
+        "Ally authored contact 3",
+        "Ally uses one release silhouette 3",
+        "Ally windup 4 follows both sides of the incline",
+        "Ally contact 4 follows both sides of the incline",
+        "Ally authored contact 4",
+        "Ally uses one release silhouette 4",
+        "Ally three staged crags",
+        "Ally crag starts at its own surface",
+        "Ally crag starts at its own surface",
+        "Ally crag starts at its own surface",
+        "Ally matching descent/landing count 1",
+        "Ally matching descent/landing count 2",
+        "Ally matching descent/landing count 3",
+        "Ally matching descent/landing count 4",
+        "knight.steel_knight.sweeping_break folds the weapon elbow R6",
+        "knight.steel_knight.sweeping_break folds the weapon elbow R15",
+        "dwarf.iron_axe.mountain_sweep folds the weapon elbow R6",
+        "dwarf.iron_axe.mountain_sweep folds the weapon elbow R15",
+        "Arrow Rain lowers bow on the last shot",
+        "Arrow Rain redraws between volleys",
+        "Earth Rise lifts palm and braces the front leg",
+        "Partial support clips the outline at a ledge",
+        "No outline over the void",
+        "No outline over the void",
+        "No outline over the void",
+        "No outline over the void",
+        "No outline over the void",
+        "No outline over the void",
+        "No outline over the void",
+        "No outline over the void",
+        "Two supported levels do not produce a floating bridge"
+      ],
+      "pass": false,
+      "overlap": {
+        "beams": 135,
+        "active": 5,
+        "warningSegments": 16,
+        "surfaces": 139,
+        "particles": 8,
+        "glows": 24
+      }
+    },
+    "0.115.131": {
+      "observations": {
+        "Ally contact 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 1": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally contact 1": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Self contact 2": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally windup 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self windup 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally windup 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self windup 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally contact 2": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Ally contact 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        }
+      },
+      "checks": 129,
+      "failures": [],
+      "pass": true,
+      "overlap": {
+        "beams": 20,
+        "active": 5,
+        "warningSegments": 16,
+        "surfaces": 4,
+        "particles": 0,
+        "glows": 0
+      }
+    },
+    "0.115.132": {
+      "observations": {
+        "Ally contact 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 1": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally contact 1": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Self contact 2": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally windup 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self windup 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally windup 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self windup 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally contact 2": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Ally contact 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        }
+      },
+      "checks": 132,
+      "failures": [],
+      "pass": true,
+      "overlap": {
+        "beams": 20,
+        "active": 5,
+        "warningSegments": 16,
+        "surfaces": 4,
+        "particles": 0,
+        "glows": 0
+      }
+    },
+    "0.115.133": {
+      "observations": {
+        "Ally contact 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 1": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally contact 1": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Self contact 2": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally windup 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self windup 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally windup 3": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self windup 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        },
+        "Ally contact 2": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Ally contact 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 12,
+          "above": 0
+        },
+        "Self contact 4": {
+          "offRadius": 0,
+          "below": 0,
+          "segments": 24,
+          "above": 0
+        }
+      },
+      "checks": 132,
+      "failures": [],
+      "pass": true,
+      "overlap": {
+        "beams": 20,
+        "active": 5,
+        "warningSegments": 16,
+        "surfaces": 4,
+        "particles": 0,
+        "glows": 0
+      }
+    }
+  },
+  "regression": {
+    "version": "0.115.133",
+    "checks": 259564,
+    "suites": [
+      {
+        "name": "hero-skills",
+        "checks": 244520,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "ranged-action-poses",
+        "checks": 158,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "melee-action-beats",
+        "checks": 2147,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-ground-impact",
+        "checks": 128,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-ground-beats",
+        "checks": 103,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-vfx-priority",
+        "checks": 28,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-line-contact",
+        "checks": 158,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-force-feedback",
+        "checks": 81,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "skill-vfx-individual",
+        "checks": 307,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "skill-icon-vfx",
+        "checks": 8102,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "skill-vfx-art",
+        "checks": 44,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-skill-sockets",
+        "checks": 16,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-skill-windup",
+        "checks": 1400,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-skill-impact",
+        "checks": 761,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-posture-break",
+        "checks": 187,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-guard-waves",
+        "checks": 68,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-weapon-releases",
+        "checks": 40,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-burst-contact",
+        "checks": 56,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-directional-releases",
+        "checks": 72,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-slow-presentation",
+        "checks": 157,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-pulse-rhythm",
+        "checks": 219,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "projectile-vfx-timing",
+        "checks": 312,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-windup-interrupt",
+        "checks": 217,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "rpg-vfx-motion",
+        "checks": 190,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "rpg-element-motion",
+        "checks": 42,
+        "pass": true,
+        "failures": []
+      },
+      {
+        "name": "hero-forward-impact",
+        "checks": 51,
+        "pass": true,
+        "failures": []
+      }
+    ]
+  },
+  "previewRegression": {
+    "version": "0.115.132",
+    "failures": [
+      {
+        "name": "hero-force-feedback",
+        "checks": 81,
+        "pass": false,
+        "failures": [
+          "Stone Lance extends the guiding elbow on release"
+        ]
+      }
+    ]
+  },
+  "cpu": {
+    "advancedSkills": 1435,
+    "skillEffects": 12422,
+    "skillStatPreview": 1392,
+    "unchangedBaselineFailures": [
+      "skill-presentation: Lua parse error on Luau compound assignment",
+      "advanced-mode-damage: obsolete rules18 assertion"
+    ]
+  },
+  "artifactStaticChecks": 336,
+  "publishedClient": false,
+  "physicalDevice": false
+}
