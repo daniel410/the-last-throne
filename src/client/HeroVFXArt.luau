@@ -83,8 +83,8 @@ function Art.strokes(r,c,line,curve)
      local edge=line(r,kind..'Edge',function(u)
       local tail=math.clamp(1-u*r.life/.18,0,1)
       return c.last-delta.Unit*length*tail+flank*math.min(1,length)*tail,c.last
-     end,stone and .22 or .20,r.hot,.085,true)
-     if edge then edge.fadeDuration=.18 end
+     end,stone and .24 or .23,r.hot,.095,true)
+     if edge then edge.fadeDuration=stone and .20 or .18 end
     end
    end
   end
@@ -100,12 +100,12 @@ function Art.strokes(r,c,line,curve)
    local tip=Geometry.floor(center+axis*reach,c.character,.13)
    local lead=line(r,'StoneboundImpact',function(u)
     local age=u*r.life
-    return center,center:Lerp(hinge,.46+.54*math.clamp(age/.06,0,1))
-   end,.34,r.hot,.20,true)
+    return center,center:Lerp(hinge,.57+.43*math.clamp(age/.05,0,1))
+   end,.44,r.hot,.23,true)
    local fault=line(r,'StoneboundFault',function(u)
     local phase=math.clamp((u*r.life-.037)/.105,0,1)
     return hinge,hinge:Lerp(tip,phase)
-   end,.22,r.color,.095,true)
+   end,.30,r.color,.11,true)
    if lead then lead.fadeDuration=.20 end
    if fault then fault.fadeDuration=.31 end
   end
@@ -605,22 +605,23 @@ function Art.surfaces(r,c)
   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
   local delta=c.last-start
   if delta.Magnitude>.3 and not r.compact then
-   local length=math.min(delta.Magnitude,2.45)
+   local length=math.min(delta.Magnitude,2.85)
    local axis=delta.Unit
    local frame=CFrame.lookAt(c.last,c.last+axis)
    local tail=c.last-axis*length
    local waist=c.last-axis*length*.63
-   local radius=math.min(length*.19,.43)
+   local radius=math.min(length*.22,.61)
    local firstFace=#r.faces+1
    local center=(tail+c.last)*.5
-   local core=S.volume(r,'StoneLanceVolume',center,Vector3.new(radius,radius*.82,length),
-    r.color,.18,'wedge',Enum.Material.Slate)
+   local core=S.volume(r,'StoneLanceVolume',center,Vector3.new(radius*1.12,radius,length),
+    Color3.fromRGB(181,129,79),.13,'wedge',Enum.Material.Slate)
    orient(r,core,CFrame.lookAt(center,c.last))
    for side=-1,1,2 do
-    S.triangle(r,'StoneLanceFacet',tail,waist+frame.RightVector*radius*side,c.last,
-     r.color:Lerp(side==1 and r.hot or Color3.new(0,0,0),.28),.19,Enum.Material.Slate)
+    local corner=waist+frame.RightVector*radius*side+frame.UpVector*radius*(side==1 and .82 or -.42)
+    local color=side==1 and Color3.fromRGB(237,190,132) or Color3.fromRGB(161,102,65)
+    S.triangle(r,'StoneLanceFacet',tail,corner,c.last,color,.12,Enum.Material.Slate)
    end
-   for i=firstFace,#r.faces do r.faces[i].fadeDuration=.16 end
+   for i=firstFace,#r.faces do r.faces[i].fadeDuration=.195 end
   end
  elseif kind=='VanguardStrike' or kind=='PiercingLine' then
   -- The equipped weapon and its short wake carry the release silhouette.
