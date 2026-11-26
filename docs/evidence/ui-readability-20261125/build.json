@@ -1,0 +1,26 @@
+{
+  "version": "0.115.130",
+  "sourceCommit": "517933331605bd7141cebcc5c2250ad85fc7b077",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "<frozen source>/default.project.json",
+        "-o",
+        "builds/0.115.130/TheLastThrone-0.115.130.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.130.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.130/TheLastThrone-0.115.130.rbxlx",
+      "sha256": "c9e975658adc4ced45ff83e38ba72f56b4bd2f21709ef7defcf0eed354c3835d",
+      "bytes": 27055050
+    }
+  ],
+  "toolVersion": "Rojo 7.7.1"
+}

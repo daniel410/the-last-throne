@@ -1,0 +1,87 @@
+{
+  "version": "0.115.130",
+  "sourceCommit": "517933331605bd7141cebcc5c2250ad85fc7b077",
+  "environment": "Roblox Studio Edit, isolated local Place and viewport fixtures",
+  "pass": true,
+  "groups": {
+    "MOBILE_UI_AUDIT_NATIVE": {
+      "checks": 3154,
+      "pass": true
+    },
+    "MOBILE_LANDSCAPE_DETAILS_NATIVE": {
+      "checks": 1552,
+      "pass": true
+    },
+    "MOBILE_MENU_STATS_NATIVE": {
+      "checks": 920,
+      "pass": true
+    },
+    "INVENTORY_MOBILE_LAYOUT_NATIVE": {
+      "checks": 70,
+      "pass": true
+    },
+    "LOBBY_PANEL_SIZE_NATIVE": {
+      "checks": 212,
+      "pass": true
+    },
+    "LOBBY_ATLAS_NATIVE": {
+      "checks": 87,
+      "pass": true
+    },
+    "LOBBY_QUEST_JOURNAL_NATIVE": {
+      "checks": 106,
+      "pass": true
+    },
+    "DAILY_LOGIN_UI_NATIVE": {
+      "checks": 106,
+      "pass": true
+    },
+    "SUPPORTER_DETAILS_NATIVE": {
+      "checks": 1346,
+      "pass": true
+    },
+    "SHOP_AFFORDABILITY_NATIVE": {
+      "checks": 30,
+      "pass": true
+    },
+    "LOBBY_TOP_MENU_NATIVE": {
+      "checks": 71,
+      "pass": true
+    },
+    "LOBBY_WALLET_NATIVE": {
+      "checks": 37,
+      "pass": true
+    },
+    "LOBBY_HERO_DOCK_NATIVE": {
+      "checks": 550,
+      "pass": true
+    },
+    "LOBBY_NAVIGATION_ICON_NATIVE": {
+      "checks": 33,
+      "pass": true
+    },
+    "LOBBY_NAVIGATION_GRID_NATIVE": {
+      "checks": 1858,
+      "pass": true
+    },
+    "BATTLE_MENU_NATIVE": {
+      "checks": 62,
+      "pass": true
+    },
+    "K0_RESOURCE_UI_NATIVE": {
+      "checks": 28780,
+      "pass": true
+    },
+    "CHECKPOINT_MAP_NATIVE": {
+      "checks": 25,
+      "pass": true
+    }
+  },
+  "totalChecks": 38999,
+  "packageChecks": [
+    "place-role: 10 checks PASS",
+    "arrival-loading: 326 checks PASS",
+    "single-build: project mounts and compatibility alias PASS",
+    "single-build: actual artifact role/config/loading checks PASS"
+  ]
+}
