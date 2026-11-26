@@ -113,7 +113,8 @@ return {
 		usedSkill = {title = "Cast from the skill bar", keyboard = "Press 1, 2, or 3 to use an equipped skill. The slot counts down until it is ready.", touch = "Tap an equipped skill in the bottom bar. The slot counts down until it is ready.", gamepad = "Press Y, X, or L1 to use an equipped skill. The slot counts down until it is ready."},
 		cast = {title = "Hit with a skill", keyboard = "Face the marked foe and cast a ready damage skill. Step closer if you miss or cover blocks the hit."},
 		followUp = {title = "Follow up with a basic attack", keyboard = "Left-click to land a basic hit while your skill recharges.", touch = "Tap Attack to land a basic hit while your skill recharges.", gamepad = "Press R2 to land a basic hit while your skill recharges."},
-		complete = {title = "Combat training complete", keyboard = "Use Return to Hub in the map menu. In Dawnspire, open Blacksmith > Enhance > Practice +1."},
+		complete = {title = "Combat training complete"},
+		Continue = "CONTINUE TO +1 PRACTICE",
 	},
 	Lobby = {
 		Title = "THE LAST THRONE",

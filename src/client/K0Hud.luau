@@ -348,6 +348,10 @@ function Hud.create()
 	objective.TextWrapped = true
 	local note = text(practice, "Note", "", UDim2.fromOffset(12, 83), UDim2.new(1, -24, 0, 34), 13, COLORS.cream)
 	note.TextWrapped = true
+	local continueTraining = Theme.button(practice, "ContinueTraining", Text.Practice.Continue,
+		UDim2.fromOffset(12, 56), UDim2.new(1, -24, 0, 44), true)
+	continueTraining.ZIndex = coachArt.ZIndex + 1
+	continueTraining.Visible = false
  for _,label in ipairs(practice:GetChildren()) do if label:IsA("TextLabel") then
   label.TextStrokeColor3 = Color3.new(0,0,0)
   label.TextStrokeTransparency = .3
@@ -359,6 +363,8 @@ function Hud.create()
 		local coaching = practiceProgress ~= nil
 		practice.Visible = coaching or storyTracker ~= nil
 		coachArt.Visible = coaching
+		continueTraining.Visible = false
+		note.Visible = true
 		practice.Size = UDim2.fromOffset(status.Size.X.Offset, coaching and 112 or 120)
 		objective.Size = UDim2.new(1, -24, 0, coaching and 24 or 48)
 		note.Position = UDim2.fromOffset(12, coaching and 55 or 83)
@@ -369,12 +375,14 @@ function Hud.create()
 			local introSteps = TrainingTutorial.skillChapterStart - 1
 			if key == "complete" then
 				practiceTitle.Text = Text.PracticeTitle
+				note.Visible = false
+				continueTraining.Visible = true
 			elseif index <= introSteps then
 				practiceTitle.Text = string.format(Text.Practice.Progress, Text.Practice.Basics, index, introSteps)
 			else
 				practiceTitle.Text = string.format(Text.Practice.Progress, Text.Practice.Skills, index - introSteps, #TrainingTutorial.order - introSteps)
 			end
-			objective.Text, note.Text = lesson.title, lesson[practiceInput] or lesson.keyboard
+			objective.Text, note.Text = lesson.title, lesson[practiceInput] or lesson.keyboard or ""
 		elseif storyTracker then
 			practiceTitle.Text, objective.Text, note.Text = storyTracker.title, storyTracker.objective, storyTracker.note
 		end
@@ -480,6 +488,7 @@ function Hud.create()
 		items = itemButtons,
 		dodge = dodge,
 		back = back,
+		continueTraining = continueTraining,
 		mapMenu=minimap.fullMap,heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,settingsMenu=minimap.settings,
 		setVisible = function(visible)
 			gui.Enabled = visible

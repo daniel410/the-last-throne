@@ -58,11 +58,13 @@ function M.start()
   delivery.close()
   armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false;daily.panel.Visible=false;if sideGuide then sideGuide.close()end
  end
- local function openStore(kind)
+ local function openStore(kind,mode)
   if kind=='Mailbox'or kind=='RedeemCode'then closePanels();delivery.open(kind);return end
   if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
   local target=kind=='Blacksmith' and armory or kind=='DiamondShop' and diamonds or items;local wasOpen=target.panel.Visible
-  closePanels();target.panel.Visible=not wasOpen
+  closePanels()
+  if mode then target.setMode(mode) end
+  target.panel.Visible=mode~=nil or not wasOpen
   if target.panel.Visible then
    if not pending then message='' end
    if latest then inventory(latest) end
@@ -84,6 +86,7 @@ function M.start()
   if p:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')=='Battle' then return end
   if action=='SideQuests'then sideGuide.open();return end
   if action=='FindTessa'then sideGuide.find();return end
+  if action=='BlacksmithPractice'then navigation.panel.Visible=false;openStore('Blacksmith','Practice');return end
   if action=='Mailbox' or action=='RedeemCode' or action=='DiamondShop' or action=='LoginRewards' then navigation.panel.Visible=false;openStore(action);return end
   if action~='Play' then return end
   closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true

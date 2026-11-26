@@ -43,6 +43,7 @@ require(script.SkillUnlockNotice).start(player)
 local battle,startingBattle
 local lobby,inventory,growthGui,settingsGui
 local heroSnapshot,heroRequestRemote,pendingRequest
+local lobbyContinuation
 local pendingHeroDeparture=false
 local requestSequence,lastRevision=0,-1
 local function cancelBattle()
@@ -51,7 +52,7 @@ end
 local function feedback(message)
  if battle then battle.feedback(message)end
 end
-local function requestHero(action, argument)
+local function requestHero(action, argument, onLobbyReady)
 	if pendingRequest then return end
 	if not heroRequestRemote then
 		if lobby then lobby.showError("Unavailable") end
@@ -61,12 +62,16 @@ local function requestHero(action, argument)
 	requestSequence += 1
 	local requestId = "ui-" .. tostring(requestSequence)
 	pendingRequest = requestId
+	if onLobbyReady then
+		lobbyContinuation = {requestId = requestId, run = onLobbyReady}
+	end
 	lobby.setBusy(true)
 	if action=='StartTutorial' then pendingHeroDeparture=true;require(script.AdventureStartingNotice).setPending(true)end
 	heroRequestRemote:FireServer(action, requestId, argument)
 	task.delay(8, function()
 		if pendingRequest ~= requestId then return end
 		pendingRequest = nil
+		if lobbyContinuation and lobbyContinuation.requestId == requestId then lobbyContinuation = nil end
 		lobby.setBusy(false)
 		if pendingHeroDeparture then pendingHeroDeparture=false;require(script.AdventureStartingNotice).setPending(false)end
 		lobby.showError("Unavailable")
@@ -117,6 +122,15 @@ local function updateSessionView()
    player:SetAttribute('TLTBattleClientReady',true)
   end)
  elseif battle then battle.update(heroSnapshot)end
+ local continuation = lobbyContinuation
+ if continuation and continuation.accepted then
+  if heroSnapshot.phase == 'SpawnFailed' then
+   lobbyContinuation = nil
+  elseif phase == 'Lobby' and heroSnapshot.phase == 'Lobby' then
+   lobbyContinuation = nil
+   continuation.run()
+  end
+ end
 end
 player:GetAttributeChangedSignal('K0SessionPhase'):Connect(updateSessionView)
 updateSessionView()
@@ -133,6 +147,10 @@ task.spawn(function()
 		if type(value) ~= "table" or type(value.revision) ~= "number" or value.revision < lastRevision then return end
 		if type(value.heroes) ~= "table" then return end
 		lastRevision, heroSnapshot = value.revision, value
+		if lobbyContinuation and (requestId == lobbyContinuation.requestId
+			or errorCode and requestId == nil and pendingRequest == lobbyContinuation.requestId) then
+			if errorCode then lobbyContinuation = nil else lobbyContinuation.accepted = true end
+		end
 		if requestId == pendingRequest or errorCode and requestId == nil then
 			pendingRequest = nil
 			lobby.setBusy(false)

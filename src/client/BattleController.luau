@@ -457,6 +457,12 @@ updateHints()
 
 hud.settingsMenu.Activated:Connect(settingsGui.open)
 hud.back.Activated:Connect(function() requestHero("ReturnLobby") end)
+hud.continueTraining.Activated:Connect(function()
+	if not hud.continueTraining.Visible or not combatInputAllowed() then return end
+	requestHero("ReturnLobby", nil, function()
+		require(script.LobbyMenuBridge):Fire("BlacksmithPractice")
+	end)
+end)
 hud.heroMenu.Activated:Connect(function() growthGui.open("Stats") end)
 hud.growthPoints.Activated:Connect(function() growthGui.open("Stats") end)
 hud.bagMenu.Activated:Connect(function() inventory.open() end)
