@@ -1,0 +1,122 @@
+{
+  "version": "0.115.129",
+  "sourceCommit": "1663aef38eb49cf964471dfb9e8f96d5ad20f36c",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-1663aef3-_pocajrt",
+  "lfsVerified": [
+    {
+      "path": "assets/models/four-family-armor-meshy-v1/runtime.rbxm",
+      "sha256": "3f478f3e63bfba3f98a35ca792df2ad86e1df3a5178cd2f6b670cfb9aa7655e2"
+    },
+    {
+      "path": "assets/models/four-family-shields-meshy-v1/runtime.rbxm",
+      "sha256": "ca20eb19ffa7b5973185c6fc9cd5fe8cdf2607e0b44045f929ccd37716ff8c34"
+    },
+    {
+      "path": "assets/models/four-family-weapons-meshy-v1/runtime.rbxm",
+      "sha256": "bcd9115fa95a96bc71f21e044b0b7382d170ea99d51d4cb81fa7c5ffa412be38"
+    },
+    {
+      "path": "assets/models/headgear-hair-td-v1/runtime.rbxm",
+      "sha256": "04706dfdb908e61b18aed2ed882707232b8134ea33bfea20456745ac234ef678"
+    },
+    {
+      "path": "assets/models/hollowbark-sovereign-td-v1/runtime.rbxmx",
+      "sha256": "19ac602496e02cee749c6e014d788a595939b045bce348dbd3d32531feefd246"
+    },
+    {
+      "path": "assets/models/npc-meshy-5k-v1/runtime.rbxm",
+      "sha256": "5f3167fd442fd05c4ced1723083e0e3725be345baf2ce229f5697ca0e2ceaba7"
+    },
+    {
+      "path": "assets/models/venomcoil-king-v2/runtime.rbxm",
+      "sha256": "f53fbec02d04c3ed6f4e4f28110c3f6e27b4f3b4363f04fa54245482f84b695a"
+    },
+    {
+      "path": "assets/shared/commander-weapon-rigs/runtime.rbxmx",
+      "sha256": "7db6ae1a21692e38f80b77e63e3be2a17097788ed257bf882bd814b9519b81e9"
+    },
+    {
+      "path": "assets/shared/deepwood-weapon-repair/runtime.rbxmx",
+      "sha256": "fa9e8f6ee37b1de35e5510749755e7058d6619ef3d5792fce73e5d6607cb4207"
+    },
+    {
+      "path": "assets/shared/regional-casters/runtime.rbxm",
+      "sha256": "c8d132f86aeda0bddd0b070407856dadeccb8c4c1866ce53a9a7516f9bcee9cf"
+    },
+    {
+      "path": "assets/shared/selene-repaired/runtime.rbxm",
+      "sha256": "f5b63ee4ebf0f8b74e5443dd071d9ce90a78b8d0030f1bf0573dc11be3bc6cc9"
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5"
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/maps.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39"
+    },
+    {
+      "path": "assets/shared/td-ember-caldera/runtime.rbxmx",
+      "sha256": "429c541b1c46c99e6765272e52d984114df73f87284af6d9130b722783d615fb"
+    },
+    {
+      "path": "assets/shared/td-frozen-vale/runtime.rbxmx",
+      "sha256": "ebb5af6690ac7f042e1ecf0dd1cece8674a1fec9e2d4774d1efdae4381f09d11"
+    },
+    {
+      "path": "assets/shared/td-haunted-graveyard/runtime.rbxmx",
+      "sha256": "58700b6a8ccb618c0a2dff6fe01e5d7d773a90a6135281705fbf69c1fd7a6e73"
+    },
+    {
+      "path": "assets/shared/td-monsters/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5"
+    },
+    {
+      "path": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9"
+    },
+    {
+      "path": "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+      "sha256": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823"
+    },
+    {
+      "path": "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+      "sha256": "499dc06be05428916bfc5ad86a9e521eaf1c7376215d88bbd5d6fc40bea87ff8"
+    },
+    {
+      "path": "assets/shared/td-selene-articulated/runtime.rbxmx",
+      "sha256": "82c2faa94940f2d154aea7e34bb01be2138da06e003e12c06b669ef244afd9c4"
+    },
+    {
+      "path": "assets/shared/td-selene/runtime.rbxmx",
+      "sha256": "b72058845b8fe9c14d9532d1519baa415b610c0e7bd3cf2ff2c0ff6cb28e6ef6"
+    },
+    {
+      "path": "src/client/AtlasPlates.rbxmx",
+      "sha256": "80783f13fcd8f0d887ed93c9ec0a3bb58e224c61834470d65c850a2a28a296a6"
+    }
+  ],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-1663aef3-_pocajrt/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.115.129/TheLastThrone-0.115.129.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.115.129.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.115.129/TheLastThrone-0.115.129.rbxlx",
+      "sha256": "df54bda3ee2b3e0d1c869e24dc02a97d4a1212a3900719549c3002efc2f0c409",
+      "bytes": 27052444
+    }
+  ],
+  "toolVersions": {
+    "rojo": "Rojo 7.7.1"
+  }
+}
