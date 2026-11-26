@@ -16,10 +16,10 @@ local MiniMap=require(script.Parent.BattleMinimap)
 local StoryHeading=require(script.Parent.StoryHeading)
 local TrainingTutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local Hud = {}
-local SLOT_ICON_POSITION = UDim2.fromOffset(12, 22)
-local SLOT_ICON_SIZE = UDim2.fromOffset(40, 40)
-local SLOT_HEIGHT = 94
-local TALL_SLOT_HEIGHT = 118
+local SLOT_ICON_POSITION = UDim2.fromOffset(8, 22)
+local SLOT_ICON_SIZE = UDim2.fromOffset(48, 48)
+local SLOT_HEIGHT = 102
+local TALL_SLOT_HEIGHT = 126
 local ULTIMATE_TOP = -SLOT_HEIGHT - 8
 local SLOT_ROW_WIDTH = 528
 local COMPACT_ROW_WIDTH = 472
@@ -522,7 +522,7 @@ function Hud.create()
 				if definition and definition.potionTier then
 					if button:GetAttribute("DefinitionId") ~= definition.id then
 						local old = button:FindFirstChild("PotionIcon"); if old then old:Destroy() end
-						PotionIcon.create(button, definition, SLOT_ICON_POSITION, SLOT_ICON_SIZE)
+						PotionIcon.create(button, definition, SLOT_ICON_POSITION, SLOT_ICON_SIZE, "HUD")
 						button:SetAttribute("DefinitionId", definition.id)
 					end
 					button.Caption.Text = definition.potionSize .. " " .. definition.glyph

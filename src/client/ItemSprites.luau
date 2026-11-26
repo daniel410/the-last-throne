@@ -5,7 +5,7 @@ function Sprites.resolveImage(definition,classId)
  local selected=variants and classId and variants[classId]
  return selected or Atlas.images and Atlas.images[definition.id],selected and (definition.id..':'..classId) or definition.id
 end
-function Sprites.create(parent,definition,position,size,classId)
+function Sprites.create(parent,definition,position,size,classId,variant)
 	local standalone,spriteKey=Sprites.resolveImage(definition,classId)
 	if standalone then
 		local image=Instance.new("ImageLabel")
@@ -20,7 +20,7 @@ function Sprites.create(parent,definition,position,size,classId)
 	if not Atlas.image then return nil end
 	local key=definition.potionTier and definition.id or definition.slot=="weapon" and definition.classId.."_weapon"
 		or Atlas.cells[definition.id] and definition.id or definition.slot
-	local cell=Atlas.cells[key]
+	local cell=(variant == "HUD" and Atlas.hudPotionCells[key]) or Atlas.cells[key]
 	if not cell then return nil end
 	local image=Instance.new("ImageLabel")
 	image.Name,image.BackgroundTransparency,image.Image="ItemIllustration",1,Atlas.image

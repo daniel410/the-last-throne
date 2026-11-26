@@ -157,6 +157,8 @@ case('combat HUD',function()
  character:SetAttribute('K0EquippedSkill1',longest.id)
  character:SetAttribute('K0SkillReady1',workspace:GetServerTimeNow()+99)
  character:SetAttribute('K0ItemCount1',100)
+ character:SetAttribute('K0ItemDefinition2','health_potion_medium')
+ character:SetAttribute('K0ItemCount2',2)
  hud.setHints('R2','L2','B','L3',{'RIGHT','X','L1','LEFT','RIGHT'})
  hud.setCooldowns(character)
  for _,size in ipairs(sizes)do
@@ -172,7 +174,10 @@ case('combat HUD',function()
    local icon=b:FindFirstChild('SkillIcon') or b:FindFirstChild('PotionIcon')
    if icon and icon.Visible then
     inside(icon,b,'HUD icon stays inside slot '..b.Name)
-    check(icon.AbsoluteSize.X>=b.AbsoluteSize.X*.6 and icon.AbsoluteSize.Y>=b.AbsoluteSize.X*.6,'HUD icon occupies at least 60% of slot width '..b.Name..' '..tostring(size))
+    check(icon.AbsoluteSize.X>=b.AbsoluteSize.X*.72 and icon.AbsoluteSize.Y>=b.AbsoluteSize.X*.72,'HUD icon occupies about three quarters of slot width '..b.Name..' '..tostring(size))
+    if icon.Name=='PotionIcon' then
+     check(icon.ItemIllustration.ImageRectSize.X<=102 and not icon:FindFirstChild('SizeMark',true),'HUD potion uses a tight crop and shows its size in the caption')
+    end
     separate(b.Caption,icon,'HUD caption clears icon '..b.Name)
     separate(b.Hint,icon,'HUD key clears icon '..b.Name)
     local count=b:FindFirstChild('ItemCount') or b:FindFirstChild('Cooldown')

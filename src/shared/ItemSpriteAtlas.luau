@@ -62,6 +62,17 @@ return {
 	},
 	image = "rbxassetid://135019494060990",
 	width = 1024, height = 1536, renderWidth = 683, renderHeight = 1024,
+	-- Frame each bottle more tightly for combat while retaining its silhouette.
+	hudPotionCells = {
+		health_potion = {71, 873, 125, 167},
+		health_potion_medium = {315, 816, 150, 224},
+		health_potion_large = {540, 800, 202, 240},
+		health_potion_xl = {784, 788, 221, 252},
+		mana_potion = {71, 1131, 125, 168},
+		mana_potion_medium = {314, 1077, 151, 224},
+		mana_potion_large = {538, 1048, 206, 253},
+		mana_potion_xl = {784, 1040, 223, 264},
+	},
 	cells = {
 		knight_weapon={0,0,256,288}, dwarf_weapon={256,0,256,288}, elf_weapon={512,0,256,288}, mage_weapon={768,0,256,288},
 		offhand={0,288,256,256}, head={256,288,256,256}, body={512,288,256,256}, hands={768,288,256,256},

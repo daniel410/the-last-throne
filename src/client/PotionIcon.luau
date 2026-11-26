@@ -14,7 +14,7 @@ local function part(parent, name, x, y, w, h, color, radius)
 	end
 	return frame
 end
-function Icon.create(parent, definition, position, size)
+function Icon.create(parent, definition, position, size, variant)
 	assert(definition.potionTier and definition.restore, "Potion icon needs a potion definition")
 	local root = Instance.new("Frame")
 	root.Name, root.BackgroundTransparency = "PotionIcon", 1
@@ -23,9 +23,10 @@ function Icon.create(parent, definition, position, size)
 	root:SetAttribute("PotionSize", definition.potionSize)
 	local aspect = Instance.new("UIAspectRatioConstraint")
 	aspect.AspectRatio, aspect.DominantAxis, aspect.Parent = 1, Enum.DominantAxis.Height, root
-	local illustration = Sprites.create(root, definition, UDim2.new(), UDim2.fromScale(1,1))
+	local illustration = Sprites.create(root, definition, UDim2.new(), UDim2.fromScale(1,1), nil, variant)
 	if illustration then
 		aspect:Destroy()
+		if variant == "HUD" then return root end -- The slot caption already gives the size.
 		local glass = part(root, "Glass", 0, 0, 1, 1, Color3.new(1,1,1))
 		glass.BackgroundTransparency=1
 		local mark=Instance.new("TextLabel")
@@ -55,6 +56,7 @@ function Icon.create(parent, definition, position, size)
 	local shine = part(body, "GlassShine", .14, .13, .1, .48, Color3.new(1, 1, 1), .5)
 	shine.BackgroundTransparency = .35
 	if tier >= 3 then part(body, "GoldBand", 0, .78, 1, .08, gold) end
+	if variant == "HUD" then return root end
 	local mark = Instance.new("TextLabel")
 	mark.Name, mark.BackgroundTransparency = "SizeMark", 1
 	mark.Position, mark.Size = UDim2.fromScale(.15, .27), UDim2.fromScale(.7, .6)
