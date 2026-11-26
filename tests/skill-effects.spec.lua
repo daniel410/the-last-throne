@@ -35,7 +35,7 @@ function obj:GetChildren()local out={};for _,x in ipairs(created)do if x.Parent=
 function obj:GetAttribute(k)return self.attributes and self.attributes[k]end
 function obj:GetAttributeChangedSignal(k)self.signals=self.signals or {};self.signals[k]=self.signals[k]or signal();return self.signals[k]end
 Instance={new=function(class)local p=setmetatable({ClassName=class,AncestryChanged=signal(),LocalTransparencyModifier=0},obj);created[#created+1]=p;return p end}
-workspace={FindFirstChild=function()end,GetServerTimeNow=function()return 100 end,Raycast=function(self,from,delta,params)return {Position=V.new(from.X,0,from.Z)}end}
+workspace={FindFirstChild=function()end,GetServerTimeNow=function()return 100 end,Raycast=function(self,from,delta,params)return {Position=V.new(from.X,0,from.Z),Normal=V.yAxis}end}
 local Config=dofile('src/shared/K0Config.luau');local Advanced=dofile('src/shared/AdvancedSkills.luau')
 local pixelPulses=0
 local modules={AdvancedSkills=Advanced,K0Config=Config,PixelFX={skill=function(_,_,_,_,pulse)assert(pulse>0);pixelPulses=pixelPulses+1 end}}

@@ -459,6 +459,14 @@ local function siegeTarget(center,radius,pulse,lane,count)
  local spread=count>1 and math.min(radius*.17,2.2) or 0
  return center+Vector3.new(math.cos(angle)*spread,0,math.sin(angle)*spread)
 end
+local function rainCount(profile,compact)
+ return math.min(profile.lanes,(compact or Input.TouchEnabled) and 3 or 5)
+end
+local function rainFloor(center,radius,pulse,lane,count,character)
+ local angle=(lane-1)*2.39996+(pulse-1)*1.3
+ local spread=radius*math.sqrt(lane/(count+1))*.78
+ return floorAt(center+Vector3.new(math.cos(angle)*spread,0,math.sin(angle)*spread),character)
+end
 
 function FX.groundLead(d)
  local profile=Profiles.get(d.id)
@@ -536,13 +544,10 @@ function FX.incoming(character,d,center,seq,pulse,landingAt,valid)
  local siege=profile.signature=="SiegeShells"
  local spirit=profile.signature=="SpiritCanopy"
  local count=shape=="mortar" and (siege and siegeCount(r.compact) or 1)
-  or math.min(profile.lanes,(r.compact or Input.TouchEnabled) and 3 or 5)
+  or rainCount(profile,r.compact)
  for lane=1,count do
-  local angle=(lane-1)*2.39996+(pulse-1)*1.3
-  local rad=d.radius*math.sqrt(lane/(count+1))*.78
-  local target=shape=="mortar" and (siege and siegeTarget(center,d.radius,pulse,lane,count) or center)
-   or center+Vector3.new(math.cos(angle)*rad,0,math.sin(angle)*rad)
-  local at=floorAt(target,character)
+  local at=shape=="mortar" and floorAt(siege and siegeTarget(center,d.radius,pulse,lane,count) or center,character)
+   or rainFloor(center,d.radius,pulse,lane,count,character)
   if shape=="mortar" then
    shell(r,at,siege)
   else
@@ -958,7 +963,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
   local root=character and character:FindFirstChild("HumanoidRootPart")
   dir=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
  end
- if (d.form=="cone" or d.form=="melee" or cyclone or emberStep or id=="mage.common.mana_bolt")
+ if (d.form=="cone" or d.form=="melee" or cyclone or emberStep or profile.followsFacing or id=="mage.common.mana_bolt")
   and vector(castDirection) and castDirection.Magnitude>.01 then
   dir=castDirection.Unit
  elseif emberStep and (last-first).Magnitude>.01 then
@@ -1371,6 +1376,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     return first+(last-first)*t+basis.RightVector*math.cos(a)*.22+basis.UpVector*math.sin(a)*.22
    end,8,width*.6)
   end
+ elseif id=="elf.marksman.arrow_rain" then
+  local lanes=rainCount(profile,r.compact)
+  for lane=1,lanes do
+   local at=rainFloor(last,d.radius,pulse,lane,lanes,character)
+   local mark=line(r,"ArrowRainLanding",function(u)
+    local settle=math.min(1,u*3)
+    local length=(pulse==d.pulses and 1.3 or .98)*(1-.37*settle)
+    return at+Vector3.yAxis*length,at
+   end,r.compact and .115 or .18,r.hot,.065,true)
+   if mark then mark.fadeDuration=.17 end
+  end
+  r.model:SetAttribute("PrimaryIconCue",true)
  elseif shape=="rain"or shape=="hail"or shape=="ash"then
   if emphasis and (shape=="hail"or shape=="ash") then
    local ice=shape=="hail"

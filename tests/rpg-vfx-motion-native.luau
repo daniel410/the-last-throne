@@ -6,7 +6,7 @@ local function check(v,m)report.checks+=1;assert(v,m)end
 local camera=workspace.CurrentCamera;local old=camera.CFrame;camera.CFrame=CFrame.new(0,8,12)
 local first,last=Vector3.new(0,3,0),Vector3.new(0,3,-8)
 local ok,err=xpcall(function()
- for _,row in ipairs({{'knight_crescent_cut','BladeSurface'},{'mage.pyro.ember_lance','FlameWake'},{'mage_tidal_ring','ElementalSurface'},{'mage.pyro.earth_rise','RuptureShockwave'}})do
+ for _,row in ipairs({{'knight_crescent_cut','BladeSurface'},{'mage.pyro.ember_lance','FlameWake'},{'mage_tidal_ring','ElementalSurface'},{'mage.pyro.earth_rise','RisingCrag'}})do
   Hero.clear();local model=assert(Hero.skill(nil,row[1],first,last,1,{}))
   local face=assert(model:FindFirstChild(row[2],true),row[1])
   local faces={};for _,v in ipairs(model:GetDescendants())do if v.Name==row[2]and v:IsA('BasePart')then faces[#faces+1]={part=v}end end

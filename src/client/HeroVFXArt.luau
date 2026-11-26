@@ -25,6 +25,8 @@ local types={
  ['knight.steel_knight.vanguard_strike']='VanguardStrike',
  ['dwarf.iron_axe.stonebound_leap']='StoneboundLeap',
  ['elf.marksman.piercing_line']='PiercingLine',
+ ['knight.steel_knight.sweeping_break']='SweepingBreak',
+ ['dwarf.iron_axe.mountain_sweep']='MountainSweep',
 }
 function Art.kind(id)return types[id]end
 local function orient(r,p,cf)
@@ -64,6 +66,52 @@ local function releaseWake(r,c,line,name,width,hold,duration)
 end
 function Art.strokes(r,c,line,curve)
  local kind=types[c.id]
+ if kind=='SweepingBreak'then
+  local function edge(t,u)
+   local bearing=math.rad(123-229*t)
+   local reach=c.radius*(.33+.29*math.sin(t*math.pi)^.7+.05*u)
+   local height=.87-2.34*t+.35*math.sin(t*math.pi)
+   return c.first+(c.flat*math.cos(bearing)+c.right*math.sin(bearing))*reach+UP*height
+  end
+  curve(r,'SweepingBreakEdge',edge,r.compact and 5 or 8,r.compact and .24 or .39,r.hot,true)
+  r.model:SetAttribute('PrimaryIconCue',true)
+  return true
+ elseif kind=='MountainSweep'then
+  for i=1,r.compact and 3 or 5 do
+   local lateral=r.compact and i-2 or (i-3)*.55
+   local axis=(c.flat+c.right*lateral*1.26).Unit
+   local from=Geometry.floor(c.floor+axis*c.radius*.25,c.character,.17)
+   local at=Geometry.floor(c.floor+axis*c.radius*(.51-.10*math.abs(lateral)),c.character,.16)
+   local tip=Geometry.floor(c.floor+axis*c.radius*.76,c.character,.20)
+   local delay=(i-1)*(r.compact and .025 or .013)
+   local crest=line(r,'MountainSweepRidge',function(u)
+    local t=math.clamp((u*r.life-delay)/.095,.02,1)
+    return from,from:Lerp(at+UP*(.45-.18*math.abs(lateral)),t)
+   end,.29,r.hot,.15,true)
+   local cleft=line(r,'MountainSweepFault',function(u)
+    local t=math.clamp((u*r.life-delay-.037)/.12,.02,1)
+    return at+UP*.21,at:Lerp(tip,t)+UP*.21*(1-t)
+   end,.21,r.color,.075,true)
+   if crest then crest.delay=delay;crest.fadeDuration=.19 end
+   if cleft then cleft.delay=delay+.037;cleft.fadeDuration=.23 end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true)
+  return true
+ elseif kind=='EarthPillars'then
+  for side=-1,1,2 do
+   local axis=(c.flat+c.right*side*.80).Unit
+   local from=c.floor+UP*.18
+   local at=Geometry.floor(c.last+axis*math.min(c.radius*.52,3.6),c.character,.15)
+   local fault=line(r,'EarthRiseFault',function(u)
+    local t=math.clamp(u*r.life/.14,.03,1)
+    local head=from:Lerp(at,t)+UP*math.sin(t*math.pi)*.33
+    return from:Lerp(at,t*.43),head
+   end,.30,r.hot,.092,true)
+   if fault then fault.fadeDuration=.27 end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true)
+  return true
+ end
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w,color)end
  if kind=='VanguardStrike' or kind=='PiercingLine' or kind=='StoneLance'then
   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
@@ -478,7 +526,7 @@ function Art.surfaces(r,c)
  r.model:SetAttribute('ArtSilhouette',kind)
  if kind=='OathChallenge' or kind=='MarkBreaker' or kind=='DawnBurst' or kind=='BloomShot'
   or kind=='GuardianCounter' or kind=='PiercingRound' or kind=='OathbreakerStrike'
-  or kind=='GunnerShot' or kind=='SparkVolley'then
+  or kind=='GunnerShot' or kind=='SparkVolley' or kind=='SweepingBreak' or kind=='MountainSweep'then
   -- The authored strokes and equipped arrow carry the silhouette.
  elseif kind=='ShellBurst'then
   if not r.compact then
@@ -592,15 +640,20 @@ function Art.surfaces(r,c)
    end
   end
  elseif kind=='EarthPillars'then
-  for i=1,3 do
-   local at=c.floor+c.right*(i-2)*1.4+c.flat*(i%2)*.7
-   local height=i==2 and 3.7 or 2.2+i*.2
-   local crag=S.volume(r,'RisingCrag',at+UP*height*.5,Vector3.new(1.05,height,1.15),Color3.fromRGB(148,110,72),.16,'wedge',Enum.Material.Slate,false,.4)
-   if crag then r.faces[#r.faces].emerge={duration=.18,delay=(i-1)*.014}end
+  for i,offset in ipairs({Vector3.zero,c.right*-1.8+c.flat*1.25,c.right*2.05+c.flat*.52}) do
+   local at=Geometry.floor(c.last+offset,c.character,.035)
+   local height=i==1 and 3.5 or i==2 and 2.6 or 2.0
+   local width=r.compact and .82 or 1.22
+   local pivot=at+UP*height*.5
+   local crag=S.volume(r,'RisingCrag',pivot,Vector3.new(width,height,width*1.16),
+    i==1 and Color3.fromRGB(188,141,92) or Color3.fromRGB(143,104,71),.12,'wedge',Enum.Material.Slate)
+   orient(r,crag,CFrame.new(pivot)*CFrame.Angles(0,(i-2)*.82,0))
+   if crag then
+    local face=r.faces[#r.faces]
+    face.emerge={duration=.13+(i-1)*.022,delay=(i-1)*.036}
+    face.fadeDuration=.36
+   end
   end
-  local start=#r.faces
-  S.arc(r,'RuptureShockwave',c.floor,math.min(c.radius*.5,3),.24,r.color,.72)
-  S.animate(r,start,c.floor,UP,0,true,r.life)
  elseif kind=='StoneLance'then
   local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
   local delta=c.last-start

@@ -7,7 +7,7 @@ local function humanoidModel(part)
   model=model:FindFirstAncestorOfClass("Model")
  end
 end
-function G.floor(position,character,lift,drop)
+local function groundProbe(character)
  local excluded=character and {character} or {}
  local world=workspace:FindFirstChild("DeepwoodK0")
  local enemies=world and world:FindFirstChild("Enemies")
@@ -15,16 +15,20 @@ function G.floor(position,character,lift,drop)
  local params=RaycastParams.new()
  params.FilterType=Enum.RaycastFilterType.Exclude
  params.RespectCanCollide=true
- local start=position+Vector3.yAxis*2
- -- Retry only when another character sits over the painted ground point.
- for _=1,4 do
-  params.FilterDescendantsInstances=excluded
-  local hit=workspace:Raycast(start,-Vector3.yAxis*18,params)
-  if not hit then break end
-  local actor=humanoidModel(hit.Instance)
-  if not actor then return hit.Position+Vector3.yAxis*(lift or .12) end
-  table.insert(excluded,actor)
+ return function(start,length)
+  for _=1,4 do
+   params.FilterDescendantsInstances=excluded
+   local hit=workspace:Raycast(start,-Vector3.yAxis*length,params)
+   if not hit then return nil end
+   local actor=humanoidModel(hit.Instance)
+   if not actor then return hit end
+   table.insert(excluded,actor)
+  end
  end
+end
+function G.floor(position,character,lift,drop)
+ local hit=groundProbe(character)(position+Vector3.yAxis*2,18)
+ if hit then return hit.Position+Vector3.yAxis*(lift or .12) end
  return position-Vector3.yAxis*(drop or 2.6)
 end
 function G.sector(origin,direction,radius,angle,count)
@@ -37,6 +41,41 @@ function G.sector(origin,direction,radius,angle,count)
   points[#points+1]=origin+(forward*math.cos(a)+right*math.sin(a))*radius
  end
  return points
+end
+-- Keep the radius in XZ. Ground height is strictly a rendering adjustment.
+function G.groundSector(points,center,character,maxHeight)
+ local probe=groundProbe(character)
+ local support=probe(center+Vector3.yAxis*.5,1.25)
+ if not support or support.Normal.Y<.65 then return points end
+ local normal=support.Normal
+ local floor=support.Position
+ local projected,normals={},{}
+ for i,point in ipairs(points) do
+  if i==#points and (point-points[1]).Magnitude<.001 then
+   projected[i],normals[i]=projected[1],normals[1]
+  else
+   local planeHeight=(center-point):Dot(normal)/normal.Y
+   local expected=floor.Y+math.clamp(planeHeight,-maxHeight,maxHeight)
+   local start=Vector3.new(point.X,math.min(expected+1.6,floor.Y+maxHeight+.02),point.Z)
+   local length=start.Y-math.max(expected-2.4,floor.Y-maxHeight-.02)
+   local hit=probe(start,length)
+   if hit and hit.Normal.Y>=.65 then
+    projected[i],normals[i]=hit.Position+Vector3.yAxis*.10,hit.Normal
+   end
+  end
+ end
+ local supported={}
+ for i=1,#points-1 do
+  if projected[i] and projected[i+1] then
+   local delta=points[i+1]-points[i]
+   local firstRise=-delta:Dot(normals[i])/normals[i].Y
+   local lastRise=-delta:Dot(normals[i+1])/normals[i+1].Y
+   local rise=projected[i+1].Y-projected[i].Y
+   -- A ramp can meet a landing, while a sharp step between flat faces needs a break.
+   supported[i]=rise>=math.min(firstRise,lastRise)-.65 and rise<=math.max(firstRise,lastRise)+.65
+  end
+ end
+ return projected,supported
 end
 function G.lightning(first,last,count)
  local delta=last-first

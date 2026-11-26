@@ -45,15 +45,20 @@ end
 local function ground(position,character)
  return Geometry.floor(position,character,.08,2.7)
 end
-local function arc(center,direction,radius,angle,color,life,name,compact,pieces)
+local function arc(center,direction,radius,angle,color,life,name,compact,pieces,character,maxHeight)
  local count=angle>=359 and not compact and 24 or 12
  if pieces and active+count>128 then count=12 end
  if pieces and active+count>128 then return end
  local points=Geometry.sector(center,direction,radius,angle,count)
+ local projected,supported=points,nil
+ if maxHeight then projected,supported=Geometry.groundSector(points,center,character,maxHeight) end
  local faint=name=="SkillSector" or name=="SkillTelegraph"
  for i=1,#points-1 do
-  local p=segment(points[i],points[i+1],color,life,.07,name,faint and .65 or nil)
-  if pieces and p then table.insert(pieces,p) end
+  if not supported or supported[i] then
+   local first,last=projected[i],projected[i+1]
+   local p=segment(first,last,color,life,.07,name,faint and .65 or nil)
+   if pieces and p then table.insert(pieces,p) end
+  end
  end
 end
 local function impact(center,color,scale)
@@ -209,7 +214,7 @@ end
 local function groundCue(character,d,seq,point,direction,color,life,compact,findFloor)
  if life~=life or life<=0 then return end
  if not character or type(seq)~="number" then
-  arc(findFloor(point,character),direction,d.radius,360,color,life,"SkillTelegraph",compact)
+  arc(findFloor(point,character),direction,d.radius,360,color,life,"SkillTelegraph",compact,nil,character,d.maxHeight)
   return
  end
  local record={seq=seq,connections={},pieces={}}
@@ -223,7 +228,7 @@ local function groundCue(character,d,seq,point,direction,color,life,compact,find
   return mode~="Dead"
  end
  if not isLive() then return end
- arc(findFloor(point,character),direction,d.radius,360,color,life,"SkillTelegraph",compact,record.pieces)
+ arc(findFloor(point,character),direction,d.radius,360,color,life,"SkillTelegraph",compact,record.pieces,character,d.maxHeight)
  if #record.pieces==0 then return end
  groundCues[character]=record
  local function refresh()
@@ -334,7 +339,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
  local findFloor=bomb and Bomb.floor or ground
  local direction=center-origin
- if (d.form=="cone" or d.form=="melee" or cyclone) and typeof(castDirection)=="Vector3"
+ if (d.form=="cone" or d.form=="melee" or cyclone or vfxProfile and vfxProfile.followsFacing) and typeof(castDirection)=="Vector3"
   and castDirection.Magnitude>.01 and castDirection.Magnitude<math.huge then
   direction=castDirection.Unit
  end
@@ -408,7 +413,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
    task.delay(life,clear)
   end
  elseif d.form=="ground" or d.detonate then
-  arc(targetFloor,direction,d.radius,360,color,.4,"ImpactBoundary",compact)
+  arc(targetFloor,direction,d.radius,360,color,.4,"ImpactBoundary",compact,nil,character,d.maxHeight)
   if d.scatter and pulse<d.pulses and character and type(attackSeq)=="number" and type(startedAt)=="number" then
    local nextAt=startedAt+d.windup+(d.hitDelay or 0)+pulse*d.interval
    -- Recover the locked center from this confirmed scatter position.
@@ -437,7 +442,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  elseif effect=="vine" then
   -- Keep the actual cone boundary if optional roots are culled.
-  if d.form=='cone'then arc(floor,direction,d.range,d.angle,color,.3,'SkillSector')end
+  if d.form=='cone'then arc(floor,direction,d.range,d.angle,color,.3,'SkillSector',compact,nil,character,d.maxHeight)end
  elseif fanLanes then
   if not (primary and primary:GetAttribute("FanRelease")) then
    for lane=1,fanLanes do
@@ -487,7 +492,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
  elseif d.form=="area" or d.form=="cone" or d.form=="melee" then
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
-  arc(floor,direction,radius,angle,color,.3,"SkillSector",compact)
+  arc(floor,direction,radius,angle,color,.3,"SkillSector",compact,nil,character,d.maxHeight)
   if effect=="earth" or effect=="frost" then if not primary then spikes(floor,direction,radius,angle,color,effect)end
   elseif effect=="slash" and ((cragCleave and not primary) or (profile.motion~="spin" and profile.motion~="chop"
    and profile.motion~="cross" and profile.motion~="thrust" and profile.motion~="counter" and id~="dwarf_low_sweep"
@@ -495,7 +500,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
     or id=="knight.paladin.oath_challenge" or id=="knight.paladin.oathbreaker_strike"
     or primary:GetAttribute("HolyMotion")=="RadiantFan"
     or primary:GetAttribute("HolyMotion")=="GuardianWing"
-    or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge"))))) then
+    or primary:GetAttribute("CrescentCutEdge") or primary:GetAttribute("RallyingSlashEdge")
+    or primary:GetAttribute("ArtSilhouette")=="SweepingBreak")))) then
    arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local chargeEdge=primary and ((id=="knight.steel_knight.breaker_charge" and primary:GetAttribute("PrimaryIconCue"))

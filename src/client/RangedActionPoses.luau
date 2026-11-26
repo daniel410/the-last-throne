@@ -41,6 +41,7 @@ local bow = {
     advance=stance(v(16,-12,-8), -20, 24, 19),
     glide=stance(v(14,-19,12), 32, 22, 25),
     sky=stance(v(-16,-12,-10), -23, 24, 32),
+    arrowRain=stance(v(-22,-8,-6), -13, 26, 34),
     vineTrap=stance(v(11,17,-9), 19, 27, 19),
     vineBurst=stance(v(7,-24,12), 14, 29, 30),
     stormArrow=stance(v(-23,13,-8), -9, 26, 32),
@@ -53,6 +54,7 @@ local function bowStance(d)
     if d.id=="elf.magic_archer.vine_trap" then return bow.vineTrap end
     if d.id=="elf.magic_archer.vine_burst" then return bow.vineBurst end
     if d.id=="elf.magic_archer.storm_arrow" then return bow.stormArrow end
+    if d.id=="elf.marksman.arrow_rain" then return bow.arrowRain end
     if d.form=="ground" then return d.ultimate and bow.canopy or bow.sky end
     if d.ultimate and d.form=="cone" then return bow.broadside end
     if d.id=="elf.magic_archer.gliding_shot" then return bow.glide end
@@ -275,6 +277,15 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
         add(pose,"torso",v(-10,8,-5)*recoil)
         add(pose,"leftKnee",v(20*recoil,0,0))
     end
+    if s==bow.arrowRain then
+        -- Look up through the bow and draw again between each descending volley.
+        local lastShot=pulse==d.pulses and recoil or 0
+        add(pose,"neck",v(-16,-7,3)*(load+.65*redraw))
+        add(pose,"left",v(-15,-3,9)*(load+redraw)+v(16,3,-7)*lastShot)
+        add(pose,"right",v(-18,13,-17)*recoil)
+        add(pose,"elbow",v(22*redraw-22*lastShot,0,0))
+        add(pose,"leftKnee",v(20*lastShot+7*redraw,0,0))
+    end
     if s==bow.stormArrow then
         -- Look up through the raised bow, then drop the empty hand below the anchor.
         add(pose,"neck",v(-19,9,0)*load+v(14,-4,0)*recoil)
@@ -457,6 +468,13 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"leftElbow",v(-18*wind+25*follow,0,0))
         add(pose,"right",v(11,5,-8)*follow)
         add(pose,"torso",v(-9,3,4)*follow)
+    end
+    if d.id=="mage.pyro.earth_rise" then
+        -- Keep the staff low while the free palm and front knee lift the crags.
+        add(pose,"left",v(-18,10,-14)*wind+v(43,-9,20)*follow)
+        add(pose,"leftElbow",v(-23*wind+34*follow,0,0))
+        add(pose,"torso",v(12,-7,2)*wind+v(-13,6,-6)*follow)
+        add(pose,"leftKnee",v(11*wind+19*follow,0,0))
     end
     if s == spells.eruption then
         -- The staff braces low while the free palm and chest lift off the crouch.
