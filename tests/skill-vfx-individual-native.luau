@@ -48,7 +48,7 @@ local ok,err=xpcall(function()
  end
  check(#list==6 and rear<-.5 and front<1.5,'Ember Step stays near the server departure and curls back')
  m=cast(A.branches.pyro.skills[7].id)
- check(#beams(m,'StoneLanceAxis')==1 and #beams(m,'EarthFissure')==0,'Stone Lance is airborne rather than a ground earthquake')
+ check(#beams(m,'StoneLanceWake')==1 and #beams(m,'EarthFissure')==0,'Stone Lance is airborne rather than a ground earthquake')
  local cross=A.branches.paladin.skills[11].id
  for pulse=1,2 do
   m=cast(cross,nil,nil,pulse)

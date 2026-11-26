@@ -91,13 +91,13 @@ end
 local function source(character,origin,d)
  if not character then return origin end
  if d.id=="elf.marksman.mark_breaker" or d.id=="elf.magic_archer.bloom_shot" or d.id=="elf.magic_archer.spark_volley"
-  or d.id=="elf.magic_archer.warden_arrow" then
+  or d.id=="elf.magic_archer.warden_arrow" or d.id=="elf.marksman.piercing_line" then
   local nock=character:FindFirstChild("NockedArrow",true)
   if nock and nock:IsA("BasePart") then return nock.Position end
  elseif d.id=="dwarf.iron_axe.breaker_throw" then
   local grip=character:FindFirstChild("WeaponGrip",true)
   if grip and grip:IsA("BasePart") then return grip.Position end
- elseif d.id=="mage.cryo.ice_shard" then
+ elseif d.id=="mage.cryo.ice_shard" or d.id=="mage.pyro.stone_lance" then
   local hand=character:FindFirstChild("LeftHand") or character:FindFirstChild("Left Arm")
   if hand and hand:IsA("BasePart") then return hand.Position end
  end
@@ -457,7 +457,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
     or primary:GetAttribute("ReleaseTrace"))
    local alignSocket=id=="elf.marksman.crossfire" or id=="elf.marksman.heavy_draw" or id=="elf.magic_archer.gliding_shot"
     or id=="elf.marksman.mark_breaker" or id=="elf.magic_archer.bloom_shot" or id=="elf.magic_archer.spark_volley"
-    or id=="elf.magic_archer.warden_arrow"
+    or id=="elf.magic_archer.warden_arrow" or id=="elf.marksman.piercing_line"
    local launch=alignSocket and Geometry.fanLaunch(origin,first,center) or first
    arrow(launch,center,color,character,hasWake)
   end
@@ -519,7 +519,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   elseif primary and primary:GetAttribute("ArtSilhouette")then
    -- The primary owns its length/shape; a full legacy ray would hide the new silhouette.
   else
-   local launch=id=="mage.cryo.ice_shard" and Geometry.fanLaunch(origin,first,center) or first
+   local socketLine=id=="mage.cryo.ice_shard" or id=="mage.pyro.stone_lance" or id=="knight.steel_knight.vanguard_strike"
+   local launch=socketLine and Geometry.fanLaunch(origin,first,center) or first
    segment(launch,center,color,.2,effect=="frost" and .2 or .16,"ElementalTrail")
    if not primary and(effect=="earth" or effect=="frost")then spikes(targetFloor,direction,1,100,color,effect)end
    impact(center,color,1.2)

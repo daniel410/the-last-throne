@@ -143,9 +143,11 @@ function Poses.bow(pose,d,age,since,betweenShots,pulse)
     if d.id=="elf.marksman.piercing_line" then
         -- Track the line with the bow shoulder and recover the draw elbow straight back.
         local sight = smooth(phase/.5)*(1-smooth((phase-.9)/.1))
+        local settleBow = since and smooth((since-.055)/.075)*(1-smooth((since-.13)/.17)) or 0
         add(pose,"neck",v(9,10,-7)*sight)
         add(pose,"right",v(-8,-24,-12)*recoil)
-        add(pose,"elbow",v(27,0,0)*recoil)
+        add(pose,"elbow",v(27*recoil-18*settleBow,0,0))
+        add(pose,"torso",v(-5,7,-4)*settleBow)
         add(pose,"leftHip",v(-12,0,-5)*recoil)
         add(pose,"leftKnee",v(24,0,0)*recoil)
     end
@@ -531,10 +533,12 @@ function Poses.mage(pose,d,profile,age)
     end
     if s == spells.stone then
         -- Gather low with the free hand, then absorb the stone release in the lead leg.
-        add(pose,"left",v(-19,13,11)*wind+v(12,-10,-13)*follow)
-        add(pose,"leftElbow",v(-15*wind+26*follow,0,0))
-        add(pose,"torso",v(10,0,5)*follow)
-        add(pose,"leftKnee",v(21,0,0)*follow)
+        local settleStaff = smooth((age-d.windup-.055)/.085)*(1-smooth((age-d.windup-.14)/.18))
+        add(pose,"left",v(-34,17,9)*wind+v(24,-18,-15)*follow+v(-12,6,5)*settleStaff)
+        add(pose,"leftElbow",v(-28*wind+32*follow-18*settleStaff,0,0))
+        add(pose,"right",v(-18,4,12)*follow)
+        add(pose,"torso",v(-7,-11,4)*wind+v(16,8,5)*follow)
+        add(pose,"leftKnee",v(26,0,0)*follow)
     end
     if s == spells.thunderSpear then
         add(pose,"right",v(21,7,-14)*follow)

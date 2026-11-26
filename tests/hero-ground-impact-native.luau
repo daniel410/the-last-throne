@@ -121,7 +121,8 @@ local ok,err=xpcall(function()
  local bladeTip=origin+Vector3.new(.25,.8,-2)
  for _,id in ipairs({"knight_driving_thrust","knight.steel_knight.vanguard_strike"}) do
   local strike=assert(FX.skill(character,id,origin,target,1,{},bladeTip))
-  local beam=assert(strike:FindFirstChild("ThrustEdge",true))
+  local edge=id=="knight_driving_thrust" and "ThrustEdge" or "VanguardStrikeWake"
+  local beam=assert(strike:FindFirstChild(edge,true))
   check((beam.Attachment0.WorldPosition-bladeTip).Magnitude<.001,"Thrust originates at weapon tip "..id)
   check(beam.Attachment1.WorldPosition.Z==target.Z,"Thrust preserves confirmed reach "..id)
   FX.step(workspace:GetServerTimeNow()+.1)

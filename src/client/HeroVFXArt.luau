@@ -22,6 +22,9 @@ local types={
  ['dwarf.gunner.piercing_round']='PiercingRound',
  ['knight.paladin.oathbreaker_strike']='OathbreakerStrike',
  ['dwarf.gunner.gunner_shot']='GunnerShot',['elf.magic_archer.spark_volley']='SparkVolley',
+ ['knight.steel_knight.vanguard_strike']='VanguardStrike',
+ ['dwarf.iron_axe.stonebound_leap']='StoneboundLeap',
+ ['elf.marksman.piercing_line']='PiercingLine',
 }
 function Art.kind(id)return types[id]end
 local function orient(r,p,cf)
@@ -62,7 +65,52 @@ end
 function Art.strokes(r,c,line,curve)
  local kind=types[c.id]
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w,color)end
- if kind=='OathbreakerStrike'then
+ if kind=='VanguardStrike' or kind=='PiercingLine' or kind=='StoneLance'then
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local delta=c.last-start
+  local reach=delta.Magnitude
+  if reach>.05 then
+   local sword=kind=='VanguardStrike'
+   local stone=kind=='StoneLance'
+   local name=kind..'Wake'
+   local wake=releaseWake(r,c,line,name,sword and .28 or stone and .27 or .12,.04,.11)
+   if wake then r.model:SetAttribute('ReleaseTrace',true) end
+   if sword or stone then
+    local frame=CFrame.lookAt(c.last,c.last+delta)
+    local length=math.min(reach,sword and 2.8 or 2.6)
+    for side=-1,1,2 do
+     local flank=frame.RightVector*side*(sword and .34 or .40)+frame.UpVector*(stone and side*.26 or .08)
+     local edge=line(r,kind..'Edge',function(u)
+      local tail=math.clamp(1-u*r.life/.18,0,1)
+      return c.last-delta.Unit*length*tail+flank*math.min(1,length)*tail,c.last
+     end,stone and .22 or .20,r.hot,.085,true)
+     if edge then edge.fadeDuration=.18 end
+    end
+   end
+  end
+  r.model:SetAttribute('ArtSilhouette',kind)
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='StoneboundLeap'then
+  local axes={c.flat,(c.flat*.45+c.right).Unit,(c.flat*.45-c.right).Unit}
+  local center=c.floor+UP*.13
+  for i,axis in ipairs(axes) do
+   local reach=c.radius*(i==1 and .72 or .57)
+   local tangent=axis:Cross(UP)
+   local hinge=Geometry.floor(center+axis*reach*.48+tangent*.38,c.character,.15)
+   local tip=Geometry.floor(center+axis*reach,c.character,.13)
+   local lead=line(r,'StoneboundImpact',function(u)
+    local age=u*r.life
+    return center,center:Lerp(hinge,.46+.54*math.clamp(age/.06,0,1))
+   end,.34,r.hot,.20,true)
+   local fault=line(r,'StoneboundFault',function(u)
+    local phase=math.clamp((u*r.life-.037)/.105,0,1)
+    return hinge,hinge:Lerp(tip,phase)
+   end,.22,r.color,.095,true)
+   if lead then lead.fadeDuration=.20 end
+   if fault then fault.fadeDuration=.31 end
+  end
+  r.model:SetAttribute('PrimaryIconCue',true);return true
+ elseif kind=='OathbreakerStrike'then
   curve(r,'OathbreakerEdge',function(t,u)
    local bearing=math.rad(c.angle)*(.46-.91*t)
    local reach=c.radius*(.50+.24*math.sin(t*math.pi)+.08*u)
@@ -554,10 +602,43 @@ function Art.surfaces(r,c)
   S.arc(r,'RuptureShockwave',c.floor,math.min(c.radius*.5,3),.24,r.color,.72)
   S.animate(r,start,c.floor,UP,0,true,r.life)
  elseif kind=='StoneLance'then
-  local length=3.8
-  local core=S.volume(r,'StoneLanceVolume',c.last-c.dir*length*.5,Vector3.new(.65,.65,length),r.color,.25,'wedge',Enum.Material.Slate)
-  orient(r,core,CFrame.lookAt(c.last-c.dir*length*.5,c.last))
-  gem(r,'StoneLanceFacet',c.last,c.dir,length,.65,r.color,Enum.Material.Slate)
+  local start=Geometry.fanLaunch(c.first,c.muzzle,c.last)
+  local delta=c.last-start
+  if delta.Magnitude>.3 and not r.compact then
+   local length=math.min(delta.Magnitude,2.45)
+   local axis=delta.Unit
+   local frame=CFrame.lookAt(c.last,c.last+axis)
+   local tail=c.last-axis*length
+   local waist=c.last-axis*length*.63
+   local radius=math.min(length*.19,.43)
+   local firstFace=#r.faces+1
+   local center=(tail+c.last)*.5
+   local core=S.volume(r,'StoneLanceVolume',center,Vector3.new(radius,radius*.82,length),
+    r.color,.18,'wedge',Enum.Material.Slate)
+   orient(r,core,CFrame.lookAt(center,c.last))
+   for side=-1,1,2 do
+    S.triangle(r,'StoneLanceFacet',tail,waist+frame.RightVector*radius*side,c.last,
+     r.color:Lerp(side==1 and r.hot or Color3.new(0,0,0),.28),.19,Enum.Material.Slate)
+   end
+   for i=firstFace,#r.faces do r.faces[i].fadeDuration=.16 end
+  end
+ elseif kind=='VanguardStrike' or kind=='PiercingLine' then
+  -- The equipped weapon and its short wake carry the release silhouette.
+ elseif kind=='StoneboundLeap'then
+  if not r.compact then
+   for side=-1,1,2 do
+    local at=c.floor+c.right*side*.87+c.flat*.52
+    local chip=S.volume(r,'StoneboundChip',at+UP*.10,Vector3.new(.41,.36,.60),
+     Color3.fromRGB(150,112,78),.18,'wedge',Enum.Material.Slate)
+    if chip then
+     local direction=(c.right*side+c.flat*.57).Unit
+     orient(r,chip,CFrame.lookAt(chip.Position,chip.Position+direction))
+     local face=r.faces[#r.faces]
+     face.drift=direction*1.25+UP*.56
+     face.fadeDuration=.24
+    end
+   end
+  end
  elseif kind=='IceWard'then
   for lane=1,3 do
    local angle=(lane-2)*math.pi*2/3
