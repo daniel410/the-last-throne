@@ -52,7 +52,7 @@ script=previousScript
 modules.Bomb=dofile('src/client/BombVisual.luau')
 modules.SkillVFXProfiles=dofile('src/client/SkillVFXProfiles.luau')
 modules.Audio={play=function()end}
-modules.HeroVFX={skill=function()end,isOtherHero=function()return false end,windup=function()end,groundLead=function()end,endWindup=function()end,endIncoming=function()end}
+modules.HeroVFX={skill=function()end,isOtherHero=function()return false end,inRange=function()return true end,windup=function()end,groundLead=function()end,endWindup=function()end,endIncoming=function()end}
 modules.Bow={confirmPulse=function()end};modules.Wind={play=function()end}
 local rs={Shared={K0Config='K0Config',SkillPresentation='SkillPresentation',CombatVFXPalette='CombatVFXPalette'}}
 local event=signal();rs.WaitForChild=function()return {WaitForChild=function()return {OnClientEvent=event}end}end

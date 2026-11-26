@@ -63,18 +63,18 @@ function FX.clear()
  if connection then connection:Disconnect();connection=nil end
 end
 function FX.count()return #active,beams,chips,glowCount,particleCount,Surfaces.count()end
-local function visible(first,last)
+function FX.inRange(first,last,radius)
  local camera=workspace.CurrentCamera;if not camera then return true end
  local delta=last-first
  local t=delta.Magnitude>.01 and math.clamp((camera.CFrame.Position-first):Dot(delta)/delta:Dot(delta),0,1)or 0
- return(camera.CFrame.Position-(first+delta*t)).Magnitude<=100
+ return(camera.CFrame.Position-(first+delta*t)).Magnitude<=100+(radius or 0)
 end
 function FX.isOtherHero(character)
  local player=Players.LocalPlayer
  return player~=nil and character~=nil and character~=player.Character
 end
 local function make(first,last,life,key,id,compact,contact,minBeams)
- if not vector(first)or not vector(last)or not visible(first,last)then return end
+ if not vector(first)or not vector(last)or not FX.inRange(first,last)then return end
  local limit=(Input.TouchEnabled and 8 or 12)-(compact and 2 or 0)
  local beamLimit=(Input.TouchEnabled and 144 or 240)-(minBeams or 0)
  local now=workspace:GetServerTimeNow()
@@ -1384,7 +1384,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle,castDirection,fanE
     local settle=math.min(1,u*3)
     local length=(pulse==d.pulses and 1.3 or .98)*(1-.37*settle)
     return at+Vector3.yAxis*length,at
-   end,r.compact and .115 or .18,r.hot,.065,true)
+   end,r.compact and .115 or .21,r.hot,.065,true)
    if mark then mark.fadeDuration=.17 end
   end
   r.model:SetAttribute("PrimaryIconCue",true)

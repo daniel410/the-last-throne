@@ -83,17 +83,29 @@ function Art.strokes(r,c,line,curve)
    local from=Geometry.floor(c.floor+axis*c.radius*.25,c.character,.17)
    local at=Geometry.floor(c.floor+axis*c.radius*(.51-.10*math.abs(lateral)),c.character,.16)
    local tip=Geometry.floor(c.floor+axis*c.radius*.76,c.character,.20)
-   local delay=(i-1)*(r.compact and .025 or .013)
+   local delay=(i-1)*(r.compact and .018 or .008)
    local crest=line(r,'MountainSweepRidge',function(u)
     local t=math.clamp((u*r.life-delay)/.095,.02,1)
-    return from,from:Lerp(at+UP*(.45-.18*math.abs(lateral)),t)
-   end,.29,r.hot,.15,true)
+    return from,from:Lerp(at+UP*(.86-.26*math.abs(lateral)),t)
+   end,r.compact and .31 or .48,r.hot,.18,true)
    local cleft=line(r,'MountainSweepFault',function(u)
     local t=math.clamp((u*r.life-delay-.037)/.12,.02,1)
     return at+UP*.21,at:Lerp(tip,t)+UP*.21*(1-t)
    end,.21,r.color,.075,true)
    if crest then crest.delay=delay;crest.fadeDuration=.19 end
    if cleft then cleft.delay=delay+.037;cleft.fadeDuration=.23 end
+   if not r.compact and i%2==1 then
+    local height=i==3 and .96 or .62
+    local center=at+UP*height*.5
+    local chip=S.volume(r,'MountainSweepSlate',center,Vector3.new(.66,height,.48),
+     Color3.fromRGB(178,133,86),.11,'wedge',Enum.Material.Slate)
+    orient(r,chip,CFrame.lookAt(center,center+axis))
+    if chip then
+     local face=r.faces[#r.faces]
+     face.emerge={duration=.067,delay=delay+.016}
+     face.fadeDuration=.28
+    end
+   end
   end
   r.model:SetAttribute('PrimaryIconCue',true)
   return true
@@ -106,7 +118,7 @@ function Art.strokes(r,c,line,curve)
     local t=math.clamp(u*r.life/.14,.03,1)
     local head=from:Lerp(at,t)+UP*math.sin(t*math.pi)*.33
     return from:Lerp(at,t*.43),head
-   end,.30,r.hot,.092,true)
+   end,.38,r.hot,.092,true)
    if fault then fault.fadeDuration=.27 end
   end
   r.model:SetAttribute('PrimaryIconCue',true)
@@ -642,11 +654,11 @@ function Art.surfaces(r,c)
  elseif kind=='EarthPillars'then
   for i,offset in ipairs({Vector3.zero,c.right*-1.8+c.flat*1.25,c.right*2.05+c.flat*.52}) do
    local at=Geometry.floor(c.last+offset,c.character,.035)
-   local height=i==1 and 3.5 or i==2 and 2.6 or 2.0
+   local height=i==1 and 3.9 or i==2 and 2.9 or 2.1
    local width=r.compact and .82 or 1.22
    local pivot=at+UP*height*.5
    local crag=S.volume(r,'RisingCrag',pivot,Vector3.new(width,height,width*1.16),
-    i==1 and Color3.fromRGB(188,141,92) or Color3.fromRGB(143,104,71),.12,'wedge',Enum.Material.Slate)
+    i==1 and Color3.fromRGB(204,163,111) or Color3.fromRGB(157,116,77),.12,'wedge',Enum.Material.Slate)
    orient(r,crag,CFrame.new(pivot)*CFrame.Angles(0,(i-2)*.82,0))
    if crag then
     local face=r.faces[#r.faces]

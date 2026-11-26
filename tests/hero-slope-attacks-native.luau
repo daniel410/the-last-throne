@@ -116,6 +116,9 @@ local ok,err=xpcall(function()
             check(#named(names[i])>0,label.." authored contact "..i)
             check(#named("BladeCrescent")==0 and #named("LandingRipple")==0 and #named("RuptureShockwave")==0,
                 label.." uses one release silhouette "..i)
+            if i==2 then
+                check(#named("MountainSweepSlate")== (compact and 0 or 3),label.." slate accents respect the party budget")
+            end
             if i==4 then
                 FX.step(workspace:GetServerTimeNow()+.105)
                 local crags=named("RisingCrag")
@@ -243,6 +246,12 @@ local ok,err=xpcall(function()
     actor:SetAttribute("K0State","Dodge")
     task.wait()
     check(#named("SkillTelegraph")==0,"Dodge removes supported windup segments")
+    task.wait(.46)
+    camera.CFrame=CFrame.lookAt(origin+Vector3.zAxis*145,origin)
+    play(1,1)
+    play(3,0)
+    check(#named("SkillSector")==0 and #named("SkillTelegraph")==0,
+        "Distant casts skip terrain projection and boundary parts")
 end,debug.traceback)
 
 if warnings then warnings.destroy() end

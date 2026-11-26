@@ -46,6 +46,7 @@ local function ground(position,character)
  return Geometry.floor(position,character,.08,2.7)
 end
 local function arc(center,direction,radius,angle,color,life,name,compact,pieces,character,maxHeight)
+ if maxHeight and not HeroVFX.inRange(center,center,radius) then return end
  local count=angle>=359 and not compact and 24 or 12
  if pieces and active+count>128 then count=12 end
  if pieces and active+count>128 then return end
