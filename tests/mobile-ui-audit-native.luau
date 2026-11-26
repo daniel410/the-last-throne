@@ -224,6 +224,18 @@ case('combat HUD',function()
   end
   menu.Visible=false
  end
+ root.Size=UDim2.fromOffset(320,568);task.wait(.1)
+ local caption=root.SkillBar.Skill1.Caption
+ for classId,abilities in pairs(config.Skills)do
+  character:SetAttribute('K0ClassId',classId)
+  for _,ability in ipairs(abilities)do
+   if not ability.ultimate then
+    character:SetAttribute('K0EquippedSkill1',ability.id)
+    hud.setCooldowns(character);task.wait()
+    check(caption.Text==ability.name and caption.TextFits and caption.TextBounds.Y>0,'HUD caption fits at minimum viewport '..ability.id)
+   end
+  end
+ end
  character:Destroy()
  game.CoreGui.DeepwoodTrainingHud:Destroy();game.CoreGui.DeepwoodTopHud:Destroy()
 end)

@@ -170,8 +170,9 @@ end
 local function slotCaption(label, iconPosition, compact)
 	local top = iconPosition.Y.Offset + SLOT_ICON_SIZE.Y.Offset + (compact and 0 or 2)
 	local bottomPadding = compact and 2 or 4
-	label.Position = UDim2.fromOffset(5, top)
-	label.Size = UDim2.new(1, -10, 1, -top - bottomPadding)
+	local sidePadding = compact and 4 or 5
+	label.Position = UDim2.fromOffset(sidePadding, top)
+	label.Size = UDim2.new(1, -2 * sidePadding, 1, -top - bottomPadding)
 	label.TextSize = compact and 10 or 12
 	if compact then
 		label.UITextSizeConstraint.MinTextSize = 6
