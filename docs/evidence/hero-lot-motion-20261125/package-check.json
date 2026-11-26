@@ -1,0 +1,32 @@
+{
+  "0.115.133": {
+    "commit": "a226a654ae5679047c6617b74f51d66837954bb7",
+    "sha256": "07934221c2e3c849978228b73be4b88c01adfaf87c389c1dc740d2ab10a790be",
+    "modules": {
+      "AdvancedSkillMotion": "337df4fc62e35b906f5c3545c89eebd06f863fc39d94680a7752cdeeedeb763b",
+      "K0BowMotion": "0f644699f3d4d2cc8e0081bb395a1390f0cad9103177fd937a993ae27487b897",
+      "MeleeWeightShift": "53d25c9a7a853f6ef9f12767438b69deb53a8bee36770b27bf6a949004a8d0ea",
+      "RangedActionPoses": "23a62b288d94e8c1acd1dc6f846c00502dac41670fae47fc6340eba9df4c7979"
+    }
+  },
+  "0.115.134": {
+    "commit": "4e05ecff44fb3b5ee6eb55320a3119f88fce2f30",
+    "sha256": "297ed1a1bca0c6fe2be7e162240764cbd7199d6e31bf5265704b5dbd32b6f00d",
+    "modules": {
+      "AdvancedSkillMotion": "0b9ab7f1b83635f51d7b72bf66e152429ea001e04e1dd082009fffa24199f987",
+      "K0BowMotion": "19cfa3f8b7d3a5634aa84473554a9f238233cf9f449514fb65fc2a36d9f886ca",
+      "MeleeWeightShift": "5feefe95748821c4e50fe5ba6ca3f947d8ca35b1bb0948588a9480d46fcbd94f",
+      "RangedActionPoses": "60737eee14ecd4b6b9f310410ec6376ae5257766a94d8413bd84e6a8c2368bc0"
+    }
+  },
+  "0.115.135": {
+    "commit": "e0a58578db5989cd758bdd0028de68493e74fa75",
+    "sha256": "d9bc8bdb2ba25e5ecf47f4b64deec9380d4e518c7aa4731ed42067b85b66d07a",
+    "modules": {
+      "AdvancedSkillMotion": "0b9ab7f1b83635f51d7b72bf66e152429ea001e04e1dd082009fffa24199f987",
+      "K0BowMotion": "19cfa3f8b7d3a5634aa84473554a9f238233cf9f449514fb65fc2a36d9f886ca",
+      "MeleeWeightShift": "7bf77a5f99eae8dd972d99af04f8b1a4883ddd3377eb7a2a03d4b87e15f2dfa2",
+      "RangedActionPoses": "60737eee14ecd4b6b9f310410ec6376ae5257766a94d8413bd84e6a8c2368bc0"
+    }
+  }
+}

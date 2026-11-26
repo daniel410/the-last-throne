@@ -1,0 +1,304 @@
+{
+  "runner": "Lune 0.10.5",
+  "scope": "Exact Rojo-packaged motion modules with Lune CFrame/Vector3 and Instances, mocked Roblox services and synthetic server clock. No Studio, Humanoid physics, rendering or actual client events.",
+  "reports": {
+    "0.115.133": {
+      "actions": 272,
+      "checks": 1215532,
+      "failures": {},
+      "releaseSamples": 204,
+      "version": "0.115.133",
+      "meleeRegression": {
+        "checks": 2147,
+        "contacts": 204,
+        "pass": true,
+        "rigActions": 140
+      },
+      "lateBowRegression": {
+        "checks": 43,
+        "failures": [
+          "elf.common.aimed starts late release from the held stance",
+          "elf.marksman.arrow_rain maintains the planted draw and elevation while awaiting release",
+          "elf.common.rapid maintains the planted draw and elevation while awaiting release"
+        ],
+        "pass": false,
+        "timeline": {
+          "basic": {
+            "after": 0.9534210158586968,
+            "release": 0.8,
+            "snap": 0.8499999999999919
+          },
+          "elf.common.aimed": {
+            "after": 0.9388888888888871,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.common.rapid": {
+            "after": 0.7999999999999647,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.crossfire": {
+            "after": 0.5138461538461478,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.grand_volley": {
+            "after": 0.5138461538461478,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.heavy_draw": {
+            "after": 0.9325581395348818,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          }
+        }
+      }
+    },
+    "0.115.134": {
+      "actions": 272,
+      "checks": 1215532,
+      "failures": {},
+      "releaseSamples": 204,
+      "version": "0.115.134",
+      "meleeRegression": {
+        "pass": false,
+        "firstFailure": "Distinct anticipation: knight.steel_knight.shield_breaker"
+      },
+      "lateBowRegression": {
+        "checks": 43,
+        "failures": {},
+        "pass": true,
+        "timeline": {
+          "basic": {
+            "after": 0.9534210158586968,
+            "release": 0.8,
+            "snap": 0.8499999999999919
+          },
+          "elf.common.aimed": {
+            "after": 0.9388888888888871,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.common.rapid": {
+            "after": 0.7999999999999647,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.crossfire": {
+            "after": 0.5138461538461478,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.grand_volley": {
+            "after": 0.5138461538461478,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.heavy_draw": {
+            "after": 0.9325581395348818,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          }
+        }
+      }
+    },
+    "0.115.135": {
+      "actions": 272,
+      "checks": 1215532,
+      "failures": {},
+      "releaseSamples": 204,
+      "version": "0.115.135",
+      "meleeRegression": {
+        "checks": 2147,
+        "contacts": 204,
+        "pass": true,
+        "rigActions": 140
+      },
+      "lateBowRegression": {
+        "checks": 43,
+        "failures": {},
+        "pass": true,
+        "timeline": {
+          "basic": {
+            "after": 0.9534210158586968,
+            "release": 0.8,
+            "snap": 0.8499999999999919
+          },
+          "elf.common.aimed": {
+            "after": 0.9388888888888871,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.common.rapid": {
+            "after": 0.7999999999999647,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.crossfire": {
+            "after": 0.5138461538461478,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.grand_volley": {
+            "after": 0.5138461538461478,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          },
+          "elf.marksman.heavy_draw": {
+            "after": 0.9325581395348818,
+            "release": 0.8,
+            "snap": 0.8499999999999901
+          }
+        }
+      }
+    }
+  },
+  "r15ComparedTo0.115.133": {
+    "dwarf/1/R15": {
+      "42% windup": {
+        "joint": "leftHip",
+        "deltaDegrees": 3.77
+      },
+      "65% windup": {
+        "joint": "neck",
+        "deltaDegrees": 2.22
+      },
+      "55 ms after contact": {
+        "joint": "leftKnee",
+        "deltaDegrees": 8.18
+      },
+      "40% recovery": {
+        "joint": "rightKnee",
+        "deltaDegrees": 5.18
+      }
+    },
+    "dwarf/dwarf.common.overhead/R15": {
+      "42% windup": {
+        "joint": "torso",
+        "deltaDegrees": 8.79
+      },
+      "65% windup": {
+        "joint": "left",
+        "deltaDegrees": 7.18
+      },
+      "55 ms after contact": {
+        "joint": "rightKnee",
+        "deltaDegrees": 8.97
+      },
+      "40% recovery": {
+        "joint": "leftKnee",
+        "deltaDegrees": 2.46
+      }
+    },
+    "elf/1/R15": {
+      "42% windup": {
+        "joint": "right",
+        "deltaDegrees": 12.95
+      },
+      "65% windup": {
+        "joint": "right",
+        "deltaDegrees": 3.21
+      },
+      "55 ms after contact": {
+        "joint": "leftKnee",
+        "deltaDegrees": 7.2
+      },
+      "40% recovery": {
+        "joint": "rightKnee",
+        "deltaDegrees": 2.53
+      }
+    },
+    "elf/elf.marksman.arrow_rain/R15": {
+      "42% windup": {
+        "joint": "left",
+        "deltaDegrees": 3.61
+      },
+      "65% windup": {
+        "joint": "left",
+        "deltaDegrees": 3.39
+      },
+      "55 ms after contact": {
+        "joint": "rightKnee",
+        "deltaDegrees": 6.76
+      },
+      "40% recovery": {
+        "joint": "rightKnee",
+        "deltaDegrees": 4.38
+      }
+    },
+    "knight/1/R15": {
+      "42% windup": {
+        "joint": "leftHip",
+        "deltaDegrees": 2.4
+      },
+      "65% windup": {
+        "joint": "left",
+        "deltaDegrees": 2.0
+      },
+      "55 ms after contact": {
+        "joint": "leftKnee",
+        "deltaDegrees": 7.57
+      },
+      "40% recovery": {
+        "joint": "right",
+        "deltaDegrees": 0.03
+      }
+    },
+    "knight/knight.common.bash/R15": {
+      "42% windup": {
+        "joint": "rightKnee",
+        "deltaDegrees": 10.07
+      },
+      "65% windup": {
+        "joint": "leftKnee",
+        "deltaDegrees": 10.65
+      },
+      "55 ms after contact": {
+        "joint": "rightKnee",
+        "deltaDegrees": 8.01
+      },
+      "40% recovery": {
+        "joint": "weapon",
+        "deltaDegrees": 0.01
+      }
+    },
+    "mage/1/R15": {
+      "42% windup": {
+        "joint": "left",
+        "deltaDegrees": 11.64
+      },
+      "65% windup": {
+        "joint": "right",
+        "deltaDegrees": 12.3
+      },
+      "55 ms after contact": {
+        "joint": "left",
+        "deltaDegrees": 21.59
+      },
+      "40% recovery": {
+        "joint": "leftKnee",
+        "deltaDegrees": 0.2
+      }
+    },
+    "mage/mage.pyro.earth_rise/R15": {
+      "42% windup": {
+        "joint": "left",
+        "deltaDegrees": 6.71
+      },
+      "65% windup": {
+        "joint": "leftKnee",
+        "deltaDegrees": 9.5
+      },
+      "55 ms after contact": {
+        "joint": "leftKnee",
+        "deltaDegrees": 12.87
+      },
+      "40% recovery": {
+        "joint": "leftKnee",
+        "deltaDegrees": 0.29
+      }
+    }
+  }
+}
