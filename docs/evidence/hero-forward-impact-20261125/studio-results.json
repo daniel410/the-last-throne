@@ -1,0 +1,203 @@
+{
+  "focus": {
+    "0.115.125": {
+      "checks": 39,
+      "pass": false,
+      "failures": [
+        "knight.steel_knight.vanguard_strike starts on the equipped socket",
+        "knight.steel_knight.vanguard_strike stops at server cover",
+        "elf.marksman.piercing_line starts on the equipped socket",
+        "elf.marksman.piercing_line stops at server cover",
+        "mage.pyro.stone_lance starts on the equipped socket",
+        "mage.pyro.stone_lance stops at server cover",
+        "Landing spreads from one point in three directions",
+        "Only local impact has slate fragments",
+        "Fallback duplicates are absent with sufficient VFX budget",
+        "knight.steel_knight.vanguard_strike retracts from behind its endpoint",
+        "elf.marksman.piercing_line retracts from behind its endpoint",
+        "mage.pyro.stone_lance retracts from behind its endpoint",
+        "Four releases fit into thirteen beams",
+        "knight.steel_knight.vanguard_strike starts on the equipped socket",
+        "knight.steel_knight.vanguard_strike stops at server cover",
+        "elf.marksman.piercing_line starts on the equipped socket",
+        "elf.marksman.piercing_line stops at server cover",
+        "mage.pyro.stone_lance starts on the equipped socket",
+        "mage.pyro.stone_lance stops at server cover",
+        "Landing spreads from one point in three directions",
+        "Only local Stone Lance shows a slate core",
+        "Fallback duplicates are absent with sufficient VFX budget",
+        "knight.steel_knight.vanguard_strike retracts from behind its endpoint",
+        "elf.marksman.piercing_line retracts from behind its endpoint",
+        "mage.pyro.stone_lance retracts from behind its endpoint",
+        "Four releases fit into thirteen beams",
+        "knight.steel_knight.vanguard_strike uses the server origin when the socket is past cover",
+        "elf.marksman.piercing_line uses the server origin when the socket is past cover",
+        "mage.pyro.stone_lance uses the server origin when the socket is past cover"
+      ],
+      "counts": {
+        "self": {
+          "beams": 71,
+          "active": 4,
+          "surfaces": 56,
+          "particles": 36,
+          "glows": 23
+        },
+        "ally": {
+          "beams": 71,
+          "active": 4,
+          "surfaces": 56,
+          "particles": 0,
+          "glows": 0
+        }
+      },
+      "overlap": {
+        "beams": 71,
+        "active": 4,
+        "warningSegments": 16,
+        "surfaces": 56,
+        "particles": 8,
+        "glows": 1
+      }
+    },
+    "0.115.127": {
+      "checks": 51,
+      "pass": true,
+      "failures": [],
+      "counts": {
+        "self": {
+          "beams": 13,
+          "active": 4,
+          "surfaces": 7,
+          "particles": 0,
+          "glows": 0
+        },
+        "ally": {
+          "beams": 13,
+          "active": 4,
+          "surfaces": 0,
+          "particles": 0,
+          "glows": 0
+        }
+      },
+      "overlap": {
+        "beams": 13,
+        "active": 4,
+        "warningSegments": 16,
+        "surfaces": 0,
+        "particles": 0,
+        "glows": 0
+      }
+    }
+  },
+  "regression": {
+    "suitesPassed": 22,
+    "checksPassed": 259582,
+    "suites": {
+      "hero-skills": {
+        "checks": 244520,
+        "pass": true
+      },
+      "ranged-action-poses": {
+        "checks": 158,
+        "pass": true
+      },
+      "melee-action-beats": {
+        "checks": 2147,
+        "pass": true
+      },
+      "hero-ground-impact": {
+        "checks": 128,
+        "pass": true
+      },
+      "hero-vfx-priority": {
+        "checks": 28,
+        "pass": true
+      },
+      "hero-line-contact": {
+        "checks": 158,
+        "pass": true
+      },
+      "hero-force-feedback": {
+        "checks": 81,
+        "pass": true
+      },
+      "skill-vfx-individual": {
+        "checks": 307,
+        "pass": true
+      },
+      "skill-icon-vfx": {
+        "checks": 8506,
+        "pass": true
+      },
+      "skill-vfx-art": {
+        "checks": 44,
+        "pass": true
+      },
+      "hero-skill-sockets": {
+        "checks": 16,
+        "pass": true
+      },
+      "hero-skill-windup": {
+        "checks": 1400,
+        "pass": true
+      },
+      "hero-skill-impact": {
+        "checks": 761,
+        "pass": true
+      },
+      "hero-posture-break": {
+        "checks": 187,
+        "pass": true
+      },
+      "hero-guard-waves": {
+        "checks": 68,
+        "pass": true
+      },
+      "hero-weapon-releases": {
+        "checks": 40,
+        "pass": true
+      },
+      "hero-burst-contact": {
+        "checks": 56,
+        "pass": true
+      },
+      "hero-directional-releases": {
+        "checks": 72,
+        "pass": true
+      },
+      "hero-slow-presentation": {
+        "checks": 157,
+        "pass": true
+      },
+      "hero-pulse-rhythm": {
+        "checks": 219,
+        "pass": true
+      },
+      "projectile-vfx-timing": {
+        "checks": 312,
+        "pass": true
+      },
+      "hero-windup-interrupt": {
+        "checks": 217,
+        "pass": true
+      }
+    },
+    "existingBlocks": {
+      "element-vfx": {
+        "reason": "Lightning Line electric branch art assertion",
+        "checksBeforeStop": 24
+      },
+      "rpg-vfx-gap": {
+        "reason": "CalderaCentralPlume has no BillboardGui",
+        "checksBeforeStop": 16
+      }
+    }
+  },
+  "cpu": {
+    "advanced-skills": 1435,
+    "skill-effects": 12443,
+    "skill-stat-preview": 1392
+  },
+  "staticPackageChecks": 336,
+  "compiledLuauFiles": 8
+}

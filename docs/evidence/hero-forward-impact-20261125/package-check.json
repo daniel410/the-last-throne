@@ -1,0 +1,30 @@
+{
+  "builds": [
+    {
+      "version": "0.115.125",
+      "sourceCommit": "bb3f2edcbb706360c4c631495ab204fef748e114",
+      "artifact": "builds/0.115.125/TheLastThrone-0.115.125.rbxlx",
+      "sha256": "77a0e39f999f53e409b441496f670d72dd1a9c5e062aa583f6cf181d658a7f18",
+      "verifiedClientModules": {
+        "AdvancedSkillMotion": "5b4f60f02f910428c0edfb969c2d4b24d4ef25f9de4aef6940981ea87f00d761",
+        "AdvancedSkillVisual": "55b5eefcf1987b2a6f63063de9eac5e37efd5e960f7ec8fc556902d47e9456de",
+        "HeroVFXArt": "e48e080eba42707a78f1564aedb42b86fbcdd7f8aa0bc758baf0f5186f3d66e1",
+        "RangedActionPoses": "79d256059f53f871df44b9fc2bb0cf04452c59d980c1e790943c32030480176b",
+        "SkillVFXProfiles": "b06940ab17428486e52eeb4b772e3df0c37b150cc583515aa0615370b1da2e73"
+      }
+    },
+    {
+      "version": "0.115.127",
+      "sourceCommit": "a040865072e1f1b47a64e23f95dbf39dd100bb35",
+      "artifact": "builds/0.115.127/TheLastThrone-0.115.127.rbxlx",
+      "sha256": "7a5e34a6730ea9348f16b36ccf1162dfa5af3cfba9d88385c95df9ee6e9d0f71",
+      "verifiedClientModules": {
+        "AdvancedSkillMotion": "31717fa4f95a7269ce90db8fb464520b8f4e7b82a4745c18ca7d7facc1c60de2",
+        "AdvancedSkillVisual": "442ce1d990d62cdd06f701b79b458e076b8fc81ab65c59d0eb2a53965737b6d8",
+        "HeroVFXArt": "a0d359299ed7bda7ac4a311b8f0f0a69f7c562133a02173ab60de968804edb7b",
+        "RangedActionPoses": "7e98d50cb53cbf61dfb119a46feb83901843a0aa46497159b0876dd256b1e020",
+        "SkillVFXProfiles": "1c016972d2bc4c992ddfa9563726f09096c7ec5a335e43f0be209366e8757e22"
+      }
+    }
+  ]
+}
