@@ -440,11 +440,11 @@ ContextActionService:BindActionAtPriority("K0Dodge", function(_, state)
 end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.R, Enum.KeyCode.ButtonB)
 
 local function updateHints()
-	local input = UserInputService:GetLastInputType()
-	if input.Name:match("^Gamepad") then
+	local input = UserInputService.PreferredInput
+	if input == Enum.PreferredInput.Gamepad then
 		hud.setPracticeInput("gamepad")
 		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, "L3", {"Y", "X", "L1", "LEFT", "RIGHT"})
-	elseif UserInputService.TouchEnabled and (input == Enum.UserInputType.Touch or not UserInputService.KeyboardEnabled) then
+	elseif input == Enum.PreferredInput.Touch then
 		hud.setPracticeInput("touch")
 		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintHold, {"1", "2", "3", "4", "5"})
 	else
@@ -452,7 +452,7 @@ local function updateHints()
 		hud.setHints(Text.HintClick, "Q / RMB", Text.HintR, "E", {"1", "2", "3", "4", "5"})
 	end
 end
-UserInputService.LastInputTypeChanged:Connect(updateHints)
+UserInputService:GetPropertyChangedSignal("PreferredInput"):Connect(updateHints)
 updateHints()
 
 hud.settingsMenu.Activated:Connect(settingsGui.open)
@@ -475,6 +475,7 @@ local function updateSessionView()
 		hud.setStory(nil)
 	end
 	if phase == "Tutorial" and player:GetAttribute("TLTRoute") == "Training" and heroSnapshot and heroSnapshot.training then
+		updateHints()
 		for _, hero in ipairs(heroSnapshot.heroes) do
 			if hero.heroId == heroSnapshot.activeHeroId then
 				practice = hero.practice

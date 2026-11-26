@@ -483,6 +483,7 @@ function Hud.create()
 			renderTracker()
 		end,
 		setPracticeInput = function(value)
+			if value == practiceInput then return end
 			practiceInput = value
 			renderTracker()
 		end,

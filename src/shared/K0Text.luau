@@ -105,7 +105,7 @@ return {
 	PracticeTitle = "Combat Training",
 	Practice = {
 		Progress = "%d / %d  ·  %s",
-		moved = {title = "Reach the practice marker", keyboard = "Use WASD to walk into the gold marker.", touch = "Use the movement stick to reach the gold marker.", gamepad = "Use the left stick to reach the gold marker."},
+		moved = {title = "Reach the practice marker", keyboard = "Follow the trail to your right with WASD.", touch = "Follow the trail to your right with the movement stick.", gamepad = "Follow the trail to your right with the left stick."},
 		attacked = {title = "Land a basic attack", keyboard = "Face a foe within range and left-click to attack.", touch = "Face a foe within range and tap Attack.", gamepad = "Face a foe within range and press R2 to attack."},
 		cast = {title = "Land a hero skill", keyboard = "Face a foe within range and press 1, 2, or 3.", touch = "Face a foe within range and tap a skill on your action bar.", gamepad = "Face a foe within range and press Y, X, or L1."},
 		dodged = {title = "Practice a dodge", keyboard = "Press R to dodge. Try it before a foe's attack lands.", touch = "Tap Dodge. Try it before a foe's attack lands.", gamepad = "Press B to dodge. Try it before a foe's attack lands."},
