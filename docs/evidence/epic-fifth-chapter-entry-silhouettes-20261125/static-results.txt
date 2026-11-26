@@ -1,0 +1,11 @@
+EPIC_MAP_NAVIGATION 105907 checks PASS; 488 active targets; 26352 moving samples
+Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger
+CAMPAIGN_EXPANSION_REVIEW 4048 checks passed; 82 outcome deliveries, safe circuit choices and connector routes
+place-role: 10 checks PASS
+arrival-loading: 326 checks PASS
+single-build: project mounts and compatibility alias PASS
+single-build: actual artifact role/config/loading checks PASS
+0.115.127 a040865072e1f1b47a64e23f95dbf39dd100bb35 SHA-256 7a5e34a6730ea9348f16b36ccf1162dfa5af3cfba9d88385c95df9ee6e9d0f71
+0.115.128 be20d9f62a3d58eaba67308760c4665c87060bd8 SHA-256 95182dde102eef56e64e901b80188c13762c37103597341320c98d424f5c3635
+CampaignExpansionWorld: exact source match
+EpicFifthChapterEntrances: exact source match

@@ -1,0 +1,67 @@
+{
+  "byEpic": [
+    {
+      "arches": 37,
+      "rocks": 56,
+      "sceneWalls": 0,
+      "trunks": 293,
+      "walls": 1847
+    },
+    {
+      "arches": 30,
+      "rocks": 24,
+      "sceneWalls": 0,
+      "trunks": 264,
+      "walls": 956
+    },
+    {
+      "arches": 38,
+      "rocks": 55,
+      "sceneWalls": 60,
+      "trunks": 201,
+      "walls": 1450
+    },
+    {
+      "arches": 42,
+      "rocks": 41,
+      "sceneWalls": 0,
+      "trunks": 0,
+      "walls": 1983
+    },
+    {
+      "arches": 30,
+      "rocks": 21,
+      "sceneWalls": 0,
+      "trunks": 276,
+      "walls": 1479
+    }
+  ],
+  "casts": {
+    "1arches": true,
+    "1rocks": true,
+    "1trunks": true,
+    "1walls": true,
+    "2arches": true,
+    "2rocks": true,
+    "2trunks": true,
+    "2walls": true,
+    "3arches": true,
+    "3rocks": true,
+    "3sceneWalls": true,
+    "3trunks": true,
+    "3walls": true,
+    "4arches": true,
+    "4rocks": true,
+    "4walls": true,
+    "5arches": true,
+    "5rocks": true,
+    "5trunks": true,
+    "5walls": true
+  },
+  "checks": 25268,
+  "decorations": 5198,
+  "failureCount": 0,
+  "failures": [],
+  "pass": true,
+  "solids": 9183
+}
