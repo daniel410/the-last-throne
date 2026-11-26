@@ -159,7 +159,7 @@ case('combat HUD',function()
  character:SetAttribute('K0ItemCount1',100)
  character:SetAttribute('K0ItemDefinition2','health_potion_medium')
  character:SetAttribute('K0ItemCount2',2)
- hud.setHints('R2','L2','B','L3',{'RIGHT','X','L1','LEFT','RIGHT'})
+ hud.setHints('R2','L2','B','L3',{'Y','X','L1','←','→'})
  hud.setCooldowns(character)
  for _,size in ipairs(sizes)do
   root.Size=UDim2.fromOffset(size.X,size.Y);game.CoreGui.DeepwoodTopHud.Root.Size=root.Size;task.wait(.1)
@@ -171,9 +171,21 @@ case('combat HUD',function()
    check(b.AbsoluteSize.X>=minimum and b.AbsoluteSize.Y>=minimum,'HUD touch target '..b.Name..' '..tostring(size))
    inside(b.Caption,b,'HUD caption inside button '..b.Name)
    check(b.Caption.TextFits and b.Caption.TextBounds.Y>0,'HUD caption renders '..b.Name..' '..tostring(size))
+   local frame=b:FindFirstChild('IconFrame')
+   if group==bar or b.Name=='Ultimate' then
+    check(frame and b.BackgroundTransparency==1,'HUD uses a separate icon frame '..b.Name)
+    if frame then
+     inside(frame,b,'HUD frame is inside the slot '..b.Name)
+     check(math.abs(frame.AbsoluteSize.X-frame.AbsoluteSize.Y)<=1,'HUD frame stays square '..b.Name)
+     inside(frame.TDButtonArt,frame,'HUD border stays inside the square frame '..b.Name)
+     separate(b.Caption,frame,'HUD caption clears frame border '..b.Name)
+     separate(b.Hint,frame,'HUD key clears frame border '..b.Name)
+    end
+    check(b.Hint.TextFits and b.Hint.TextBounds.Y>0,'HUD key renders '..b.Name)
+   end
    local icon=b:FindFirstChild('SkillIcon') or b:FindFirstChild('PotionIcon')
    if icon and icon.Visible then
-    inside(icon,b,'HUD icon stays inside slot '..b.Name)
+    inside(icon,frame or b,'HUD icon stays inside frame '..b.Name)
     check(icon.AbsoluteSize.X>=b.AbsoluteSize.X*.72 and icon.AbsoluteSize.Y>=b.AbsoluteSize.X*.72,'HUD icon occupies about three quarters of slot width '..b.Name..' '..tostring(size))
     if icon.Name=='PotionIcon' then
      check(icon.ItemIllustration.ImageRectSize.X<=102 and not icon:FindFirstChild('SizeMark',true),'HUD potion uses a tight crop and shows its size in the caption')
@@ -185,6 +197,7 @@ case('combat HUD',function()
      check(count.TextFits and count.TextBounds.Y>0,'HUD timer or count renders '..b.Name)
      separate(count,b.Hint,'HUD timer or count clears key '..b.Name)
      separate(count,icon,'HUD timer or count clears icon '..b.Name)
+     if frame then separate(count,frame,'HUD timer or count clears frame border '..b.Name) end
     end
    else
     separate(b.Caption,b.Hint,'HUD action caption clears key '..b.Name)
