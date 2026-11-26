@@ -443,7 +443,7 @@ local function updateHints()
 	local input = UserInputService.PreferredInput
 	if input == Enum.PreferredInput.Gamepad then
 		hud.setPracticeInput("gamepad")
-		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, "L3", {"Y", "X", "L1", "←", "→"})
+		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, "L3", {"Y", "X", "L1", "LEFT", "RIGHT"})
 	elseif input == Enum.PreferredInput.Touch then
 		hud.setPracticeInput("touch")
 		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintHold, {"1", "2", "3", "4", "5"})

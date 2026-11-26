@@ -16,13 +16,10 @@ local MiniMap=require(script.Parent.BattleMinimap)
 local StoryHeading=require(script.Parent.StoryHeading)
 local TrainingTutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local Hud = {}
-local SLOT_FRAME_SIZE = 64
-local SLOT_FRAME_TOP = 18
-local SLOT_ICON_POSITION = UDim2.fromOffset(8, SLOT_FRAME_TOP + 8)
+local SLOT_ICON_POSITION = UDim2.fromOffset(8, 22)
 local SLOT_ICON_SIZE = UDim2.fromOffset(48, 48)
-local SLOT_CAPTION_TOP = SLOT_FRAME_TOP + SLOT_FRAME_SIZE + 2
-local SLOT_CAPTION_HEIGHT = 40
-local SLOT_HEIGHT = SLOT_CAPTION_TOP + SLOT_CAPTION_HEIGHT + 2
+local SLOT_HEIGHT = 96
+local TALL_SLOT_HEIGHT = 118
 local ULTIMATE_TOP = -SLOT_HEIGHT - 8
 local SLOT_ROW_WIDTH = 528
 local COMPACT_ROW_WIDTH = 472
@@ -160,7 +157,7 @@ local function action(parent, name, caption, hint, position, diameter)
 end
 
 local function quickKey(label)
-	label.Position=UDim2.fromOffset(5,0);label.Size=UDim2.fromOffset(20,16)
+	label.Position=UDim2.fromOffset(5,5);label.Size=UDim2.fromOffset(20,16)
 	label.BackgroundColor3=Color3.fromRGB(11,18,29);label.BackgroundTransparency=.12
 	label.Font=Enum.Font.GothamBold;label.TextColor3=Color3.new(1,1,1)
 	label.TextSize=12;label.TextXAlignment=Enum.TextXAlignment.Center
@@ -168,44 +165,14 @@ local function quickKey(label)
 	round(label,4)
 end
 
-local function slot(parent, name, caption, hint, position)
-	local button, key = action(parent, name, caption, hint, position, SLOT_FRAME_SIZE)
-	button.Size = UDim2.fromOffset(SLOT_FRAME_SIZE, SLOT_HEIGHT)
-	button.BackgroundTransparency = 1
-
-	local frame = Instance.new("Frame")
-	frame.Name = "IconFrame"
-	frame.Position = UDim2.fromOffset(0, SLOT_FRAME_TOP)
-	frame.Size = UDim2.fromOffset(SLOT_FRAME_SIZE, SLOT_FRAME_SIZE)
-	frame.BackgroundColor3 = button.BackgroundColor3
-	frame.BorderSizePixel = 0
-	frame.Parent = button
-	local corner = button.UICorner
-	corner.CornerRadius = UDim.new(0, 8)
-	corner.Parent = frame
-	button.TDButtonArt.Parent = frame
-
-	local label = button.Caption
-	label.Position=UDim2.fromOffset(2,SLOT_CAPTION_TOP)
-	label.Size=UDim2.new(1,-4,0,SLOT_CAPTION_HEIGHT)
-	label.BackgroundColor3=COLORS.ink
-	label.BackgroundTransparency=.25
+local function slotCaption(label)
+	local top = SLOT_ICON_POSITION.Y.Offset + SLOT_ICON_SIZE.Y.Offset + 2
+	label.Position=UDim2.fromOffset(5,top)
+	label.Size=UDim2.new(1,-10,1,-top-4)
 	label.TextSize=12
 	label.TextWrapped=true
 	label.TextStrokeColor3=COLORS.ink
 	label.TextStrokeTransparency=.2
-	round(label,4)
-	quickKey(key)
-	return button, key
-end
-
-local function slotReadout(button, name, value, width)
-	local label = text(button, name, value, UDim2.new(1, -width - 5, 0, 0), UDim2.fromOffset(width, 16), 11)
-	label.BackgroundColor3, label.BackgroundTransparency = COLORS.ink, .25
-	label.TextXAlignment = Enum.TextXAlignment.Center
-	Theme.fitText(label)
-	round(label,4)
-	return label
 end
 
 function Hud.create()
@@ -300,23 +267,39 @@ function Hud.create()
 	skillScale.Parent = skillBar
 	local itemButtons = {}
 	for index, item in ipairs({ {"HP", "Z"}, {"MP", "C"} }) do
-		local button = slot(skillBar, "Item" .. index, item[1], item[2], UDim2.fromOffset((index - 1) * 72, 0))
-		slotReadout(button, "ItemCount", "x0", 29)
+		local button = action(skillBar, "Item" .. index, item[1], item[2], UDim2.fromOffset((index - 1) * 72, 0), 64)
+		button.Size = UDim2.fromOffset(64, SLOT_HEIGHT)
+		button.UICorner.CornerRadius = UDim.new(0, 8)
+		slotCaption(button.Caption)
+		quickKey(button.Hint)
+		local count = text(button, "ItemCount", "x0", UDim2.new(1, -34, 0, 5), UDim2.fromOffset(29, 16), 11)
+		count.TextXAlignment, count.TextStrokeTransparency = Enum.TextXAlignment.Right, .3
+		Theme.fitText(count)
 		itemButtons[index] = button
 	end
 	local skillButtons, skillHints = {}, {}
 	for index = 1, 5 do
-		local button, key = slot(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72 + 24, 0))
+		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72 + 24, 0), 64)
+		button.Size = UDim2.fromOffset(64, SLOT_HEIGHT)
+		button.UICorner.CornerRadius = UDim.new(0, 8)
+		slotCaption(button.Caption)
+		quickKey(key)
 		SkillIcon.create(button, SLOT_ICON_POSITION, SLOT_ICON_SIZE)
-		local cooldown = slotReadout(button, "Cooldown", "", 26)
+		local cooldown = text(button, "Cooldown", "", UDim2.new(1, -31, 0, 5), UDim2.fromOffset(26, 16), 11)
+		cooldown.TextXAlignment = Enum.TextXAlignment.Right
+		cooldown.TextStrokeTransparency = .2
 		cooldown.Visible = false
+		Theme.fitText(cooldown)
 		skillButtons[index], skillHints[index] = button, key
 	end
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 0), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 132), 56)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
-	local ultimate,ultimateHint=slot(actions,'Ultimate',Text.Ultimate,require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey,UDim2.fromOffset(90,ULTIMATE_TOP))
+	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey,UDim2.fromOffset(90,ULTIMATE_TOP),64)
+	ultimate.Size=UDim2.fromOffset(64,SLOT_HEIGHT)
 	SkillIcon.create(ultimate,SLOT_ICON_POSITION,SLOT_ICON_SIZE)
+	slotCaption(ultimate.Caption)
+	quickKey(ultimateHint)
 	ultimate.Visible=false
 	local minimap=MiniMap.create(topRoot)
 	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame
@@ -427,7 +410,10 @@ function Hud.create()
 			skillScale.Scale=math.min(scale,(viewport.X-math.max(320,2*(30+164*actionScale.Scale)))/rowWidth)
 			skillBar.Position=UDim2.new(.5,not touch and viewport.X>=1100 and -55 or 0,1,-bottomInset)
 		end
-		skillBar.Size=UDim2.fromOffset(rowWidth,SLOT_HEIGHT)
+		local slotHeight=skillScale.Scale<.85 and TALL_SLOT_HEIGHT or SLOT_HEIGHT
+		skillBar.Size=UDim2.fromOffset(rowWidth,slotHeight+4)
+		for _,button in ipairs(itemButtons) do button.Size=UDim2.fromOffset(64,slotHeight) end
+		for _,button in ipairs(skillButtons) do button.Size=UDim2.fromOffset(64,slotHeight) end
 		-- Reset after input-mode changes; a hidden mobile JumpButton must not lift Attack.
 		attack.Position=UDim2.fromOffset(90,0)
 		if touch then
@@ -544,15 +530,14 @@ function Hud.create()
 				if definition and definition.potionTier then
 					if button:GetAttribute("DefinitionId") ~= definition.id then
 						local old = button:FindFirstChild("PotionIcon"); if old then old:Destroy() end
-						local icon = PotionIcon.create(button, definition, SLOT_ICON_POSITION, SLOT_ICON_SIZE, "HUD")
-						icon.ZIndex = button.IconFrame.ZIndex + 1
+						PotionIcon.create(button, definition, SLOT_ICON_POSITION, SLOT_ICON_SIZE, "HUD")
 						button:SetAttribute("DefinitionId", definition.id)
 					end
 					button.Caption.Text = definition.potionSize .. " " .. definition.glyph
 					button.Caption.TextColor3 = definition.restore == "health" and Color3.fromRGB(255, 210, 195) or Color3.fromRGB(181, 235, 255)
 				end
 				button.ItemCount.Text = count > 99 and "99+" or "x" .. tostring(count)
-				button.IconFrame.TDButtonArt.ImageTransparency = count > 0 and 0 or .45
+				button.TDButtonArt.ImageTransparency = count > 0 and 0 or .45
 				button.ItemCount.TextColor3 = count > 0 and COLORS.cream or COLORS.muted
 			end
    local ultimateId=character and character:GetAttribute('K0UltimateId')
@@ -564,10 +549,9 @@ function Hud.create()
    if ultimateSkill then
     local remaining=math.max(0,(character:GetAttribute('K0UltimateReady') or 0)-Workspace:GetServerTimeNow())
     ultimate.Active=remaining<=0;ultimate.Caption.Text=remaining>0 and string.format('%.1fs',remaining) or Text.Ultimate
-    local touch = UserInputService.TouchEnabled
-    ultimateHint.Text=touch and 'TAP' or UserInputService.GamepadEnabled and '↑' or 'T'
-    ultimateHint.Size=UDim2.fromOffset(touch and 30 or 20,16)
-    ultimate.IconFrame.TDButtonArt.ImageTransparency=remaining>0 and .45 or 0
+    ultimateHint.Text=UserInputService.TouchEnabled and 'TAP' or UserInputService.GamepadEnabled and 'D-PAD UP' or 'T'
+    ultimateHint.Size=UDim2.fromOffset(#ultimateHint.Text>2 and 48 or 20,16)
+    ultimate.TDButtonArt.ImageTransparency=remaining>0 and .45 or 0
     SkillIcon.set(ultimate.SkillIcon,ultimateSkill,true,remaining>0)
    end
 			for index, button in ipairs(skillButtons) do
@@ -580,8 +564,8 @@ function Hud.create()
 				button.Active = index <= count and ability ~= nil
 				local ready = character and character:GetAttribute("K0SkillReady" .. index) or 0
 				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())
-				button.IconFrame.BackgroundTransparency = remaining > 0 and 0.45 or 0
-				button.IconFrame.TDButtonArt.ImageTransparency = index > count and .6 or remaining > 0 and .35 or 0
+				button.BackgroundTransparency = remaining > 0 and 0.45 or 0
+				button.TDButtonArt.ImageTransparency = index > count and .6 or remaining > 0 and .35 or 0
 				SkillIcon.set(button.SkillIcon,index<=count and ability or nil,index<=count,remaining>0)
 				local label = button.Cooldown
 				label.Visible = remaining > 0
@@ -596,7 +580,7 @@ function Hud.create()
 			sprintHint.Text = sprintText or "E"
 			for index, hint in ipairs(skillHints) do
 				hint.Text = keys and keys[index] or tostring(index)
-				hint.Size=UDim2.fromOffset(utf8.len(hint.Text)>2 and 27 or 20,16)
+				hint.Size=UDim2.fromOffset(#hint.Text>2 and 27 or 20,16)
 			end
 		end,
 		showFeedback = function(value, duration, transparentBackground)
