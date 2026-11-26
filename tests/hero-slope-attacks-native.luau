@@ -181,8 +181,8 @@ local ok,err=xpcall(function()
     presentation.byId[other.id]=presentation.get(earth)
     Poses.mage(lift,earth,"earth",earth.windup+.065)
     Poses.mage(generic,other,"earth",earth.windup+.065)
-    check(lift.angles.left.X>generic.angles.left.X+28 and lift.angles.leftKnee.X>generic.angles.leftKnee.X+12,
-        "Earth Rise lifts palm and braces the front leg")
+    check(lift.angles.left.X>generic.angles.left.X+28 and lift.angles.leftKnee.X>generic.angles.leftKnee.X+12
+        and lift.angles.leftElbow.X<generic.angles.leftElbow.X-5,"Earth Rise lifts a bent arm and braces the front leg")
 
     slope.Parent=blockout
     local player=Instance.new("Folder",stage)

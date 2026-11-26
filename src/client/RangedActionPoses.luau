@@ -470,9 +470,9 @@ function Poses.mage(pose,d,profile,age)
         add(pose,"torso",v(-9,3,4)*follow)
     end
     if d.id=="mage.pyro.earth_rise" then
-        -- Keep the staff low while the free palm and front knee lift the crags.
+        -- Keep the staff low and lift the crags with a bent guiding arm.
         add(pose,"left",v(-18,10,-14)*wind+v(43,-9,20)*follow)
-        add(pose,"leftElbow",v(-23*wind+34*follow,0,0))
+        add(pose,"leftElbow",v(-23*wind-9*follow,0,0))
         add(pose,"torso",v(12,-7,2)*wind+v(-13,6,-6)*follow)
         add(pose,"leftKnee",v(11*wind+19*follow,0,0))
     end
