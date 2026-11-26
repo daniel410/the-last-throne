@@ -6,7 +6,12 @@ local Bridge=require(script.Parent.LobbyMenuBridge)
 local Art=require(script.Parent.LobbyNavigationArt)
 local M={}
 local iconTitles={ItemShop='POTIONS',DiamondShop='DIAMONDS',LoginRewards='REWARDS',Quest='QUESTS'}
-local entries={{'Heroes','HEROES'},{'ItemShop','POTION SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'},{'Party','PARTY'}}
+local entries={
+ {'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'},
+ {'ItemShop','POTION SHOP'},{'Blacksmith','BLACKSMITH'},
+ {'Heroes','HEROES'},{'Maps','MAPS'},
+ {'Quest','QUEST'},{'Party','PARTY'},
+}
 function M.create(parent,actions)
  local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.AnchorPoint=Vector2.new(0,0);rail.Position=UDim2.new(0,10,.5,-30);rail.Size=UDim2.fromOffset(180,268);rail.Parent=parent
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.fromOffset(88,64);grid.CellPadding=UDim2.fromOffset(4,4);grid.FillDirectionMaxCells=2;grid.SortOrder=Enum.SortOrder.LayoutOrder;grid.Parent=rail
@@ -15,16 +20,28 @@ function M.create(parent,actions)
   local viewport=parent.AbsoluteSize
   if viewport.X<=0 or viewport.Y<=0 then return end
   local metrics=Sizing.measure(viewport.X,viewport.Y)
-  local shortPortrait=viewport.X<500 and viewport.Y>viewport.X and viewport.Y<680
-   and viewport.X>=3*metrics.width+2*metrics.gap+24
-  local columns=shortPortrait and 3 or 2
-  local rows=math.ceil(#entries/columns)
-  local rowGap=shortPortrait and math.min(metrics.rowGap,8) or metrics.rowGap
-  grid.FillDirectionMaxCells=columns
-  grid.CellSize=UDim2.fromOffset(metrics.width,metrics.height)
+  local rows=math.ceil(#entries/2)
+  local cellHeight,rowGap=metrics.height,metrics.rowGap
+  local y=metrics.large and math.max(100,math.floor(viewport.Y*.155)) or math.max(100,math.floor(viewport.Y*.19))
+  if viewport.Y<500 then y=68 end
+  local bottomClearance=12
+  if viewport.X<500 and viewport.Y>viewport.X then
+   local portraitHeight=math.max(44,math.floor((viewport.X-60)/4))
+   bottomClearance=viewport.Y<500 and 194 or 162+portraitHeight -- Roster, PLAY, XP and a gap.
+   local bottom=viewport.Y-bottomClearance
+   if y+rows*cellHeight+(rows-1)*rowGap>bottom then
+    -- Keep the four requested rows between the wallet and the hero dock.
+    rowGap=4
+    local available=bottom-(rows-1)*rowGap
+    local top=math.clamp(available-rows*48,64,120)
+    y=math.max(y,top)
+    cellHeight=math.clamp(math.floor((available-y)/rows),44,cellHeight)
+   end
+  end
+  grid.CellSize=UDim2.fromOffset(metrics.width,cellHeight)
   grid.CellPadding=UDim2.fromOffset(metrics.gap,rowGap)
-  local height=rows*metrics.height+(rows-1)*rowGap
-  rail.Size=UDim2.fromOffset(columns*metrics.width+(columns-1)*metrics.gap,height)
+  local height=rows*cellHeight+(rows-1)*rowGap
+  rail.Size=UDim2.fromOffset(2*metrics.width+metrics.gap,height)
   scale.Scale=1
   for _,b in ipairs(rail:GetChildren()) do
    if b:IsA('TextButton') then
@@ -33,13 +50,6 @@ function M.create(parent,actions)
    end
   end
   local x=metrics.large and math.floor(viewport.X*.0284) or 12
-  local y=metrics.large and math.max(100,math.floor(viewport.Y*.155)) or math.max(100,math.floor(viewport.Y*.19))
-  if viewport.Y<500 then y=68 end
-  local bottomClearance=12
-  if shortPortrait then
-   local portraitHeight=math.max(44,math.floor((viewport.X-60)/4))
-   bottomClearance=viewport.Y<500 and 194 or 162+portraitHeight -- Roster, PLAY, XP and a gap.
-  end
   y=math.min(y,math.max(8,viewport.Y-height-bottomClearance))
   rail.Position=UDim2.fromOffset(x,y)
  end

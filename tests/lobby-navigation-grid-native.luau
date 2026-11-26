@@ -2,6 +2,7 @@ assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated local place o
 local client=game.StarterPlayer.StarterPlayerScripts.Client
 local gui=Instance.new('ScreenGui');gui.Name='NavigationGridQA';gui.IgnoreGuiInset=true;gui.Parent=game.CoreGui
 local report={kind='LOBBY_NAVIGATION_GRID_NATIVE',checks=0,failures={},sizes={}}
+local names={'DiamondShop','LoginRewards','ItemShop','Blacksmith','Heroes','Maps','Quest','Party'}
 local function check(value,message) report.checks+=1;assert(value,message) end
 local ok,err=xpcall(function()
  local host=Instance.new('Frame');host.Parent=gui
@@ -10,7 +11,6 @@ local ok,err=xpcall(function()
   host.Size=UDim2.fromOffset(viewport.X,viewport.Y)
   local expected=require(client.LobbyNavigationSizing).measure(viewport.X,viewport.Y)
   task.wait(.2)
-  local names={'Heroes','ItemShop','Blacksmith','Quest','Maps','DiamondShop','LoginRewards','Party'}
   local buttons={}
   for index,name in ipairs(names) do
    local button=nav.rail:FindFirstChild(name);check(button~=nil,name..' exists');buttons[index]=button
@@ -39,17 +39,17 @@ local ok,err=xpcall(function()
    check(caption.AbsolutePosition.X>plate.AbsolutePosition.X and caption.AbsolutePosition.X+caption.AbsoluteSize.X<plate.AbsolutePosition.X+plate.AbsoluteSize.X,name..' caption clears both beveled ends')
    check(caption.AbsolutePosition.Y>plate.AbsolutePosition.Y and caption.AbsolutePosition.Y+caption.AbsoluteSize.Y<plate.AbsolutePosition.Y+plate.AbsoluteSize.Y,name..' caption clears the top and bottom frame')
   end
-  local columns=nav.rail.UIGridLayout.FillDirectionMaxCells
+  check(nav.rail.UIGridLayout.FillDirectionMaxCells==2,'navigation uses two columns')
   for index=2,#buttons do
    local previous,button=buttons[index-1],buttons[index]
-   if (index-1)%columns==0 then
+   if index%2==1 then
     check(button.AbsolutePosition.Y>=previous.AbsolutePosition.Y+previous.AbsoluteSize.Y-1,'rows do not overlap')
    else
     check(math.abs(previous.AbsolutePosition.Y-button.AbsolutePosition.Y)<1,'icons share a row')
     check(button.AbsolutePosition.X>=previous.AbsolutePosition.X+previous.AbsoluteSize.X-1,'columns do not overlap')
    end
   end
-  local rewards=buttons[7]
+  local rewards=nav.rail.LoginRewards
   local last=buttons[#buttons]
   local first=buttons[1]
   check(first.AbsolutePosition.Y>=64 or buttons[2].AbsolutePosition.X+buttons[2].AbsoluteSize.X<=viewport.X-340,'navigation clears the top wallet')
@@ -60,22 +60,32 @@ local ok,err=xpcall(function()
   check(art~=nil and art.ZIndex>last.TDButtonArt.ZIndex and last.Caption.ZIndex>art.ZIndex,'icon and caption appear above the background')
   nav.dailyAvailable(true);check(rewards.Caption.Text=='REWARDS','reward availability does not add punctuation')
   nav.dailyAvailable(false);check(rewards.Caption.Text=='REWARDS','reward caption remains stable')
-  check(buttons[2].Caption.Text=='POTIONS' and buttons[6].Caption.Text=='DIAMONDS','requested icon-only captions')
+  check(nav.rail.ItemShop.Caption.Text=='POTIONS' and nav.rail.DiamondShop.Caption.Text=='DIAMONDS','requested icon-only captions')
   nav.showGuide('Maps');task.wait()
   local title,side,close=nav.panel.Title,nav.panel.TessaGuide,nav.panel.Close
   check(title.TextFits and title.AbsolutePosition.X+title.AbsoluteSize.X<side.AbsolutePosition.X,'map heading fits beside the Tessa button')
   check(side.Caption.TextFits and side.AbsolutePosition.X+side.AbsoluteSize.X<close.AbsolutePosition.X,'Tessa button clears close')
-  table.insert(report.sizes,{width=viewport.X,height=viewport.Y,cell={expected.width,expected.height},captionSize=buttons[3].Caption.TextSize})
+  table.insert(report.sizes,{width=viewport.X,height=viewport.Y,cell={expected.width,expected.height},captionSize=nav.rail.Blacksmith.Caption.TextSize})
  end
  nav.panel.Visible=false
  local player=Instance.new('Folder');player.Parent=gui
  local dock=require(client.LobbyHeroDock).create(host,player,function()end,function()end)
  dock.update({phase='Lobby',canManage=true,heroes={}},false)
- for _,viewport in ipairs({Vector2.new(390,844),Vector2.new(390,568),Vector2.new(320,568)})do
+ for _,viewport in ipairs({Vector2.new(390,844),Vector2.new(490,700),Vector2.new(390,568),Vector2.new(320,568)})do
   host.Size=UDim2.fromOffset(viewport.X,viewport.Y);task.wait(.2)
+  check(nav.rail.UIGridLayout.FillDirectionMaxCells==2,'portrait navigation uses two columns')
+  check(nav.rail.AbsolutePosition.Y>=host.AbsolutePosition.Y+116,'portrait rail clears the wallet')
   check(nav.rail.AbsolutePosition.Y+nav.rail.AbsoluteSize.Y<=dock.play.AbsolutePosition.Y-4,'portrait rail clears PLAY at '..tostring(viewport))
-  for _,tile in ipairs(nav.rail:GetChildren())do
-   if tile:IsA('GuiButton')then check(tile.Caption.TextFits,'portrait nameplate fits '..tile.Name)end
+  for index=1,#names,2 do
+   local left,right=nav.rail[names[index]],nav.rail[names[index+1]]
+   check(left.AbsolutePosition.Y==right.AbsolutePosition.Y and right.AbsolutePosition.X>left.AbsolutePosition.X,'portrait pair '..left.Name..' / '..right.Name)
+   if index>1 then
+    local previous=nav.rail[names[index-2]]
+    check(left.AbsolutePosition.Y>=previous.AbsolutePosition.Y+previous.AbsoluteSize.Y,'portrait rows follow the requested order')
+   end
+   for _,tile in ipairs({left,right})do
+    check(tile.AbsoluteSize.Y>=44 and tile.Caption.TextFits,'portrait tap target and nameplate fit '..tile.Name)
+   end
   end
  end
 end,debug.traceback)
