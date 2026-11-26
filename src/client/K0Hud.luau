@@ -16,11 +16,15 @@ local MiniMap=require(script.Parent.BattleMinimap)
 local StoryHeading=require(script.Parent.StoryHeading)
 local TrainingTutorial = require(ReplicatedStorage.Shared.TrainingTutorial)
 local Hud = {}
-local SLOT_ICON_POSITION = UDim2.fromOffset(8, 22)
+local SLOT_READOUT_TOP = 1
+local SLOT_READOUT_HEIGHT = 14
+local SLOT_ICON_POSITION = UDim2.fromOffset(8, SLOT_READOUT_TOP + SLOT_READOUT_HEIGHT + 1)
 local SLOT_ICON_SIZE = UDim2.fromOffset(48, 48)
-local SLOT_HEIGHT = 96
-local TALL_SLOT_HEIGHT = 118
-local ULTIMATE_TOP = -SLOT_HEIGHT - 8
+local SLOT_HEIGHT = 90
+local TALL_SLOT_HEIGHT = 110
+local ULTIMATE_ICON_POSITION = UDim2.fromOffset(8, 22)
+local ULTIMATE_HEIGHT = 96
+local ULTIMATE_TOP = -ULTIMATE_HEIGHT - 8
 local SLOT_ROW_WIDTH = 528
 local COMPACT_ROW_WIDTH = 472
 
@@ -165,8 +169,8 @@ local function quickKey(label)
 	round(label,4)
 end
 
-local function slotCaption(label)
-	local top = SLOT_ICON_POSITION.Y.Offset + SLOT_ICON_SIZE.Y.Offset + 2
+local function slotCaption(label, iconPosition)
+	local top = iconPosition.Y.Offset + SLOT_ICON_SIZE.Y.Offset + 2
 	label.Position=UDim2.fromOffset(5,top)
 	label.Size=UDim2.new(1,-10,1,-top-4)
 	label.TextSize=12
@@ -270,9 +274,9 @@ function Hud.create()
 		local button = action(skillBar, "Item" .. index, item[1], item[2], UDim2.fromOffset((index - 1) * 72, 0), 64)
 		button.Size = UDim2.fromOffset(64, SLOT_HEIGHT)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
-		slotCaption(button.Caption)
+		slotCaption(button.Caption, SLOT_ICON_POSITION)
 		quickKey(button.Hint)
-		local count = text(button, "ItemCount", "x0", UDim2.new(1, -34, 0, 5), UDim2.fromOffset(29, 16), 11)
+		local count = text(button, "ItemCount", "x0", UDim2.new(1, -34, 0, SLOT_READOUT_TOP), UDim2.fromOffset(29, SLOT_READOUT_HEIGHT), 11)
 		count.TextXAlignment, count.TextStrokeTransparency = Enum.TextXAlignment.Right, .3
 		Theme.fitText(count)
 		itemButtons[index] = button
@@ -282,10 +286,10 @@ function Hud.create()
 		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72 + 24, 0), 64)
 		button.Size = UDim2.fromOffset(64, SLOT_HEIGHT)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
-		slotCaption(button.Caption)
+		slotCaption(button.Caption, SLOT_ICON_POSITION)
 		quickKey(key)
 		SkillIcon.create(button, SLOT_ICON_POSITION, SLOT_ICON_SIZE)
-		local cooldown = text(button, "Cooldown", "", UDim2.new(1, -31, 0, 5), UDim2.fromOffset(26, 16), 11)
+		local cooldown = text(button, "Cooldown", "", UDim2.new(1, -31, 0, SLOT_READOUT_TOP), UDim2.fromOffset(26, SLOT_READOUT_HEIGHT), 11)
 		cooldown.TextXAlignment = Enum.TextXAlignment.Right
 		cooldown.TextStrokeTransparency = .2
 		cooldown.Visible = false
@@ -296,9 +300,9 @@ function Hud.create()
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 132), 56)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
 	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey,UDim2.fromOffset(90,ULTIMATE_TOP),64)
-	ultimate.Size=UDim2.fromOffset(64,SLOT_HEIGHT)
-	SkillIcon.create(ultimate,SLOT_ICON_POSITION,SLOT_ICON_SIZE)
-	slotCaption(ultimate.Caption)
+	ultimate.Size=UDim2.fromOffset(64,ULTIMATE_HEIGHT)
+	SkillIcon.create(ultimate,ULTIMATE_ICON_POSITION,SLOT_ICON_SIZE)
+	slotCaption(ultimate.Caption, ULTIMATE_ICON_POSITION)
 	quickKey(ultimateHint)
 	ultimate.Visible=false
 	local minimap=MiniMap.create(topRoot)

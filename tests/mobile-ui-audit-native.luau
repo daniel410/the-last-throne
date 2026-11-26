@@ -174,7 +174,7 @@ case('combat HUD',function()
    if group==bar or b.Name=='Ultimate' then
     local frame=b:FindFirstChild('TDButtonArt')
     check(frame and frame.Size==UDim2.fromScale(1,1),'original HUD frame fills the slot '..b.Name)
-    local height=group==bar and bar.UIScale.Scale<.85 and 118 or 96
+    local height=group==bar and (bar.UIScale.Scale<.85 and 110 or 90) or 96
     check(b.Size==UDim2.fromOffset(64,height),'HUD slot keeps its width and reduced height '..b.Name)
    end
    local icon=b:FindFirstChild('SkillIcon') or b:FindFirstChild('PotionIcon')
@@ -185,7 +185,14 @@ case('combat HUD',function()
      check(icon.ItemIllustration.ImageRectSize.X<=102 and not icon:FindFirstChild('SizeMark',true),'HUD potion uses a tight crop and shows its size in the caption')
     end
     separate(b.Caption,icon,'HUD caption clears icon '..b.Name)
-    separate(b.Hint,icon,'HUD key clears icon '..b.Name)
+    if group==bar then
+     local badgePosition,badgeSize=b.Hint.AbsolutePosition,b.Hint.AbsoluteSize
+     local iconPosition=icon.AbsolutePosition
+     check(badgePosition.X+badgeSize.X>iconPosition.X and badgePosition.Y+badgeSize.Y>iconPosition.Y
+      and b.Hint.ZIndex>icon.ZIndex,'HUD key sits over the upper left of its icon '..b.Name)
+    else
+     separate(b.Hint,icon,'HUD ultimate key clears icon')
+    end
     local count=b:FindFirstChild('ItemCount') or b:FindFirstChild('Cooldown')
     if count and count.Visible then
      check(count.TextFits and count.TextBounds.Y>0,'HUD timer or count renders '..b.Name)
