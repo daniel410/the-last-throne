@@ -47,7 +47,7 @@ function Coach.create(player)
 		if lesson == previous then return end
 		previous = lesson
 		waypoint.Parent = if lesson == "moved" then Workspace else nil
-		if lesson == "attacked" or lesson == "cast" then
+		if lesson == "attacked" or lesson == "usedSkill" or lesson == "cast" or lesson == "followUp" then
 			updateTarget()
 			if not connection then
 				local elapsed = 0

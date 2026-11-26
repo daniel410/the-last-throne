@@ -355,13 +355,21 @@ function Hud.create()
 		local coaching = practiceProgress ~= nil
 		practice.Visible = coaching or storyTracker ~= nil
 		coachArt.Visible = coaching
-		practice.Size = UDim2.fromOffset(status.Size.X.Offset, coaching and 100 or 120)
+		practice.Size = UDim2.fromOffset(status.Size.X.Offset, coaching and 112 or 120)
 		objective.Size = UDim2.new(1, -24, 0, coaching and 24 or 48)
 		note.Position = UDim2.fromOffset(12, coaching and 55 or 83)
+		note.Size = UDim2.new(1, -24, 0, coaching and 47 or 34)
 		if practiceProgress then
 			local key, index = TrainingTutorial.current(practiceProgress)
 			local lesson = Text.Practice[key]
-			practiceTitle.Text = string.format(Text.Practice.Progress, index, #TrainingTutorial.order, Text.PracticeTitle)
+			local introSteps = TrainingTutorial.skillChapterStart - 1
+			if key == "complete" then
+				practiceTitle.Text = Text.PracticeTitle
+			elseif index <= introSteps then
+				practiceTitle.Text = string.format(Text.Practice.Progress, Text.Practice.Basics, index, introSteps)
+			else
+				practiceTitle.Text = string.format(Text.Practice.Progress, Text.Practice.Skills, index - introSteps, #TrainingTutorial.order - introSteps)
+			end
 			objective.Text, note.Text = lesson.title, lesson[practiceInput] or lesson.keyboard
 		elseif storyTracker then
 			practiceTitle.Text, objective.Text, note.Text = storyTracker.title, storyTracker.objective, storyTracker.note

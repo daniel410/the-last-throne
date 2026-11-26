@@ -43,7 +43,10 @@ local function snapshot(state)
 			heroId = hero.heroId, classId = hero.baseClassId,
 			level = growth and growth.level or (not settings.inventory and 1 or nil),
 			skillSlots = { table.unpack(hero.skillSlots) }, practiceAdvanced = hero.practiceAdvanced,
-			practice = { moved = hero.practice.moved, attacked = hero.practice.attacked, cast = hero.practice.cast, dodged = hero.practice.dodged },
+			practice = {
+				moved = hero.practice.moved, attacked = hero.practice.attacked, dodged = hero.practice.dodged,
+				usedSkill = hero.practice.usedSkill, cast = hero.practice.cast, followUp = hero.practice.followUp,
+			},
 		})
 	end
 	return {
@@ -191,7 +194,7 @@ local function execute(state, action, argument)
 		if #state.heroes >= MAX_HEROES then return "RosterFull" end
 		local hero = {
 			heroId = HttpService:GenerateGUID(false), baseClassId = argument,
-			practice = { moved = false, attacked = false, cast = false, dodged = false },
+			practice = { moved = false, attacked = false, dodged = false, usedSkill = false, cast = false, followUp = false },
 			skillSlots = {1, 2, 3, 0, 0}, practiceAdvanced = false, skillReadyAt = {},
 		}
 		if settings.inventory then
@@ -304,7 +307,7 @@ local function bindPlayer(player)
 			if not connected(state) then return end
 			if roster then
 				for id, stored in pairs(roster) do
-					local hero = {heroId = id, baseClassId = stored.baseClassId, practice = {moved=false, attacked=false, cast=false, dodged=false},
+					local hero = {heroId = id, baseClassId = stored.baseClassId, practice = {moved=false, attacked=false, dodged=false, usedSkill=false, cast=false, followUp=false},
 						skillSlots = {1,2,3,0,0}, practiceAdvanced = false, skillReadyAt = {}}
 					state.byId[id], state.byClass[hero.baseClassId] = hero, hero
 					table.insert(state.heroes, hero)
@@ -450,20 +453,34 @@ function HeroSessionService.onReady(player, character, generation, requestId)
 	state.phase = state.mode
 	local hero = state.mode == "Tutorial" and state.route == "Training" and selectedHero(state) or nil
 	if hero then
-		local function watch(key, attribute, confirms)
-			if hero.practice[key] then return end
+		local function watch(attribute, record)
 			table.insert(state.lifeConnections, character:GetAttributeChangedSignal(attribute):Connect(function()
-				if not hero.practice[key] and confirms(character:GetAttribute(attribute))
-					and HeroSessionService.getCombatContext(player, character) then
-					hero.practice[key] = true
+				local value = character:GetAttribute(attribute)
+				if type(value) == "number" and value > 0 and HeroSessionService.getCombatContext(player, character) and record() then
 					changed(state)
 				end
 			end))
 		end
-		local function hit(value) return value == true end
-		watch("attacked", TrainingTutorial.hitAttribute.basic, hit)
-		watch("cast", TrainingTutorial.hitAttribute.skill, hit)
-		watch("dodged", "K0DodgeSeq", function(value) return type(value) == "number" and value > 0 end)
+		local function mark(key)
+			if hero.practice[key] then return false end
+			hero.practice[key] = true
+			return true
+		end
+		if not hero.practice.attacked or not hero.practice.followUp then
+			watch(TrainingTutorial.hitAttribute.basic, function()
+				local firstHit = mark("attacked")
+				local followUp = hero.practice.cast and mark("followUp")
+				return firstHit or followUp
+			end)
+		end
+		if not hero.practice.cast then
+			watch(TrainingTutorial.hitAttribute.skill, function()
+				mark("usedSkill")
+				return mark("cast")
+			end)
+		end
+		if not hero.practice.usedSkill then watch("K0SkillStartedAt", function() return mark("usedSkill") end) end
+		if not hero.practice.dodged then watch("K0DodgeSeq", function() return mark("dodged") end) end
 	end
 	changed(state)
 end

@@ -870,7 +870,7 @@ local function damageEnemy(state, enemy, attack, current, contactDirection, puls
 	local applied = math.max(0, healthBefore - math.max(0, enemy.humanoid.Health))
 	if applied > 0 and state.player:GetAttribute("TLTRoute") == "Training" and enemy.model:HasTag(TrainingTutorial.enemyTag) then
 		local attribute = attack.isSkill and TrainingTutorial.hitAttribute.skill or TrainingTutorial.hitAttribute.basic
-		state.character:SetAttribute(attribute, true)
+		state.character:SetAttribute(attribute, (state.character:GetAttribute(attribute) or 0) + 1)
 	end
 	local appliedMark = applied > 0 and enemy.humanoid.Health > 0 and d.advanced and d.mark or nil
 	if appliedMark then

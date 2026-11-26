@@ -36,6 +36,10 @@ function V.create(parent,send,diamondOnly,store)
  local enhance=T.button(panel,'EnhanceTab','ENHANCE',UDim2.new(.75,6,0,37),UDim2.new(.25,-22,0,44));enhance.Visible=store=='blacksmith'
  local guide=require(script.Parent.EnhancementGuide).create(panel)
  local help=T.button(panel,'EnhancementHelp',AdventureText.EnhancementHelp,UDim2.new(1,-242,0,12),UDim2.fromOffset(174,44));help.Visible=false
+ local setMode
+ local practice=store=='blacksmith' and require(script.Parent.EnhancementPractice).create(panel,function()setMode('Enhance')end)
+ local practiceButton=practice and T.button(panel,'PracticeEnhancement',AdventureText.EnhancementPractice,UDim2.new(),UDim2.new())
+ if practiceButton then practiceButton.Visible=false end
  local categories=Instance.new('Frame');categories.Name='Categories';categories.Position=UDim2.fromOffset(16,132);categories.Size=UDim2.new(1,-32,0,96);categories.BackgroundTransparency=1;categories.Parent=panel
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.SortOrder=if store=='items' or store=='blacksmith' then Enum.SortOrder.LayoutOrder else Enum.SortOrder.Name;grid.Parent=categories
  local function resize()
@@ -97,8 +101,10 @@ function V.create(parent,send,diamondOnly,store)
    help.Size=UDim2.fromOffset(200,44)
    if narrow then
     help.Position=UDim2.fromOffset(16,rowY)
-    help.Size=UDim2.new(1,-32,0,44)
+    help.Size=UDim2.new(.6,-20,0,44)
    end
+   practiceButton.Position=if narrow then UDim2.new(.6,2,0,rowY) else UDim2.new(1,-350,0,rowY)
+   practiceButton.Size=if narrow then UDim2.new(.4,-18,0,44) else UDim2.fromOffset(126,44)
    top=if narrow then rowY+82 else rowY+54
   end
   scroll.Position=UDim2.fromOffset(16,top)
@@ -118,6 +124,7 @@ function V.create(parent,send,diamondOnly,store)
   panel:SetAttribute('ShopLayout',short and 'MobileLandscape' or 'Desktop')
   scroll.Size=UDim2.new(1,-32,1,-top-bottom)
   guide.scroll.Position=scroll.Position;guide.scroll.Size=scroll.Size;guide.resize()
+  if practice then practice.frame.Position,practice.frame.Size=scroll.Position,scroll.Size end
   notice.Position=UDim2.new(0,20,1,-bottom+4)
   notice.Size=UDim2.new(1,-40,0,bottom-8)
  end
@@ -188,10 +195,14 @@ function V.create(parent,send,diamondOnly,store)
  end
  render=function(snapshot,message,saving)
   help.Visible=store=='blacksmith' and (mode=='Enhance' or mode=='Guide')
+  if practice then
+   practiceButton.Visible=help.Visible
+   practice.frame.Visible=mode=='Practice'
+  end
   if snapshot and (snapshot.revision~=state.revision or snapshot.heroId~=state.heroId or not snapshot.ready or not snapshot.wallet) then pending=nil end
   if message~=nil then tradeMessage=message end
   if saving then pending=nil;productMessage=nil end
-  state=snapshot or state;categories.Visible=mode~='Enhance'and mode~='Guide';panel:SetAttribute('EnhancementMode',mode=='Enhance');panel:SetAttribute('EnhancementGuideMode',mode=='Guide');guide.scroll.Visible=mode=='Guide';scroll.Visible=mode~='Guide'
+  state=snapshot or state;categories.Visible=mode~='Enhance'and mode~='Guide'and mode~='Practice';panel:SetAttribute('EnhancementMode',mode=='Enhance');panel:SetAttribute('EnhancementGuideMode',mode=='Guide');guide.scroll.Visible=mode=='Guide';scroll.Visible=mode~='Guide'and mode~='Practice'
   for id,b in pairs({Buy=buy,Sell=sell,Enhance=enhance})do b.TDButtonArt.ImageColor3=mode==id and Color3.fromRGB(160,220,255)or Color3.new(1,1,1);b.Caption.Text=(mode==id and '[X] 'or '')..id:upper() end
   resize();if saving~=nil then transactionPending=saving==true end
   for id,b in pairs(categoryButtons)do b.Caption.Text=(category==id and '[X] ' or '')..b:GetAttribute('CategoryLabel') end
@@ -245,7 +256,7 @@ function V.create(parent,send,diamondOnly,store)
    local hasOffers=false
    for _,child in ipairs(scroll:GetChildren()) do if child:IsA('GuiObject') then hasOffers=true;break end end
    if not hasOffers then T.label(scroll,'Empty','No items available in this category.',UDim2.new(),UDim2.new(1,-16,0,60),14) end
-  else
+  elseif mode=='Sell' then
    local n=0
    for _,item in ipairs(state.items or {}) do
     local price=Economy.sellPrice(item)
@@ -281,12 +292,14 @@ function V.create(parent,send,diamondOnly,store)
   local robux=T.button(categories,'Category_Robux','ROBUX',UDim2.new(),UDim2.new());robux.Caption.TextSize=11;robux:SetAttribute('CategoryLabel','ROBUX');categoryButtons.Robux=robux;robux.Activated:Connect(function()selectCategory('Robux')end)
   local b=T.button(categories,'Category_Gold',ItemText.GoldCategory,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',ItemText.GoldCategory);categoryButtons.Gold=b;b.Activated:Connect(function()selectCategory('Gold')end)
  end
- local function setMode(value)
-  if value=="Buy" or value=="Sell" or (value=="Enhance" or value=="Guide") and store=="blacksmith" then
+ setMode=function(value)
+  if value=="Buy" or value=="Sell" or (value=="Enhance" or value=="Guide" or value=="Practice") and store=="blacksmith" then
    if mode~=value then pending=nil end
+   if value=="Practice" then practice.reset() end
    mode=value;render()
   end
  end
+ if practiceButton then practiceButton.Activated:Connect(function()setMode('Practice')end) end
  help.Activated:Connect(function()setMode(mode=='Guide' and 'Enhance' or 'Guide')end)
  enhance.Activated:Connect(function()setMode('Enhance')end)
  buy.Activated:Connect(function()setMode('Buy')end);sell.Activated:Connect(function()setMode('Sell')end)

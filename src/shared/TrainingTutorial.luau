@@ -3,7 +3,8 @@ local Tutorial = {
 	radius = 4,
 	enemyTag = "TLTTrainingEnemy",
 	hitAttribute = {basic = "TLTTrainingBasicHit", skill = "TLTTrainingSkillHit"},
-	order = {"moved", "attacked", "cast", "dodged"},
+	order = {"moved", "attacked", "dodged", "usedSkill", "cast", "followUp"},
+	skillChapterStart = 4,
 }
 
 function Tutorial.reached(position)
