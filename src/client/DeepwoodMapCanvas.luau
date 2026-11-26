@@ -12,6 +12,10 @@ local Checkpoints=require(Shared.CheckpointTravel)
 local Areas=require(Shared.CampaignAreas)
 local Plate=require(script.Parent.AtlasPlate)
 local Canvas={}
+local fogColor=Color3.fromRGB(12,24,31)
+local revealedTint=Color3.new(1,1,1)
+local unvisitedTint=Color3.new(.32,.36,.40)
+local lockedTint=Color3.new(.15,.18,.22)
 function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
  local minX,minZ,maxX,maxZ=math.huge,math.huge,-math.huge,-math.huge
  local ids={};for id in pairs(Content.zones) do if not zoneId or id==zoneId or type(zoneId)=='table' and zoneId[id] then table.insert(ids,id) end end;table.sort(ids)
@@ -37,12 +41,13 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
   local px,pz=(maxX-minX)*.075,(maxZ-minZ)*.075;minX-=px;maxX+=px;minZ-=pz;maxZ+=pz
  end
  local width,height=maxX-minX,maxZ-minZ
+ local fogDivisions=compact and 11.7 or 12
  local function point(x,z) return Vector2.new((x-minX)/width,(z-minZ)/height) end
  local function label(name,text,p,size,font,color,layer)
   local t=Theme.label(parent,name,text,UDim2.fromScale(p.X,p.Y),size,font,color)
   t.AnchorPoint=Vector2.new(.5,.5);t.TextXAlignment=Enum.TextXAlignment.Center;t.TextStrokeTransparency=.35;t.TextStrokeColor3=Color3.fromRGB(5,17,20);t.ZIndex=layer or 8;return t
  end
- local roads={};local rows={};local lastJournal,lastSize
+ local roads={};local rows={};local reliefs={};local lastJournal,lastSize=false,nil
  local function line(name,a,b,color,thickness,layer,edge,zone,worldWidth)
   if compact then
    local delta=b-a;local offset=a-Vector2.new(.5,.5);local aa=delta:Dot(delta)
@@ -66,6 +71,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
    local at=point(x0,z0)
    relief=Plate.draw(parent,id,type(zoneId)=='string')
    if relief then
+    reliefs[id]=relief
     relief.Position=UDim2.fromScale(at.X,at.Y)
     relief.Size=UDim2.fromScale((x1-x0)/width,(z1-z0)/height)
     relief.ZIndex=3
@@ -113,7 +119,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
   local size=Vector2.new(z.size[1]/width,z.size[2]/height);local center=point(z.center[1],z.center[3]);local cells={}
   for zz=1,12 do for x=1,12 do
    local origin=a+Vector2.new((x-.5)/12*size.X,(zz-.5)/12*size.Y)
-   local cell=Art.shape(parent,'FogCell',origin.X,origin.Y,size.X/11.7,size.Y/11.7,Color3.fromRGB(12,24,31),6,.5)
+   local cell=Art.shape(parent,'FogCell',origin.X,origin.Y,size.X/fogDivisions,size.Y/fogDivisions,fogColor,6,compact and .5 or nil)
    cells[(zz-1)*12+x]=cell
    if compact then cell.Visible=(origin-Vector2.new(.5,.5)).Magnitude<.44 end
   end end
@@ -136,7 +142,7 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
    hit=Instance.new('TextButton');hit.Name='SelectRegion';hit.Text='';hit.BackgroundTransparency=1;hit.Position=caption.Position;hit.AnchorPoint=Vector2.new(.5,.5);hit.Size=UDim2.fromOffset(164,48);hit.ZIndex=9;hit.AutoLocalize=false;hit.Parent=parent
    hit.Activated:Connect(function() selectRegion(id);if onInspect then onInspect(id)end end)
   end
-  rows[id]={span=size,cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark}
+  rows[id]={span=size,cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark,relief=reliefs[id]}
  end
  local waypoint=label('Waypoint',Text.PinSymbol,Vector2.zero,UDim2.fromOffset(22,22),15,Color3.fromRGB(235,176,255),15)
  waypoint.Visible=false;waypoint.Font=Enum.Font.GothamBold;waypoint.TextStrokeTransparency=0
@@ -164,10 +170,18 @@ function Canvas.create(parent,zoneId,compact,onSelect,onEpic,onInspect)
    lastJournal=journal
    for id,row in pairs(rows) do
     local cells=journal and journal.explored and journal.explored[id] or {};local allowed=Access.allowed(journal,id);local count=0
+    local relief=row.relief
+    local wholeZoneFog=relief and next(cells)==nil
+    if relief then
+     local tint=wholeZoneFog and (allowed and unvisitedTint or lockedTint) or revealedTint
+     if tint~=row.tint then Plate.shade(relief,tint);row.tint=tint end
+    end
+    local mist
+    if compact then mist=allowed and .97 or .93
+    else mist=allowed and .26 or .12 end
     for index,cell in ipairs(row.cells) do
      local explored=Progress.hasCell(cells,index);if explored then count+=1 end
-     cell.BackgroundColor3=explored and Color3.fromRGB(70,110,75) or Color3.fromRGB(12,24,31)
-     cell.BackgroundTransparency=explored and 1 or allowed and .97 or .93
+     cell.BackgroundTransparency=(explored or wholeZoneFog) and 1 or mist
     end
     row.name.TextColor3=allowed and Theme.color.text or Theme.color.muted
     row.status.Text=not allowed and Text.Locked or count==0 and Text.Available or string.format(Text.Explored,math.floor(count/144*100))

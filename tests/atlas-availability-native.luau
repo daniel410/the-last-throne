@@ -53,9 +53,16 @@ local ok,err=xpcall(function()
  host:ClearAllChildren()
  local calls=0
  local denied={CreateEditableImage=function()calls+=1;error('Image APIs unavailable')end}
- local fallback=plate(realPlates,denied).draw(host,'GW-05',false)
+ p=plate(realPlates,denied)
+ local fallback=p.draw(host,'GW-05',false)
  check(fallback:IsA('Frame') and calls==0,'default published settings never call the image API')
  check(#fallback:GetChildren()>54 and #fallback:GetChildren()<=288,'overview fallback has a denser bounded grid')
+ local band=fallback:GetChildren()[1]
+ local tint=Color3.new(.2,.25,.30)
+ p.shade(fallback,tint)
+ check(band.BackgroundColor3==tint,'default-security terrain accepts fog tint')
+ p.shade(fallback,Color3.new(1,1,1))
+ check(band.BackgroundColor3==Color3.new(1,1,1),'clearing fallback tint restores the original terrain colors')
  fallback:Destroy()
  fallback=plate(realPlates,denied,false,true).draw(host,'GW-05',false)
  check(fallback:IsA('Frame') and calls==1,'opt-in with unavailable API falls back')

@@ -39,6 +39,19 @@ local ok,err=xpcall(function()
   check(panel.Size.X.Offset<=size.X-24 and panel.Size.Y.Offset<=size.Y-24,'panel respects available safe area')
   check(math.abs(scene.Size.X.Offset/scene.Size.Y.Offset-map.atlas.aspect)<.02,'map preserves geographic aspect')
   local n=0;for _ in pairs(map.atlas.rows)do n+=1 end;check(n==10,'default shows seven main regions and three side regions')
+  local actualRows=map.atlas.rows
+  local original=Color3.new(1,1,1)
+  check(actualRows['DW-01'].relief.ImageColor3==original,'visited region keeps its original terrain colors')
+  local unvisited=actualRows['DW-02'].relief.ImageColor3
+  check(unvisited.R<.4 and unvisited.R>actualRows['DW-07'].relief.ImageColor3.R,'unvisited region is dark and locked terrain is darker')
+  local visitedCells=map.atlas.rows['DW-01'].cells
+  check(visitedCells[66].BackgroundTransparency==1 and visitedCells[1].BackgroundTransparency<.3,'fog clears only the recorded cell')
+  check(visitedCells[1].ZIndex<map.atlas.pin.ZIndex and visitedCells[1].ZIndex<map.atlas.objective.ZIndex,'map markers stay above the fog')
+  local discovered=Progress.copy(journal);discovered.explored['DW-02']={[66]=true}
+  map.atlas.update({journal=discovered},root,root.Position)
+  check(actualRows['DW-02'].relief.ImageColor3==original and actualRows['DW-02'].cells[66].BackgroundTransparency==1,'server discovery removes the region tint and clears the recorded cell')
+  map.atlas.update({journal=journal},root,root.Position)
+  check(actualRows['DW-02'].relief.ImageColor3==unvisited,'switching back to unknown journal restores the fog')
   for _,name in ipairs({'Close','ZoomIn','ZoomOut','Fit','Center','NavigationTrail'}) do
    local b=panel[name];check(b.Position.Y.Scale*panel.AbsoluteSize.Y+b.Position.Y.Offset>=0,name..' stays inside panel vertically')
    check(b.AbsoluteSize.X>=40 and b.AbsoluteSize.Y>=40,name..' keeps a usable target')

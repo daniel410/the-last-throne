@@ -102,4 +102,14 @@ function Plate.draw(parent, zoneId, detail)
  return relief
 end
 
+function Plate.shade(relief, tint)
+ if relief:IsA("ImageLabel") then
+  relief.ImageColor3 = tint
+ else
+  for _, band in ipairs(relief:GetChildren()) do
+   band.BackgroundColor3 = tint
+  end
+ end
+end
+
 return Plate
