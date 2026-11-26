@@ -5,7 +5,7 @@
 
 - 최신 비공개 게시 빌드 0.115.33은 로비 118·배틀 43에 반영했다. Roblox Player에서 Dawnspire 진입과 기존 영웅 표시를 확인했다. [게시 및 빈 로비 복구 확인](../evidence/release-0.115.33-20261121/README.md)
 
-- 전투 조작 튜토리얼 후보 0.116.1은 Dawnspire의 Training 입구에서 이동·기본 공격·스킬·회피를 안내한다. Studio에서 엘프 완주와 허브 복귀, iPhone 가로 에뮬레이터의 첫 화면과 입력 전환을 확인했다. [빌드와 검증](../evidence/training-tutorial-20261126/README.md)
+- 튜토리얼 후보 0.117.0은 전투 기초와 영웅 스킬을 각 3단계로 안내하고, 대장간에 재화 소비 없는 +1 강화 연습을 추가했다. Studio 데스크톱에서 두 흐름을 완주하고 강화 연습 전후 인벤토리를 대조했다. [빌드와 검증](../evidence/training-tutorial-20261126/README.md)
 
 - 영웅 모션 후보 0.115.135는 League of Throne을 참고해 네 영웅의 기본 공격과 스킬에서 준비·체중 이동·회수를 다듬었다. 모션 샘플링과 발사 지연 회귀를 통과했으며 Studio 화면과 실기기 수용은 후속이다. [LoT 원본 비교와 검증](../evidence/hero-lot-motion-20261125/README.md)
 
