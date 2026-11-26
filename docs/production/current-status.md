@@ -5,6 +5,8 @@
 
 - 최신 비공개 게시 빌드 0.115.33은 로비 118·배틀 43에 반영했다. Roblox Player에서 Dawnspire 진입과 기존 영웅 표시를 확인했다. [게시 및 빈 로비 복구 확인](../evidence/release-0.115.33-20261121/README.md)
 
+- 전투 조작 튜토리얼 후보 0.116.1은 Dawnspire의 Training 입구에서 이동·기본 공격·스킬·회피를 안내한다. Studio에서 엘프 완주와 허브 복귀, iPhone 가로 에뮬레이터의 첫 화면과 입력 전환을 확인했다. [빌드와 검증](../evidence/training-tutorial-20261126/README.md)
+
 - 영웅 모션 후보 0.115.135는 League of Throne을 참고해 네 영웅의 기본 공격과 스킬에서 준비·체중 이동·회수를 다듬었다. 모션 샘플링과 발사 지연 회귀를 통과했으며 Studio 화면과 실기기 수용은 후속이다. [LoT 원본 비교와 검증](../evidence/hero-lot-motion-20261125/README.md)
 
 - 전투 화면 후보 0.115.76은 MP와 선택 상태, Deepwood 주간 지면·조명, 영웅 VFX의 원소색 대비를 높였다. 영웅 연출 후보 0.115.127은 Vanguard Strike, Stonebound Leap, Piercing Line, Stone Lance의 방출과 회수를 다듬었다. 게시 4인 교전과 터치 실기기 수용은 후속이다. [네 영웅의 전후 화면과 검증](../evidence/hero-forward-impact-20261125/README.md) · [금빛 검격과 보호 기술](../evidence/hero-guard-waves-20261125/README.md) · [반격·관통탄·뿌리·연쇄 번개](../evidence/hero-guard-chain-20261125/README.md) · [성광·포탄·표식·빙편의 전후 화면과 검증](../evidence/hero-burst-contact-20261125/README.md) · [전방 공격의 전후 화면과 검증](../evidence/hero-directional-releases-20261125/README.md) · [표식 소모 기술의 전후 화면과 검증](../evidence/hero-mark-break-releases-20261125/README.md) · [이동 공격의 전후 화면과 검증](../evidence/hero-mobile-releases-20261124/README.md) · [교차 타격과 투사체 회수](../evidence/hero-crossed-releases-20261124/README.md) · [색 대비와 Studio 검증](../evidence/defense-color-readability-20261124/README.md) · [선행 투사체와 명중](../evidence/td-inspired-vfx-20261124/README.md) · [방출 형상과 엄폐](../evidence/hero-release-shapes-20261124/README.md) · [단발 타격](../evidence/hero-impact-silhouettes-20261124/README.md) · [연속 타격과 지면 시전](../evidence/hero-cast-shapes-20261124/README.md) · [지면 타격과 설치 동작](../evidence/hero-ground-beats-20261124/README.md)
