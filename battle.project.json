@@ -7,6 +7,9 @@
         "$className": "Folder",
         "CheckpointTravelState": {
           "$className": "RemoteEvent"
+        },
+        "PlayerAirRoll": {
+          "$className": "RemoteEvent"
         }
       },
       "Shared": {
